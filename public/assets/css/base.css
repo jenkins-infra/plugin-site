@@ -1,0 +1,910 @@
+img {max-width:100%}
+body {overflow-x:hidden}
+body .showResults.item-finder > #plugin-search-form.HomeHeader{
+  padding:.25rem .5rem;
+}
+body .showResults.item-finder > .HomeHeader > .navbar {width:100%; padding:0 10.5rem 0 0;}
+body .showResults.item-finder > .HomeHeader > .navbar > .nav ,
+body .showResults.item-finder > .HomeHeader > .navbar > .nav > .SearchBox {width:100%; padding:0 !important}
+body .item-finder > .HomeHeader > .navbar > .nav > .btn-group > button > i {line-height:1.5rem}
+body .showResults.item-finder > .HomeHeader > .navbar > .nav > .btn-group {position:absolute; right:0; top:0}
+body .showResults.item-finder > .HomeHeader > .navbar > .nav > .SearchBox .ShowFilter {width:18.6% !important; max-width: 10rem !important;}
+body .showResults.item-finder .filters {top:5; padding-top:1rem !important; margin-top:-1px; border-radius:0; box-shadow:-.25rem 0 #fff; border-left:none; border-top:none; left:.25rem}
+body .showResults.item-finder .filters .row {border:none; padding:0}
+body .showResults.item-finder .filters .row > div {font-size:.75rem; padding:0 .5rem;  overflow:hidden;}
+body .showResults.item-finder .filters .row > div label {white-space:nowrap;}
+body .showResults.item-finder .filters .Cols3 {column-count:1; -moz-column-count:1;}
+.filters .show-all{
+    border: none;
+    background: #168BB9;
+    font-family: lato;
+    padding: .15rem .5rem;
+    margin-left: .5rem;
+    font-size: .67rem;
+    color: #fff;
+    font-weight: 200;
+    border-radius: 2px;
+}
+.isFiltered .filters .show-all {display: inline-block}
+.showResults #plugin-search-form .nav > .btn-group {display:inline-block;}
+.showResults #plugin-search-form p,
+.showResults #plugin-search-form h1,
+.showResults #plugin-search-form:before {display:none}
+#plugin-search-form {vertical-align:middle; padding:4rem 2rem}
+#plugin-search-form p{font-family:'Ubuntu'; color:#bde; font-weight:200; box-sizing:content-box;  max-width:30rem; margin:1rem auto; font-size:1.1rem; text-align:left; padding-left:170px}
+#plugin-search-form p.tagline {margin-top:-1rem; padding-left:360px; color:#ff9; font-style:italic}
+#plugin-search-form h1{    font-family: 'Ubuntu','Titillium Web','Orbitron',sans-serif;
+    color: #fff;
+    font-size: 3rem;
+    box-sizing: content-box;
+    position: relative;
+    padding-left: 145px;
+    font-weight: 800;
+    width: 30rem;
+    margin: 1.5rem auto 1rem;
+    text-align: left;
+    font-style: italic;
+    border-bottom: 1px solid rgba(255,255,255,.25);}
+#plugin-search-form h1 .logo {font-family:'Titillium Web','Orbitron'; font-weight:100;color:#bde; margin-right:.25rem}
+#plugin-search-form h1:before {display:inline-block; position:absolute; left:-150px; vertical-align:top; margin:-3rem 0 0; width:271px; height:294px; background:url(img/jenkins-voltron-271x294x8.png) no-repeat;background-size:100%; content:''}
+#plugin-search-form .nav {vertical-align:middle; padding-left:145px}
+#plugin-search-form .nav > .btn-group {display:none;}
+#plugin-search-form .nav-box {display:inline-block; text-align:left;}
+
+
+.dependencies .req{
+    font-size: .67rem;
+    opacity: .67;
+}
+
+.dependencies .required .req{
+    color:#900;
+}
+.empty {opacity:.33}
+
+
+body a {color:#069}
+body a:visited {color:#7ac}
+body a:hover {color:#09c}
+body a:active {color:#c00}
+
+.NoLabels > .Categories label > input {display:none}
+.NoLabels > .Categories label > span {margin-left:0 !important; color:#0275d8; cursor:pointer}
+
+body #grid-box .item-finder > .NoLabels {padding: 2rem 0; background:#e5f8ff}
+body #grid-box .item-finder > .NoLabels .Cols3 {font-size:.85rem}
+body #grid-box .item-finder > .NoLabels .Cols3 label > span {margin-left:.5rem}
+body #grid-box .item-finder .NoLabels .Entry-box {display:block;    padding: 0.25rem 0;
+    line-height: 1rem; font-size:.85rem}
+body #grid-box .item-finder .NoLabels .Entry-box a {cursor:pointer}
+body #grid-box .item-finder .NoLabels legend {font-size:1.1rem; }
+
+.navbar-nav .active-filters {white-space:nowrap}
+.navbar-nav .active-filters > div {display:inline-block; white-space:nowrap; margin-right:.5rem; border-right:1px solid #ccc; padding-right:.5rem}
+.navbar-nav .active-filters > div > .nav-link {display:inline-block; margin:0; margin-right:.5rem;}
+.navbar-nav .active-filters > div > .nav-link:before {
+    content: 'x ';
+    display: inline-block;
+    margin: -.15rem .1rem 0 0;
+    padding: 0rem 0 .1rem;
+    border: 1px solid #ccc;
+    line-height: 1em;
+    font-size: .75rem;
+    width: 1.3em;
+    vertical-align: middle;
+    border-radius:2;
+}
+/*-------spinner-----------*/
+
+#plugin-spinner {
+  display:block; text-align:center; padding:5rem 0; position:absolute; left:0; right:0;
+}
+#plugin-spinner > .swing {display:inline-block; padding:1rem;}
+#plugin-spinner .icon-jenkins {display:block; font-size:10rem}
+.swing div {
+  display:inline-block;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  border: 1px solid #6699cc;
+  background:#fff;
+  box-shadow: inset #003399 0 0 1px, inset #ffffff 0 0 0 1px, 0 5px 3px -2px rgba(0, 0, 0, 0.15), inset -5px -5px 7px 1px #168BB9, inset -4px -6px 10px 10px #69c;
+}
+
+@-webkit-keyframes ball-l {
+  0%, 50% {
+    -webkit-transform: rotate(0) translateX(0);
+    transform: rotate(0) translateX(0);
+  }
+  100% {
+    -webkit-transform: rotate(50deg) translateX(-2.5em);
+    transform: rotate(50deg) translateX(-2.5em);
+  }
+}
+@keyframes ball-l {
+  0%, 50% {
+    -webkit-transform: rotate(0) translate(0);
+    transform: rotate(0) translateX(0);
+  }
+  100% {
+    -webkit-transform: rotate(0deg) translateX(-2.5em);
+    transform: rotate( 0deg) translateX(-2.5em);
+  }
+}
+@-webkit-keyframes ball-r {
+  0% {
+    -webkit-transform: rotate(0deg) translateX(2.5em);
+    transform: rotate(-50deg) translateX(2.5em);
+  }
+  50%,
+  100% {
+    -webkit-transform: rotate(0) translateX(0);
+    transform: rotate(0) translateX(0);
+  }
+}
+@keyframes ball-r {
+  0% {
+    -webkit-transform: rotate(-0deg) translateX(2.5em);
+    transform: rotate(-0deg) translateX(2.5em);
+  }
+  50%,
+  100% {
+    -webkit-transform: rotate(0) translateX(0);
+    transform: rotate(0) translateX(0)
+  }
+}
+@-webkit-keyframes shadow-l-n {
+  0%, 50% {
+    opacity: .5;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    opacity: .125;
+    -webkit-transform: translateX(-1.57em);
+    transform: translateX(-1.75em);
+  }
+}
+@keyframes shadow-l-n {
+  0%, 50% {
+    opacity: .5;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    opacity: .125;
+    -webkit-transform: translateX(-1.75);
+    transform: translateX(-1.75em);
+  }
+}
+@-webkit-keyframes shadow-r-n {
+  0% {
+    opacity: .125;
+    -webkit-transform: translateX(1.75em);
+    transform: translateX(1.75em);
+  }
+  50%,
+  100% {
+    opacity: .5;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes shadow-r-n {
+  0% {
+    opacity: .125;
+    -webkit-transform: translateX(1.75em);
+    transform: translateX(1.75em);
+  }
+  50%,
+  100% {
+    opacity: .5;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+.swing-l {
+  -webkit-animation: ball-l .425s ease-in-out infinite alternate;
+  animation: ball-l .425s ease-in-out infinite alternate;
+}
+.swing-r {
+  -webkit-animation: ball-r .425s ease-in-out infinite alternate;
+  animation: ball-r .425s ease-in-out infinite alternate;
+}
+
+/*-----end-spinner---------*/
+
+
+
+.maintainers > .maintainer {display:block;}
+
+.container-fluid.padded {padding:3rem 4rem}
+.modalview > .dialog {font-size:.85rem;}
+.modalview > .dialog .gutter {background:#eee; padding:2rem }
+.modalview > .dialog .gutter > .btn { display:block; text-align:left; padding:.5rem 1rem .75rem 3.5rem; position:relative; margin-bottom:1rem}
+.modalview > .dialog .gutter > .btn i {font-size:2.25rem; position:absolute; left:.75rem; top:.5rem}
+.modalview > .dialog .gutter > .btn > span {font-size:1.1rem; line-height:1.3rem; font-weight:500}
+.modalview > .dialog .gutter > .btn > .v {display:block; font-weight:200; font-size:.75rem; white-space:normal}
+.modalview > .dialog .gutter .lbl {display:inline-block; margin-right:.5rem}
+.modalview > .dialog .gutter .label-link{display:block;}
+.modalview > .dialog .gutter .chart {margin:1rem 0 2rem}
+.modalview > .dialog {width:95% !important; margin:0 1.5%; top:0 !important;}
+.modalview > .dialog .download {margin:2rem 0 2rem -.5rem;}
+.modalview > .dialog > .header {font-size:1rem !important;padding:.5rem 1rem !important; height:auto; min-height:0 !important;cursor:pointer}
+.modalview > .dialog > .header > .back:before{content:'\2B05'; margin-right:.5rem;}
+.modalview > .dialog > .header > a {font-size:1rem !important; position:static !important; float:right; }
+.modalview > .dialog > .content {padding:0 !important; max-height:100% !important;}
+.modalview > .dialog > .content .title {margin-bottom:2rem; vertical-align:top}
+.modalview > .dialog > .content .content {min-height:25rem}
+.row.flex {display:flex}
+
+h1.title .v {color:#999; font-size:1rem; font-weight:200; margin:0 0 0 .5rem; position:relative; top:.25rem; vertical-align:top}
+h1.title .sub {display:block; font-weight:normal; font-size:.85rem; color:#999; margin-top:.25rem}
+.markdown-body .anchor {display:none}
+.markdown-body h1 {font-size:2rem; margin:4rem 0 1rem;}
+.markdown-body h2 {font-size:1.5rem; margin-top:2rem;}
+.markdown-body h3 {font-size:1.25rem;}
+.markdown-body h4 {font-size:1.1rem;}
+
+.filters .mask li > label {opacity:.5; position:relative;}
+.filters .mask li > label:hover {opacity:1; color:#168BB9}
+.filters .mask li > label:before {content:''; font-size:0; display:block; height:.5rem; width:.5rem; margin:.25rem .4rem; background:#168BB9; position:absolute;}
+.filters .mask li input[type=checkbox]{visibility: hidden;}
+.filters label {cursor:pointer}
+
+.filterOptions {display:none;}
+
+.modalview .content .content h1{font-size:1.67rem; margin:4rem 0 .5rem}
+.modalview .content .content h2{font-size:1.33rem; margin:3rem 0 .5rem}
+.modalview .content .content h3{font-size:1.25rem; margin:2rem 0 .5rem}
+.modalview .content .content h4{font-size:1.1rem; margin:1.5rem 0 .5rem}
+.modalview .content .content h5{font-size:1rem; margin:1.5rem 0 .5rem}
+/*----old-stuff-------*/
+
+
+#ji-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    border-radius: 0;
+  background:#000;
+  font-size:.85rem
+}
+#ji-toolbar > .navbar-brand {
+    font: bold 2rem 'georgia';
+    margin-top: -.2rem;
+}
+#ji-toolbar-offset {
+    min-height: 3rem;
+}
+body .item-finder.Tiles .Entry-box{
+  display:inline-block;
+}
+.categories-box .list-group{margin-top:-2.75rem;position:relative; z-index:2; box-shadow:0 3px 2px -1px rgba(0,0,0,.1)}
+.categories-box .list-group > .label {    background:rgba(0,0,0,.5);
+    display: block;
+    border: none;
+    border-radius: 0;
+    border-top-right-radius:10px;}
+.categories-box .list-group > .label > .list-group-item {background:none; color:#fff; border:none; font-size:1rem; text-align:left;}
+button.nav-link {border-radius:3px; background:#f9f9f9; border:1px solid #ccc; box-shadow:0 2px 4px -3px rgba(0,0,0,.25)}
+button.nav-link b {color:#666;}
+.form-inline > .form-control.nav-link {margin:0; width:11rem;border-radius:3px; border:1px solid #ccc; background:#f9f9f9; padding:.25rem; box-shadow:inset 0 2px 4px -2px rgba(0,0,0,.25)}
+body .item-finder.Tiles a.item,
+.Tile {
+  display: block;
+  border: .1rem solid #ccc;
+  font-size: .85rem;
+  height: 16.5rem;
+  width:13rem;
+  box-sizing: border-box;
+  padding: .67rem;
+  color: #666;
+  text-decoration: none !important;
+  background: #fff;
+  opacity: .9;
+  border-radius: 3px;
+  margin:.25rem;
+}
+body .item-finder.Tiles .grid-box > div {padding:.5rem 0 2rem .5rem; text-align:left;}
+body .item-finder.List a.item > div,
+body .item-finder.Tiles a.item > div {display:block; position:relative; width:auto; top:auto; left:auto}
+body .item-finder.Tiles a.item:hover,
+.Tile:hover {
+  border: .1rem solid #999;
+  opacity: 1;
+  box-shadow: 0 2px 3px rgba(0,0,0,.25);
+  text-decoration:none;
+}
+body .item-finder.Tiles a.item .Title:hover h4,
+.Tile:hover h4 {
+  color: #069;
+}
+
+body .item-finder.Tiles a.item .Icon,
+.Tile .Icon {
+  position:absolute;
+  bottom:0;
+  right:.75rem;
+  display:block;
+  opacity:.75
+}
+body .item-finder.Tiles a.item:hover .Icon {
+  opacity:1
+}
+body .item-finder.List a.item .Icon>i,
+body .item-finder.Tiles a.item .Icon>i,
+.Tile .Icon>i {
+  display: inline-block;
+  font-size: 1.33rem;
+  color: #fff;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 3px;
+  line-height: 3rem;
+  font-style: normal;
+  margin: -1px 0 0 -1px;
+  text-shadow: rgba(0, 0, 0, .5) 1px 2px 1px
+}
+body .item-finder.Tiles a.item .Icon>i {
+    margin-bottom:1rem
+}
+body .item-finder a.item .Score,
+.Tile .Score {
+  margin: 0 0 .67rem
+}
+body .item-finder a.item .Score>.scr_4:after,
+.Tile .Score>.scr_4:after {
+  content: '\2605 \2605 \2605 \2605 \2606';
+  display: block;
+  text-align: center;
+}
+body .item-finder a.item .Downloads,
+.Tile .Downloads {
+  font-size: .75rem;
+  margin: 0;
+  color: #999;
+}
+body .item-finder.Tiles a.item .Labels,
+.Tile .Labels {
+  margin:.25rem 0;
+  max-height:2rem;
+  min-height:1rem;
+  overflow:hidden;
+}
+body .item-finder.Tiles a.item .Version span,
+.Tile .Version span {
+  margin-right: .25rem
+}
+body .item-finder.Tiles a.item .Version span.v,
+.Tile .Version span.v {
+  margin-right: 1rem;
+  display: none;
+}
+
+body .item-finder.Tiles a.item .Version span.c:after,
+.Tile .Version span.c:after {
+  content: '+'
+}
+body div .item-finder a.item > .Wiki{display:none}
+body .item-finder.Tiles a.item .Excerpt,
+.Tile .Excerpt {
+  white-space: normal;
+  line-height: 1.1rem;
+  height: 4.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  margin: 0;
+}
+body .item-finder a.item .Excerpt a{
+  color:#666; text-decoration:none;
+}
+
+body .item-finder.Tiles a.item .Excerpt p,
+body .item-finder.Tiles a.item  .Excerpt div,
+.Tile .Excerpt p, .Tile .Excerpt div {
+  display: inline;
+}
+body .item-finder.Tiles a.item h4:after,
+body .item-finder.Tiles a.item .Excerpt:after,
+.Tile h4:after, .Tile .Excerpt:after {
+  display: block;
+  content: ' ';
+  box-shadow: inset #fff -250px 0 250px -200px;
+  height: 19px;
+  height: 1.1rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+body .item-finder a.item h4,
+.Tile h4 {
+  font-size: 1rem;
+  margin: 0 0 .25rem;
+  line-height: 1.1rem;
+
+  max-height: 2.2rem;
+  overflow: hidden;
+  font-weight: normal;
+  color: #000;
+  font-weight: normal;
+  position: relative;
+}
+body .item-finder.Tiles a.item h4 {min-height:2.2rem;}
+body .item-finder.Tiles a.item .Version,
+body .item-finder.Tiles a.item .Labels>span,
+body .item-finder.Tiles a.item .Authors>div,
+body .item-finder.List a.item .Version,
+body .item-finder.List a.item .Labels>span,
+body .item-finder.List a.item .Authors>div,
+.Tile .Authors>div {
+  font-size: .75rem;
+  color: #59a;
+  margin-right: .5rem;
+  line-height: 1rem;
+}
+body .item-finder.List a.item .Version,
+body .item-finder.List a.item .Labels>span,
+body .item-finder.List a.item .Authors>div{
+
+}
+body .item-finder.Tiles a.item .Authors{
+  position:absolute; bottom:1rem;
+  max-width: 8rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.VirtualScroll>div>div {
+  display: inline-block;
+  height: auto !important;
+  width: auto !important;
+  position:static !important;
+  padding:0;
+  vertical-align:top;
+  padding:.25rem;
+  text-align:left;
+}
+.VirtualScroll>div>div.spinner {
+  width: 40px !important;
+  height: 40px !important;
+
+  position: relative !important;
+  margin: 100px auto !important;
+  overflow:hidden;
+  text-indent:999rem;
+  white-space:nowrap;
+}
+#plugin-spinner {
+  color:rgba(0,0,0,.33);
+  text-shadow:0 1px 1px #fff;
+  cursor:pointer;
+}
+spinner .double-bounce1, .spinner .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,.2);
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+.results.row {overflow:hidden; height:0}
+.showResults .results.row {height:auto;}
+.showResults .results.row {min-height:75rem; padding-bottom:5rem}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+.tbody {display:table}
+.tbody > .thead {display:table-header-group}
+.tbody > .thead > .tr {display: table-row}
+.tbody > .thead > .tr > div {display:table-cell; border-bottom:1px solid #ccc; padding:.25rem}
+body .item-finder.Table .Entry-box,
+.tbody > .Row {display: table-row-group;}
+body .item-finder.Table a.Entrty,
+.tbody > .Row > .Tile {display:table-row; height:auto; width:auto; margin:0; padding:0;}
+/*
+body .item-finder.Table .Entry-box:nth-child(odd) > .Entry > div{background:#f9f9f9 !important}
+body .item-finder.Table .Entry-box:nth-child(odd) > .Entry > div h4:after,
+body .item-finder.Table .Entry-box:nth-child(odd) > .Entry > div.Excerpt{box-shadow: inset #fff -250px 0 250px -200px;}
+*/
+body .item-finder.Table a.Entry > div,
+.tbody > .Row > .Tile > div {display:table-cell; max-height:3.3rem; height:auto; padding:.25rem; border-bottom:1px solid #eee}
+body .item-finder.Table a.Entry > div.Score {margin:0; font-size:.85rem; position:static}
+body .item-finder.Table a.Entry > div.Wiki {display:none}
+body .item-finder.Table a.Entry > div.Title,
+.tbody > .Row > .Tile > div.Title{width:20%}
+body .item-finder.Table a.Entry > div.Title > h4 {font-size:.85rem; color:#369; font-weight:bold;}
+body .item-finder.Table a.Entry > div.Icon,
+.tbody > .Row > .Tile > div.Icon {display:none}
+body .item-finder.Table a.Entry > div.Authors > div,
+.tbody > .Row > .Tile > div.Authors > div {white-space:nowrap}
+
+.list > .list > .thead {display:none}
+body .item-finder.List a.Entry,
+.list > .item > .Tile {  display:block;  height: auto; position:relative;
+    width: auto;
+    padding: .5rem .5rem .5rem 6rem;
+    text-align: left;}
+
+body .item-finder.List a.Entry .Score,
+body .item-finder.List a.Entry .Icon,
+.list > .item > .Tile > .Score,
+.list > .item > .Tile > .Icon {position:absolute; left:.5rem; width:5rem;}
+body .item-finder.List a.Entry .Score,
+.list > .item > .Tile > .Score {top:4rem;}
+body .item-finder.List a.Entry .Excerpt,
+.list > .item > .Tile > .Excerpt {height:auto; max-height:3.3rem; margin:.5rem 0}
+body .item-finder.List a.Entry .Authors,
+.list > .item > .Tile > .Authors {margin:0}
+body .item-finder.List a.Entry .Authors > div,
+.list > .item > .Tile > .Authors > div {display:inline-block  }
+#ji-toolbar form {margin:0}
+#ji-toolbar.navbar-dark .navbar-nav .nav-item.active a{color:#fff}
+
+.jumbotron.plugins {
+  margin:0;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#81b0c4+0,335061+100 */
+background: #81b0c4; /* Old browsers */
+background: -moz-linear-gradient(left,  #81b0c4 0%, #335061 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  #81b0c4 0%,#335061 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  #81b0c4 0%,#335061 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#81b0c4', endColorstr='#335061',GradientType=1 ); /* IE6-9 */
+  border-radius:0;
+  color:#fff}
+.overview {padding-top:1.5rem}
+.overview p {font-size:1.1rem}
+
+body .btn-primary {background:#d24939; border-color:#900; color:#fff;}
+body .btn-primary:hover{background:#335061; border-color:#88C5CC}
+zbody .btn-secondary{background:#81B0C4; color:#fff;}
+nav .nav-item.active {box-shadow:inset #D33833 0 -2px}
+nav.page-controls {text-align:center; padding:.25rem 1rem; font-size:.85rem; vertical-align:middle; position:relative; margin-top:-1px;     float: left;
+    clear: both;
+    width: 100%; min-height:2.75rem}
+nav.page-controls .nav-item.filter {float:left}
+nav.page-controls .nav-item.page-picker {float:right; white-space:nowrap; vertical-align:middle}
+nav.page-controls .nav-item.page-picker > .nav-link {display:inline-block; vertical-align:middle}
+nav .pagination {margin:.25rem 0 .25rem 1rem;vertical-align:middle}
+nav .pagination .page-link {
+  padding: .25rem;
+  min-width: 2rem;
+  font-size: .75rem;
+  text-align: center;
+  cursor: pointer;
+}
+#cb-grid-toolbar .navbar-nav .nav-item {margin-left:.5rem}
+#cb-grid-toolbar .navbar-nav .nav-link {padding:.33rem}
+#cb-grid-toolbar .nav-link.dropdown-toggle {padding:.25rem .5rem}
+.categories-box .filter-keys.dropdown-menu{
+    padding: 0;
+    position: static;
+    display: block;
+    margin: -1px 0 0;
+    width: auto;
+    max-width: 9999rem;
+    float: none;
+    border-color:#ccc;
+    border-radius: 0;
+    background:#f9f9f9
+}
+.categories-box .filter-keys.dropdown-menu a{
+
+  color:#999;
+  padding:1px 2px;
+  font-size:.85rem;
+  display:block;
+  width:auto;
+  position:relative;
+}
+.categories-box .filter-keys.dropdown-menu a:hover{box-shadow:rgba(0,0,0,.06) 0 100px inset}
+.categories-box .filter-keys.dropdown-menu a:nth-child(odd){background:#eee}
+.categories-box .filter-keys.dropdown-menu a span{display:inline-block;  padding:.25rem 0 .25rem 2.25rem; color:#369}
+.categories-box .filter-keys.dropdown-menu a .count {padding:.25rem .75rem; width:5rem; text-align:right; position:absolute; right:0;}
+body .list-group > li > a.active:active,
+body .list-group > li > a.active:hover,
+body .list-group > li > a.active {color:#000 !important; box-shadow:inset 0 99rem rgba(200,240,255,.67); background:#fff !important}
+#download-menu > .dropdown-menu {
+    width: 50rem;
+    padding: 2rem;
+}
+#doc-toolbar *, #ji-toolbar * {
+    line-height: 1.2rem !important;
+    vertical-align: bottom !important;
+}
+nav .form-inline .input-group>.form-control {
+  border-color:#900;
+    width: 0;
+    transition: all 0.5s ease;
+}
+form.showFilter nav .form-inline .ShowFilter {background:#900; border-color:#f00}
+nav .form-inline .input-group>.form-control:focus{
+  border-color:#f00
+}
+form.search {
+    opacity: .9;
+    float: right;
+}
+nav form.search .input-group:hover>input.form-control, nav form.search .input-group:focus>input.form-control, nav form.search .input-group>input.form-control:focus {
+    opacity: 1;
+    width: 12rem;
+}
+#ji-toolbar > .navbar-brand {
+    font: bold 1.33rem/1.5rem georgia;
+    margin:0 1rem 0 0;
+    border-top:3px solid transparent;
+}
+#footer {
+    color: rgb(170, 204, 221);
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    float: left;
+    clear: both;
+    background: rgb(0, 68, 102);
+    padding: 2rem;
+}
+#footer ul, #footer li {
+    display: block;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+#footer .links {
+    text-align: right;
+    float: right;
+}
+#footer .links ul li {
+    text-align: left;
+}
+#footer ul > .area {
+    display: inline-block;
+    padding-left: 1rem;
+    vertical-align: top;
+    font-size: 0.85rem;
+}
+#footer a {
+    color: rgb(255, 255, 255);
+}
+
+
+.cardGroup {
+    /**
+     * Lay out the children of this container with
+     * flexbox, which is horizontal by default.
+     */
+    display: flex;
+
+    overflow: hidden;
+}
+
+.cardGroup__card {
+    /**
+     * The flex property is a short-hand for setting
+     * the flex-shrink, flex-grow, and flex-basis
+     * properties. These properties control how the
+     * element resizes to fill its container.
+     *
+     * We'll set flex-grow to 1 so that it will
+     * expand to fill its container. (The default
+     * default value is 0.)
+     *
+     * We'll also set flex-shrink to 1 so that the
+     * element will shrink as its container gets
+     * smaller. (The default value is 1.)
+     *
+     * Last, we set flex-basis to 0 so that its
+     * size is solely determined by the size of
+     * the container. (The default value
+     * is auto, which would cause the content's
+     * size to also be a factor in this calculation.)
+     *
+     * The net result of these properties is that the
+     * element is a fluid size, and will expand and
+     * shrink with its container and siblings, but
+     * they will all have the same size, even if they
+     * have different amounts of content.
+     *
+     * NOTE: IE11 ignores flex short-hand declarations
+     * with unitless flex-basis values. So we have to
+     * use 0% instead of 0 as a workaround. You can
+     * find more info at:
+     * github.com/philipwalton/flexbugs.
+     */
+    flex: 1 1 0%;
+
+    border: none;
+    border-radius: 0;
+}
+a.card:hover {
+    background-color: #EEF3F5;
+}
+.cardGroup__card + .cardGroup__card {
+    border-left: 1px solid #D7DBDD;
+}
+
+.cardGroup__cardDescription {
+    /**
+     * We're doing almost the exact same thing here as
+     * we did above. The difference is that its
+     * flex-basis is auto, so now the size of its content
+     * will affect how large it is.
+     */
+    flex: 1 1 auto;
+}
+
+.card {
+    /**
+     * Lay out the children of this container with
+     * flexbox, which is horizontal by default.
+     */
+    display: flex;
+
+    /**
+     * Rotate the main axis so that the children
+     * are laid out vertically.
+     */
+    flex-direction: column;
+
+    border: 1px solid #CAD0D2;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.card__description {
+    /**
+     * Lay out the children of this container with
+     * flexbox.
+     */
+    display: flex;
+
+    /**
+     * We're going to lay out this element's children
+     * just like in the "Centered prompt" example.
+     * First we'll rotate the main axis so that the
+     * children are laid out vertically.
+     */
+    flex-direction: column;
+
+    /**
+     * Just like in the "Centered prompt" example,
+     * we'll align the children in the center, along
+     * the main axis.
+     */
+    align-items: center;
+
+    /**
+     * And just like in the "Centered prompt", we'll
+     * group the children in the center of their
+     * container.
+     */
+    justify-content: center;
+
+    padding: 15px 0;
+}
+
+.svg-icon{
+    fill: rgb(22, 139, 185);
+}
+.header .svg-icon{
+    fill: #fff;
+}
+.card__descriptionIcon {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.card__descriptionText {
+    color: #57727C;
+    font-size: 18px;
+    text-align: center;
+    max-width: calc(100% - 30px);
+}
+
+.card__price {
+    text-align: center;
+    color: #57727C;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 15px;
+    border-top: 1px solid #D7DBDD;
+    background-color: #EEF3F5;
+}
+
+.card--fixedWidth {
+    max-width: 120px;
+}
+
+.featureListItem {
+    /**
+     * Lay out the children of this container with
+     * flexbox, which is horizontal by default.
+     */
+    display: flex;
+
+    /**
+     * Align the children in the center, along
+     * the main axis, which is horizontal in this case.
+     */
+    align-items: center;
+
+    padding: 10px;
+}
+
+.featureListItem + .featureListItem {
+    border-top: 1px solid #D7DBDD;
+}
+
+.featureListItem--reverse {
+    /**
+     * We can specify the flex-direction so that
+     * the children elements are displayed in the
+     * reverse order of how they appear in the
+     * markup.
+     */
+    flex-direction: row-reverse;
+}
+
+.featureListItem__icon,
+.featureListItem__description {
+    padding: 5px 15px;
+}
+
+.featureListItem__icon {
+    font-size: 50px;
+    line-height: 0;
+}
+
+.featureListItem__description {
+    color: #000;
+    width: 100%;
+}
+
+.formFooter {
+  /**
+   * Lay out the children of this container with
+   * flexbox, which is horizontal by default.
+   */
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.formFooter__section {
+    flex: 1 1 100%;
+}
+
+.formFooter__item + .formFooter__item {
+    margin-left: 5px;
+}
+
+.underline {
+    border-bottom: 1px solid #CAD0D2;
+    border-radius: 4px;
+}

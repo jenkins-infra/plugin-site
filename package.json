@@ -1,0 +1,121 @@
+{
+  "name": "jenkins-plugin-site",
+  "version": "0.0.1",
+  "description": "Jenkins Plugin Site",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && run-p build:client build:server",
+    "build:client": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.client.entry.js --colors --display-error-details",
+    "build:server": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.server.entry.js --colors --display-error-details",
+    "downloadHeader": "node downloadHeader.js",
+    "server": "run-s downloadHeader build server:run",
+    "server:run": "node dist/server/server.js",
+    "start": "webpack-dev-server --config ./webpack/webpack.config.js --content-base public --port 5000 --inline --hot --progress --colors --display-error-details --history-api-fallback",
+    "lint": "eslint --ext .js --ext .jsx .",
+    "test": "jest --coverage",
+    "test:watch": "npm test -- --watch",
+    "clean": "rimraf dist"
+  },
+  "engines": {
+    "node": "~6.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jenkins-infra/plugin-site.git"
+  },
+  "keywords": [
+    "jenkins-ci",
+    "plugins"
+  ],
+  "author": "Michael McCaskill <https://github.com/michaelmccaskill>",
+  "contributors": [
+    {
+      "name": "Gus Reiber",
+      "email": "https://github.com/gusreiber"
+    },
+    {
+      "name": "Thorsten Scherler",
+      "email": "https://github.com/scherler aka scherler"
+    },
+    {
+      "name": "Michael McCaskill",
+      "email": "https://github.com/michaelmccaskill"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://issues.jenkins-ci.org/secure/RapidBoard.jspa?rapidView=1&projectKey=WEBSITE&view=detail"
+  },
+  "homepage": "http://plugins.jenkins-ci.org/",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "chart.js": "^1.1.1",
+    "classnames": "^2.2.5",
+    "compression": "^1.6.2",
+    "es6-promise": "^3.2.1",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "helmet": "^2.3.0",
+    "hpp": "^0.2.1",
+    "keymirror": "^0.1.1",
+    "moment": "^2.14.1",
+    "morgan": "^1.7.0",
+    "querystring": "^0.2.0",
+    "react": "^15.3.0",
+    "react-addons-pure-render-mixin": "^15.3.1",
+    "react-chartjs": "^0.8.0",
+    "react-dom": "^15.3.0",
+    "react-header-modal": "^0.4.13",
+    "react-material-icons-blue": "^1.0.4",
+    "react-pure-render": "^1.0.2",
+    "react-radio-group": "^3.0.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.1",
+    "react-router-redux": "^4.0.6",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0",
+    "reselect": "^2.5.4",
+    "targetenv": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.13.2",
+    "babel-eslint": "^6.1.2",
+    "babel-jest": "^16.0.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
+    "copy-webpack-plugin": "^3.0.1",
+    "cross-env": "^3.1.0",
+    "css-loader": "^0.23.1",
+    "enzyme": "^2.4.1",
+    "eslint": "^3.4.0",
+    "eslint-plugin-react": "^6.2.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "handlebars-loader": "^1.4.0",
+    "html-webpack-plugin": "^2.22.0",
+    "ignore-styles": "^4.0.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^16.0.2",
+    "jsdom": "^9.5.0",
+    "nock": "^9.0.2",
+    "npm-run-all": "^3.1.0",
+    "postcss-cssnext": "^2.7.0",
+    "postcss-loader": "^0.10.0",
+    "react-addons-test-utils": "^15.3.0",
+    "redux-devtools": "^3.3.1",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.0.11",
+    "redux-mock-store": "^1.2.1",
+    "rimraf": "^2.5.4",
+    "style-loader": "^0.13.1",
+    "universal-webpack": "^0.1.40",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

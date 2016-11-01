@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Jenkins Plugins List</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:700,300|Titillium+Web:200" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/base.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/font-icons.css" rel="stylesheet" type="text/css">
+    <!-- bootstrap - latest version of CSS -->
+    <link href="https://cloud.githubusercontent.com/assets/29597/11697043/848147de-9e6c-11e5-90a3-529a48a6fca3.png" rel="icon" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    {{#if reduxState}}
+    <script>
+      window.__REDUX_STATE__ = {{{reduxState}}};
+    </script>
+    {{/if}}
+  </head>
+  <body>
+    {{> header }}
+    <div id="grid-box">{{{rendered}}}></div>
+    <script type="text/javascript" src="{{jsPath}}/main.js"></script>
+  </body>
+</html>
