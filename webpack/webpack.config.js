@@ -24,6 +24,7 @@ if (release) {
       debug: false,
       NODE_ENV: 'production',
       REST_API_URL: process.env.REST_API_URL,
+      HEADER_FILE: process.env.HEADER_FILE
     })
   }));
   plugins.push(new webpack.optimize.DedupePlugin());
@@ -45,7 +46,8 @@ if (release) {
     'process.env': JSON.stringify({
       debug: true,
       NODE_ENV: 'development',
-      REST_API_URL: process.env.REST_API_URL
+      REST_API_URL: process.env.REST_API_URL,
+      HEADER_FILE: process.env.HEADER_FILE
     })
   }));
 }

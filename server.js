@@ -11,6 +11,10 @@ import compression from 'compression';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
+import fs from 'fs';
+import unirest from 'unirest';
+import cheerio from 'cheerio';
+import schedule from 'node-schedule';
 
 const app = express();
 const port = 5000;
@@ -30,6 +34,42 @@ app.use(jsPath, express.static('./dist/client'));
 
 app.engine('hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
+
+const downloadHeader = () => {
+  var headerFile = process.env.HEADER_FILE || "https://jenkins.io/plugins/index.html";
+  if (headerFile !== null && headerFile !== undefined) {
+    console.info(`Downloading header file from '${headerFile}'`);
+    unirest.get(headerFile).end((response) => {
+      if (response.statusCode == 200) {
+        var $ = cheerio.load(response.body, { decodeEntities: false });
+        $('img, script').each(function() {
+          var src = $(this).attr('src');
+          if (src !== undefined && src.startsWith('/')) {
+            $(this).attr('src', 'https://jenkins.io' + src);
+          }
+        });
+        $('a, link').each(function() {
+          var href = $(this).attr('href');
+          if (href !== undefined && href.startsWith('/')) {
+            $(this).attr('href', 'https://jenkins.io' + href);
+          }
+        });
+        $('head').append('{{> header }}');
+        $('head').append('<script>window.__REDUX_STATE__ = {{{reduxState}}};</script>');
+        $('#grid-box').append('{{{rendered}}}');
+        $('#grid-box').after('<script type="text/javascript" src="{{jsPath}}/main.js"></script>');
+        fs.writeFileSync('./views/index.hbs', $.html());
+      } else {
+        console.error(response.statusCode);
+        console.error(error);
+      }
+    });
+  } else {
+    console.info("HEADER_FILE environment variable null");
+  }
+}
+
+downloadHeader();
 
 app.get('*', (req, res, next) => {
   match({ routes: routes, location: req.url }, (error, redirectLocation, renderProps) => {
@@ -75,5 +115,8 @@ app.listen(port, (error) => {
     console.error(chalk.red(error)); // eslint-disable-line no-console
   } else {
     console.info(chalk.green(`==>  Listening on port ${port}`)); // eslint-disable-line no-console
+    schedule.scheduleJob('* 0/15 * 1/1 * ? *', () => {
+      downloadHeader();
+    });
   }
 });
