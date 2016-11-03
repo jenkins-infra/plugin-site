@@ -60,6 +60,12 @@ class PluginDetail extends React.PureComponent {
     this.props.clearPlugin();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.pluginName !== nextProps.params.pluginName) {
+      this.props.getPlugin(nextProps.params.pluginName);
+    }
+  }
+
   closeDialog = (event) => {
     event && event.preventDefault();
     if (this.props.firstVisit) {
