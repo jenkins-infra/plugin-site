@@ -7,8 +7,7 @@
     "build": "npm run clean && run-p build:client build:server",
     "build:client": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.client.entry.js --colors --display-error-details",
     "build:server": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.server.entry.js --colors --display-error-details",
-    "downloadHeader": "node downloadHeader.js",
-    "server": "run-s downloadHeader build server:run",
+    "server": "run-s build server:run",
     "server:run": "node dist/server/server.js",
     "start": "webpack-dev-server --config ./webpack/webpack.config.js --content-base public --port 5000 --inline --hot --progress --colors --display-error-details --history-api-fallback",
     "lint": "eslint --ext .js --ext .jsx .",
@@ -60,6 +59,7 @@
     "keymirror": "^0.1.1",
     "moment": "^2.14.1",
     "morgan": "^1.7.0",
+    "node-schedule": "^1.2.0",
     "querystring": "^0.2.0",
     "react": "^15.3.0",
     "react-addons-pure-render-mixin": "^15.3.1",
@@ -76,7 +76,8 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
-    "targetenv": "^1.0.0"
+    "targetenv": "^1.0.0",
+    "unirest": "^0.5.1"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -90,7 +91,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
-    "copy-webpack-plugin": "^3.0.1",
+    "cheerio": "^0.22.0",
     "cross-env": "^3.1.0",
     "css-loader": "^0.23.1",
     "enzyme": "^2.4.1",
