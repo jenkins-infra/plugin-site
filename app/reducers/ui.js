@@ -95,8 +95,13 @@ export const ui = (state = initialState, action) => {
       return Object.assign({}, state, {
         page: action.page
       });
+    case ACTION_TYPES.SET_IS_FETCHING_PLUGIN:
+      return Object.assign({}, state, {
+        isFetchingPlugin: true
+      });
     case ACTION_TYPES.SET_PLUGIN:
       return Object.assign({}, state, {
+        isFetchingPlugin: false,
         plugin: action.plugin
       });
     case ACTION_TYPES.CLEAR_PLUGIN:

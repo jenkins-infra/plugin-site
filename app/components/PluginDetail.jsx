@@ -4,8 +4,10 @@ import ModalView, {Body, Header} from 'react-header-modal';
 import { browserHistory, Link } from 'react-router';
 import moment from 'moment';
 import LineChart from './LineChart';
+import NotFound from './NotFound';
+import Spinner from './Spinner';
 import { cleanTitle } from '../commons/helper';
-import { firstVisit, labels, plugin } from '../selectors';
+import { firstVisit, isFetchingPlugin, labels, plugin } from '../selectors';
 import { actions } from '../actions';
 import { createSelector } from 'reselect';
 
@@ -19,10 +21,11 @@ class PluginDetail extends React.PureComponent {
   }
 
   static propTypes = {
-    clearPlugin: PropTypes.func.isRequired,
-    getPlugin: PropTypes.func.isRequired,
     clearFirstVisit: PropTypes.func.isRequired,
+    clearPlugin: PropTypes.func.isRequired,
     firstVisit: PropTypes.bool.isRequired,
+    getPlugin: PropTypes.func.isRequired,
+    isFetchingPlugin: PropTypes.bool.isRequired,
     labels: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string
@@ -115,9 +118,13 @@ class PluginDetail extends React.PureComponent {
   }
 
   render() {
-    const plugin = this.props.plugin;
+    const { isFetchingPlugin, plugin } = this.props;
     if (plugin === null) {
-      return null;
+      if (isFetchingPlugin) {
+        return <Spinner/>;
+      } else {
+        return <NotFound/>;
+      }
     }
     const beforeClose = this.closeDialog;
     return (
@@ -186,9 +193,9 @@ class PluginDetail extends React.PureComponent {
 }
 
 const selectors = createSelector(
-  [ firstVisit, labels, plugin ],
-  ( firstVisit, labels, plugin ) =>
-  ({ firstVisit, labels, plugin })
+  [ firstVisit, isFetchingPlugin, labels, plugin ],
+  ( firstVisit, isFetchingPlugin, labels, plugin ) =>
+  ({ firstVisit, isFetchingPlugin, labels, plugin })
 );
 
 export default connect(selectors, actions)(PluginDetail);
