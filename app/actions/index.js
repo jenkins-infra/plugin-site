@@ -27,6 +27,7 @@ export const ACTION_TYPES = keymirror({
   // View
   SET_VIEW: null,
   // Plugin
+  SET_IS_FETCHING_PLUGIN: null,
   SET_PLUGIN: null,
   CLEAR_PLUGIN: null,
   // First visit
@@ -129,8 +130,13 @@ export const actions = {
 
   clearPlugin: () => ({ type: ACTION_TYPES.CLEAR_PLUGIN }),
 
+  setIsFetchingPlugin: () => ({ type: ACTION_TYPES.SET_IS_FETCHING_PLUGIN }),
+
   getPlugin: (name) => {
-    return (dispatch) => Api.getPlugin(name).then(data => dispatch(actions.setPlugin(data)));
+    return (dispatch) => {
+      dispatch(actions.setIsFetchingPlugin());
+      return Api.getPlugin(name).then(data => dispatch(actions.setPlugin(data)));
+    }
   },
 
   setPlugin: (plugin) => ({ type: ACTION_TYPES.SET_PLUGIN, plugin }),
