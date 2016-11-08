@@ -163,11 +163,6 @@ class PluginDetail extends React.PureComponent {
                 </div>
               </div>
               <div className="col-md-3 gutter">
-                <a href={plugin.url} className="btn btn-primary">
-                  <i className="icon-download" />
-                  <span>Download</span>
-                  <span className="v">{cleanTitle(plugin.title)} {plugin.version}</span>
-                </a>
                 <a href={`https://updates.jenkins-ci.org/download/plugins/${plugin.name}` }
                     className="btn btn-secondary">
                   <i className="icon-box" />
