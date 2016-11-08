@@ -177,6 +177,11 @@ class PluginDetail extends React.PureComponent {
                 </div>
                 <h5>Labels</h5>
                 {this.getLabels(plugin.labels)}
+                
+                <div className="update-link">
+                <h6>Are you maintaining this plugin?</h6>
+                <p>Visit the <a href={plugin.wiki.url} target="_wiki">Jenkins Plugin Wiki</a> to edit this content.</p>
+                </div>
               </div>
             </div>
           </div>

@@ -94,13 +94,17 @@ body #grid-box .item-finder .NoLabels legend {font-size:1.1rem; }
     vertical-align: middle;
     border-radius:2;
 }
+
+.update-link {margin:4rem 0;}
+.update-link h6 {margin-bottom:.25rem}
+
 #cb-item-finder-grid-box > .grid > .no-results {padding:.5rem; color:rgba(0,0,0,.667); display:block;}
 .not-found-box {text-align:center;}
 .not-found {margin:6rem 0; padding:1.5rem 0 1.5rem 8rem; position:relative; display:inline-block; text-align:left;}
 .not-found h3 {margin-bottom:.25rem;}
 .not-found i {font-size:8rem; line-height:8rem; vertical-align:middle; color:rgba(0,0,0,.25); display:block;position:absolute; left:0; top:0;}
 .not-found i.icon-plug{
-  
+
   color:#000;
   font-size:6rem;
   left:.5rem;
