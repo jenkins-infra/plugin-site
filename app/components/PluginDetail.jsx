@@ -5,9 +5,6 @@ import { browserHistory, Link } from 'react-router';
 import moment from 'moment';
 import LineChart from './LineChart';
 import NotFound from './NotFound';
-import Spinner from './Spinner';
-import styles from '../styles/Main.css';
-import classNames from 'classnames';
 import { cleanTitle } from '../commons/helper';
 import { firstVisit, isFetchingPlugin, labels, plugin } from '../selectors';
 import { actions } from '../actions';
@@ -123,13 +120,7 @@ class PluginDetail extends React.PureComponent {
     const { isFetchingPlugin, plugin } = this.props;
     if (plugin === null) {
       if (isFetchingPlugin) {
-        return (
-          <div className={classNames(styles.GridBox, 'grid-box')}>
-            <div className={classNames(styles.Grid, 'grid')}>
-              <Spinner />
-            </div>
-          </div>
-        );
+        return null;
       } else {
         return <NotFound/>;
       }
