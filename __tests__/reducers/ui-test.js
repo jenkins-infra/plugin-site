@@ -164,26 +164,6 @@ describe('ui reducer', () => {
     ).toEqual(expectedState);
   });
 
-  // case ACTION_TYPES.TOGGLE_LABEL: {
-  //   const label = action.label;
-  //   const categoryId = action.categoryId;
-  //   const { activeCategories, activeLabels } = state;
-  //   const checked = activeLabels.find((active) => active === label.id) !== undefined;
-  //   if (checked) {
-  //     const newActiveLabels = activeLabels.filter((active) => active !== label.id);
-  //     return Object.assign({}, state, {
-  //       activeLabels: newActiveLabels
-  //     });
-  //   } else {
-  //     const newActiveCategories = activeCategories.filter((active) => active !== categoryId);
-  //     const newActiveLabels = activeLabels.concat(label.id);
-  //     return Object.assign({}, state, {
-  //       activeCategories: newActiveCategories,
-  //       activeLabels: newActiveLabels
-  //     });
-  //   }
-  // }
-
   it('should handle TOGGLE_LABEL, nothing checked', () => {
     const label = { id: 'label1' };
     const categoryId = 'category1';
@@ -274,6 +254,14 @@ describe('ui reducer', () => {
     const page = 10;
     const action = { type: ACTION_TYPES.SET_PAGE, page };
     const expectedState = Object.assign({}, initialState, { page });
+    expect(
+      reducer(initialState, action)
+    ).toEqual(expectedState);
+  });
+
+  it('should handle SET_IS_FETCHING_PLUGIN', () => {
+    const action = { type: ACTION_TYPES.SET_IS_FETCHING_PLUGIN };
+    const expectedState = Object.assign({}, initialState, { isFetchingPlugin: true });
     expect(
       reducer(initialState, action)
     ).toEqual(expectedState);

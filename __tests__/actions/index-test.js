@@ -248,6 +248,7 @@ describe('actions', () => {
     const name = 'git';
     const plugin = { }; // Don't care here. That's up to the reducer
     const expectedActions = [
+      { type: ACTION_TYPES.SET_IS_FETCHING_PLUGIN },
       { type: ACTION_TYPES.SET_PLUGIN, plugin }
     ];
     nock(env.REST_API_URL)

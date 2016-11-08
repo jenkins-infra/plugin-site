@@ -76,8 +76,8 @@ export default class Api {
       .then(data => {
         return data;
       }).catch((err) => {
-        console.error(`Problem getting plugin '${name}' from API`, name); // eslint-disable-line no-console
-        console.error(err); // eslint-disable-line no-console
+        console.error(`Problem getting plugin '${name}' from API`, err); // eslint-disable-line no-console
+        return null;
       });
   }
 
