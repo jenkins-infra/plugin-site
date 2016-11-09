@@ -115,7 +115,7 @@ app.listen(port, (error) => {
     console.error(chalk.red(error)); // eslint-disable-line no-console
   } else {
     console.info(chalk.green(`==>  Listening on port ${port}`)); // eslint-disable-line no-console
-    schedule.scheduleJob('* 0/15 * 1/1 * ? *', () => {
+    schedule.scheduleJob('*/15 * * * *', () => {
       downloadHeader();
     });
   }
