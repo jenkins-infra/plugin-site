@@ -30,6 +30,12 @@ class PluginDetail extends React.PureComponent {
       title: PropTypes.string
     })).isRequired,
     plugin: PropTypes.shape({
+      dependencies: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string,
+        title: PropTypes.string,
+        optional: PropTypes.bool,
+        version: PropTypes.string
+      })),
       excerpt: PropTypes.string,
       labels: PropTypes.arrayOf(PropTypes.string),
       maintainers: PropTypes.arrayOf(PropTypes.shape({
@@ -87,7 +93,7 @@ class PluginDetail extends React.PureComponent {
       const required = !dependency.optional ? 'required' : 'optional';
       return (
         <div key={dependency.name} className={required}>
-          <Link to={`/${dependency.name}`}>{dependency.name} v.{dependency.version} <span className="req">({required})</span></Link>
+          <Link to={`/${dependency.name}`}>{dependency.title} v.{dependency.version} <span className="req">({required})</span></Link>
         </div>
       );
     });
