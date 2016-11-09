@@ -84,7 +84,7 @@ class Main extends React.PureComponent {
           <form ref="form" action="#" id="plugin-search-form"
               className={classNames(styles.HomeHeader, { showFilter: this.props.showFilter }, 'HomeHeader jumbotron')}
               onSubmit={this.handleOnSubmit}>
-            <h1><span className="logo">project</span>Voltron</h1>
+            <h1><span className="logo">Jenkins</span>Plugins</h1>
             <p className="tagline">The strength of many, shared by all.</p>
             <nav className={classNames(styles.navbar, 'navbar')}>
               <div className="nav navbar-nav">
