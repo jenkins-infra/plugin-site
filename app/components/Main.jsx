@@ -84,8 +84,10 @@ class Main extends React.PureComponent {
           <form ref="form" action="#" id="plugin-search-form"
               className={classNames(styles.HomeHeader, { showFilter: this.props.showFilter }, 'HomeHeader jumbotron')}
               onSubmit={this.handleOnSubmit}>
-            <h1><span className="logo">project</span>Voltron</h1>
-            <p className="tagline">The strength of many, shared by all.</p>
+            <h1>Plugins Index</h1>
+            <p>
+              Discover the 1000+ community contributed Jenkins plugins to support building, deploying and automating any project.
+            </p>
             <nav className={classNames(styles.navbar, 'navbar')}>
               <div className="nav navbar-nav">
                 <SearchBox handleOnSubmit={this.handleOnSubmit} />
@@ -93,10 +95,6 @@ class Main extends React.PureComponent {
               </div>
             </nav>
             <Filters />
-            <p>
-              Extend your Jenkins environment with any of the 1000+ community added plugins.
-              Better yet, join the community and contribute your own.
-            </p>
           </form>
           <SearchResults />
           <Footer />

@@ -31,21 +31,28 @@ body .showResults.item-finder .filters .Cols3 {column-count:1; -moz-column-count
 .showResults #plugin-search-form h1,
 .showResults #plugin-search-form:before {display:none}
 #plugin-search-form {vertical-align:middle; padding:4rem 2rem}
-#plugin-search-form p{font-family:'Ubuntu'; color:#bde; font-weight:200; box-sizing:content-box;  max-width:30rem; margin:1rem auto; font-size:1.1rem; text-align:left; padding-left:170px}
-#plugin-search-form p.tagline {margin-top:-1rem; padding-left:360px; color:#ff9; font-style:italic}
-#plugin-search-form h1{    font-family: 'Ubuntu','Titillium Web','Orbitron',sans-serif;
-    color: #fff;
-    font-size: 3rem;
+#plugin-search-form p{
+  box-sizing: content-box;
+  max-width: 35rem;
+  margin: 1rem auto;
+  font-size: 1.1rem;
+  text-align: left;
+  padding-left:145px;
+  color: white;
+}
+#plugin-search-form h1{
+    font-family: 'Georgia';
+    color: white;
+    font-size: 64px;
     box-sizing: content-box;
     position: relative;
     padding-left: 145px;
-    font-weight: 800;
-    width: 30rem;
+    font-weight: 700;
+    width: 35rem;
     margin: 1.5rem auto 1rem;
     text-align: left;
-    font-style: italic;
-    border-bottom: 1px solid rgba(255,255,255,.25);}
-#plugin-search-form h1 .logo {font-family:'Titillium Web','Orbitron'; font-weight:100;color:#bde; margin-right:.25rem}
+    border-bottom: 1px solid rgba(255,255,255,.25);
+}
 #plugin-search-form h1:before {display:inline-block; position:absolute; left:-150px; vertical-align:top; margin:-3rem 0 0; width:271px; height:294px; background:url(img/jenkins-voltron-271x294x8.png) no-repeat;background-size:100%; content:''}
 #plugin-search-form .nav {vertical-align:middle; padding-left:145px}
 #plugin-search-form .nav > .btn-group {display:none;}
