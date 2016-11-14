@@ -1,3 +1,8 @@
+/*TODO:=====top offset for IO site should come form IO css =============*/
+section.modalview > .dialog {padding-top:3.25rem}
+/********/
+
+body .fixed.top {z-index:999}
 img {max-width:100%}
 body {overflow-x:hidden}
 body .showResults.item-finder > #plugin-search-form.HomeHeader{
@@ -9,7 +14,7 @@ body .showResults.item-finder > .HomeHeader > .navbar > .nav > .SearchBox {width
 body .item-finder > .HomeHeader > .navbar > .nav > .btn-group > button > i {line-height:1.5rem}
 body .showResults.item-finder > .HomeHeader > .navbar > .nav > .btn-group {position:absolute; right:0; top:0}
 body .showResults.item-finder > .HomeHeader > .navbar > .nav > .SearchBox .ShowFilter {width:18.6% !important; max-width: 10rem !important;}
-body .showResults.item-finder .filters {top:5; padding-top:1rem !important; margin-top:-1px; border-radius:0; box-shadow:-.25rem 0 #fff; border-left:none; border-top:none; left:.25rem}
+body .showResults.item-finder .filters {top:5px; padding-top:1rem !important; margin-top:-1px; border-radius:0; box-shadow:-.25rem 0 #fff; border-left:none; border-top:none; left:.25rem}
 body .showResults.item-finder .filters .row {border:none; padding:0}
 body .showResults.item-finder .filters .row > div {font-size:.75rem; padding:0 .5rem;  overflow:hidden;}
 body .showResults.item-finder .filters .row > div label {white-space:nowrap;}
@@ -51,7 +56,6 @@ body .showResults.item-finder .filters .Cols3 {column-count:1; -moz-column-count
     width: 35rem;
     margin: 1.5rem auto 1rem;
     text-align: left;
-    border-bottom: 1px solid rgba(255,255,255,.25);
 }
 #plugin-search-form h1:before {display:inline-block; position:absolute; left:-150px; vertical-align:top; margin:-3rem 0 0; width:271px; height:294px; background:url(img/jenkins-voltron-271x294x8.png) no-repeat;background-size:100%; content:''}
 #plugin-search-form .nav {vertical-align:middle; padding-left:145px}
@@ -289,24 +293,6 @@ h1.title .sub {display:block; font-weight:normal; font-size:.85rem; color:#999; 
 .modalview .content .content h5{font-size:1rem; margin:1.5rem 0 .5rem}
 /*----old-stuff-------*/
 
-
-#ji-toolbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    border-radius: 0;
-  background:#000;
-  font-size:.85rem
-}
-#ji-toolbar > .navbar-brand {
-    font: bold 2rem 'georgia';
-    margin-top: -.2rem;
-}
-#ji-toolbar-offset {
-    min-height: 3rem;
-}
 body .item-finder.Tiles .Entry-box{
   display:inline-block;
 }
@@ -401,6 +387,7 @@ body .item-finder.Tiles a.item .Labels,
   max-height:2rem;
   min-height:1rem;
   overflow:hidden;
+  line-height:.75rem
 }
 body .item-finder.Tiles a.item .Version span,
 .Tile .Version span {
@@ -593,8 +580,6 @@ body .item-finder.List a.Entry .Authors,
 .list > .item > .Tile > .Authors {margin:0}
 body .item-finder.List a.Entry .Authors > div,
 .list > .item > .Tile > .Authors > div {display:inline-block  }
-#ji-toolbar form {margin:0}
-#ji-toolbar.navbar-dark .navbar-nav .nav-item.active a{color:#fff}
 
 .jumbotron.plugins {
   margin:0;
@@ -662,10 +647,7 @@ body .list-group > li > a.active {color:#000 !important; box-shadow:inset 0 99re
     width: 50rem;
     padding: 2rem;
 }
-#doc-toolbar *, #ji-toolbar * {
-    line-height: 1.2rem !important;
-    vertical-align: bottom !important;
-}
+
 nav .form-inline .input-group>.form-control {
   border-color:#900;
     width: 0;
@@ -682,43 +664,6 @@ form.search {
 nav form.search .input-group:hover>input.form-control, nav form.search .input-group:focus>input.form-control, nav form.search .input-group>input.form-control:focus {
     opacity: 1;
     width: 12rem;
-}
-#ji-toolbar > .navbar-brand {
-    font: bold 1.33rem/1.5rem georgia;
-    margin:0 1rem 0 0;
-    border-top:3px solid transparent;
-}
-#footer {
-    color: rgb(170, 204, 221);
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    float: left;
-    clear: both;
-    background: rgb(0, 68, 102);
-    padding: 2rem;
-}
-#footer ul, #footer li {
-    display: block;
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-}
-#footer .links {
-    text-align: right;
-    float: right;
-}
-#footer .links ul li {
-    text-align: left;
-}
-#footer ul > .area {
-    display: inline-block;
-    padding-left: 1rem;
-    vertical-align: top;
-    font-size: 0.85rem;
-}
-#footer a {
-    color: rgb(255, 255, 255);
 }
 
 
