@@ -35,6 +35,9 @@ app.use(jsPath, express.static('./dist/client'));
 app.engine('hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
+let pluginSiteVersion = null;
+let pluginSiteApiVersion = null;
+
 const downloadHeader = () => {
   var headerFile = process.env.HEADER_FILE || "https://jenkins.io/plugins/index.html";
   if (headerFile !== null && headerFile !== undefined) {
@@ -58,6 +61,18 @@ const downloadHeader = () => {
         $('head').append('<script>window.__REDUX_STATE__ = {{{reduxState}}};</script>');
         $('#grid-box').append('{{{rendered}}}');
         $('#grid-box').after('<script type="text/javascript" src="{{jsPath}}/main.js"></script>');
+        if (fs.existsSync('./git.json')) {
+          try {
+            var versions = JSON.parse(fs.readFileSync('./git.json'));
+            pluginSiteVersion = versions["plugin-site"];
+            pluginSiteApiVersion = versions["plugin-site-api"];
+            if (pluginSiteVersion !== undefined && pluginSiteApiVersion !== undefined) {
+              $('#creativecommons').append('{{> version }}');
+            }
+          } catch (err) {
+            console.error(chalk.red("Problem processing git.json"), err);
+          }
+        }
         fs.writeFileSync('./views/index.hbs', $.html());
       } else {
         console.error(response.statusCode);
@@ -100,7 +115,9 @@ app.get('*', (req, res, next) => {
         res.status(200).render('index', {
           rendered: rendered,
           reduxState: finalState,
-          jsPath: jsPath
+          jsPath: jsPath,
+          pluginSiteVersion,
+          pluginSiteApiVersion
         });
       }).catch((err) => {
         console.error(chalk.red(error));
