@@ -122,6 +122,13 @@ class PluginDetail extends React.PureComponent {
     });
   }
 
+  openIssues() {
+    const name = this.props.plugin.name.endsWith('-plugin')
+      ? this.props.plugin.name
+      : this.props.plugin.name + '-plugin';
+    return `http://issues.jenkins-ci.org/secure/IssueNavigator.jspa?mode=hide&reset=true&jqlQuery=project+%3D+JENKINS+AND+status+in+%28Open%2C+%22In+Progress%22%2C+Reopened%29+AND+component+%3D+%27${name}%27`;
+  }
+
   render() {
     const { isFetchingPlugin, plugin } = this.props;
     if (plugin === null) {
@@ -183,10 +190,13 @@ class PluginDetail extends React.PureComponent {
                 </div>
                 <h5>Labels</h5>
                 {this.getLabels(plugin.labels)}
-                
                 <div className="update-link">
-                <h6>Are you maintaining this plugin?</h6>
-                <p>Visit the <a href={plugin.wiki.url} target="_wiki">Jenkins Plugin Wiki</a> to edit this content.</p>
+                  <h6>Are you maintaining this plugin?</h6>
+                  <p>Visit the <a href={plugin.wiki.url} target="_wiki">Jenkins Plugin Wiki</a> to edit this content.</p>
+                </div>
+                <div>
+                  <h6>Open Issues</h6>
+                  <p>See <Link to={this.openIssues()}>here</Link> for any open issues for this plugin.</p>
                 </div>
               </div>
             </div>
