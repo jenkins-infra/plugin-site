@@ -42,6 +42,7 @@ class SearchBox extends React.PureComponent {
             </a>
             <input name="query"
                 value={query}
+                autoFocus
                 onChange={this.handleOnChange}
                 onClick={this.handleToggleShowFilter}
                 className={classNames('form-control')}
