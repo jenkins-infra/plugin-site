@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Line } from 'react-chartjs';
 import moment from 'moment';
 
@@ -82,12 +82,14 @@ const styles = {
 export default class LineChart extends React.PureComponent {
 
   static propTypes = {
-    total: React.PropTypes.number,
-    installations: React.PropTypes.array
+    total: PropTypes.number.isRequired,
+    installations: PropTypes.arrayOf(PropTypes.shape({
+      timestamp: PropTypes.number,
+      total: PropTypes.number
+    })).isRequired
   };
 
-  constructor(props) {
-    super(props);
+  render() {
     const { installations, total } = this.props;
     const labels = [];
     const data = [];
@@ -104,18 +106,13 @@ export default class LineChart extends React.PureComponent {
         data.push(installation.total);
       });
     }
-    this.state = {
-      data: chartData(labels,data),
-      height: height
-    };
-  }
-
-  render() {
+    const lineData = chartData(labels, data);
     return (
       <div style={styles.graphContainer}>
-        <Line data={this.state.data}
+        <Line data={lineData}
           options={options}
-          height={this.state.height}/>
+          height={height}
+          redraw />
       </div>
     );
   }
