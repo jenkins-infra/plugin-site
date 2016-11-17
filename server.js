@@ -39,7 +39,7 @@ let pluginSiteVersion = null;
 let pluginSiteApiVersion = null;
 
 const downloadHeader = () => {
-  var headerFile = process.env.HEADER_FILE || "https://jenkins.io/plugins/index.html";
+  var headerFile = __HEADER_FILE__;
   if (headerFile !== null && headerFile !== undefined) {
     console.info(`Downloading header file from '${headerFile}'`);
     unirest.get(headerFile).end((response) => {

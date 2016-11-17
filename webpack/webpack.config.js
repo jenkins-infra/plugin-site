@@ -11,22 +11,19 @@ const APP_DIR = path.resolve(__dirname, ROOT_DIR, 'app');
 const NODE_MODULES = path.resolve(__dirname, '..', 'node_modules');
 const VIEWS_DIR = path.resolve(__dirname, '..', 'views');
 
-const plugins = [
-  new ExtractTextPlugin('[name].css'),
-  new webpack.NoErrorsPlugin()
-];
-
 const release = process.env.NODE_ENV === 'production';
 
+const plugins = [
+  new ExtractTextPlugin('[name].css'),
+  new webpack.NoErrorsPlugin(),
+  new webpack.DefinePlugin({
+    __PRODUCTION__: release,
+    __REST_API_URL__: JSON.stringify(process.env.REST_API_URL || "http://localhost:8080"),
+    __HEADER_FILE__: JSON.stringify(process.env.HEADER_FILE || "https://jenkins.io/plugins/index.html")
+  })
+];
+
 if (release) {
-  plugins.push(new webpack.DefinePlugin({
-    'process.env': JSON.stringify({
-      debug: false,
-      NODE_ENV: 'production',
-      REST_API_URL: process.env.REST_API_URL,
-      HEADER_FILE: process.env.HEADER_FILE
-    })
-  }));
   plugins.push(new webpack.optimize.DedupePlugin());
   plugins.push(new webpack.optimize.UglifyJsPlugin({
     sourceMap: false,
@@ -41,14 +38,6 @@ if (release) {
     template: path.resolve(VIEWS_DIR, 'index.hbs'),
     filename: 'index.html',
     inject: false
-  }));
-  plugins.push(new webpack.DefinePlugin({
-    'process.env': JSON.stringify({
-      debug: true,
-      NODE_ENV: 'development',
-      REST_API_URL: process.env.REST_API_URL,
-      HEADER_FILE: process.env.HEADER_FILE
-    })
   }));
 }
 
