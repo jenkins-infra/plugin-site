@@ -1,5 +1,3 @@
-import env from './env';
-
 import fetch from 'isomorphic-fetch';
 import querystring from 'querystring';
 require('es6-promise').polyfill();
@@ -43,7 +41,7 @@ export default class Api {
   }
 
   static getCategories() {
-    const url = `${env.REST_API_URL}/categories`;
+    const url = `${__REST_API_URL__}/categories`;
     return fetch(url, fetchOptions)
       .then(this.checkStatus)
       .then(this.parseJSON)
@@ -56,7 +54,7 @@ export default class Api {
   }
 
   static getLabels() {
-    const url = `${env.REST_API_URL}/labels`;
+    const url = `${__REST_API_URL__}/labels`;
     return fetch(url, fetchOptions)
       .then(this.checkStatus)
       .then(this.parseJSON)
@@ -69,7 +67,7 @@ export default class Api {
   }
 
   static getPlugin(name) {
-    const url = `${env.REST_API_URL}/plugin/${name}`;
+    const url = `${__REST_API_URL__}/plugin/${name}`;
     return fetch(url, fetchOptions)
       .then(this.checkStatus)
       .then(this.parseJSON)
@@ -90,7 +88,7 @@ export default class Api {
       page: page,
       sort: sort
     };
-    const url = `${env.REST_API_URL}/plugins?${querystring.stringify(data)}`;
+    const url = `${__REST_API_URL__}/plugins?${querystring.stringify(data)}`;
     return fetch(url, fetchOptions)
       .then(this.checkStatus)
       .then(this.parseJSON)
@@ -103,7 +101,7 @@ export default class Api {
   }
 
   static getInstalled() {
-    const url = `${env.REST_API_URL}/plugins/installed`;
+    const url = `${__REST_API_URL__}/plugins/installed`;
     return fetch(url, fetchOptions)
       .then(this.checkStatus)
       .then(this.parseJSON)
@@ -116,7 +114,7 @@ export default class Api {
   }
 
   static getUpdated() {
-    const url = `${env.REST_API_URL}/plugins/updated`;
+    const url = `${__REST_API_URL__}/plugins/updated`;
     return fetch(url, fetchOptions)
       .then(this.checkStatus)
       .then(this.parseJSON)
@@ -129,7 +127,7 @@ export default class Api {
   }
 
   static getTrend() {
-    const url = `${env.REST_API_URL}/plugins/trend`;
+    const url = `${__REST_API_URL__}/plugins/trend`;
     return fetch(url, fetchOptions)
       .then(this.checkStatus)
       .then(this.parseJSON)

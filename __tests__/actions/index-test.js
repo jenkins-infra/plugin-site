@@ -1,5 +1,4 @@
 import { actions, ACTION_TYPES } from '../../app/actions';
-import env from '../../app/commons/env';
 import initialState from '../../app/state';
 
 import nock from 'nock';
@@ -38,7 +37,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_IS_SEARCHING },
       { type: ACTION_TYPES.SET_SEARCH_RESULTS, results }
     ];
-    nock(env.REST_API_URL)
+    nock(__REST_API_URL__)
      .get('/plugins')
      .query(() => true)
      .reply(200, results);
@@ -56,7 +55,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_IS_SEARCHING },
       { type: ACTION_TYPES.SET_SEARCH_RESULTS, results }
     ];
-    nock(env.REST_API_URL)
+    nock(__REST_API_URL__)
      .get('/plugins')
      .query(() => true)
      .reply(200, results);
@@ -85,7 +84,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_IS_SEARCHING },
       { type: ACTION_TYPES.SET_SEARCH_RESULTS, results }
     ];
-    nock(env.REST_API_URL)
+    nock(__REST_API_URL__)
      .get('/plugins')
      .query(() => true)
      .reply(200, results);
@@ -110,7 +109,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_IS_SEARCHING },
       { type: ACTION_TYPES.SET_SEARCH_RESULTS, results }
     ];
-    nock(env.REST_API_URL)
+    nock(__REST_API_URL__)
      .get('/plugins')
      .query(() => true)
      .reply(200, results);
@@ -130,7 +129,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_IS_SEARCHING },
       { type: ACTION_TYPES.SET_SEARCH_RESULTS, results }
     ];
-    nock(env.REST_API_URL)
+    nock(__REST_API_URL__)
      .get('/plugins')
      .query(() => true)
      .reply(200, results);
@@ -149,7 +148,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_IS_SEARCHING },
       { type: ACTION_TYPES.SET_SEARCH_RESULTS, results }
     ];
-    nock(env.REST_API_URL)
+    nock(__REST_API_URL__)
      .get('/plugins')
      .query(() => true)
      .reply(200, results);
@@ -169,7 +168,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_IS_SEARCHING },
       { type: ACTION_TYPES.SET_SEARCH_RESULTS, results }
     ];
-    nock(env.REST_API_URL)
+    nock(__REST_API_URL__)
      .get('/plugins')
      .query(() => true)
      .reply(200, results);
@@ -199,7 +198,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_IS_SEARCHING },
       { type: ACTION_TYPES.SET_SEARCH_RESULTS, results }
     ];
-    nock(env.REST_API_URL)
+    nock(__REST_API_URL__)
      .get('/plugins')
      .query(() => true)
      .reply(200, results);
@@ -228,7 +227,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_IS_SEARCHING },
       { type: ACTION_TYPES.SET_SEARCH_RESULTS, results }
     ];
-    nock(env.REST_API_URL)
+    nock(__REST_API_URL__)
      .get('/plugins')
      .query(() => true)
      .reply(200, results);
@@ -251,7 +250,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_IS_FETCHING_PLUGIN },
       { type: ACTION_TYPES.SET_PLUGIN, plugin }
     ];
-    nock(env.REST_API_URL)
+    nock(__REST_API_URL__)
      .get(`/plugin/${name}`)
      .query(() => true)
      .reply(200, plugin);
@@ -275,7 +274,7 @@ describe('actions', () => {
       { type: ACTION_TYPES.SET_DATA, data }
     ];
     const mockCall = (uri) => {
-      nock(env.REST_API_URL)
+      nock(__REST_API_URL__)
        .get(uri)
        .query(() => true)
        .reply(200, data);

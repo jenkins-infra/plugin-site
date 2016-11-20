@@ -54,13 +54,13 @@
     "es6-promise": "^3.2.1",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.6",
     "helmet": "^2.3.0",
     "hpp": "^0.2.1",
     "keymirror": "^0.1.1",
     "moment": "^2.14.1",
     "morgan": "^1.7.0",
     "node-schedule": "^1.2.0",
-    "querystring": "^0.2.0",
     "react": "^15.3.0",
     "react-addons-pure-render-mixin": "^15.3.1",
     "react-chartjs": "^0.8.0",
@@ -76,7 +76,6 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
-    "targetenv": "^1.0.0",
     "unirest": "^0.5.1"
   },
   "devDependencies": {
@@ -118,5 +117,10 @@
     "universal-webpack": "^0.1.40",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
+  },
+  "jest": {
+    "globals": {
+      "__REST_API_URL__": "http://localhost:8080"
+    }
   }
 }
