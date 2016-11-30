@@ -17,6 +17,11 @@ const plugins = [
   new ExtractTextPlugin('[name].css'),
   new webpack.NoErrorsPlugin(),
   new webpack.DefinePlugin({
+    // This is needed for React to properly do production builds
+    'process.env': JSON.stringify({
+      debug: !release,
+      NODE_ENV: release ? 'production' : 'development'
+    }),
     __PRODUCTION__: release,
     __REST_API_URL__: JSON.stringify(process.env.REST_API_URL || "http://localhost:8080"),
     __HEADER_FILE__: JSON.stringify(process.env.HEADER_FILE || "https://jenkins.io/plugins/index.html")
