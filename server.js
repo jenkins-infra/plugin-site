@@ -112,7 +112,8 @@ app.get('*', (req, res, next) => {
           </div>
         );
         const finalState = JSON.stringify(store.getState()).replace(/</g, '\\x3c');
-        res.status(200).render('index', {
+        const pluginNotFound = req.url !== '/' && store.getState().ui.plugin === null;
+        res.status(pluginNotFound ? 404 : 200).render('index', {
           rendered: rendered,
           reduxState: finalState,
           jsPath: jsPath,
