@@ -8,6 +8,17 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?c6s1rc');
+    src:    url('fonts/icomoon.eot?c6s1rc#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?c6s1rc') format('truetype'),
+        url('fonts/icomoon.woff?c6s1rc') format('woff'),
+        url('fonts/icomoon.svg?c6s1rc#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'ji' !important;
@@ -485,4 +496,3 @@
 .icon-uniE602:before {
     content: "\e602";
 }
-

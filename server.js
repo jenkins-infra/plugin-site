@@ -58,8 +58,6 @@ const downloadHeader = () => {
           }
         });
         $('head').prepend('{{> header }}');
-        // WEBSITE-241 - Specifically remove to avoid CORS problem
-        $('link[href="https://jenkins.io/css/font-icons.css"]').remove();
         $('head').append('<script>window.__REDUX_STATE__ = {{{reduxState}}};</script>');
         $('#grid-box').append('{{{rendered}}}');
         $('#grid-box').after('<script type="text/javascript" src="{{jsPath}}/main.js"></script>');
