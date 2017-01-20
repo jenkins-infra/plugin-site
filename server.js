@@ -39,7 +39,7 @@ let pluginSiteVersion = null;
 let pluginSiteApiVersion = null;
 
 const downloadHeader = () => {
-  var headerFile = process.env.HEADER_FILE || "https://jenkins.io/plugins/index.html";
+  var headerFile = __HEADER_FILE__;
   if (headerFile !== null && headerFile !== undefined) {
     console.info(`Downloading header file from '${headerFile}'`);
     unirest.get(headerFile).end((response) => {
@@ -112,7 +112,8 @@ app.get('*', (req, res, next) => {
           </div>
         );
         const finalState = JSON.stringify(store.getState()).replace(/</g, '\\x3c');
-        res.status(200).render('index', {
+        const pluginNotFound = req.url !== '/' && store.getState().ui.plugin === null;
+        res.status(pluginNotFound ? 404 : 200).render('index', {
           rendered: rendered,
           reduxState: finalState,
           jsPath: jsPath,
