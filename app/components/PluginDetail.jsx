@@ -54,7 +54,11 @@ class PluginDetail extends React.PureComponent {
       }),
       sha1: PropTypes.string,
       stats: PropTypes.shape({
-        currentInstalls: PropTypes.number
+        currentInstalls: PropTypes.number.isRequired,
+        installations: PropTypes.arrayOf(PropTypes.shape({
+          timestamp: PropTypes.number,
+          total: PropTypes.number
+        })).isRequired
       }).isRequired,
       title: PropTypes.string.isRequired,
       wiki: PropTypes.shape({
