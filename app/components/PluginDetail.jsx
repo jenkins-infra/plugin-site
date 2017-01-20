@@ -45,6 +45,13 @@ class PluginDetail extends React.PureComponent {
       })),
       name: PropTypes.string.isRequired,
       requiredCore: PropTypes.string,
+      scm: PropTypes.shape({
+        issues: PropTypes.string,
+        link: PropTypes.string,
+        inLatestRelease: PropTypes.string,
+        sinceLatestRelease: : PropTypes.string,
+        pullRequests: PropTypes.string
+      }),
       sha1: PropTypes.string,
       stats: PropTypes.shape({
         currentInstalls: PropTypes.number
@@ -122,13 +129,6 @@ class PluginDetail extends React.PureComponent {
     });
   }
 
-  openIssues() {
-    const name = this.props.plugin.name.endsWith('-plugin')
-      ? this.props.plugin.name
-      : this.props.plugin.name + '-plugin';
-    return `http://issues.jenkins-ci.org/secure/IssueNavigator.jspa?mode=hide&reset=true&jqlQuery=project+%3D+JENKINS+AND+status+in+%28Open%2C+%22In+Progress%22%2C+Reopened%29+AND+component+%3D+%27${name}%27`;
-  }
-
   render() {
     const { isFetchingPlugin, plugin } = this.props;
     if (plugin === null) {
@@ -196,7 +196,7 @@ class PluginDetail extends React.PureComponent {
                 </div>
                 <div>
                   <h6>Open Issues</h6>
-                  <p>See <Link to={this.openIssues()}>here</Link> for any open issues for this plugin.</p>
+                  <p>See <Link to={plugin.scm.issues}>here</Link> for any open issues for this plugin.</p>
                 </div>
               </div>
             </div>
