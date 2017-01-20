@@ -49,7 +49,7 @@ class PluginDetail extends React.PureComponent {
         issues: PropTypes.string,
         link: PropTypes.string,
         inLatestRelease: PropTypes.string,
-        sinceLatestRelease: : PropTypes.string,
+        sinceLatestRelease: PropTypes.string,
         pullRequests: PropTypes.string
       }),
       sha1: PropTypes.string,
