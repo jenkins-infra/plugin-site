@@ -8,6 +8,9 @@ export const data = (state = initialState, action) => {
     case ACTION_TYPES.SET_DATA:
       return Object.assign({}, state, {
         categories: action.data.categories,
+        info: {
+          commit: action.data.info
+        },
         labels: action.data.labels,
         stats: {
           installed: action.data.installed,

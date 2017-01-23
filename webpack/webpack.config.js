@@ -3,6 +3,7 @@ const path = require('path');
 const cssnext = require('postcss-cssnext');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
@@ -12,6 +13,7 @@ const NODE_MODULES = path.resolve(__dirname, '..', 'node_modules');
 const VIEWS_DIR = path.resolve(__dirname, '..', 'views');
 
 const release = process.env.NODE_ENV === 'production';
+const gitRevisionPlugin = new GitRevisionPlugin();
 
 const plugins = [
   new ExtractTextPlugin('[name].css'),
@@ -24,7 +26,8 @@ const plugins = [
     }),
     __PRODUCTION__: release,
     __REST_API_URL__: JSON.stringify(process.env.REST_API_URL || "http://localhost:8080"),
-    __HEADER_FILE__: JSON.stringify(process.env.HEADER_FILE || "https://jenkins.io/plugins/index.html")
+    __HEADER_FILE__: JSON.stringify(process.env.HEADER_FILE || "https://jenkins.io/plugins/index.html"),
+    __COMMIT_HASH__: JSON.stringify(gitRevisionPlugin.commithash())
   })
 ];
 
