@@ -284,6 +284,7 @@ describe('actions', () => {
     mockCall('/plugins/trend');
     mockCall('/plugins/updated');
     mockCall('/plugins/installed');
+    mockCall('/info');
     const store = mockStore(initialState);
     return store.dispatch(actions.loadInitialData())
       .then(() => {

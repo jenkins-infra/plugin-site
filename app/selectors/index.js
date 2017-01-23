@@ -23,6 +23,7 @@ export const total = createSelector([ui], ui => ui.total);
 export const view = createSelector([ui], ui => ui.view);
 
 export const categories = createSelector([data], data => data.categories);
+export const info = createSelector([data], data => data.info);
 export const labels = createSelector([data], data => data.labels);
 export const installed = createSelector([data], data => data.stats.installed);
 export const trend = createSelector([data], data => data.stats.trend);

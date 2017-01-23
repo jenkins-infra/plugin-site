@@ -25,14 +25,16 @@ export default class Api {
       this.getLabels(),
       this.getInstalled(),
       this.getTrend(),
-      this.getUpdated()
+      this.getUpdated(),
+      this.getInfo()
     ]).then((data) => {
       return {
         categories: data[0],
         labels: data[1],
         installed: data[2],
         trend: data[3],
-        updated: data[4]
+        updated: data[4],
+        info: data[5]
       };
     }).catch((err) => {
       console.error('Problem getting initial data'); // eslint-disable-line no-console
@@ -135,6 +137,19 @@ export default class Api {
         return data.plugins;
       }).catch((err) => {
         console.error('Problem getting trend plugins from API'); // eslint-disable-line no-console
+        console.error(err); // eslint-disable-line no-console
+      });
+  }
+
+  static getInfo() {
+    const url = `${__REST_API_URL__}/info`;
+    return fetch(url, fetchOptions)
+      .then(this.checkStatus)
+      .then(this.parseJSON)
+      .then(data => {
+        return data.commit;
+      }).catch((err) => {
+        console.error('Problem getting info from API'); // eslint-disable-line no-console
         console.error(err); // eslint-disable-line no-console
       });
   }
