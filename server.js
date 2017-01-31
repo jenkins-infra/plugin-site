@@ -55,6 +55,8 @@ const downloadHeader = () => {
           }
         });
         $('head').prepend('{{> header }}');
+        // Even though we're supplying our own this one still causes a conflict.
+        $('link[href="https://jenkins.io/css/font-icons.css"]').remove();
         $('head').append('<script>window.__REDUX_STATE__ = {{{reduxState}}};</script>');
         $('#grid-box').append('{{{rendered}}}');
         $('#grid-box').after('<script type="text/javascript" src="{{jsPath}}/main.js"></script>');
