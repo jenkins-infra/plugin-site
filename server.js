@@ -99,7 +99,7 @@ app.get('*', (req, res, next) => {
             </Provider>
           </div>
         );
-        const pluginSiteVersion = __COMMIT_HASH__.substring(0, 7);
+        const pluginSiteVersion = "TBD";
         const pluginSiteApiVersion = store.getState().data.info.commit.substring(0, 7);
         const reduxState = JSON.stringify(store.getState()).replace(/</g, '\\x3c');
         const pluginNotFound = req.url !== '/' && store.getState().ui.plugin === null;
