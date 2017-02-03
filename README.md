@@ -15,12 +15,13 @@ We welcome any enhancements and bugfixes, please see our [guidelines](CONTRIBUTI
 
 ## Requirements
 
-- node 6.7+
+- node 6.9.5+
+- yarn 0.18+
 
 ## Run locally with client side rendering
 ```
-npm install
-REST_API_URL=<URL to plugin-site-api> npm start
+yarn
+REST_API_URL=<URL to plugin-site-api> yarn start
 Open http://localhost:5000
 ```
 This is recommended for normal development as it uses webpack-dev-server and enables hot reloading so changes to code
@@ -29,8 +30,8 @@ http://localhost:8080.
 
 ## Run locally with server side rendering
 ```
-npm install
-REST_API_URL=<URL to plugin-site-api> npm run server
+yarn
+REST_API_URL=<URL to plugin-site-api> yarn server
 Open http://localhost:5000
 ```
 
@@ -42,23 +43,23 @@ into the content and replace the view/index.hbs. This is _intended_ for use in t
 By default the location is https://jenkins.io/plugins/index.html. To specify a different location supply the
 `HEADER_FILE` environment variable.
 
-## Linting with npm
+## Linting
 
 ESLint with React linting options have been enabled.
 ```
-npm run lint
+yarn lint
 ```
 
-## Tests with npm
+## Tests
 
 Execute tests via
 ```
-npm test
+yarn test
 ```
 
 or run in watch mode
 ```
-npm run test:watch
+yarn test:watch
 ```
 
 # Deploying the app
