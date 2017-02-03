@@ -74,6 +74,17 @@ const downloadHeader = () => {
 
 downloadHeader();
 
+const getPluginSiteVersion = () => {
+  const file = './GIT_COMMIT';
+  try {
+    return fs.existsSync(file) ? fs.readFileSync(file, 'utf-8').substring(0, 7) : 'TBD';
+  } catch (err) {
+    console.error(chalk.red(`Problem accessing ${file}`), err);
+  }
+}
+
+const pluginSiteVersion = getPluginSiteVersion();
+
 app.get('*', (req, res, next) => {
   match({ routes: routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
@@ -99,7 +110,6 @@ app.get('*', (req, res, next) => {
             </Provider>
           </div>
         );
-        const pluginSiteVersion = "TBD";
         const pluginSiteApiVersion = store.getState().data.info.commit.substring(0, 7);
         const reduxState = JSON.stringify(store.getState()).replace(/</g, '\\x3c');
         const pluginNotFound = req.url !== '/' && store.getState().ui.plugin === null;
