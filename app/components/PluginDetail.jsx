@@ -46,11 +46,11 @@ class PluginDetail extends React.PureComponent {
       name: PropTypes.string.isRequired,
       requiredCore: PropTypes.string,
       scm: PropTypes.shape({
+        inLatestRelease: PropTypes.string,
         issues: PropTypes.string,
         link: PropTypes.string,
-        inLatestRelease: PropTypes.string,
-        sinceLatestRelease: PropTypes.string,
-        pullRequests: PropTypes.string
+        pullRequests: PropTypes.string,
+        sinceLatestRelease: PropTypes.string
       }),
       sha1: PropTypes.string,
       stats: PropTypes.shape({
@@ -133,6 +133,24 @@ class PluginDetail extends React.PureComponent {
     });
   }
 
+  getLastReleased(plugin) {
+    const getTime = (plugin) => {
+      if (plugin.releaseTimestamp !== null) {
+        // 2017-02-09T15:19:10.00Z
+        return moment(plugin.releaseTimestamp);
+      } else {
+        // 2017-02-09
+        return moment(plugin.buildDate, 'YYYY-MM-DD');
+      }
+    }
+    const time = getTime(plugin);
+    return (
+      <div>Last released: <span  title={time.format('dddd, MMMM Do YYYY')}>
+        {time.fromNow()}</span>
+      </div>
+    );
+  }
+
   render() {
     const { isFetchingPlugin, plugin } = this.props;
     if (plugin === null) {
@@ -161,11 +179,12 @@ class PluginDetail extends React.PureComponent {
                   </h1>
                   <div className="row flex">
                     <div className="col-md-4">
-                      <p>
-                        Installs: {plugin.stats.currentInstalls}<br />
-                        Last released: <span  title={moment(plugin.releaseTimestamp).format('dddd, MMMM Do YYYY')}>
-                          {moment(plugin.releaseTimestamp).fromNow()}</span><br/>
-                      </p>
+                      {plugin.stats &&  <div>Installs: {plugin.stats.currentInstalls}</div>}
+                      {plugin.scm && plugin.scm.link && <div><a href={plugin.scm.link}>GitHub →</a></div>}
+                      {plugin.scm && plugin.scm.issues && <div><a href={plugin.scm.issues}>Open Issues →</a></div>}
+                      {plugin.scm && plugin.scm.sinceLatestRelease && <div><a href={plugin.scm.sinceLatestRelease}>Lastest rolling changes →</a></div>}
+                      {plugin.scm && plugin.scm.inLatestRelease && <div><a href={plugin.scm.inLatestRelease}>Changes in {plugin.version} release →</a></div>}
+                      {this.getLastReleased(plugin)}
                     </div>
                     <div className="col-md-4 maintainers">
                       <h5>Maintainers</h5>
@@ -180,7 +199,7 @@ class PluginDetail extends React.PureComponent {
                 </div>
               </div>
               <div className="col-md-3 gutter">
-                <a href={`https://updates.jenkins-ci.org/download/plugins/${plugin.name}` }
+                <a href={`https://updates.jenkins.io/download/plugins/${plugin.name}` }
                     className="btn btn-secondary">
                   <i className="icon-box" />
                   <span>Archives</span>
@@ -197,10 +216,6 @@ class PluginDetail extends React.PureComponent {
                 <div className="update-link">
                   <h6>Are you maintaining this plugin?</h6>
                   <p>Visit the <a href={plugin.wiki.url} target="_wiki">Jenkins Plugin Wiki</a> to edit this content.</p>
-                </div>
-                <div>
-                  <h6>Open Issues</h6>
-                  <p>See <Link to={plugin.scm.issues}>here</Link> for any open issues for this plugin.</p>
                 </div>
               </div>
             </div>
