@@ -9,7 +9,7 @@ node('docker') {
   timestamps {
 
     stage('Build & Test') {
-      docker.image("node:6.7").inside {
+      docker.image("node:7").inside {
         sh "npm install"
         sh "npm run build"
       }
