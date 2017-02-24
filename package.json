@@ -4,7 +4,7 @@
   "description": "Jenkins Plugin Site",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && run-p build:client build:server",
+    "build": "run-s clean test && run-p build:client build:server",
     "build:client": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.client.entry.js --colors --display-error-details",
     "build:server": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.server.entry.js --colors --display-error-details",
     "server": "run-s build server:run",
