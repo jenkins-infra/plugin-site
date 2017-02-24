@@ -4,7 +4,7 @@
   "description": "Jenkins Plugin Site",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && run-p build:client build:server",
+    "build": "run-s clean test && run-p build:client build:server",
     "build:client": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.client.entry.js --colors --display-error-details",
     "build:server": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.server.entry.js --colors --display-error-details",
     "server": "run-s build server:run",
@@ -101,6 +101,7 @@
     "html-webpack-plugin": "^2.22.0",
     "ignore-styles": "^4.0.0",
     "isomorphic-fetch": "^2.2.1",
+    "jasmine-reporters": "^2.2.0",
     "jest": "^16.0.2",
     "jsdom": "^9.5.0",
     "nock": "^9.0.2",
@@ -121,6 +122,8 @@
   "jest": {
     "globals": {
       "__REST_API_URL__": "http://localhost:8080"
-    }
+    },
+    "collectCoverage": true,
+    "setupTestFrameworkScriptFile": "./setup-jasmine-env.js"
   }
 }
