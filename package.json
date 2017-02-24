@@ -101,6 +101,7 @@
     "html-webpack-plugin": "^2.22.0",
     "ignore-styles": "^4.0.0",
     "isomorphic-fetch": "^2.2.1",
+    "jasmine-reporters": "^2.2.0",
     "jest": "^16.0.2",
     "jsdom": "^9.5.0",
     "nock": "^9.0.2",
@@ -121,6 +122,8 @@
   "jest": {
     "globals": {
       "__REST_API_URL__": "http://localhost:8080"
-    }
+    },
+    "collectCoverage": true,
+    "setupTestFrameworkScriptFile": "./setup-jasmine-env.js"
   }
 }

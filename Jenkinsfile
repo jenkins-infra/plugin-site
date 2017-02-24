@@ -7,6 +7,15 @@ node('docker') {
   }
 
   timestamps {
+
+    stage('Build & Test') {
+      docker.image("node:6.7").inside {
+        sh "npm install"
+        sh "npm run build"
+      }
+      junit allowEmptyResults: true, testResults: '**/junit/*.xml'
+    }
+
     stage('Build Docker Image') {
       docker.build('jenkinsciinfra/plugin-site')
     }
