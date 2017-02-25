@@ -9,9 +9,9 @@ node('docker') {
   timestamps {
 
     stage('Build & Test') {
-      docker.image("node:7").inside {
-        sh "npm install"
-        sh "npm run build"
+      docker.image("kkarczmarczyk/node-yarn:6.9").inside {
+        sh "yarn"
+        sh "yarn build"
       }
       junit allowEmptyResults: true, testResults: '**/junit/*.xml'
     }
