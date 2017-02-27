@@ -195,7 +195,7 @@ class PluginDetail extends React.PureComponent {
                       {this.getDependencies(plugin.dependencies)}
                     </div>
                   </div>
-                  <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />
+                  {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
                 </div>
               </div>
               <div className="col-md-3 gutter">
