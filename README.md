@@ -15,50 +15,51 @@ We welcome any enhancements and bugfixes, please see our [guidelines](CONTRIBUTI
 
 ## Requirements
 
-- node 6.7+
+- node 6.9+
+- yarn 0.18+
 
 ## Run locally with client side rendering
 ```
-npm install
-REST_API_URL=<URL to plugin-site-api> npm start
+yarn
+yarn start
 Open http://localhost:5000
 ```
 This is recommended for normal development as it uses webpack-dev-server and enables hot reloading so changes to code
-are immediately detected and the application is recompiled. If `REST_API_URL` is unset it defaults to
-http://localhost:8080.
+are immediately detected and the application is recompiled. By default it communicates with http://plugins.jenkins.io:8080
+for the REST API. To specify a different location supply the `REST_API_URL` environment variable.
 
 ## Run locally with server side rendering
 ```
-npm install
-REST_API_URL=<URL to plugin-site-api> npm run server
+yarn
+yarn server
 Open http://localhost:5000
 ```
 
 This uses server side rendering to help ensure SEO results. This does _not_ enable hot reloading.
-If `REST_API_URL` is unset it defaults to localhost:8080.
+If `REST_API_URL` is unset it defaults to http://plugins.jenkins.io:8080.
 
 When using server side rendering, the application will download a header from an external location and inject itself
 into the content and replace the view/index.hbs. This is _intended_ for use in the Dockerfile production deployment.
 By default the location is https://jenkins.io/plugins/index.html. To specify a different location supply the
 `HEADER_FILE` environment variable.
 
-## Linting with npm
+## Linting
 
 ESLint with React linting options have been enabled.
 ```
-npm run lint
+yarn lint
 ```
 
-## Tests with npm
+## Tests
 
 Execute tests via
 ```
-npm test
+yarn test
 ```
 
 or run in watch mode
 ```
-npm run test:watch
+yarn test:watch
 ```
 
 # Deploying the app
@@ -70,8 +71,8 @@ It's recommended the application be deployed via it's Dockerfile.
 - Docker 1.12+
 
 ```
-docker build -t jenkinsciinfra/plugin-site .
-docker run -p 5000:5000 -it -e REST_API_URL="http://url.to.api" jenkinsciinfra/plugin-site
+docker build -t jenkinsciinfra/plugin-site --rm --no-cache .
+docker run -p 5000:5000 -it jenkinsciinfra/plugin-site
 ```
- If `REST_API_URL` is unset it defaults to http://localhost:8080. If `HEADER_FILE` is unset it defaults to
+ If `REST_API_URL` is unset it defaults to http://plugins.jenkins.io:8080. If `HEADER_FILE` is unset it defaults to
  https://jenkins.io/plugins/index.html

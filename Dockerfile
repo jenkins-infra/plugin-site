@@ -1,4 +1,4 @@
-FROM node:6.7-slim
+FROM kkarczmarczyk/node-yarn:6.9
 
 RUN mkdir /plugins
 COPY ./.babelrc /plugins
@@ -8,10 +8,11 @@ COPY ./app/ /plugins/app/
 COPY ./public/ /plugins/public
 COPY ./views/ /plugins/views
 COPY ./webpack /plugins/webpack
+COPY ./yarn.lock /plugins
 WORKDIR /plugins
 
-RUN npm install -q
+RUN yarn
 
-CMD npm run server
+CMD yarn server
 
 EXPOSE 5000

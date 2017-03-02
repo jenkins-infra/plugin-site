@@ -4,7 +4,7 @@
   "description": "Jenkins Plugin Site",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && run-p build:client build:server",
+    "build": "run-s clean test && run-p build:client build:server",
     "build:client": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.client.entry.js --colors --display-error-details",
     "build:server": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.server.entry.js --colors --display-error-details",
     "server": "run-s build server:run",
@@ -12,11 +12,11 @@
     "start": "webpack-dev-server --config ./webpack/webpack.config.js --content-base public --port 5000 --inline --hot --progress --colors --display-error-details --history-api-fallback",
     "lint": "eslint --ext .js --ext .jsx .",
     "test": "jest --coverage",
-    "test:watch": "npm test -- --watch",
+    "test:watch": "yarn test -- --watch",
     "clean": "rimraf dist"
   },
   "engines": {
-    "node": "~6.7.0"
+    "node": "~6.9.0"
   },
   "repository": {
     "type": "git",
@@ -101,10 +101,11 @@
     "html-webpack-plugin": "^2.22.0",
     "ignore-styles": "^4.0.0",
     "isomorphic-fetch": "^2.2.1",
+    "jasmine-reporters": "^2.2.0",
     "jest": "^16.0.2",
     "jsdom": "^9.5.0",
     "nock": "^9.0.2",
-    "npm-run-all": "^3.1.0",
+    "npm-run-all": "^4.0.0",
     "postcss-cssnext": "^2.7.0",
     "postcss-loader": "^0.10.0",
     "react-addons-test-utils": "^15.3.0",
@@ -121,6 +122,8 @@
   "jest": {
     "globals": {
       "__REST_API_URL__": "http://localhost:8080"
-    }
+    },
+    "collectCoverage": true,
+    "setupTestFrameworkScriptFile": "./setup-jasmine-env.js"
   }
 }
