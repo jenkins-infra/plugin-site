@@ -163,7 +163,7 @@ class PluginDetail extends React.PureComponent {
     this.warningsModal.show();
   }
 
-  getWarnings(securityWarnings) {
+  getActiveWarnings(securityWarnings) {
     if (!securityWarnings) {
       return null;
     }
@@ -184,36 +184,32 @@ class PluginDetail extends React.PureComponent {
           </ModalView>
         </div>
       );
-    } else {
-      const renderedWarnings = securityWarnings.map(warning => {
-        const version = warning.firstVersion && warning.lastVersion
-          ? `versions ${warning.firstVersion} - ${warning.lastVersion}`
-          : `version ${warning.firstVersion ? warning.firstVersion : warning.lastVersion}`;
-        return (
-          <li key={warning.id}>
-            <h4>{warning.id}</h4>
-            <a href={warning.url}>{warning.message}</a> affecting {version}
-          </li>
-        )
-      });
-      return (
-        <div className="badge-box">
-          <span className="badge inactive warning" onClick={this.showWarnings}></span>
-          <ModalView hideOnOverlayClicked ignoreEscapeKey ref={(modal) => { this.warningsModal = modal; }}>
-            <Header>
-              <div>Previous Security Warnings</div>
-            </Header>
-            <Body>
-              <div>
-                <ul>
-                  {renderedWarnings}
-                </ul>
-              </div>
-            </Body>
-          </ModalView>
-        </div>
-      )
     }
+  }
+
+  getInactiveWarnings(securityWarnings) {
+    if (!securityWarnings || securityWarnings.length == 0) {
+      return null;
+    }
+    const renderedWarnings = securityWarnings.map(warning => {
+      const version = warning.firstVersion && warning.lastVersion
+        ? `versions ${warning.firstVersion} - ${warning.lastVersion}`
+        : `version ${warning.firstVersion ? warning.firstVersion : warning.lastVersion}`;
+      return (
+        <li key={warning.id}>
+          <h7>{warning.id}</h7>
+          <p><a href={warning.url}>{warning.message}</a> affecting {version}</p>
+        </li>
+      )
+    });
+    return (
+      <div>
+        <h6>Previous Security Warnings</h6>
+        <ul>
+          {renderedWarnings}
+        </ul>
+      </div>
+    )
   }
 
   render() {
@@ -238,7 +234,7 @@ class PluginDetail extends React.PureComponent {
                 <div className="container-fluid padded">
                   <h1 className="title">
                     {cleanTitle(plugin.title)}
-                    {this.getWarnings(plugin.securityWarnings)}
+                    {this.getActiveWarnings(plugin.securityWarnings)}
                     <span className="v">{plugin.version}</span>
                     <span className="sub">Minimum Jenkins requirement: {plugin.requiredCore}</span>
                     <span className="sub">ID: {plugin.name}</span>
@@ -283,6 +279,7 @@ class PluginDetail extends React.PureComponent {
                   <h6>Are you maintaining this plugin?</h6>
                   <p>Visit the <a href={plugin.wiki.url} target="_wiki">Jenkins Plugin Wiki</a> to edit this content.</p>
                 </div>
+                {this.getInactiveWarnings(plugin.securityWarnings)}
               </div>
             </div>
           </div>
