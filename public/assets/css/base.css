@@ -268,6 +268,27 @@ transform: scale(-1, 1);
 .modalview > .dialog > .content {padding:0 !important; max-height:100% !important;}
 .modalview > .dialog > .content .title {margin-bottom:2rem; vertical-align:top}
 .modalview > .dialog > .content .content {min-height:25rem}
+.modalview > .dialog > .content .badge-box {display: inline-block;}
+.modalview > .dialog > .content .badge-box  > .badge {
+  background: no-repeat top;
+  background-size: 3rem;
+  display: inline-block;
+  height: 3rem;
+  width: 3rem;
+  overflow: hidden;
+  vertical-align: middle;
+  text-indent: 99rem;
+  white-space: nowrap;
+  margin: 0 -.5rem 0 .5rem;
+}
+.modalview > .dialog > .content .badge-box > .badge.warning {
+  background-image: url(/images/warning.svg);
+  background-size:2.5rem;
+}
+.modalview > .dialog > .content .badge-box  > .badge.warning.inactive{
+  mix-blend-mode:luminosity;
+  opacity:.5
+}
 .row.flex {display:flex}
 
 h1.title .v {color:#999; font-size:1rem; font-weight:200; margin:0 0 0 .5rem; position:relative; top:.25rem; vertical-align:top}
