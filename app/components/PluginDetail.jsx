@@ -52,6 +52,14 @@ class PluginDetail extends React.PureComponent {
         pullRequests: PropTypes.string,
         sinceLatestRelease: PropTypes.string
       }),
+      securityWarnings: PropTypes.arrayOf(PropTypes.shape({
+        active: PropTypes.boolean,
+        firstVersion: PropTypes.string,
+        id: PropTypes.string,
+        lastVersion: PropTypes.string,
+        message: PropTypes.string,
+        url: PropTypes.string
+      })),
       sha1: PropTypes.string,
       stats: PropTypes.shape({
         currentInstalls: PropTypes.number.isRequired,
@@ -151,6 +159,63 @@ class PluginDetail extends React.PureComponent {
     );
   }
 
+  showWarnings = () => {
+    this.warningsModal.show();
+  }
+
+  getWarnings(securityWarnings) {
+    if (!securityWarnings) {
+      return null;
+    }
+    const active = securityWarnings.find(warning => warning.active);
+    if (active) {
+      return (
+        <div className="badge-box">
+          <span className="badge active warning" onClick={this.showWarnings}></span>
+          <ModalView hideOnOverlayClicked ignoreEscapeKey ref={(modal) => { this.warningsModal = modal; }}>
+            <Header>
+              <div>{active.id}</div>
+            </Header>
+            <Body>
+              <div>
+                <a href={active.url}>{active.message}</a>
+              </div>
+            </Body>
+          </ModalView>
+        </div>
+      );
+    } else {
+      const renderedWarnings = securityWarnings.map(warning => {
+        const version = warning.firstVersion && warning.lastVersion
+          ? `versions ${warning.firstVersion} - ${warning.lastVersion}`
+          : `version ${warning.firstVersion ? warning.firstVersion : warning.lastVersion}`;
+        return (
+          <li key={warning.id}>
+            <h4>{warning.id}</h4>
+            <a href={warning.url}>{warning.message}</a> affecting {version}
+          </li>
+        )
+      });
+      return (
+        <div className="badge-box">
+          <span className="badge inactive warning" onClick={this.showWarnings}></span>
+          <ModalView hideOnOverlayClicked ignoreEscapeKey ref={(modal) => { this.warningsModal = modal; }}>
+            <Header>
+              <div>Previous Security Warnings</div>
+            </Header>
+            <Body>
+              <div>
+                <ul>
+                  {renderedWarnings}
+                </ul>
+              </div>
+            </Body>
+          </ModalView>
+        </div>
+      )
+    }
+  }
+
   render() {
     const { isFetchingPlugin, plugin } = this.props;
     if (plugin === null) {
@@ -173,6 +238,7 @@ class PluginDetail extends React.PureComponent {
                 <div className="container-fluid padded">
                   <h1 className="title">
                     {cleanTitle(plugin.title)}
+                    {this.getWarnings(plugin.securityWarnings)}
                     <span className="v">{plugin.version}</span>
                     <span className="sub">Minimum Jenkins requirement: {plugin.requiredCore}</span>
                     <span className="sub">ID: {plugin.name}</span>
