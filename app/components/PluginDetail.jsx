@@ -145,10 +145,10 @@ class PluginDetail extends React.PureComponent {
     const getTime = (plugin) => {
       if (plugin.releaseTimestamp !== null) {
         // 2017-02-09T15:19:10.00Z
-        return moment(plugin.releaseTimestamp);
+        return moment.utc(plugin.releaseTimestamp);
       } else {
         // 2017-02-09
-        return moment(plugin.buildDate, 'YYYY-MM-DD');
+        return moment.utc(plugin.buildDate, 'YYYY-MM-DD');
       }
     }
     const time = getTime(plugin);
