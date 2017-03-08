@@ -38,7 +38,7 @@ const chartData = (labels, data) => {
         label: 'Installs',
         data: data,
         backgroundColor: 'rgba(0,220,255,0.3)',
-        pointBackgroundColor: 'rgb(51, 153, 12)',
+        pointBackgroundColor: '#3399cc',
         pointRadius: 2,
         pointHitRadius: 10,
       }
