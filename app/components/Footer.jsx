@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from '../styles/Main.css';
 import PluginLink from './PluginLink';
 import { actions } from '../actions';
-import { categories, installed, trend, updated } from '../selectors';
+import { categories, newly, trend, updated } from '../selectors';
 import { createSelector } from 'reselect';
 
 class Footer extends React.PureComponent {
@@ -15,7 +15,7 @@ class Footer extends React.PureComponent {
       labels: PropTypes.arrayOf(PropTypes.string).isRequired,
       title: PropTypes.string.isRequired
     })).isRequired,
-    installed: PropTypes.arrayOf(PropTypes.shape({
+    newly: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired
     })).isRequired,
@@ -55,8 +55,8 @@ class Footer extends React.PureComponent {
             </div>
             <div className="col-md-3">
               <fieldset>
-                <legend>Most installed</legend>
-                { this.props.installed.map((plugin) => {
+                <legend>New Plugins</legend>
+                { this.props.newly.map((plugin) => {
                   return <PluginLink key={plugin.name} name={plugin.name} title={plugin.title} />;
                 })}
               </fieldset>
@@ -86,9 +86,9 @@ class Footer extends React.PureComponent {
 }
 
 const selectors = createSelector(
-  [ categories, installed, trend, updated ],
-  ( categories, installed, trend, updated ) =>
-  ({ categories, installed, trend, updated })
+  [ categories, newly, trend, updated ],
+  ( categories, newly, trend, updated ) =>
+  ({ categories, newly, trend, updated })
 );
 
 export default connect(selectors, actions)(Footer);

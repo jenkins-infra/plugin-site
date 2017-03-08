@@ -19,55 +19,6 @@ export default class Api {
     return response.json();
   }
 
-  static getInitialData() {
-    return Promise.all([
-      this.getCategories(),
-      this.getLabels(),
-      this.getInstalled(),
-      this.getTrend(),
-      this.getUpdated(),
-      this.getInfo()
-    ]).then((data) => {
-      return {
-        categories: data[0],
-        labels: data[1],
-        installed: data[2],
-        trend: data[3],
-        updated: data[4],
-        info: data[5]
-      };
-    }).catch((err) => {
-      console.error('Problem getting initial data'); // eslint-disable-line no-console
-      console.error(err); // eslint-disable-line no-console
-    });
-  }
-
-  static getCategories() {
-    const url = `${__REST_API_URL__}/categories`;
-    return fetch(url, fetchOptions)
-      .then(this.checkStatus)
-      .then(this.parseJSON)
-      .then(data => {
-        return data.categories;
-      }).catch((err) => {
-        console.error('Problem getting categories from API'); // eslint-disable-line no-console
-        console.error(err); // eslint-disable-line no-console
-      });
-  }
-
-  static getLabels() {
-    const url = `${__REST_API_URL__}/labels`;
-    return fetch(url, fetchOptions)
-      .then(this.checkStatus)
-      .then(this.parseJSON)
-      .then(data => {
-        return data.labels;
-      }).catch((err) => {
-        console.error('Problem getting labels from API'); // eslint-disable-line no-console
-        console.error(err); // eslint-disable-line no-console
-      });
-  }
-
   static getPlugin(name) {
     const url = `${__REST_API_URL__}/plugin/${name}`;
     return fetch(url, fetchOptions)
@@ -102,15 +53,77 @@ export default class Api {
       });
   }
 
-  static getInstalled() {
-    const url = `${__REST_API_URL__}/plugins/installed`;
+  static getInitialData() {
+    return Promise.all([
+      this.getCategories(),
+      this.getInfo(),
+      this.getLabels(),
+      this.getNew(),
+      this.getUpdated(),
+      this.getTrend()
+    ]).then((data) => {
+      return {
+        categories: data[0],
+        info: data[1],
+        labels: data[2],
+        newly: data[3],
+        updated: data[4],
+        trend: data[5],
+      };
+    }).catch((err) => {
+      console.error('Problem getting initial data'); // eslint-disable-line no-console
+      console.error(err); // eslint-disable-line no-console
+    });
+  }
+
+  static getCategories() {
+    const url = `${__REST_API_URL__}/categories`;
+    return fetch(url, fetchOptions)
+      .then(this.checkStatus)
+      .then(this.parseJSON)
+      .then(data => {
+        return data.categories;
+      }).catch((err) => {
+        console.error('Problem getting categories from API'); // eslint-disable-line no-console
+        console.error(err); // eslint-disable-line no-console
+      });
+  }
+
+  static getInfo() {
+    const url = `${__REST_API_URL__}/info`;
+    return fetch(url, fetchOptions)
+      .then(this.checkStatus)
+      .then(this.parseJSON)
+      .then(data => {
+        return data.commit;
+      }).catch((err) => {
+        console.error('Problem getting info from API'); // eslint-disable-line no-console
+        console.error(err); // eslint-disable-line no-console
+      });
+  }
+
+  static getLabels() {
+    const url = `${__REST_API_URL__}/labels`;
+    return fetch(url, fetchOptions)
+      .then(this.checkStatus)
+      .then(this.parseJSON)
+      .then(data => {
+        return data.labels;
+      }).catch((err) => {
+        console.error('Problem getting labels from API'); // eslint-disable-line no-console
+        console.error(err); // eslint-disable-line no-console
+      });
+  }
+
+  static getNew() {
+    const url = `${__REST_API_URL__}/plugins/new`;
     return fetch(url, fetchOptions)
       .then(this.checkStatus)
       .then(this.parseJSON)
       .then(data => {
         return data.plugins;
       }).catch((err) => {
-        console.error('Problem getting installed plugins from API'); // eslint-disable-line no-console
+        console.error('Problem getting new plugins from API'); // eslint-disable-line no-console
         console.error(err); // eslint-disable-line no-console
       });
   }
@@ -137,19 +150,6 @@ export default class Api {
         return data.plugins;
       }).catch((err) => {
         console.error('Problem getting trend plugins from API'); // eslint-disable-line no-console
-        console.error(err); // eslint-disable-line no-console
-      });
-  }
-
-  static getInfo() {
-    const url = `${__REST_API_URL__}/info`;
-    return fetch(url, fetchOptions)
-      .then(this.checkStatus)
-      .then(this.parseJSON)
-      .then(data => {
-        return data.commit;
-      }).catch((err) => {
-        console.error('Problem getting info from API'); // eslint-disable-line no-console
         console.error(err); // eslint-disable-line no-console
       });
   }

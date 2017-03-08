@@ -5,7 +5,7 @@ export const data = {
   },
   labels: [],
   stats: {
-    installed: [],
+    newly: [],
     trend: [],
     updated: []
   }
