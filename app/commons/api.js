@@ -32,14 +32,9 @@ export default class Api {
       });
   }
 
-  static getPlugins(query, categories, labels, sort, page, limit) {
+  static getPlugins(q, categories, labels, sort, page, limit) {
     const data = {
-      q: query,
-      categories: categories.join(','),
-      labels: labels.join(','),
-      limit: limit,
-      page: page,
-      sort: sort
+      q, categories, labels, sort, page, limit
     };
     const url = `${__REST_API_URL__}/plugins?${querystring.stringify(data)}`;
     return fetch(url, fetchOptions)
