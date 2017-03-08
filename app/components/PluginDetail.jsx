@@ -54,11 +54,13 @@ class PluginDetail extends React.PureComponent {
       }),
       securityWarnings: PropTypes.arrayOf(PropTypes.shape({
         active: PropTypes.boolean,
-        firstVersion: PropTypes.string,
         id: PropTypes.string,
-        lastVersion: PropTypes.string,
         message: PropTypes.string,
-        url: PropTypes.string
+        url: PropTypes.string,
+        versions: PropTypes.arrayOf(PropTypes.shape({
+          firstVersion: PropTypes.string,
+          lastVersion: PropTypes.string,
+        }))
       })),
       sha1: PropTypes.string,
       stats: PropTypes.shape({
@@ -171,49 +173,87 @@ class PluginDetail extends React.PureComponent {
     if (!securityWarnings) {
       return null;
     }
-    const active = securityWarnings.find(warning => warning.active);
-    if (active) {
-      return (
-        <div className="badge-box">
-          <span className="badge active warning" onClick={this.showWarnings}></span>
-          <ModalView hideOnOverlayClicked ignoreEscapeKey ref={(modal) => { this.warningsModal = modal; }}>
-            <Header>
-              <div>{active.id}</div>
-            </Header>
-            <Body>
-              <div>
-                <a href={active.url}>{active.message}</a>
-              </div>
-            </Body>
-          </ModalView>
-        </div>
-      );
+    const active = securityWarnings.filter(warning => warning.active);
+    if (active.length == 0) {
+      return null;
     }
+    return (
+      <div className="badge-box">
+        <span className="badge active warning" onClick={this.showWarnings}></span>
+        <ModalView hideOnOverlayClicked ignoreEscapeKey ref={(modal) => { this.warningsModal = modal; }}>
+          <Header>
+            <div>Active Security Warnings</div>
+          </Header>
+          <Body>
+            <div>
+              <ul>
+                {active.map(warning => {
+                  return (
+                    <li>
+                      <h3><a href={warning.url}>{warning.message}</a></h3>
+                      <ul>
+                        {warning.versions.map(version => {
+                          return (
+                            <li>
+                              {this.getReadableVersion(version)}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </Body>
+        </ModalView>
+      </div>
+    );
   }
 
   getInactiveWarnings(securityWarnings) {
-    if (!securityWarnings || securityWarnings.length == 0) {
+    if (!securityWarnings) {
       return null;
     }
-    const renderedWarnings = securityWarnings.map(warning => {
-      const version = warning.firstVersion && warning.lastVersion
-        ? `versions ${warning.firstVersion} - ${warning.lastVersion}`
-        : `version ${warning.firstVersion ? warning.firstVersion : warning.lastVersion}`;
-      return (
-        <li key={warning.id}>
-          <h7>{warning.id}</h7>
-          <p><a href={warning.url}>{warning.message}</a> affecting {version}</p>
-        </li>
-      )
-    });
+    const inactive = securityWarnings.filter(warning => !warning.active);
+    if (inactive.length == 0) {
+      return null;
+    }
     return (
       <div>
         <h6>Previous Security Warnings</h6>
         <ul>
-          {renderedWarnings}
+          {inactive.map(warning => {
+            return (
+              <li>
+                <h7><a href={warning.url}>{warning.message}</a></h7>
+                <ul>
+                  {warning.versions.map(version => {
+                    return (
+                      <li>
+                        {this.getReadableVersion(version)}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </li>
+            )
+          })}
         </ul>
       </div>
     )
+  }
+
+  getReadableVersion(version) {
+    if (version.firstVersion && version.lastVersion) {
+      return `Affects version ${version.firstVersion} to ${version.lastVersion}`;
+    } else if (version.firstVersion) {
+      return `Affects version ${version.lastVersion} and later`;
+    } else if (version.lastVersion) {
+      return `Affects version ${version.lastVersion} and earlier`;
+    } else {
+      return null;
+    }
   }
 
   render() {
