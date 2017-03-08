@@ -195,7 +195,7 @@ class PluginDetail extends React.PureComponent {
                         {warning.versions.map(version => {
                           return (
                             <li>
-                              {this.getReadableVersion(version)}
+                              {this.getReadableVersion(version, true)}
                             </li>
                           )
                         })}
@@ -231,7 +231,7 @@ class PluginDetail extends React.PureComponent {
                   {warning.versions.map(version => {
                     return (
                       <li>
-                        {this.getReadableVersion(version)}
+                        {this.getReadableVersion(version, false)}
                       </li>
                     )
                   })}
@@ -244,15 +244,15 @@ class PluginDetail extends React.PureComponent {
     )
   }
 
-  getReadableVersion(version) {
+  getReadableVersion(version, active) {
     if (version.firstVersion && version.lastVersion) {
       return `Affects version ${version.firstVersion} to ${version.lastVersion}`;
-    } else if (version.firstVersion) {
+    } else if (version.firstVersion && active) {
       return `Affects version ${version.lastVersion} and later`;
     } else if (version.lastVersion) {
       return `Affects version ${version.lastVersion} and earlier`;
     } else {
-      return null;
+      return active ? "Affects all versions" : "Affects some versions";
     }
   }
 
