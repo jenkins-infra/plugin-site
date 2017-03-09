@@ -13,7 +13,7 @@ export const data = (state = initialState, action) => {
         },
         labels: action.data.labels,
         stats: {
-          installed: action.data.installed,
+          newly: action.data.newly,
           trend: action.data.trend,
           updated: action.data.updated
         }
