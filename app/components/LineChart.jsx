@@ -13,8 +13,8 @@ const calculateHeight = (total) => {
 
 const calculateMinMax = (data) => {
   const lastValue = data[data.length-1];
-  let maxValue = null;
-  let minValue = null;
+  let maxValue = undefined;
+  let minValue = undefined;
   if (lastValue < 100) maxValue = 250;
   else if (lastValue < 250) maxValue = 500;
   else if (lastValue < 500) maxValue = 1000;
@@ -36,7 +36,7 @@ const chartData = (labels, data) => {
     datasets: [
       {
         label: 'Installs',
-        data: data,
+        data,
         backgroundColor: 'rgba(0,220,255,0.3)',
         pointBackgroundColor: '#3399cc',
         pointRadius: 2,
