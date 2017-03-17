@@ -279,12 +279,12 @@ describe('actions', () => {
        .query(() => true)
        .reply(200, data);
     };
-    mockCall('/labels');
     mockCall('/categories');
-    mockCall('/plugins/trend');
-    mockCall('/plugins/updated');
-    mockCall('/plugins/installed');
+    mockCall('/labels');
     mockCall('/info');
+    mockCall('/plugins/new');
+    mockCall('/plugins/updated');
+    mockCall('/plugins/trend');
     const store = mockStore(initialState);
     return store.dispatch(actions.loadInitialData())
       .then(() => {

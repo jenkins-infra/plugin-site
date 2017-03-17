@@ -54,11 +54,13 @@ class PluginDetail extends React.PureComponent {
       }),
       securityWarnings: PropTypes.arrayOf(PropTypes.shape({
         active: PropTypes.boolean,
-        firstVersion: PropTypes.string,
         id: PropTypes.string,
-        lastVersion: PropTypes.string,
         message: PropTypes.string,
-        url: PropTypes.string
+        url: PropTypes.string,
+        versions: PropTypes.arrayOf(PropTypes.shape({
+          firstVersion: PropTypes.string,
+          lastVersion: PropTypes.string,
+        }))
       })),
       sha1: PropTypes.string,
       stats: PropTypes.shape({
@@ -145,10 +147,10 @@ class PluginDetail extends React.PureComponent {
     const getTime = (plugin) => {
       if (plugin.releaseTimestamp !== null) {
         // 2017-02-09T15:19:10.00Z
-        return moment(plugin.releaseTimestamp);
+        return moment.utc(plugin.releaseTimestamp);
       } else {
         // 2017-02-09
-        return moment(plugin.buildDate, 'YYYY-MM-DD');
+        return moment.utc(plugin.buildDate, 'YYYY-MM-DD');
       }
     }
     const time = getTime(plugin);
@@ -171,49 +173,87 @@ class PluginDetail extends React.PureComponent {
     if (!securityWarnings) {
       return null;
     }
-    const active = securityWarnings.find(warning => warning.active);
-    if (active) {
-      return (
-        <div className="badge-box">
-          <span className="badge active warning" onClick={this.showWarnings}></span>
-          <ModalView hideOnOverlayClicked ignoreEscapeKey ref={(modal) => { this.warningsModal = modal; }}>
-            <Header>
-              <div>{active.id}</div>
-            </Header>
-            <Body>
-              <div>
-                <a href={active.url}>{active.message}</a>
-              </div>
-            </Body>
-          </ModalView>
-        </div>
-      );
+    const active = securityWarnings.filter(warning => warning.active);
+    if (active.length == 0) {
+      return null;
     }
+    return (
+      <div className="badge-box">
+        <span className="badge active warning" onClick={this.showWarnings}></span>
+        <ModalView hideOnOverlayClicked ignoreEscapeKey ref={(modal) => { this.warningsModal = modal; }}>
+          <Header>
+            <div>Active Security Warnings</div>
+          </Header>
+          <Body>
+            <div>
+              <ul>
+                {active.map(warning => {
+                  return (
+                    <li>
+                      <h3><a href={warning.url}>{warning.message}</a></h3>
+                      <ul>
+                        {warning.versions.map(version => {
+                          return (
+                            <li>
+                              {this.getReadableVersion(version, true)}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </Body>
+        </ModalView>
+      </div>
+    );
   }
 
   getInactiveWarnings(securityWarnings) {
-    if (!securityWarnings || securityWarnings.length == 0) {
+    if (!securityWarnings) {
       return null;
     }
-    const renderedWarnings = securityWarnings.map(warning => {
-      const version = warning.firstVersion && warning.lastVersion
-        ? `versions ${warning.firstVersion} - ${warning.lastVersion}`
-        : `version ${warning.firstVersion ? warning.firstVersion : warning.lastVersion}`;
-      return (
-        <li key={warning.id}>
-          <h7>{warning.id}</h7>
-          <p><a href={warning.url}>{warning.message}</a> affecting {version}</p>
-        </li>
-      )
-    });
+    const inactive = securityWarnings.filter(warning => !warning.active);
+    if (inactive.length == 0) {
+      return null;
+    }
     return (
       <div>
         <h6>Previous Security Warnings</h6>
         <ul>
-          {renderedWarnings}
+          {inactive.map(warning => {
+            return (
+              <li>
+                <h7><a href={warning.url}>{warning.message}</a></h7>
+                <ul>
+                  {warning.versions.map(version => {
+                    return (
+                      <li>
+                        {this.getReadableVersion(version, false)}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </li>
+            )
+          })}
         </ul>
       </div>
     )
+  }
+
+  getReadableVersion(version, active) {
+    if (version.firstVersion && version.lastVersion) {
+      return `Affects version ${version.firstVersion} to ${version.lastVersion}`;
+    } else if (version.firstVersion && active) {
+      return `Affects version ${version.lastVersion} and later`;
+    } else if (version.lastVersion) {
+      return `Affects version ${version.lastVersion} and earlier`;
+    } else {
+      return active ? "Affects all versions" : "Affects some versions";
+    }
   }
 
   render() {
@@ -246,10 +286,6 @@ class PluginDetail extends React.PureComponent {
                   <div className="row flex">
                     <div className="col-md-4">
                       {plugin.stats &&  <div>Installs: {plugin.stats.currentInstalls}</div>}
-                      {plugin.scm && plugin.scm.link && <div><a href={plugin.scm.link}>GitHub →</a></div>}
-                      {plugin.scm && plugin.scm.issues && <div><a href={plugin.scm.issues}>Open Issues →</a></div>}
-                      {plugin.scm && plugin.scm.sinceLatestRelease && <div><a href={plugin.scm.sinceLatestRelease}>Lastest rolling changes →</a></div>}
-                      {plugin.scm && plugin.scm.inLatestRelease && <div><a href={plugin.scm.inLatestRelease}>Changes in {plugin.version} release →</a></div>}
                       {this.getLastReleased(plugin)}
                     </div>
                     <div className="col-md-4 maintainers">

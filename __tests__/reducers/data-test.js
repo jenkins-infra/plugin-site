@@ -23,7 +23,7 @@ describe('data reducer', () => {
         name: 'name'
       }
     ];
-    const installed = [
+    const newly = [
       {
         id: 'git',
         name: 'Git'
@@ -45,7 +45,7 @@ describe('data reducer', () => {
       commit: 'b73765ae2fafec2704847beced9c5d93165b71d2'
     };
     const data = {
-      categories, labels, installed, trend, updated, info
+      categories, labels, newly, trend, updated, info
     };
     const action = { type: ACTION_TYPES.SET_DATA, data };
     expect(
@@ -57,7 +57,7 @@ describe('data reducer', () => {
       },
       labels,
       stats: {
-        installed,
+        newly,
         trend,
         updated
       }
