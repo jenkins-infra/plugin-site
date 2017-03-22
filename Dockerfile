@@ -9,6 +9,7 @@ COPY ./public/ /plugins/public
 COPY ./views/ /plugins/views
 COPY ./webpack /plugins/webpack
 COPY ./yarn.lock /plugins
+COPY ./postinstall.js /plugins
 WORKDIR /plugins
 
 RUN yarn
