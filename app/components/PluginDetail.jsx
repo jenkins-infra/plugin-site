@@ -290,6 +290,7 @@ class PluginDetail extends React.PureComponent {
                   <div className="row flex">
                     <div className="col-md-4">
                       {plugin.stats &&  <div>Installs: {this.getReadableInstalls(plugin.stats.currentInstalls)}</div>}
+                      {plugin.scm && plugin.scm.link && <div><a href={plugin.scm.link}>GitHub →</a></div>}
                       {this.getLastReleased(plugin)}
                     </div>
                     <div className="col-md-4 maintainers">
