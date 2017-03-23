@@ -68,7 +68,7 @@ class PluginDetail extends React.PureComponent {
         installations: PropTypes.arrayOf(PropTypes.shape({
           timestamp: PropTypes.number,
           total: PropTypes.number
-        })).isRequired
+        }))
       }).isRequired,
       title: PropTypes.string.isRequired,
       wiki: PropTypes.shape({
@@ -256,6 +256,10 @@ class PluginDetail extends React.PureComponent {
     }
   }
 
+  getReadableInstalls(currentInstalls) {
+    return currentInstalls != 0 ? currentInstalls : "No usage data available";
+  }
+
   render() {
     const { isFetchingPlugin, plugin } = this.props;
     if (plugin === null) {
@@ -285,7 +289,7 @@ class PluginDetail extends React.PureComponent {
                   </h1>
                   <div className="row flex">
                     <div className="col-md-4">
-                      {plugin.stats &&  <div>Installs: {plugin.stats.currentInstalls}</div>}
+                      {plugin.stats &&  <div>Installs: {this.getReadableInstalls(plugin.stats.currentInstalls)}</div>}
                       {this.getLastReleased(plugin)}
                     </div>
                     <div className="col-md-4 maintainers">
