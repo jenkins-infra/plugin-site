@@ -92,26 +92,22 @@ export default class LineChart extends React.PureComponent {
     installations: PropTypes.arrayOf(PropTypes.shape({
       timestamp: PropTypes.number,
       total: PropTypes.number
-    })).isRequired
+    }))
   };
 
   render() {
     const { installations, total } = this.props;
+    if (!installations) {
+      return null;
+    }
     const labels = [];
     const data = [];
     const height = calculateHeight(total);
-    if (installations) {
-      installations.sort((a,b) => {
-        a = a.timestamp;
-        b = b.timestamp;
-        return a < b ? -1 : (a > b ? 1 : 0);
-      });
-      const length = installations.length;
-      installations.slice(length - 12, length).forEach((installation) => {
-        labels.push(moment.utc(installation.timestamp).format('MMM'));
-        data.push(installation.total);
-      });
-    }
+    const length = installations.length;
+    installations.slice(length - 12, length).forEach((installation) => {
+      labels.push(moment.utc(installation.timestamp).format('MMM'));
+      data.push(installation.total);
+    });
     const lineData = chartData(labels, data);
     return (
       <div style={styles.graphContainer}>
