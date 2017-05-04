@@ -8,6 +8,8 @@ body {overflow-x:hidden}
 body .showResults.item-finder > #plugin-search-form.HomeHeader{
   padding:.25rem .5rem;
 }
+#plugin-search-form .SearchBox .SearchBtn,
+#plugin-search-form .SearchBox .ShowFilter {display:table-cell !important; color:#fff !important;}
 body .showResults.item-finder > .HomeHeader > .navbar {width:100%; padding:0 10.5rem 0 0;}
 body .showResults.item-finder > .HomeHeader > .navbar > .nav ,
 body .showResults.item-finder > .HomeHeader > .navbar > .nav > .SearchBox {width:100%; padding:0 !important}
