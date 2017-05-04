@@ -23,7 +23,7 @@ const plugins = [
       NODE_ENV: release ? 'production' : 'development'
     }),
     __PRODUCTION__: release,
-    __REST_API_URL__: JSON.stringify(process.env.REST_API_URL || "http://plugins.jenkins.io:8080"),
+    __REST_API_URL__: JSON.stringify(process.env.REST_API_URL || "https://plugins.jenkins.io/api"),
     __HEADER_FILE__: JSON.stringify(process.env.HEADER_FILE || "https://jenkins.io/plugins/index.html")
   })
 ];
