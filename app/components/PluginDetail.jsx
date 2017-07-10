@@ -5,6 +5,7 @@ import { browserHistory, Link } from 'react-router';
 import moment from 'moment';
 import LineChart from './LineChart';
 import NotFound from './NotFound';
+import Spinner from './Spinner';
 import { cleanTitle } from '../commons/helper';
 import { firstVisit, isFetchingPlugin, labels, plugin } from '../selectors';
 import { actions } from '../actions';
@@ -264,7 +265,7 @@ class PluginDetail extends React.PureComponent {
     const { isFetchingPlugin, plugin } = this.props;
     if (plugin === null) {
       if (isFetchingPlugin) {
-        return null;
+        return <Spinner/>;
       } else {
         return <NotFound/>;
       }
