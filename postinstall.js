@@ -1,6 +1,6 @@
 var path = require('path');
 var prepend = require('prepend-file');
-var findUp = require('find-up')
+var findUp = require('find-up');
 
 var FIXED_FILE = ['chart.js', 'src', 'core', 'core.helpers.js'];
 var FIXED_CODE = '// < HACK >\n'
