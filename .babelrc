@@ -1,13 +1,4 @@
 {
- "presets": [ ["es2015", { "modules": false }], "stage-0", "react"],
- "plugins": ["transform-decorators-legacy"],
-//  This is needed to tests run correctly. 
-//  https://github.com/facebook/jest/issues/770#issuecomment-264743438https://github.com/facebook/jest/issues/770#issuecomment-264743438
- "env": {
-    "test": {
-      "presets": [
-        "es2015"
-      ]
-    }
-  }
+ "presets": ["es2015", "stage-0", "react"],
+ "plugins": ["transform-decorators-legacy"]
 }

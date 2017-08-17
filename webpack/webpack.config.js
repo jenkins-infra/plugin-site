@@ -65,7 +65,6 @@ const config = {
         use: [
           'babel-loader'
         ],
-        //include: APP_DIR,
         exclude: NODE_MODULES
       },
       {
