@@ -12,6 +12,7 @@ node('docker') {
       docker.image("kkarczmarczyk/node-yarn:6.9").inside {
         sh "yarn"
         sh "yarn build"
+        sh "yarn test"
       }
       junit allowEmptyResults: true, testResults: '**/junit/*.xml'
     }
