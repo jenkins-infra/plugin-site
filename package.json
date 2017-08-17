@@ -9,7 +9,7 @@
     "build:server": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.config.server.entry.js --colors --display-error-details",
     "server": "run-s build server:run",
     "server:run": "node dist/server/server.js",
-    "start": "webpack-dev-server --config ./webpack/webpack.config.js --content-base public --port 5000 --inline --hot --progress --colors --display-error-details --history-api-fallback",
+    "start": "webpack-dev-server --config ./webpack/webpack.config.js --content-base public --port 5000 --inline --hot --progress --colors --history-api-fallback --watch-content-base",
     "lint": "eslint --ext .js --ext .jsx .",
     "test": "jest --coverage",
     "test:watch": "yarn test -- --watch",

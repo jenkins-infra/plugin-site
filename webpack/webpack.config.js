@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const cssnext = require('postcss-cssnext');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -13,23 +12,30 @@ const VIEWS_DIR = path.resolve(__dirname, '..', 'views');
 
 const release = process.env.NODE_ENV === 'production';
 
+const debug = !release;
+
 const plugins = [
-  new ExtractTextPlugin('[name].css'),
-  new webpack.NoErrorsPlugin(),
+  new ExtractTextPlugin({
+    filename: '[name].css'
+  }),
+  new webpack.NoEmitOnErrorsPlugin(),
   new webpack.DefinePlugin({
     // This is needed for React to properly do production builds
-    'process.env': JSON.stringify({
-      debug: !release,
-      NODE_ENV: release ? 'production' : 'development'
-    }),
+    'process.env.debug': debug,
+    'process.env.NODE_ENV': JSON.stringify(release ? 'production' : 'development'),
     __PRODUCTION__: release,
-    __REST_API_URL__: JSON.stringify(process.env.REST_API_URL || "https://plugins.jenkins.io/api"),
-    __HEADER_FILE__: JSON.stringify(process.env.HEADER_FILE || "https://jenkins.io/plugins/index.html")
+    __REST_API_URL__: JSON.stringify(process.env.REST_API_URL || 'https://plugins.jenkins.io/api'),
+    __HEADER_FILE__: JSON.stringify(process.env.HEADER_FILE || 'https://jenkins.io/plugins/index.html')
+  }),
+  new webpack.LoaderOptionsPlugin({
+    debug,
+    options: {
+      context: __dirname
+    }
   })
 ];
 
 if (release) {
-  plugins.push(new webpack.optimize.DedupePlugin());
   plugins.push(new webpack.optimize.UglifyJsPlugin({
     sourceMap: false,
     mangle: false,
@@ -37,7 +43,6 @@ if (release) {
       warnings: false
     }
   }));
-  plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
 } else {
   plugins.push(new HtmlWebpackPlugin({
     template: path.resolve(VIEWS_DIR, 'index.hbs'),
@@ -48,22 +53,34 @@ if (release) {
 
 const config = {
   context: ROOT_DIR,
-  debug: !release,
   devtool: 'source-map',
   entry: [
     'babel-polyfill',
     path.join(APP_DIR, 'index')
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
-        loaders: ['babel'],
+        use: [
+          'babel-loader'
+        ],
+        //include: APP_DIR,
         exclude: NODE_MODULES
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader?modules&importLoaders=1!postcss-loader',
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1
+            }
+          },
+          'postcss-loader'
+        ],
         exclude: NODE_MODULES
       },
       {
@@ -83,12 +100,9 @@ const config = {
     filename: '[name].js',
     publicPath: '/'
   },
-  plugins: plugins,
-  postcss: function () {
-    return [cssnext];
-  },
+  plugins,
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   }
 };
 
