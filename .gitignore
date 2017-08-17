@@ -16,3 +16,4 @@ dist
 static
 coverage
 junit
+yarn-error.log
