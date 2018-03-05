@@ -163,7 +163,7 @@ class PluginDetail extends React.PureComponent {
   }
 
   showWikiUrl(url) {
-    return url && url.startsWith("https://wiki.jenkins-ci.org");
+    return url && (url.startsWith("https://wiki.jenkins-ci.org") || url.startsWith("https://wiki.jenkins.io"));
   }
 
   showWarnings = () => {
