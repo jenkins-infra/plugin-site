@@ -104,7 +104,7 @@ export default class LineChart extends React.PureComponent {
     const data = [];
     const height = calculateHeight(total);
     const length = installations.length;
-    installations.slice(length - 12, length).forEach((installation) => {
+    installations.slice(length > 12 ? length - 12 : 0, length).forEach((installation) => {
       labels.push(moment.utc(installation.timestamp).format('MMM'));
       data.push(installation.total);
     });
