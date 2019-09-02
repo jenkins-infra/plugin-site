@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ModalView, {Body, Header} from 'react-header-modal';
 import { browserHistory, Link } from 'react-router';
+import Collapsible from 'react-collapsible';
 import moment from 'moment';
 import LineChart from './LineChart';
 import NotFound from './NotFound';
@@ -112,7 +113,28 @@ class PluginDetail extends React.PureComponent {
       return (<div className="empty">No dependencies found</div>);
     }
 
-    return dependencies.sort((a, b) => a.implied === b.implied ? (a.optional === b.optional ? 0 : a.optional ? 1 : -1 ) : (a.implied ? 1 : -1)).map((dependency) => {
+    return dependencies
+        .filter(dep => dep.optional || !dep.implied)
+        .sort((a, b) => a.implied === b.implied ? (a.optional === b.optional ? 0 : a.optional ? 1 : -1 ) : (a.implied ? 1 : -1))
+        .map((dependency) => {
+      const kind = !dependency.optional ? (dependency.implied ? 'implied' : 'required') : 'optional';
+      return (
+        <div key={dependency.name} className={kind}>
+          <Link to={`/${dependency.name}`}>{dependency.title} v.{dependency.version} <span className="req">({kind})</span></Link>
+        </div>
+      );
+    });
+  }
+
+  getImpliedDependencies(dependencies) {
+    var impliedDependencies = dependencies
+      .filter(dep => !dep.optional && dep.implied)
+      .sort((a, b) => a.implied === b.implied ? (a.optional === b.optional ? 0 : a.optional ? 1 : -1 ) : (a.implied ? 1 : -1))
+    if (impliedDependencies.length === 0) {
+      return '';
+    }
+    
+    var impliedDependenciesHTML = impliedDependencies.map((dependency) => {
       const kind = !dependency.optional ? (dependency.implied ? 'implied' : 'required') : 'optional';
       if (kind === 'implied') {
         return (
@@ -121,12 +143,14 @@ class PluginDetail extends React.PureComponent {
           </div>
         );
       }
-      return (
-        <div key={dependency.name} className={kind}>
-          <Link to={`/${dependency.name}`}>{dependency.title} v.{dependency.version} <span className="req">({kind})</span></Link>
-        </div>
-      );
     });
+    
+    return (
+      <Collapsible trigger={ `(+) ${impliedDependencies.length} implied dependencies (click to expand)` } 
+                   triggerWhenOpen="(-) Collapse implied dependencies">
+        {impliedDependenciesHTML}
+      </Collapsible>
+    );
   }
 
   getLabels(labels) {
@@ -342,6 +366,7 @@ class PluginDetail extends React.PureComponent {
                     <div className="col-md-4 dependencies">
                       <h5>Dependencies</h5>
                       {this.getDependencies(plugin.dependencies)}
+                      {this.getImpliedDependencies(plugin.dependencies)}
                     </div>
                   </div>
                   {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
