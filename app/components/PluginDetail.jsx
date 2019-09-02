@@ -360,6 +360,11 @@ class PluginDetail extends React.PureComponent {
                     installations={plugin.stats.installations}
                   />
                 </div>
+                
+                <h5>Links</h5>
+                {plugin.scm && plugin.scm.link && <div><a href={plugin.scm.link}>GitHub</a></div>}
+                <div><a href={`https://javadoc.jenkins.io/plugin/${plugin.name}`}>Javadoc</a></div>
+                
                 <h5>Labels</h5>
                 {this.getLabels(plugin.labels)}
                 {this.showWikiUrl(plugin.wiki.url) &&
