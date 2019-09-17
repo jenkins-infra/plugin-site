@@ -123,7 +123,7 @@ class PluginDetail extends React.PureComponent {
       }
       return (
         <div key={dependency.name} className={kind}>
-          <Link to={`/${dependency.name}`}>{dependency.title} ≥ {dependency.version} <span className="req">({kind})</span></Link>
+          <Link to={`/${dependency.name}`}>{dependency.title} ≥ {dependency.version} {kind === 'required' ? '' : <span className="req">({kind})</span>}</Link>
         </div>
       );
     });
