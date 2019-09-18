@@ -1,4 +1,8 @@
 # Jenkins Plugin Site
+
+[![Join the chat at https://gitter.im/jenkinsci/docs](https://badges.gitter.im/jenkinsci/docs.svg)](https://gitter.im/jenkinsci/docs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![GitHub release](https://img.shields.io/github/release/jenkins-infra/plugin-site.svg?label=changelog)](https://github.com/jenkins-infra/plugin-site/releases/latest)
+
 This is the frontend application driven by data from the Jenkins Plugin Site API.
 
 ## Architecture
