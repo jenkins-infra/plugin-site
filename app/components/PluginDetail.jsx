@@ -362,10 +362,14 @@ class PluginDetail extends React.PureComponent {
                 </div>
                 <h5>Labels</h5>
                 {this.getLabels(plugin.labels)}
+
                 {this.showWikiUrl(plugin.wiki.url) &&
-                  <div className="update-link">
-                    <h6>Are you maintaining this plugin?</h6>
-                    <p>Visit the <a href={plugin.wiki.url} target="_wiki">Jenkins Plugin Wiki</a> to edit this content.</p>
+                  <div className="alert-warning">
+                    <h5 className="header">Warning!</h5>
+                    <p>This content is served from the <a href={plugin.wiki.url} target="_wiki">Jenkins Wiki</a>.
+                       You may be unable to edit it, <a href="https://groups.google.com/forum/#!msg/jenkinsci-dev/lNmas8aBRrI/eL3u7A6qBwAJ">announcement</a>.
+                       We recommend moving the documentation to GitHub, see the <a href="https://jenkins.io/doc/developer/publishing/wiki-page/#migrating-from-wiki-to-github">migration guidelines</a>.
+                    </p>
                   </div>
                 }
                 {this.getInactiveWarnings(plugin.securityWarnings)}
