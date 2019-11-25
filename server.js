@@ -35,7 +35,7 @@ app.use(jsPath, express.static('./dist/client'));
 app.engine('hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
-const defaultPluginTitle = 'Jenkins Plugins';
+const defaultPluginSiteTitle = 'Jenkins Plugins';
 const defaultPluginDescription = 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software';
 const defaultPluginOpenGraphImage = 'https://jenkins.io/images/logo-title-opengraph.png'
 
