@@ -122,7 +122,7 @@ app.get('*', (req, res, next) => {
 
         const title = store.getState().ui.plugin && store.getState().ui.plugin.title ? `${store.getState().ui.plugin.title} - Jenkins plugin` : defaultPluginSiteTitle;
         const description = store.getState().ui.plugin && store.getState().ui.plugin.excerpt ? store.getState().ui.plugin.excerpt : defaultPluginSiteDescription;
-        const opengraphImage = defaultPluginOpenGraphImage; // TODO add support for plugins to provide their own OG imag
+        const opengraphImage = defaultPluginOpenGraphImage; // TODO WEBSITE-645 add support for plugins to provide their own OG imag
 
         res.status(pluginNotFound ? 404 : 200).render('index', {
           rendered,
