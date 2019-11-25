@@ -135,7 +135,7 @@ app.get('*', (req, res, next) => {
           pluginSiteApiVersion
         });
       }).catch((err) => {
-        console.error(chalk.red(error));
+        console.error(chalk.red(err));
         res.sendStatus(404);
       });
     }
