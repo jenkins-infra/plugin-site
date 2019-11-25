@@ -15,7 +15,7 @@ import fs from 'fs';
 import unirest from 'unirest';
 import cheerio from 'cheerio';
 import schedule from 'node-schedule';
-import { cleanTitle } from './app/commons/helper';
+import { cleanTitle, defaultPluginSiteTitle, pluginSiteTitleSuffix } from './app/commons/helper';
 
 const app = express();
 const port = 5000;
@@ -36,7 +36,7 @@ app.use(jsPath, express.static('./dist/client'));
 app.engine('hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
-const defaultPluginSiteTitle = 'Jenkins Plugins';
+
 const defaultPluginSiteDescription = 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software';
 const defaultPluginOpenGraphImage = 'https://jenkins.io/images/logo-title-opengraph.png'
 
@@ -120,7 +120,7 @@ app.get('*', (req, res, next) => {
         const pluginSiteApiVersion = store.getState().data.info.commit.substring(0, 7);
         const reduxState = JSON.stringify(store.getState()).replace(/</g, '\\x3c');
         const pluginNotFound = req.url !== '/' && store.getState().ui.plugin === null;
-        const title = store.getState().ui.plugin && store.getState().ui.plugin.title ? `${cleanTitle(store.getState().ui.plugin.title)} - Jenkins plugin` : defaultPluginSiteTitle;
+        const title = store.getState().ui.plugin && store.getState().ui.plugin.title ? `${cleanTitle(store.getState().ui.plugin.title)} - ${pluginSiteTitleSuffix}` : defaultPluginSiteTitle;
         const description = store.getState().ui.plugin && store.getState().ui.plugin.excerpt ? store.getState().ui.plugin.excerpt : defaultPluginSiteDescription;
         const opengraphImage = defaultPluginOpenGraphImage; // TODO WEBSITE-645 add support for plugins to provide their own OG imag
 
