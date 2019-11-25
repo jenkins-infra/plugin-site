@@ -904,16 +904,3 @@ a.card:hover {
     border-bottom: 1px solid #CAD0D2;
     border-radius: 4px;
 }
-
-.alert-warning {
-  background-color: #fcf8e3;
-  border-color: #faebcc;
-  color: #8a6d3b;
-}
-.alert-warning .header {
-  margin-top: 1rem;
-  border-top-color: #f7e1b5;
-}
-.alert-warning .alert-link {
-  color: #66512c;
-}

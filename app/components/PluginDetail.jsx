@@ -174,6 +174,10 @@ class PluginDetail extends React.PureComponent {
     return url && (url.startsWith("https://wiki.jenkins-ci.org") || url.startsWith("https://wiki.jenkins.io"));
   }
 
+  showGitHubUrl(url) {
+    return url && url.startsWith("https://github.com");
+  }
+
   showWarnings = () => {
     this.warningsModal.show();
   }
@@ -362,16 +366,22 @@ class PluginDetail extends React.PureComponent {
                 </div>
                 <h5>Labels</h5>
                 {this.getLabels(plugin.labels)}
-
+                <br/>
                 {this.showWikiUrl(plugin.wiki.url) &&
-                  <div className="alert-warning">
-                    <h5 className="header">Warning!</h5>
-                    <p>This content is served from the <a href={plugin.wiki.url} target="_wiki">Jenkins Wiki</a>.
-                       You may be unable to edit it, <a href="https://groups.google.com/forum/#!msg/jenkinsci-dev/lNmas8aBRrI/eL3u7A6qBwAJ">announcement</a>.
-                       We recommend moving the documentation to GitHub, see the <a href="https://jenkins.io/doc/developer/publishing/wiki-page/#migrating-from-wiki-to-github">migration guidelines</a>.
-                    </p>
+                  <div className="update-link">
+                    <h5>Help us to improve this page!</h5>
+                    This content is served from the <a href={plugin.wiki.url} target="_wiki">Jenkins Wiki</a> which is in the <a href="https://groups.google.com/forum/#!msg/jenkinsci-dev/lNmas8aBRrI/eL3u7A6qBwAJ" target="_blank">read-only state</a>.
+                    We recommend moving the plugin documentation to GitHub, see the guidelines <a href="https://jenkins.io/blog/2019/10/21/plugin-docs-on-github/" target="_blank">here</a>.
                   </div>
                 }
+                {this.showGitHubUrl(plugin.wiki.url) &&
+                  <div className="update-link">
+                    <h5>Help us to improve this page!</h5>
+                    To propose a change submit a pull request to <a href={plugin.wiki.url} target="_blank">the plugin page</a> on GitHub.
+                    Read more about GitHub support on the plugin site in the <a href="https://jenkins.io/doc/developer/publishing/documentation/" target="_blank">Jenkins developer documentation</a>.  
+                  </div>
+                }
+      
                 {this.getInactiveWarnings(plugin.securityWarnings)}
               </div>
             </div>
