@@ -35,6 +35,10 @@ app.use(jsPath, express.static('./dist/client'));
 app.engine('hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', 'hbs');
 
+const defaultPluginTitle = 'Jenkins Plugins';
+const defaultPluginDescription = 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software';
+const defaultPluginOpenGraphImage = 'https://jenkins.io/images/logo-title-opengraph.png'
+
 const downloadHeader = () => {
   var headerFile = __HEADER_FILE__;
   if (headerFile !== null && headerFile !== undefined) {
@@ -57,6 +61,8 @@ const downloadHeader = () => {
         $('head').prepend('{{> header }}');
         // Even though we're supplying our own this one still causes a conflict.
         $('link[href="https://jenkins.io/css/font-icons.css"]').remove();
+        // Prevents: Access to resource at 'https://jenkins.io/site.webmanifest' from origin 'https://plugins.jenkins.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+        $('link[href="https://jenkins.io/site.webmanifest"]').remove();
         $('head').append('<script>window.__REDUX_STATE__ = {{{reduxState}}};</script>');
         $('#grid-box').append('{{{rendered}}}');
         $('#grid-box').after('<script type="text/javascript" src="{{jsPath}}/main.js"></script>');
@@ -113,9 +119,17 @@ app.get('*', (req, res, next) => {
         const pluginSiteApiVersion = store.getState().data.info.commit.substring(0, 7);
         const reduxState = JSON.stringify(store.getState()).replace(/</g, '\\x3c');
         const pluginNotFound = req.url !== '/' && store.getState().ui.plugin === null;
+
+        const title = store.getState().ui.plugin && store.getState().ui.plugin.title ? `${store.getState().ui.plugin.title} - Jenkins plugin` : defaultPluginTitle;
+        const description = store.getState().ui.plugin && store.getState().ui.plugin.excerpt ? store.getState().ui.plugin.excerpt : defaultPluginDescription;
+        const opengraphImage = defaultPluginOpenGraphImage; // TODO add support for plugins to provide their own OG imag
+
         res.status(pluginNotFound ? 404 : 200).render('index', {
           rendered,
+          title,
+          description,
           reduxState,
+          opengraphImage,
           jsPath,
           pluginSiteVersion,
           pluginSiteApiVersion
