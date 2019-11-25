@@ -77,6 +77,10 @@ class Main extends React.PureComponent {
   }
 
   render() {
+    if (typeof document !== 'undefined') {
+      document.title = 'Jenkins Plugins';
+    }
+
     return (
       <div>
         <div className={classNames(styles.ItemFinder, this.props.view, { showResults: this.props.showResults },
