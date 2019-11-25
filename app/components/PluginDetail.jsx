@@ -310,6 +310,10 @@ class PluginDetail extends React.PureComponent {
         return <NotFound/>;
       }
     }
+
+    if (typeof document !== 'undefined') {
+      document.title = cleanTitle(plugin.title);
+    }
     const beforeClose = this.closeDialog;
     return (
       <ModalView hideOnOverlayClicked isVisible ignoreEscapeKey {...{beforeClose}}>
