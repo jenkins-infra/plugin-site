@@ -312,7 +312,7 @@ class PluginDetail extends React.PureComponent {
     }
 
     if (typeof document !== 'undefined') {
-      document.title = cleanTitle(plugin.title);
+      document.title = `${cleanTitle(plugin.title)} - Jenkins plugin`;
     }
     const beforeClose = this.closeDialog;
     return (
