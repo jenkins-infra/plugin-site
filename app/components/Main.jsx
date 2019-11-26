@@ -10,6 +10,7 @@ import Views from './Views';
 import { actions } from '../actions';
 import { isFiltered, showFilter, showResults, view } from '../selectors';
 import { createSelector } from 'reselect';
+import { defaultPluginSiteTitle } from '../commons/helper';
 
 class Main extends React.PureComponent {
 
@@ -77,6 +78,10 @@ class Main extends React.PureComponent {
   }
 
   render() {
+    if (typeof document !== 'undefined') {
+      document.title = defaultPluginSiteTitle;
+    }
+
     return (
       <div>
         <div className={classNames(styles.ItemFinder, this.props.view, { showResults: this.props.showResults },

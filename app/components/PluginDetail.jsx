@@ -6,7 +6,7 @@ import moment from 'moment';
 import LineChart from './LineChart';
 import NotFound from './NotFound';
 import Spinner from './Spinner';
-import { cleanTitle } from '../commons/helper';
+import { cleanTitle, pluginSiteTitleSuffix } from '../commons/helper';
 import { firstVisit, isFetchingPlugin, labels, plugin } from '../selectors';
 import { actions } from '../actions';
 import { createSelector } from 'reselect';
@@ -313,6 +313,10 @@ class PluginDetail extends React.PureComponent {
       } else {
         return <NotFound/>;
       }
+    }
+
+    if (typeof document !== 'undefined') {
+      document.title = `${cleanTitle(plugin.title)} - ${pluginSiteTitleSuffix}`;
     }
     const beforeClose = this.closeDialog;
     return (
