@@ -16,7 +16,7 @@ function formatDate(date) {
 }
 
 
-const loggerInfo = console.info.bind('[create-site-map.js][createSiteMap]'); 
+const loggerInfo = console.info.bind(console, '[create-site-map.js][createSiteMap]');
 
 function getPage(page) {
   const url = `${pluginSite}/plugins/?limit=100&page=${page}`;
