@@ -17,9 +17,12 @@ import cheerio from 'cheerio';
 import schedule from 'node-schedule';
 import { cleanTitle, defaultPluginSiteTitle, pluginSiteTitleSuffix } from './app/commons/helper';
 
+import {createSiteMap} from './create-site-map.js';
+
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 const jsPath = '/assets/js';
+let sitemap = '';
 
 // Using helmet to secure Express with various HTTP headers
 app.use(helmet());
@@ -80,6 +83,7 @@ const downloadHeader = () => {
 }
 
 downloadHeader();
+createSiteMap().then(s => { sitemap = s });
 
 const getPluginSiteVersion = () => {
   const file = './GIT_COMMIT';
@@ -91,6 +95,11 @@ const getPluginSiteVersion = () => {
 }
 
 const pluginSiteVersion = getPluginSiteVersion();
+
+app.get('/sitemap.xml', (req, res) => {
+  res.type('application/xml');
+  res.send(sitemap);
+});
 
 app.get('*', (req, res, next) => {
   match({ routes: routes, location: req.url }, (error, redirectLocation, renderProps) => {
@@ -149,6 +158,9 @@ app.listen(port, (error) => {
     console.info(chalk.green(`==>  Listening on port ${port}`)); // eslint-disable-line no-console
     schedule.scheduleJob('*/15 * * * *', () => {
       downloadHeader();
+    });
+    schedule.scheduleJob('15 */3 * * *', () => {
+      createSiteMap().then(s => { sitemap = s });
     });
   }
 });

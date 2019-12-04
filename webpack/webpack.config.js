@@ -20,7 +20,8 @@ const plugins = [
     // This is needed for React to properly do production builds
     'process.env': JSON.stringify({
       debug: !release,
-      NODE_ENV: release ? 'production' : 'development'
+      NODE_ENV: release ? 'production' : 'development',
+      PORT: process.env.PORT || 5000,
     }),
     __PRODUCTION__: release,
     __REST_API_URL__: JSON.stringify(process.env.REST_API_URL || "https://plugins.jenkins.io/api"),
