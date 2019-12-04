@@ -121,10 +121,9 @@ body .HomeHeader {
 .SearchBox > div,
 .SearchBox label,
 .SearchBox label input {
-    width:100% !important;
-    max-width:100% !important;
-    margin:0;
+  margin:0;
 }
+
 .navbar {display:inline-block; max-width:100%}
 .navbar fieldset {z-index:19; margin:.25rem; max-width:100%}
 .SearchBtn {width: 3rem !important}
