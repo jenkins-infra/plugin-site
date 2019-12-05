@@ -35,11 +35,12 @@ class SearchBox extends React.PureComponent {
       <fieldset className={classNames(styles.SearchBox, 'form-inline SearchBox')}>
         <div className={classNames(styles.searchBox, 'form-group')}>
           <label className={classNames(styles.searchLabel, 'input-group')}>
-            <a className={classNames(styles.ShowFilter, styles.Fish, 'input-group-addon btn btn-primary ShowFilter')}
-              onClick={this.handleToggleShowFilter}
-            >
+            <div className={classNames('input-group-prepend')}>
+              <a className={classNames(styles.ShowFilter, styles.Fish, 'btn btn-primary ShowFilter')}
+                onClick={this.handleToggleShowFilter}>
               Browse <span>{showFilter ? '▼' : '◄' }</span>
-            </a>
+              </a>
+            </div>
             <input name="query"
                 value={query}
                 autoFocus
@@ -49,9 +50,11 @@ class SearchBox extends React.PureComponent {
                 placeholder="Find plugins..."
             />
             <input type="submit" className="sr-only" />
-            <div className={classNames(styles.SearchBtn, 'input-group-addon SearchBtn btn btn-primary')}
+            <div className={classNames('input-group-append')}>
+              <div className={classNames(styles.SearchBtn, 'SearchBtn btn btn-primary')}
                 onClick={this.props.handleOnSubmit}>
               <i className={classNames('icon-search')} />
+            </div>
             </div>
           </label>
         </div>
