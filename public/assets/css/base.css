@@ -913,3 +913,12 @@ a.card:hover {
     border-bottom: 1px solid #CAD0D2;
     border-radius: 4px;
 }
+
+.modalview .content .main table {
+  border: 1px solid silver;  
+}
+
+.modalview .content .main td {
+  padding: 1em;
+}
+
