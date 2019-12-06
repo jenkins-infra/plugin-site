@@ -28,7 +28,7 @@ const calculateMinMax = (data) => {
     min: minValue,
     max: maxValue
   };
-}
+};
 
 const chartData = (labels, data) => {
   return {
@@ -47,7 +47,7 @@ const chartData = (labels, data) => {
 };
 
 const options = (data) => {
-  const { min, max } = calculateMinMax(data)
+  const { min, max } = calculateMinMax(data);
   return {
     responsive: true,
     maintainAspectRatio: false,

@@ -91,7 +91,8 @@ class Main extends React.PureComponent {
               onSubmit={this.handleOnSubmit}>
             <h1>Plugins Index</h1>
             <p>
-              Discover the 1500+ community contributed Jenkins plugins to support building, deploying and automating any project.
+              Discover the 1500+ community contributed Jenkins plugins to support building,
+              deploying and automating any project.
             </p>
             <nav className={classNames(styles.navbar, 'navbar')}>
               <div className="nav navbar-nav">

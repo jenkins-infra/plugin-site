@@ -30,6 +30,9 @@ class PluginDetail extends React.PureComponent {
       id: PropTypes.string.isRequired,
       title: PropTypes.string
     })).isRequired,
+    params: PropTypes.shape({
+      pluginName: PropTypes.string
+    }).isRequired,
     plugin: PropTypes.shape({
       dependencies: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string,
@@ -161,7 +164,7 @@ class PluginDetail extends React.PureComponent {
         // 2017-02-09
         return moment.utc(plugin.buildDate, 'YYYY-MM-DD');
       }
-    }
+    };
     const time = getTime(plugin);
     return (
       <div>Last released: <span  title={time.format('dddd, MMMM Do YYYY')}>
@@ -171,11 +174,11 @@ class PluginDetail extends React.PureComponent {
   }
 
   showWikiUrl(url) {
-    return url && (url.startsWith("https://wiki.jenkins-ci.org") || url.startsWith("https://wiki.jenkins.io"));
+    return url && (url.startsWith('https://wiki.jenkins-ci.org') || url.startsWith('https://wiki.jenkins.io'));
   }
 
   showGitHubUrl(url) {
-    return url && url.startsWith("https://github.com");
+    return url && url.startsWith('https://github.com');
   }
 
   showWarnings = () => {
@@ -224,7 +227,7 @@ class PluginDetail extends React.PureComponent {
     }
     return (
       <div className="badge-box">
-        <span className="badge active warning" onClick={this.showWarnings}></span>
+        <span className="badge active warning" onClick={this.showWarnings}/>
         <ModalView hideOnOverlayClicked ignoreEscapeKey ref={(modal) => { this.warningsModal = modal; }}>
           <Header>
             <div>Active Security Warnings</div>
@@ -242,11 +245,11 @@ class PluginDetail extends React.PureComponent {
                             <li>
                               {this.getReadableVersion(version, true)}
                             </li>
-                          )
+                          );
                         })}
                       </ul>
                     </li>
-                  )
+                  );
                 })}
               </ul>
             </div>
@@ -278,15 +281,15 @@ class PluginDetail extends React.PureComponent {
                       <li>
                         {this.getReadableVersion(version, false)}
                       </li>
-                    )
+                    );
                   })}
                 </ul>
               </li>
-            )
+            );
           })}
         </ul>
       </div>
-    )
+    );
   }
 
   getReadableVersion(version, active) {
@@ -297,12 +300,12 @@ class PluginDetail extends React.PureComponent {
     } else if (version.lastVersion) {
       return `Affects version ${version.lastVersion} and earlier`;
     } else {
-      return active ? "Affects all versions" : "Affects some versions";
+      return active ? 'Affects all versions' : 'Affects some versions';
     }
   }
 
   getReadableInstalls(currentInstalls) {
-    return currentInstalls != 0 ? currentInstalls : "No usage data available";
+    return currentInstalls != 0 ? currentInstalls : 'No usage data available';
   }
 
   render() {

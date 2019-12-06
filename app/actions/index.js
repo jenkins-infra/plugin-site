@@ -136,7 +136,7 @@ export const actions = {
     return (dispatch) => {
       dispatch(actions.setIsFetchingPlugin());
       return Api.getPlugin(name).then(data => dispatch(actions.setPlugin(data)));
-    }
+    };
   },
 
   setPlugin: (plugin) => ({ type: ACTION_TYPES.SET_PLUGIN, plugin }),
