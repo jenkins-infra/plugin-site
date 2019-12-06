@@ -16,3 +16,4 @@ dist
 static
 coverage
 junit
+views/index.hbs

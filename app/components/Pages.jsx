@@ -32,20 +32,20 @@ export default class Pages extends React.PureComponent {
       );
     });
     const firstPage = this.props.current !== 1 ?
-      <Page key={'Start'} className="start" display='<span aria-hidden="true">&laquo;&laquo;</span>'
-        page={1} updatePage={this.props.updatePage} />
+      (<Page key={'Start'} className="start" display='<span aria-hidden="true">&laquo;&laquo;</span>'
+        page={1} updatePage={this.props.updatePage} />)
       : null;
     const prevPage = this.props.current > 1 ?
-      <Page key={'Previous'} className="previous" display='<span aria-hidden="true">&laquo;</span>'
-        page={this.props.current - 1} updatePage={this.props.updatePage} />
+      (<Page key={'Previous'} className="previous" display='<span aria-hidden="true">&laquo;</span>'
+        page={this.props.current - 1} updatePage={this.props.updatePage} />)
       : null;
     const nextPage = this.props.current !== this.props.pages ?
-      <Page key={'Next'} className="next" display='<span aria-hidden="true">&raquo;</span>'
-        page={this.props.current + 1} updatePage={this.props.updatePage} />
+      (<Page key={'Next'} className="next" display='<span aria-hidden="true">&raquo;</span>'
+        page={this.props.current + 1} updatePage={this.props.updatePage} />)
       : null;
     const lastPage = this.props.current !== this.props.pages ?
-      <Page key={'Last'} className="last" display='<span aria-hidden="true">&raquo;&raquo;</span>'
-        page={this.props.current} updatePage={this.props.updatePage} />
+      (<Page key={'Last'} className="last" display='<span aria-hidden="true">&raquo;&raquo;</span>'
+        page={this.props.current} updatePage={this.props.updatePage} />)
       : null;
     return (
       <ul className="pagination">

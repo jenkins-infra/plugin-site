@@ -36,30 +36,30 @@ app.use(morgan('dev', { skip: (req, res) => res.statusCode < 400 }));
 app.use(express.static('./public'));
 app.use(jsPath, express.static('./dist/client'));
 
-app.engine('hbs', exphbs({extname: '.hbs'}));
+app.engine('hbs', exphbs({extname: '.hbs', defaultLayout: null}));
 app.set('view engine', 'hbs');
 
 
 const defaultPluginSiteDescription = 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software';
-const defaultPluginOpenGraphImage = 'https://jenkins.io/images/logo-title-opengraph.png'
+const defaultPluginOpenGraphImage = 'https://jenkins.io/images/logo-title-opengraph.png';
 
 const downloadHeader = () => {
   var headerFile = __HEADER_FILE__;
   if (headerFile !== null && headerFile !== undefined) {
-    console.info(`Downloading header file from '${headerFile}'`);
+    console.info(`Downloading header file from '${headerFile}'`); // eslint-disable-line no-console
     unirest.get(headerFile).end((response) => {
       if (response.statusCode == 200) {
         var $ = cheerio.load(response.body, { decodeEntities: false });
-        $('img, script').each(function() {
+        $('img, script').each(() => {
           var src = $(this).attr('src');
           if (src !== undefined && src.startsWith('/')) {
-            $(this).attr('src', 'https://jenkins.io' + src);
+            $(this).attr('src', `https://jenkins.io${src}`);
           }
         });
-        $('a, link').each(function() {
+        $('a, link').each(() => {
           var href = $(this).attr('href');
           if (href !== undefined && href.startsWith('/')) {
-            $(this).attr('href', 'https://jenkins.io' + href);
+            $(this).attr('href', `https://jenkins.io${href}`);
           }
         });
         $('head').prepend('{{> header }}');
@@ -73,26 +73,25 @@ const downloadHeader = () => {
         $('#creativecommons').append('{{> version }}');
         fs.writeFileSync('./views/index.hbs', $.html());
       } else {
-        console.error(response.statusCode);
-        console.error(error);
+        console.error(response.statusCode, error); // eslint-disable-line no-console
       }
     });
   } else {
-    console.info("HEADER_FILE environment variable null");
+    console.info('HEADER_FILE environment variable null'); // eslint-disable-line no-console
   }
-}
+};
 
 downloadHeader();
-createSiteMap().then(s => { sitemap = s });
+createSiteMap().then(s => { sitemap = s; });
 
 const getPluginSiteVersion = () => {
   const file = './GIT_COMMIT';
   try {
     return fs.existsSync(file) ? fs.readFileSync(file, 'utf-8').substring(0, 7) : 'TBD';
   } catch (err) {
-    console.error(chalk.red(`Problem accessing ${file}`), err);
+    console.error(chalk.red(`Problem accessing ${file}`), err); // eslint-disable-line no-console
   }
-}
+};
 
 const pluginSiteVersion = getPluginSiteVersion();
 
@@ -101,7 +100,7 @@ app.get('/sitemap.xml', (req, res) => {
   res.send(sitemap);
 });
 
-app.get('*', (req, res, next) => {
+app.get('*', (req, res) => {
   match({ routes: routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
       res.status(500).send(error.message);
@@ -144,7 +143,7 @@ app.get('*', (req, res, next) => {
           pluginSiteApiVersion
         });
       }).catch((err) => {
-        console.error(chalk.red(err));
+        console.error(chalk.red(err)); // eslint-disable-line no-console
         res.sendStatus(404);
       });
     }
@@ -160,7 +159,7 @@ app.listen(port, (error) => {
       downloadHeader();
     });
     schedule.scheduleJob('15 */3 * * *', () => {
-      createSiteMap().then(s => { sitemap = s });
+      createSiteMap().then(s => { sitemap = s; });
     });
   }
 });

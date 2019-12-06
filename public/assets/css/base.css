@@ -93,7 +93,9 @@ body a:active {color:#c00}
 
 .NoLabels > .Categories label > input {display:none}
 .NoLabels > .Categories label > span {margin-left:0 !important; color:#0275d8; cursor:pointer}
-body #grid-box {padding-top: 8px}
+@media (min-width: 992px) {
+  body #grid-box {padding-top: 8px}
+}
 body #grid-box .item-finder > .NoLabels {padding: 2rem 0; background:#e5f8ff}
 body #grid-box .item-finder > .NoLabels .Cols3 {font-size:.85rem}
 body #grid-box .item-finder > .NoLabels .Cols3 label > span {margin-left:.5rem}

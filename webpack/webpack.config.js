@@ -24,8 +24,8 @@ const plugins = [
       PORT: process.env.PORT || 5000,
     }),
     __PRODUCTION__: release,
-    __REST_API_URL__: JSON.stringify(process.env.REST_API_URL || "https://plugins.jenkins.io/api"),
-    __HEADER_FILE__: JSON.stringify(process.env.HEADER_FILE || "https://jenkins.io/template/index.html")
+    __REST_API_URL__: JSON.stringify(process.env.REST_API_URL || 'https://plugins.jenkins.io/api'),
+    __HEADER_FILE__: JSON.stringify(process.env.HEADER_FILE || 'https://jenkins.io/template/index.html')
   })
 ];
 
