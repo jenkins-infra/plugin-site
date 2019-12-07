@@ -9672,13 +9672,6 @@ react-side-effect@^1.1.0:
   dependencies:
     shallowequal "^1.0.1"
 
-react-skylight@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/react-skylight/-/react-skylight-0.5.1.tgz#bf7f9d7f2929a83fe16cac8edacdeda025218d40"
-  integrity sha512-gwzTlsKuSvDbKCASZZAeQ/Dma4XxHl2bVxe6u32t3KLDnlNtKO+P8Au4GdNi1sdCuSwhsP8A0/E3SMHKI4LMjg==
-  dependencies:
-    prop-types "^15.5.10"
-
 react-transition-group@^2.3.1:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
