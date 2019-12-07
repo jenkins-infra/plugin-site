@@ -38,7 +38,7 @@ function Footer() {
             }
           }
         }
-        trend: allJenkinsPlugin(sort: {fields: stats___trend}, limit: 10) {
+        trend: allJenkinsPlugin(sort: {fields: stats___trend, order: DESC}, limit: 10) {
           edges {
             node {
               title
