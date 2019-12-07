@@ -5,7 +5,10 @@ import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 
 function PluginActiveWarnings({securityWarnings}) {
     const [showDialog, setShowDialog] = React.useState(false);
-    const toggleShowDialog = () => setShowDialog(!showDialog);
+    const toggleShowDialog = (e) => {
+        e && e.preventDefault();
+        setShowDialog(!showDialog);
+    };
 
     if (!securityWarnings) {
         return null;

@@ -6,8 +6,10 @@ const sortFunc = (a, b) => a.implied === b.implied ? (a.optional === b.optional 
 
 function PluginDependencies({dependencies} ) {
     const [isShowImplied, setShowImplied] = React.useState(false);
-    const toggleShowImplied = () => setShowImplied(!isShowImplied);
-
+    const toggleShowImplied = (e) => {
+        e && e.preventDefault();
+        setShowImplied(!isShowImplied);
+    };
 
     if (!dependencies || dependencies.length === 0) {
         return (<div className="empty">No dependencies found</div>);
