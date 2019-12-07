@@ -1,14 +1,7 @@
-FROM kkarczmarczyk/node-yarn:6.9
+FROM node:13
 
 RUN mkdir /plugins
-COPY ./.babelrc /plugins
-COPY ./package.json /plugins
-COPY ./server.js /plugins
-COPY ./app/ /plugins/app/
-COPY ./public/ /plugins/public
-COPY ./views/ /plugins/views
-COPY ./webpack /plugins/webpack
-COPY ./yarn.lock /plugins
+COPY . /plugins
 WORKDIR /plugins
 
 RUN yarn
