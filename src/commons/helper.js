@@ -1,4 +1,4 @@
- /* FIXME:
+/* FIXME:
   This isn't the best way to do this, but plugins currently have a lot
   of repetitive goop in their titles.
   plugins leading with 'Jenkins' is particularly bad because then sorting
@@ -7,13 +7,13 @@
   All of these are plugins.
   */
 export function cleanTitle(title) {
-  return title
-    .replace('Jenkins ','')
-    .replace(' Plugin','')
-    .replace(' plugin','')
-    .replace(' Plug-in','')
-    .replace(' for Jenkins','')
-    .replace('Hudson ','');
+    return title
+        .replace('Jenkins ','')
+        .replace(' Plugin','')
+        .replace(' plugin','')
+        .replace(' Plug-in','')
+        .replace(' for Jenkins','')
+        .replace('Hudson ','');
 }
 
 export const defaultPluginSiteTitle = 'Jenkins Plugins';

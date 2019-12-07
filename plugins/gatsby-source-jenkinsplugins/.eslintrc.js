@@ -2,6 +2,6 @@ module.exports = {
   extends: 'standard',
   rules: {
     semi: ['error', 'always'],
-    'no-console': 0,
+    'no-console': 0
   }
 };
