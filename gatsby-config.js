@@ -3,6 +3,7 @@
 module.exports = {
     siteMetadata: {
         url: 'https://jenkins-plugins.g4v.dev/',
+        siteUrl: 'https://jenkins-plugins.g4v.dev/',
         title: 'Jenkins Plugins',
         titleTemplate: '%s | Jenkins plugin',
         description: 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software',
@@ -12,6 +13,25 @@ module.exports = {
     plugins: [
         'gatsby-plugin-emotion',
         'gatsby-plugin-react-helmet',
+        {
+            resolve: `gatsby-plugin-sitemap`,
+            options: {
+                sitemapSize: 5000
+            }
+        },
+        {
+            resolve: 'gatsby-plugin-robots-txt',
+            options: {
+                env: {
+                    development: {
+                      policy: [{ userAgent: '*', disallow: ['/'] }]
+                    },
+                    production: {
+                      policy: [{ userAgent: '*', allow: '/' }]
+                    }
+                }
+            }
+        },
         {
             resolve: 'gatsby-plugin-manifest',
             options: {
