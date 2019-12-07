@@ -2,8 +2,12 @@
 // and what you need to provide as schema:
 module.exports = {
     siteMetadata: {
-        title: 'Plugin Site',
-        titleTemplate: '%s | The Nameless Site',
+        url: 'https://jenkins-plugins.g4v.dev/',
+        title: 'Jenkins Plugins',
+        titleTemplate: '%s | Jenkins plugin',
+        description: 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software',
+        image: 'https://jenkins.io/images/logo-title-opengraph.png',
+        twitterUsername: '@JenkinsCI'
     },
     plugins: [
         'gatsby-plugin-emotion',
@@ -14,10 +18,10 @@ module.exports = {
                 name: 'Jenkins Plugins',
                 short_name: 'jenkins-plugins',
                 start_url: '/',
-                background_color: '#663399',
-                theme_color: '#663399',
+                background_color: '#2b5797',
+                theme_color: '#ffffff',
                 display: 'minimal-ui',
-                //icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+                src: 'src/images/apple-touch-icon.png' // This path is relative to the root of the site.
             },
         },
         {

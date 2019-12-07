@@ -2,10 +2,9 @@ import {graphql , navigate} from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Helmet} from 'react-helmet';
-
 import {cleanTitle} from '../commons/helper';
 import Layout from '../layout';
+import SEO from '../components/SEO';
 import LineChart from '../components/LineChart';
 import PluginDependencies from '../components/PluginDependencies';
 import PluginLabels from '../components/PluginLabels';
@@ -31,13 +30,7 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
     };
     return (
         <Layout>
-            <Helmet>
-                <title>{cleanTitle(plugin.title)}</title>
-                <meta content={cleanTitle(plugin.title)} name="apple-mobile-web-app-title" />
-                <meta content={cleanTitle(plugin.title)} name="twitter:title" />
-                <meta content={cleanTitle(plugin.title)} property="og:title" />
-                <meta content="Jenkins plugin" property="og:site_name" />
-            </Helmet>
+            <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
             <section className="modalview">
                 <div className="dialog">
                     <div className="row flex" style={{margin: 0}}>
