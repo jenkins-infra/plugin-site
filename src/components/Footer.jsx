@@ -11,43 +11,43 @@ import PluginLink from './PluginLink';
 function Footer() {
 
     const data = useStaticQuery(graphql`
-    query {
-      categories: allJenkinsPluginCategory {
-        edges {
-          node {
-            id
-            title
+      query {
+        categories: allJenkinsPluginCategory {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+        newly: allJenkinsPlugin(sort: {fields: firstRelease, order: DESC}, limit: 10, filter: {firstRelease: {ne: null}}) {
+          edges {
+            node {
+              title
+              name
+              firstRelease
+            }
+          }
+        }
+        updated: allJenkinsPlugin(sort: {fields: releaseTimestamp, order: DESC}, limit: 10, filter: {releaseTimestamp: { ne: null }}) {
+          edges {
+            node {
+              title
+              name
+              firstRelease
+            }
+          }
+        }
+        trend: allJenkinsPlugin(sort: {fields: stats___trend}, limit: 10) {
+          edges {
+            node {
+              title
+              name
+              firstRelease
+            }
           }
         }
       }
-      newly: allJenkinsPlugin(sort: {fields: firstRelease, order: DESC}, limit: 10, filter: {firstRelease: {ne: null}}) {
-        edges {
-          node {
-            title
-            name
-            firstRelease
-          }
-        }
-      }
-      updated: allJenkinsPlugin(sort: {fields: releaseTimestamp, order: DESC}, limit: 10, filter: {releaseTimestamp: { ne: null }}) {
-        edges {
-          node {
-            title
-            name
-            firstRelease
-          }
-        }
-      }
-      trend: allJenkinsPlugin(sort: {fields: stats___trend}, limit: 10) {
-        edges {
-          node {
-            title
-            name
-            firstRelease
-          }
-        }
-      }
-    }
   `);
 
     const handleOnClick = (event) => {

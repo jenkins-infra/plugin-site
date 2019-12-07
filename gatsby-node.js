@@ -8,14 +8,14 @@ const {makeReactLayout} = require('./utils.js');
 exports.onPreBootstrap = async () => {
     const layout = await makeReactLayout();
     if (layout) {
-        fs.writeFileSync('./app/layout.jsx', layout);
+        fs.writeFileSync('./src/layout.jsx', layout);
     }
 };
 
 exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;
-    const pluginPage = path.resolve('app/templates/plugin.jsx');
-    const indexPage = path.resolve('app/templates/index.jsx');
+    const pluginPage = path.resolve('src/templates/plugin.jsx');
+    const indexPage = path.resolve('src/templates/index.jsx');
 
     createPage({
         path: '/',
