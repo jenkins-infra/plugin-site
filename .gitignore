@@ -18,3 +18,4 @@ coverage
 junit
 .cache/
 public/
+src/layout.jsx

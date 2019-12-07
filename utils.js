@@ -62,7 +62,7 @@ async function makeReactLayout() {
     $('head').append('<style>{`html { min-height:100%; position: relative; }`}</style>');
     $('head').append('<link type="text/css" rel="stylesheet" href="https://wiki.jenkins.io/s/f68dfafb2b4588f7b31742327b4469ae-CDN/en_GB/6441/82994790ee2f720a5ec8daf4850ac5b7b34d2194/be65c4ed0984ca532b26983f5fc1813e/_/download/contextbatch/css/_super/batch.css?atlassian.aui.raphael.disabled=true" data-wrm-key="_super" data-wrm-batch-type="context" media="all">');
 
-    $('#grid-box').addClass('container').append('{children}');
+    $('#grid-box').append('{children}');
 
     const keyConversion = {
         class: 'className',
@@ -75,7 +75,11 @@ async function makeReactLayout() {
     const handleNode = (node, indent = 0) => {
         if (node.name === 'script') {
             // FIXME - handle me
-            return;
+            node.children.forEach(child => {
+                if (child.type === 'text') {
+                    child.data = `{\`${ child.data }\`}`;
+                }
+            });
         }
 
         const prefix = ''.padStart(6+indent);
@@ -92,10 +96,7 @@ async function makeReactLayout() {
         if (node.type === 'comment') {
             return;
         } else if (node.type === 'text') {
-            const text = node.data;/*.trim() === '{children}' ?
-        node.data.trim() : 
-        node.data.trim().replace(/([{}]+)/g,'{\'$1\'}'); // from https://github.com/facebook/react/issues/1545#issuecomment-461696773
-        */
+            const text = node.data;
             lines.push(`${prefix}${text}`);
         } else if (node.children && node.children.length) {
             lines.push(`${prefix}<${node.name} ${attrs}>`);
