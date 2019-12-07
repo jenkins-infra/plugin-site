@@ -52,9 +52,8 @@ async function makeReactLayout() {
     $('link[href$="/css/font-icons.css"]').remove();
     // Prevents: Access to resource at 'https://jenkins.io/site.webmanifest' from origin 'https://plugins.jenkins.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
     $('link[href$="site.webmanifest"]').remove();
-    // No jquery in react
-    $('script[src$="/assets/bower/jquery/jquery.min.js"]').remove();
-    // FIXME - delete all the bower items?
+    // lets get rid of all the head tags since we are populating them with the SEO component
+    $('meta[content*="{{"]').remove();
     //
     // padd as per https://stackoverflow.com/questions/11124777/twitter-bootstrap-navbar-fixed-top-overlapping-site
     $('head').append('<style>{`body { padding-top: 40px; } @media screen and (max-width: 768px) { body { padding-top: 0px; } } `}</style>');
