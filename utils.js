@@ -73,15 +73,7 @@ async function makeReactLayout() {
     };
 
     const handleNode = (node, indent = 0) => {
-        if (node.name === 'script') {
-            // FIXME - handle me
-            node.children.forEach(child => {
-                if (child.type === 'text') {
-                    child.data = `{\`${ child.data }\`}`;
-                }
-            });
-        }
-
+        
         const prefix = ''.padStart(6+indent);
         if (node.name === 'link' && node.attribs && node.attribs.rel === 'stylesheet') {
             delete node.attribs.crossorigin;
@@ -93,7 +85,17 @@ async function makeReactLayout() {
             val = val.replace(/"/g, '\\"');
             return `${key}="${val}"`;
         }).join(' ');
-        if (node.type === 'comment') {
+        if (node.name === 'script') {
+            // FIXME - handle me
+            const text = node.children.map(child => {
+                if (child.type === 'text') {
+                    return child.data;
+                }
+                throw new Error(`not sure how to handle ${child.type}`);
+            });
+            lines.push(`${prefix}<${node.name} ${attrs} dangerouslySetInnerHTML={{__html: ${JSON.stringify(text)}}} />`);
+            return;
+        } else if (node.type === 'comment') {
             return;
         } else if (node.type === 'text') {
             const text = node.data;
