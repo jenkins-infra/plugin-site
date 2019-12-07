@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import styles from '../styles/Main.css';
 
 import Footer from '../components/Footer';
+import Layout from '../layout';
 
 function IndexPage({isFiltered, showResults, showFilter, view}) {
     const handleOnSubmit = (e) => {};
 
     return (
-        <div>
+        <Layout>
             <div className={classNames(styles.ItemFinder, view, {showResults: showResults},
                 {isFiltered: isFiltered}, 'item-finder')}>
                 <form action="#" id="plugin-search-form"
@@ -28,7 +29,7 @@ function IndexPage({isFiltered, showResults, showFilter, view}) {
                 {/* <SearchResults /> */}
                 <Footer />
             </div>
-        </div>
+        </Layout>
     );
 }
 
