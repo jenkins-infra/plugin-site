@@ -58,7 +58,6 @@
     "react-chartjs-2": "^2.8.0",
     "react-header-modal": "^0.4.14",
     "react-helmet": "^5.2.1",
-    "react-helmet-async": "^1.0.4",
     "react-skylight": "^0.5.1",
     "reactstrap": "^8.2.0"
   },

@@ -1,94 +1,114 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import {useStaticQuery, graphql} from 'gatsby';
+
 import classNames from 'classnames';
+import {Helmet} from 'react-helmet';
+
+import Layout from '../layout';
 import styles from '../styles/Main.css';
 import PluginLink from './PluginLink';
-import { actions } from '../actions';
-import { categories, newly, trend, updated } from '../selectors';
-import { createSelector } from 'reselect';
 
-class Footer extends React.PureComponent {
+function Footer() {
 
-  static propTypes = {
-    categories: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-      title: PropTypes.string.isRequired
-    })).isRequired,
-    newly: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired
-    })).isRequired,
-    trend: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired
-    })).isRequired,
-    updated: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired
-    })).isRequired,
-    setCategory: PropTypes.func.isRequired
-  }
+    const data = useStaticQuery(graphql`
+    query {
+      categories: allJenkinsPluginCategory {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+      newly: allJenkinsPlugin(sort: {fields: firstRelease, order: DESC}, limit: 10, filter: {firstRelease: {ne: null}}) {
+        edges {
+          node {
+            title
+            name
+            firstRelease
+          }
+        }
+      }
+      updated: allJenkinsPlugin(sort: {fields: releaseTimestamp, order: DESC}, limit: 10, filter: {releaseTimestamp: { ne: null }}) {
+        edges {
+          node {
+            title
+            name
+            firstRelease
+          }
+        }
+      }
+      trend: allJenkinsPlugin(sort: {fields: stats___trend}, limit: 10) {
+        edges {
+          node {
+            title
+            name
+            firstRelease
+          }
+        }
+      }
+    }
+  `);
 
-  handleOnClick = (event) => {
-    event.preventDefault();
-    const categoryId = event.target.getAttribute('data-id');
-    this.props.setCategory(categoryId);
-  }
+    const handleOnClick = (event) => {
+        event.preventDefault();
+        const categoryId = event.target.getAttribute('data-id');
+        this.props.setCategory(categoryId);
+    };
 
-  render() {
-    return(
-      <div className="NoLabels">
-        <div className="container">
-          <div className="row">
-            <div className={classNames(styles.NoLabels, 'col-md-3 NoLabels')}>
-              <fieldset>
-                <legend>Browse categories</legend>
-                { this.props.categories.map((category) => {
-                  return(
-                    <div key={`cat-box-id-${category.id}`} className="Entry-box">
-                      <a href="#" onClick={this.handleOnClick} data-id={category.id}>{category.title}</a>
-                   </div>
-                 );
-                })}
-              </fieldset>
+    return (
+        <Layout>
+            <Helmet>
+                <title>Jenkins Plugins</title>
+                <meta content="Jenkins Plugins" name="apple-mobile-web-app-title" />
+                <meta content="Jenkins Plugins" name="twitter:title" />
+                <meta content="Jenkins Plugins" property="og:title" />
+                <meta content="Jenkins plugins" property="og:site_name" />
+            </Helmet>
+            <div className="NoLabels">
+                <div className="container">
+                    <div className="row">
+                        <div className={classNames(styles.NoLabels, 'col-md-3 NoLabels')}>
+                            <fieldset>
+                                <legend>Browse categories</legend>
+                                { data.categories.edges.map(({node: category}) => {
+                                    return(
+                                        <div key={`cat-box-id-${category.id}`} className="Entry-box">
+                                            <a href="#" onClick={handleOnClick} data-id={category.id}>{category.title}</a>
+                                        </div>
+                                    );
+                                })}
+                            </fieldset>
+                        </div>
+                        <div className="col-md-3">
+                            <fieldset>
+                                <legend>New Plugins</legend>
+                                { data.newly.edges.map(({node: plugin}) => {
+                                    return <PluginLink key={plugin.name} name={plugin.name} title={plugin.title} />;
+                                })}
+                            </fieldset>
+                        </div>
+                        <div className="col-md-3">
+                            <fieldset>
+                                <legend>Recently updated</legend>
+                                { data.updated.edges.map(({node: plugin}) => {
+                                    return <PluginLink key={plugin.name} name={plugin.name} title={plugin.title} />;
+                                })}
+                            </fieldset>
+                        </div>
+                        <div className="col-md-3">
+                            <fieldset>
+                                <legend>Trending</legend>
+                                { data.trend.edges.map(({node: plugin}) => {
+                                    return <PluginLink key={plugin.name} name={plugin.name} title={plugin.title} />;
+                                })}
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="col-md-3">
-              <fieldset>
-                <legend>New Plugins</legend>
-                { this.props.newly.map((plugin) => {
-                  return <PluginLink key={plugin.name} name={plugin.name} title={plugin.title} />;
-                })}
-              </fieldset>
-            </div>
-            <div className="col-md-3">
-              <fieldset>
-                <legend>Recently updated</legend>
-                { this.props.updated.map((plugin) => {
-                  return <PluginLink key={plugin.name} name={plugin.name} title={plugin.title} />;
-                })}
-              </fieldset>
-            </div>
-            <div className="col-md-3">
-              <fieldset>
-                <legend>Trending</legend>
-                { this.props.trend.map((plugin) => {
-                  return <PluginLink key={plugin.name} name={plugin.name} title={plugin.title} />;
-                })}
-              </fieldset>
-            </div>
-          </div>
-        </div>
-      </div>
+        </Layout>
     );
-  }
-
 }
 
-const selectors = createSelector(
-  [ categories, newly, trend, updated ],
-  ( categories, newly, trend, updated ) =>
-  ({ categories, newly, trend, updated })
-);
-
-export default connect(selectors, actions)(Footer);
+export default Footer;

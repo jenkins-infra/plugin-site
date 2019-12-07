@@ -1,24 +1,23 @@
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {Link} from 'gatsby';
 import styles from '../styles/Main.css';
 import classNames from 'classnames';
-import { cleanTitle } from '../commons/helper';
+import {cleanTitle} from '../commons/helper';
 
-export default class PluginLink extends React.PureComponent {
 
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
-  };
-
-  render() {
+export default function PluginLink({title = '', name = ''}) {
     return (
-      <div className={classNames(styles.Item, 'Entry-box')}>
-        <Link key={this.props.name} to={`/${this.props.name}`} className="titleOnly">
-          {cleanTitle(this.props.title)}
-        </Link>
-      </div>
+        <div className={classNames(styles.Item, 'Entry-box')}>
+            <Link key={name} to={`/${name}`} className="titleOnly">
+                {cleanTitle(title)}
+            </Link>
+        </div>
     );
-  }
 
 }
+
+PluginLink.propTypes = {
+    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+};

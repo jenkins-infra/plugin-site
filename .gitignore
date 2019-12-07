@@ -16,4 +16,5 @@ dist
 static
 coverage
 junit
-views/index.hbs
+.cache/
+public/

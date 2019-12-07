@@ -6,46 +6,47 @@ const fs = require('fs');
 const {makeReactLayout} = require('./utils.js');
 
 exports.onPreBootstrap = async () => {
-  const layout = await makeReactLayout();
-  if (layout) {
-    fs.writeFileSync('./app/layout.jsx', layout);
-  }
+    const layout = await makeReactLayout();
+    if (layout) {
+        fs.writeFileSync('./app/layout.jsx', layout);
+    }
 };
 
 exports.createPages = async ({graphql, actions}) => {
-  const {createPage} = actions;
-  const pluginPage = path.resolve('app/templates/plugin.jsx');
-  const indexPage = path.resolve('app/templates/index.jsx');
+    const {createPage} = actions;
+    const pluginPage = path.resolve('app/templates/plugin.jsx');
+    const indexPage = path.resolve('app/templates/index.jsx');
 
-  createPage({
-    path: '/',
-    component: indexPage,
-    context: { }
-  });
+    createPage({
+        path: '/',
+        component: indexPage,
+        context: { }
+    });
 
-  await graphql(`{
-    allJenkinsPlugin {
-      edges {
-        node {
-          id
-          name
+    await graphql(`{
+      allJenkinsPlugin {
+        edges {
+          node {
+            id
+            name
+          }
         }
       }
-    }
-  }`).then(result => {
-    if (result.errors) {
-      console.log(result.errors);
-      throw result.errors;
-    }
-
-    result.data.allJenkinsPlugin.edges.forEach(edge => {
-      createPage({
-        path: edge.node.name.trim(),
-        component: pluginPage,
-        context: {
-          name: edge.node.name.trim()
+    }`).then(result => {
+        if (result.errors) {
+            console.log(result.errors);
+            throw result.errors;
         }
-      });
+
+        result.data.allJenkinsPlugin.edges.forEach(edge => {
+            createPage({
+                path: edge.node.name.trim(),
+                component: pluginPage,
+                context: {
+                    name: edge.node.name.trim()
+                }
+            });
+        });
     });
-  });
 };
+
