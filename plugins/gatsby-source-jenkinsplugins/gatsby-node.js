@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 const axios = require('axios');
 const crypto = require('crypto');
+const path = require('path');
+const fs = require('fs');
 
 /*
 plugins: `
@@ -51,6 +53,15 @@ plugins: `
 `
 */
 
+const getPluginSiteVersion = () => {
+  const file = path.join(__dirname, '../../GIT_COMMIT');
+  try {
+    return fs.existsSync(file) ? fs.readFileSync(file, 'utf-8').substring(0, 7) : 'TBD';
+  } catch (err) {
+    console.error(`Problem accessing ${file}`, err);
+  }
+};
+
 exports.sourceNodes = async (
   { actions, reporter },
   { /* options */ } // eslint-disable-line no-empty-pattern
@@ -63,6 +74,35 @@ exports.sourceNodes = async (
 
   try {
     let page;
+
+    do {
+      const url = 'https://plugins.jenkins.io/api/info';
+      console.info(`Fetching '${url}'`);
+      const info = await axios
+        .get(url)
+        .then((results) => {
+          if (results.status !== 200) {
+            throw results.data;
+          }
+          return results.data;
+        });
+
+      createNode({
+        api: {
+          ...info
+        },
+        website: {
+          commit: getPluginSiteVersion()
+        },
+        id: 'pluginSiteInfo',
+        parent: null,
+        children: [],
+        internal: {
+          type: 'JenkinsPluginSiteInfo',
+          contentDigest: crypto.createHash('md5').update('pluginSiteInfo').digest('hex')
+        }
+      });
+    } while (0);
 
     page = 1;
     while (1) {

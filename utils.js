@@ -20,6 +20,7 @@ async function makeReactLayout() {
         'import \'./styles/roboto-fonts.css\';',
         'import \'./styles/base.css\';',
         'import \'./styles/font-icons.css\';',
+        'import SiteVersion from \'./components/SiteVersion\';',
     ];
 
     console.info(`Downloading header file from '${headerUrl}'`);
@@ -62,6 +63,7 @@ async function makeReactLayout() {
     $('head').append('<link type="text/css" rel="stylesheet" href="https://wiki.jenkins.io/s/f68dfafb2b4588f7b31742327b4469ae-CDN/en_GB/6441/82994790ee2f720a5ec8daf4850ac5b7b34d2194/be65c4ed0984ca532b26983f5fc1813e/_/download/contextbatch/css/_super/batch.css?atlassian.aui.raphael.disabled=true" data-wrm-key="_super" data-wrm-batch-type="context" media="all">');
 
     $('#grid-box').append('{children}');
+    $('#creativecommons').append('<SiteVersion />');
 
     const keyConversion = {
         class: 'className',
@@ -106,6 +108,9 @@ async function makeReactLayout() {
         } else {
             if (!node.name) {
                 console.log(node);
+            }
+            if (node.name === 'siteversion') {
+                node.name = 'SiteVersion';
             }
             lines.push(`${prefix}<${node.name} ${attrs} />`);
         }
