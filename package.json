@@ -59,6 +59,7 @@
     "moment": "^2.24.0",
     "react-chartjs-2": "^2.8.0",
     "react-helmet": "^5.2.1",
+    "react-radio-group": "^3.0.3",
     "reactstrap": "^8.2.0"
   },
   "devDependencies": {

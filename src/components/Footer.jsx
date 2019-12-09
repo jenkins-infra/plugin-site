@@ -2,7 +2,7 @@ import React from 'react';
 import {useStaticQuery, graphql} from 'gatsby';
 
 import classNames from 'classnames';
-import styles from '../styles/Main.css';
+import styles from '../styles/main.module.css';
 import PluginLink from './PluginLink';
 
 function Footer() {

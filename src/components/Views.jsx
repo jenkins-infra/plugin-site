@@ -1,42 +1,29 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {actions} from '../actions';
-import {view} from '../selectors';
+import React from 'react';
+import PropTypes from 'prop-types';
 import View from './View';
-import {createSelector} from 'reselect';
 
 const views = ['Tiles', 'List', 'Table'];
 
-class Views extends React.PureComponent {
-
-  static propTypes = {
-      setView: PropTypes.func.isRequired,
-      view: PropTypes.string.isRequired
-  };
-
-  render() {
-      return (
-          <fieldset className="btn-group">
-              { views.map((view, index) => {
-                  return (
-                      <View
-                          key={index}
-                          isActive={view === this.props.view}
-                          updateView={this.props.setView}
-                          view={view}
-                      />
-                  );
-              })}
-          </fieldset>
-      );
-  }
-
+function Views({view, setView}) {
+    return (
+        <fieldset className="btn-group">
+            { views.map((singleView, index) => {
+                return (
+                    <View
+                        key={index}
+                        isActive={singleView === view}
+                        updateView={setView}
+                        view={view}
+                    />
+                );
+            })}
+        </fieldset>
+    );
 }
+    
+Views.propTypes = {
+    setView: PropTypes.func.isRequired,
+    view: PropTypes.string.isRequired
+};
 
-const selectors = createSelector(
-    [ view ],
-    ( view ) =>
-        ({view})
-);
-
-export default connect(selectors, actions)(Views);
+export default Views;

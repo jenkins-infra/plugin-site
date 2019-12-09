@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'gatsby';
-import styles from '../styles/Main.css';
+import styles from '../styles/main.module.css';
 import classNames from 'classnames';
 import {cleanTitle} from '../commons/helper';
 

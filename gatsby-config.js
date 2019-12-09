@@ -14,7 +14,7 @@ module.exports = {
         'gatsby-plugin-emotion',
         'gatsby-plugin-react-helmet',
         {
-            resolve: `gatsby-plugin-sitemap`,
+            resolve: 'gatsby-plugin-sitemap',
             options: {
                 sitemapSize: 5000
             }
@@ -24,10 +24,10 @@ module.exports = {
             options: {
                 env: {
                     development: {
-                      policy: [{ userAgent: '*', disallow: ['/'] }]
+                        policy: [{userAgent: '*', disallow: ['/']}]
                     },
                     production: {
-                      policy: [{ userAgent: '*', allow: '/' }]
+                        policy: [{userAgent: '*', allow: '/'}]
                     }
                 }
             }

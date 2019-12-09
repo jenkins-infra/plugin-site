@@ -15,8 +15,11 @@ const getTime = (plugin) => {
 function PluginLastReleased({plugin}) {
     const time = getTime(plugin);
     return (
-        <div>Last released: <span title={time.format('dddd, MMMM Do YYYY')}>
-            {time.fromNow()}</span>
+        <div>
+Last released:
+            <span title={time.format('dddd, MMMM Do YYYY')}>
+                {time.fromNow()}
+            </span>
         </div>
     );
 }

@@ -110,7 +110,7 @@ body .HomeHeader {
 
 }
 
-.homeTite {zfont-family: 'zWalter Turncoat','zShadows Into Light', cursive; color:rgba(0,0,0,.8); margin-bottom:1rem}
+.homeTite {font-family: 'zWalter Turncoat','zShadows Into Light', cursive; color:rgba(0,0,0,.8); margin-bottom:1rem}
 .SearchBox{
   display:inline-block;
   max-width:90%;
@@ -121,10 +121,10 @@ body .HomeHeader {
 .SearchBox > div,
 .SearchBox label,
 .SearchBox label input {
-  margin:0;
-}
 
-.navbar {display:inline-block; max-width:100%}
+    margin:0;
+}
+.navbar {display:inline-block !important; max-width:100%}
 .navbar fieldset {z-index:19; margin:.25rem; max-width:100%}
 .SearchBtn {width: 3rem !important}
 body .ShowFilter {text-decoration:none !important; cursor:pointer; vertical-align:middle; position:relative; width:6rem !important; padding-right:2rem;}

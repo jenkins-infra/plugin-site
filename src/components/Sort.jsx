@@ -1,39 +1,44 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {RadioGroup, Radio} from 'react-radio-group';
-import {actions} from '../actions';
-import {sort} from '../selectors';
-import {createSelector} from 'reselect';
 
-class Sort extends React.PureComponent {
+function Sort({setSort, sort}) {
+    return (
+        <fieldset className="sortOptions">
+            <legend>
 
-  static propTypes = {
-      setSort: PropTypes.func.isRequired,
-      sort: PropTypes.string.isRequired
-  };
-
-  render() {
-      const {setSort, sort} = this.props;
-      return (
-          <fieldset className="sortOptions">
-              <legend>Sort {sort}</legend>
-              <RadioGroup name="sort" selectedValue={sort} onChange={setSort}>
-                  <label><Radio value="relevance" /> Relevance</label>
-                  <label><Radio value="installed" /> Most installed</label>
-                  <label><Radio value="trend" /> Trending</label>
-                  <label><Radio value="title" /> Title</label>
-                  <label><Radio value="updated" /> Release date</label>
-              </RadioGroup>
-          </fieldset>
-      );
-  }
-
+                {'Sort '}
+                {sort}
+            </legend>
+            <RadioGroup name="sort" selectedValue={sort} onChange={setSort}>
+                <label>
+                    <Radio value="relevance" />
+                    {' Relevance'}
+                </label>
+                <label>
+                    <Radio value="installed" />
+                    {' Most installed'}
+                </label>
+                <label>
+                    <Radio value="trend" />
+                    {' Trending'}
+                </label>
+                <label>
+                    <Radio value="title" />
+                    {' Title'}
+                </label>
+                <label>
+                    <Radio value="updated" />
+                    {' Release date'}
+                </label>
+            </RadioGroup>
+        </fieldset>
+    );
 }
 
-const selectors = createSelector(
-    [ sort ],
-    ( sort ) =>
-        ({sort})
-);
+Sort.propTypes = {
+    setSort: PropTypes.func.isRequired,
+    sort: PropTypes.string.isRequired
+};
 
-export default connect(selectors, actions)(Sort);
+export default Sort;

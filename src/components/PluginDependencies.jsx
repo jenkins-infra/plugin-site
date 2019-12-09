@@ -28,7 +28,10 @@ function PluginDependencies({dependencies} ) {
                         <p>
               Plugins that depend on a Jenkins core version before such a plugin was detached from core may or may not actually use any of its features.
               To ensure that plugins don't break whenever functionality they depend on is detached from Jenkins core, it is considered to have a dependency on the detached plugin if it declares a dependency on a version of Jenkins core before the split.
-              Since that dependency to the detached plugin is not explicitly specified, it is <em>implied</em>.
+              Since that dependency to the detached plugin is not explicitly specified, it is 
+                            {' '}
+                            <em>implied</em>
+.
                         </p>
                         <p>
               Plugins that don't regularly update which Jenkins core version they depend on will accumulate implied dependencies over time.
@@ -36,26 +39,49 @@ function PluginDependencies({dependencies} ) {
                     </div>
                 </ModalBody>
             </Modal>
-            <div id="pluginDependancies">{
-                dependencies.sort(sortFunc).map((dependency) => {
-                    const kind = !dependency.optional ? (dependency.implied ? 'implied' : 'required') : 'optional';
-                    if (kind === 'implied') {
+            <div id="pluginDependancies">
+                {
+                    dependencies.sort(sortFunc).map((dependency) => {
+                        const kind = !dependency.optional ? (dependency.implied ? 'implied' : 'required') : 'optional';
+                        if (kind === 'implied') {
+                            return (
+                                <div key={dependency.name} className={kind}>
+                                    <Link to={`/${dependency.name}`}>
+                                        {dependency.title}
+                                        {' '}
+v.
+                                        {dependency.version} 
+                                        {' '}
+                                        <span className="req">
+(
+                                            {kind}
+)
+                                        </span>
+                                    </Link>
+                                    <a href="#" onClick={toggleShowImplied}><span className="req">(what&apos;s this?)</span></a>
+                                </div>
+                            );
+                        }
                         return (
                             <div key={dependency.name} className={kind}>
                                 <Link to={`/${dependency.name}`}>
-                                    {dependency.title} v.{dependency.version} <span className="req">({kind})</span>
+                                    {dependency.title}
+                                    {' '}
+≥ 
+                                    {' '}
+                                    {dependency.version} 
+                                    {' '}
+                                    {kind === 'required' ? '' : <span className="req">
+(
+                                        {kind}
+)
+                                    </span>}
                                 </Link>
-                                <a href="#" onClick={toggleShowImplied}><span className="req">(what&apos;s this?)</span></a>
                             </div>
                         );
-                    }
-                    return (
-                        <div key={dependency.name} className={kind}>
-                            <Link to={`/${dependency.name}`}>{dependency.title} ≥ {dependency.version} {kind === 'required' ? '' : <span className="req">({kind})</span>}</Link>
-                        </div>
-                    );
-                })
-            }</div>
+                    })
+                }
+            </div>
         </>
     );
 }

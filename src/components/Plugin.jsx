@@ -1,7 +1,8 @@
-import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
+import PropTypes from 'prop-types';
+import React from 'react';
+import {Link} from 'gatsby';
 import classNames from 'classnames';
-import styles from '../styles/Main.css';
+import styles from '../styles/main.module.css';
 import Icon from './Icon';
 import {cleanTitle} from '../commons/helper';
 
@@ -45,7 +46,11 @@ export default class Plugin extends React.PureComponent {
           const result = [];
           result.push(this.getMaintainer(maintainers[0]));
           result.push(this.getMaintainer(maintainers[1]));
-          result.push(<div key="more_maintainers">({maintainers.length - 2} other contributers)</div>);
+          result.push((
+              <div key="more_maintainers">
+                  {`(${maintainers.length - 2} other contributers)`}
+              </div>
+          ));
           return result;
       } else {
           return maintainers.map((maintainer) => this.getMaintainer(maintainer));
@@ -58,7 +63,7 @@ export default class Plugin extends React.PureComponent {
       }).filter((label) => label !== undefined && label.title !== null);
       return labels.map((label) => {
           const text = label.title.replace(' development', '');
-          return <span key={label.id}>{text},</span>;
+          return (<span key={label.id}>{`${text},`}</span>);
       });
   }
 
@@ -75,13 +80,17 @@ export default class Plugin extends React.PureComponent {
                   {this.props.plugin.wiki.url}
               </div>
               <div className={classNames(styles.Downloads, 'Downloads Installs')}>
-        Installs: {this.props.plugin.stats.currentInstalls}
+                  {'Installs:  '}
+                  {this.props.plugin.stats.currentInstalls}
               </div>
               <div className={classNames(styles.Version, 'Version')}>
                   <span className={classNames(styles.v, 'v')}>{this.props.plugin.version}</span>
                   <span className="jc">
                       <span className="j">Jenkins</span>
-                      <span className="c">{this.props.plugin.requiredCore}+</span>
+                      <span className="c">
+                          {this.props.plugin.requiredCore}
+                          {' +'}
+                      </span>
                   </span>
               </div>
               <div className={classNames(styles.Labels, 'Labels')}>

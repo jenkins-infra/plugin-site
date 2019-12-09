@@ -1,42 +1,73 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames';
-import styles from '../styles/Main.css';
+import styles from '../styles/main.module.css';
 import Categories from './Categories';
 import Sort from './Sort';
-import {showFilter, showResults} from '../selectors';
-import {createSelector} from 'reselect';
 
-class Filters extends React.PureComponent {
+function Filters({showFilter, showResults}) {
+    const [sort, setSort] = React.useState('');
+    const [categories, setCategories] = React.useState([]);
+    const [labels, setLabels] = React.useState([]);
 
-  static propTypes = {
-      showFilter: PropTypes.bool.isRequired,
-      showResults: PropTypes.bool.isRequired
-  };
+    const clearCriteria = () => {
+        setCategories([]);
+    };
 
-  render() {
-      return (
-          this.props.showFilter &&
-              <div className={classNames(styles.FiltersBox)}>
-                  <div className={classNames(styles.filters, 'filters', this.props.showResults ? 'col-md-2' : 'container')}>
-                      <div className={classNames(styles.Header,'row')}>
-                          <div className={this.props.showResults ? 'col-md-12' : 'col-md-3'}>
-                              <Sort />
-                          </div>
-                          <div className={this.props.showResults ? 'col-md-12' : 'col-md-9'}>
-                              <Categories />
-                          </div>
-                      </div>
-                  </div>
-              </div>
-      );
-  }
+    const toggleCategory = (category) => {
+        const vals = new Set(categories);
+        if (vals.has(category.id)) {
+            vals.delete(category.id);
+        } else {
+            vals.add(category.id);
+        }
+        setCategories(Array.from(vals));
+    };
+
+    const toggleLabel = (label) => {
+        const vals = new Set(labels);
+        if (vals.has(label.id)) {
+            vals.delete(label.id);
+        } else {
+            vals.add(label.id);
+        }
+        setLabels(Array.from(vals));
+    };
+
+    if (!showFilter) {
+        return null;
+    }
+    return (
+        <div className={classNames(styles.FiltersBox)}>
+            <div className={classNames(styles.filters, 'filters', showResults ? 'col-md-2' : 'container')}>
+                <div className={classNames(styles.Header,'row')}>
+                    <div className={showResults ? 'col-md-12' : 'col-md-3'}>
+                        <Sort setSort={setSort} sort={sort} />
+                    </div>
+                    <div className={showResults ? 'col-md-12' : 'col-md-9'}>
+                        <Categories 
+                            anyCriteria={false}
+                            activeCategories={categories}
+                            clearCriteria={clearCriteria}
+                            toggleCategory={toggleCategory}
+                            activeLabels={labels}
+                            toggleLabel={toggleLabel}
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
-const selectors = createSelector(
-    [ showFilter, showResults ],
-    ( showFilter, showResults ) =>
-        ({showFilter, showResults})
-);
+Filters.propTypes = {
+    showFilter: PropTypes.bool.isRequired,
+    showResults: PropTypes.bool.isRequired
+};
 
-export default connect(selectors)(Filters);
+Filters.defaultProps = {
+    showResults: false,
+    showFilter: false
+};
+
+export default Filters;

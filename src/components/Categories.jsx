@@ -1,61 +1,66 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {useStaticQuery, graphql} from 'gatsby';
 import classNames from 'classnames';
-import styles from '../styles/Main.css';
+import styles from '../styles/main.module.css';
 import Category from './Category';
-import {actions} from '../actions';
-import {activeCategories, activeLabels, categories} from '../selectors';
-import {createSelector} from 'reselect';
 
-class Categories extends React.PureComponent {
-
-  static propTypes = {
-      anyCriteria: PropTypes.bool.isRequired,
-      categories: PropTypes.arrayOf(PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-          title: PropTypes.string.isRequired
-      })).isRequired,
-      clearCriteria: PropTypes.func.isRequired
-  };
-
-  handleOnClick = (event) => {
-      event.preventDefault();
-      this.props.clearCriteria();
-  }
-
-  render() {
-      return (
-          <fieldset className={classNames(styles.Categories)}>
-              <legend>
-          Categories
-                  {this.props.anyCriteria && <button className={classNames('btn btn-secondary btn-sm show-all')}
-                      name="showAll" onClick={this.handleOnClick}
-                  >Show all</button>
-                  }
-              </legend>
-              <ul className={classNames(styles.Cols3, 'Cols3')}>
-                  {this.props.categories.map((category) => {
-                      return (
-                          <Category
-                              key={category.id}
-                              category={category}
-                          />
-                      );
-                  })}
-              </ul>
-          </fieldset>
-      );
-  }
+function Categories({anyCriteria, clearCriteria, toggleCategory, activeCategories, activeLabels, toggleLabel}) {
+    const data = useStaticQuery(graphql`
+        query {
+            categories: allJenkinsPluginCategory {
+                edges {
+                    node {
+                        id
+                        labels
+                        title
+                    }
+                }
+            }
+        }
+    `);
+    const handleOnClick = (event) => {
+        event.preventDefault();
+        clearCriteria();
+    };
+    
+    return (
+        <fieldset className={classNames(styles.Categories)}>
+            <legend>
+                  Categories
+                {anyCriteria && (
+                    <button className="btn btn-secondary btn-sm show-all" name="showAll" onClick={handleOnClick}>
+                        Show all
+                    </button>
+                )}
+            </legend>
+            <ul className={classNames(styles.Cols3, 'Cols3')}>
+                {data.categories.edges.map(({node: category}) => (
+                    <Category
+                        key={category.id}
+                        activeCategories={activeCategories}
+                        activeLabels={activeLabels}
+                        category={category}
+                        toggleCategory={toggleCategory} 
+                        toggleLabel={toggleLabel}
+                    />
+                ))}
+            </ul>
+        </fieldset>
+    );
 }
 
-const selectors = createSelector(
-    [ activeCategories, activeLabels, categories ],
-    ( activeCategories, activeLabels, categories ) =>
-        ({
-            anyCriteria: activeCategories.length > 0 || activeLabels.length > 0,
-            categories
-        })
-);
+Categories.propTypes = {
+    activeCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    activeLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
+    anyCriteria: PropTypes.bool.isRequired,
+    clearCriteria: PropTypes.func.isRequired,
+    toggleCategory: PropTypes.func.isRequired,
+    toggleLabel: PropTypes.func.isRequired
+};
 
-export default connect(selectors, actions)(Categories);
+Categories.defaultProps = {
+    anyCriteria: false,
+};
+
+export default Categories;

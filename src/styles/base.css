@@ -9,7 +9,16 @@ body .showResults.item-finder > #plugin-search-form.HomeHeader{
   padding:.25rem .5rem;
 }
 #plugin-search-form .SearchBox .SearchBtn,
-#plugin-search-form .SearchBox .ShowFilter {display:table-cell !important; color:#fff !important;}
+#plugin-search-form .SearchBox .ShowFilter {color:#fff !important;}
+
+.SearchBox label.input-group {
+  width: 100%;
+}
+
+.SearchBox .input-group .btn {
+  border: 1px #900 solid;
+}
+
 body .showResults.item-finder > .HomeHeader > .navbar {width:100%; padding:0 10.5rem 0 0;}
 body .showResults.item-finder > .HomeHeader > .navbar > .nav ,
 body .showResults.item-finder > .HomeHeader > .navbar > .nav > .SearchBox {width:100%; padding:0 !important}
@@ -266,7 +275,7 @@ transform: scale(-1, 1);
 .modalview > .dialog .gutter .chart {margin:1rem 0 2rem}
 .modalview > .dialog {width:95% !important; margin:0 1.5%; top:0 !important;}
 .modalview > .dialog .download {margin:2rem 0 2rem -.5rem;}
-.modalview > .dialog > .content {padding:0 !important; max-height:100% !important;}
+.modalview > .dialog > .content {padding:0 !important; max-height:100% !important; overflow-x: hidden;}
 .modalview > .dialog > .content .title {margin-bottom:2rem; vertical-align:top}
 .modalview > .dialog > .content .content {min-height:25rem}
 .modalview > .dialog > .content .badge-box {display: inline-block;}
@@ -671,11 +680,10 @@ body .list-group > li > a.active {color:#000 !important; box-shadow:inset 0 99re
 }
 
 nav .form-inline .input-group>.form-control {
-  border-color:#900;
-    width: 0;
+    border-color:#900;
     transition: all 0.5s ease;
 }
-form.showFilter nav .form-inline .ShowFilter {background:#900; border-color:#f00}
+form.showFilter nav .form-inline .ShowFilter {background:#900;}
 nav .form-inline .input-group>.form-control:focus{
   border-color:#f00
 }
@@ -902,4 +910,12 @@ a.card:hover {
 .underline {
     border-bottom: 1px solid #CAD0D2;
     border-radius: 4px;
+}
+
+.modalview .content .main table {
+    border: 1px solid silver;  
+}
+  
+.modalview .content .main td {
+    padding: 1em;
 }
