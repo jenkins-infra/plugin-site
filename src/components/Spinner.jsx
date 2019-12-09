@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Spinner(props) {
+export default function Spinner() {
     return (
         <div id="plugin-spinner" className="spinner double-bounce2">
             <i className="icon-jenkins" />

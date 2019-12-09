@@ -56,6 +56,17 @@
     "space-before-function-paren": [2, {"anonymous": "always","named": "never"}],
     "strict": [2, "global"],
   },
+  "overrides": [
+    {
+      "files": [
+        "__tests__/**/*.js"
+      ],
+      "env": { "jest": true },
+      "plugins": ["jest"],
+      "extends": ["plugin:jest/recommended"],
+      "rules": {}
+    }
+  ],
   "settings": {
     "react": { "version": "detect" },
     "import/extensions": [ ".js", ".jsx" ],

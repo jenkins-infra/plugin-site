@@ -24,11 +24,6 @@ function shouldShowGitHubUrl({url}) {
 }
 
 function PluginPage({data: {jenkinsPlugin: plugin}}) {
-    const beforeClose = (event) => {
-        event && event.preventDefault();
-        navigate('/');
-        return;
-    };
     return (
         <Layout>
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
@@ -41,21 +36,18 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                                 <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
                                 <span className="v">{plugin.version}</span>
                                 <span className="sub">
-Minimum Jenkins requirement:
-                                    {' '}
+                                    {'Minimum Jenkins requirement: '}
                                     {plugin.requiredCore}
                                 </span>
                                 <span className="sub">
-ID:
-                                    {' '}
+                                    {'ID: '}
                                     {plugin.name}
                                 </span>
                             </h1>
                             <div className="row flex">
                                 <div className="col-md-4">
                                     {plugin.stats && <div>
-Installs:
-                                        {' '}
+                                        {'Installs: '}
                                         <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls} />
                                     </div>}
                                     {plugin.scm && plugin.scm.link && <div><a href={plugin.scm.link}>GitHub →</a></div>}
@@ -97,32 +89,23 @@ Installs:
                         {shouldShowWikiUrl(plugin.wiki) &&
                             <div className="update-link">
                                 <h5>Help us to improve this page!</h5>
-                        This content is served from the 
-                                {' '}
+                                {'This content is served from the  '}
                                 <a href={plugin.wiki.url} target="_wiki">Jenkins Wiki</a>
-                                {' '}
-which is in the
-                                {' '}
-                                <a href="https://groups.google.com/forum/#!msg/jenkinsci-dev/lNmas8aBRrI/eL3u7A6qBwAJ" target="_blank">read-only state</a>
-.
-                        We recommend moving the plugin documentation to GitHub, see the guidelines
-                                {' '}
-                                <a href="https://jenkins.io/blog/2019/10/21/plugin-docs-on-github/" target="_blank">here</a>
-.
+                                {' the '}
+                                <a href="https://groups.google.com/forum/#!msg/jenkinsci-dev/lNmas8aBRrI/eL3u7A6qBwAJ" rel="noopener noreferrer" target="_blank">read-only state</a>
+                                {'. We recommend moving the plugin documentation to GitHub, see the guidelines '}
+                                <a href="https://jenkins.io/blog/2019/10/21/plugin-docs-on-github/" rel="noopener noreferrer" target="_blank">here</a>
+                                {'.'}
                             </div>
                         }
                         {shouldShowGitHubUrl(plugin.wiki) &&
                             <div className="update-link">
                                 <h5>Help us to improve this page!</h5>
-                        To propose a change submit a pull request to 
-                                {' '}
-                                <a href={plugin.wiki.url} target="_blank">the plugin page</a>
-                                {' '}
-on GitHub.
-                        Read more about GitHub support on the plugin site in the
-                                {' '}
-                                <a href="https://jenkins.io/doc/developer/publishing/documentation/" target="_blank">Jenkins developer documentation</a>
-.  
+                                {'To propose a change submit a pull request to  '}
+                                <a href={plugin.wiki.url} rel="noopener noreferrer" target="_blank">the plugin page</a>
+                                {' on GitHub. Read more about GitHub support on the plugin site in the '}
+                                <a href="https://jenkins.io/doc/developer/publishing/documentation/" rel="noopener noreferrer" target="_blank">Jenkins developer documentation</a>
+                                {'.'}  
                             </div>
                         }
         
