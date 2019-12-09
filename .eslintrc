@@ -12,6 +12,7 @@
   "parser": "babel-eslint",
   "rules": {
     "eol-last": 2,
+    "react/jsx-one-expression-per-line": ["error", { "allow": "single-child" }],
     "import/extensions": ["error", "ignorePackages", { "js": "never", "jsx": "never" }],
     "import/no-unresolved": [2],
     "indent": ["error", 4],
@@ -53,7 +54,7 @@
     "react/self-closing-comp": 2,
     "semi": [2],
     "space-before-function-paren": [2, {"anonymous": "always","named": "never"}],
-    "strict": [2, "global"]
+    "strict": [2, "global"],
   },
   "settings": {
     "react": { "version": "detect" },

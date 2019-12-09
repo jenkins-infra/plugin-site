@@ -81,6 +81,11 @@ body a:active {color:#c00}
 .NoLabels > .Categories label > input {display:none}
 .NoLabels > .Categories label > span {margin-left:0 !important; color:#0275d8; cursor:pointer}
 
+body #grid-box {padding-top: 30px; }
+@media (min-width: 992px) {
+  body #grid-box {padding-top: 8px; }
+}
+
 body #grid-box .item-finder > .NoLabels {padding: 2rem 0; background:#e5f8ff}
 body #grid-box .item-finder > .NoLabels .Cols3 {font-size:.85rem}
 body #grid-box .item-finder > .NoLabels .Cols3 label > span {margin-left:.5rem}
@@ -261,9 +266,6 @@ transform: scale(-1, 1);
 .modalview > .dialog .gutter .chart {margin:1rem 0 2rem}
 .modalview > .dialog {width:95% !important; margin:0 1.5%; top:0 !important;}
 .modalview > .dialog .download {margin:2rem 0 2rem -.5rem;}
-.modalview > .dialog > .header {font-size:1rem !important;padding:.5rem 1rem !important; height:auto; min-height:0 !important;cursor:pointer}
-.modalview > .dialog > .header > .back:before{content:'\2B05'; margin-right:.5rem;}
-.modalview > .dialog > .header > a {font-size:1rem !important; position:static !important; float:right; }
 .modalview > .dialog > .content {padding:0 !important; max-height:100% !important;}
 .modalview > .dialog > .content .title {margin-bottom:2rem; vertical-align:top}
 .modalview > .dialog > .content .content {min-height:25rem}
