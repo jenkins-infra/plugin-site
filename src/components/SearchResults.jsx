@@ -15,13 +15,36 @@ const GridBox = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
+    padding: 0;
+    border-top: 1px solid #bbb;
 `;
 
-const ItemBox = styled.div`
-    flex: 1;
-    width: 350px;
-    height: 250px;
-    margin: 15px;
+const ItemBox = styled.button`
+    flex: 1 0 auto;
+
+    display: block;
+    border: .1rem solid #ccc;
+    font-size: .85rem;
+    min-height: 6rem;
+    height: 16.5rem;
+    width: 13rem;
+    box-sizing: border-box;
+    padding: .67rem;
+    color: #666;
+    text-decoration: none !important;
+    background: #fff;
+    opacity: .9;
+    border-radius: 3px;
+    margin: .25rem;
+    text-align: left;
+
+    :hover {
+        border: .1rem solid #999;
+        opacity: 1;
+        box-shadow: 0 2px 3px rgba(0,0,0,.25);
+        text-decoration: none;
+    }
 `;
 
 function SearchResults({isSearching, showFilter, showResults}) {
@@ -68,7 +91,7 @@ function SearchResults({isSearching, showFilter, showResults}) {
                         return (
                             <GridBox id="cb-item-finder-grid-box">
                                 {plugins.map(plugin => (
-                                    <ItemBox key={plugin.name}>
+                                    <ItemBox key={plugin.name} role="button">
                                         <Plugin plugin={plugin} />
                                     </ItemBox>
                                 ))}
