@@ -22,14 +22,21 @@ body .showResults.item-finder > #plugin-search-form.HomeHeader{
 body .showResults.item-finder > .HomeHeader > .navbar {width:100%; padding:0 10.5rem 0 0;}
 body .showResults.item-finder > .HomeHeader > .navbar > .nav ,
 body .showResults.item-finder > .HomeHeader > .navbar > .nav > .SearchBox {width:100%; padding:0 !important}
-body .item-finder > .HomeHeader > .navbar > .nav > .btn-group > button > i {line-height:1.5rem}
+body .showResults.item-finder > .HomeHeader > .navbar > .nav > .btn-group > button > i {line-height:1.5rem}
 body .showResults.item-finder > .HomeHeader > .navbar > .nav > .btn-group {position:absolute; right:0; top:0}
 body .showResults.item-finder > .HomeHeader > .navbar > .nav > .SearchBox .ShowFilter {width:18.6% !important; max-width: 10rem !important;}
+
 body .showResults.item-finder .filters {top:5px; padding-top:1rem !important; margin-top:-1px; border-radius:0; box-shadow:-.25rem 0 #fff; border-left:none; border-top:none; left:.25rem}
 body .showResults.item-finder .filters .row {border:none; padding:0}
 body .showResults.item-finder .filters .row > div {font-size:.75rem; padding:0 .5rem;  overflow:hidden;}
 body .showResults.item-finder .filters .row > div label {white-space:nowrap;}
 body .showResults.item-finder .filters .Cols3 {column-count:1; -moz-column-count:1;}
+
+body .showResults #plugin-search-form .nav > .btn-group {display:inline-block;}
+body .showResults #plugin-search-form p,
+body .showResults #plugin-search-form h1,
+body .showResults #plugin-search-form:before {display:none}
+
 .filters .show-all{
     border: none;
     background: #168BB9;
@@ -42,10 +49,7 @@ body .showResults.item-finder .filters .Cols3 {column-count:1; -moz-column-count
     border-radius: 2px;
 }
 .isFiltered .filters .show-all {display: inline-block}
-.showResults #plugin-search-form .nav > .btn-group {display:inline-block;}
-.showResults #plugin-search-form p,
-.showResults #plugin-search-form h1,
-.showResults #plugin-search-form:before {display:none}
+
 #plugin-search-form {vertical-align:middle; padding:4rem 2rem}
 #plugin-search-form p{
   box-sizing: content-box;
@@ -543,9 +547,6 @@ spinner .double-bounce1, .spinner .double-bounce2 {
   -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
   animation: sk-bounce 2.0s infinite ease-in-out;
 }
-.results.row {overflow:hidden; height:0}
-.showResults .results.row {height:auto;}
-.showResults .results.row {min-height:75rem; padding-bottom:5rem}
 
 .double-bounce2 {
   -webkit-animation-delay: -1.0s;
@@ -918,4 +919,8 @@ a.card:hover {
   
 .modalview .content .main td {
     padding: 1em;
+}
+
+#searchpage .Cols3 {
+  column-count: 1;
 }

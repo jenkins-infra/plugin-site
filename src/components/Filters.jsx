@@ -39,12 +39,12 @@ function Filters({showFilter, showResults}) {
     }
     return (
         <div className={classNames(styles.FiltersBox)}>
-            <div className={classNames(styles.filters, 'filters', showResults ? 'col-md-2' : 'container')}>
+            <div className={classNames(styles.filters, 'filters', 'container')}>
                 <div className={classNames(styles.Header,'row')}>
                     <div className={showResults ? 'col-md-12' : 'col-md-3'}>
                         <Sort setSort={setSort} sort={sort} />
                     </div>
-                    <div className={showResults ? 'col-md-12' : 'col-md-9'}>
+                    <div className={showResults ? 'col-md-9' : 'col-md-3'}>
                         <Categories 
                             anyCriteria={false}
                             activeCategories={categories}

@@ -13,7 +13,7 @@ function Views({view, setView}) {
                         key={index}
                         isActive={singleView === view}
                         updateView={setView}
-                        view={view}
+                        view={singleView}
                     />
                 );
             })}

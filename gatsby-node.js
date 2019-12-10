@@ -16,10 +16,18 @@ exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;
     const pluginPage = path.resolve('src/templates/plugin.jsx');
     const indexPage = path.resolve('src/templates/index.jsx');
+    const searchPage = path.resolve('src/templates/search.jsx');
 
     createPage({
         path: '/',
         component: indexPage,
+        context: { }
+    });
+
+    
+    createPage({
+        path: '/ui/search',
+        component: searchPage,
         context: { }
     });
 

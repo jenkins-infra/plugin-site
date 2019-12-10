@@ -117,9 +117,9 @@ async function makeReactLayout() {
         }
     };
 
-    lines.push('export default function Layout({ children }) {');
+    lines.push('export default function Layout({ children, id }) {');
     lines.push('  return (');
-    lines.push('    <div>');
+    lines.push('    <div id={id}>');
     lines.push('      <Helmet>');
     $('head').children(':not(link[rel="stylesheet"])').each((idx, child) => handleNode(child, 2));
     $('head').children('link[rel="stylesheet"]').each((idx, child) => handleNode(child, 2));

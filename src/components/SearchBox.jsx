@@ -61,4 +61,9 @@ SearchBox.propTypes = {
     setShowFilter: PropTypes.func.isRequired,
     showFilter: PropTypes.bool.isRequired
 };
+
+SearchBox.defaultProps = {
+    handleOnSubmit: () => {}
+};
+
 export default SearchBox;

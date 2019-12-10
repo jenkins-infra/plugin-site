@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import {navigate} from 'gatsby';
 import Layout from '../layout';
 import styles from '../styles/main.module.css';
 
@@ -14,7 +15,9 @@ import SearchResults from '../components/SearchResults';
 
 function IndexPage({isFiltered, showResults, view}) {
     const [showFilter, setShowFilter] = React.useState(false);
-    const handleOnSubmit = (e) => {};
+    const handleOnSubmit = (e) => {
+        navigate('/ui/search');
+    };
 
     return (
         <Layout>
@@ -31,7 +34,7 @@ function IndexPage({isFiltered, showResults, view}) {
                             {/* <Views /> */}
                         </div>
                     </nav>
-                    <Filters showFilter={showFilter} />
+                    <Filters showFilter={showFilter} showResults={true} />
                 </form>
                 {/* <SearchResults /> */}
                 <Footer />
