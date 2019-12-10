@@ -21,7 +21,7 @@ const GridBox = styled.div`
 `;
 
 const ItemBox = styled.button`
-    flex: 1 0 auto;
+    flex: 0 0 auto;
 
     display: block;
     border: .1rem solid #ccc;
