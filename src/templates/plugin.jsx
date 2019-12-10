@@ -1,8 +1,9 @@
-import {graphql , navigate} from 'gatsby';
+import {graphql} from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import {cleanTitle} from '../commons/helper';
+
 import Layout from '../layout';
 import SEO from '../components/SEO';
 import LineChart from '../components/LineChart';
@@ -175,58 +176,7 @@ PluginPage.propTypes = {
 export const pageQuery = graphql`
   query PluginBySlug($name: String!) {
     jenkinsPlugin(name: {eq: $name}) {
-      id
-      gav
-      title
-      url
-      version
-      wiki {
-        url
-      }
-      stats {
-        currentInstalls
-        installations {
-            timestamp
-            total
-        }
-        trend
-      }
-      sha1
-      securityWarnings {
-        active
-        id
-        message
-        url
-        versions {
-          firstVersion
-          lastVersion
-        }
-      }
-      scm {
-        link
-      }
-      requiredCore
-      releaseTimestamp
-      previousVersion
-      previousTimestamp
-      name
-      labels
-      maintainers {
-        email
-        id
-        name
-      }
-      firstRelease
-      excerpt
-      categories
-      buildDate
-      dependencies {
-        implied
-        name
-        optional
-        title
-        version
-      }
+      ...JenkinsPluginFragment
     }
   }
 `;
