@@ -8,25 +8,8 @@ import {
     Input,
     Button
 } from 'reactstrap';
-import styles from '../styles/main.module.css';
 
-
-// handleOnChange = (event) => {
-//     event.preventDefault();
-//     this.props.setQuery(event.currentTarget.value);
-// }
-
-// // For some reason the input.onFocus was overriding a.onClick so use the
-// // same function and detect the caller
-// handleToggleShowFilter = (event) => {
-//     event.preventDefault();
-//     const forceOpen = event.currentTarget.name === 'query';
-//     this.props.toggleShowFilter({forceOpen: forceOpen});
-// }
-
-const SearchBoxContainer = styled.fieldset`
-
-`;
+const SearchBoxContainer = styled.fieldset``;
 
 function SearchBox({handleOnSubmit, showFilter, setShowFilter}) {
     const [query, setQuery] = React.useState('');
