@@ -1,7 +1,6 @@
 // import {graphql} from 'gatsby';
 import React from 'react';
 // import PropTypes from 'prop-types';
-import styles from '../styles/main.module.css';
 
 import Layout from '../layout';
 import SEO from '../components/SEO';
@@ -21,13 +20,21 @@ function SearchPage() {
         <Layout id="searchpage">
             <SEO pathname={'/ui/search'} />
             <div className="row">
-                <SearchBox showFilter={showFilter} setShowFilter={setShowFilter} />
-                <Views view={view} setView={setView} />
+                <div className={'col-md-3'} />
+
+                <div className={'col-md-6'}>
+                    <SearchBox showFilter={showFilter} setShowFilter={setShowFilter} /> 
+                </div>
+
+                <div className={'col-md-3'}>
+                    <Views view={view} setView={setView} />
+                </div>
             </div>
             <div className="row">
-                <div className={`col-md-3 ${styles.FiltersBox}`}>
+                <div className={'col-md-3'}>
                     <Filters showFilter showResults />
                 </div>
+
                 <div className="col-md-9">
                     <SearchResults showFilter={false} showResults page={page} setPage={setPage} />
                 </div>

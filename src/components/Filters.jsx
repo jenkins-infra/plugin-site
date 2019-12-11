@@ -1,12 +1,36 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import styled from '@emotion/styled';
 import styles from '../styles/main.module.css';
 import Categories from './Categories';
 import Sort from './Sort';
 
+const FiltersBoxContainer = styled.fieldset`
+`;
+
+const FiltersContainer = styled.div`
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    box-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.15);
+    font-size: 0.85rem;
+    font-weight: 200;
+    padding: 4rem 1rem 1.5rem 1rem !important;
+    position: relative;
+    text-align: left;
+    top: -4rem;
+`;
+
+
+const HeaderContainer = styled.div`
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+`;
+
+
 function Filters({showFilter, showResults}) {
-    const [sort, setSort] = React.useState('');
+    const [sort, setSort] = React.useState('relevance');
     const [categories, setCategories] = React.useState([]);
     const [labels, setLabels] = React.useState([]);
 
@@ -38,9 +62,9 @@ function Filters({showFilter, showResults}) {
         return null;
     }
     return (
-        <div className={classNames(styles.FiltersBox)}>
-            <div className={classNames(styles.filters, 'filters', 'container')}>
-                <div className={classNames(styles.Header,'row')}>
+        <FiltersBoxContainer>
+            <FiltersContainer className={classNames(styles.filters, 'filters', 'container')}>
+                <HeaderContainer className="row">
                     <div className={showResults ? 'col-md-12' : 'col-md-3'}>
                         <Sort setSort={setSort} sort={sort} />
                     </div>
@@ -54,9 +78,9 @@ function Filters({showFilter, showResults}) {
                             toggleLabel={toggleLabel}
                         />
                     </div>
-                </div>
-            </div>
-        </div>
+                </HeaderContainer>
+            </FiltersContainer>
+        </FiltersBoxContainer>
     );
 }
 

@@ -1,7 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../styles/main.module.css';
 import classNames from 'classnames';
+import styled from '@emotion/styled';
+import {
+    InputGroup,
+    InputGroupAddon,
+    Input,
+    Button
+} from 'reactstrap';
+import styles from '../styles/main.module.css';
+
 
 // handleOnChange = (event) => {
 //     event.preventDefault();
@@ -16,6 +24,10 @@ import classNames from 'classnames';
 //     this.props.toggleShowFilter({forceOpen: forceOpen});
 // }
 
+const SearchBoxContainer = styled.fieldset`
+
+`;
+
 function SearchBox({handleOnSubmit, showFilter, setShowFilter}) {
     const [query, setQuery] = React.useState('');
 
@@ -25,34 +37,30 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter}) {
     };
     
     return (
-        <fieldset className={classNames(styles.SearchBox, 'form-inline SearchBox')}>
-            <div className={classNames(styles.searchBox, 'form-group')}>
-                <label className={classNames(styles.searchLabel, 'input-group')}>
-                    <div className={classNames('input-group-prepend')}>
-                        <a className={classNames(styles.ShowFilter, styles.Fish, 'btn btn-primary ShowFilter')}
-                            onClick={handleToggleShowFilter}>
+        <SearchBoxContainer className={classNames('form-inline SearchBox')}>
+            <div className={classNames('form-group')} style={{width: '100%'}}>
+                <InputGroup style={{width: '100%'}}>
+                    <InputGroupAddon addonType="prepend">
+                        <Button color="primary" onClick={handleToggleShowFilter}>
                             {'Browse '}
                             <span>{showFilter ? '▼' : '◄' }</span>
-                        </a>
-                        <input name="query"
-                            value={query}
-                            autoFocus
-                            onChange={setQuery}
-                            onClick={handleToggleShowFilter}
-                            className={classNames('form-control')}
-                            placeholder="Find plugins..."
-                        />
-                        <input type="submit" className="sr-only" />
-                        <div className={classNames('input-group-append')}>
-                            <div className={classNames(styles.SearchBtn, 'SearchBtn btn btn-primary')}
-                                onClick={handleOnSubmit}>
-                                <i className={classNames('icon-search')} />
-                            </div>
-                        </div>
-                    </div>
-                </label>
+                        </Button>
+                    </InputGroupAddon>
+                    <Input 
+                        name="query"
+                        value={query}
+                        autoFocus
+                        onChange={setQuery}
+                        placeholder="Find plugins..."
+                    />
+                    <InputGroupAddon addonType="append">
+                        <Button color="primary" onClick={handleOnSubmit}>
+                            <i className={classNames('icon-search')} />
+                        </Button>
+                    </InputGroupAddon>
+                </InputGroup>
             </div>
-        </fieldset>
+        </SearchBoxContainer>
     );
 }
 

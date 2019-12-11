@@ -2,35 +2,27 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {RadioGroup, Radio} from 'react-radio-group';
 
+const SORT_TYPES = [
+    ['relevance', 'Relevance'],
+    ['installed', 'Most installed'],
+    ['trend', 'Trending'],
+    ['title', 'Title'],
+    ['updated', 'Release date']
+];
+
 function Sort({setSort, sort}) {
     return (
         <fieldset className="sortOptions">
             <legend>
-
-                {'Sort '}
-                {sort}
+                {`Sort ${SORT_TYPES.find(s => s[0] === sort)[1]}`}
             </legend>
             <RadioGroup name="sort" selectedValue={sort} onChange={setSort}>
-                <label>
-                    <Radio value="relevance" />
-                    {' Relevance'}
-                </label>
-                <label>
-                    <Radio value="installed" />
-                    {' Most installed'}
-                </label>
-                <label>
-                    <Radio value="trend" />
-                    {' Trending'}
-                </label>
-                <label>
-                    <Radio value="title" />
-                    {' Title'}
-                </label>
-                <label>
-                    <Radio value="updated" />
-                    {' Release date'}
-                </label>
+                {SORT_TYPES.map(([key, label]) => (
+                    <label key={key}>
+                        <Radio value={key} />
+                        {` ${label}`}
+                    </label>
+                ))}
             </RadioGroup>
         </fieldset>
     );

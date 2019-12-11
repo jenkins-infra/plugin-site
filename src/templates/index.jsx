@@ -8,9 +8,7 @@ import styles from '../styles/main.module.css';
 import SEO from '../components/SEO';
 import Footer from '../components/Footer';
 import SearchBox from '../components/SearchBox';
-import Views from '../components/Views';
 import Filters from '../components/Filters';
-import SearchResults from '../components/SearchResults';
 
 
 function IndexPage({isFiltered, showResults, view}) {
@@ -31,12 +29,10 @@ function IndexPage({isFiltered, showResults, view}) {
                     <nav className={classNames('navbar', styles.navbar)}>
                         <div className="nav navbar-nav">
                             <SearchBox handleOnSubmit={handleOnSubmit} showFilter={showFilter} setShowFilter={setShowFilter} />
-                            {/* <Views /> */}
                         </div>
                     </nav>
-                    <Filters showFilter={showFilter} showResults={true} />
+                    <Filters showFilter={showFilter} showResults />
                 </form>
-                {/* <SearchResults /> */}
                 <Footer />
             </div>
         </Layout>
