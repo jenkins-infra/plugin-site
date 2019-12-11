@@ -25,114 +25,124 @@ function Maintainers({maintainers}) {
 Maintainers.propTypes = PluginMaintainers.propTypes;
 
 const PluginContainer = styled.div`
-    position: relative;
+
     height: 100%;
+    position: relative;
 `;
 
 const IconContainer = styled.div`
-    position: absolute;
-    z-index: 9;
-    bottom: .25rem;
-    right: .25rem;
+
+    bottom: 0.25rem;
     display: block;
-    opacity: .75;
+    opacity: 0.75;
+    position: absolute;
+    right: 0.25rem;
+    z-index: 9;
 
     i {
-        text-align: center;
+        border-radius: 3px;
+        color: #fff;
         display: inline-block;
         font-size: 1.33rem;
-        color: #fff;
-        height: 3rem;
-        width: 3rem;
-        border-radius: 3px;
-        line-height: 3rem;
         font-style: normal;
+        height: 3rem;
+        line-height: 3rem;
         margin: -1px 0 0 -1px;
-        margin-bottom: 0px;
-        text-shadow: rgba(0, 0, 0, .5) 1px 2px 1px;
+        margin-bottom: 0;
+        text-align: center;
+        text-shadow: rgba(0, 0, 0, 0.5) 1px 2px 1px;
+        width: 3rem;
     }
 `;
 
 const TitleContainer = styled.div`
     h4 {
+        color: #000;
         font-size: 1rem;
-        margin: 0 0 .25rem;
+        font-weight: normal;
+        font-weight: normal;
         line-height: 1.1rem;
+        margin: 0 0 0.25rem;
         max-height: 2.2rem;
         overflow: hidden;
-        font-weight: normal;
-        color: #000;
-        font-weight: normal;
         position: relative;
     }
 `;
 
 const InstallsContainer = styled.div`
-    padding: 0;
-    margin: 0;
-    font-size: .75rem;
+
     color: #999;
+    font-size: 0.75rem;
+    margin: 0;
+    padding: 0;
 `;
 
 const VersionContainer = styled.div`
-    font-size: .75rem;
+
     color: #59a;
-    margin-right: .5rem;
+    font-size: 0.75rem;
     line-height: 1rem;
+    margin-right: 0.5rem;
+
     span {
-        margin-right: .25rem;
+        margin-right: 0.25rem;
     }
 `;
 
 const LabelsContainer = styled.div`
-    margin: .25rem 0;
+
+    line-height: 0.75rem;
+    margin: 0.25rem 0;
     max-height: 2rem;
     min-height: 1rem;
     overflow: hidden;
-    line-height: .75rem;
 
     div {
-        display: inline;
-        font-size: .75rem;
         color: #59a;
-        margin-right: .25rem;
+        display: inline;
+        font-size: 0.75rem;
         line-height: 1rem;
+        margin-right: 0.25rem;
     }
-    div:after {
+
+    div::after {
         content: ", ";
     }
-    div:last-child:after {
+
+    div:last-child::after {
         content: "";
     }
 `;
 
 
 const ExcerptContainer = styled.div`
-    white-space: normal;
-    line-height: 1.1rem;
+
     height: 4.4rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: relative;
+    line-height: 1.1rem;
     margin: 0;
-    padding: 0;
     max-height: 4.4rem;
-    min-height: .5rem;
+    min-height: 0.5rem;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: normal;
     word-wrap: break-word;
 `;
 
 const AuthorsContainer = styled.div`
-    position: absolute;
+
     bottom: 1rem;
     max-width: 8rem;
     overflow: hidden;
+    position: absolute;
     white-space: nowrap;
 
     div {
-        font-size: .75rem;
         color: #59a;
-        margin-right: .5rem;
+        font-size: 0.75rem;
         line-height: 1rem;
+        margin-right: 0.5rem;
     }
 `;
 

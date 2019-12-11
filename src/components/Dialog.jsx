@@ -9,35 +9,39 @@ const ModalView = styled.section`
 `;
 
 const DialogContainer = styled.div`
-    padding-top: 0px !important;
+
+    padding-top: 0 !important;
 `;
 
 const Header = css`
-    padding: 15px 15px 15px 25px;
+
     background-color: rgb(22, 139, 185);
     color: rgb(255, 255, 255);
     font-size: 18px;
     font-weight: normal;
-    overflow-y: auto;
     max-height: 20%;
     min-height: 5%;
+    overflow-y: auto;
+    padding: 15px 15px 15px 25px;
 
-    a, a:visited {
+    a,
+    a:visited {
         color: rgb(255, 255, 255);
     }
 
-    .back:before {
+    .back::before {
         content: '\u2B05';
-        margin-right:.5rem;
+        margin-right: 0.5rem;
     }
 `;
 
 const Content = styled.div`
+
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
-    overflow-y: auto;
     max-height: 90%;
     min-height: 75%;
+    overflow-y: auto;
     padding: 25px 20px 25px 50px;
 `;
 

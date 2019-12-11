@@ -12,37 +12,37 @@ import Plugin from './Plugin';
 import Spinner from './Spinner';
 
 const GridBox = styled.div`
+
+    border-top: 1px solid #bbb;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
     padding: 0;
-    border-top: 1px solid #bbb;
 `;
 
 const ItemBox = styled.button`
-    flex: 0 0 auto;
 
-    display: block;
-    border: .1rem solid #ccc;
-    font-size: .85rem;
-    min-height: 6rem;
-    height: 16.5rem;
-    width: 13rem;
-    box-sizing: border-box;
-    padding: .67rem;
-    color: #666;
-    text-decoration: none !important;
     background: #fff;
-    opacity: .9;
+    border: 0.1rem solid #ccc;
     border-radius: 3px;
-    margin: .25rem;
+    box-sizing: border-box;
+    color: #666;
+    display: block;
+    flex: 0 0 auto;
+    font-size: 0.85rem;
+    height: 16.5rem;
+    margin: 0.25rem;
+    min-height: 6rem;
+    opacity: 0.9;
+    padding: 0.67rem;
     text-align: left;
+    text-decoration: none !important;
+    width: 13rem;
 
     :hover {
-        border: .1rem solid #999;
+        border: 0.1rem solid #999;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
         opacity: 1;
-        box-shadow: 0 2px 3px rgba(0,0,0,.25);
         text-decoration: none;
     }
 `;

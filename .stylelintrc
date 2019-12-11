@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "selector-class-pattern": "^[0-9a-z\\-]+$",
+    "block-opening-brace-space-before": "always",
+    "indentation": 4,
+    "rule-empty-line-before": [
+      "always",
+      {
+        "except": ["after-single-line-comment", "first-nested"]
+      }
+    ],
+    "order/properties-alphabetical-order": true
+  },
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-standard",
+    "stylelint-config-styled-components"
+  ],
+  "plugins": ["stylelint-order"]
+}

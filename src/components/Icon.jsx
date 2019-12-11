@@ -18,7 +18,7 @@ function Icon({title}) {
     const nextIndex = firstSpace === 0 ? 1 : firstSpace;
     const nextLetter = title.substring(nextIndex, nextIndex + 1);
     return (
-        <i className="i" style={{background: color}}>
+        <i className="i" style={{background: color,}}>
             <span className="first">{firstLetter}</span>
             <span className="next">{nextLetter}</span>
         </i>
