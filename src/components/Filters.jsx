@@ -65,10 +65,10 @@ function Filters({showFilter, showResults}) {
         <FiltersBoxContainer>
             <FiltersContainer className={classNames(styles.filters, 'filters', 'container')}>
                 <HeaderContainer className="row">
-                    <div className={showResults ? 'col-md-12' : 'col-md-3'}>
+                    <div className="col-md-12">
                         <Sort setSort={setSort} sort={sort} />
                     </div>
-                    <div className={showResults ? 'col-md-9' : 'col-md-3'}>
+                    <div className="col-md-12">
                         <Categories 
                             anyCriteria={false}
                             activeCategories={categories}

@@ -13,7 +13,8 @@ import Filters from '../components/Filters';
 
 function IndexPage({isFiltered, showResults, view}) {
     const [showFilter, setShowFilter] = React.useState(false);
-    const handleOnSubmit = () => {
+    const handleOnSubmit = (stuff) => {
+        console.log('stuff', stuff);
         navigate('/ui/search');
     };
 

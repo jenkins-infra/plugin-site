@@ -33,7 +33,7 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter}) {
                         name="query"
                         value={query}
                         autoFocus
-                        onChange={setQuery}
+                        onChange={(e) => setQuery(e.target.value)}
                         placeholder="Find plugins..."
                     />
                     <InputGroupAddon addonType="append">
