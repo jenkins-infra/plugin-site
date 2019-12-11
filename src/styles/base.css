@@ -296,7 +296,7 @@ transform: scale(-1, 1);
   margin: 0 -.5rem 0 .5rem;
 }
 .modalview > .dialog > .content .badge-box > .badge.warning {
-  background-image: url(/images/warning.svg);
+  background-image: url(../images/warning.svg);
   background-size:2.5rem;
 }
 .modalview > .dialog > .content .badge-box  > .badge.warning.inactive{
