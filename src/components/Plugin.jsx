@@ -25,13 +25,11 @@ function Maintainers({maintainers}) {
 Maintainers.propTypes = PluginMaintainers.propTypes;
 
 const PluginContainer = styled.div`
-
     height: 100%;
     position: relative;
 `;
 
 const IconContainer = styled.div`
-
     bottom: 0.25rem;
     display: block;
     opacity: 0.75;
@@ -60,7 +58,6 @@ const TitleContainer = styled.div`
         color: #000;
         font-size: 1rem;
         font-weight: normal;
-        font-weight: normal;
         line-height: 1.1rem;
         margin: 0 0 0.25rem;
         max-height: 2.2rem;
@@ -70,7 +67,6 @@ const TitleContainer = styled.div`
 `;
 
 const InstallsContainer = styled.div`
-
     color: #999;
     font-size: 0.75rem;
     margin: 0;
@@ -78,7 +74,6 @@ const InstallsContainer = styled.div`
 `;
 
 const VersionContainer = styled.div`
-
     color: #59a;
     font-size: 0.75rem;
     line-height: 1rem;
@@ -90,7 +85,6 @@ const VersionContainer = styled.div`
 `;
 
 const LabelsContainer = styled.div`
-
     line-height: 0.75rem;
     margin: 0.25rem 0;
     max-height: 2rem;
@@ -171,7 +165,7 @@ function Plugin({plugin: {name, title, stats, version, requiredCore, labels, exc
             </LabelsContainer>
             <ExcerptContainer dangerouslySetInnerHTML={{__html: excerpt}} />
             <AuthorsContainer>
-                <PluginMaintainers maintainers={maintainers} />
+                <Maintainers maintainers={maintainers} />
             </AuthorsContainer>
         </PluginContainer>
     );
