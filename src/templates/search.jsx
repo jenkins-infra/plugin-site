@@ -18,8 +18,8 @@ function SearchPage() {
     return (
         <Layout id="searchpage">
             <SEO pathname={'/ui/search'} />
-            <div className="row">
-                {showFilter && (<div className={'col-md-3'}>
+            <div className="row d-flex">
+                {showFilter && (<div className="col-md-3 order-last order-md-first">
                     <Filters showFilter={showFilter} showResults />
                 </div>)}
                 <div className={showFilter ? 'col-md-9' : 'offset-md-1 col-md-11'}>

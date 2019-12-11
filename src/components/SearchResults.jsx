@@ -61,39 +61,37 @@ function SearchResults({isSearching}) {
     const total = data.plugins.edges.length;
 
     return (
-        <div className="row results">
-            <div className="items-box">
-                {/* <nav className="page-controls">
-                    <ul className="nav navbar-nav">
-                        <ActiveFilters />
-                        <Pagination total={0} limit={10} page={0} pages={1} setPage={()=>{}} />
-                    </ul>
-                </nav> */}
-                {(function () {
-                    if (isSearching) {
-                        return <Spinner />;
-                    }
-                    if (total === 0) {
-                        return (
-                            <div className="no-results">
-                                <h1>No results found</h1>
-                                <p>
-                                    {'You search did not return any results. Please try changing your search criteria or reloading the browser.'} 
-                                </p>
-                            </div>
-                        );
-                    }
+        <div>
+            {/* <nav className="page-controls">
+                <ul className="nav navbar-nav">
+                    <ActiveFilters />
+                    <Pagination total={0} limit={10} page={0} pages={1} setPage={()=>{}} />
+                </ul>
+            </nav> */}
+            {(function () {
+                if (isSearching) {
+                    return <Spinner />;
+                }
+                if (total === 0) {
                     return (
-                        <GridBox id="cb-item-finder-grid-box">
-                            {plugins.map(plugin => (
-                                <ItemBox key={plugin.name} role="button">
-                                    <Plugin plugin={plugin} />
-                                </ItemBox>
-                            ))}
-                        </GridBox>
+                        <div className="no-results">
+                            <h1>No results found</h1>
+                            <p>
+                                {'You search did not return any results. Please try changing your search criteria or reloading the browser.'} 
+                            </p>
+                        </div>
                     );
-                })()}
-            </div>
+                }
+                return (
+                    <GridBox id="cb-item-finder-grid-box">
+                        {plugins.map(plugin => (
+                            <ItemBox key={plugin.name} role="button">
+                                <Plugin plugin={plugin} />
+                            </ItemBox>
+                        ))}
+                    </GridBox>
+                );
+            })()}
         </div>
     );
 }

@@ -32,7 +32,7 @@ function IndexPage({isFiltered, showResults, view}) {
                             <SearchBox handleOnSubmit={handleOnSubmit} showFilter={showFilter} setShowFilter={setShowFilter} />
                         </div>
                     </nav>
-                    <Filters showFilter={showFilter} showResults />
+                    <Filters showFilter={showFilter} showResults={false} />
                 </form>
                 <Footer />
             </div>

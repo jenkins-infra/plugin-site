@@ -16,8 +16,8 @@ const FiltersContainer = styled.div`
     box-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.15);
     font-size: 0.85rem;
     font-weight: 200;
-    padding: 4rem 1rem 1.5rem 1rem !important;
-    position: relative;
+    padding: 0 !important;
+    position: initial;
     text-align: left;
     top: -4rem;
 `;
@@ -65,10 +65,10 @@ function Filters({showFilter, showResults}) {
         <FiltersBoxContainer>
             <FiltersContainer className={classNames(styles.filters, 'filters', 'container')}>
                 <HeaderContainer className="row">
-                    <div className="col-md-12">
+                    <div className={showResults ? 'col-md-12' : 'col-md-3'}>
                         <Sort setSort={setSort} sort={sort} />
                     </div>
-                    <div className="col-md-12">
+                    <div className={showResults ? 'col-md-12' : 'col-md-9'}>
                         <Categories 
                             anyCriteria={false}
                             activeCategories={categories}
@@ -86,12 +86,12 @@ function Filters({showFilter, showResults}) {
 
 Filters.propTypes = {
     showFilter: PropTypes.bool.isRequired,
-    showResults: PropTypes.bool.isRequired
+    showResults: PropTypes.bool.isRequired,
 };
 
 Filters.defaultProps = {
+    showFilter: false,
     showResults: false,
-    showFilter: false
 };
 
 export default Filters;
