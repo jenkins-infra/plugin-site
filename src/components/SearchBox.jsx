@@ -26,7 +26,7 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
                             {'Browse '}
                             <span>{showFilter ? '▼' : '◄' }</span>
                         </Button>}
-                        {!setShowFilter && <Button color="primary">Browse</Button>}
+                        {!setShowFilter && <Button onClick={handleOnSubmit} color="primary">Browse</Button>}
                     </InputGroupAddon>
                     <Input 
                         name="query"
