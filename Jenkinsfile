@@ -1,24 +1,44 @@
-#!/usr/bin/env groovy
-
-node('docker&&linux') {
-
-  stage('Checkout') {
-    checkout scm
+pipeline {
+  agent {
+    docker {
+      image 'node:12'
+    }
   }
 
-  timestamps {
+  options {
+    timeout(time: 60, unit: 'MINUTES')
+    ansiColor('xterm')
+  }
 
-    stage('Build & Test') {
-      docker.image("kkarczmarczyk/node-yarn:6.9").inside {
-        sh "yarn"
-        sh "yarn build"
+  stages {
+    stage('Install') {
+      steps {
+        sh 'yarn install'
       }
-      junit allowEmptyResults: true, testResults: '**/junit/*.xml'
     }
 
-    stage('Build Docker Image') {
-      docker.build('jenkinsciinfra/plugin-site')
+    stage('Build') {
+      steps {
+        sh 'yarn clean'
+        sh 'yarn build'
+        sh 'test -e public/index.html || exit 1'
+      }
+    }
+
+    stage('Deploy') {
+      when {
+        // branch 'master'
+        branch 'gatsby'
+      }
+      environment {
+        NETLIFY = credentials('netlify-gavinmogan')
+      }
+      steps {
+        sh """
+        wget -q -O - https://github.com/netlify/netlifyctl/releases/download/v0.4.0/netlifyctl-linux-amd64-0.4.0.tar.gz | tar xvzf -
+        ./netlifyctl -y deploy -b public -A $NETLIFY
+        """
+      }
     }
   }
-
 }
