@@ -18,6 +18,9 @@ pipeline {
     }
 
     stage('Build') {
+      environment {
+        SLOW_MODE = "true"
+      }
       steps {
         sh 'yarn clean'
         sh 'yarn build'
