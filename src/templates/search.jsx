@@ -22,8 +22,8 @@ const doSearch = (data, setResults) => {
         q: query,
         sort
     });
-    const url = `/api/plugins?${params}`;
-    fetch(url)
+    const url = `https://plugins.jenkins.io/api/plugins?${params}`;
+    fetch(url, {mode: 'cors'})
         .then((response) => {
             if (response.status >= 300 || response.status < 200) {
                 const error = new Error(response.statusText);
