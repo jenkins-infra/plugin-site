@@ -27,14 +27,9 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-robots-txt',
             options: {
-                env: {
-                    development: {
-                        policy: [{userAgent: '*', disallow: ['/']}]
-                    },
-                    production: {
-                        policy: [{userAgent: '*', allow: '/'}]
-                    }
-                }
+                policy: process.env.DISABLE_SEARCH_ENGINE ?
+                    [{userAgent: '*', disallow: ['/']}] :
+                    [{userAgent: '*', allow: '/'}]
             }
         },
         {
@@ -58,6 +53,12 @@ module.exports = {
             options: {
                 color: 'tomato',
                 showSpinner: false,
+            },
+        },
+        {
+            resolve: 'gatsby-plugin-canonical-urls',
+            options: {
+                siteUrl: 'https://plugins.jenkins.io/',
             },
         },
     ]

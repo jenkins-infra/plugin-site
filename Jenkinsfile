@@ -20,6 +20,7 @@ pipeline {
     stage('Build') {
       environment {
         SLOW_MODE = "true"
+        DISABLE_SEARCH_ENGINE = "true" // for the test site
       }
       steps {
         sh 'yarn clean'
