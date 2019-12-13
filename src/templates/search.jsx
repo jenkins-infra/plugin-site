@@ -12,6 +12,8 @@ import Views from '../components/Views';
 import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
 import Filters from '../components/Filters';
+import ActiveFilters from '../components/ActiveFilters';
+
 
 const doSearch = (data, setResults) => {
     const {categories, labels, page, query, sort} = data;
@@ -48,7 +50,7 @@ function SearchPage({location}) {
         labels, toggleLabel,
         view, setView,
         page, setPage,
-        query, setQuery,
+        query, setQuery, clearQuery,
         setData
     } = useFilterHooks();
 
@@ -100,6 +102,18 @@ function SearchPage({location}) {
                         </div>
                         <div className={'col-md-3'}>
                             <Views view={view} setView={setView} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <ActiveFilters
+                                activeCategories={categories}
+                                activeLabels={labels}
+                                activeQuery={query}
+                                clearQuery={clearQuery}
+                                toggleCategory={toggleCategory}
+                                toggleLabel={toggleLabel}
+                            />
                         </div>
                     </div>
                     <div className={`row ${view}`}>

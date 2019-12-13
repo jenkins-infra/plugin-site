@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import styles from '../styles/main.module.css';
 import Category from './Category';
 
-function Categories({anyCriteria, clearCriteria, toggleCategory, activeCategories, activeLabels, toggleLabel}) {
+function Categories({clearCriteria, toggleCategory, activeCategories, activeLabels, toggleLabel}) {
     const data = useStaticQuery(graphql`
         query {
             categories: allJenkinsPluginCategory {
@@ -23,6 +23,8 @@ function Categories({anyCriteria, clearCriteria, toggleCategory, activeCategorie
         event.preventDefault();
         clearCriteria();
     };
+    const anyCriteria = activeCategories.length > 0 || activeLabels.length > 0;
+    console.log('anyCriteria', activeCategories.length, activeLabels.length, clearCriteria);
     
     return (
         <fieldset className={classNames(styles.Categories)}>
@@ -53,14 +55,9 @@ function Categories({anyCriteria, clearCriteria, toggleCategory, activeCategorie
 Categories.propTypes = {
     activeCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
     activeLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
-    anyCriteria: PropTypes.bool.isRequired,
     clearCriteria: PropTypes.func.isRequired,
     toggleCategory: PropTypes.func.isRequired,
     toggleLabel: PropTypes.func.isRequired
-};
-
-Categories.defaultProps = {
-    anyCriteria: false,
 };
 
 export default Categories;

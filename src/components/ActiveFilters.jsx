@@ -2,13 +2,80 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ActiveCategory from './ActiveCategory';
 import ActiveLabel from './ActiveLabel';
+import {useStaticQuery, graphql} from 'gatsby';
+import styled from '@emotion/styled';
 
-function ActiveFilters({activeCategories, activeLabels, activeQuery, categories, clearQuery, labels, toggleCategory, toggleLabel}) {
+
+const FilterBox = styled.div`
+    white-space:nowrap;
+    width: 100%;
+    text-align: center;
+
+    div {
+        display:inline-block;
+        white-space:nowrap;
+        margin-right:.5rem;
+        padding-right:.5rem
+    }
+    .nav-link {
+        display:inline-block;
+        margin:0;
+        margin-right:.5rem;
+        cursor: pointer;
+    }
+
+    .nav-link:before {
+        content: 'x ';
+        display: inline-block;
+        margin: -.133rem .25rem 0 -.75rem;
+        padding: 0rem 0 .1rem;
+        border: 1px solid #ccc;
+        line-height: 1em;
+        font-size: .75rem;
+        width: 1.3em;
+        vertical-align: middle;
+        text-align: center;
+        border-radius:2;
+    }
+`;
+
+function ActiveFilters({activeCategories, activeLabels, activeQuery, clearQuery, toggleCategory, toggleLabel}) {
+    const data = useStaticQuery(graphql`
+    query {
+        categories: allJenkinsPluginCategory {
+            edges {
+                node {
+                    id
+                    labels
+                    title
+                }
+            }
+        }
+        labels: allJenkinsPluginLabel {
+            edges {
+                node {
+                    id
+                    title
+                }
+            }
+        }
+    }
+    `);
+
+    const labels = data.labels.edges.reduce((prev, {node: label}) => {
+        prev[label.id] = label;
+        return prev;
+    }, {});
+    const categories = data.categories.edges.reduce((prev, {node: category}) => {
+        prev[category.id] = category;
+        return prev;
+    }, {});
+
     const renderedActiveCategories = activeCategories.map((activeCategory) => {
         return (
             <ActiveCategory
                 key={`category_${activeCategory}`}
-                category={categories.find((category) => category.id === activeCategory)}
+                category={categories[activeCategories]}
                 toggleCategory={toggleCategory}
             />
         );
@@ -17,24 +84,28 @@ function ActiveFilters({activeCategories, activeLabels, activeQuery, categories,
         return (
             <ActiveLabel
                 key={`label_${activeLabel}`}
-                label={labels.find((label) => label.id === activeLabel)}
+                label={labels[activeLabel]}
                 toggleLabel={toggleLabel}
             />
         );
     });
     return (
-        <li className="nav-item active-filters">
-            <div className="active-categories">
+        <FilterBox>
+            <div>
                 {renderedActiveCategories}
             </div>
-            <div className="active-labels">
+            <div>
                 {renderedActiveLabels}
             </div>
-            <div className="active-string">
-                {activeQuery !== '' &&
-                    <a className="nav-link" title="clear search string" onClick={clearQuery}>{activeQuery}</a>}
+            <div>
+                {activeQuery && <a 
+                    className="nav-link"
+                    title="clear search string"
+                    onClick={clearQuery}>
+                    {activeQuery}
+                </a>}
             </div>
-        </li>
+        </FilterBox>
     );
 }
 
@@ -42,16 +113,7 @@ ActiveFilters.propTypes = {
     activeCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
     activeLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
     activeQuery: PropTypes.string.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-        title: PropTypes.string.isRequired
-    })).isRequired,
     clearQuery: PropTypes.func.isRequired,
-    labels: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string
-    })).isRequired,
     toggleCategory: PropTypes.func.isRequired,
     toggleLabel: PropTypes.func.isRequired
 };
@@ -60,9 +122,7 @@ ActiveFilters.defaultProps = {
     activeCategories: [],
     activeLabels: [],
     activeQuery: '',
-    categories: [],
     clearQuery: () => {},
-    labels: [],
     toggleCategory: () => {},
     toggleLabel: () => {}
 };

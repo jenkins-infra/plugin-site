@@ -107,22 +107,6 @@ body #grid-box .item-finder .NoLabels .Entry-box {display:block;    padding: 0.2
 body #grid-box .item-finder .NoLabels .Entry-box a {cursor:pointer}
 body #grid-box .item-finder .NoLabels legend {font-size:1.1rem; }
 
-.navbar-nav .active-filters {white-space:nowrap}
-.navbar-nav .active-filters > div {display:inline-block; white-space:nowrap; margin-right:.5rem; border-right:1px solid #ccc; padding-right:.5rem}
-.navbar-nav .active-filters > div > .nav-link {display:inline-block; margin:0; margin-right:.5rem;}
-.navbar-nav .active-filters > div > .nav-link:before {
-    content: 'x ';
-    display: inline-block;
-    margin: -.133rem .25rem 0 -.75rem;
-    padding: 0rem 0 .1rem;
-    border: 1px solid #ccc;
-    line-height: 1em;
-    font-size: .75rem;
-    width: 1.3em;
-    vertical-align: middle;
-    border-radius:2;
-}
-
 .update-link {margin:4rem 0;}
 .update-link h6 {margin-bottom:.25rem}
 

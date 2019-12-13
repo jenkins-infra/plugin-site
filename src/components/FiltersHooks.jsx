@@ -21,6 +21,8 @@ function useFilterHooks() {
         query, setQuery
     };
 
+    ret.clearQuery = () => ret.setQuery('');
+
     ret.setData = (newData) => {
         delete newData[''];
         if (!Array.isArray(newData.categories)) {
@@ -43,6 +45,7 @@ function useFilterHooks() {
 
     ret.clearCriteria = () => {
         ret.setCategories([]);
+        ret.setLabels([]);
     };
 
     ret.toggleCategory = (category) => {

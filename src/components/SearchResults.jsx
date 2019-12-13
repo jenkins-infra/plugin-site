@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled from '@emotion/styled';
 
-import ActiveFilters from './ActiveFilters';
 import Pagination from './Pagination';
 import Plugin from './Plugin';
 import Spinner from './Spinner';
