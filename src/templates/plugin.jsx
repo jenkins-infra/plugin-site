@@ -29,7 +29,7 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
         <Layout>
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
             <Dialog title="Find Plugins">
-                <div className="row flex" style={{margin: 0}}>
+                <div className="row flex">
                     <div className="col-md-9 main">
                         <div className="container-fluid padded">
                             <h1 className="title">
