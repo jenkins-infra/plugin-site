@@ -53,6 +53,22 @@ plugins: `
 `
 */
 
+const requestGET = ({ url, reporter }) => {
+  const activity = reporter.activityTimer(`Fetching '${url}'`);
+  activity.start();
+
+  return axios
+    .get(url)
+    .then((results) => {
+      activity.end();
+      
+      if (results.status !== 200) {
+        throw results.data;
+      }
+      return results.data;
+    });
+};
+
 const getPluginSiteVersion = () => {
   const file = path.join(__dirname, '../../GIT_COMMIT');
   try {
@@ -62,150 +78,147 @@ const getPluginSiteVersion = () => {
   }
 };
 
+const fetchPluginData = async ({ createNode, reporter }) => {
+  const sectionActivity = reporter.activityTimer('fetch plugins info');
+  sectionActivity.start();
+  let page = 1;
+  const promises = [];
+  while (1) {
+    const url = `https://plugins.jenkins.io/api/plugins/?limit=100&page=${page}`;
+    const pluginsContainer = await requestGET({ url, reporter });
+
+    for (const plugin of pluginsContainer.plugins) {
+      const promise = (
+        process.env.SLOW_MODE
+          ? requestGET({ reporter, url: `https://plugins.jenkins.io/api/plugin/${plugin.name}` })
+          : Promise.resolve(plugin)
+      );
+      promises.push(promise.then(pluginData => {
+        pluginData.wiki = pluginData.wiki || {};
+        pluginData.wiki.content = pluginData.wiki.content || '';
+        return createNode({
+          ...pluginData,
+          id: pluginData.name.trim(),
+          parent: null,
+          children: [],
+          internal: {
+            type: 'JenkinsPlugin',
+            contentDigest: crypto.createHash('md5').update(`plugin${pluginData.name.trim()}`).digest('hex')
+          }
+        });
+      }));
+    }
+    page = pluginsContainer.page + 1;
+    if (pluginsContainer.page > pluginsContainer.pages) {
+      break;
+    }
+  }
+  await Promise.all(promises);
+  sectionActivity.end();
+};
+
+const fetchCategoryData = async ({ createNode, reporter }) => {
+  const sectionActivity = reporter.activityTimer('fetch categories info');
+  sectionActivity.start();
+  let page = 1;
+  while (1) {
+    const url = `https://plugins.jenkins.io/api/categories/?limit=100&page=${page}`;
+    const categoriesContainer = await requestGET({ url, reporter });
+
+    for (const category of categoriesContainer.categories) {
+      createNode({
+        ...category,
+        id: category.id.trim(),
+        parent: null,
+        children: [],
+        internal: {
+          type: 'JenkinsPluginCategory',
+          contentDigest: crypto
+            .createHash('md5')
+            .update(`category${category.name}`)
+            .digest('hex')
+        }
+      });
+    }
+    page = categoriesContainer.page + 1;
+    if (!page || categoriesContainer.page > categoriesContainer.pages) {
+      break;
+    }
+  }
+  sectionActivity.end();
+};
+
+const fetchLabelData = async ({ createNode, reporter }) => {
+  const sectionActivity = reporter.activityTimer('fetch labels info');
+  sectionActivity.start();
+  let page = 1;
+  while (1) {
+    const url = `https://plugins.jenkins.io/api/labels/?limit=100&page=${page}`;
+    const labelsContainer = await requestGET({ url, reporter });
+
+    for (const label of labelsContainer.labels) {
+      createNode({
+        ...label,
+        id: label.id.trim(),
+        parent: null,
+        children: [],
+        internal: {
+          type: 'JenkinsPluginLabel',
+          contentDigest: crypto
+            .createHash('md5')
+            .update(`label${label.name}`)
+            .digest('hex')
+        }
+      });
+    }
+    page = labelsContainer.page + 1;
+    if (!page || labelsContainer.page > labelsContainer.pages) {
+      break;
+    }
+  }
+  sectionActivity.end();
+};
+
+const fetchSiteInfo = async ({ createNode, reporter }) => {
+  const sectionActivity = reporter.activityTimer('fetch plugin api info');
+  sectionActivity.start();
+  do {
+    const url = 'https://plugins.jenkins.io/api/info';
+    const info = await requestGET({ url, reporter });
+
+    createNode({
+      api: {
+        ...info
+      },
+      website: {
+        commit: getPluginSiteVersion()
+      },
+      id: 'pluginSiteInfo',
+      parent: null,
+      children: [],
+      internal: {
+        type: 'JenkinsPluginSiteInfo',
+        contentDigest: crypto.createHash('md5').update('pluginSiteInfo').digest('hex')
+      }
+    });
+  } while (0);
+  sectionActivity.end();
+};
+
 exports.sourceNodes = async (
   { actions, reporter },
   { /* options */ } // eslint-disable-line no-empty-pattern
 ) => {
   const { createNode } = actions;
 
-  // Do the initial fetch
-  const activity = reporter.activityTimer('fetch plugin data');
-  activity.start();
-
   try {
-    let page;
-
-    do {
-      const url = 'https://plugins.jenkins.io/api/info';
-      console.info(`Fetching '${url}'`);
-      const info = await axios
-        .get(url)
-        .then((results) => {
-          if (results.status !== 200) {
-            throw results.data;
-          }
-          return results.data;
-        });
-
-      createNode({
-        api: {
-          ...info
-        },
-        website: {
-          commit: getPluginSiteVersion()
-        },
-        id: 'pluginSiteInfo',
-        parent: null,
-        children: [],
-        internal: {
-          type: 'JenkinsPluginSiteInfo',
-          contentDigest: crypto.createHash('md5').update('pluginSiteInfo').digest('hex')
-        }
-      });
-    } while (0);
-
-    page = 1;
-    while (1) {
-      const url = `https://plugins.jenkins.io/api/plugins/?limit=100&page=${page}`;
-      console.info(`Fetching '${url}'`);
-      const pluginsContainer = await axios
-        .get(url)
-        .then((results) => {
-          if (results.status !== 200) {
-            throw results.data;
-          }
-          return results.data;
-        });
-
-      for (const plugin of pluginsContainer.plugins) {
-        createNode({
-          ...plugin,
-          id: plugin.name.trim(),
-          parent: null,
-          children: [],
-          internal: {
-            type: 'JenkinsPlugin',
-            contentDigest: crypto.createHash('md5').update(`plugin${plugin.name.trim()}`).digest('hex')
-          }
-        });
-      }
-      page = pluginsContainer.page + 1;
-      if (pluginsContainer.page > pluginsContainer.pages) {
-        break;
-      }
-    }
-
-    page = 1;
-    while (1) {
-      const url = `https://plugins.jenkins.io/api/categories/?limit=100&page=${page}`;
-      console.info(`Fetching '${url}'`);
-      const categoriesContainer = await axios
-        .get(url)
-        .then((results) => {
-          if (results.status !== 200) {
-            throw results.data;
-          }
-          return results.data;
-        });
-
-      for (const category of categoriesContainer.categories) {
-        createNode({
-          ...category,
-          id: category.id.trim(),
-          parent: null,
-          children: [],
-          internal: {
-            type: 'JenkinsPluginCategory',
-            contentDigest: crypto
-              .createHash('md5')
-              .update(`category${category.name}`)
-              .digest('hex')
-          }
-        });
-      }
-      page = categoriesContainer.page + 1;
-      if (!page || categoriesContainer.page > categoriesContainer.pages) {
-        break;
-      }
-    }
-
-    page = 1;
-    while (1) {
-      const url = `https://plugins.jenkins.io/api/labels/?limit=100&page=${page}`;
-      console.info(`Fetching '${url}'`);
-      const labelsContainer = await axios
-        .get(url)
-        .then((results) => {
-          if (results.status !== 200) {
-            throw results.data;
-          }
-          return results.data;
-        });
-
-      for (const label of labelsContainer.labels) {
-        createNode({
-          ...label,
-          id: label.id.trim(),
-          parent: null,
-          children: [],
-          internal: {
-            type: 'JenkinsPluginLabel',
-            contentDigest: crypto
-              .createHash('md5')
-              .update(`label${label.name}`)
-              .digest('hex')
-          }
-        });
-      }
-      page = labelsContainer.page + 1;
-      if (!page || labelsContainer.page > labelsContainer.pages) {
-        break;
-      }
-    }
+    await fetchSiteInfo({ createNode, reporter });
+    await fetchPluginData({ createNode, reporter });
+    await fetchCategoryData({ createNode, reporter });
+    await fetchLabelData({ createNode, reporter });
   } catch (err) {
     reporter.panic(
-      `gatsby-source-goodreads: Failed to parse API call -  ${err}`
+      `gatsby-source-jenkinsplugin: Failed to parse API call -  ${err}`
     );
   }
-  activity.end();
 };
