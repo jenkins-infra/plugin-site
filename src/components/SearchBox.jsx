@@ -22,10 +22,11 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
             <div className={classNames('form-group')} style={{width: '100%'}}>
                 <InputGroup style={{width: '100%'}}>
                     <InputGroupAddon addonType="prepend">
-                        <Button color="primary" onClick={handleToggleShowFilter}>
+                        {setShowFilter && <Button color="primary" onClick={handleToggleShowFilter}>
                             {'Browse '}
                             <span>{showFilter ? '▼' : '◄' }</span>
-                        </Button>
+                        </Button>}
+                        {!setShowFilter && <Button color="primary">Browse</Button>}
                     </InputGroupAddon>
                     <Input 
                         name="query"
@@ -33,7 +34,7 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
                         autoFocus
                         onKeyPress={(e) => {
                             if (e.key === 'Enter') {
-                                handleOnSubmit();
+                                handleOnSubmit(e);
                             } 
                         }}
                         onChange={(e) => setQuery(e.target.value)}
@@ -52,8 +53,8 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
 
 SearchBox.propTypes = {
     handleOnSubmit: PropTypes.func.isRequired,
-    setShowFilter: PropTypes.func.isRequired,
-    showFilter: PropTypes.bool.isRequired,
+    setShowFilter: PropTypes.func,
+    showFilter: PropTypes.bool,
     setQuery: PropTypes.func.isRequired,
     query: PropTypes.string.isRequired
 };

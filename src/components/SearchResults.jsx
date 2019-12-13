@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useStaticQuery, graphql} from 'gatsby';
-
 import classNames from 'classnames';
 import styled from '@emotion/styled';
 

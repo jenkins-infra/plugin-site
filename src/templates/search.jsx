@@ -3,7 +3,6 @@ import React from 'react';
 import querystring from 'querystring';
 import PropTypes from 'prop-types';
 import {navigate} from 'gatsby';
-// import {getSearchParams} from '../commons/gatsby-query-params';
 
 import Layout from '../layout';
 import useFilterHooks from '../components/FiltersHooks';
@@ -13,6 +12,31 @@ import Views from '../components/Views';
 import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
 import Filters from '../components/Filters';
+
+const doSearch = (data, setResults) => {
+    const {categories, labels, page, query, sort} = data;
+    const params = querystring.stringify({
+        categories,
+        labels,
+        page,
+        q: query,
+        sort
+    });
+    const url = `/api/plugins?${params}`;
+    fetch(url)
+        .then((response) => {
+            if (response.status >= 300 || response.status < 200) {
+                const error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+            return response;
+        })
+        .then(response => response.json())
+        .then(setResults);
+};
+
+
 
 function SearchPage({location}) {
     const [showFilter, setShowFilter] = React.useState(true);
@@ -28,12 +52,12 @@ function SearchPage({location}) {
         setData
     } = useFilterHooks();
 
-    const handleOnSubmit = () => {
-        navigate(`/ui/search?${querystring.stringify({
-            sort, categories, labels, view, page, query
-        })}`);
+    const handleOnSubmit = (e) => {
+        const newData = {sort, categories, labels, view, page, query};
+        e.preventDefault();
+        navigate(`/ui/search?${querystring.stringify(newData)}`);
+        doSearch(newData, setResults);
     };
-
     
     React.useEffect(() => {
         const qs = location.search.replace(/^\?/, '');
@@ -41,42 +65,10 @@ function SearchPage({location}) {
             return;
         }
         const parsed = querystring.parse(qs);
-        delete parsed[''];
-        if (!Array.isArray(parsed.categories)) {
-            parsed.categories = [parsed.categories];
-        }
-        if (!Array.isArray(parsed.labels)) {
-            parsed.labels = [parsed.labels];
-        }
-
         setData(parsed);
+        setQuery(parsed.query);
+        doSearch(parsed, setResults);
     }, []);
-
-    React.useEffect(() => {
-        const params = querystring.stringify({
-            categories,
-            labels,
-            page,
-            q: query,
-            sort
-        });
-        const url = `/api/plugins?${params}`;
-        fetch(url)
-            .then((response) => {
-                if (response.status >= 300 || response.status < 200) {
-                    const error = new Error(response.statusText);
-                    error.response = response;
-                    throw error;
-                }
-                return response;
-            })
-            .then(response => response.json())
-            .then(setResults)
-            .catch((err) => {
-                console.error('Problem getting plugins from API'); // eslint-disable-line no-console
-                console.error(err); // eslint-disable-line no-console
-            });
-    }, [location.search]);
 
     return (
         <Layout id="searchpage">
@@ -110,7 +102,7 @@ function SearchPage({location}) {
                             <Views view={view} setView={setView} />
                         </div>
                     </div>
-                    <div className="row">
+                    <div className={`row ${view}`}>
                         <div className="col-md-12">
                             <SearchResults 
                                 showFilter={showFilter}

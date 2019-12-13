@@ -3,16 +3,17 @@ import querystring from 'querystring';
 import {navigate} from 'gatsby';
 
 const ucFirst = s => s.substr(0, 1).toUpperCase() + s.substr(1).toLowerCase();
+const DEFAULT_DATA = {
+    sort: 'relevance',
+    categories: [],
+    labels: [],
+    view: 'Tiles',
+    page: 1,
+};
 
 function useFilterHooks() {
     const [query, setQuery] = React.useState('');
-    const [data, setData] = React.useState({
-        sort: 'relevance',
-        categories: [],
-        labels: [],
-        view: 'Tiles',
-        page: 1,
-    });
+    const [data, setData] = React.useState(DEFAULT_DATA);
 
     const ret = {
         ...data,
@@ -20,11 +21,24 @@ function useFilterHooks() {
         query, setQuery
     };
 
+    ret.setData = (newData) => {
+        delete newData[''];
+        if (!Array.isArray(newData.categories)) {
+            newData.categories = [newData.categories];
+        }
+        if (!Array.isArray(newData.labels)) {
+            newData.labels = [newData.labels];
+        }
+        newData = {...DEFAULT_DATA, ...newData};
+        console.log('newData', newData);
+        setData(newData);
+    };
+
     ['sort', 'categories', 'labels', 'view', 'page'].forEach(key => {
         ret[`set${ucFirst(key)}`] = (val) => {
             const newData = {...data,[key]: val};
             navigate(`/ui/search?${querystring.stringify({...newData, query})}`);
-            setData(newData);
+            ret.setData(newData);
         };
     });
 
