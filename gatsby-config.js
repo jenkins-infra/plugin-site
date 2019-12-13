@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 // This is the content of your gatsby-config.js
 // and what you need to provide as schema:
 module.exports = {
@@ -9,6 +10,10 @@ module.exports = {
         description: 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software',
         image: 'https://jenkins.io/images/logo-title-opengraph.png',
         twitterUsername: '@JenkinsCI'
+    },
+    proxy: {
+        prefix: '/api',
+        url: 'https://plugins.jenkins.io',
     },
     plugins: [
         'gatsby-plugin-emotion',
@@ -47,6 +52,13 @@ module.exports = {
         {
             resolve: 'gatsby-source-jenkinsplugins',
             options: { }
-        }
+        },
+        {
+            resolve: 'gatsby-plugin-nprogress',
+            options: {
+                color: 'tomato',
+                showSpinner: false,
+            },
+        },
     ]
 };

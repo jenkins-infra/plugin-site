@@ -45,34 +45,28 @@ const ItemBox = styled.button`
     }
 `;
 
-function SearchResults({isSearching}) {
-    const data = useStaticQuery(graphql`
-        query {
-            plugins: allJenkinsPlugin {
-                edges {
-                    node {
-                        ...JenkinsPluginFragment
-                    }
-                }
-            }
-        }
-    `);
-    const plugins = data.plugins.edges.slice(0, 30).map(e => e.node);
-    const total = data.plugins.edges.length;
+function SearchResults({results}) {
+    const isSearching = results === null;
 
     return (
         <div>
             {/* <nav className="page-controls">
                 <ul className="nav navbar-nav">
                     <ActiveFilters />
-                    <Pagination total={0} limit={10} page={0} pages={1} setPage={()=>{}} />
+                    <Pagination 
+                        total={results.total}
+                        limit={results.limit}
+                        page={results.page}
+                        pages={results.pages}
+                        setPage={()=>{}} 
+                    />
                 </ul>
             </nav> */}
             {(function () {
                 if (isSearching) {
                     return <Spinner />;
                 }
-                if (total === 0) {
+                if (results.total === 0) {
                     return (
                         <div className="no-results">
                             <h1>No results found</h1>
@@ -84,7 +78,7 @@ function SearchResults({isSearching}) {
                 }
                 return (
                     <GridBox id="cb-item-finder-grid-box">
-                        {plugins.map(plugin => (
+                        {results.plugins.map(plugin => (
                             <ItemBox key={plugin.name} role="button">
                                 <Plugin plugin={plugin} />
                             </ItemBox>
@@ -97,7 +91,14 @@ function SearchResults({isSearching}) {
 }
 
 SearchResults.propTypes = {
-    isSearching: PropTypes.bool.isRequired
+    isSearching: PropTypes.bool.isRequired,
+    results: PropTypes.shape({
+        limit: PropTypes.number.isRequired,
+        page: PropTypes.number.isRequired,
+        pages: PropTypes.number.isRequired,
+        plugins: PropTypes.array.isRequired,
+        total: PropTypes.number.isRequired,
+    })
 };
 
 SearchResults.defaultProps = {

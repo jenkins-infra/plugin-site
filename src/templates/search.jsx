@@ -1,8 +1,12 @@
 // import {graphql} from 'gatsby';
 import React from 'react';
-// import PropTypes from 'prop-types';
+import querystring from 'querystring';
+import PropTypes from 'prop-types';
+import {navigate} from 'gatsby';
+// import {getSearchParams} from '../commons/gatsby-query-params';
 
 import Layout from '../layout';
+import useFilterHooks from '../components/FiltersHooks';
 import SEO from '../components/SEO';
 import Footer from '../components/Footer';
 import Views from '../components/Views';
@@ -10,22 +14,97 @@ import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
 import Filters from '../components/Filters';
 
-function SearchPage() {
-    const [view, setView] = React.useState('Tiles');
+function SearchPage({location}) {
     const [showFilter, setShowFilter] = React.useState(true);
-    const [page, setPage] = React.useState(1);
+    const [results, setResults] = React.useState(null);
+    const {
+        sort, setSort,
+        clearCriteria,
+        categories, toggleCategory,
+        labels, toggleLabel,
+        view, setView,
+        page, setPage,
+        query, setQuery,
+        setData
+    } = useFilterHooks();
+
+    const handleOnSubmit = () => {
+        navigate(`/ui/search?${querystring.stringify({
+            sort, categories, labels, view, page, query
+        })}`);
+    };
+
+    
+    React.useEffect(() => {
+        const qs = location.search.replace(/^\?/, '');
+        if (!qs) {
+            return;
+        }
+        const parsed = querystring.parse(qs);
+        delete parsed[''];
+        if (!Array.isArray(parsed.categories)) {
+            parsed.categories = [parsed.categories];
+        }
+        if (!Array.isArray(parsed.labels)) {
+            parsed.labels = [parsed.labels];
+        }
+
+        setData(parsed);
+    }, []);
+
+    React.useEffect(() => {
+        const params = querystring.stringify({
+            categories,
+            labels,
+            page,
+            q: query,
+            sort
+        });
+        const url = `/api/plugins?${params}`;
+        fetch(url)
+            .then((response) => {
+                if (response.status >= 300 || response.status < 200) {
+                    const error = new Error(response.statusText);
+                    error.response = response;
+                    throw error;
+                }
+                return response;
+            })
+            .then(response => response.json())
+            .then(setResults)
+            .catch((err) => {
+                console.error('Problem getting plugins from API'); // eslint-disable-line no-console
+                console.error(err); // eslint-disable-line no-console
+            });
+    }, [location.search]);
 
     return (
         <Layout id="searchpage">
             <SEO pathname={'/ui/search'} />
             <div className="row d-flex">
                 {showFilter && (<div className="col-md-3 order-last order-md-first">
-                    <Filters showFilter={showFilter} showResults />
+                    <Filters 
+                        showFilter={showFilter}
+                        showResults 
+                        sort={sort}
+                        categories={categories}
+                        labels={labels}
+                        setSort={setSort}
+                        clearCriteria={clearCriteria}
+                        toggleCategory={toggleCategory}
+                        toggleLabel={toggleLabel}
+                    />
                 </div>)}
                 <div className={showFilter ? 'col-md-9' : 'offset-md-1 col-md-11'}>
                     <div className="row">
                         <div className={'col-md-9'}>
-                            <SearchBox showFilter={showFilter} setShowFilter={setShowFilter} /> 
+                            <SearchBox 
+                                showFilter={showFilter}
+                                setShowFilter={setShowFilter}
+                                query={query}
+                                setQuery={setQuery} 
+                                handleOnSubmit={handleOnSubmit}
+                            /> 
                         </div>
                         <div className={'col-md-3'}>
                             <Views view={view} setView={setView} />
@@ -33,7 +112,13 @@ function SearchPage() {
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <SearchResults showFilter={showFilter} showResults page={page} setPage={setPage} />
+                            <SearchResults 
+                                showFilter={showFilter}
+                                showResults
+                                page={page}
+                                setPage={setPage}
+                                results={results}
+                            />
                         </div>
                     </div>
                 </div>
@@ -44,6 +129,7 @@ function SearchPage() {
 }
 
 SearchPage.propTypes = {   
+    location: PropTypes.object.isRequired
 };
 
 export default SearchPage;

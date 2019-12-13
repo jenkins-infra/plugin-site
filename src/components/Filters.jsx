@@ -29,35 +29,14 @@ const HeaderContainer = styled.div`
 `;
 
 
-function Filters({showFilter, showResults}) {
-    const [sort, setSort] = React.useState('relevance');
-    const [categories, setCategories] = React.useState([]);
-    const [labels, setLabels] = React.useState([]);
-
-    const clearCriteria = () => {
-        setCategories([]);
-    };
-
-    const toggleCategory = (category) => {
-        const vals = new Set(categories);
-        if (vals.has(category.id)) {
-            vals.delete(category.id);
-        } else {
-            vals.add(category.id);
-        }
-        setCategories(Array.from(vals));
-    };
-
-    const toggleLabel = (label) => {
-        const vals = new Set(labels);
-        if (vals.has(label.id)) {
-            vals.delete(label.id);
-        } else {
-            vals.add(label.id);
-        }
-        setLabels(Array.from(vals));
-    };
-
+function Filters({
+    showFilter,
+    showResults,
+    sort, setSort,
+    clearCriteria,
+    categories, toggleCategory,
+    labels, toggleLabel
+}) {
     if (!showFilter) {
         return null;
     }
@@ -87,6 +66,13 @@ function Filters({showFilter, showResults}) {
 Filters.propTypes = {
     showFilter: PropTypes.bool.isRequired,
     showResults: PropTypes.bool.isRequired,
+    sort: PropTypes.string.isRequired,
+    setSort: PropTypes.func.isRequired,
+    clearCriteria: PropTypes.func.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    toggleCategory: PropTypes.func.isRequired,
+    labels: PropTypes.arrayOf(PropTypes.string).isRequired, 
+    toggleLabel: PropTypes.func.isRequired,
 };
 
 Filters.defaultProps = {

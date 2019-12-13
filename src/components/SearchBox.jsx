@@ -11,9 +11,7 @@ import {
 
 const SearchBoxContainer = styled.fieldset``;
 
-function SearchBox({handleOnSubmit, showFilter, setShowFilter}) {
-    const [query, setQuery] = React.useState('');
-
+function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery}) {
     const handleToggleShowFilter = (e) => {
         e && e.preventDefault();
         setShowFilter(!showFilter);
@@ -33,6 +31,11 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter}) {
                         name="query"
                         value={query}
                         autoFocus
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                                handleOnSubmit();
+                            } 
+                        }}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="Find plugins..."
                     />
@@ -50,11 +53,12 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter}) {
 SearchBox.propTypes = {
     handleOnSubmit: PropTypes.func.isRequired,
     setShowFilter: PropTypes.func.isRequired,
-    showFilter: PropTypes.bool.isRequired
+    showFilter: PropTypes.bool.isRequired,
+    setQuery: PropTypes.func.isRequired,
+    query: PropTypes.string.isRequired
 };
 
 SearchBox.defaultProps = {
-    handleOnSubmit: () => {}
 };
 
 export default SearchBox;
