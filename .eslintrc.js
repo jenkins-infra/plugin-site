@@ -66,7 +66,6 @@ module.exports = {
         'react/react-in-jsx-scope': 2,
         'react/self-closing-comp': 2,
         'semi': [2],
-        'sort-keys': ['error', 'asc', {'caseSensitive': true, 'minKeys': 2, 'natural': false}],
         'space-before-function-paren': [2, {'anonymous': 'always','named': 'never'}],
         'strict': [2, 'global'],
     },
