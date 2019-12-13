@@ -30,7 +30,6 @@ function useFilterHooks() {
             newData.labels = [newData.labels];
         }
         newData = {...DEFAULT_DATA, ...newData};
-        console.log('newData', newData);
         setData(newData);
     };
 
