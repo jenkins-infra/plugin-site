@@ -154,7 +154,6 @@ function Plugin({plugin: {name, title, stats, version, requiredCore, labels, exc
                 {stats.currentInstalls}
             </InstallsContainer>
             <VersionContainer>
-                <span className="v">{version}</span>
                 <span className="jc">
                     <span className="j">Jenkins</span>
                     <span className="c">{`${requiredCore} +`}</span>
