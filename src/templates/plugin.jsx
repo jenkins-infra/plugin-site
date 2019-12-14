@@ -31,7 +31,7 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
             <Dialog title="Find Plugins">
                 <div className="row flex">
                     <div className="col-md-9 main">
-                        <div className="container-fluid padded">
+                        <div className="padded">
                             <h1 className="title">
                                 {cleanTitle(plugin.title)}
                                 <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
