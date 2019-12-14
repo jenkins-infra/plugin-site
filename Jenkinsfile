@@ -39,8 +39,8 @@ pipeline {
       }
       steps {
         sh """
-        wget -q -O - https://github.com/netlify/netlifyctl/releases/download/v0.4.0/netlifyctl-linux-amd64-0.4.0.tar.gz | tar xvzf -
-        ./netlifyctl -y deploy -P public -A $NETLIFY
+        wget -q -O - https://github.com/netlify/netlifyctl/releases/download/v0.3.3/netlifyctl-linux-amd64-0.3.3.tar.gz | tar xvzf - 
+        ./netlifyctl -y deploy -b public -A $NETLIFY
         """
       }
     }
