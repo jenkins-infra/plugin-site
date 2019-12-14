@@ -13,7 +13,13 @@ module.exports = {
         {
             'env': {'jest': true},
             'extends': ['plugin:jest/recommended'],
-            'files': ['__tests__/**/*.js', '__tests__/**/*.jsx'],
+            'files': [
+                'loadershim.js',
+                '__tests__/**/*.js',
+                '__tests__/**/*.jsx',
+                '__mocks__/**/*.js',
+                '__mocks__/**/*.jsx'
+            ],
             'plugins': ['jest'],
             'rules': {}
         }

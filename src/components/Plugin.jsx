@@ -140,7 +140,7 @@ const AuthorsContainer = styled.div`
     }
 `;
 
-function Plugin({plugin: {name, title, stats, version, requiredCore, labels, excerpt, maintainers}}) {
+function Plugin({plugin: {name, title, stats, requiredCore, labels, excerpt, maintainers}}) {
     return (
         <PluginContainer onClick={() => { navigate(`/${name}`); }}>
             <IconContainer>

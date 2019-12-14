@@ -27,14 +27,14 @@ function PluginDependencies({dependencies} ) {
                         </p>
                         <p>
               Plugins that depend on a Jenkins core version before such a plugin was detached from core may or may not actually use any of its features.
-              To ensure that plugins don't break whenever functionality they depend on is detached from Jenkins core, it is considered to have a dependency on the detached plugin if it declares a dependency on a version of Jenkins core before the split.
+              To ensure that plugins don&apos;t break whenever functionality they depend on is detached from Jenkins core, it is considered to have a dependency on the detached plugin if it declares a dependency on a version of Jenkins core before the split.
               Since that dependency to the detached plugin is not explicitly specified, it is 
                             {' '}
                             <em>implied</em>
 .
                         </p>
                         <p>
-              Plugins that don't regularly update which Jenkins core version they depend on will accumulate implied dependencies over time.
+              Plugins that don&apos;t regularly update which Jenkins core version they depend on will accumulate implied dependencies over time.
                         </p>
                     </div>
                 </ModalBody>
