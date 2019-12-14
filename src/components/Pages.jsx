@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-// import Page from './Page';
 import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 
 export default class Pages extends React.PureComponent {
@@ -59,47 +58,4 @@ export default class Pages extends React.PureComponent {
           </Pagination>
       );
   }
-  
-  
-//   render2() {
-//       const pages = this.pageRange().map((page) => {
-//           const isCurrent = this.props.current == page;
-//           const className = isCurrent ? 'active' : '';
-//           return (
-//               <Page key={page} className={className}isCurrent={isCurrent}
-//                   page={page} updatePage={this.props.updatePage}>
-//                   <span>{page}</span>
-//               </Page>
-//           );
-//       });
-//       const firstPage = this.props.current !== 1 ? (
-//           <Page key={'Start'} className="start" page={1} updatePage={this.props.updatePage}>
-//               <span aria-hidden="true">&laquo;&laquo;</span>
-//           </Page>
-//       ) : null;
-//       const prevPage = this.props.current > 1 ? (
-//           <Page key={'Previous'} className="previous" page={this.props.current - 1} updatePage={this.props.updatePage}>
-//               <span aria-hidden="true">&laquo;</span>
-//           </Page>
-//       ): null;
-//       const nextPage = this.props.current !== this.props.pages ? (
-//           <Page key={'Next'} className="next" page={this.props.current + 1} updatePage={this.props.updatePage}>
-//               <span aria-hidden="true">&raquo;</span>
-//           </Page>
-//       ): null;
-//       const lastPage = this.props.current !== this.props.pages ? (
-//           <Page key={'Last'} className="last" page={this.props.current} updatePage={this.props.updatePage}>
-//               <span aria-hidden="true">&raquo;&raquo;</span>
-//           </Page>
-//       ): null;
-//       return (
-//           <ul className="pagination">
-//               {firstPage}
-//               {prevPage}
-//               {pages}
-//               {nextPage}
-//               {lastPage}
-//           </ul>
-//       );
-//   }
 }
