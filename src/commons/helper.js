@@ -5,13 +5,17 @@
   on the name lumps a bunch of plugins toggether incorrectly.
   but even 'plugin' at the end of the string is just junk.
   All of these are plugins.
+
+  FIXME - 2019-12-14 - Replace with regex so we don't have to worry about case
   */
 export function cleanTitle(title) {
     return title
-        .replace('Jenkins ','')
-        .replace(' Plugin','')
-        .replace(' plugin','')
-        .replace(' Plug-in','')
+        .replace('Jenkins ', '')
+        .replace('jenkins ', '')
+        .replace(' Plugin', '')
+        .replace(' plugin', '')
+        .replace(' Plug-in', '')
+        .replace(' plug-in', '')
         .replace(' for Jenkins','')
         .replace('Hudson ','');
 }
