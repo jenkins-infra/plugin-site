@@ -50,21 +50,15 @@ function SearchPage({location}) {
         categories, toggleCategory,
         labels, toggleLabel,
         view, setView,
-        page, setPage: _setPage,
+        page, setPage,
         query, setQuery, clearQuery,
         setData
-    } = useFilterHooks();
+    } = useFilterHooks({doSearch, setResults});
 
     const handleOnSubmit = (e) => {
         const newData = {sort, categories, labels, view, page, query};
         e.preventDefault();
         navigate(`/ui/search?${querystring.stringify(newData)}`);
-        doSearch(newData, setResults);
-    };
-
-    const setPage = (num) => {
-        const newData = {sort, categories, labels, view, page: num, query};
-        _setPage(num);
         doSearch(newData, setResults);
     };
     
