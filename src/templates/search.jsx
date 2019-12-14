@@ -25,6 +25,7 @@ const doSearch = (data, setResults) => {
         sort
     });
     const url = `https://plugins.jenkins.io/api/plugins?${params}`;
+    setResults(null);
     fetch(url, {mode: 'cors'})
         .then((response) => {
             if (response.status >= 300 || response.status < 200) {
