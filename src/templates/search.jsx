@@ -49,7 +49,7 @@ function SearchPage({location}) {
         categories, toggleCategory,
         labels, toggleLabel,
         view, setView,
-        page, setPage,
+        page, setPage: _setPage,
         query, setQuery, clearQuery,
         setData
     } = useFilterHooks();
@@ -58,6 +58,12 @@ function SearchPage({location}) {
         const newData = {sort, categories, labels, view, page, query};
         e.preventDefault();
         navigate(`/ui/search?${querystring.stringify(newData)}`);
+        doSearch(newData, setResults);
+    };
+
+    const setPage = (num) => {
+        const newData = {sort, categories, labels, view, page: num, query};
+        _setPage(num);
         doSearch(newData, setResults);
     };
     
@@ -121,7 +127,6 @@ function SearchPage({location}) {
                             <SearchResults 
                                 showFilter={showFilter}
                                 showResults
-                                page={page}
                                 setPage={setPage}
                                 results={results}
                             />

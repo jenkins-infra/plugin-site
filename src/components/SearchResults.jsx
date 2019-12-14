@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import styled from '@emotion/styled';
 
 import Pagination from './Pagination';
@@ -42,53 +41,46 @@ const ItemBox = styled.button`
     }
 `;
 
-function SearchResults({results}) {
+function SearchResults({results, setPage}) {
     const isSearching = results === null;
-
+    if (isSearching) {
+        return <div><Spinner /></div>;
+    }
+    if (results.total === 0) {
+        return (
+            <div>
+                <div className="no-results">
+                    <h1>No results found</h1>
+                    <p>
+                        {'You search did not return any results. Please try changing your search criteria or reloading the browser.'} 
+                    </p>
+                </div>
+            </div>
+        );
+    }
     return (
         <div>
-            {/* <nav className="page-controls">
-                <ul className="nav navbar-nav">
-                    <ActiveFilters />
-                    <Pagination 
-                        total={results.total}
-                        limit={results.limit}
-                        page={results.page}
-                        pages={results.pages}
-                        setPage={()=>{}} 
-                    />
-                </ul>
-            </nav> */}
-            {(function () {
-                if (isSearching) {
-                    return <Spinner />;
-                }
-                if (results.total === 0) {
-                    return (
-                        <div className="no-results">
-                            <h1>No results found</h1>
-                            <p>
-                                {'You search did not return any results. Please try changing your search criteria or reloading the browser.'} 
-                            </p>
-                        </div>
-                    );
-                }
-                return (
-                    <GridBox id="cb-item-finder-grid-box">
-                        {results.plugins.map(plugin => (
-                            <ItemBox key={plugin.name} role="button">
-                                <Plugin plugin={plugin} />
-                            </ItemBox>
-                        ))}
-                    </GridBox>
-                );
-            })()}
+            <Pagination 
+                total={results.total}
+                limit={results.limit}
+                page={results.page}
+                pages={results.pages}
+                setPage={setPage} 
+            />
+            <GridBox id="cb-item-finder-grid-box">
+                {results.plugins.map(plugin => (
+                    <ItemBox key={plugin.name} role="button">
+                        <Plugin plugin={plugin} />
+                    </ItemBox>
+                ))}
+            </GridBox>
         </div>
     );
 }
 
 SearchResults.propTypes = {
     isSearching: PropTypes.bool.isRequired,
+    setPage: PropTypes.func.isRequired,
     results: PropTypes.shape({
         limit: PropTypes.number.isRequired,
         page: PropTypes.number.isRequired,

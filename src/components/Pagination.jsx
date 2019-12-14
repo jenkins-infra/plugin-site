@@ -6,14 +6,16 @@ import Pages from './Pages';
 function Pagination({limit, page, pages, total, setPage}) {
     const start = (limit * page) - (limit - 1);
     const end = limit * page <= total ? limit * page : total;
+    if (total == 0) {
+        return null;
+    }
+
     return (
-        <li className="nav-item page-picker">
-            {total > 0 &&
-                <span className="nav-link">
-                    {`${start} to&nbsp${end} of ${total}`}
-                </span>
-            }
-            {total > 0 && pages > 1 &&
+        <>
+            <div className="row nav-link">
+                {`${start} to ${end} of ${total}`}
+            </div>
+            {pages > 1 &&
                 <Pages
                     current={page}
                     pages={pages}
@@ -21,7 +23,7 @@ function Pagination({limit, page, pages, total, setPage}) {
                     updatePage={setPage}
                 />
             }
-        </li>
+        </>
     );
 }
 

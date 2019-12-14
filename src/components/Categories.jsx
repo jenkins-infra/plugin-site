@@ -24,7 +24,6 @@ function Categories({clearCriteria, toggleCategory, activeCategories, activeLabe
         clearCriteria();
     };
     const anyCriteria = activeCategories.length > 0 || activeLabels.length > 0;
-    console.log('anyCriteria', activeCategories.length, activeLabels.length, clearCriteria);
     
     return (
         <fieldset className={classNames(styles.Categories)}>
