@@ -65,6 +65,8 @@
     "reactstrap": "^8.2.0"
   },
   "devDependencies": {
+    "babel-jest": "^24.9.0",
+    "babel-preset-gatsby": "^0.2.26",
     "eslint": "^6.7.1",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-jest": "^23.1.1",
@@ -75,21 +77,17 @@
     "gatsby": "^2.18.4",
     "gatsby-plugin-nprogress": "^2.1.17",
     "gatsby-source-custom-api": "^2.1.2",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
+    "jest-junit": "^10.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-test-renderer": "^16.12.0",
     "stylelint": "^12.0.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-standard": "^19.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "^3.1.1",
     "stylelint-processor-styled-components": "^1.9.0"
-  },
-  "jest": {
-    "globals": {
-      "__REST_API_URL__": "http://localhost:8080"
-    },
-    "collectCoverage": true,
-    "setupTestFrameworkScriptFile": "./setup-jasmine-env.js"
   }
 }

@@ -20,3 +20,4 @@ junit
 public/
 src/layout.jsx
 netlifyctl
+junit.xml
