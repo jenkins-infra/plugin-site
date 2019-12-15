@@ -12,6 +12,9 @@
     "test:watch": "yarn test -- --watch",
     "clean": "rimraf dist junit coverage"
   },
+  "lint-staged": {
+    "*.{js,jsx}": ["eslint --fix", "git add"]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jenkins-infra/plugin-site.git"
@@ -77,9 +80,11 @@
     "gatsby": "^2.18.4",
     "gatsby-plugin-nprogress": "^2.1.17",
     "gatsby-source-custom-api": "^2.1.2",
+    "husky": "^3.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
     "jest-junit": "^10.0.0",
+    "lint-staged": "^9.5.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-test-renderer": "^16.12.0",
