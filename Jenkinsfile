@@ -83,10 +83,7 @@ pipeline {
 
     stage('Deploy to netlify') {
       when {
-        not {
-          environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
-        }
-        // branch 'master'
+        environment name: 'JENKINS_URL', value: 'https://jenkins.gavinmogan.com/'
         branch 'gatsby'
       }
       environment {
