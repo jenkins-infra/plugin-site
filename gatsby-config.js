@@ -1,10 +1,10 @@
-/* eslint-disable sort-keys */
+/* eslint-disable sort-keys, no-console */
 // This is the content of your gatsby-config.js
 // and what you need to provide as schema:
 module.exports = {
     siteMetadata: {
-        url: 'https://jenkins-plugins.g4v.dev/',
-        siteUrl: 'https://jenkins-plugins.g4v.dev/',
+        url: 'https://plugins.jenkins.io/',
+        siteUrl: 'https://plugins.jenkins.io/',
         title: 'Jenkins Plugins',
         titleTemplate: '%s | Jenkins plugin',
         description: 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software',
@@ -55,11 +55,32 @@ module.exports = {
                 showSpinner: false,
             },
         },
-        {
-            resolve: 'gatsby-plugin-canonical-urls',
-            options: {
-                siteUrl: 'https://plugins.jenkins.io/',
-            },
-        },
+        
     ]
 };
+
+// fancy little script to take any ENV variables starting with GATSBY_CONFIG_ and replace the existing export
+Object.keys(process.env).forEach(key => {
+    const PREFIX = 'GATSBY_CONFIG_';
+    if (!key.startsWith(PREFIX)) { return; }
+    // take the env key, less the prefix, split by __ to get the section, then lowercase, and replace _[letter] to be [upper]
+    // so GATSBY_CONFIG_SITE_METADATA__URL => siteMetadata.url = value
+    const splits = key.substr(PREFIX.length).split('__').map(k => k.toLowerCase().replace(/_(.)/, (_, val) => val.toUpperCase()));
+    let element = module.exports;
+    for (const keyPart of splits.slice(0, -1)) {
+        element = element[keyPart];
+        if (!element) { 
+            console.log(`cant find ${keyPart} of ${key}`);
+            return; 
+        }
+    }
+    element[splits.slice(-1)[0]] = process.env[key];
+});
+
+// put the site meta tag based on the site url, after env is applied
+module.exports.plugins.push({
+    resolve: 'gatsby-plugin-canonical-urls',
+    options: {
+        siteUrl: module.exports.siteMetadata.siteUrl,
+    },
+});

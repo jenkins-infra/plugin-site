@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    SLOW_MODE = "true"
+  }
+     
   agent {
     docker {
       image 'node:12'
@@ -17,14 +21,41 @@ pipeline {
       }
     }
 
-    stage('Build') {
-      environment {
-        SLOW_MODE = "true"
-        DISABLE_SEARCH_ENGINE = "true" // for the test site
-      }
+    stage('Clean') {
       steps {
         sh 'yarn clean'
+      }
+    }
+    
+    stage('Build Test') {
+      when {
+        not {
+          environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
+        }
+      }
+      environment {
+        DISABLE_SEARCH_ENGINE = "true" // for the test site
+        GATSBY_CONFIG_SITE_METADATA__URL = "https://jenkins-plugins.g4v.dev/"
+        GATSBY_CONFIG_SITE_METADATA__SITE_URL = "https://jenkins-plugins.g4v.dev/"
+      }
+      steps {
         sh 'yarn build'
+      }
+    }
+
+    stage('Build Production') {
+      when {
+        not {
+          environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
+        }
+      }
+      steps {
+        sh 'yarn build'
+      }
+    }
+
+    stage('Clean') {
+      steps {
         sh 'test -e public/index.html || exit 1'
       }
     }
