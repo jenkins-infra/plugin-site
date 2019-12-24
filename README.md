@@ -18,8 +18,8 @@ We welcome any enhancements and bugfixes, please see our [guidelines](CONTRIBUTI
 
 ## Requirements
 
-- node 6.9+
-- yarn 0.18+
+- node 12+
+- yarn 1.13+
 
 ## Run locally
 
