@@ -54,7 +54,7 @@ pipeline {
       }
     }
 
-    stage('Clean') {
+    stage('Confirm build') {
       steps {
         sh 'test -e public/index.html || exit 1'
       }
