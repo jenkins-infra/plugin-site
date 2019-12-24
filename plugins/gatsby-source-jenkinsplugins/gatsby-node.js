@@ -96,7 +96,9 @@ const fetchPluginData = async ({createNode, reporter}) => {
             );
             promises.push(promise.then(pluginData => {
                 pluginData.wiki = pluginData.wiki || {};
+                // absolutely required fields
                 pluginData.wiki.content = pluginData.wiki.content || '';
+                pluginData.wiki.url = pluginData.wiki.url || '';
                 return createNode({
                     ...pluginData,
                     id: pluginData.name.trim(),
