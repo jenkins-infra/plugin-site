@@ -21,3 +21,4 @@ public/
 src/layout.jsx
 netlifyctl
 junit.xml
+yarn-error.log
