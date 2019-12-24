@@ -67,8 +67,25 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
+    stage('Publish Infra Image'){
       when {
+        environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
+      }
+      steps {
+        script {
+          infra.withDockerCredentials {
+            sh 'docker build -t jenkinsciinfra/plugin-site:dev .'
+            sh 'docker push jenkinsciinfra/plugin-site:dev'
+          }
+        }
+      }
+    }
+
+    stage('Deploy to netlify') {
+      when {
+        not {
+          environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
+        }
         // branch 'master'
         branch 'gatsby'
       }
