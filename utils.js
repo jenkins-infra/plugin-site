@@ -12,15 +12,19 @@ async function makeReactLayout() {
         return null;
     }
 
-    const lines = [
+    const jsxLines = [
         'import React from \'react\';',
         'import { Helmet } from \'react-helmet\';',
-        'import \'./styles/ubuntu-fonts.css\';',
-        'import \'./styles/lato-fonts.css\';',
-        'import \'./styles/roboto-fonts.css\';',
-        'import \'./styles/base.css\';',
-        'import \'./styles/font-icons.css\';',
         'import SiteVersion from \'./components/SiteVersion\';',
+        'import \'./layout.css\';'
+    ];
+
+    const cssLines = [
+        '@import \'./styles/ubuntu-fonts.css\';',
+        '@import \'./styles/lato-fonts.css\';',
+        '@import \'./styles/roboto-fonts.css\';',
+        '@import \'./styles/base.css\';',
+        '@import \'./styles/font-icons.css\';',
     ];
 
     console.info(`Downloading header file from '${headerUrl}'`);
@@ -64,6 +68,11 @@ async function makeReactLayout() {
     $('.nav-link[href="https://plugins.jenkins.io/"]').attr('href', '/');
     $('#grid-box').append('{children}');
     $('#creativecommons').append('<SiteVersion />');
+    $('link[rel="stylesheet"]').each((_, elm) => {
+        elm = $(elm);
+        cssLines.push(`@import url('${elm.attr('href')}');`);
+        elm.remove();
+    });
 
     const keyConversion = {
         class: 'className',
@@ -94,17 +103,17 @@ async function makeReactLayout() {
                 }
                 throw new Error(`not sure how to handle ${child.type}`);
             });
-            lines.push(`${prefix}<${node.name} ${attrs} dangerouslySetInnerHTML={{__html: ${JSON.stringify(text)}}} />`);
+            jsxLines.push(`${prefix}<${node.name} ${attrs} dangerouslySetInnerHTML={{__html: ${JSON.stringify(text)}}} />`);
             return;
         } else if (node.type === 'comment') {
             return;
         } else if (node.type === 'text') {
             const text = node.data;
-            lines.push(`${prefix}${text}`);
+            jsxLines.push(`${prefix}${text}`);
         } else if (node.children && node.children.length) {
-            lines.push(`${prefix}<${node.name} ${attrs}>`);
+            jsxLines.push(`${prefix}<${node.name} ${attrs}>`);
             node.children.forEach(child => handleNode(child, indent+2));
-            lines.push(`${prefix}</${node.name}>`);
+            jsxLines.push(`${prefix}</${node.name}>`);
         } else {
             if (!node.name) {
                 console.log(node);
@@ -112,29 +121,40 @@ async function makeReactLayout() {
             if (node.name === 'siteversion') {
                 node.name = 'SiteVersion';
             }
-            lines.push(`${prefix}<${node.name} ${attrs} />`);
+            jsxLines.push(`${prefix}<${node.name} ${attrs} />`);
         }
     };
 
-    lines.push('export default function Layout({ children, id }) {');
-    lines.push('  return (');
-    lines.push('    <div id={id}>');
-    lines.push('      <Helmet>');
+    jsxLines.push('export default function Layout({ children, id }) {');
+    jsxLines.push('  return (');
+    jsxLines.push('    <div id={id}>');
+    jsxLines.push('      <Helmet>');
     $('head').children(':not(link[rel="stylesheet"])').each((idx, child) => handleNode(child, 2));
     $('head').children('link[rel="stylesheet"]').each((idx, child) => handleNode(child, 2));
-    lines.push('      </Helmet>');
+    jsxLines.push('      </Helmet>');
     $('body').children().each((idx, child) => handleNode(child, 0));
-    lines.push('    </div>');
-    lines.push('  );');
+    jsxLines.push('    </div>');
+    jsxLines.push('  );');
 
 
-    lines.push('}');
-    const output = lines.map(str => str.trimEnd()).filter(Boolean).join('\n');
-    return output;
+    jsxLines.push('}');
+    return {
+        jsxLines: jsxLines.map(str => str.trimEnd()).filter(Boolean).join('\n'),
+        cssLines: cssLines.map(str => str.trimEnd()).filter(Boolean).join('\n')
+    };
 }
 
 exports.makeReactLayout = makeReactLayout;
 
 if (require.main === module) {
-    makeReactLayout().then(console.log);
+    makeReactLayout().then(data => {
+        const fs = require('fs');
+        const {jsxLines, cssLines} = data;
+        if (jsxLines) {
+            fs.writeFileSync('./src/layout.jsx', jsxLines);
+        }
+        if (cssLines) {
+            fs.writeFileSync('./src/layout.css', cssLines);
+        }
+    });
 }

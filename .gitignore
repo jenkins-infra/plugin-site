@@ -101,6 +101,7 @@ public/
 public/
 
 src/layout.jsx
+src/layout.css
 netlifyctl
 junit.xml
 yarn-error.log

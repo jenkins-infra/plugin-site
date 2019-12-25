@@ -6,9 +6,12 @@ const fs = require('fs');
 const {makeReactLayout} = require('./utils.js');
 
 exports.onPreBootstrap = async () => {
-    const layout = await makeReactLayout();
-    if (layout) {
-        fs.writeFileSync('./src/layout.jsx', layout);
+    const {jsxLines, cssLines} = await makeReactLayout();
+    if (jsxLines) {
+        fs.writeFileSync('./src/layout.jsx', jsxLines);
+    }
+    if (cssLines) {
+        fs.writeFileSync('./src/layout.css', cssLines);
     }
 };
 
