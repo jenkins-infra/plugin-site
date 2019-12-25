@@ -45,9 +45,7 @@ pipeline {
 
     stage('Build Production') {
       when {
-        not {
-          environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
-        }
+        environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
       }
       steps {
         sh 'yarn build'
