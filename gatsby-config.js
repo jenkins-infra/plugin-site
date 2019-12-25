@@ -66,7 +66,8 @@ module.exports = {
                 background_color: '#2b5797',
                 theme_color: '#ffffff',
                 display: 'minimal-ui',
-                src: 'src/images/apple-touch-icon.png' // This path is relative to the root of the site.
+                src: 'src/images/apple-touch-icon.png', // This path is relative to the root of the site.
+                legacy: false, // this will not add apple-touch-icon links to <head>
             },
         },
         {
