@@ -129,18 +129,7 @@ body .HomeHeader {
 .SearchBtn {width: 3rem !important}
 body .ShowFilter {text-decoration:none !important; cursor:pointer; vertical-align:middle; position:relative; width:6rem !important; padding-right:2rem;}
 .ShowFilter > span {margin-left:.25rem; font-size:.67rem; display:block; position:absolute; right:0; top:0; bottom:0; border-left:1px solid rgba(0,0,0,.1); padding:.375rem 0; line-height:1.5rem; width:1.5rem;}
-.filters{
-    text-align:left;
-    font-size:.85rem;
-    font-weight:200;
-    padding:4rem 1rem 1.5rem 1rem !important;
-    border-radius:3px;
-    border:1px solid  rgba(0,0,0,.2);
-    box-shadow:0 1px .5rem rgba(0,0,0,.15);
-    background:rgba(255,255,255,.95);
-    position:relative;
-    top:-4rem;
-}
+
 .FiltersBox {
   position:absolute;
   z-index:9;
@@ -150,14 +139,7 @@ body .ShowFilter {text-decoration:none !important; cursor:pointer; vertical-alig
 }
 .FiltersBox .Header {border-top:1px solid rgba(0,0,0,.1); padding:1rem}
 .FiltersBox .Footer {border-top:1px solid rgba(0,0,0,.1); padding-top:1rem}
-.filters fieldset {margin-bottom:1rem;}
-.filters legend {font-size:1rem}
-.filters label{display:block; float:none;}
-.filters li> label > input,
-.filters li> label > span{
-  display:inline-block;
-  margin-left:.25rem;
-}
+
 .Cols3{
   -moz-column-count: 3;
   -webkit-column-count: 3;

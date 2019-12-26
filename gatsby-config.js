@@ -29,9 +29,7 @@ module.exports = {
             resolve: 'gatsby-plugin-postcss',
             options: {
                 postCssPlugins: [
-                    require('postcss-import')({
-                        // root: path.join(__dirname, 'src', 'styles')
-                    }), // Add support for sass-like '@import'
+                    require('postcss-import')({}), // Add support for sass-like '@import'
                     require('postcss-extend')(), // Add support for sass-like '@extend'
                     require('postcss-url')(),
                     require('postcss-nesting')(), // Add support for sass-like nesting of rules

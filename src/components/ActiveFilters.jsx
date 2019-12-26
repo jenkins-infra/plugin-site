@@ -3,41 +3,7 @@ import PropTypes from 'prop-types';
 import ActiveCategory from './ActiveCategory';
 import ActiveLabel from './ActiveLabel';
 import {useStaticQuery, graphql} from 'gatsby';
-import styled from '@emotion/styled';
-
-
-const FilterBox = styled.div`
-    white-space:nowrap;
-    width: 100%;
-    text-align: center;
-
-    div {
-        display:inline-block;
-        white-space:nowrap;
-        margin-right:.5rem;
-        padding-right:.5rem
-    }
-    .nav-link {
-        display:inline-block;
-        margin:0;
-        margin-right:.5rem;
-        cursor: pointer;
-    }
-
-    .nav-link:before {
-        content: 'x ';
-        display: inline-block;
-        margin: -.133rem .25rem 0 -.75rem;
-        padding: 0rem 0 .1rem;
-        border: 1px solid #ccc;
-        line-height: 1em;
-        font-size: .75rem;
-        width: 1.3em;
-        vertical-align: middle;
-        text-align: center;
-        border-radius:2;
-    }
-`;
+import './ActiveFilters.css';
 
 function ActiveFilters({activeCategories, activeLabels, activeQuery, clearQuery, toggleCategory, toggleLabel}) {
     const data = useStaticQuery(graphql`
@@ -90,7 +56,7 @@ function ActiveFilters({activeCategories, activeLabels, activeQuery, clearQuery,
         );
     });
     return (
-        <FilterBox>
+        <div className="ActiveFilters--FilterBox">
             <div>
                 {renderedActiveCategories}
             </div>
@@ -105,7 +71,7 @@ function ActiveFilters({activeCategories, activeLabels, activeQuery, clearQuery,
                     {activeQuery}
                 </a>}
             </div>
-        </FilterBox>
+        </div>
     );
 }
 
