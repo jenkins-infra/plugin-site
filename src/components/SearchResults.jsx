@@ -1,45 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
 
 import Pagination from './Pagination';
 import Plugin from './Plugin';
 import Spinner from './Spinner';
 
-const GridBox = styled.div`
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0;
-`;
-
-const ItemBox = styled.button`
-
-    background: #fff;
-    border: 0.1rem solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
-    color: #666;
-    display: block;
-    flex: 0 0 auto;
-    font-size: 0.85rem;
-    height: 16.5rem;
-    margin: 0.25rem;
-    min-height: 6rem;
-    opacity: 0.9;
-    padding: 0.67rem;
-    text-align: left;
-    text-decoration: none !important;
-    width: 13rem;
-
-    :hover {
-        border: 0.1rem solid #999;
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
-        opacity: 1;
-        text-decoration: none;
-    }
-`;
+import './SearchResults.css';
 
 function SearchResults({results, setPage}) {
     const isSearching = results === null;
@@ -67,13 +33,13 @@ function SearchResults({results, setPage}) {
                 pages={results.pages}
                 setPage={setPage} 
             />
-            <GridBox id="cb-item-finder-grid-box">
+            <div id="cb-item-finder-grid-box" className="SearchResults--GridBox">
                 {results.plugins.map(plugin => (
-                    <ItemBox key={plugin.name} role="button">
+                    <div className="SearchResults--ItemBox" key={plugin.name} role="button">
                         <Plugin plugin={plugin} />
-                    </ItemBox>
+                    </div>
                 ))}
-            </GridBox>
+            </div>
         </div>
     );
 }
