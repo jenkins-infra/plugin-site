@@ -31,6 +31,8 @@ module.exports = {
                     require('postcss-import')({}), // Add support for sass-like '@import'
                     require('postcss-extend')(), // Add support for sass-like '@extend'
                     require('postcss-url')(),
+                    require('postcss-css-variables')(),
+                    require('postcss-calc')(),
                     require('postcss-nesting')(), // Add support for sass-like nesting of rules
                     require('postcss-pxtorem')({
                         mediaQuery: false, // Ignore media queries

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {navigate} from 'gatsby';
-import './Plugin.css';
 
 import {cleanTitle} from '../commons/helper';
 import Icon from '../components/Icon';

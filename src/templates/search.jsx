@@ -117,11 +117,12 @@ function SearchPage({location}) {
                             />
                         </div>
                     </div>
-                    <div className={`row ${view}`}>
+                    <div className="view">
                         <div className="col-md-12">
                             <SearchResults 
                                 showFilter={showFilter}
                                 showResults
+                                view={view}
                                 setPage={setPage}
                                 results={results}
                             />

@@ -7,7 +7,7 @@ import Spinner from './Spinner';
 
 import './SearchResults.css';
 
-function SearchResults({results, setPage}) {
+function SearchResults({results, setPage, view}) {
     const isSearching = results === null;
     if (isSearching) {
         return <div><Spinner /></div>;
@@ -33,7 +33,7 @@ function SearchResults({results, setPage}) {
                 pages={results.pages}
                 setPage={setPage} 
             />
-            <div id="cb-item-finder-grid-box" className="SearchResults--GridBox">
+            <div id="cb-item-finder-grid-box" className={`SearchResults--GridBox SearchResults--${view}`}>
                 {results.plugins.map(plugin => (
                     <div className="SearchResults--ItemBox" key={plugin.name} role="button">
                         <Plugin plugin={plugin} />
@@ -47,6 +47,7 @@ function SearchResults({results, setPage}) {
 SearchResults.propTypes = {
     isSearching: PropTypes.bool.isRequired,
     setPage: PropTypes.func.isRequired,
+    view: PropTypes.string.isRequired,
     results: PropTypes.shape({
         limit: PropTypes.number.isRequired,
         page: PropTypes.number.isRequired,
