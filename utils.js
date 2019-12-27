@@ -29,7 +29,7 @@ async function makeReactLayout() {
 
     console.info(`Downloading header file from '${headerUrl}'`);
     const parsedHeaderUrl = url.parse(headerUrl);
-    const baseUrl = `${parsedHeaderUrl.protocol}//${parsedHeaderUrl.hostname}`;
+    const baseUrl = `${parsedHeaderUrl.protocol}//${parsedHeaderUrl.hostname}${ parsedHeaderUrl.port ? `:${parsedHeaderUrl.port}` : ''}`;
     const content = await axios
         .get(headerUrl)
         .then((results) => {
@@ -43,14 +43,20 @@ async function makeReactLayout() {
     $('title').text('Title must not be empty');
     $('img, script').each(function () {
         const src = $(this).attr('src');
-        if (src && src.startsWith('/')) {
+        if (!src) { return; }
+        if ( src.startsWith('/')) {
             $(this).attr('src', `${baseUrl}${src}`);
+        } else {
+            $(this).attr('src', src.replace('https://jenkins.io', baseUrl));
         }
     });
     $('a, link').each(function () {
         const href = $(this).attr('href');
-        if (href !== undefined && href.startsWith('/')) {
+        if (!href) { return; }
+        if (href.startsWith('/')) {
             $(this).attr('href', `${baseUrl}${href}`);
+        } else {
+            $(this).attr('href', href.replace('https://jenkins.io', baseUrl));
         }
     });
     // Even though we're supplying our own this one still causes a conflict.
