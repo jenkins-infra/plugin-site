@@ -14,7 +14,7 @@
         margin: 0;
         margin-right: 0.5rem;
     }
-    & .nav-link:before {
+    & .nav-link::before {
         border: 1px solid #ccc;
         border-radius: 2;
         content: 'x ';

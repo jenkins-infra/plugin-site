@@ -2,7 +2,6 @@
     height: 100%;
     position: relative;
 }
-
 .Plugin--IconContainer {
     bottom: 0.25rem;
     display: block;
@@ -10,7 +9,6 @@
     position: absolute;
     right: 0.25rem;
     z-index: 9;
-
     & i {
         border-radius: 3px;
         color: #fff;
@@ -26,7 +24,6 @@
         width: 3rem;
     }
 }
-
 .Plugin--TitleContainer {
     & h4 {
         color: #000;
@@ -39,32 +36,27 @@
         position: relative;
     }
 }
-
 .Plugin--InstallsContainer {
     color: #999;
     font-size: 0.75rem;
     margin: 0;
     padding: 0;
 }
-
 .Plugin--VersionContainer {
     color: #59a;
     font-size: 0.75rem;
     line-height: 1rem;
     margin-right: 0.5rem;
-
     & span {
         margin-right: 0.25rem;
     }
 }
-
 .Plugin--LabelsContainer {
     line-height: 0.75rem;
     margin: 0.25rem 0;
     max-height: 2rem;
     min-height: 1rem;
     overflow: hidden;
-
     & div {
         color: #59a;
         display: inline;
@@ -72,16 +64,13 @@
         line-height: 1rem;
         margin-right: 0.25rem;
     }
-
     & div::after {
         content: ", ";
     }
-
     & div:last-child::after {
         content: "";
     }
 }
-
 .Plugin--ExcerptContainer {
     height: 4.4rem;
     line-height: 1.1rem;
@@ -95,14 +84,12 @@
     white-space: normal;
     word-wrap: break-word;
 }
-
 .Plugin--AuthorsContainer {
     bottom: 1rem;
     max-width: 8rem;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
-
     & div {
         color: #59a;
         font-size: 0.75rem;
