@@ -182,6 +182,10 @@
         grid-gap: 1em;
         grid-template-areas: "title installs version labels excerpt authors";
         grid-template-columns: 15em 5em 7em 7em 1fr 5em;
+
+        @media (max-width: 992px) {
+            grid-template-areas: "title" "installs" "version" "labels" "excerpt" "authors";
+        }
         & .Plugin--IconContainer {
             display: none;
             visibility: hidden;
