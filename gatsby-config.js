@@ -17,7 +17,6 @@ module.exports = {
         url: 'https://plugins.jenkins.io',
     },
     plugins: [
-        'gatsby-plugin-emotion',
         'gatsby-plugin-react-helmet',
         {
             resolve: 'gatsby-plugin-sitemap',

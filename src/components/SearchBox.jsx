@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styled from '@emotion/styled';
 import {
     InputGroup,
     InputGroupAddon,
@@ -9,7 +8,6 @@ import {
     Button
 } from 'reactstrap';
 
-const SearchBoxContainer = styled.fieldset``;
 
 function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery}) {
     const handleToggleShowFilter = (e) => {
@@ -18,7 +16,7 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
     };
     
     return (
-        <SearchBoxContainer className={classNames('form-inline SearchBox')}>
+        <fieldset className={classNames('form-inline SearchBox')}>
             <div className={classNames('form-group')} style={{width: '100%'}}>
                 <InputGroup style={{width: '100%'}}>
                     <InputGroupAddon addonType="prepend">
@@ -47,7 +45,7 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
                     </InputGroupAddon>
                 </InputGroup>
             </div>
-        </SearchBoxContainer>
+        </fieldset>
     );
 }
 
