@@ -69,7 +69,13 @@ body .showResults #plugin-search-form:before {display:none}
     text-align: left;
 }
 #plugin-search-form h1:before {display:inline-block; position:absolute; left:-150px; vertical-align:top; margin:-3rem 0 0; width:271px; height:294px; background:url('../images/jenkins-voltron-271x294x8.png') no-repeat;background-size:100%; content:''}
-#plugin-search-form .nav {vertical-align:middle; padding-left:145px}
+#plugin-search-form .nav {
+    vertical-align:middle;
+    padding-left:145px
+    @media (max-width: 992px) {
+        padding: 0;
+    }
+}
 #plugin-search-form .nav > .btn-group {display:none;}
 #plugin-search-form .nav-box {display:inline-block; text-align:left;}
 
