@@ -1,3 +1,7 @@
+:root {
+    --plugin-icon-width: 2.25em;
+    --plugin-padding: 0.25em;
+}
 .SearchResults--GridBox {
     display: flex;
     flex-direction: row;
@@ -30,9 +34,6 @@
     }
 }
 .Plugin--PluginContainer {
-    --plugin-icon-width: 2.25em;
-    --plugin-padding: 0.25em;
-
     height: 100%;
     position: relative;
 }
