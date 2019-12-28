@@ -1,8 +1,6 @@
 import React from 'react';
 import {useStaticQuery, graphql} from 'gatsby';
 
-import classNames from 'classnames';
-import styles from '../styles/main.module.css';
 import PluginLink from './PluginLink';
 
 function Footer() {
@@ -57,7 +55,7 @@ function Footer() {
         <div className="NoLabels">
             <div className="container">
                 <div className="row">
-                    <div className={classNames(styles.NoLabels, 'col-md-3 NoLabels')}>
+                    <div className="col-md-3">
                         <fieldset>
                             <legend>Browse categories</legend>
                             { data.categories.edges.map(({node: category}) => {

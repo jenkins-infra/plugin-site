@@ -1,0 +1,57 @@
+.IndexPage--Container {
+    text-align:center;
+    border-radius:0;
+    margin:0;
+    transition: all .5s ease-in;
+    background:#168bb9;
+    min-height: 350px;
+    color: white;
+
+    @media (min-width: 992px) {
+        padding-left: 280px;
+
+        &.jumbotron:before {
+            display:inline-block;
+            position:absolute;
+            left:5px;
+            vertical-align:top;
+            margin:-3rem 0 0;
+            width:271px;
+            height:294px;
+            background:url('../images/jenkins-voltron-271x294x8.png') no-repeat;
+            background-size:100%;
+            content:'';
+        }
+    }
+
+    & p {
+        box-sizing: content-box;
+        margin: 1rem 1rem;
+        font-size: 1.1rem;
+        text-align: left;       
+    }
+
+    & h1 {
+        font-family: Georgia, Times, Times New Roman, serif;
+        font-size: 24px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 70px;
+
+        font-size: 64px;
+    }
+
+    & fieldset {
+        display: block;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 10%;
+        margin-right: 10%;
+        text-align: center;
+    }
+
+    & .input-group > .form-control {
+        max-width: 75%;
+    }
+}

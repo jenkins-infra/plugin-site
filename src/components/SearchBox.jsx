@@ -7,6 +7,7 @@ import {
     Input,
     Button
 } from 'reactstrap';
+import './SearchBox.css';
 
 
 function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery}) {
@@ -16,9 +17,9 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
     };
     
     return (
-        <fieldset className={classNames('form-inline SearchBox')}>
-            <div className={classNames('form-group')} style={{width: '100%'}}>
-                <InputGroup style={{width: '100%'}}>
+        <fieldset className="SearchBox--Container">
+            <div className="form-group">
+                <InputGroup>
                     <InputGroupAddon addonType="prepend">
                         {setShowFilter && <Button color="primary" onClick={handleToggleShowFilter}>
                             {'Browse '}

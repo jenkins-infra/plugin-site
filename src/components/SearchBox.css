@@ -1,0 +1,5 @@
+.SearchBox--Container {
+    & .form-group {
+        width: 100%;
+    }
+}

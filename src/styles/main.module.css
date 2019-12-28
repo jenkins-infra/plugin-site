@@ -100,16 +100,6 @@ nav form {
   padding:.25rem 1rem;
 }
 
-body .HomeHeader {
-  text-align:center;
-  border-radius:0;
-  margin:0;
-  transition: all .5s ease-in;
-  background:#168bb9
-  /*background:url(/css/voltron.png) no-repeat 15% center #eee;*/
-
-}
-
 .homeTite {font-family: 'zWalter Turncoat','zShadows Into Light', cursive; color:rgba(0,0,0,.8); margin-bottom:1rem}
 .SearchBox{
   display:inline-block;
