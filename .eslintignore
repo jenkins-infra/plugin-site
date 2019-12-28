@@ -71,3 +71,4 @@ yarn-error.log
 .yarn-integrity
 
 src/layout.jsx
+src/layout.css
