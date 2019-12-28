@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    SLOW_MODE = "true"
+    GET_CONTENT = "true"
   }
 
   agent {
