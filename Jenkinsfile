@@ -24,7 +24,6 @@ pipeline {
         DISABLE_SEARCH_ENGINE = "true" // for the test site
         GATSBY_CONFIG_SITE_METADATA__URL = "https://jenkins-plugins.g4v.dev/"
         GATSBY_CONFIG_SITE_METADATA__SITE_URL = "https://jenkins-plugins.g4v.dev/"
-        DOCKER = credentials("dockerhub-halkeye")
       }
       steps {
         sh """
@@ -33,6 +32,18 @@ pipeline {
             --build-arg GATSBY_CONFIG_SITE_METADATA__URL \
             --build-arg GATSBY_CONFIG_SITE_METADATA__SITE_URL \
             -t ${imageName()}:${imageTag()} .
+        """
+      }
+    }
+    stage('Docker Push Test') {
+      when {
+        environment name: 'JENKINS_URL', value: 'https://jenkins.gavinmogan.com/'
+      }
+      environment {
+        DOCKER = credentials("dockerhub-halkeye")
+      }
+      steps {
+        sh """
           docker login --username=\"$DOCKER_USR\" --password=\"$DOCKER_PSW\"
           docker push ${imageName()}:${imageTag()}
         """
