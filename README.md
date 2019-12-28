@@ -29,7 +29,7 @@ yarn dev
 Open http://localhost:3000
 ```
 
-To aid with development mode, an environment variable of SLOW_MODE is needed to trigger the code to pull down the very slow wiki/github content for each plugin
+To aid with development mode, an environment variable of GET_CONTENT is needed to force gatsby to pull down the slow wiki/github content for each plugin
 
 
 ## Linting

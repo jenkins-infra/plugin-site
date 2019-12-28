@@ -90,7 +90,7 @@ const fetchPluginData = async ({createNode, reporter}) => {
 
         for (const plugin of pluginsContainer.plugins) {
             const promise = (
-                process.env.SLOW_MODE
+                process.env.GET_CONTENT
                     ? requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${plugin.name}`})
                     : Promise.resolve(plugin)
             );
