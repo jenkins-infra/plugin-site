@@ -19,6 +19,12 @@ module.exports = {
     plugins: [
         'gatsby-plugin-react-helmet',
         {
+            resolve: 'gatsby-plugin-polyfill-io',
+            options: {
+                features: ['Array.prototype.map', 'fetch']
+            },
+        },
+        {
             resolve: 'gatsby-plugin-sitemap',
             options: {
                 sitemapSize: 5000
