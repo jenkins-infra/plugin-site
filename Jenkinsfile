@@ -69,7 +69,9 @@ pipeline {
       }
       steps {
         sh """
-          docker cp ${imageName()}:${imageTag()}:public public
+          rm -rf public
+          mkdir -p public
+          docker run --rm ${imageName()}:${imageTag()} tar -cf - /pub | tar -C public --strip-components=1 -xf -
           wget -q -O - https://github.com/netlify/netlifyctl/releases/download/v0.3.3/netlifyctl-linux-amd64-0.3.3.tar.gz | tar xvzf - 
           ./netlifyctl -y deploy -b public -A $NETLIFY
         """
@@ -92,5 +94,5 @@ def imageTag() {
     sh("find")
     env.GIT_COMMIT = sh(returnStdout: true, script: "git log --pretty=format:'%h' -n 1").trim();
   }
-  return "${env.BUILD_NUMBER}-${env.GIT_COMMIT}"
+  return "${env.BUILD_NUMBER}-${env.GIT_COMMIT.take(6)}"
 }
