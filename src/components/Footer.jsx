@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStaticQuery, graphql} from 'gatsby';
+import {useStaticQuery, graphql,Link} from 'gatsby';
 
 import PluginLink from './PluginLink';
 
@@ -45,12 +45,6 @@ function Footer() {
       }
   `);
 
-    const handleOnClick = (event) => {
-        event.preventDefault();
-        const categoryId = event.target.getAttribute('data-id');
-        this.props.setCategory(categoryId);
-    };
-
     return (
         <div className="NoLabels">
             <div className="container">
@@ -61,7 +55,7 @@ function Footer() {
                             { data.categories.edges.map(({node: category}) => {
                                 return(
                                     <div key={`cat-box-id-${category.id}`} className="Entry-box">
-                                        <a href="#" onClick={handleOnClick} data-id={category.id}>{category.title}</a>
+                                        <Link to={`/ui/search?categories=${category.id}`}>{category.title}</Link>
                                     </div>
                                 );
                             })}
