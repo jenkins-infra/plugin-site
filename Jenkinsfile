@@ -29,6 +29,7 @@ pipeline {
         sh """
           docker build \
             --build-arg DISABLE_SEARCH_ENGINE \
+            --build-arg GET_CONTENT \
             --build-arg GATSBY_CONFIG_SITE_METADATA__URL \
             --build-arg GATSBY_CONFIG_SITE_METADATA__SITE_URL \
             -t ${imageName()}:${imageTag()} .
@@ -58,6 +59,7 @@ pipeline {
         sh """
           docker build \
             --build-arg DISABLE_SEARCH_ENGINE \
+            --build-arg GET_CONTENT \
             --build-arg GATSBY_CONFIG_SITE_METADATA__URL \
             --build-arg GATSBY_CONFIG_SITE_METADATA__SITE_URL \
             -t ${imageName()}:${imageTag()} .
