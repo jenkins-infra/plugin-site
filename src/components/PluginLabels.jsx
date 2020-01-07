@@ -24,10 +24,9 @@ function PluginLabels({labels}) {
     }
     return labels.map((id) => {
         const text = (allLabels[id] || id).replace(' development', '');
-        // FIXME - search page
         return (
             <div className="label-link" key={id}>
-                <Link to={`/?labels=${id}`}>{text}</Link>
+                <Link to={`/ui/search?labels=${id}`}>{text}</Link>
             </div>
         );
     });

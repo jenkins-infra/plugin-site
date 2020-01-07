@@ -44,6 +44,9 @@
     & * {
         color: #666;
     }
+    & a, & a:visited {
+        color: #59a; 
+    }
     &:hover {
         text-decoration: none;
     }
