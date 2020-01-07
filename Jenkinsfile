@@ -16,9 +16,7 @@ pipeline {
   stages {
     stage('Build Test') {
       when {
-        not {
-          environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
-        }
+        environment name: 'JENKINS_URL', value: 'https://jenkins.gavinmogan.com/'
       }
       environment {
         DISABLE_SEARCH_ENGINE = "true" // for the test site
@@ -53,7 +51,9 @@ pipeline {
 
     stage('Build Production') {
       when {
-        environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
+        not {
+          environment name: 'JENKINS_URL', value: 'https://jenkins.gavinmogan.com/'
+        }
       }
       steps {
         sh """
