@@ -16,9 +16,7 @@ pipeline {
   stages {
     stage('Build Test') {
       when {
-        not {
-          environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
-        }
+        environment name: 'JENKINS_URL', value: 'https://jenkins.gavinmogan.com/'
       }
       environment {
         DISABLE_SEARCH_ENGINE = "true" // for the test site
@@ -103,8 +101,6 @@ def imageName() {
 
 def imageTag() {
   if (!env.GIT_COMMIT) {
-    sh("pwd")
-    sh("find")
     env.GIT_COMMIT = sh(returnStdout: true, script: "git log --pretty=format:'%h' -n 1").trim();
   }
   return "${env.BUILD_NUMBER}-${env.GIT_COMMIT.take(6)}"
