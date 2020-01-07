@@ -34,20 +34,6 @@ pipeline {
         """
       }
     }
-    stage('Docker Push Test') {
-      when {
-        environment name: 'JENKINS_URL', value: 'https://jenkins.gavinmogan.com/'
-      }
-      environment {
-        DOCKER = credentials("dockerhub-halkeye")
-      }
-      steps {
-        sh """
-          docker login --username=\"$DOCKER_USR\" --password=\"$DOCKER_PSW\"
-          docker push ${imageName()}:${imageTag()}
-        """
-      }
-    }
 
     stage('Build Production') {
       when {
@@ -64,9 +50,33 @@ pipeline {
             --build-arg GATSBY_CONFIG_SITE_METADATA__SITE_URL \
             -t ${imageName()}:${imageTag()} .
         """
+      }
+    }
+
+    stage('Docker Push Test') {
+      when {
+        environment name: 'JENKINS_URL', value: 'https://jenkins.gavinmogan.com/'
+      }
+      environment {
+        DOCKER = credentials("dockerhub-halkeye")
+      }
+      steps {
+        sh """
+          docker login --username=\"$DOCKER_USR\" --password=\"$DOCKER_PSW\"
+          docker push ${imageName()}:${imageTag()}
+        """
+      }
+    }
+
+
+    stage('Docker Push Production') {
+      when {
+        environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
+      }
+      steps {
         script {
           infra.withDockerCredentials {
-            sh "docker push ${imageName()}:${imageTag()}'"
+            sh "docker push ${imageName()}:${imageTag()}"
           }
         }
       }
