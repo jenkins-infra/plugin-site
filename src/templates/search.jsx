@@ -75,7 +75,8 @@ function SearchPage({location}) {
 
     return (
         <Layout id="searchpage">
-            <SEO pathname={'/ui/search'} />
+            <SEO pathname={'/ui/search'} title="Search Results" />
+
             <div className="row d-flex">
                 {showFilter && (<div className="col-md-3 order-last order-md-first">
                     <Filters 
