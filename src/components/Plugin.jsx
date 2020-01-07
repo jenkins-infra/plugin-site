@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {navigate} from 'gatsby';
+import {Link} from 'gatsby';
 
 import {cleanTitle} from '../commons/helper';
 import Icon from '../components/Icon';
@@ -25,7 +25,7 @@ Maintainers.propTypes = PluginMaintainers.propTypes;
 
 function Plugin({plugin: {name, title, stats, requiredCore, labels, excerpt, maintainers}}) {
     return (
-        <div className="Plugin--PluginContainer" onClick={() => { navigate(`/${name}`); }}>
+        <Link to={`/${name}`} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
                 <Icon title={title} />
             </div>
@@ -49,7 +49,7 @@ function Plugin({plugin: {name, title, stats, requiredCore, labels, excerpt, mai
             <div className="Plugin--AuthorsContainer">
                 <Maintainers maintainers={maintainers} />
             </div>
-        </div>
+        </Link>
     );
 }
 
