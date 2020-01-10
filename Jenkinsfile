@@ -4,9 +4,7 @@ pipeline {
   }
 
   agent {
-    docker {
-      image 'node:12'
-    }
+    label 'docker&&linux'
   }
 
   triggers {
@@ -23,7 +21,7 @@ pipeline {
 
     stage('Yarn Install') {
       steps {
-        sh 'yarn install'
+        runDockerCommand('node:13',  'yarn install')
       }
     }
 
@@ -37,7 +35,7 @@ pipeline {
         GATSBY_CONFIG_SITE_METADATA__SITE_URL = "https://jenkins-plugins.g4v.dev/"
       }
       steps {
-        sh 'yarn build'
+        runDockerCommand('node:13',  'yarn build')
       }
     }
 
@@ -48,28 +46,24 @@ pipeline {
         }
       }
       steps {
-        sh 'yarn build'
+        runDockerCommand('node:13',  'yarn build')
       }
     }
 
-	stage('Check build') {
-		steps {
-		    sh 'test -e public/index.html || exit 1'
+    stage('Check build') {
+      steps {
+        sh 'test -e public/index.html || exit 1'
       }
     }
 
-	stage('Lint and Test') {
-	    steps {
-			sh 'yarn lint'
-            sh 'yarn test'
-            stash includes: 'public/*', name: 'public'
+    stage('Lint and Test') {
+      steps {
+        runDockerCommand('node:13',  'yarn lint')
+        runDockerCommand('node:13',  'yarn test')
       }
     }
 
     stage('Deploy to azure') {
-      agent {
-        label 'docker&&linux'
-      }
       when {
         environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
       }
@@ -78,7 +72,6 @@ pipeline {
       }
       steps {
         /* -> https://github.com/Azure/blobxfer */
-        unstash 'public'
         sh './scripts/blobxfer upload \
           --local-path public \
           --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
@@ -109,4 +102,17 @@ pipeline {
       }
     }
   }
+}
+
+def runDockerCommand(image, cmd) {
+  sh """
+    docker run \
+      --network host \
+      --rm \
+      -w "\$PWD" \
+      -v "\$PWD:\$PWD" \
+      -u \$(id -u):\$(id -g) \
+      $image \
+      $cmd
+  """
 }
