@@ -104,7 +104,7 @@ pipeline {
   }
 }
 
-def runDockerCommand(cmd) {
+def runDockerCommand(image, cmd) {
   sh """
     docker run \
       --network host \
