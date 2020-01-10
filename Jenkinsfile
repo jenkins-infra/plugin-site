@@ -4,6 +4,7 @@ pipeline {
   }
 
   agent {
+    label 'docker&&linux'
     docker {
       image 'node:12'
     }
@@ -52,20 +53,24 @@ pipeline {
       }
     }
 
-		stage('Check build') {
-			steps {
-				sh 'test -e public/index.html || exit 1'
+	stage('Check build') {
+		steps {
+		    sh 'test -e public/index.html || exit 1'
       }
     }
 
-		stage('Lint and Test') {
-			steps {
-				sh 'yarn lint'
-        sh 'yarn test'
+	stage('Lint and Test') {
+	    steps {
+			sh 'yarn lint'
+            sh 'yarn test'
+            stash includes: 'public/*', name: 'public'
       }
     }
 
     stage('Deploy to azure') {
+      agent {
+        label 'docker&&linux'
+      }
       when {
         environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
       }
@@ -74,6 +79,7 @@ pipeline {
       }
       steps {
         /* -> https://github.com/Azure/blobxfer */
+        unstash 'public'
         sh './scripts/blobxfer upload \
           --local-path public \
           --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
