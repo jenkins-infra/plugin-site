@@ -52,17 +52,17 @@ pipeline {
       }
     }
 
-	stage('Check build') {
-		steps {
-		    sh 'test -e public/index.html || exit 1'
+    stage('Check build') {
+      steps {
+        sh 'test -e public/index.html || exit 1'
       }
     }
 
-	stage('Lint and Test') {
-	    steps {
-			sh 'yarn lint'
-            sh 'yarn test'
-            stash includes: 'public/*', name: 'public'
+    stage('Lint and Test') {
+      steps {
+        sh 'yarn lint'
+        sh 'yarn test'
+        stash includes: 'public/*', name: 'public'
       }
     }
 
