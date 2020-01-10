@@ -68,28 +68,22 @@ pipeline {
 
     stage('Deploy to azure') {
       agent {
-        label 'docker&&linux'
+        docker {
+          image 'mcr.microsoft.com/azure-cli'
+        }
       }
       when {
         environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
       }
       environment {
-        PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
+        HOME="${WORKSPACE}"
+        AZURE_STORAGE_ACCOUNT = "pluginsite"
+        AZURE_STORAGE_KEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
+        container_name = ""
       }
       steps {
-        /* -> https://github.com/Azure/blobxfer */
         unstash 'public'
-        sh './scripts/blobxfer upload \
-          --local-path public \
-          --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
-          --storage-account pluginsite \
-          --remote-path pluginsite \
-          --recursive \
-          --mode file \
-          --skip-on-md5-match \
-          --file-md5 \
-          --connect-timeout 30 \
-          --delete'
+        sh 'az storage blob sync --destination $container_name --source public'
       }
     }
 
