@@ -62,7 +62,13 @@ pipeline {
       steps {
         sh 'yarn lint'
         sh 'yarn test'
-        stash includes: 'public/*', name: 'public'
+      }
+    }
+
+    stage('Tar and stash') {
+      steps {
+        sh 'tar czf public.tgz public/'
+        stash includes: 'public.tgz', name: 'public'
       }
     }
 
@@ -83,6 +89,7 @@ pipeline {
       }
       steps {
         unstash 'public'
+        sh 'tar xfz public.tgz'
         sh 'az storage blob sync --destination $container_name --source public'
       }
     }
