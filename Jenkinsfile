@@ -4,7 +4,6 @@ pipeline {
   }
 
   agent {
-    label 'docker&&linux'
     docker {
       image 'node:12'
     }
