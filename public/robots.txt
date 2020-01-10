@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://plugins.jenkins.io/sitemap.xml

@@ -1,0 +1,30 @@
+.ActiveFilters--FilterBox {
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
+    & div {
+        display: inline-block;
+        margin-right: 0.5rem;
+        padding-right: 0.5rem;
+        white-space: nowrap;
+    }
+    & .nav-link {
+        cursor: pointer;
+        display: inline-block;
+        margin: 0;
+        margin-right: 0.5rem;
+    }
+    & .nav-link::before {
+        border: 1px solid #ccc;
+        border-radius: 2;
+        content: 'x ';
+        display: inline-block;
+        font-size: 0.75rem;
+        line-height: 1em;
+        margin: -0.133rem 0.25rem 0 -0.75rem;
+        padding: 0 0 0.1rem;
+        text-align: center;
+        vertical-align: middle;
+        width: 1.3em;
+    }
+}

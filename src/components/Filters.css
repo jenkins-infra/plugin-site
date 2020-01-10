@@ -1,0 +1,31 @@
+.Filters--Container {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    box-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.15);
+    font-size: 0.85rem;
+    font-weight: 200;
+    padding: 4rem 1rem 1.5rem 1rem !important;
+    position: relative;
+    text-align: left;
+    top: -4rem;
+    & fieldset {
+        margin-bottom: 1rem;
+    }
+    & legend {
+        font-size: 1rem;
+    }
+    & label {
+        display: block;
+        float: none;
+    }
+    & li > label > input,
+    & li > label > span {
+        display: inline-block;
+        margin-left: 0.25rem;
+    }
+    & .headerContainer {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+    }
+}
