@@ -78,7 +78,7 @@ pipeline {
           --local-path public \
           --storage-account-key $STORAGEACCOUNTKEY \
           --storage-account pluginshtml \
-          --remote-path pluginshtml \
+          --remote-path pluginsite \
           --recursive \
           --mode file \
           --skip-on-md5-match \
