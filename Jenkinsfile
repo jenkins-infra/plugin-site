@@ -4,9 +4,7 @@ pipeline {
   }
 
   agent {
-    docker {
-      image 'node:12'
-    }
+    label 'docker&&linux'                                                                                                                               │································································································
   }
 
   triggers {
@@ -23,7 +21,7 @@ pipeline {
 
     stage('Yarn Install') {
       steps {
-        sh 'yarn install'
+        runDockerCommand('node:13',  'yarn install')
       }
     }
 
@@ -37,7 +35,7 @@ pipeline {
         GATSBY_CONFIG_SITE_METADATA__SITE_URL = "https://jenkins-plugins.g4v.dev/"
       }
       steps {
-        sh 'yarn build'
+        runDockerCommand('node:13',  'yarn build')
       }
     }
 
@@ -48,7 +46,7 @@ pipeline {
         }
       }
       steps {
-        sh 'yarn build'
+        runDockerCommand('node:13',  'yarn build')
       }
     }
 
@@ -60,23 +58,12 @@ pipeline {
 
     stage('Lint and Test') {
       steps {
-        sh 'yarn lint'
-        sh 'yarn test'
-      }
-    }
-
-    stage('Tar and stash') {
-      steps {
-        sh 'tar czf public.tgz public/'
-        sh 'ls -lth public.tgz'
-        stash includes: 'public.tgz', name: 'public'
+        runDockerCommand('node:13',  'yarn lint')
+        runDockerCommand('node:13',  'yarn test')
       }
     }
 
     stage('Deploy to azure') {
-      agent {
-        label 'docker&&linux'
-      }
       when {
         environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
       }
@@ -85,8 +72,6 @@ pipeline {
       }
       steps {
         /* -> https://github.com/Azure/blobxfer */
-        unstash 'public'
-        sh 'tar xfz public.tgz'
         sh './scripts/blobxfer upload \
           --local-path public \
           --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
@@ -117,4 +102,17 @@ pipeline {
       }
     }
   }
+}
+
+def runDockerCommand(cmd) {
+  sh """
+    docker run \
+      --network host \
+      --rm \
+      -w "\$PWD" \
+      -v "\$PWD:\$PWD" \
+      -u \$(id -u):\$(id -g) \
+      $image \
+      $cmd
+  """
 }
