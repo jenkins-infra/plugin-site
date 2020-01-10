@@ -70,14 +70,14 @@ pipeline {
         environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
       }
       environment {
-        STORAGEACCOUNTKEY = credentials('PLUGINSHTML_STORAGEACCOUNTKEY')
+        PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
       }
       steps {
         /* -> https://github.com/Azure/blobxfer */
         sh './scripts/blobxfer upload \
           --local-path public \
-          --storage-account-key $STORAGEACCOUNTKEY \
-          --storage-account pluginshtml \
+          --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
+          --storage-account pluginsite \
           --remote-path pluginsite \
           --recursive \
           --mode file \
