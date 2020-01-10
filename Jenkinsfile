@@ -69,20 +69,18 @@ pipeline {
         STORAGEACCOUNTKEY = credentials('PLUGINSHTML_STORAGEACCOUNTKEY')
       }
       steps {
-        /* -> https://github.com/Azure/blobxfer
-           Require credential 'JAVADOC_STORAGEACCOUNTKEY' set to the storage account key */
-          sh './scripts/blobxfer upload \
-            --local-path public \
-            --storage-account-key $STORAGEACCOUNTKEY \
-            --storage-account pluginshtml \
-            --remote-path pluginshtml \
-            --recursive \
-            --mode file \
-            --skip-on-md5-match \
-            --file-md5 \
-            --connect-timeout 30 \
-            --delete'
-        }
+        /* -> https://github.com/Azure/blobxfer */
+        sh './scripts/blobxfer upload \
+          --local-path public \
+          --storage-account-key $STORAGEACCOUNTKEY \
+          --storage-account pluginshtml \
+          --remote-path pluginshtml \
+          --recursive \
+          --mode file \
+          --skip-on-md5-match \
+          --file-md5 \
+          --connect-timeout 30 \
+          --delete'
       }
     }
 
