@@ -9,6 +9,10 @@ pipeline {
     }
   }
 
+  triggers {
+    cron('H H/3 * * *')
+  }
+
   options {
     timeout(time: 60, unit: 'MINUTES')
     ansiColor('xterm')
