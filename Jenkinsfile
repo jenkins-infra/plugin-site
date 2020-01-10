@@ -68,29 +68,36 @@ pipeline {
     stage('Tar and stash') {
       steps {
         sh 'tar czf public.tgz public/'
+        sh 'ls -lth public.tgz'
         stash includes: 'public.tgz', name: 'public'
       }
     }
 
     stage('Deploy to azure') {
       agent {
-        docker {
-          image 'mcr.microsoft.com/azure-cli'
-        }
+        label 'docker&&linux'
       }
       when {
         environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
       }
       environment {
-        HOME="${WORKSPACE}"
-        AZURE_STORAGE_ACCOUNT = "pluginsite"
-        AZURE_STORAGE_KEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
-        container_name = ""
+        PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
       }
       steps {
+        /* -> https://github.com/Azure/blobxfer */
         unstash 'public'
         sh 'tar xfz public.tgz'
-        sh 'az storage blob sync --destination $container_name --source public'
+        sh './scripts/blobxfer upload \
+          --local-path public \
+          --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
+          --storage-account pluginsite \
+          --remote-path pluginsite \
+          --recursive \
+          --mode file \
+          --skip-on-md5-match \
+          --file-md5 \
+          --connect-timeout 30 \
+          --delete'
       }
     }
 
