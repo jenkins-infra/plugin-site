@@ -73,7 +73,7 @@ pipeline {
       steps {
         /* -> https://github.com/Azure/blobxfer */
         sh './scripts/blobxfer upload \
-          --local-path public \
+          --local-path "$WORKSPACE/public" \
           --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
           --storage-account pluginsite \
           --remote-path pluginsite \
