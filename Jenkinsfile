@@ -71,9 +71,8 @@ pipeline {
         PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
       }
       steps {
-        /* -> https://github.com/Azure/blobxfer */
-        sh './scripts/blobxfer upload \
-          --local-path "$WORKSPACE/public" \
+        runDockerCommand("mcr.microsoft.com/blobxfer:1.9.1", 'upload \
+          --local-path public \
           --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
           --storage-account pluginsite \
           --remote-path pluginsite \
@@ -82,7 +81,7 @@ pipeline {
           --skip-on-md5-match \
           --file-md5 \
           --connect-timeout 30 \
-          --delete'
+          --delete')
       }
     }
 
