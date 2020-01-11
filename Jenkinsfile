@@ -74,7 +74,7 @@ pipeline {
         runDockerCommand("mcr.microsoft.com/blobxfer:1.9.1", 'upload \
           --local-path public \
           --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
-          --storage-account pluginsite \
+          --storage-account prodpluginsite \
           --remote-path pluginsite \
           --recursive \
           --mode file \
