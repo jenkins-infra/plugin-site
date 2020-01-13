@@ -107,7 +107,7 @@ def runDockerCommand(image, cmd) {
   sh """
     docker run \
       --network host \
-      --rm \
+      --rm -e GET_CONTENT \
       -w "\$PWD" \
       -v "\$PWD:\$PWD" \
       -u \$(id -u):\$(id -g) \
