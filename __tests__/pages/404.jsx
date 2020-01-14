@@ -14,6 +14,9 @@ beforeEach(() => {
                 website: {
                     commit: 'FAKECommit'
                 }
+            },
+            site: {
+                buildTime: new Date(1578980455).getUTCDate()
             }
         };
     });
