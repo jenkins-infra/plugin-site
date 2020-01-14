@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 const axios = require('axios');
 const crypto = require('crypto');
-const path = require('path');
-const fs = require('fs');
+const {execSync} = require('child_process');
 
 /*
 plugins: `
@@ -61,21 +60,12 @@ const requestGET = ({url, reporter}) => {
         .get(url)
         .then((results) => {
             activity.end();
-      
+
             if (results.status !== 200) {
                 throw results.data;
             }
             return results.data;
         });
-};
-
-const getPluginSiteVersion = () => {
-    const file = path.join(__dirname, '../../GIT_COMMIT');
-    try {
-        return fs.existsSync(file) ? fs.readFileSync(file, 'utf-8').substring(0, 7) : 'TBD';
-    } catch (err) {
-        console.error(`Problem accessing ${file}`, err);
-    }
 };
 
 const fetchPluginData = async ({createNode, reporter}) => {
@@ -176,7 +166,8 @@ const fetchSiteInfo = async ({createNode, reporter}) => {
             ...info
         },
         website: {
-            commit: getPluginSiteVersion()
+            commit: execSync('git rev-parse HEAD').toString().trim(),
+            version: require('find-package-json')().next().value.version,
         },
         id: 'pluginSiteInfo',
         parent: null,

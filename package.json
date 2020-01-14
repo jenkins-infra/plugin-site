@@ -61,6 +61,8 @@
     "chart.js": "^2.9.3",
     "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
+    "find-package-json": "^1.2.0",
+    "gatsby-image": "^2.2.38",
     "gatsby-plugin-canonical-urls": "^2.1.18",
     "gatsby-plugin-manifest": "^2.2.30",
     "gatsby-plugin-polyfill-io": "^1.1.0",
