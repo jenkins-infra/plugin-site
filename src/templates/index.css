@@ -12,8 +12,6 @@
     text-align: center;
     transition: all 0.5s ease-in;
     & .logo {
-        background: url('../images/jenkins-voltron-271x294x8.png') no-repeat;
-        background-size: 100%;
         display: inline-block;
         grid-area: logo;
         height: 294px;
