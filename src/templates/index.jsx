@@ -7,6 +7,7 @@ import Layout from '../layout';
 import SEO from '../components/SEO';
 import Footer from '../components/Footer';
 import SearchBox from '../components/SearchBox';
+import JenkinsVoltron from '../components/JenkinsVoltron';
 
 import './index.css';
 
@@ -22,7 +23,7 @@ function IndexPage() {
         <Layout>
             <SEO />
             <div className="IndexPage--Container jumbotron" onSubmit={handleOnSubmit}>
-                <div className="logo" />
+                <div className="logo"><JenkinsVoltron /></div>
                 <div className="content">
                     <h1>Plugins Index</h1>
                     <p>Discover the 1500+ community contributed Jenkins plugins to support building, deploying and automating any project.</p>
