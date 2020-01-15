@@ -25,26 +25,7 @@ pipeline {
       }
     }
 
-    stage('Build Test') {
-      when {
-        environment name: 'JENKINS_URL', value: 'https://jenkins.gavinmogan.com/'
-      }
-      environment {
-        DISABLE_SEARCH_ENGINE = "true" // for the test site
-        GATSBY_CONFIG_SITE_METADATA__URL = "https://jenkins-plugins.g4v.dev/"
-        GATSBY_CONFIG_SITE_METADATA__SITE_URL = "https://jenkins-plugins.g4v.dev/"
-      }
-      steps {
-        runDockerCommand('node:13',  'yarn build')
-      }
-    }
-
     stage('Build Production') {
-      when {
-        not {
-          environment name: 'JENKINS_URL', value: 'https://jenkins.gavinmogan.com/'
-        }
-      }
       steps {
         runDockerCommand('node:13',  'yarn build')
       }
@@ -82,22 +63,6 @@ pipeline {
           --file-md5 \
           --connect-timeout 30 \
           --delete')
-      }
-    }
-
-    stage('Deploy to netlify') {
-      when {
-        environment name: 'JENKINS_URL', value: 'https://jenkins.gavinmogan.com/'
-        branch 'gatsby'
-      }
-      environment {
-        NETLIFY = credentials('netlify-gavinmogan')
-      }
-      steps {
-        sh """
-          wget -q -O - https://github.com/netlify/netlifyctl/releases/download/v0.3.3/netlifyctl-linux-amd64-0.3.3.tar.gz | tar xvzf - 
-          ./netlifyctl -y deploy -b public -A $NETLIFY
-        """
       }
     }
   }
