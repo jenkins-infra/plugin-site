@@ -65,6 +65,7 @@ pipeline {
           --delete')
       }
     }
+  }
 }
 
 def runDockerCommand(image, cmd) {
