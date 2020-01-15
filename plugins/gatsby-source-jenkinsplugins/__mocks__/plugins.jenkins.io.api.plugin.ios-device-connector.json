@@ -1,0 +1,865 @@
+{
+  "firstRelease": "2012-10-07T18:59:35.16Z",
+  "buildDate": "2012-10-10",
+  "categories": [
+    "languagesPlatforms",
+    "buildManagement"
+  ],
+  "dependencies": [
+    {
+      "name": "external-monitor-job",
+      "title": "External Monitor Job Type",
+      "optional": false,
+      "version": "1.0",
+      "implied": true
+    },
+    {
+      "name": "ldap",
+      "title": "LDAP",
+      "optional": false,
+      "version": "1.0",
+      "implied": true
+    },
+    {
+      "name": "pam-auth",
+      "title": "PAM Authentication",
+      "optional": false,
+      "version": "1.0",
+      "implied": true
+    },
+    {
+      "name": "mailer",
+      "title": "Mailer",
+      "optional": false,
+      "version": "1.2",
+      "implied": true
+    },
+    {
+      "name": "matrix-auth",
+      "title": "Matrix Authorization Strategy",
+      "optional": false,
+      "version": "1.0.2",
+      "implied": true
+    },
+    {
+      "name": "windows-slaves",
+      "title": "WMI Windows Agents",
+      "optional": false,
+      "version": "1.0",
+      "implied": true
+    },
+    {
+      "name": "antisamy-markup-formatter",
+      "title": "OWASP Markup Formatter",
+      "optional": false,
+      "version": "1.0",
+      "implied": true
+    },
+    {
+      "name": "matrix-project",
+      "title": "Matrix Project",
+      "optional": false,
+      "version": "1.0",
+      "implied": true
+    },
+    {
+      "name": "junit",
+      "title": "JUnit",
+      "optional": false,
+      "version": "1.0",
+      "implied": true
+    },
+    {
+      "name": "bouncycastle-api",
+      "title": "bouncycastle API",
+      "optional": false,
+      "version": "2.16.0",
+      "implied": true
+    },
+    {
+      "name": "command-launcher",
+      "title": "Command Agent Launcher",
+      "optional": false,
+      "version": "1.0",
+      "implied": true
+    },
+    {
+      "name": "jdk-tool",
+      "title": "Oracle Java SE Development Kit Installer",
+      "optional": false,
+      "version": "1.0",
+      "implied": true
+    },
+    {
+      "name": "jaxb",
+      "title": "JAXB",
+      "optional": false,
+      "version": "2.3.0",
+      "implied": true
+    },
+    {
+      "name": "trilead-api",
+      "title": "Trilead API",
+      "optional": false,
+      "version": "1.0.4",
+      "implied": true
+    }
+  ],
+  "maintainers": [
+    {
+      "id": "kohsuke",
+      "name": null,
+      "email": null
+    }
+  ],
+  "excerpt": "Talks to iOS devices connected to slaves and do stuff.",
+  "gav": "org.jenkins-ci.plugins:ios-device-connector:1.2",
+  "labels": [
+    "builder",
+    "ios"
+  ],
+  "name": "ios-device-connector",
+  "previousTimestamp": "2012-10-08T20:04:52.00Z",
+  "previousVersion": "1.1",
+  "releaseTimestamp": "2012-10-10T17:27:58.00Z",
+  "requiredCore": "1.466",
+  "scm": {
+    "issues": null,
+    "link": "https://github.com/jenkinsci/ios-device-connector-plugin",
+    "inLatestRelease": null,
+    "sinceLatestRelease": null,
+    "pullRequests": null
+  },
+  "sha1": "B2z2wTyA8l5uwz9HqD+xhG9Hjns=",
+  "stats": {
+    "installations": [
+      {
+        "timestamp": 1349049600000,
+        "total": 55
+      },
+      {
+        "timestamp": 1351728000000,
+        "total": 97
+      },
+      {
+        "timestamp": 1354320000000,
+        "total": 123
+      },
+      {
+        "timestamp": 1356998400000,
+        "total": 177
+      },
+      {
+        "timestamp": 1359676800000,
+        "total": 186
+      },
+      {
+        "timestamp": 1362096000000,
+        "total": 192
+      },
+      {
+        "timestamp": 1364774400000,
+        "total": 229
+      },
+      {
+        "timestamp": 1367366400000,
+        "total": 235
+      },
+      {
+        "timestamp": 1370044800000,
+        "total": 256
+      },
+      {
+        "timestamp": 1372636800000,
+        "total": 262
+      },
+      {
+        "timestamp": 1375315200000,
+        "total": 282
+      },
+      {
+        "timestamp": 1377993600000,
+        "total": 295
+      },
+      {
+        "timestamp": 1380585600000,
+        "total": 302
+      },
+      {
+        "timestamp": 1383264000000,
+        "total": 299
+      },
+      {
+        "timestamp": 1385856000000,
+        "total": 300
+      },
+      {
+        "timestamp": 1388534400000,
+        "total": 312
+      },
+      {
+        "timestamp": 1391212800000,
+        "total": 318
+      },
+      {
+        "timestamp": 1393632000000,
+        "total": 330
+      },
+      {
+        "timestamp": 1396310400000,
+        "total": 321
+      },
+      {
+        "timestamp": 1398902400000,
+        "total": 343
+      },
+      {
+        "timestamp": 1401580800000,
+        "total": 337
+      },
+      {
+        "timestamp": 1404172800000,
+        "total": 360
+      },
+      {
+        "timestamp": 1406851200000,
+        "total": 357
+      },
+      {
+        "timestamp": 1409529600000,
+        "total": 371
+      },
+      {
+        "timestamp": 1412121600000,
+        "total": 376
+      },
+      {
+        "timestamp": 1414800000000,
+        "total": 367
+      },
+      {
+        "timestamp": 1417392000000,
+        "total": 356
+      },
+      {
+        "timestamp": 1420070400000,
+        "total": 371
+      },
+      {
+        "timestamp": 1422748800000,
+        "total": 357
+      },
+      {
+        "timestamp": 1425168000000,
+        "total": 398
+      },
+      {
+        "timestamp": 1427846400000,
+        "total": 380
+      },
+      {
+        "timestamp": 1430438400000,
+        "total": 373
+      },
+      {
+        "timestamp": 1433116800000,
+        "total": 397
+      },
+      {
+        "timestamp": 1435708800000,
+        "total": 399
+      },
+      {
+        "timestamp": 1438387200000,
+        "total": 401
+      },
+      {
+        "timestamp": 1441065600000,
+        "total": 403
+      },
+      {
+        "timestamp": 1443657600000,
+        "total": 415
+      },
+      {
+        "timestamp": 1446336000000,
+        "total": 400
+      },
+      {
+        "timestamp": 1448928000000,
+        "total": 414
+      },
+      {
+        "timestamp": 1451606400000,
+        "total": 421
+      },
+      {
+        "timestamp": 1454284800000,
+        "total": 363
+      },
+      {
+        "timestamp": 1456790400000,
+        "total": 360
+      },
+      {
+        "timestamp": 1459468800000,
+        "total": 359
+      },
+      {
+        "timestamp": 1462060800000,
+        "total": 386
+      },
+      {
+        "timestamp": 1464739200000,
+        "total": 390
+      },
+      {
+        "timestamp": 1467331200000,
+        "total": 353
+      },
+      {
+        "timestamp": 1470009600000,
+        "total": 373
+      },
+      {
+        "timestamp": 1472688000000,
+        "total": 385
+      },
+      {
+        "timestamp": 1475280000000,
+        "total": 357
+      },
+      {
+        "timestamp": 1477958400000,
+        "total": 354
+      },
+      {
+        "timestamp": 1480550400000,
+        "total": 356
+      },
+      {
+        "timestamp": 1483228800000,
+        "total": 359
+      },
+      {
+        "timestamp": 1485907200000,
+        "total": 358
+      },
+      {
+        "timestamp": 1488326400000,
+        "total": 374
+      },
+      {
+        "timestamp": 1491004800000,
+        "total": 348
+      },
+      {
+        "timestamp": 1493596800000,
+        "total": 345
+      },
+      {
+        "timestamp": 1496275200000,
+        "total": 352
+      },
+      {
+        "timestamp": 1498867200000,
+        "total": 350
+      },
+      {
+        "timestamp": 1501545600000,
+        "total": 339
+      },
+      {
+        "timestamp": 1504224000000,
+        "total": 370
+      },
+      {
+        "timestamp": 1506816000000,
+        "total": 357
+      },
+      {
+        "timestamp": 1509494400000,
+        "total": 384
+      },
+      {
+        "timestamp": 1512086400000,
+        "total": 361
+      },
+      {
+        "timestamp": 1514764800000,
+        "total": 372
+      },
+      {
+        "timestamp": 1517443200000,
+        "total": 358
+      },
+      {
+        "timestamp": 1519862400000,
+        "total": 370
+      },
+      {
+        "timestamp": 1522540800000,
+        "total": 356
+      },
+      {
+        "timestamp": 1525132800000,
+        "total": 367
+      },
+      {
+        "timestamp": 1527811200000,
+        "total": 367
+      },
+      {
+        "timestamp": 1530403200000,
+        "total": 396
+      },
+      {
+        "timestamp": 1533081600000,
+        "total": 423
+      },
+      {
+        "timestamp": 1535760000000,
+        "total": 410
+      },
+      {
+        "timestamp": 1538352000000,
+        "total": 427
+      },
+      {
+        "timestamp": 1541030400000,
+        "total": 440
+      },
+      {
+        "timestamp": 1543640400000,
+        "total": 429
+      },
+      {
+        "timestamp": 1546318800000,
+        "total": 428
+      },
+      {
+        "timestamp": 1548997200000,
+        "total": 430
+      },
+      {
+        "timestamp": 1551416400000,
+        "total": 473
+      },
+      {
+        "timestamp": 1554091200000,
+        "total": 455
+      },
+      {
+        "timestamp": 1556683200000,
+        "total": 446
+      },
+      {
+        "timestamp": 1559361600000,
+        "total": 417
+      },
+      {
+        "timestamp": 1561953600000,
+        "total": 425
+      },
+      {
+        "timestamp": 1564632000000,
+        "total": 410
+      },
+      {
+        "timestamp": 1567310400000,
+        "total": 409
+      },
+      {
+        "timestamp": 1569902400000,
+        "total": 407
+      },
+      {
+        "timestamp": 1572580800000,
+        "total": 380
+      },
+      {
+        "timestamp": 1575176400000,
+        "total": 365
+      }
+    ],
+    "installationsPercentage": [
+      {
+        "timestamp": 1349049600000,
+        "percentage": 0.10514242018734468
+      },
+      {
+        "timestamp": 1351728000000,
+        "percentage": 0.18167175472440208
+      },
+      {
+        "timestamp": 1354320000000,
+        "percentage": 0.2390159538291133
+      },
+      {
+        "timestamp": 1356998400000,
+        "percentage": 0.3111048616725841
+      },
+      {
+        "timestamp": 1359676800000,
+        "percentage": 0.3244148323856699
+      },
+      {
+        "timestamp": 1362096000000,
+        "percentage": 0.3109664253437637
+      },
+      {
+        "timestamp": 1364774400000,
+        "percentage": 0.35684233490198525
+      },
+      {
+        "timestamp": 1367366400000,
+        "percentage": 0.35990504632820275
+      },
+      {
+        "timestamp": 1370044800000,
+        "percentage": 0.38952541805511176
+      },
+      {
+        "timestamp": 1372636800000,
+        "percentage": 0.37967712952496885
+      },
+      {
+        "timestamp": 1375315200000,
+        "percentage": 0.4127090986257665
+      },
+      {
+        "timestamp": 1377993600000,
+        "percentage": 0.4217961366333519
+      },
+      {
+        "timestamp": 1380585600000,
+        "percentage": 0.4070464868653377
+      },
+      {
+        "timestamp": 1383264000000,
+        "percentage": 0.404518703916661
+      },
+      {
+        "timestamp": 1385856000000,
+        "percentage": 0.4160829946880071
+      },
+      {
+        "timestamp": 1388534400000,
+        "percentage": 0.4048898232500195
+      },
+      {
+        "timestamp": 1391212800000,
+        "percentage": 0.4044823770335415
+      },
+      {
+        "timestamp": 1393632000000,
+        "percentage": 0.3987915407854985
+      },
+      {
+        "timestamp": 1396310400000,
+        "percentage": 0.38414590364041074
+      },
+      {
+        "timestamp": 1398902400000,
+        "percentage": 0.4027949034114262
+      },
+      {
+        "timestamp": 1401580800000,
+        "percentage": 0.39119634109534973
+      },
+      {
+        "timestamp": 1404172800000,
+        "percentage": 0.39365343189248886
+      },
+      {
+        "timestamp": 1406851200000,
+        "percentage": 0.3908259893809185
+      },
+      {
+        "timestamp": 1409529600000,
+        "percentage": 0.386752426324184
+      },
+      {
+        "timestamp": 1412121600000,
+        "percentage": 0.3798018161799614
+      },
+      {
+        "timestamp": 1414800000000,
+        "percentage": 0.3716004131143557
+      },
+      {
+        "timestamp": 1417392000000,
+        "percentage": 0.36080959185948697
+      },
+      {
+        "timestamp": 1420070400000,
+        "percentage": 0.3602221531769458
+      },
+      {
+        "timestamp": 1422748800000,
+        "percentage": 0.34367569336811804
+      },
+      {
+        "timestamp": 1425168000000,
+        "percentage": 0.3538312456104478
+      },
+      {
+        "timestamp": 1427846400000,
+        "percentage": 0.34005691478889627
+      },
+      {
+        "timestamp": 1430438400000,
+        "percentage": 0.33394212863486605
+      },
+      {
+        "timestamp": 1433116800000,
+        "percentage": 0.33768266335505165
+      },
+      {
+        "timestamp": 1435708800000,
+        "percentage": 0.329855657148526
+      },
+      {
+        "timestamp": 1438387200000,
+        "percentage": 0.3344063245325817
+      },
+      {
+        "timestamp": 1441065600000,
+        "percentage": 0.32622333751568383
+      },
+      {
+        "timestamp": 1443657600000,
+        "percentage": 0.32921875991622773
+      },
+      {
+        "timestamp": 1446336000000,
+        "percentage": 0.31493831145824314
+      },
+      {
+        "timestamp": 1448928000000,
+        "percentage": 0.3262025765275972
+      },
+      {
+        "timestamp": 1451606400000,
+        "percentage": 0.3318880567599527
+      },
+      {
+        "timestamp": 1454284800000,
+        "percentage": 0.33677530685518664
+      },
+      {
+        "timestamp": 1456790400000,
+        "percentage": 0.3286770747740345
+      },
+      {
+        "timestamp": 1459468800000,
+        "percentage": 0.29094504461427495
+      },
+      {
+        "timestamp": 1462060800000,
+        "percentage": 0.29628492477740254
+      },
+      {
+        "timestamp": 1464739200000,
+        "percentage": 0.28994342386011346
+      },
+      {
+        "timestamp": 1467331200000,
+        "percentage": 0.2711026119546268
+      },
+      {
+        "timestamp": 1470009600000,
+        "percentage": 0.2821269192950609
+      },
+      {
+        "timestamp": 1472688000000,
+        "percentage": 0.28837871240777496
+      },
+      {
+        "timestamp": 1475280000000,
+        "percentage": 0.26892857949965726
+      },
+      {
+        "timestamp": 1477958400000,
+        "percentage": 0.2593045656648525
+      },
+      {
+        "timestamp": 1480550400000,
+        "percentage": 0.2661960878147993
+      },
+      {
+        "timestamp": 1483228800000,
+        "percentage": 0.2546406304306193
+      },
+      {
+        "timestamp": 1485907200000,
+        "percentage": 0.2565903585097691
+      },
+      {
+        "timestamp": 1488326400000,
+        "percentage": 0.2491506228765572
+      },
+      {
+        "timestamp": 1491004800000,
+        "percentage": 0.24144701694985812
+      },
+      {
+        "timestamp": 1493596800000,
+        "percentage": 0.22869643034702197
+      },
+      {
+        "timestamp": 1496275200000,
+        "percentage": 0.23335366338734057
+      },
+      {
+        "timestamp": 1498867200000,
+        "percentage": 0.2327684818174563
+      },
+      {
+        "timestamp": 1501545600000,
+        "percentage": 0.21959371923096854
+      },
+      {
+        "timestamp": 1504224000000,
+        "percentage": 0.23889462809917356
+      },
+      {
+        "timestamp": 1506816000000,
+        "percentage": 0.22953623393407102
+      },
+      {
+        "timestamp": 1509494400000,
+        "percentage": 0.23825330545438753
+      },
+      {
+        "timestamp": 1512086400000,
+        "percentage": 0.2364701104400571
+      },
+      {
+        "timestamp": 1514764800000,
+        "percentage": 0.23323907632309882
+      },
+      {
+        "timestamp": 1517443200000,
+        "percentage": 0.2333600589266741
+      },
+      {
+        "timestamp": 1519862400000,
+        "percentage": 0.22518273274461234
+      },
+      {
+        "timestamp": 1522540800000,
+        "percentage": 0.2176039119804401
+      },
+      {
+        "timestamp": 1525132800000,
+        "percentage": 0.22118960228060341
+      },
+      {
+        "timestamp": 1527811200000,
+        "percentage": 0.2168697481474478
+      },
+      {
+        "timestamp": 1530403200000,
+        "percentage": 0.2214765100671141
+      },
+      {
+        "timestamp": 1533081600000,
+        "percentage": 0.23084983300224846
+      },
+      {
+        "timestamp": 1535760000000,
+        "percentage": 0.21285100948484864
+      },
+      {
+        "timestamp": 1538352000000,
+        "percentage": 0.1982082346934039
+      },
+      {
+        "timestamp": 1541030400000,
+        "percentage": 0.19699845983022315
+      },
+      {
+        "timestamp": 1543640400000,
+        "percentage": 0.19571346453891003
+      },
+      {
+        "timestamp": 1546318800000,
+        "percentage": 0.18386696280130768
+      },
+      {
+        "timestamp": 1548997200000,
+        "percentage": 0.18791653009942094
+      },
+      {
+        "timestamp": 1551416400000,
+        "percentage": 0.18772597563928037
+      },
+      {
+        "timestamp": 1554091200000,
+        "percentage": 0.17978291706673305
+      },
+      {
+        "timestamp": 1556683200000,
+        "percentage": 0.17306744585821662
+      },
+      {
+        "timestamp": 1559361600000,
+        "percentage": 0.16567210431383145
+      },
+      {
+        "timestamp": 1561953600000,
+        "percentage": 0.15980086931672907
+      },
+      {
+        "timestamp": 1564632000000,
+        "percentage": 0.15628752330018258
+      },
+      {
+        "timestamp": 1567310400000,
+        "percentage": 0.15385309850359993
+      },
+      {
+        "timestamp": 1569902400000,
+        "percentage": 0.1517224411283378
+      },
+      {
+        "timestamp": 1572580800000,
+        "percentage": 0.1408696103472436
+      },
+      {
+        "timestamp": 1575176400000,
+        "percentage": 0.13804893361926482
+      }
+    ],
+    "installationsPerVersion": [
+      {
+        "version": "1.2",
+        "total": 364
+      },
+      {
+        "version": "1.3-SNAPSHOT (private)",
+        "total": 1
+      }
+    ],
+    "installationsPercentagePerVersion": [
+      {
+        "version": "1.2",
+        "percentage": 0.1376707173627737
+      },
+      {
+        "version": "1.3-SNAPSHOT (private)",
+        "percentage": 3.782162564911365E-4
+      }
+    ],
+    "currentInstalls": 365,
+    "trend": -15
+  },
+  "title": "iOS Device connector",
+  "url": "http://updates.jenkins-ci.org/download/plugins/ios-device-connector/1.2/ios-device-connector.hpi",
+  "version": "1.2",
+  "securityWarnings": null,
+  "wiki": {
+    "url": "https://wiki.jenkins-ci.org/display/JENKINS/iOS+Device+Connector+Plugin"
+  }
+}

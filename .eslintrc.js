@@ -18,7 +18,8 @@ module.exports = {
                 '__tests__/**/*.js',
                 '__tests__/**/*.jsx',
                 '__mocks__/**/*.js',
-                '__mocks__/**/*.jsx'
+                '__mocks__/**/*.jsx',
+                '**/*.test.js',
             ],
             'plugins': ['jest'],
             'rules': {}
