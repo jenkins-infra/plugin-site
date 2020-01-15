@@ -1,6 +1,7 @@
 pipeline {
   environment {
     GET_CONTENT = "true"
+    NODE_ENV = "production"
   }
 
   agent {
