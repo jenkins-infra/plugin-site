@@ -17,6 +17,8 @@ module.exports = {
         url: 'https://plugins.jenkins.io',
     },
     plugins: [
+        'gatsby-transformer-sharp',
+        'gatsby-plugin-sharp',
         'gatsby-plugin-react-helmet',
         {
             resolve: 'gatsby-plugin-polyfill-io',
@@ -63,17 +65,32 @@ module.exports = {
             }
         },
         {
-            resolve: 'gatsby-plugin-manifest',
+            resolve: 'gatsby-plugin-favicon',
             options: {
-                name: 'Jenkins Plugins',
-                short_name: 'jenkins-plugins',
-                start_url: '/',
-                background_color: '#2b5797',
+                logo: './src/images/apple-touch-icon.png',
+                appName: 'Jenkins Plugins',
+                appDescription: 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software',
+                dir: 'rtl',
+                lang: 'en-US',
+                background: '#2b5797',
                 theme_color: '#ffffff',
                 display: 'minimal-ui',
-                src: 'src/images/apple-touch-icon.png', // This path is relative to the root of the site.
-                legacy: false, // this will not add apple-touch-icon links to <head>
-            },
+                orientation: 'any',
+                start_url: '/',
+                version: '1.0',
+                icons: {
+                    android: true,
+                    appleIcon: true,
+                    appleStartup: true,
+                    coast: false,
+                    favicons: true,
+                    firefox: true,
+                    opengraph: false,
+                    twitter: false,
+                    yandex: false,
+                    windows: false
+                }
+            }
         },
         {
             resolve: 'gatsby-source-filesystem',
@@ -86,8 +103,6 @@ module.exports = {
             resolve: 'gatsby-source-jenkinsplugins',
             options: { }
         },
-        'gatsby-transformer-sharp',
-        'gatsby-plugin-sharp',
         {
             resolve: 'gatsby-plugin-nprogress',
             options: {
