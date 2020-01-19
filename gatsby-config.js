@@ -102,7 +102,8 @@ module.exports = {
                 environment: process.env.NODE_ENV,
                 enabled: ['production', 'stage'].includes(process.env.NODE_ENV),
                 blacklistUrls: [
-                    'regex:^chrome-extension:'
+                    'regex:^chrome-extension:',
+                    'regex:^moz-extension:'
                 ]
             }
         }
