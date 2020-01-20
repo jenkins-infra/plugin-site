@@ -111,8 +111,9 @@ async function makeReactLayout() {
                 '$(function(){',
                 '(function (fn) { if (document.readyState != \'loading\'){ fn(); } else { document.addEventListener(\'DOMContentLoaded\', fn); }})(function () {'
             );
+            const defer = attrs.includes('src="') ? ' defer' : '';
 
-            jsxLines.push(`${prefix}<${node.name} ${attrs} defer dangerouslySetInnerHTML={{__html: ${JSON.stringify(text)}}} />`);
+            jsxLines.push(`${prefix}<${node.name} ${attrs}${defer} dangerouslySetInnerHTML={{__html: ${JSON.stringify(text)}}} />`);
             return;
         } else if (node.type === 'comment') {
             return;
