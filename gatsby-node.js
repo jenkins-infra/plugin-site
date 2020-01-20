@@ -7,12 +7,8 @@ const {makeReactLayout} = require('./utils.js');
 
 exports.onPreBootstrap = async () => {
     const {jsxLines, cssLines} = await makeReactLayout();
-    if (jsxLines) {
-        fs.writeFileSync('./src/layout.jsx', jsxLines);
-    }
-    if (cssLines) {
-        fs.writeFileSync('./src/layout.css', cssLines);
-    }
+    fs.writeFileSync('./src/layout.jsx', jsxLines);
+    fs.writeFileSync('./src/layout.css', cssLines);
 };
 
 exports.createPages = async ({graphql, actions}) => {

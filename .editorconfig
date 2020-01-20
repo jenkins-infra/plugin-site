@@ -1,7 +1,7 @@
 # EditorConfig is awesome: http://EditorConfig.org
 root = true
 
-[*.{js,jsx,json}]
+[*.{css,js,jsx,json}]
 end_of_line = lf
 insert_final_newline = true
 charset = utf-8
