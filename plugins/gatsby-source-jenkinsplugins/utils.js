@@ -101,6 +101,7 @@ const fetchPluginData = async ({createNode, reporter}) => {
                 });
             }));
         }
+        await Promise.all(promises);
         page = pluginsContainer.page + 1;
     } while (!page || pluginsContainer.page < pluginsContainer.pages);
     await Promise.all(promises);
