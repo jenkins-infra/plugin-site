@@ -10,7 +10,7 @@
     "stylelint": "stylelint --fix 'src/**/*.js'",
     "test": "jest",
     "test:watch": "yarn test -- --watch",
-    "clean": "rimraf dist junit coverage"
+    "clean": "rimraf public junit coverage"
   },
   "husky": {
     "hooks": {
