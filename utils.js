@@ -76,8 +76,9 @@ async function makeReactLayout() {
     $('#creativecommons').append('<SiteVersion />');
     $('link[rel="stylesheet"]').each((_, elm) => {
         elm = $(elm);
-        cssLines.push(`@import url('${elm.attr('href')}');`);
         elm.remove();
+        $('head').append(`<link rel="preload" href="${elm.attr('href')}" as="style" onload="this.onload=null;this.rel='stylesheet'">`);
+        $('head').append(`<noscript><link rel="stylesheet" href="${elm.attr('href')}" /></noscript>`);
     });
 
     const keyConversion = {
@@ -89,7 +90,6 @@ async function makeReactLayout() {
     };
 
     const handleNode = (node, indent = 0) => {
-        
         const prefix = ''.padStart(6+indent);
         if (node.name === 'link' && node.attribs && node.attribs.rel === 'stylesheet') {
             delete node.attribs.crossorigin;
@@ -101,15 +101,18 @@ async function makeReactLayout() {
             val = val.replace(/"/g, '\\"');
             return `${key}="${val}"`;
         }).join(' ');
-        if (node.name === 'script') {
-            // FIXME - handle me
+        if (node.name === 'script' || node.name === 'noscript') {
             const text = node.children.map(child => {
                 if (child.type === 'text') {
                     return child.data;
                 }
                 throw new Error(`not sure how to handle ${child.type}`);
-            });
-            jsxLines.push(`${prefix}<${node.name} ${attrs} dangerouslySetInnerHTML={{__html: ${JSON.stringify(text)}}} />`);
+            }).join('').replace(
+                '$(function(){',
+                '(function (fn) { if (document.readyState != \'loading\'){ fn(); } else { document.addEventListener(\'DOMContentLoaded\', fn); }})(function () {'
+            );
+
+            jsxLines.push(`${prefix}<${node.name} ${attrs} defer dangerouslySetInnerHTML={{__html: ${JSON.stringify(text)}}} />`);
             return;
         } else if (node.type === 'comment') {
             return;
@@ -156,11 +159,7 @@ if (require.main === module) {
     makeReactLayout().then(data => {
         const fs = require('fs');
         const {jsxLines, cssLines} = data;
-        if (jsxLines) {
-            fs.writeFileSync('./src/layout.jsx', jsxLines);
-        }
-        if (cssLines) {
-            fs.writeFileSync('./src/layout.css', cssLines);
-        }
+        fs.writeFileSync('./src/layout.jsx', jsxLines);
+        fs.writeFileSync('./src/layout.css', cssLines);
     });
 }
