@@ -22,7 +22,7 @@ function IndexPage() {
     return (
         <Layout>
             <SEO />
-            <div className="IndexPage--Container jumbotron" onSubmit={handleOnSubmit}>
+            <div className="IndexPage--Container" onSubmit={handleOnSubmit}>
                 <div className="logo"><JenkinsVoltron /></div>
                 <div className="content">
                     <h1>Plugins Index</h1>

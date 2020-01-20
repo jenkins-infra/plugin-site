@@ -6,7 +6,7 @@ const views = ['Tiles', 'List', 'Table'];
 
 function Views({view, setView}) {
     return (
-        <fieldset className="btn-group">
+        <fieldset>
             { views.map((singleView, index) => {
                 return (
                     <View
