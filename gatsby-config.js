@@ -118,7 +118,8 @@ module.exports = {
                 enabled: ['production', 'stage'].includes(process.env.NODE_ENV),
                 blacklistUrls: [
                     'regex:^chrome-extension:',
-                    'regex:^moz-extension:'
+                    'regex:^moz-extension:',
+                    'Cannot redefine property: BetterJsPop',
                 ]
             }
         }
