@@ -234,11 +234,8 @@ transform: scale(-1, 1);
   margin-right: 15px;
 }
 #pluginPage #grid-box .download {margin:2rem 0 2rem -.5rem;}
-#pluginPage #grid-box > .content {padding:0 !important; max-height:100% !important; overflow-x: hidden;}
-#pluginPage #grid-box > .content .title {margin-bottom:2rem; vertical-align:top}
-#pluginPage #grid-box > .content .content {min-height:25rem}
-#pluginPage #grid-box > .content .badge-box {display: inline-block;}
-#pluginPage #grid-box > .content .badge-box  > .badge {
+#pluginPage #grid-box .badge-box {display: inline-block;}
+#pluginPage #grid-box .badge-box  > .badge {
   background: no-repeat top;
   background-size: 3rem;
   display: inline-block;
@@ -250,11 +247,11 @@ transform: scale(-1, 1);
   white-space: nowrap;
   margin: 0 -.5rem 0 .5rem;
 }
-#pluginPage #grid-box > .content .badge-box > .badge.warning {
+#pluginPage #grid-box .badge-box .badge.warning {
   background-image: url(../images/warning.svg);
   background-size:2.5rem;
 }
-#pluginPage #grid-box > .dialog > .content .badge-box  > .badge.warning.inactive{
+#pluginPage #grid-box .dialog .badge-box  > .badge.warning.inactive{
   mix-blend-mode:luminosity;
   opacity:.5
 }
