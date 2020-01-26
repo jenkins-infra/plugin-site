@@ -60,11 +60,11 @@ const getPluginContent = async ({plugin, reporter}) => {
                 reporter,
                 url: `https://wiki.jenkins.io/rest/api/content?expand=body.view&title=${matches[1]}`
             }).then(async data => {
+                const result = data.results.find(result => plugin.wiki.url.includes(result._links.webui)) || data.results[0];
                 plugin.wiki.content = await getContentFromConfluencePage(
                     'https://wiki.jenkins.io/',
-                    `<body class="wiki-content">${data.results[0].body.view.value}</body>`
-                );
-                return plugin;  
+                    `<body class="wiki-content">${result.body.view.value}</body>`);
+                return plugin;
             });
         } catch (e) {
             console.error(`Error fetching wiki content for ${plugin.name}`, e);
