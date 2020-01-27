@@ -85,7 +85,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-pxtorem": "^4.0.1",
     "postcss-url": "^8.0.0",
-    "react-chartjs-2": "^2.8.0",
+    "react-chartjs-2": "^2.9.0",
     "react-helmet": "^5.2.1",
     "react-radio-group": "^3.0.3",
     "reactstrap": "^8.4.0"
