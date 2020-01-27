@@ -6455,10 +6455,10 @@ gatsby-react-router-scroll@^2.1.20:
     scroll-behavior "^0.9.10"
     warning "^3.0.0"
 
-gatsby-source-custom-api@^2.1.2:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/gatsby-source-custom-api/-/gatsby-source-custom-api-2.1.3.tgz#b7ce1a021ff7e760b7234e2d29d44d0d46262ab0"
-  integrity sha512-UHFx6GyT8q24lb7vl5vlVD/AIzAQrP+fJWMDlkk+qsN6tFebb67ZQ+S4ZYcoe6EUdAgLKqlpb1GnZp7b+uzTcA==
+gatsby-source-custom-api@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/gatsby-source-custom-api/-/gatsby-source-custom-api-2.1.4.tgz#6999497feede30f69bc298582ec1564738be4496"
+  integrity sha512-ZYw2zxwmgMZA6Q9I2YyEM8ZQUtDlY+jNeL66i7a7n9WzIqiR4WoMYYoj9OJlr6Y1AwSSrfuJqRtgLJhA5zvu1Q==
   dependencies:
     gatsby-source-filesystem "^2.0.29"
     node-fetch "^2.3.0"
