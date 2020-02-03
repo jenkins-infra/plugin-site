@@ -7,6 +7,10 @@ export const PluginFragment = graphql`
     title
     url
     version
+    issueTracker {
+        name
+        url
+    }
     wiki {
       content
       url

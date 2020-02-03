@@ -50,6 +50,12 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                                     <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls} />
                                 </div>}
                                 {plugin.scm && plugin.scm.link && <div><a href={plugin.scm.link}>GitHub →</a></div>}
+                                {plugin.issueTracker && plugin.issueTracker.url && <div>
+                                Issue tracker: &nbsp;
+                                    <a href={plugin.issueTracker.url}>
+                                        {plugin.issueTracker.name}
+                                    </a>
+                                </div>}
                                 <PluginLastReleased plugin={plugin} />
                             </div>
                             <div className="col-md-4 maintainers">
