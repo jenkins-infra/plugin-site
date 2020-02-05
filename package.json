@@ -93,7 +93,7 @@
   "devDependencies": {
     "axios-retry": "^3.1.2",
     "babel-jest": "^25.1.0",
-    "babel-preset-gatsby": "^0.2.26",
+    "babel-preset-gatsby": "^0.2.28",
     "eslint": "^6.7.1",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-jest": "^23.1.1",
