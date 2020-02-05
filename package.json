@@ -72,7 +72,7 @@
     "gatsby-plugin-sentry": "^1.0.1",
     "gatsby-plugin-sharp": "^2.3.13",
     "gatsby-plugin-sitemap": "^2.2.27",
-    "gatsby-source-filesystem": "^2.1.46",
+    "gatsby-source-filesystem": "^2.1.48",
     "gatsby-transformer-sharp": "^2.3.13",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.24.0",
