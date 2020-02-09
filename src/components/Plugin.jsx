@@ -25,7 +25,7 @@ Maintainers.propTypes = PluginMaintainers.propTypes;
 
 function Plugin({plugin: {name, title, stats, requiredCore, labels, excerpt, maintainers}}) {
     return (
-        <Link to={`/${name}`} className="Plugin--PluginContainer">
+        <Link to={`/${name}/`} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
                 <Icon title={title} />
             </div>

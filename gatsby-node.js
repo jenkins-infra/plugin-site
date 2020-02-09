@@ -29,7 +29,7 @@ exports.createPages = async ({graphql, actions}) => {
 
     
     createPage({
-        path: '/ui/search',
+        path: '/ui/search/',
         component: searchPage,
         context: { }
     });
@@ -51,7 +51,7 @@ exports.createPages = async ({graphql, actions}) => {
 
         result.data.allJenkinsPlugin.edges.forEach(edge => {
             createPage({
-                path: edge.node.name.trim(),
+                path: `/${edge.node.name.trim()}/`,
                 component: pluginPage,
                 context: {
                     name: edge.node.name.trim()

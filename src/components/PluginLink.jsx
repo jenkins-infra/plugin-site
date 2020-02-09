@@ -9,7 +9,7 @@ import {cleanTitle} from '../commons/helper';
 export default function PluginLink({title = '', name = ''}) {
     return (
         <div className={classNames(styles.Item, 'Entry-box')}>
-            <Link key={name} to={`/${name}`} className="titleOnly">
+            <Link key={name} to={`/${name}/`} className="titleOnly">
                 {cleanTitle(title)}
             </Link>
         </div>
