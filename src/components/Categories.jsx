@@ -28,7 +28,7 @@ function Categories({clearCriteria, toggleCategory, activeCategories, activeLabe
     return (
         <fieldset className={classNames(styles.Categories)}>
             <legend>
-                  Categories
+                Categories
                 {anyCriteria && (
                     <button className="btn btn-secondary btn-sm show-all" name="showAll" onClick={handleOnClick}>
                         Show all
