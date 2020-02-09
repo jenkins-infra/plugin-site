@@ -55,7 +55,7 @@ function Footer() {
                             { data.categories.edges.map(({node: category}) => {
                                 return(
                                     <div key={`cat-box-id-${category.id}`} className="Entry-box">
-                                        <Link to={`/ui/search?categories=${category.id}`}>{category.title}</Link>
+                                        <Link to={`/ui/search/?categories=${category.id}`}>{category.title}</Link>
                                     </div>
                                 );
                             })}
