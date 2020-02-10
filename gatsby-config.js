@@ -119,6 +119,7 @@ module.exports = {
                 blacklistUrls: [
                     'regex:^chrome-extension:',
                     'regex:^moz-extension:',
+                    'regex:should_do_lastpass_here',
                     'Cannot redefine property: BetterJsPop',
                 ]
             }
