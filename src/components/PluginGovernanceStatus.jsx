@@ -30,7 +30,7 @@ function PluginGovernanceStatus({plugin}) {
                             <td className="badge-box"><span className="badge active warning"/></td>
                             <td className="alert-text">
                                 <b>Deprecated:</b>
-                                {' The following plugins have been marked as deprecated. '}
+                                {'This plugin has been marked as deprecated. '}
                                 {'In general this means that the plugin is obsolete, no longer being developed, or may no longer work. '}
                                 {'See the plugin\'s documentation for further information about the cause for the deprecation, and suggestions on how to proceed.'}
                             </td>
