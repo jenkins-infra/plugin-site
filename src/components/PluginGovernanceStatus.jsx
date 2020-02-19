@@ -6,7 +6,7 @@ function PluginGovernanceStatus({plugin}) {
         return null;
     }
     return plugin.labels.map((id) => {
-        if (id === 'adopt-this-plugin' || id === 'adopt-me') {
+        if (id === 'adopt-this-plugin') {
             return (
                 <div className="alert">
                     <table>
@@ -32,7 +32,11 @@ function PluginGovernanceStatus({plugin}) {
                                 <b>Deprecated:</b>
                                 {'This plugin has been marked as deprecated. '}
                                 {'In general this means that the plugin is obsolete, no longer being developed, or may no longer work. '}
-                                {'See the plugin\'s documentation for further information about the cause for the deprecation, and suggestions on how to proceed.'}
+                                {'See the documentation for further information about the cause for the deprecation, and suggestions on how to proceed. '}
+                                {'The deprecation process is also documented '}
+                                <a href="https://jenkins.io/doc/developer/plugin-governance/deprecating-or-removing-plugin">here</a>
+                                {'.'}
+
                             </td>
                         </tr>
                     </table>
