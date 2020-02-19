@@ -31,7 +31,7 @@ function PluginGovernanceStatus({plugin}) {
                             <td className="plugin-governance-notice-text">
                                 <b>Deprecated:</b>
                                 {'This plugin has been marked as deprecated. '}
-                                {'In general this means that the plugin is obsolete, no longer being developed, or may no longer work. '}
+                                {'In general, this means that this plugin is either obsolete, no longer being developed, or may no longer work. '}
                                 {'See the documentation for further information about the cause for the deprecation, and suggestions on how to proceed. '}
                                 {'The deprecation process is also documented '}
                                 <a href="https://jenkins.io/doc/developer/plugin-governance/deprecating-or-removing-plugin">here</a>
