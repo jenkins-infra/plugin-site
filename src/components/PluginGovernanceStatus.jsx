@@ -14,9 +14,9 @@ function PluginGovernanceStatus({plugin}) {
                             <td className="badge-box"><span className="badge active warning"/></td>
                             <td className="alert-text">
                                 <b>This plugin is up for adoption!</b>
-                                {' We are looking for new maintainers. See '}
-                                <a href="https://jenkins.io/doc/developer/plugin-governance/adopt-a-plugin/">this page</a>
-                                {' for more information.'}
+                                {' We are looking for new maintainers. Visit our '}
+                                <a href="https://jenkins.io/doc/developer/plugin-governance/adopt-a-plugin/">Adopt a Plugin</a>
+                                {' initiative for more information.'}
                             </td>
                         </tr>
                     </table>
