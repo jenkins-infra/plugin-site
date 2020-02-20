@@ -12,6 +12,7 @@ import PluginLabels from '../components/PluginLabels';
 import PluginLastReleased from '../components/PluginLastReleased';
 import PluginActiveWarnings from '../components/PluginActiveWarnings';
 import PluginInactiveWarnings from '../components/PluginInactiveWarnings';
+import PluginGovernanceStatus from '../components/PluginGovernanceStatus';
 import PluginMaintainers from '../components/PluginMaintainers';
 import PluginReadableInstalls from '../components/PluginReadableInstalls';
 
@@ -61,6 +62,9 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                                 <PluginDependencies dependencies={plugin.dependencies} />
                             </div>
                         </div>
+
+                        <PluginGovernanceStatus plugin={plugin} />
+
                         {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
                     </div>
                 </div>

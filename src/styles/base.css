@@ -873,3 +873,19 @@ a.card:hover {
 #pluginPage #grid-box .content .main td {
   padding: 1em;
 }
+
+#pluginPage .plugin-governance-notice {
+  padding: 5px;
+  background-color: #fcf8e3;
+  color: #a48d62;
+  border-color: #faebcc;
+  margin-bottom: 5px;
+}
+
+#pluginPage .plugin-governance-notice table {
+  margin-bottom: 0px;
+}
+
+#pluginPage .plugin-governance-notice .plugin-governance-notice-text {
+  padding-left: 20px;
+}
