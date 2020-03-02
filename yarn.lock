@@ -11802,13 +11802,12 @@ postcss-pseudo-class-any-link@^6.0.0:
     postcss "^7.0.2"
     postcss-selector-parser "^5.0.0-rc.3"
 
-postcss-pxtorem@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/postcss-pxtorem/-/postcss-pxtorem-4.0.1.tgz#9c64d0efe4885473cc1cb0305c6ffc3ebb45b1cd"
-  integrity sha1-nGTQ7+SIVHPMHLAwXG/8PrtFsc0=
+postcss-pxtorem@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-pxtorem/-/postcss-pxtorem-5.0.0.tgz#b38c48892147e78f2313ef14e10383fd2311621e"
+  integrity sha512-YMYqzp3TgYz6P7JSG1TDTILhQz4y4lPNw46OQJHWrpJjrnj4A77PQ3lhPaa+R8GHoaHlx6IgIN2ghO4iHNDWrg==
   dependencies:
-    object-assign "^4.1.0"
-    postcss "^5.2.10"
+    postcss "^7.0.27"
 
 postcss-reduce-initial@^4.0.3:
   version "4.0.3"
@@ -11988,7 +11987,7 @@ postcss@>=5.0.19, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@^5.0.4, postcss@^5.2.10:
+postcss@^5.0.4:
   version "5.2.18"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.18.tgz#badfa1497d46244f6390f58b319830d9107853c5"
   integrity sha512-zrUjRRe1bpXKsX1qAJNJjqZViErVuyEkMTRrwu4ud4sbTtIBRmtaYDrHmcGgmrbsW3MHfmtIf+vJumgQn+PrXg==
