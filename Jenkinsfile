@@ -63,7 +63,8 @@ pipeline {
           --skip-on-md5-match \
           --file-md5 \
           --connect-timeout 30 \
-          --delete')
+          --delete \
+          --verbose')
       }
     }
   }
