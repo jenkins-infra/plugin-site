@@ -70,7 +70,7 @@
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sentry": "^1.0.1",
     "gatsby-plugin-sharp": "^2.4.5",
-    "gatsby-plugin-sitemap": "^2.2.27",
+    "gatsby-plugin-sitemap": "^2.3.2",
     "gatsby-source-filesystem": "^2.1.55",
     "gatsby-transformer-sharp": "^2.4.4",
     "isomorphic-fetch": "^2.2.1",
