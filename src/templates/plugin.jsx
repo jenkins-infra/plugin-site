@@ -83,8 +83,8 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                     </div>
                 
                     <h5>Links</h5>
-                    {plugin.scm && plugin.scm.link && <div><a href={plugin.scm.link}>GitHub</a></div>}
-                    <div><a href={`https://javadoc.jenkins.io/plugin/${plugin.name}`}>Javadoc</a></div>
+                    {plugin.scm && plugin.scm.link && <div className="label-link"><a href={plugin.scm.link}>GitHub</a></div>}
+                    <div className="label-link"><a href={`https://javadoc.jenkins.io/plugin/${plugin.name}`}>Javadoc</a></div>
                 
                     <h5>Labels</h5>
                     <PluginLabels labels={plugin.labels} />
@@ -96,8 +96,8 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                             <a href={plugin.wiki.url} target="_wiki">Jenkins Wiki</a>
                             {' the '}
                             <a href="https://groups.google.com/forum/#!msg/jenkinsci-dev/lNmas8aBRrI/eL3u7A6qBwAJ" rel="noopener noreferrer" target="_blank">read-only state</a>
-                            {'. We recommend moving the plugin documentation to GitHub, see the guidelines '}
-                            <a href="https://jenkins.io/blog/2019/10/21/plugin-docs-on-github/" rel="noopener noreferrer" target="_blank">here</a>
+                            {'. We recommend moving the plugin documentation to GitHub, see '}
+                            <a href="https://jenkins.io/blog/2019/10/21/plugin-docs-on-github/" rel="noopener noreferrer" target="_blank">the guidelines</a>
                             {'.'}
                         </div>
                     }
