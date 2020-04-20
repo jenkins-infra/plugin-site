@@ -25,8 +25,21 @@ function shouldShowGitHubUrl({url}) {
     return url && url.startsWith('https://github.com');
 }
 
+const tabs = [
+    {id: 'documentation', label: 'Documentation'},
+    {id: 'issues', label: 'Issues'},
+];
+
+function getDefaultTab() {
+    const tabName = location.hash.replace('#', '') || tabs[0].id;
+    if (tabs.find(tab => tab.id === tabName)) {
+        return tabName;
+    }
+    return tabs[0].id;
+}
+
 function PluginPage({data: {jenkinsPlugin: plugin}}) {
-    const [state, setState] = useState({selectedTab: 'documentation'});
+    const [state, setState] = useState({selectedTab: getDefaultTab()});
     
     return (
         <Layout id="pluginPage">
@@ -35,12 +48,11 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
             <div className="row flex">
                 <div className="col-md-9 main">
                     <ul className="nav nav-tabs">
-                        <li className="nav-item">
-                            <a className={`nav-link ${state.selectedTab === 'documentation' ? 'active' : ''}`} href="#documentation" onClick={() => setState({selectedTab: 'documentation'})}>Documentation</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className={`nav-link ${state.selectedTab === 'issues' ? 'active' : ''}`} href="#issues" onClick={() => setState({selectedTab: 'issues'})}>Issues</a>
-                        </li>
+                        {tabs.map(tab => (
+                            <li className="nav-item" key={tab.id}>
+                                <a className={`nav-link ${state.selectedTab === tab.id ? 'active' : ''}`} href={`#${tab.id}`} onClick={() => setState({selectedTab: tab.id})}>{tab.label}</a>
+                            </li>
+                        ))}
                     </ul>
                     <div className="padded">
                         {state.selectedTab === 'documentation' && (<>
