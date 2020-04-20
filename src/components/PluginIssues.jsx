@@ -9,7 +9,7 @@ function PluginIssues({pluginId}) {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const result = await axios(`/api/plugin/${pluginId}/issues`);
+            const result = await axios(`/api/plugin/${pluginId}/issues/open`);
             setIssues(result.data.issues || []);
             setIsLoading(false);
         };
