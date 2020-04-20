@@ -143,8 +143,7 @@ module.exports = {
                     'should_do_lastpass_here',
                 ],
                 blacklistUrls: [
-                    '^chrome-extension:',
-                    '^moz-extension:',
+                    /^moz-extension:\//,
                     // Facebook flakiness
                     /graph\.facebook\.com/i,
                     // Facebook blocked
@@ -153,6 +152,7 @@ module.exports = {
                     /eatdifferent\.com\.woopra-ns\.com/i,
                     /static\.woopra\.com\/js\/woopra\.js/i,
                     // Chrome extensions
+                    /^chrome-extension:\//,
                     /extensions\//i,
                     /^chrome:\/\//i,
                     // Other plugins
