@@ -42,6 +42,17 @@ function getContentFromConfluencePage(url, content) {
     return ($('body') || $).html();
 }
 
+const shouldFetchPluginContent = (id) => {
+    if (process.env.GET_CONTENT_SINGLE && process.env.GET_CONTENT_SINGLE === id) {
+        return true;
+    }
+    if (!process.env.GET_CONTENT) {
+        return false;
+    }
+    return true;
+};
+
+
 const pluginWikiUrlRe = /^https?:\/\/wiki.jenkins(?:-ci.org|.io)\/display\/(?:jenkins|hudson)\/([^/]*)\/?$/i;
 const getPluginContent = async ({plugin, reporter}) => {
     plugin.id = plugin.id || plugin.name;
@@ -50,7 +61,7 @@ const getPluginContent = async ({plugin, reporter}) => {
     plugin.wiki.content = plugin.wiki.content || '';
     plugin.wiki.url = plugin.wiki.url || '';
 
-    if (!process.env.GET_CONTENT) {
+    if (!shouldFetchPluginContent(plugin.id)) {
         return plugin;
     }
     let matches;
