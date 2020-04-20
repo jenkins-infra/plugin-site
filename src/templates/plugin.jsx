@@ -1,5 +1,5 @@
 import {graphql} from 'gatsby';
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import {cleanTitle} from '../commons/helper';
@@ -15,6 +15,7 @@ import PluginInactiveWarnings from '../components/PluginInactiveWarnings';
 import PluginGovernanceStatus from '../components/PluginGovernanceStatus';
 import PluginMaintainers from '../components/PluginMaintainers';
 import PluginReadableInstalls from '../components/PluginReadableInstalls';
+import PluginIssues from '../components/PluginIssues';
 
 function shouldShowWikiUrl({url}) {
     return url && (url.startsWith('https://wiki.jenkins-ci.org') || url.startsWith('https://wiki.jenkins.io'));
@@ -25,47 +26,61 @@ function shouldShowGitHubUrl({url}) {
 }
 
 function PluginPage({data: {jenkinsPlugin: plugin}}) {
+    const [state, setState] = useState({selectedTab: 'documentation'});
+    
     return (
         <Layout id="pluginPage">
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
+
             <div className="row flex">
                 <div className="col-md-9 main">
+                    <ul className="nav nav-tabs">
+                        <li className="nav-item">
+                            <a className={`nav-link ${state.selectedTab === 'documentation' ? 'active' : ''}`} href="#documentation" onClick={() => setState({selectedTab: 'documentation'})}>Documentation</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className={`nav-link ${state.selectedTab === 'issues' ? 'active' : ''}`} href="#issues" onClick={() => setState({selectedTab: 'issues'})}>Issues</a>
+                        </li>
+                    </ul>
                     <div className="padded">
-                        <h1 className="title">
-                            {cleanTitle(plugin.title)}
-                            <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
-                            <span className="v">{plugin.version}</span>
-                            <span className="sub">
-                                {'Minimum Jenkins requirement: '}
-                                {plugin.requiredCore}
-                            </span>
-                            <span className="sub">
-                                {'ID: '}
-                                {plugin.name}
-                            </span>
-                        </h1>
-                        <div className="row flex">
-                            <div className="col-md-4">
-                                {plugin.stats && <div>
-                                    {'Installs: '}
-                                    <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls} />
-                                </div>}
-                                {plugin.scm && plugin.scm.link && <div><a href={plugin.scm.link}>GitHub →</a></div>}
-                                <PluginLastReleased plugin={plugin} />
+                        {state.selectedTab === 'documentation' && (<>
+                            <h1 className="title">
+                                {cleanTitle(plugin.title)}
+                                <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
+                                <span className="v">{plugin.version}</span>
+                                <span className="sub">
+                                    {'Minimum Jenkins requirement: '}
+                                    {plugin.requiredCore}
+                                </span>
+                                <span className="sub">
+                                    {'ID: '}
+                                    {plugin.name}
+                                </span>
+                            </h1>
+                            <div className="row flex">
+                                <div className="col-md-4">
+                                    {plugin.stats && <div>
+                                        {'Installs: '}
+                                        <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls} />
+                                    </div>}
+                                    {plugin.scm && plugin.scm.link && <div><a href={plugin.scm.link}>GitHub →</a></div>}
+                                    <PluginLastReleased plugin={plugin} />
+                                </div>
+                                <div className="col-md-4 maintainers">
+                                    <h5>Maintainers</h5>
+                                    <PluginMaintainers maintainers={plugin.maintainers} />
+                                </div>
+                                <div className="col-md-4 dependencies">
+                                    <h5>Dependencies</h5>
+                                    <PluginDependencies dependencies={plugin.dependencies} />
+                                </div>
                             </div>
-                            <div className="col-md-4 maintainers">
-                                <h5>Maintainers</h5>
-                                <PluginMaintainers maintainers={plugin.maintainers} />
-                            </div>
-                            <div className="col-md-4 dependencies">
-                                <h5>Dependencies</h5>
-                                <PluginDependencies dependencies={plugin.dependencies} />
-                            </div>
-                        </div>
 
-                        <PluginGovernanceStatus plugin={plugin} />
+                            <PluginGovernanceStatus plugin={plugin} />
 
-                        {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
+                            {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
+                        </>)}
+                        {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.id} />}
                     </div>
                 </div>
                 <div className="col-md-3 gutter">

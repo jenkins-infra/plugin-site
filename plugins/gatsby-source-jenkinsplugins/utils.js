@@ -32,6 +32,9 @@ function getContentFromConfluencePage(url, content) {
     // Remove any table of contents
     $('.toc').remove();
 
+    // remove jira issue list
+    $('.jira-issues').remove();
+
     // Replace href/src with the wiki url
     $('[href]').each((idx, elm) => {
         $(elm).attr('href', URL.resolve(url, $(elm).attr('href')));
