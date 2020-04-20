@@ -31,7 +31,7 @@ const tabs = [
 ];
 
 function getDefaultTab() {
-    const tabName = (window && window.location.hash.replace('#', '')) || tabs[0].id;
+    const tabName = (typeof window !== 'undefined' && window.location.hash.replace('#', '')) || tabs[0].id;
     if (tabs.find(tab => tab.id === tabName)) {
         return tabName;
     }
