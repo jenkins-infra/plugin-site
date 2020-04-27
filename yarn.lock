@@ -7038,10 +7038,10 @@ gatsby-plugin-favicon@^3.1.6:
     html-react-parser "^0.6.4"
     lodash "^4.17.11"
 
-gatsby-plugin-nprogress@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-nprogress/-/gatsby-plugin-nprogress-2.2.3.tgz#089929453bd9ad197abde4234a8e34f09eec8e7b"
-  integrity sha512-jv561kIkl/8Hcq2YFUhY891cgyXSFX8NxI24R53sDEKo4qlFU/TPWKa1pxtzRkiBUvFlTZCYM0pJ746w8rXBew==
+gatsby-plugin-nprogress@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-nprogress/-/gatsby-plugin-nprogress-2.2.4.tgz#5eaa6ca91c6346c098d9fd70b2ba7e7e66476b2a"
+  integrity sha512-HhcwrpzFoJgywngmraMwvyDxHhIBaa2f+kaMvLA6k2eLpGNatZxr4cAFhr0Vdw7Z3yV9eJNhQeMy1F94mtCWWQ==
   dependencies:
     "@babel/runtime" "^7.8.7"
     nprogress "^0.2.0"
