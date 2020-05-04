@@ -66,7 +66,7 @@
     "gatsby-plugin-favicon": "^3.1.6",
     "gatsby-plugin-polyfill-io": "^1.1.0",
     "gatsby-plugin-postcss": "^2.2.3",
-    "gatsby-plugin-react-helmet": "^3.2.4",
+    "gatsby-plugin-react-helmet": "^3.3.0",
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sentry": "^1.0.1",
     "gatsby-plugin-sharp": "^2.5.6",
