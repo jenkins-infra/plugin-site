@@ -88,23 +88,35 @@ async function makeReactLayout() {
         'crossorigin': 'crossOrigin'
     };
 
-    const ischild = (node, nodeName) => {
+    const ischild = (node, tagName) => {
         let tempNode = node;
 
         while (tempNode != null) {
-            if (tempNode.name === nodeName) {
+            if (tempNode.name === tagName) {
                 return true;
             }
             tempNode = tempNode.parent;
         }
         return false;
     };
-    const handleNode = (node, indent = 0) => {
-        
-        const prefix = ''.padStart(6+indent);
+
+    const handleFooterNodeAndDescendant = (node, prefix) => {
         const reportBtn = '<p className="box">' +
-                         '<a href={`https://github.com/jenkins-infra/plugin-site/issues/new?labels=bug&template=4-bug.md&title=${reportProblemTitle} page - TODO: Put a summary here&body=Problem with the [${reportProblemTitle}](https://plugins.jenkins.io${reportProblemUrl}) page, [source file](https://github.com/jenkins-infra/plugin-site/tree/master/src${reportProblemRelativeSourcePath})%0A%0ATODO: Describe the expected and actual behavior here %0A%0A%23%23 Screenshots %0A%0A TODO: Add screenshots if possible %0A%0A%23%23 Possible Solution %0A%0A%3C!-- If you have suggestions on a fix for the bug, please describe it here. --%3E %0A%0AN/A`} title={reportProblemTitle}>Report a problem</a>' +
-                      '</p>';
+                            '<a href={`https://github.com/jenkins-infra/plugin-site/issues/new?labels=bug&template=4-bug.md&title=${reportProblemTitle} page - TODO: Put a summary here&body=Problem with the [${reportProblemTitle}](https://plugins.jenkins.io${reportProblemUrl}) page, [source file](https://github.com/jenkins-infra/plugin-site/tree/master/src${reportProblemRelativeSourcePath})%0A%0ATODO: Describe the expected and actual behavior here %0A%0A%23%23 Screenshots %0A%0A TODO: Add screenshots if possible %0A%0A%23%23 Possible Solution %0A%0A%3C!-- If you have suggestions on a fix for the bug, please describe it here. --%3E %0A%0AN/A`} title={reportProblemTitle}>Report a problem</a>' +
+                          '</p>';
+
+        if (ischild(node, 'footer')) {
+            if ('attribs' in node && 'class' in node.attribs) {
+                if (node.attribs.class === 'license-box') {
+                    jsxLines.push(`${prefix}${reportBtn}`);
+                }
+            }
+        } 
+    };
+    
+    const handleNode = (node, indent = 0) => {
+        const prefix = ''.padStart(6+indent);
+        
         if (node.name === 'link' && node.attribs && node.attribs.rel === 'stylesheet') {
             delete node.attribs.crossorigin;
             node.attribs.type = 'text/css';
@@ -131,13 +143,7 @@ async function makeReactLayout() {
             const text = node.data; 
             jsxLines.push(`${prefix}${text}`);
         } else if (node.children && node.children.length) {
-            if (ischild(node, 'footer')) {
-                if ('attribs' in node && 'class' in node.attribs) {
-                    if (node.attribs.class === 'license-box') {
-                        jsxLines.push(`${prefix}${reportBtn}`);
-                    }
-                }
-            } 
+            handleFooterNodeAndDescendant(node, prefix);
             jsxLines.push(`${prefix}<${node.name} ${attrs}>`);
             node.children.forEach(child => handleNode(child, indent+2));
             jsxLines.push(`${prefix}</${node.name}>`);
