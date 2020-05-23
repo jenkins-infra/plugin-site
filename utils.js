@@ -16,6 +16,7 @@ async function makeReactLayout() {
         'import React from \'react\';',
         'import { Helmet } from \'react-helmet\';',
         'import SiteVersion from \'./components/SiteVersion\';',
+        'import ReportAProblem from \'./components/ReportAProblem\';',
         'import \'./layout.css\';'
     ];
 
@@ -73,6 +74,7 @@ async function makeReactLayout() {
 
     $('.nav-link[href="https://plugins.jenkins.io/"]').attr('href', '/');
     $('#grid-box').append('{children}');
+    $('#footer .col-md-4').prepend('<ReportAProblem />'); 
     $('#creativecommons').append('<SiteVersion />');
     $('link[rel="stylesheet"]').each((_, elm) => {
         elm = $(elm);
@@ -88,32 +90,6 @@ async function makeReactLayout() {
         'crossorigin': 'crossOrigin'
     };
 
-    const ischild = (node, tagName) => {
-        let tempNode = node;
-
-        while (tempNode != null) {
-            if (tempNode.name === tagName) {
-                return true;
-            }
-            tempNode = tempNode.parent;
-        }
-        return false;
-    };
-
-    const handleFooterNodeAndDescendant = (node, prefix) => {
-        const reportBtn = '<p className="box">' +
-                            '<a href={`https://github.com/jenkins-infra/plugin-site/issues/new?labels=bug&template=4-bug.md&title=${reportProblemTitle} page - TODO: Put a summary here&body=Problem with the [${reportProblemTitle}](https://plugins.jenkins.io${reportProblemUrl}) page, [source file](https://github.com/jenkins-infra/plugin-site/tree/master/src${reportProblemRelativeSourcePath})%0A%0ATODO: Describe the expected and actual behavior here %0A%0A%23%23 Screenshots %0A%0A TODO: Add screenshots if possible %0A%0A%23%23 Possible Solution %0A%0A%3C!-- If you have suggestions on a fix for the bug, please describe it here. --%3E %0A%0AN/A`} title={reportProblemTitle}>Report a problem</a>' +
-                          '</p>';
-
-        if (ischild(node, 'footer')) {
-            if ('attribs' in node && 'class' in node.attribs) {
-                if (node.attribs.class === 'license-box') {
-                    jsxLines.push(`${prefix}${reportBtn}`);
-                }
-            }
-        } 
-    };
-    
     const handleNode = (node, indent = 0) => {
         const prefix = ''.padStart(6+indent);
         
@@ -143,18 +119,22 @@ async function makeReactLayout() {
             const text = node.data; 
             jsxLines.push(`${prefix}${text}`);
         } else if (node.children && node.children.length) {
-            handleFooterNodeAndDescendant(node, prefix);
             jsxLines.push(`${prefix}<${node.name} ${attrs}>`);
             node.children.forEach(child => handleNode(child, indent+2));
             jsxLines.push(`${prefix}</${node.name}>`);
         } else {
+            let tempAttrs = attrs;
+
             if (!node.name) {
                 console.log(node);
             }
             if (node.name === 'siteversion') {
                 node.name = 'SiteVersion';
+            } else if (node.name === 'reportaproblem') {
+                tempAttrs = 'reportProblemUrl={reportProblemUrl} reportProblemTitle={reportProblemTitle} reportProblemRelativeSourcePath={reportProblemRelativeSourcePath}';
+                node.name = 'ReportAProblem';
             }
-            jsxLines.push(`${prefix}<${node.name} ${attrs} />`);
+            jsxLines.push(`${prefix}<${node.name} ${tempAttrs} />`);
         }
     };
 
