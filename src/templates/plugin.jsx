@@ -16,7 +16,6 @@ import PluginGovernanceStatus from '../components/PluginGovernanceStatus';
 import PluginMaintainers from '../components/PluginMaintainers';
 import PluginReadableInstalls from '../components/PluginReadableInstalls';
 
-const path = require('path');
 
 function shouldShowWikiUrl({url}) {
     return url && (url.startsWith('https://wiki.jenkins-ci.org') || url.startsWith('https://wiki.jenkins.io'));
@@ -27,7 +26,7 @@ function shouldShowGitHubUrl({url}) {
 }
 
 function PluginPage({data: {jenkinsPlugin: plugin}}) {
-    const pluginPage = path.resolve('templates/plugin.jsx');
+    const pluginPage = 'templates/plugin.jsx';
 
     return (
         <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemUrl={`/${plugin.name}`} reportProblemTitle={plugin.title}>

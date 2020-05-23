@@ -11,7 +11,6 @@ import JenkinsVoltron from '../components/JenkinsVoltron';
 
 import './index.css';
 
-const path = require('path');
 
 function IndexPage() {
     const [query, setQuery] = React.useState('');
@@ -20,7 +19,7 @@ function IndexPage() {
         navigate(`/ui/search?${querystring.stringify({query})}`);
     };
     const pageTitle = 'Plugins Index';
-    const indexPage = path.resolve('templates/index.jsx');
+    const indexPage = 'templates/index.jsx';
 
     return (
         <Layout reportProblemRelativeSourcePath={indexPage} reportProblemUrl="" reportProblemTitle={pageTitle}>

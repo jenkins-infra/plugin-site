@@ -15,7 +15,6 @@ import Filters from '../components/Filters';
 import ActiveFilters from '../components/ActiveFilters';
 import fetch from 'isomorphic-fetch';
 
-const path = require('path');
 
 const doSearch = (data, setResults) => {
     const {categories, labels, page, query, sort} = data;
@@ -64,7 +63,7 @@ function SearchPage({location}) {
         doSearch(newData, setResults);
     };
 
-    const searchPage = path.resolve('templates/search.jsx');
+    const searchPage = 'templates/search.jsx';
     
     React.useEffect(() => {
         const qs = location.search.replace(/^\?/, '');
