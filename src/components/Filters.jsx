@@ -24,7 +24,7 @@ function Filters({
                         <Sort setSort={setSort} sort={sort} />
                     </div>
                     <div className={showResults ? 'col-md-12' : 'col-md-9'}>
-                        <Categories 
+                        <Categories
                             anyCriteria={false}
                             activeCategories={categories}
                             clearCriteria={clearCriteria}
@@ -47,7 +47,7 @@ Filters.propTypes = {
     clearCriteria: PropTypes.func.isRequired,
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
     toggleCategory: PropTypes.func.isRequired,
-    labels: PropTypes.arrayOf(PropTypes.string).isRequired, 
+    labels: PropTypes.arrayOf(PropTypes.string).isRequired,
     toggleLabel: PropTypes.func.isRequired,
 };
 

@@ -41,7 +41,7 @@ module.exports = {
         'no-console': 2,
         'no-extra-semi': 2,
         'no-multi-spaces': 'error',
-        'no-trailing-spaces': [0, {'skipBlankLines': true}],
+        'no-trailing-spaces': [2, {'skipBlankLines': true}],
         'no-undef': 2,
         'no-underscore-dangle': [0],
         'no-unused-vars': [2],

@@ -175,9 +175,9 @@ Object.keys(process.env).forEach(key => {
     let element = module.exports;
     for (const keyPart of splits.slice(0, -1)) {
         element = element[keyPart];
-        if (!element) { 
+        if (!element) {
             console.log(`cant find ${keyPart} of ${key}`);
-            return; 
+            return;
         }
     }
     element[splits.slice(-1)[0]] = process.env[key];

@@ -82,9 +82,9 @@ function SearchPage({location}) {
 
             <div className="row d-flex">
                 {showFilter && (<div className="col-md-3 order-last order-md-first">
-                    <Filters 
+                    <Filters
                         showFilter={showFilter}
-                        showResults 
+                        showResults
                         sort={sort}
                         categories={categories}
                         labels={labels}
@@ -97,13 +97,13 @@ function SearchPage({location}) {
                 <div className={showFilter ? 'col-md-9' : 'offset-md-1 col-md-11'}>
                     <div className="row">
                         <div className={'col-md-9'}>
-                            <SearchBox 
+                            <SearchBox
                                 showFilter={showFilter}
                                 setShowFilter={setShowFilter}
                                 query={query}
-                                setQuery={setQuery} 
+                                setQuery={setQuery}
                                 handleOnSubmit={handleOnSubmit}
-                            /> 
+                            />
                         </div>
                         <div className={'col-md-3'}>
                             <Views view={view} setView={setView} />
@@ -123,7 +123,7 @@ function SearchPage({location}) {
                     </div>
                     <div className="view">
                         <div className="col-md-12">
-                            <SearchResults 
+                            <SearchResults
                                 showFilter={showFilter}
                                 showResults
                                 view={view}
@@ -139,7 +139,7 @@ function SearchPage({location}) {
     );
 }
 
-SearchPage.propTypes = {   
+SearchPage.propTypes = {
     location: PropTypes.object.isRequired
 };
 

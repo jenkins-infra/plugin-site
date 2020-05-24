@@ -111,7 +111,7 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                             <a href={plugin.wiki.url} rel="noopener noreferrer" target="_blank">the plugin page</a>
                             {' on GitHub. Read more about GitHub support on the plugin site in the '}
                             <a href="https://jenkins.io/doc/developer/publishing/documentation/" rel="noopener noreferrer" target="_blank">Jenkins developer documentation</a>
-                            {'.'}  
+                            {'.'}
                         </div>
                     }
     

@@ -17,7 +17,7 @@ function PluginDependencies({dependencies} ) {
 
     return (
         <>
-            <Modal placement="bottom" isOpen={isShowImplied} target="pluginDependancies" toggle={toggleShowImplied}>          
+            <Modal placement="bottom" isOpen={isShowImplied} target="pluginDependancies" toggle={toggleShowImplied}>
                 <ModalHeader toggle={toggleShowImplied}>About Implied Plugin Dependencies</ModalHeader >
                 <ModalBody>
                     <div>
@@ -28,7 +28,7 @@ function PluginDependencies({dependencies} ) {
                         <p>
                             Plugins that depend on a Jenkins core version before such a plugin was detached from core may or may not actually use any of its features.
                             To ensure that plugins don&apos;t break whenever functionality they depend on is detached from Jenkins core, it is considered to have a dependency on the detached plugin if it declares a dependency on a version of Jenkins core before the split.
-                            Since that dependency to the detached plugin is not explicitly specified, it is 
+                            Since that dependency to the detached plugin is not explicitly specified, it is
                             {' '}
                             <em>implied</em>
                             .
@@ -50,7 +50,7 @@ function PluginDependencies({dependencies} ) {
                                         {dependency.title}
                                         {' '}
                                         v.
-                                        {dependency.version} 
+                                        {dependency.version}
                                         {' '}
                                         <span className="req">
                                             (
@@ -67,9 +67,9 @@ function PluginDependencies({dependencies} ) {
                                 <Link to={`/${dependency.name}/`}>
                                     {dependency.title}
                                     {' '}
-                                    ≥ 
+                                    ≥
                                     {' '}
-                                    {dependency.version} 
+                                    {dependency.version}
                                     {' '}
                                     {kind === 'required' ? '' : <span className="req">
                                         (
