@@ -16,6 +16,7 @@ async function makeReactLayout() {
         'import React from \'react\';',
         'import { Helmet } from \'react-helmet\';',
         'import SiteVersion from \'./components/SiteVersion\';',
+        'import ReportAProblem from \'./components/ReportAProblem\';',
         'import \'./layout.css\';'
     ];
 
@@ -73,6 +74,7 @@ async function makeReactLayout() {
 
     $('.nav-link[href="https://plugins.jenkins.io/"]').attr('href', '/');
     $('#grid-box').append('{children}');
+    $('#footer .col-md-4').prepend('<ReportAProblem />'); 
     $('#creativecommons').append('<SiteVersion />');
     $('link[rel="stylesheet"]').each((_, elm) => {
         elm = $(elm);
@@ -89,8 +91,8 @@ async function makeReactLayout() {
     };
 
     const handleNode = (node, indent = 0) => {
-        
         const prefix = ''.padStart(6+indent);
+        
         if (node.name === 'link' && node.attribs && node.attribs.rel === 'stylesheet') {
             delete node.attribs.crossorigin;
             node.attribs.type = 'text/css';
@@ -114,24 +116,29 @@ async function makeReactLayout() {
         } else if (node.type === 'comment') {
             return;
         } else if (node.type === 'text') {
-            const text = node.data;
+            const text = node.data; 
             jsxLines.push(`${prefix}${text}`);
         } else if (node.children && node.children.length) {
             jsxLines.push(`${prefix}<${node.name} ${attrs}>`);
             node.children.forEach(child => handleNode(child, indent+2));
             jsxLines.push(`${prefix}</${node.name}>`);
         } else {
+            let tempAttrs = attrs;
+
             if (!node.name) {
                 console.log(node);
             }
             if (node.name === 'siteversion') {
                 node.name = 'SiteVersion';
+            } else if (node.name === 'reportaproblem') {
+                tempAttrs = 'reportProblemUrl={reportProblemUrl} reportProblemTitle={reportProblemTitle} reportProblemRelativeSourcePath={reportProblemRelativeSourcePath}';
+                node.name = 'ReportAProblem';
             }
-            jsxLines.push(`${prefix}<${node.name} ${attrs} />`);
+            jsxLines.push(`${prefix}<${node.name} ${tempAttrs} />`);
         }
     };
 
-    jsxLines.push('export default function Layout({ children, id }) {');
+    jsxLines.push('export default function Layout({ children, id, reportProblemUrl, reportProblemTitle, reportProblemRelativeSourcePath}) {');
     jsxLines.push('  return (');
     jsxLines.push('    <div id={id}>');
     jsxLines.push('      <Helmet>');

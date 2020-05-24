@@ -16,6 +16,7 @@ import PluginGovernanceStatus from '../components/PluginGovernanceStatus';
 import PluginMaintainers from '../components/PluginMaintainers';
 import PluginReadableInstalls from '../components/PluginReadableInstalls';
 
+
 function shouldShowWikiUrl({url}) {
     return url && (url.startsWith('https://wiki.jenkins-ci.org') || url.startsWith('https://wiki.jenkins.io'));
 }
@@ -25,8 +26,10 @@ function shouldShowGitHubUrl({url}) {
 }
 
 function PluginPage({data: {jenkinsPlugin: plugin}}) {
+    const pluginPage = 'templates/plugin.jsx';
+
     return (
-        <Layout id="pluginPage">
+        <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemUrl={`/${plugin.name}`} reportProblemTitle={plugin.title}>
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
             <div className="row flex">
                 <div className="col-md-9 main">
