@@ -74,7 +74,7 @@ async function makeReactLayout() {
 
     $('.nav-link[href="https://plugins.jenkins.io/"]').attr('href', '/');
     $('#grid-box').append('{children}');
-    $('#footer .col-md-4').prepend('<ReportAProblem />'); 
+    $('#footer .col-md-4').prepend('<ReportAProblem />');
     $('#creativecommons').append('<SiteVersion />');
     $('link[rel="stylesheet"]').each((_, elm) => {
         elm = $(elm);
@@ -116,7 +116,7 @@ async function makeReactLayout() {
         } else if (node.type === 'comment') {
             return;
         } else if (node.type === 'text') {
-            const text = node.data; 
+            const text = node.data;
             jsxLines.push(`${prefix}${text}`);
         } else if (node.children && node.children.length) {
             jsxLines.push(`${prefix}<${node.name} ${attrs}>`);

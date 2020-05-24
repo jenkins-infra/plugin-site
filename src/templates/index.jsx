@@ -29,7 +29,7 @@ function IndexPage() {
                 <div className="content">
                     <h1>{pageTitle}</h1>
                     <p>Discover the 1500+ community contributed Jenkins plugins to support building, deploying and automating any project.</p>
-                    <SearchBox 
+                    <SearchBox
                         handleOnSubmit={handleOnSubmit}
                         query={query}
                         setQuery={setQuery}

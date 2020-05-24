@@ -42,7 +42,7 @@ function Categories({clearCriteria, toggleCategory, activeCategories, activeLabe
                         activeCategories={activeCategories}
                         activeLabels={activeLabels}
                         category={category}
-                        toggleCategory={toggleCategory} 
+                        toggleCategory={toggleCategory}
                         toggleLabel={toggleLabel}
                     />
                 ))}

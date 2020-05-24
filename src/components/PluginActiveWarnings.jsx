@@ -20,7 +20,7 @@ function PluginActiveWarnings({securityWarnings}) {
     return (
         <div className="badge-box">
             <span className="badge active warning" onClick={toggleShowDialog} />
-            <Modal isOpen={showDialog} toggle={toggleShowDialog}>          
+            <Modal isOpen={showDialog} toggle={toggleShowDialog}>
                 <ModalHeader toggle={toggleShowDialog}>Active Security Warnings</ModalHeader >
                 <ModalBody>
                     <div>

@@ -64,7 +64,7 @@ function ActiveFilters({activeCategories, activeLabels, activeQuery, clearQuery,
                 {renderedActiveLabels}
             </div>
             <div>
-                {activeQuery && <a 
+                {activeQuery && <a
                     className="nav-link"
                     title="clear search string"
                     onClick={clearQuery}>

@@ -27,14 +27,14 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
                         </Button>}
                         {!setShowFilter && <Button onClick={handleOnSubmit} color="primary">Browse</Button>}
                     </InputGroupAddon>
-                    <Input 
+                    <Input
                         name="query"
                         value={query}
                         autoFocus
                         onKeyPress={(e) => {
                             if (e.key === 'Enter') {
                                 handleOnSubmit(e);
-                            } 
+                            }
                         }}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="Find plugins..."

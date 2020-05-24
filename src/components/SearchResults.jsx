@@ -18,7 +18,7 @@ function SearchResults({results, setPage, view}) {
                 <div className="no-results">
                     <h1>No results found</h1>
                     <p>
-                        {'You search did not return any results. Please try changing your search criteria or reloading the browser.'} 
+                        {'You search did not return any results. Please try changing your search criteria or reloading the browser.'}
                     </p>
                 </div>
             </div>
@@ -26,12 +26,12 @@ function SearchResults({results, setPage, view}) {
     }
     return (
         <div>
-            <Pagination 
+            <Pagination
                 total={results.total}
                 limit={results.limit}
                 page={results.page}
                 pages={results.pages}
-                setPage={setPage} 
+                setPage={setPage}
             />
             <div id="cb-item-finder-grid-box" className={`SearchResults--GridBox SearchResults--${view}`}>
                 {results.plugins.map(plugin => (
