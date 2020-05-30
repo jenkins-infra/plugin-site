@@ -15,6 +15,7 @@ import Filters from '../components/Filters';
 import ActiveFilters from '../components/ActiveFilters';
 import fetch from 'isomorphic-fetch';
 
+
 const doSearch = (data, setResults) => {
     const {categories, labels, page, query, sort} = data;
     const params = querystring.stringify({
@@ -61,6 +62,8 @@ function SearchPage({location}) {
         navigate(`/ui/search?${querystring.stringify(newData)}`);
         doSearch(newData, setResults);
     };
+
+    const searchPage = 'templates/search.jsx';
     
     React.useEffect(() => {
         const qs = location.search.replace(/^\?/, '');
@@ -74,7 +77,7 @@ function SearchPage({location}) {
     }, []);
 
     return (
-        <Layout id="searchpage">
+        <Layout id="searchpage" reportProblemRelativeSourcePath={searchPage} reportProblemUrl={`/ui/search?${querystring.stringify({query})}`} reportProblemTitle="Search">
             <SEO pathname={'/ui/search'} title="Search Results" />
 
             <div className="row d-flex">

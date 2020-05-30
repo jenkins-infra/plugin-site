@@ -227,7 +227,7 @@ transform: scale(-1, 1);
 #pluginPage #grid-box .gutter > .btn > span {font-size:1.1rem; line-height:1.3rem; font-weight:500}
 #pluginPage #grid-box .gutter > .btn > .v {display:block; font-weight:200; font-size:.75rem; white-space:normal}
 #pluginPage #grid-box .gutter .lbl {display:inline-block; margin-right:.5rem}
-#pluginPage #grid-box .gutter .label-link{display:block;}
+##pluginPage #grid-box .gutter .label-link a{display:block; line-height: 1.5rem; padding: 4px 0;}
 #pluginPage #grid-box .gutter .chart {margin:1rem 0 2rem}
 #pluginPage #grid-box {
   margin-left: 15px;

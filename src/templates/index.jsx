@@ -18,14 +18,16 @@ function IndexPage() {
         e.preventDefault();
         navigate(`/ui/search?${querystring.stringify({query})}`);
     };
+    const pageTitle = 'Plugins Index';
+    const indexPage = 'templates/index.jsx';
 
     return (
-        <Layout>
+        <Layout reportProblemRelativeSourcePath={indexPage} reportProblemUrl="" reportProblemTitle={pageTitle}>
             <SEO />
             <div className="IndexPage--Container jumbotron" onSubmit={handleOnSubmit}>
                 <div className="logo"><JenkinsVoltron /></div>
                 <div className="content">
-                    <h1>Plugins Index</h1>
+                    <h1>{pageTitle}</h1>
                     <p>Discover the 1500+ community contributed Jenkins plugins to support building, deploying and automating any project.</p>
                     <SearchBox 
                         handleOnSubmit={handleOnSubmit}
