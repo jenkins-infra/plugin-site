@@ -16,7 +16,7 @@ import PluginGovernanceStatus from '../components/PluginGovernanceStatus';
 import PluginMaintainers from '../components/PluginMaintainers';
 import PluginReadableInstalls from '../components/PluginReadableInstalls';
 import PluginIssues from '../components/PluginIssues';
-
+import PluginReleases from '../components/PluginReleases';
 
 function shouldShowWikiUrl({url}) {
     return url && (url.startsWith('https://wiki.jenkins-ci.org') || url.startsWith('https://wiki.jenkins.io'));
@@ -28,6 +28,7 @@ function shouldShowGitHubUrl({url}) {
 
 const tabs = [
     {id: 'documentation', label: 'Documentation'},
+    {id: 'releases', label: 'Releases'},
     {id: 'issues', label: 'Issues'},
 ];
 
@@ -94,6 +95,7 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
 
                             {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
                         </>)}
+                        {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} />}
                         {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.id} />}
                     </div>
                 </div>
