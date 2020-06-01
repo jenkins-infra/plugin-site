@@ -8,12 +8,12 @@ import './PluginReleases.css';
 function PluginIssues({pluginId}) {
     const [isLoading, setIsLoading] = useState(false);
     const [releases, setReleases] = useState([]);
-    
+
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             const result = await axios(`/api/plugin/${pluginId}/releases`);
-            setReleases(result.data || []);
+            setReleases(result.data.releases || []);
             setIsLoading(false);
         };
         fetchData();
