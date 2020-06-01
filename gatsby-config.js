@@ -14,7 +14,7 @@ module.exports = {
     },
     proxy: {
         prefix: '/api',
-        url: 'https://plugins.jenkins.io',
+        url: process.env.DEV_OVERRIDE_API_PROXY || 'https://plugins.jenkins.io',
     },
     plugins: [
         'gatsby-transformer-sharp',
