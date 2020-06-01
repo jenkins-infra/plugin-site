@@ -86,7 +86,9 @@
     "postcss-url": "^8.0.0",
     "react-chartjs-2": "^2.9.0",
     "react-helmet": "^6.0.0",
+    "react-markdown": "^4.3.1",
     "react-radio-group": "^3.0.3",
+    "react-time-ago": "^5.0.8",
     "reactstrap": "^8.4.1"
   },
   "devDependencies": {
