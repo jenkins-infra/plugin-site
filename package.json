@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "gatsby develop -p 3000 -H 0.0.0.0",
     "build": "gatsby build",
-    "lint": "eslint --ext .js --ext .jsx .",
+    "lint": "eslint --ext .js,.jsx .",
     "stylelint": "stylelint --fix 'src/**/*.js'",
     "test": "jest",
     "test:watch": "yarn test -- --watch",

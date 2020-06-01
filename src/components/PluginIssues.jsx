@@ -5,7 +5,7 @@ import axios from 'axios';
 function PluginIssues({pluginId}) {
     const [isLoading, setIsLoading] = useState(false);
     const [issues, setIssues] = useState([]);
-    
+
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
@@ -35,10 +35,10 @@ function PluginIssues({pluginId}) {
                             <th scope="col">Assignee</th>
                             <th scope="col">Reporter</th>
                             <th scope="col">Priority</th>
-                            <th scope="col">Status</th>                        
-                            <th scope="col">Resolution</th>                        
-                            <th scope="col">Created</th>                        
-                            <th scope="col">Updated</th>                        
+                            <th scope="col">Status</th>
+                            <th scope="col">Resolution</th>
+                            <th scope="col">Created</th>
+                            <th scope="col">Updated</th>
                         </tr>
                     </thead>
                     <tbody>
