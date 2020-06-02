@@ -1,12 +1,7 @@
 #pluginReleases--container {
     margin-top: 10px;
-    display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
-    grid-gap: 10px;
-    @media (max-width: 992px) {
-        grid-template-columns: 100%;
-    }
 }
 
-#pluginReleases--container .card {
+#pluginReleases--container .item {
+    margin-bottom: 10px;
 }
