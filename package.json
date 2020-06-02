@@ -54,7 +54,7 @@
   "bugs": {
     "url": "https://issues.jenkins-ci.org/secure/RapidBoard.jspa?rapidView=1&projectKey=WEBSITE&view=detail"
   },
-  "homepage": "https://plugins.jenkins-ci.org/",
+  "homepage": "https://plugins.jenkins.io/",
   "dependencies": {
     "@babel/core": "^7.9.0",
     "chart.js": "^2.9.3",
