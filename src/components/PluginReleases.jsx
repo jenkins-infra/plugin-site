@@ -40,7 +40,7 @@ function PluginIssues({pluginId}) {
                             </h5>
                         </div>
                         <div className="card-body">
-                            <p 
+                            <p
                                 className="card-text"
                                 dangerouslySetInnerHTML={{__html: release.bodyHTML}}
                             />
