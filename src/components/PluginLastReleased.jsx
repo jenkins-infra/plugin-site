@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import ReactTimeAgo from 'react-time-ago/tooltip';
 
 const getTime = (plugin) => {
     if (plugin.releaseTimestamp !== null) {
@@ -16,10 +17,8 @@ function PluginLastReleased({plugin}) {
     const time = getTime(plugin);
     return (
         <div>
-            Last released:
-            <span title={time.format('dddd, MMMM Do YYYY')}>
-                {time.fromNow()}
-            </span>
+            {'Last released: '}
+            <ReactTimeAgo date={time} />
         </div>
     );
 }

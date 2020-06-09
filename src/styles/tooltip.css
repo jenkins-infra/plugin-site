@@ -1,0 +1,8 @@
+:root {
+  --rrui-tooltip-text-color: white;
+  --rrui-tooltip-background-color: grey;
+  --rrui-tooltip-border-radius: 25px;
+  --rrui-tooltip-hidden-distance: 10px;
+  --rrui-tooltip-visible-distance: 0.5px;
+  --rrui-tooltip-animation-duration: 0.5s;
+}
