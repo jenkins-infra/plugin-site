@@ -57,6 +57,7 @@
   "homepage": "https://plugins.jenkins.io/",
   "dependencies": {
     "@babel/core": "^7.9.0",
+    "@sentry/browser": "^5.17.0",
     "chart.js": "^2.9.3",
     "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
@@ -68,7 +69,6 @@
     "gatsby-plugin-postcss": "^2.2.3",
     "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-plugin-robots-txt": "^1.5.0",
-    "gatsby-plugin-sentry": "^1.0.1",
     "gatsby-plugin-sharp": "^2.6.3",
     "gatsby-plugin-sitemap": "^2.3.4",
     "gatsby-source-filesystem": "^2.3.3",
