@@ -69,7 +69,7 @@
     "gatsby-plugin-postcss": "^2.2.3",
     "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-plugin-robots-txt": "^1.5.0",
-    "gatsby-plugin-sharp": "^2.6.3",
+    "gatsby-plugin-sharp": "^2.6.11",
     "gatsby-plugin-sitemap": "^2.3.4",
     "gatsby-source-filesystem": "^2.3.3",
     "gatsby-transformer-sharp": "^2.5.2",
