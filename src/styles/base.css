@@ -46,9 +46,9 @@ body .showResults #plugin-search-form:before {display:none}
 }
 .isFiltered .filters .show-all {display: inline-block}
 
-.dependencies .req{
-    font-size: .67rem;
-    opacity: .67;
+#pluginDependencies h2{
+    font-size: 1.2rem;
+    margin-top: .7rem;
 }
 
 .empty {opacity:.33}

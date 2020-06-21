@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'gatsby';
 import {Modal, ModalHeader, ModalBody} from 'reactstrap';
-const sortFunc = (a, b) => a.implied === b.implied ? (a.optional === b.optional ? 0 : a.optional ? 1 : -1 ) : (a.implied ? 1 : -1);
 
 function PluginDependencies({dependencies} ) {
     const [isShowImplied, setShowImplied] = React.useState(false);
@@ -14,10 +13,24 @@ function PluginDependencies({dependencies} ) {
     if (!dependencies || dependencies.length === 0) {
         return (<div className="empty">No dependencies found</div>);
     }
-
+    const optionalDependencies = dependencies.filter(dep => dep.optional);
+    const impliedDependencies = dependencies.filter(dep => dep.implied && !dep.optional);
+    const requiredDependencies = dependencies.filter(dep => !dep.implied && !dep.optional);
+    const dependencyLink = (dependency) => {
+        return (
+            <div key={dependency.name} className="implied">
+                <Link to={`/${dependency.name}/`}>
+                    {dependency.title}
+                    {' ≥ '}
+                    {dependency.version}
+                </Link>
+            </div>
+        );
+    };
     return (
         <>
-            <Modal placement="bottom" isOpen={isShowImplied} target="pluginDependancies" toggle={toggleShowImplied}>
+            <h1>Dependencies</h1>
+            <Modal placement="bottom" isOpen={isShowImplied} target="pluginDependencies" toggle={toggleShowImplied}>
                 <ModalHeader toggle={toggleShowImplied}>About Implied Plugin Dependencies</ModalHeader >
                 <ModalBody>
                     <div>
@@ -39,47 +52,34 @@ function PluginDependencies({dependencies} ) {
                     </div>
                 </ModalBody>
             </Modal>
-            <div id="pluginDependancies">
+            <div id="pluginDependencies">
                 {
-                    dependencies.sort(sortFunc).map((dependency) => {
-                        const kind = !dependency.optional ? (dependency.implied ? 'implied' : 'required') : 'optional';
-                        if (kind === 'implied') {
-                            return (
-                                <div key={dependency.name} className={kind}>
-                                    <Link to={`/${dependency.name}/`}>
-                                        {dependency.title}
-                                        {' '}
-                                        v.
-                                        {dependency.version}
-                                        {' '}
-                                        <span className="req">
-                                            (
-                                            {kind}
-                                            )
-                                        </span>
-                                    </Link>
-                                    <a href="#" onClick={toggleShowImplied}><span className="req">(what&apos;s this?)</span></a>
-                                </div>
-                            );
-                        }
-                        return (
-                            <div key={dependency.name} className={kind}>
-                                <Link to={`/${dependency.name}/`}>
-                                    {dependency.title}
-                                    {' '}
-                                    ≥
-                                    {' '}
-                                    {dependency.version}
-                                    {' '}
-                                    {kind === 'required' ? '' : <span className="req">
-                                        (
-                                        {kind}
-                                        )
-                                    </span>}
-                                </Link>
-                            </div>
-                        );
-                    })
+                    !(optionalDependencies.length + impliedDependencies.length) ? '' : (
+                        <h2>Required</h2>
+                    )
+                }
+                {
+                    requiredDependencies.map(dependencyLink)
+                }
+                {
+                    !optionalDependencies.length ? '' : (
+                        <h2>Optional</h2>
+                    )
+                }
+                {
+                    optionalDependencies.map(dependencyLink)
+                }
+                {
+                    !impliedDependencies.length ? '' : (
+                        <h2>
+                            Implied
+                            {' '}
+                            <a href="#" onClick={toggleShowImplied}><span className="req">(what&apos;s this?)</span></a>
+                        </h2>
+                    )
+                }
+                {
+                    impliedDependencies.map(dependencyLink)
                 }
             </div>
         </>

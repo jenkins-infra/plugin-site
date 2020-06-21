@@ -30,6 +30,7 @@ const tabs = [
     {id: 'documentation', label: 'Documentation'},
     {id: 'releases', label: 'Releases'},
     {id: 'issues', label: 'Issues'},
+    {id: 'dependencies', label: 'Dependencies'},
 ];
 
 function getDefaultTab() {
@@ -85,10 +86,6 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                                     <h5>Maintainers</h5>
                                     <PluginMaintainers maintainers={plugin.maintainers} />
                                 </div>
-                                <div className="col-md-4 dependencies">
-                                    <h5>Dependencies</h5>
-                                    <PluginDependencies dependencies={plugin.dependencies} />
-                                </div>
                             </div>
 
                             <PluginGovernanceStatus plugin={plugin} />
@@ -97,6 +94,7 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                         </>)}
                         {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} />}
                         {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.id} />}
+                        {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies} />}
                     </div>
                 </div>
                 <div className="col-md-3 gutter">
