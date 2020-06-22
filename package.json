@@ -101,7 +101,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-standard": "^4.0.1",
-    "gatsby": "^2.20.25",
+    "gatsby": "^2.23.7",
     "gatsby-plugin-nprogress": "^2.3.4",
     "gatsby-source-custom-api": "^2.1.4",
     "husky": "^4.2.5",
