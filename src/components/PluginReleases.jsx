@@ -4,7 +4,7 @@ import axios from 'axios';
 import ReactTimeAgo from 'react-time-ago/tooltip';
 import './PluginReleases.css';
 
-function PluginIssues({pluginId}) {
+function PluginReleases({pluginId}) {
     const [isLoading, setIsLoading] = useState(false);
     const [releases, setReleases] = useState([]);
 
@@ -52,7 +52,7 @@ function PluginIssues({pluginId}) {
     );
 }
 
-PluginIssues.propTypes = {
+PluginReleases.propTypes = {
     pluginId: PropTypes.string.isRequired
 };
-export default PluginIssues;
+export default PluginReleases;
