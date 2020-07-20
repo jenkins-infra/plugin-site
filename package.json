@@ -57,7 +57,7 @@
   "homepage": "https://plugins.jenkins.io/",
   "dependencies": {
     "@babel/core": "^7.9.0",
-    "@sentry/browser": "^5.17.0",
+    "@sentry/browser": "^5.19.2",
     "chart.js": "^2.9.3",
     "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
