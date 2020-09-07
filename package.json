@@ -74,7 +74,7 @@
     "gatsby-source-filesystem": "^2.3.3",
     "gatsby-transformer-sharp": "^2.5.12",
     "isomorphic-fetch": "^2.2.1",
-    "moment": "^2.24.0",
+    "moment": "^2.27.0",
     "postcss-calc": "^7.0.2",
     "postcss-css-variables": "^0.14.0",
     "postcss-extend": "^1.0.5",
