@@ -76,7 +76,7 @@
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.27.0",
     "postcss-calc": "^7.0.2",
-    "postcss-css-variables": "^0.14.0",
+    "postcss-css-variables": "^0.17.0",
     "postcss-extend": "^1.0.5",
     "postcss-import": "^12.0.1",
     "postcss-merge-rules": "^4.0.3",
