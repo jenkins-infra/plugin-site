@@ -1,0 +1,83 @@
+pipeline {
+  agent {
+    kubernetes {
+      label 'helmfile'
+      yamlFile 'PodTemplates.yaml'
+      inheritFrom 'jnlp-linux'
+    }
+  }
+
+  environment {
+    GET_CONTENT = "true"
+    NODE_ENV = "production"
+  }
+
+  triggers {
+    cron('H H/3 * * *')
+  }
+
+  options {
+    timeout(time: 60, unit: 'MINUTES')
+    ansiColor('xterm')
+    buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
+  }
+
+  stages {
+    stage('Yarn Install') {
+      steps {
+        container('node') {
+          sh('yarn install')
+        }
+      }
+    }
+
+    stage('Build Production') {
+      steps {
+        container('node') {
+          sh('yarn build')
+        }
+      }
+    }
+
+    stage('Check build') {
+      steps {
+        container('node') {
+          sh 'test -e public/index.html || exit 1'
+        }
+      }
+    }
+
+    stage('Lint and Test') {
+      steps {
+        container('node') {
+          sh('yarn lint')
+          sh('node:13',  'yarn test')
+        }
+      }
+    }
+
+    stage('Deploy to azure') {
+      when {
+        branch "master"
+      }
+      environment {
+        PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
+      }
+      steps {
+        sh("""upload \
+          --local-path public \
+          --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
+          --storage-account prodpluginsite \
+          --remote-path pluginsite \
+          --recursive \
+          --mode file \
+          --skip-on-md5-match \
+          --file-md5 \
+          --connect-timeout 30 \
+          --delete \
+          --verbose'
+        """)
+      }
+    }
+  }
+}
