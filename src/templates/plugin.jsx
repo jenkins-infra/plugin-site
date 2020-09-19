@@ -51,6 +51,9 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
 
             <div className="row flex">
                 <div className="col-md-9 main">
+                    <h1 className="title">
+                        {cleanTitle(plugin.title)}
+                    </h1>
                     <ul className="nav nav-tabs">
                         {tabs.map(tab => (
                             <li className="nav-item" key={tab.id}>
@@ -60,10 +63,12 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                     </ul>
                     <div className="padded">
                         {state.selectedTab === 'documentation' && (<>
-                            <h1 className="title">
-                                {cleanTitle(plugin.title)}
+                            <h1 className="title-details">
                                 <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
-                                <span className="v">{plugin.version}</span>
+                                <span className="version">
+                                    {'Version: '}
+                                    {plugin.version}
+                                </span>
                                 <span className="sub">
                                     {'Minimum Jenkins requirement: '}
                                     {plugin.requiredCore}
