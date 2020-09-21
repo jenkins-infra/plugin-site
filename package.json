@@ -72,7 +72,7 @@
     "gatsby-plugin-sharp": "^2.6.18",
     "gatsby-plugin-sitemap": "^2.4.11",
     "gatsby-source-filesystem": "^2.3.3",
-    "gatsby-transformer-sharp": "^2.5.12",
+    "gatsby-transformer-sharp": "^2.5.15",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.27.0",
     "postcss-calc": "^7.0.2",
