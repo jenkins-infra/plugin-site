@@ -257,8 +257,9 @@ transform: scale(-1, 1);
 }
 .row.flex {display:flex}
 
-h1.title-details .sub {display:block; font-weight:normal; font-size:.85rem; color:#999; margin-top:.25rem}
-h1.title-details .version {display:block; font-weight:normal; font-size:.85rem; color:#999; margin-top:.25rem}
+div.title-details .sub {display:block; font-weight:normal; font-size:.85rem; color:#999; margin-top:.25rem}
+div.title-details .version {display:block; font-weight:normal; font-size:.85rem; color:#999; margin-top:.25rem}
+
 .markdown-body .anchor {display:none}
 .markdown-body h1 {font-size:2rem; margin:4rem 0 1rem;}
 .markdown-body h2 {font-size:1.5rem; margin-top:2rem;}

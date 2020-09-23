@@ -63,7 +63,7 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                     </ul>
                     <div className="padded">
                         {state.selectedTab === 'documentation' && (<>
-                            <h1 className="title-details">
+                            <div className="title-details">
                                 <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
                                 <span className="version">
                                     {'Version: '}
@@ -77,7 +77,7 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                                     {'ID: '}
                                     {plugin.name}
                                 </span>
-                            </h1>
+                            </div>
                             <div className="row flex">
                                 <div className="col-md-4">
                                     {plugin.stats && <div>
