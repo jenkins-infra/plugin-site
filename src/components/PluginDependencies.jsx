@@ -38,7 +38,7 @@ function PluginDependencies({dependencies, reverseDependencies} ) {
     };
     return (
         <>
-            <h1>Dependencies</h1>
+            <h2>Dependencies</h2>
             <Modal placement="bottom" isOpen={isShowImplied} target="pluginDependencies" toggle={toggleShowImplied}>
                 <ModalHeader toggle={toggleShowImplied}>About Implied Plugin Dependencies</ModalHeader >
                 <ModalBody>
