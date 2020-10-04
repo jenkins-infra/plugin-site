@@ -41,7 +41,7 @@ function getDefaultTab() {
     return tabs[0].id;
 }
 
-function PluginPage({data: {jenkinsPlugin: plugin}}) {
+function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies}}) {
     const [state, setState] = useState({selectedTab: getDefaultTab()});
     const pluginPage = 'templates/plugin.jsx';
 
@@ -99,7 +99,7 @@ function PluginPage({data: {jenkinsPlugin: plugin}}) {
                         </>)}
                         {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} />}
                         {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.id} />}
-                        {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies} />}
+                        {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies} reverseDependencies={reverseDependencies.edges}/>}
                     </div>
                 </div>
                 <div className="col-md-3 gutter">
@@ -203,7 +203,15 @@ PluginPage.propTypes = {
                 url: PropTypes.string
             }).isRequired,
             version: PropTypes.string
-        }).isRequired
+        }).isRequired,
+        reverseDependencies: PropTypes.arrayOf(
+            PropTypes.shape({
+                node: PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    title: PropTypes.string.isRequired,
+                })
+            })
+        )
     }).isRequired
 };
 
@@ -212,6 +220,26 @@ export const pageQuery = graphql`
   query PluginBySlug($name: String!) {
     jenkinsPlugin(name: {eq: $name}) {
       ...JenkinsPluginFragment
+    }
+
+    reverseDependencies: allJenkinsPlugin(
+      filter: {
+        dependencies: {
+          elemMatch: {
+            name: {eq: $name}
+          }
+        }
+      }
+      sort: {
+        fields: [title]
+        order: ASC
+      }) {
+      edges {
+        node {
+          id
+          title
+        }
+      }
     }
   }
 `;
