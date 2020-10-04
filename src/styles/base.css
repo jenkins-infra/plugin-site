@@ -46,8 +46,12 @@ body .showResults #plugin-search-form:before {display:none}
 }
 .isFiltered .filters .show-all {display: inline-block}
 
-#pluginDependencies h2{
+#pluginDependencies h3{
     font-size: 1.2rem;
+    margin-top: .7rem;
+}
+
+#pluginDependencies h2{
     margin-top: .7rem;
 }
 

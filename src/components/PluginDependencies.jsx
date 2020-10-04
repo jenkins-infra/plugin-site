@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'gatsby';
 import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 
-function PluginDependencies({dependencies} ) {
+function PluginDependencies({dependencies, reverseDependencies} ) {
     const [isShowImplied, setShowImplied] = React.useState(false);
     const toggleShowImplied = (e) => {
         e && e.preventDefault();
@@ -27,9 +27,18 @@ function PluginDependencies({dependencies} ) {
             </div>
         );
     };
+    const reverseDependencyLink = (dependency) => {
+        return (
+             <div key={dependency.node.id`}>
+                <Link to={`/${dependency.node.id}/`}>
+                    {dependency.node.title}
+                </Link>
+            </div>
+        );
+    };
     return (
         <>
-            <h1>Dependencies</h1>
+            <h2>Dependencies</h2>
             <Modal placement="bottom" isOpen={isShowImplied} target="pluginDependencies" toggle={toggleShowImplied}>
                 <ModalHeader toggle={toggleShowImplied}>About Implied Plugin Dependencies</ModalHeader >
                 <ModalBody>
@@ -55,7 +64,7 @@ function PluginDependencies({dependencies} ) {
             <div id="pluginDependencies">
                 {
                     !(optionalDependencies.length + impliedDependencies.length) ? '' : (
-                        <h2>Required</h2>
+                        <h3>Required</h3>
                     )
                 }
                 {
@@ -63,7 +72,7 @@ function PluginDependencies({dependencies} ) {
                 }
                 {
                     !optionalDependencies.length ? '' : (
-                        <h2>Optional</h2>
+                        <h3>Optional</h3>
                     )
                 }
                 {
@@ -71,15 +80,23 @@ function PluginDependencies({dependencies} ) {
                 }
                 {
                     !impliedDependencies.length ? '' : (
-                        <h2>
+                        <h3>
                             Implied
                             {' '}
                             <a href="#" onClick={toggleShowImplied}><span className="req">(what&apos;s this?)</span></a>
-                        </h2>
+                        </h3>
                     )
                 }
                 {
                     impliedDependencies.map(dependencyLink)
+                }
+                {
+                    !reverseDependencies.length ? '' : (
+                        <h2>Dependent plugins</h2>
+                    )
+                }
+                {
+                    reverseDependencies.map(reverseDependencyLink)
                 }
             </div>
         </>
@@ -94,6 +111,14 @@ PluginDependencies.propTypes = {
             version: PropTypes.string.isRequired,
             optional: PropTypes.bool,
             implied: PropTypes.bool
+        })
+    ),
+    reverseDependencies: PropTypes.arrayOf(
+        PropTypes.shape({
+            node: PropTypes.shape({
+                id: PropTypes.string.isRequired,
+                title: PropTypes.string.isRequired,
+            })
         })
     )
 };
