@@ -29,7 +29,7 @@ function PluginDependencies({dependencies, reverseDependencies} ) {
     };
     const reverseDependencyLink = (dependency) => {
         return (
-            <div key={`${dependency.node.id}-revese`}>
+             <div key={dependency.node.id`}>
                 <Link to={`/${dependency.node.id}/`}>
                     {dependency.node.title}
                 </Link>
