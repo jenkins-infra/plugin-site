@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import ReactTimeAgo from 'react-time-ago/tooltip';
+import TimeAgo from 'react-timeago';
+import {formatter} from '../commons/helper';
 
 const getTime = (plugin) => {
     if (plugin.releaseTimestamp !== null) {
@@ -18,7 +19,7 @@ function PluginLastReleased({plugin}) {
     return (
         <div>
             {'Last released: '}
-            <ReactTimeAgo date={time} />
+            <TimeAgo date={time} formatter={formatter}/>
         </div>
     );
 }

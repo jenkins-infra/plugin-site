@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import ReactTimeAgo from 'react-time-ago/tooltip';
+import TimeAgo from 'react-timeago';
 import './PluginReleases.css';
+import {formatter} from '../commons/helper';
+
 
 function PluginReleases({pluginId}) {
     const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +37,7 @@ function PluginReleases({pluginId}) {
                                 <div>{release.name || release.tag_name}</div>
                                 <div>
                                     {'Released: '}
-                                    <ReactTimeAgo date={new Date(release.published_at)} />
+                                    <TimeAgo date={new Date(release.published_at)} formatter={formatter}/>
                                 </div>
                             </h5>
                         </div>
