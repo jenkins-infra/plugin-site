@@ -18,9 +18,6 @@ async function makeReactLayout() {
         'import SiteVersion from \'./components/SiteVersion\';',
         'import ReportAProblem from \'./components/ReportAProblem\';',
         'import \'./layout.css\';',
-        'import JavascriptTimeAgo from \'javascript-time-ago\';',
-        'import en from \'javascript-time-ago/locale/en\';',
-        'JavascriptTimeAgo.locale(en)'
     ];
 
     const cssLines = [
@@ -29,8 +26,6 @@ async function makeReactLayout() {
         '@import \'./styles/roboto-fonts.css\';',
         '@import \'./styles/base.css\';',
         '@import \'./styles/font-icons.css\';',
-        '@import \'./styles/tooltip.css\';',
-        '@import \'react-time-ago/Tooltip.css\';',
     ];
 
     console.info(`Downloading header file from '${headerUrl}'`);

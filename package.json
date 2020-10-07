@@ -87,7 +87,7 @@
     "react-chartjs-2": "^2.9.0",
     "react-helmet": "^6.1.0",
     "react-radio-group": "^3.0.3",
-    "react-time-ago": "^5.0.8",
+    "react-timeago": "^5.2.0",
     "reactstrap": "^8.4.1"
   },
   "devDependencies": {

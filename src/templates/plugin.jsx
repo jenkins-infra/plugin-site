@@ -204,14 +204,16 @@ PluginPage.propTypes = {
             }).isRequired,
             version: PropTypes.string
         }).isRequired,
-        reverseDependencies: PropTypes.arrayOf(
-            PropTypes.shape({
-                node: PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    title: PropTypes.string.isRequired,
+        reverseDependencies: PropTypes.shape({
+            edges: PropTypes.arrayOf(
+                PropTypes.shape({
+                    node: PropTypes.shape({
+                        id: PropTypes.string.isRequired,
+                        title: PropTypes.string.isRequired,
+                    })
                 })
-            })
-        )
+            )
+        })
     }).isRequired
 };
 
