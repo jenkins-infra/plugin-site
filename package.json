@@ -71,7 +71,7 @@
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.6.18",
     "gatsby-plugin-sitemap": "^2.4.14",
-    "gatsby-source-filesystem": "^2.3.3",
+    "gatsby-source-filesystem": "^2.3.34",
     "gatsby-transformer-sharp": "^2.5.16",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.29.0",
