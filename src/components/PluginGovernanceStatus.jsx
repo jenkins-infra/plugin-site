@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {ReactComponent as Warning} from '../images/warning.svg';
+
 
 function PluginGovernanceStatus({plugin}) {
     if (!plugin || !plugin.labels) {
@@ -8,38 +10,25 @@ function PluginGovernanceStatus({plugin}) {
     return plugin.labels.map((id) => {
         if (id === 'adopt-this-plugin') {
             return (
-                <div className="plugin-governance-notice">
-                    <table>
-                        <tr>
-                            <td className="badge-box"><span className="badge active warning"/></td>
-                            <td className="plugin-governance-notice-text">
-                                <b>This plugin is up for adoption!</b>
-                                {' We are looking for new maintainers. Visit our '}
-                                <a href="https://jenkins.io/doc/developer/plugin-governance/adopt-a-plugin/">Adopt a Plugin</a>
-                                {' initiative for more information.'}
-                            </td>
-                        </tr>
-                    </table>
+                <div className="alert alert-warning alert-with-icon" key={id}>
+                    <Warning className="alert-icon" aria-label="Warning"/>
+                    <b>This plugin is up for adoption!</b>
+                    {' We are looking for new maintainers. Visit our '}
+                    <a href="https://jenkins.io/doc/developer/plugin-governance/adopt-a-plugin/">Adopt a Plugin</a>
+                    {' initiative for more information.'}
                 </div>
             );
         } else if (id === 'deprecated') {
             return (
-                <div className="plugin-governance-notice">
-                    <table>
-                        <tr>
-                            <td className="badge-box"><span className="badge active warning"/></td>
-                            <td className="plugin-governance-notice-text">
-                                <b>Deprecated:</b>
-                                {'This plugin has been marked as deprecated. '}
-                                {'In general, this means that this plugin is either obsolete, no longer being developed, or may no longer work. '}
-                                {'See the documentation for further information about the cause for the deprecation, and suggestions on how to proceed. '}
-                                {'The deprecation process is also documented '}
-                                <a href="https://jenkins.io/doc/developer/plugin-governance/deprecating-or-removing-plugin">here</a>
-                                {'.'}
-
-                            </td>
-                        </tr>
-                    </table>
+                <div className="alert alert-warning alert-with-icon" key={id}>
+                    <Warning className="alert-icon" aria-label="Warning"/>
+                    <b>Deprecated:</b>
+                    {`This plugin has been marked as deprecated.
+                    In general, this means that this plugin is either obsolete, no longer being developed, or may no longer work.
+                    See the documentation below for further information about the cause for the deprecation, and suggestions on how to proceed.
+                    The deprecation process is also documented `}
+                    <a href="https://jenkins.io/doc/developer/plugin-governance/deprecating-or-removing-plugin">here</a>
+                    {'.'}
                 </div>
             );
         } else {

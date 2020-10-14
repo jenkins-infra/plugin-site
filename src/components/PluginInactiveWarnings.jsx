@@ -12,8 +12,8 @@ function PluginInactiveWarnings({securityWarnings}) {
     }
     return (
         <div>
-            <h6>Previous Security Warnings</h6>
-            <ul>
+            <h5>Previous Security Warnings</h5>
+            <ul className="security-warning-list">
                 {inactive.map(warning => {
                     return (
                         <li key={warning.url}>
