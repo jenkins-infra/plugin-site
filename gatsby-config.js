@@ -21,6 +21,12 @@ module.exports = {
         'gatsby-plugin-sharp',
         'gatsby-plugin-react-helmet',
         {
+            resolve: 'gatsby-plugin-svgr',
+            options: {
+                svgo: false,
+            }
+        },
+        {
             resolve: 'gatsby-plugin-polyfill-io',
             options: {
                 features: ['Array.prototype.map', 'fetch']

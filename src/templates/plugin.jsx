@@ -54,6 +54,8 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     <h1 className="title">
                         {cleanTitle(plugin.title)}
                     </h1>
+                    <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
+                    <PluginGovernanceStatus plugin={plugin} />
                     <ul className="nav nav-tabs">
                         {tabs.map(tab => (
                             <li className="nav-item" key={tab.id}>
@@ -64,7 +66,6 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     <div className="padded">
                         {state.selectedTab === 'documentation' && (<>
                             <div className="title-details">
-                                <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
                                 <span className="version">
                                     {'Version: '}
                                     {plugin.version}
@@ -92,8 +93,6 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                                     <PluginMaintainers maintainers={plugin.maintainers} />
                                 </div>
                             </div>
-
-                            <PluginGovernanceStatus plugin={plugin} />
 
                             {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
                         </>)}

@@ -105,3 +105,6 @@ src/layout.css
 netlifyctl
 junit.xml
 yarn-error.log
+
+# IDE
+.idea
