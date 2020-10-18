@@ -32,9 +32,6 @@ function PluginLabelTagCloud() {
         tags.push({value, count});
     });
 
-    // eslint-disable-next-line no-debugger
-    debugger;
-
     return (
         <TagCloud
             minSize={12}
