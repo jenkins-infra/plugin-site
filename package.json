@@ -87,6 +87,7 @@
     "react-chartjs-2": "^2.10.0",
     "react-helmet": "^6.1.0",
     "react-radio-group": "^3.0.3",
+    "react-tagcloud": "^2.0.0",
     "react-timeago": "^5.2.0",
     "reactstrap": "^8.6.0"
   },

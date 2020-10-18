@@ -8,6 +8,7 @@ import SEO from '../components/SEO';
 import Footer from '../components/Footer';
 import SearchBox from '../components/SearchBox';
 import JenkinsVoltron from '../components/JenkinsVoltron';
+import PluginLabelTagCloud from '../components/PluginLabelTagCloud';
 
 import './index.css';
 
@@ -35,6 +36,9 @@ function IndexPage() {
                         setQuery={setQuery}
                     />
                 </div>
+            </div>
+            <div>
+                <PluginLabelTagCloud />
             </div>
             <Footer />
         </Layout>
