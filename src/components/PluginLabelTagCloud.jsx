@@ -1,8 +1,11 @@
 import React from 'react';
-import {useStaticQuery, graphql} from 'gatsby';
+import {useStaticQuery, graphql, navigate} from 'gatsby';
 import {TagCloud} from 'react-tagcloud';
+import './PluginLabelTagCloud.css';
 
 function PluginLabelTagCloud() {
+
+    const excludedLabelSet = new Set(['adopt-this-plugin','deprecated','must-be-labeled','plugin-test']);
 
     const allLabels = useStaticQuery(graphql`
         query {
@@ -15,10 +18,8 @@ function PluginLabelTagCloud() {
     `).labels.nodes.reduce((prev, nodes) => {
 
         nodes.labels.reduce((prevLabel, obj) => {
-            if (!prev[obj]) {
-                prev[obj] = 1;
-            } else {
-                prev[obj]++;
+            if(!excludedLabelSet.has(obj)) {
+                prev[obj] = (prev[obj] || 0) + 1;
             }
             return obj;
 
@@ -27,18 +28,18 @@ function PluginLabelTagCloud() {
         return prev;
     }, {});
 
-    const tags = new Array();
-    Object.entries(allLabels).forEach(([value, count]) => {
-        tags.push({value, count});
-    });
+    const tags = Object.entries(allLabels).map(([value, count]) => {return {value, count};});
 
     return (
-        <TagCloud
-            minSize={12}
-            maxSize={35}
-            tags={tags}
-            onClick={tag => document.location.href=`/ui/search/?labels=${tag.value}`}
-        />
+        <div id="pluginLabelTagCloud--container" className="container">
+            <TagCloud
+                minSize={12}
+                maxSize={35}
+                tags={tags}
+                onClick={tag => navigate(`/ui/search/?labels=${tag.value}`)}
+                colorOptions={{luminosity: 'dark',format: 'rgba',alpha: 1.0}}
+            />
+        </div>
     );
 
 }

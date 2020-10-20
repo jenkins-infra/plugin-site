@@ -37,9 +37,8 @@ function IndexPage() {
                     />
                 </div>
             </div>
-            <div>
-                <PluginLabelTagCloud />
-            </div>
+            <PluginLabelTagCloud />
+
             <Footer />
         </Layout>
     );
