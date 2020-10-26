@@ -56,7 +56,7 @@
   },
   "homepage": "https://plugins.jenkins.io/",
   "dependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.12.3",
     "@sentry/browser": "^5.27.1",
     "@svgr/webpack": "^5.4.0",
     "chart.js": "^2.9.4",
