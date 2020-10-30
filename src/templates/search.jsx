@@ -95,7 +95,7 @@ function SearchPage({location}) {
                     />
                 </div>)}
                 <div className={showFilter ? 'col-md-9' : 'offset-md-1 col-md-11'}>
-                    <div className="row">
+                    <div className="row pt-4">
                         <div className={'col-md-9'}>
                             <SearchBox
                                 showFilter={showFilter}
