@@ -68,7 +68,6 @@ async function makeReactLayout() {
     $('meta[content*="{{"]').remove();
     //
     // padd as per https://stackoverflow.com/questions/11124777/twitter-bootstrap-navbar-fixed-top-overlapping-site
-    $('head').append('<style>{`body { padding-top: 40px; } @media screen and (max-width: 768px) { body { padding-top: 0px; } } `}</style>');
     $('head').append('<style>{`#grid-box { position: relative } `}</style>');
     $('head').append('<style>{`html { min-height:100%; position: relative; }`}</style>');
 
@@ -116,7 +115,7 @@ async function makeReactLayout() {
         } else if (node.type === 'comment') {
             return;
         } else if (node.type === 'text') {
-            const text = node.data;
+            const text = node.data.replace('\u00A0','&nbsp;');
             jsxLines.push(`${prefix}${text}`);
         } else if (node.children && node.children.length) {
             jsxLines.push(`${prefix}<${node.name} ${attrs}>`);
