@@ -13,12 +13,11 @@ const calculateHeight = (total) => {
 };
 
 const calculateMinMax = (data) => {
-    const minValue = Math.min(...data);
     const maxValue = Math.max(...data);
     // calculate a dynamic value to center the graph
     const scaleDifference = Math.pow(10, maxValue.toString().length-1);
     return {
-        min: parseInt(minValue/scaleDifference)*scaleDifference,
+        min: 0,
         max: parseInt((maxValue/scaleDifference)+1)*scaleDifference // plus 1 to add more space in the top
     };
 };
