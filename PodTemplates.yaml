@@ -24,7 +24,7 @@ spec:
     - args: ["99d"]
       command: ["sleep"]
       env:
-      image: "node:13"
+      image: "node:15"
       imagePullPolicy: "Always"
       name: "node"
       securityContext:
