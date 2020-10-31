@@ -26,7 +26,7 @@ pipeline {
     stage('Yarn Install') {
       steps {
         container('node') {
-          sh('yarn install')
+          sh 'yarn install'
         }
       }
     }
@@ -34,7 +34,7 @@ pipeline {
     stage('Build Production') {
       steps {
         container('node') {
-          sh('yarn build')
+          sh 'yarn build'
         }
       }
     }
@@ -50,8 +50,8 @@ pipeline {
     stage('Lint and Test') {
       steps {
         container('node') {
-          sh('yarn lint')
-          sh('node:13',  'yarn test')
+          sh 'yarn lint'
+          sh 'yarn test'
         }
       }
     }
