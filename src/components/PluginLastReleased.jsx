@@ -17,10 +17,10 @@ const getTime = (plugin) => {
 function PluginLastReleased({plugin}) {
     const time = getTime(plugin);
     return (
-        <div>
-            {'Last released: '}
+        <span className="col-md-3">
+            {'Released: '}
             <TimeAgo date={time} formatter={formatter}/>
-        </div>
+        </span>
     );
 }
   
