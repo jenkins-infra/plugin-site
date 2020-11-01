@@ -46,9 +46,7 @@ pipeline {
     }
 
     stage('Deploy to azure') {
-      when {
-        environment name: 'JENKINS_URL', value: 'https://trusted.ci.jenkins.io:1443/'
-      }
+      when { expression { return infra.isTrusted() } }
       environment {
         PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
       }
