@@ -71,6 +71,7 @@ spec:
     stage('Build Production') {
       steps {
         container('node') {
+          sh 'ls -1 node_modules'
           sh 'yarn build'
         }
       }
