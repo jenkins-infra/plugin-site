@@ -49,7 +49,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
         <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemUrl={`/${plugin.name}`} reportProblemTitle={plugin.title}>
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
 
-            <div className="row flex">
+            <div className="row flex pluginContainer">
                 <div className="col-md-9 main">
                     <h1 className="title">
                         {cleanTitle(plugin.title)}
@@ -66,34 +66,20 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     <div className="padded">
                         {state.selectedTab === 'documentation' && (<>
                             <div className="title-details">
-                                <span className="version">
+                                <span className="col-md-3">
                                     {'Version: '}
                                     {plugin.version}
                                 </span>
-                                <span className="sub">
-                                    {'Minimum Jenkins requirement: '}
+                                <PluginLastReleased plugin={plugin} />
+                                <span className="col-md-4">
+                                    {'Requires Jenkins '}
                                     {plugin.requiredCore}
                                 </span>
-                                <span className="sub">
+                                <span className="col-md-2">
                                     {'ID: '}
                                     {plugin.name}
                                 </span>
                             </div>
-                            <div className="row flex">
-                                <div className="col-md-4">
-                                    {plugin.stats && <div>
-                                        {'Installs: '}
-                                        <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls} />
-                                    </div>}
-                                    {plugin.scm && plugin.scm.link && <div><a href={plugin.scm.link}>GitHub →</a></div>}
-                                    <PluginLastReleased plugin={plugin} />
-                                </div>
-                                <div className="col-md-4 maintainers">
-                                    <h5>Maintainers</h5>
-                                    <PluginMaintainers maintainers={plugin.maintainers} />
-                                </div>
-                            </div>
-
                             {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
                         </>)}
                         {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} />}
@@ -108,23 +94,31 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         <span>Archives</span>
                         <span className="v">Get past versions</span>
                     </a>
+                    {plugin.stats && <h5>
+                        {'Installs: '}
+                        <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls} />
+                    </h5>}
                     <div className="chart">
                         <LineChart
-                            total={plugin.stats.currentInstalls}
                             installations={plugin.stats.installations}
                         />
                     </div>
-                
-                    <h5>Links</h5>
-                    {plugin.scm && plugin.scm.link && <div className="label-link"><a href={plugin.scm.link}>GitHub</a></div>}
-                    <div className="label-link"><a href={`https://javadoc.jenkins.io/plugin/${plugin.name}`}>Javadoc</a></div>
-                
-                    <h5>Labels</h5>
-                    <PluginLabels labels={plugin.labels} />
-                    <br/>
+                    <div className="sidebarSection">
+                        <h5>Links</h5>
+                        {plugin.scm && plugin.scm.link && <div className="label-link"><a href={plugin.scm.link}>GitHub</a></div>}
+                        <div className="label-link"><a href={`https://javadoc.jenkins.io/plugin/${plugin.name}`}>Javadoc</a></div>
+                    </div>
+                    <div className="sidebarSection">
+                        <h5>Labels</h5>
+                        <PluginLabels labels={plugin.labels} />
+                    </div>
+                    <div className="sidebarSection">
+                        <h5>Maintainers</h5>
+                        <PluginMaintainers maintainers={plugin.maintainers} />
+                    </div>
                     {shouldShowWikiUrl(plugin.wiki) &&
-                        <div className="update-link">
-                            <h5>Help us to improve this page!</h5>
+                        <div className="sidebarSection">
+                            <h5>Help us improve this page!</h5>
                             {'This content is served from the  '}
                             <a href={plugin.wiki.url} target="_wiki">Jenkins Wiki</a>
                             {' the '}
@@ -135,17 +129,16 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         </div>
                     }
                     {shouldShowGitHubUrl(plugin.wiki) &&
-                        <div className="update-link">
-                            <h5>Help us to improve this page!</h5>
+                        <div className="sidebarSection">
+                            <h5>Help us improve this page!</h5>
                             {'To propose a change submit a pull request to  '}
                             <a href={plugin.wiki.url} rel="noopener noreferrer" target="_blank">the plugin page</a>
-                            {' on GitHub. Read more about GitHub support on the plugin site in the '}
-                            <a href="https://jenkins.io/doc/developer/publishing/documentation/" rel="noopener noreferrer" target="_blank">Jenkins developer documentation</a>
-                            {'.'}
+                            {' on GitHub.'}
                         </div>
                     }
-    
-                    <PluginInactiveWarnings securityWarnings={plugin.securityWarnings} />
+                    <div className="sidebarSection">
+                        <PluginInactiveWarnings securityWarnings={plugin.securityWarnings} />
+                    </div>
                 </div>
             </div>
         </Layout>

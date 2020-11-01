@@ -5,7 +5,7 @@ function PluginReadableInstalls({currentInstalls}) {
     if (!currentInstalls) {
         return <>No usage data available</>;
     }
-    return <>{currentInstalls}</>;
+    return <>{new Intl.NumberFormat('en-US').format(currentInstalls)}</>;
 }
 
 PluginReadableInstalls.propTypes = {
