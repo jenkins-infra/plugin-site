@@ -1,9 +1,46 @@
 pipeline {
   agent {
     kubernetes {
-      label 'helmfile'
-      yamlFile 'PodTemplates.yaml'
       inheritFrom 'jnlp-linux'
+      yaml '''
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  labels:
+    jenkins: "agent"
+    job: "plugin-site"
+spec:
+  tolerations:
+    - key: "os"
+      operator: "Equal"
+      value: "linux"
+      effect: "NoSchedule"
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                  - linux
+  restartPolicy: "Never"
+  containers:
+    - name: "node"
+      image: "node:15"
+      securityContext:
+        privileged: false
+      tty: true
+      command:
+      - cat
+    - name: "blobxfer"
+      image: "mcr.microsoft.com/blobxfer:1.9.1"
+      command:
+      - cat
+      securityContext:
+        privileged: false
+      tty: true
+      '''
     }
   }
 
@@ -64,19 +101,21 @@ pipeline {
         PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
       }
       steps {
-        sh("""upload \
-          --local-path public \
-          --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
-          --storage-account prodpluginsite \
-          --remote-path pluginsite \
-          --recursive \
-          --mode file \
-          --skip-on-md5-match \
-          --file-md5 \
-          --connect-timeout 30 \
-          --delete \
-          --verbose'
-        """)
+        container('blobxfer') {
+          sh("""upload \
+            --local-path public \
+            --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
+            --storage-account prodpluginsite \
+            --remote-path pluginsite \
+            --recursive \
+            --mode file \
+            --skip-on-md5-match \
+            --file-md5 \
+            --connect-timeout 30 \
+            --delete \
+            --verbose'
+          """)
+        }
       }
     }
   }
