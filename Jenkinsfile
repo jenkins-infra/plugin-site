@@ -22,13 +22,13 @@ pipeline {
 
     stage('Yarn Install') {
       steps {
-        runDockerCommand('node:13',  'yarn install')
+        runDockerCommand('node:14',  'npm ci')
       }
     }
 
     stage('Build Production') {
       steps {
-        runDockerCommand('node:13',  'yarn build')
+        runDockerCommand('node:14',  'npm build')
       }
     }
 
@@ -40,8 +40,8 @@ pipeline {
 
     stage('Lint and Test') {
       steps {
-        runDockerCommand('node:13',  'yarn lint')
-        runDockerCommand('node:13',  'yarn test')
+        runDockerCommand('node:14',  'npm lint')
+        runDockerCommand('node:14',  'npm test')
       }
     }
 

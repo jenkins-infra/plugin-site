@@ -9,7 +9,7 @@
     "lint": "eslint --ext .js,.jsx .",
     "stylelint": "stylelint --fix 'src/**/*.js'",
     "test": "jest",
-    "test:watch": "yarn test -- --watch",
+    "test:watch": "npm test -- --watch",
     "clean": "rimraf dist junit coverage"
   },
   "husky": {
@@ -31,6 +31,9 @@
     "plugins",
     "gatsby"
   ],
+  "engines": {
+    "yarn": "YARN NO LONGER USED - use npm instead."
+  },
   "author": "Michael McCaskill <https://github.com/michaelmccaskill>",
   "contributors": [
     {
