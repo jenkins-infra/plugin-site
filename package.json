@@ -4,13 +4,13 @@
   "description": "Jenkins Plugin Site",
   "main": "index.js",
   "scripts": {
-    "dev": "gatsby develop -p 3000 -H 0.0.0.0",
-    "build": "gatsby build",
-    "lint": "eslint --ext .js,.jsx .",
-    "stylelint": "stylelint --fix 'src/**/*.js'",
-    "test": "jest",
-    "test:watch": "npm test -- --watch",
-    "clean": "rimraf dist junit coverage"
+    "dev": "npx gatsby develop -p 3000 -H 0.0.0.0",
+    "build": "npx gatsby build",
+    "lint": "npx eslint --ext .js,.jsx .",
+    "stylelint": "npx stylelint --fix 'src/**/*.js'",
+    "test": "npx jest",
+    "test:watch": "npx npm test -- --watch",
+    "clean": "npx rimraf dist junit coverage"
   },
   "husky": {
     "hooks": {
