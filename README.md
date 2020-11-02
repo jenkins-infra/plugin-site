@@ -24,7 +24,7 @@ We welcome any enhancements and bugfixes, please see our [guidelines](CONTRIBUTI
 
 ```
 npm install
-npm dev
+npm run dev
 Open http://localhost:3000
 ```
 
@@ -35,7 +35,7 @@ To aid with development mode, an environment variable of GET_CONTENT is needed t
 
 ESLint with React linting options have been enabled.
 ```
-npm lint
+npm run lint
 ```
 
 ## Tests
