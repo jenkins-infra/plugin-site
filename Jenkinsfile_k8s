@@ -27,7 +27,7 @@ spec:
   restartPolicy: "Never"
   containers:
     - name: "node"
-      image: "node:15"
+      image: "node:14"
       securityContext:
         privileged: false
       tty: true
@@ -63,7 +63,7 @@ spec:
     stage('Yarn Install') {
       steps {
         container('node') {
-          sh 'yarn install'
+          sh 'npm ci'
         }
       }
     }
@@ -71,8 +71,7 @@ spec:
     stage('Build Production') {
       steps {
         container('node') {
-          sh 'ls -1 node_modules'
-          sh 'yarn build'
+          sh 'npm run build'
         }
       }
     }
@@ -88,8 +87,8 @@ spec:
     stage('Lint and Test') {
       steps {
         container('node') {
-          sh 'yarn lint'
-          sh 'yarn test'
+          sh 'npm run lint'
+          sh 'npm run test'
         }
       }
     }
@@ -114,7 +113,7 @@ spec:
             --file-md5 \
             --connect-timeout 30 \
             --delete \
-            --verbose'
+            --verbose
           """)
         }
       }
