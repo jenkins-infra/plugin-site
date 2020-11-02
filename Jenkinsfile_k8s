@@ -63,7 +63,7 @@ spec:
     stage('Yarn Install') {
       steps {
         container('node') {
-          sh 'npm ci'
+          sh 'NODE_ENV=development npm ci'
         }
       }
     }
