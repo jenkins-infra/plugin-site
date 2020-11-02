@@ -28,7 +28,7 @@ pipeline {
 
     stage('Build Production') {
       steps {
-        runDockerCommand('node:14',  'npm build')
+        runDockerCommand('node:14',  'npm run build')
       }
     }
 
@@ -40,8 +40,8 @@ pipeline {
 
     stage('Lint and Test') {
       steps {
-        runDockerCommand('node:14',  'npm lint')
-        runDockerCommand('node:14',  'npm test')
+        runDockerCommand('node:14',  'npm run lint')
+        runDockerCommand('node:14',  'npm run test')
       }
     }
 
