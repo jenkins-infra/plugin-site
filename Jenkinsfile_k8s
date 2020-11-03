@@ -102,7 +102,7 @@ spec:
       }
       steps {
         container('blobxfer') {
-          sh("""upload \
+          sh("""blobxfer upload \
             --local-path public \
             --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
             --storage-account prodpluginsite \
