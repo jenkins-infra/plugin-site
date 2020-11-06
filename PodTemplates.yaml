@@ -21,20 +21,17 @@ spec:
                   - linux
   restartPolicy: "Never"
   containers:
-    - args: ["99d"]
-      command: ["sleep"]
-      env:
-      image: "node:13"
-      imagePullPolicy: "Always"
-      name: "node"
+    - name: "node"
+      image: "node:15"
       securityContext:
         privileged: false
       tty: true
-    - args: ["99d"]
-      command: ["sleep"]
+      command:
+      - cat
+    - name: "blobxfer"
       image: "mcr.microsoft.com/blobxfer:1.9.1"
-      imagePullPolicy: "Always"
-      name: "node"
+      command:
+      - cat
       securityContext:
         privileged: false
       tty: true
