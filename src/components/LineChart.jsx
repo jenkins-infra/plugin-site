@@ -3,14 +3,8 @@ import PropTypes from 'prop-types';
 import {Line} from 'react-chartjs-2';
 import moment from 'moment';
 
-const calculateMinMax = (data) => {
-    const maxValue = Math.max(...data);
-    // calculate a dynamic value to center the graph
-    const scaleDifference = Math.pow(10, maxValue.toString().length-1);
-    return {
-        min: 0,
-        max: Math.ceil((maxValue/scaleDifference) + 0.25)*scaleDifference // plus 0.25 to add more space in the top
-    };
+const calculateMax = (data) => {
+    return 1.2 * Math.max(...data);
 };
 
 const chartData = (labels, data) => {
@@ -30,7 +24,6 @@ const chartData = (labels, data) => {
 };
 
 const options = (data) => {
-    const {min, max} = calculateMinMax(data);
     return {
         responsive: true,
         maintainAspectRatio: false,
@@ -54,8 +47,8 @@ const options = (data) => {
             yAxes: [{
                 display: false,
                 ticks: {
-                    min,
-                    max,
+                    min: 0,
+                    max: calculateMax(data),
                     fontSize: 9,
                 }
             }]
