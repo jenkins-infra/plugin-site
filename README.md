@@ -19,13 +19,12 @@ We welcome any enhancements and bugfixes, please see our [guidelines](CONTRIBUTI
 ## Requirements
 
 - node 12+
-- yarn 1.13+
 
 ## Run locally
 
 ```
-yarn
-yarn dev
+npm install
+npm run dev
 Open http://localhost:3000
 ```
 
@@ -36,17 +35,17 @@ To aid with development mode, an environment variable of GET_CONTENT is needed t
 
 ESLint with React linting options have been enabled.
 ```
-yarn lint
+npm run lint
 ```
 
 ## Tests
 
 Execute tests via
 ```
-yarn test
+npm test
 ```
 
 or run in watch mode
 ```
-yarn test:watch
+npm test:watch
 ```

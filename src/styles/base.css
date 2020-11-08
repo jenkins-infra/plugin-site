@@ -59,16 +59,14 @@ body .showResults #plugin-search-form:before {display:none}
 
 
 body a {color:#069}
-body a:visited {color:#7ac}
 body a:hover {color:#09c}
 body a:active {color:#c00}
 
 .NoLabels > .Categories label > input {display:none}
 .NoLabels > .Categories label > span {margin-left:0 !important; color:#0275d8; cursor:pointer}
 
-body #grid-box {padding-top: 30px; }
-@media (min-width: 992px) {
-  body #grid-box {padding-top: 8px; }
+h1.title {
+	margin-top: 1rem;
 }
 
 body #grid-box .NoLabels {padding: 2rem 0; background:#e5f8ff}
@@ -238,26 +236,41 @@ transform: scale(-1, 1);
   margin-right: 15px;
 }
 #pluginPage #grid-box .download {margin:2rem 0 2rem -.5rem;}
-#pluginPage #grid-box .badge-box {display: inline-block;}
-#pluginPage #grid-box .badge-box  > .badge {
-  background: no-repeat top;
+#pluginPage #grid-box .alert  > .alert-icon {
+  background-repeat: no-repeat;
+  background-position: top;
   background-size: 3rem;
   display: inline-block;
   height: 3rem;
   width: 3rem;
-  overflow: hidden;
-  vertical-align: middle;
-  text-indent: 99rem;
-  white-space: nowrap;
-  margin: 0 -.5rem 0 .5rem;
+  position: absolute;
+  top: calc(50% - 1.5rem);
+  left: 1rem;
+  opacity: .54;
 }
-#pluginPage #grid-box .badge-box .badge.warning {
-  background-image: url(../images/warning.svg);
-  background-size:2.5rem;
+
+.alert-warning .alert-icon .main-path {
+  fill: #856404
 }
-#pluginPage #grid-box .dialog .badge-box  > .badge.warning.inactive{
-  mix-blend-mode:luminosity;
-  opacity:.5
+
+.alert-danger .alert-icon .main-path {
+  fill: #721c24
+}
+
+#pluginPage #grid-box .alert-with-icon {
+  min-height: 4rem;
+  padding-left: 5rem;
+}
+
+#pluginPage #grid-box .security-warning-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#pluginPage #grid-box .active-warning {
+  font-size: 1rem;
+  font-weight: bolder;
+  margin-bottom: 0;
 }
 .row.flex {display:flex}
 
@@ -881,20 +894,4 @@ a.card:hover {
 
 #pluginPage #grid-box .content .main td {
   padding: 1em;
-}
-
-#pluginPage .plugin-governance-notice {
-  padding: 5px;
-  background-color: #fcf8e3;
-  color: #a48d62;
-  border-color: #faebcc;
-  margin-bottom: 5px;
-}
-
-#pluginPage .plugin-governance-notice table {
-  margin-bottom: 0px;
-}
-
-#pluginPage .plugin-governance-notice .plugin-governance-notice-text {
-  padding-left: 20px;
 }

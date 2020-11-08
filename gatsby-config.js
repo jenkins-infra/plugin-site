@@ -21,6 +21,12 @@ module.exports = {
         'gatsby-plugin-sharp',
         'gatsby-plugin-react-helmet',
         {
+            resolve: 'gatsby-plugin-svgr',
+            options: {
+                svgo: false,
+            }
+        },
+        {
             resolve: 'gatsby-plugin-polyfill-io',
             options: {
                 features: ['Array.prototype.map', 'fetch']
@@ -67,7 +73,7 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-favicon',
             options: {
-                logo: './src/images/apple-touch-icon.png',
+                logo: './src/images/android-chrome-512x512.png',
                 appName: 'Jenkins Plugins',
                 appDescription: 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software',
                 dir: 'rtl',

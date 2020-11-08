@@ -5,3 +5,7 @@
 #pluginReleases--container .item {
     margin-bottom: 10px;
 }
+
+#pluginReleases--container .card-body .card-text h2 {
+    font-size: 1.2rem;
+}
