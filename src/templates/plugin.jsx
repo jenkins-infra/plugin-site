@@ -51,9 +51,15 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
 
             <div className="row flex pluginContainer">
                 <div className="col-md-9 main">
-                    <h1 className="title">
-                        {cleanTitle(plugin.title)}
-                    </h1>
+                    <div className="title-wrapper">
+                        <h1 className="title">
+                            {cleanTitle(plugin.title)}
+                        </h1>
+                        <div className="plugin-id">
+                            {'ID: '}
+                            {plugin.name}
+                        </div>
+                    </div>
                     <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
                     <PluginGovernanceStatus plugin={plugin} />
                     <ul className="nav nav-tabs">
@@ -65,21 +71,6 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     </ul>
                     <div className="padded">
                         {state.selectedTab === 'documentation' && (<>
-                            <div className="title-details">
-                                <span className="col-md-3">
-                                    {'Version: '}
-                                    {plugin.version}
-                                </span>
-                                <PluginLastReleased plugin={plugin} />
-                                <span className="col-md-4">
-                                    {'Requires Jenkins '}
-                                    {plugin.requiredCore}
-                                </span>
-                                <span className="col-md-2">
-                                    {'ID: '}
-                                    {plugin.name}
-                                </span>
-                            </div>
                             {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
                         </>)}
                         {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} />}
@@ -94,14 +85,22 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         <span>Archives</span>
                         <span className="v">Get past versions</span>
                     </a>
-                    {plugin.stats && <h5>
-                        {'Installs: '}
-                        <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls} />
-                    </h5>}
-                    <div className="chart">
-                        <LineChart
-                            installations={plugin.stats.installations}
-                        />
+                    <h5>{`Version: ${plugin.version}`}</h5>
+                    <PluginLastReleased plugin={plugin} />
+                    <div>
+                        {'Requires Jenkins '}
+                        {plugin.requiredCore}
+                    </div>
+                    <div className="sidebarSection">
+                        {plugin.stats && <h5>
+                            {'Installs: '}
+                            <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls} />
+                        </h5>}
+                        <div className="chart">
+                            <LineChart
+                                installations={plugin.stats.installations}
+                            />
+                        </div>
                     </div>
                     <div className="sidebarSection">
                         <h5>Links</h5>
@@ -136,9 +135,11 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                             {' on GitHub.'}
                         </div>
                     }
-                    <div className="sidebarSection">
-                        <PluginInactiveWarnings securityWarnings={plugin.securityWarnings} />
-                    </div>
+                    {plugin.securityWarnings &&
+                        <div className="sidebarSection">
+                            <PluginInactiveWarnings securityWarnings={plugin.securityWarnings} />
+                        </div>
+                    }
                 </div>
             </div>
         </Layout>
