@@ -66,7 +66,7 @@ body a:active {color:#c00}
 .NoLabels > .Categories label > span {margin-left:0 !important; color:#0275d8; cursor:pointer}
 
 h1.title {
-  margin-top: 1rem;
+  margin-right: 2rem;
 }
 
 body #grid-box .NoLabels {padding: 2rem 0; background:#e5f8ff}
@@ -288,17 +288,17 @@ transform: scale(-1, 1);
 }
 .row.flex {display:flex}
 
-div.title-details {
-  display: flex;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.title-wrapper {
+  display:flex;
   flex-wrap: wrap;
-  font-weight: normal;
-  font-size: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
 }
 
-div.title-details time {
-  white-space: nowrap;
+.plugin-id {
+  opacity: .7;
+  margin-bottom: .5rem;
 }
 
 .markdown-body .anchor {display:none}
