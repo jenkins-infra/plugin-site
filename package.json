@@ -78,7 +78,7 @@
     "gatsby-plugin-svgr": "^2.0.2",
     "gatsby-source-filesystem": "^2.4.2",
     "gatsby-transformer-sharp": "^2.5.19",
-    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-fetch": "^3.0.0",
     "moment": "^2.29.1",
     "postcss-calc": "^7.0.2",
     "postcss-css-variables": "^0.17.0",
