@@ -55,8 +55,9 @@ body .showResults #plugin-search-form:before {display:none}
     margin-top: .7rem;
 }
 
-.empty {opacity:.33}
-
+.empty {
+	opacity:.5;
+}
 
 body a {color:#069}
 body a:hover {color:#09c}
@@ -115,6 +116,11 @@ transform: scale(-1, 1);
   box-shadow: inset #003399 0 0 1px, inset #ffffff 0 0 0 1px, 0 5px 3px -2px rgba(0, 0, 0, 0.15), inset -5px -5px 7px 1px #168BB9, inset -4px -6px 10px 10px #69c;
 }
 
+.spinner-wrapper {
+	width: 2rem;
+	margin: auto;
+	margin-top: 2rem;
+}
 @-webkit-keyframes ball-l {
   0%, 50% {
     -webkit-transform: rotate(0) translateX(0);
@@ -222,7 +228,6 @@ transform: scale(-1, 1);
 
 .maintainers > .maintainer {display:block;}
 
-.container-fluid.padded {padding:3rem 4rem}
 #pluginPage #grid-box {font-size:.875rem;}
 #pluginPage #grid-box .gutter {padding:2rem }
 #pluginPage #grid-box .gutter > .btn { display:block; text-align:left; padding:.5rem 1rem .75rem 3.5rem; position:relative; margin-bottom:1rem}
@@ -302,10 +307,10 @@ transform: scale(-1, 1);
 }
 
 .markdown-body .anchor {display:none}
-.markdown-body h1 {font-size:2rem; margin:4rem 0 1rem;}
-.markdown-body h2 {font-size:1.5rem; margin-top:2rem;}
-.markdown-body h3 {font-size:1.25rem;}
-.markdown-body h4 {font-size:1.1rem;}
+.content h1 {font-size:2rem; margin:1.5rem 0 1rem;}
+.content h2 {font-size:1.5rem; margin-top:1.5rem;}
+.content h3 {font-size:1.25rem;}
+.content h4 {font-size:1.1rem;}
 
 .filters .mask li > label {opacity:.5; position:relative;}
 .filters .mask li > label:hover {opacity:1; color:#168BB9}

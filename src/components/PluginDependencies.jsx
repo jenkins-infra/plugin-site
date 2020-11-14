@@ -11,7 +11,7 @@ function PluginDependencies({dependencies, reverseDependencies} ) {
     };
 
     if (!dependencies || dependencies.length === 0) {
-        return (<div className="empty">No dependencies found</div>);
+        return (<div className="empty mt-2">No dependencies found</div>);
     }
     const optionalDependencies = dependencies.filter(dep => dep.optional);
     const impliedDependencies = dependencies.filter(dep => dep.implied && !dep.optional);
@@ -37,7 +37,7 @@ function PluginDependencies({dependencies, reverseDependencies} ) {
         );
     };
     return (
-        <>
+        <div className="content pb-3">
             <h2>Dependencies</h2>
             <Modal placement="bottom" isOpen={isShowImplied} target="pluginDependencies" toggle={toggleShowImplied}>
                 <ModalHeader toggle={toggleShowImplied}>About Implied Plugin Dependencies</ModalHeader >
@@ -99,7 +99,7 @@ function PluginDependencies({dependencies, reverseDependencies} ) {
                     reverseDependencies.map(reverseDependencyLink)
                 }
             </div>
-        </>
+        </div>
     );
 }
 
