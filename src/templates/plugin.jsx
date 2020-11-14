@@ -69,7 +69,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                             </li>
                         ))}
                     </ul>
-                    <div className="padded">
+                    <div>
                         {state.selectedTab === 'documentation' && (<>
                             {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
                         </>)}
