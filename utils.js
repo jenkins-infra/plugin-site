@@ -72,6 +72,7 @@ async function makeReactLayout() {
     $('head').append('<style>{`html { min-height:100%; position: relative; }`}</style>');
 
     $('.nav-link[href="https://plugins.jenkins.io/"]').attr('href', '/');
+    $('#grid-box').empty();
     $('#grid-box').append('{children}');
     $('#footer .col-md-4').prepend('<ReportAProblem />');
     $('#creativecommons').append('<SiteVersion />');
