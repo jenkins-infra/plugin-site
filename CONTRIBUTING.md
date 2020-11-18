@@ -1,6 +1,6 @@
 # Contributing Guide
 
-We are glad you want to contribute to jenkins-infra in special the plugin-site.
+We are glad you want to contribute to jenkins-infra - in particular the plugin-site.
 
 Adhering to the following process is the best way to get your work
 included in the project:
@@ -53,7 +53,45 @@ included in the project:
    ```
 
 8. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
-    with a clear title and description against the `master` branch.
+   with a clear title and description against the `master` branch.
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project owners to
 license your work under the terms of the [MIT License](LICENSE).
+
+# Running the app
+
+## Requirements
+
+- node 12+
+
+## Run locally
+
+```
+npm install
+npm run dev
+Open http://localhost:3000
+```
+
+To aid with development mode, an environment variable of GET_CONTENT is needed to force gatsby to pull down the slow wiki/github content for each plugin
+
+## Linting
+
+ESLint with React linting options have been enabled.
+
+```
+npm run lint
+```
+
+## Tests
+
+Execute tests via
+
+```
+npm test
+```
+
+or run in watch mode
+
+```
+npm test:watch
+```
