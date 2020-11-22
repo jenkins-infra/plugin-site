@@ -82,8 +82,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     </div>
                 </div>
                 <div className="col-md-3 gutter">
-                    <a href={`https://updates.jenkins.io/download/plugins/${plugin.name}`}
-                        className="btn btn-secondary">
+                    <a href="#archives" onClick={() => setState({selectedTab: 'archives'})} className="btn btn-secondary">
                         <i className="icon-box" />
                         <span>Archives</span>
                         <span className="v">Get past versions</span>
