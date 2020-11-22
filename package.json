@@ -32,7 +32,7 @@
     "gatsby"
   ],
   "engines": {
-    "yarn": "YARN NO LONGER USED - use npm instead."
+    "node": ">= 14"
   },
   "author": "Michael McCaskill <https://github.com/michaelmccaskill>",
   "contributors": [
