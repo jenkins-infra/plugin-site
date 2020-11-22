@@ -46,7 +46,7 @@ function PluginArchives({pluginId, versions}) {
             <ul className={styles.root}>
                 {versions.map(version => {
                     return (
-                        <li key={version.id}>
+                        <li key={version.id} className={styles.version}>
                             <Link to={version.url}>{version.version}</Link>
                             <div>
                                 {'Released: '}

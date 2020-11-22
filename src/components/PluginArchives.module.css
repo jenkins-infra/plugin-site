@@ -1,7 +1,7 @@
 .root {
     padding: 0;
 }
-.root li {
+.version {
     background-image: url(../images/jar.png);
     background-position: left center;
     background-repeat: no-repeat;
