@@ -109,7 +109,7 @@
     "eslint-plugin-react": "^7.21.4",
     "eslint-plugin-standard": "^4.1.0",
     "gatsby": "^2.26.1",
-    "gatsby-plugin-nprogress": "^2.3.13",
+    "gatsby-plugin-nprogress": "^2.5.0",
     "gatsby-source-custom-api": "^2.1.4",
     "husky": "^4.3.0",
     "identity-obj-proxy": "^3.0.0",
