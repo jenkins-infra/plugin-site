@@ -235,7 +235,7 @@ export const pageQuery = graphql`
       ...JenkinsPluginFragment
     }
 
-    versions: allJenkinsPluginVersion(filter: {name: {eq: $name}}) {
+    versions: allJenkinsPluginVersion(filter: {name: {eq: $name}}, sort: {fields: buildDate, order: DESC}) {
       edges {
         node {
           buildDate
