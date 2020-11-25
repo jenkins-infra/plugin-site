@@ -50,7 +50,7 @@ function PluginArchives({pluginId, versions}) {
                             <Link to={version.url}>{version.version}</Link>
                             <div>
                                 {'Released: '}
-                                <TimeAgo date={version.buildDate} />
+                                <TimeAgo date={new Date(version.buildDate)} />
                             </div>
                             <div className={styles.checksums}>
                                 <Checksum title="SHA-1" value={version.sha1} />

@@ -5,6 +5,7 @@ const cheerio = require('cheerio');
 const {execSync} = require('child_process');
 const URL = require('url');
 const axiosRetry = require('axios-retry');
+const dateFNs = require('date-fns');
 
 axiosRetry(axios, {retries: 3});
 
@@ -218,6 +219,7 @@ const fetchPluginVersions = async ({createNode, reporter}) => {
             */
             createNode({
                 ...data,
+                buildDate: dateFNs.parse(data.buildDate, 'MMMM d, yyyy', new Date(0)),
                 id: `${data.name}_${data.version}`,
                 parent: null,
                 children: [],
