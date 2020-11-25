@@ -17,7 +17,7 @@ function PluginReleases({pluginId, versions}) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await axios(`${process.env.DEV_OVERRIDE_API_PROXY || '/api'}/plugin/${pluginId}/releases`);
+                const result = await axios(`${process.env.GATSBY_API_URL || '/api'}/plugin/${pluginId}/releases`);
                 let releases = [];
                 if (result && result.data && result.data.releases) {
                     releases = result.data.releases;

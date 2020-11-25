@@ -9,7 +9,7 @@ function PluginIssues({pluginId}) {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const result = await axios(`${process.env.DEV_OVERRIDE_API_PROXY || '/api'}/plugin/${pluginId}/issues/open`);
+            const result = await axios(`${process.env.GATSBY_API_URL || '/api'}/plugin/${pluginId}/issues/open`);
             setIssues(result.data.issues || []);
             setIsLoading(false);
         };
