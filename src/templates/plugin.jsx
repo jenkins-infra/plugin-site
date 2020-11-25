@@ -17,7 +17,6 @@ import PluginMaintainers from '../components/PluginMaintainers';
 import PluginReadableInstalls from '../components/PluginReadableInstalls';
 import PluginIssues from '../components/PluginIssues';
 import PluginReleases from '../components/PluginReleases';
-import PluginArchives from '../components/PluginArchives';
 
 function shouldShowWikiUrl({url}) {
     return url && (url.startsWith('https://wiki.jenkins-ci.org') || url.startsWith('https://wiki.jenkins.io'));
@@ -32,7 +31,6 @@ const tabs = [
     {id: 'releases', label: 'Releases'},
     {id: 'issues', label: 'Issues'},
     {id: 'dependencies', label: 'Dependencies'},
-    {id: 'archives', label: 'Archives'},
 ];
 
 function getDefaultTab() {
@@ -75,14 +73,13 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         {state.selectedTab === 'documentation' && (<>
                             {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
                         </>)}
-                        {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} />}
+                        {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} versions={versions.edges.map(edge => edge.node)} />}
                         {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.id} />}
                         {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies} reverseDependencies={reverseDependencies.edges}/>}
-                        {state.selectedTab === 'archives' && <PluginArchives versions={versions.edges.map(edge => edge.node)} pluginId={plugin.id} />}
                     </div>
                 </div>
                 <div className="col-md-3 gutter">
-                    <a href="#archives" onClick={() => setState({selectedTab: 'archives'})} className="btn btn-secondary">
+                    <a href="#releases" onClick={() => setState({selectedTab: 'releases'})} className="btn btn-secondary">
                         <i className="icon-box" />
                         <span>Archives</span>
                         <span className="v">Get past versions</span>
@@ -156,7 +153,7 @@ PluginPage.propTypes = {
                     node: PropTypes.shape({
                         id: PropTypes.string.isRequired,
                         name: PropTypes.string.isRequired,
-                        buildDate: PropTypes.object.isRequired,
+                        buildDate: PropTypes.string.isRequired,
                         requiredCore: PropTypes.string.isRequired,
                         sha1: PropTypes.string.isRequired,
                         sha256: PropTypes.string.isRequired,

@@ -2,11 +2,16 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import TimeAgo from 'react-timeago';
-import './PluginReleases.css';
+
+import Checksum from './Checksum';
+import InstallViaCLI from './InstallViaCLI';
+
 import {formatter} from '../commons/helper';
 
+import './PluginReleases.css';
 
-function PluginReleases({pluginId}) {
+
+function PluginReleases({pluginId, versions}) {
     const [isLoading, setIsLoading] = useState(false);
     const [releases, setReleases] = useState([]);
 
@@ -14,7 +19,11 @@ function PluginReleases({pluginId}) {
         const fetchData = async () => {
             setIsLoading(true);
             const result = await axios(`/api/plugin/${pluginId}/releases`);
-            setReleases(result.data.releases || []);
+            let releases = [];
+            if (result && result.data && result.data.releases) {
+                releases = result.data.releases;
+            }
+            setReleases(releases);
             setIsLoading(false);
         };
         fetchData();
@@ -28,22 +37,31 @@ function PluginReleases({pluginId}) {
             </div>
         </div>);
     }
-
+    
+    if (!versions) {
+        return (<div id="pluginReleases--container" className="container" />);
+    }
+    
     return (
         <div id="pluginReleases--container" className="container">
-            {releases && releases.map(release => {
+            {versions.map(version => {
+                const release = releases.find(release => version.version === release.tag_name.replace(/^[^0-9]*/, '')) || {};
                 return (
-                    <div key={release.tag_name} className="item card">
+                    <div key={version.id} className="item card">
                         <div className="card-header">
                             <h5 className="card-title d-flex justify-content-between">
-                                <div>{release.name || release.tag_name}</div>
+                                <div><a href={version.url}>{release.name || version.version}</a></div>
                                 <div>
-                                    {'Released: '}
-                                    <TimeAgo date={new Date(release.published_at)} formatter={formatter}/>
+                                    <TimeAgo date={new Date(version.buildDate)} formatter={formatter}/>
                                 </div>
                             </h5>
                         </div>
                         <div className="card-body">
+                            <div>
+                                <Checksum type="SHA-1" value={version.sha1} />
+                                <Checksum type="SHA-256" value={version.sha256} />
+                                <InstallViaCLI pluginId={pluginId} version={version.version} />
+                            </div>
                             <p
                                 className="card-text"
                                 dangerouslySetInnerHTML={{__html: release.bodyHTML}}
@@ -57,6 +75,16 @@ function PluginReleases({pluginId}) {
 }
 
 PluginReleases.propTypes = {
-    pluginId: PropTypes.string.isRequired
+    pluginId: PropTypes.string.isRequired,
+    versions: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        buildDate: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        requiredCore: PropTypes.string.isRequired,
+        sha1: PropTypes.string.isRequired,
+        sha256: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+        version: PropTypes.string.isRequired,
+    }))
 };
 export default PluginReleases;
