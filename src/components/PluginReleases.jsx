@@ -12,31 +12,24 @@ import './PluginReleases.css';
 
 
 function PluginReleases({pluginId, versions}) {
-    const [isLoading, setIsLoading] = useState(false);
     const [releases, setReleases] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            setIsLoading(true);
-            const result = await axios(`/api/plugin/${pluginId}/releases`);
-            let releases = [];
-            if (result && result.data && result.data.releases) {
-                releases = result.data.releases;
+            try {
+                const result = await axios(`/api/plugin/${pluginId}/releases`);
+                let releases = [];
+                if (result && result.data && result.data.releases) {
+                    releases = result.data.releases;
+                }
+                setReleases(releases);
+            } catch (e) {
+                console.error('fetch api release data', e); // eslint-disable-line no-console
             }
-            setReleases(releases);
-            setIsLoading(false);
         };
         fetchData();
         return;
     }, []);
-
-    if (isLoading) {
-        return (<div className="spinner-wrapper">
-            <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
-        </div>);
-    }
     
     if (!versions) {
         return (<div id="pluginReleases--container" className="container" />);
