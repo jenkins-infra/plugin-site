@@ -105,6 +105,16 @@ const fetchPluginData = async ({createNode, reporter}) => {
 
         for (const plugin of pluginsContainer.plugins) {
             promises.push(getPluginContent({plugin, reporter}).then(pluginData => {
+                const pluginNode = createNode({
+                    ...pluginData,
+                    id: pluginData.name.trim(),
+                    parent: null,
+                    children: [],
+                    internal: {
+                        type: 'JenkinsPlugin',
+                        contentDigest: crypto.createHash('md5').update(`plugin${pluginData.name.trim()}`).digest('hex')
+                    }
+                });
                 pluginData.dependencies.forEach(dependency => {
                     const mergedId = `${pluginData.name.trim()}:${dependency.name.trim()}`;
                     createNode({
@@ -118,16 +128,7 @@ const fetchPluginData = async ({createNode, reporter}) => {
                         }
                     });
                 });
-                return createNode({
-                    ...pluginData,
-                    id: pluginData.name.trim(),
-                    parent: null,
-                    children: [],
-                    internal: {
-                        type: 'JenkinsPlugin',
-                        contentDigest: crypto.createHash('md5').update(`plugin${pluginData.name.trim()}`).digest('hex')
-                    }
-                });
+                return pluginNode;
             }));
         }
         await Promise.all(promises);
