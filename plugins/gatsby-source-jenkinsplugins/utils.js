@@ -105,6 +105,19 @@ const fetchPluginData = async ({createNode, reporter}) => {
 
         for (const plugin of pluginsContainer.plugins) {
             promises.push(getPluginContent({plugin, reporter}).then(pluginData => {
+                pluginData.dependencies.forEach(dependency => {
+                    const mergedId = `${pluginData.name.trim()}:${dependency.name.trim()}`;
+                    createNode({
+                        ...dependency,
+                        dependentTitle: pluginData.title,
+                        dependentName: pluginData.name,
+                        id: mergedId,
+                        internal: {
+                            type: 'JenkinsPluginDependency',
+                            contentDigest: crypto.createHash('md5').update(`dep${mergedId}`).digest('hex')
+                        }
+                    });
+                });
                 return createNode({
                     ...pluginData,
                     id: pluginData.name.trim(),

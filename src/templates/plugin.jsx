@@ -75,7 +75,8 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         </>)}
                         {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} />}
                         {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.id} />}
-                        {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies} reverseDependencies={reverseDependencies.edges}/>}
+                        {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies}
+                            reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}/>}
                     </div>
                 </div>
                 <div className="col-md-3 gutter">
@@ -201,8 +202,10 @@ PluginPage.propTypes = {
             edges: PropTypes.arrayOf(
                 PropTypes.shape({
                     node: PropTypes.shape({
-                        id: PropTypes.string.isRequired,
-                        title: PropTypes.string.isRequired,
+                        dependentName: PropTypes.string.isRequired,
+                        dependentTitle: PropTypes.string.isRequired,
+                        optional: PropTypes.bool,
+                        implied: PropTypes.bool,
                     })
                 })
             )
@@ -217,22 +220,20 @@ export const pageQuery = graphql`
       ...JenkinsPluginFragment
     }
 
-    reverseDependencies: allJenkinsPlugin(
+    reverseDependencies: allJenkinsPluginDependency (
       filter: {
-        dependencies: {
-          elemMatch: {
-            name: {eq: $name}
-          }
-        }
+        name: {eq: $name}
       }
       sort: {
-        fields: [title]
+        fields: [dependentTitle]
         order: ASC
       }) {
       edges {
         node {
-          id
-          title
+          dependentTitle
+          dependentName
+          implied
+          optional
         }
       }
     }
