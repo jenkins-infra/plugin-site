@@ -41,7 +41,7 @@ function getDefaultTab() {
     return tabs[0].id;
 }
 
-function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies}}) {
+function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
     const [state, setState] = useState({selectedTab: getDefaultTab()});
     const pluginPage = 'templates/plugin.jsx';
 
@@ -73,14 +73,13 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         {state.selectedTab === 'documentation' && (<>
                             {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
                         </>)}
-                        {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} />}
+                        {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} versions={versions.edges.map(edge => edge.node)} />}
                         {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.id} />}
                         {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies} reverseDependencies={reverseDependencies.edges}/>}
                     </div>
                 </div>
                 <div className="col-md-3 gutter">
-                    <a href={`https://updates.jenkins.io/download/plugins/${plugin.name}`}
-                        className="btn btn-secondary">
+                    <a href="#releases" onClick={() => setState({selectedTab: 'releases'})} className="btn btn-secondary">
                         <i className="icon-box" />
                         <span>Archives</span>
                         <span className="v">Get past versions</span>
@@ -148,6 +147,22 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
 
 PluginPage.propTypes = {
     data: PropTypes.shape({
+        versions: PropTypes.shape({
+            edges: PropTypes.arrayOf(
+                PropTypes.shape({
+                    node: PropTypes.shape({
+                        id: PropTypes.string.isRequired,
+                        name: PropTypes.string.isRequired,
+                        buildDate: PropTypes.string.isRequired,
+                        requiredCore: PropTypes.string.isRequired,
+                        sha1: PropTypes.string.isRequired,
+                        sha256: PropTypes.string.isRequired,
+                        url: PropTypes.string.isRequired,
+                        version: PropTypes.string.isRequired,
+                    })
+                })
+            )
+        }),
         jenkinsPlugin: PropTypes.shape({
             dependencies: PropTypes.arrayOf(PropTypes.shape({
                 name: PropTypes.string,
@@ -215,6 +230,27 @@ export const pageQuery = graphql`
   query PluginBySlug($name: String!) {
     jenkinsPlugin(name: {eq: $name}) {
       ...JenkinsPluginFragment
+    }
+
+    versions: allJenkinsPluginVersion(filter: {name: {eq: $name}}, sort: {fields: buildDate, order: DESC}) {
+      edges {
+        node {
+          buildDate
+          compatibleSinceVersion
+          dependencies {
+            optional
+            name
+            version
+          }
+          id
+          name
+          requiredCore
+          sha1
+          sha256
+          url
+          version
+        }
+      }
     }
 
     reverseDependencies: allJenkinsPlugin(

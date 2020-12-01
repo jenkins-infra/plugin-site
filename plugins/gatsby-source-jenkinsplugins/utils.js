@@ -5,6 +5,7 @@ const cheerio = require('cheerio');
 const {execSync} = require('child_process');
 const URL = require('url');
 const axiosRetry = require('axios-retry');
+const dateFNs = require('date-fns');
 
 axiosRetry(axios, {retries: 3});
 
@@ -197,12 +198,51 @@ const fetchSiteInfo = async ({createNode, reporter}) => {
     sectionActivity.end();
 };
 
+
+const fetchPluginVersions = async ({createNode, reporter}) => {
+    const sectionActivity = reporter.activityTimer('fetch plugin versions');
+    sectionActivity.start();
+    const url = 'https://updates.jenkins.io/plugin-versions.json';
+    const json = await requestGET({url, reporter});
+
+    for (const pluginVersions of Object.values(json.plugins)) {
+        for (const data of Object.values(pluginVersions)) {
+            /*
+            buildDate	"May 13, 2020"
+            dependencies	[…]
+            name	"42crunch-security-audit"
+            requiredCore	"2.164.3"
+            sha1	"nQl64SC4dvbFE0Kbwkdqe2C0hG8="
+            sha256	"rMxlZQqnAofpD1/vNosqcPgghuhXKzRrpLuLHV8XUQ8="
+            url	"https://updates.jenkins.io/download/plugins/42crunch-security-audit/2.1/42crunch-security-audit.hpi"
+            version 2.1
+            */
+            createNode({
+                ...data,
+                buildDate: dateFNs.parse(data.buildDate, 'MMMM d, yyyy', new Date(0)),
+                id: `${data.name}_${data.version}`,
+                parent: null,
+                children: [],
+                internal: {
+                    type: 'JenkinsPluginVersion',
+                    contentDigest: crypto
+                        .createHash('md5')
+                        .update(`pluginVersion_${data.name}_${data.version}`)
+                        .digest('hex')
+                }
+            });
+        
+        }
+    }
+    sectionActivity.end();
+};
+
 module.exports = {
     fetchSiteInfo,
     fetchLabelData,
     fetchCategoryData,
     fetchPluginData,
+    fetchPluginVersions,
     getPluginContent,
     requestGET
-}
-;
+};

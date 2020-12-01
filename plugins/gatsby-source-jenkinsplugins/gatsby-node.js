@@ -50,8 +50,9 @@ plugins: `
 const {
     fetchSiteInfo,
     fetchPluginData,
+    fetchPluginVersions,
     fetchCategoryData,
-    fetchLabelData
+    fetchLabelData,
 } = require('./utils.js');
 
 
@@ -62,10 +63,13 @@ exports.sourceNodes = async (
     const {createNode} = actions;
 
     try {
-        await fetchSiteInfo({createNode, reporter});
-        await fetchPluginData({createNode, reporter});
-        await fetchCategoryData({createNode, reporter});
-        await fetchLabelData({createNode, reporter});
+        await Promise.all([
+            fetchSiteInfo({createNode, reporter}),
+            fetchPluginData({createNode, reporter}),
+            fetchCategoryData({createNode, reporter}),
+            fetchLabelData({createNode, reporter}),
+            fetchPluginVersions({createNode, reporter}),
+        ]);
     } catch (err) {
         reporter.panic(
             `gatsby-source-jenkinsplugin: Failed to parse API call -  ${err}`

@@ -32,7 +32,7 @@
     "gatsby"
   ],
   "engines": {
-    "yarn": "YARN NO LONGER USED - use npm instead."
+    "node": ">= 14"
   },
   "author": "Michael McCaskill <https://github.com/michaelmccaskill>",
   "contributors": [
@@ -65,6 +65,7 @@
     "chart.js": "^2.9.4",
     "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
+    "copy-to-clipboard": "^3.3.1",
     "find-package-json": "^1.2.0",
     "gatsby-image": "^2.5.0",
     "gatsby-plugin-canonical-urls": "^2.4.0",
