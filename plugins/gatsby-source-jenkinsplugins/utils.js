@@ -105,7 +105,7 @@ const fetchPluginData = async ({createNode, reporter}) => {
 
         for (const plugin of pluginsContainer.plugins) {
             promises.push(getPluginContent({plugin, reporter}).then(pluginData => {
-                const pluginNode = createNode({
+                return createNode({
                     ...pluginData,
                     id: pluginData.name.trim(),
                     parent: null,
@@ -114,21 +114,21 @@ const fetchPluginData = async ({createNode, reporter}) => {
                         type: 'JenkinsPlugin',
                         contentDigest: crypto.createHash('md5').update(`plugin${pluginData.name.trim()}`).digest('hex')
                     }
+                }).then(() => {
+                    return Promise.all(pluginData.dependencies.map(dependency => {
+                        const mergedId = `${pluginData.name.trim()}:${dependency.name.trim()}`;
+                        return createNode({
+                            ...dependency,
+                            dependentTitle: pluginData.title,
+                            dependentName: pluginData.name,
+                            id: mergedId,
+                            internal: {
+                                type: 'JenkinsPluginDependency',
+                                contentDigest: crypto.createHash('md5').update(`dep${mergedId}`).digest('hex')
+                            }
+                        });
+                    }));
                 });
-                pluginData.dependencies.forEach(dependency => {
-                    const mergedId = `${pluginData.name.trim()}:${dependency.name.trim()}`;
-                    createNode({
-                        ...dependency,
-                        dependentTitle: pluginData.title,
-                        dependentName: pluginData.name,
-                        id: mergedId,
-                        internal: {
-                            type: 'JenkinsPluginDependency',
-                            contentDigest: crypto.createHash('md5').update(`dep${mergedId}`).digest('hex')
-                        }
-                    });
-                });
-                return pluginNode;
             }));
         }
         await Promise.all(promises);
