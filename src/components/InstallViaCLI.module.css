@@ -1,5 +1,6 @@
-.root {
-    span {
-        margin-right: 5px;
-    }
+.root span {
+    margin-right: 5px;
+}
+.copy {
+    cursor: pointer;
 }

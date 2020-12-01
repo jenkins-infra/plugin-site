@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import useCopyToClipboard from '../hooks/useCopyToClipboard';
 import * as styles from './InstallViaCLI.module.css';
 
-// TODO - https://www.npmjs.com/package/react-copy-to-clipboard
 function InstallViaCLI({pluginId, version}) {
+    // isCopied is reset after 3 second timeout
+    const [isCopied, handleCopy] = useCopyToClipboard(3000);
+    const body = `jenkins-plugin-cli --plugins ${pluginId}:${version}`;
+
     return (
         <div className={styles.root}>
             <span>
@@ -11,9 +15,10 @@ function InstallViaCLI({pluginId, version}) {
                 <a href="https://github.com/jenkinsci/plugin-installation-manager-tool">cli</a>
                 {': '}
             </span>
-            <code>
-                {`jenkins-plugin-cli --plugins ${pluginId}:${version}`}
+            <code className={styles.copy} title="click to copy" onClick={() => handleCopy(body)}>
+                {body}
             </code>
+            {isCopied && (<span>{' Copied '}</span>)}
         </div>
     );
 }

@@ -51,14 +51,16 @@ function PluginReleases({pluginId, versions}) {
                         </div>
                         <div className="card-body">
                             <div>
-                                <Checksum type="SHA-1" value={version.sha1} />
-                                <Checksum type="SHA-256" value={version.sha256} />
                                 <InstallViaCLI pluginId={pluginId} version={version.version} />
                             </div>
-                            <p
+                            {release.bodyHTML && (<blockquote
                                 className="card-text"
                                 dangerouslySetInnerHTML={{__html: release.bodyHTML}}
-                            />
+                            />)}
+                            <div>
+                                <Checksum type="SHA-1" value={version.sha1} />
+                                <Checksum type="SHA-256" value={version.sha256} />
+                            </div>
                         </div>
                     </div>
                 );
