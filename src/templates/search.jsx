@@ -25,7 +25,7 @@ const doSearch = (data, setResults) => {
         q: query,
         sort
     });
-    const url = `https://plugins.jenkins.io/api/plugins?${params}`;
+    const url = `${process.env.GATSBY_API_URL || '/api'}/plugins?${params}`;
     setResults(null);
     fetch(url, {mode: 'cors'})
         .then((response) => {

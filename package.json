@@ -32,7 +32,7 @@
     "gatsby"
   ],
   "engines": {
-    "yarn": "YARN NO LONGER USED - use npm instead."
+    "node": ">= 14"
   },
   "author": "Michael McCaskill <https://github.com/michaelmccaskill>",
   "contributors": [
@@ -59,12 +59,13 @@
   },
   "homepage": "https://plugins.jenkins.io/",
   "dependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.9",
     "@sentry/browser": "^5.27.4",
     "@svgr/webpack": "^5.5.0",
     "chart.js": "^2.9.4",
     "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
+    "copy-to-clipboard": "^3.3.1",
     "find-package-json": "^1.2.0",
     "gatsby-image": "^2.5.0",
     "gatsby-plugin-canonical-urls": "^2.4.0",
@@ -73,10 +74,10 @@
     "gatsby-plugin-postcss": "^2.3.13",
     "gatsby-plugin-react-helmet": "^3.5.0",
     "gatsby-plugin-robots-txt": "^1.5.3",
-    "gatsby-plugin-sharp": "^2.8.0",
+    "gatsby-plugin-sharp": "^2.9.1",
     "gatsby-plugin-sitemap": "^2.7.0",
     "gatsby-plugin-svgr": "^2.0.2",
-    "gatsby-source-filesystem": "^2.5.0",
+    "gatsby-source-filesystem": "^2.6.1",
     "gatsby-transformer-sharp": "^2.7.0",
     "isomorphic-fetch": "^3.0.0",
     "moment": "^2.29.1",
@@ -108,7 +109,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.21.4",
     "eslint-plugin-standard": "^4.1.0",
-    "gatsby": "^2.26.1",
+    "gatsby": "^2.27.4",
     "gatsby-plugin-nprogress": "^2.5.0",
     "gatsby-source-custom-api": "^2.1.4",
     "husky": "^4.3.0",
