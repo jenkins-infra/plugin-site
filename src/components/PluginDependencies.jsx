@@ -10,12 +10,6 @@ function PluginDependencies({dependencies, reverseDependencies} ) {
         setShowImplied(!isShowImplied);
     };
 
-    if (!dependencies || dependencies.length === 0) {
-        return (<div className="empty mt-2">No dependencies found</div>);
-    }
-    const optionalDependencies = dependencies.filter(dep => dep.optional);
-    const impliedDependencies = dependencies.filter(dep => dep.implied && !dep.optional);
-    const requiredDependencies = dependencies.filter(dep => !dep.implied && !dep.optional);
     const dependencyLink = (dependency) => {
         return (
             <div key={dependency.name} className="implied">
@@ -29,15 +23,50 @@ function PluginDependencies({dependencies, reverseDependencies} ) {
     };
     const reverseDependencyLink = (dependency) => {
         return (
-            <div key={dependency.node.id}>
-                <Link to={`/${dependency.node.id}/`}>
-                    {dependency.node.title}
+            <div key={dependency.dependentName}>
+                <Link to={`/${dependency.dependentName}/`}>
+                    {dependency.dependentTitle}
                 </Link>
             </div>
         );
     };
+    const splitByType = (dependencies, linkFormat) => {
+        const optionalDependencies = dependencies.filter(dep => dep.optional);
+        const impliedDependencies = dependencies.filter(dep => dep.implied && !dep.optional);
+        const requiredDependencies = dependencies.filter(dep => !dep.implied && !dep.optional);
+        return (<div>
+            {
+                !(optionalDependencies.length + impliedDependencies.length) ? '' : (
+                    <h3>Required</h3>
+                )
+            }
+            {
+                requiredDependencies.map(linkFormat)
+            }
+            {
+                !optionalDependencies.length ? '' : (
+                    <h3>Optional</h3>
+                )
+            }
+            {
+                optionalDependencies.map(linkFormat)
+            }
+            {
+                !impliedDependencies.length ? '' : (
+                    <h3>
+                        Implied
+                        {' '}
+                        <a href="#" onClick={toggleShowImplied}><span className="req">(what&apos;s this?)</span></a>
+                    </h3>
+                )
+            }
+            {
+                impliedDependencies.map(linkFormat)
+            }
+        </div>);
+    };
     return (
-        <div className="content pb-3">
+        <div className="content pb-3" id="pluginDependencies">
             <h2>Dependencies</h2>
             <Modal placement="bottom" isOpen={isShowImplied} target="pluginDependencies" toggle={toggleShowImplied}>
                 <ModalHeader toggle={toggleShowImplied}>About Implied Plugin Dependencies</ModalHeader >
@@ -61,44 +90,15 @@ function PluginDependencies({dependencies, reverseDependencies} ) {
                     </div>
                 </ModalBody>
             </Modal>
-            <div id="pluginDependencies">
-                {
-                    !(optionalDependencies.length + impliedDependencies.length) ? '' : (
-                        <h3>Required</h3>
-                    )
-                }
-                {
-                    requiredDependencies.map(dependencyLink)
-                }
-                {
-                    !optionalDependencies.length ? '' : (
-                        <h3>Optional</h3>
-                    )
-                }
-                {
-                    optionalDependencies.map(dependencyLink)
-                }
-                {
-                    !impliedDependencies.length ? '' : (
-                        <h3>
-                            Implied
-                            {' '}
-                            <a href="#" onClick={toggleShowImplied}><span className="req">(what&apos;s this?)</span></a>
-                        </h3>
-                    )
-                }
-                {
-                    impliedDependencies.map(dependencyLink)
-                }
-                {
-                    !reverseDependencies.length ? '' : (
-                        <h2>Dependent plugins</h2>
-                    )
-                }
-                {
-                    reverseDependencies.map(reverseDependencyLink)
-                }
-            </div>
+            {
+                dependencies.length ? splitByType(dependencies, dependencyLink)
+                    : (<div className="empty">No dependencies found</div>)
+            }
+            <h2>Dependent plugins</h2>
+            {
+                reverseDependencies.length ? splitByType(reverseDependencies, reverseDependencyLink)
+                    : (<div className="empty">No dependent plugins found</div>)
+            }
         </div>
     );
 }
@@ -115,10 +115,10 @@ PluginDependencies.propTypes = {
     ),
     reverseDependencies: PropTypes.arrayOf(
         PropTypes.shape({
-            node: PropTypes.shape({
-                id: PropTypes.string.isRequired,
-                title: PropTypes.string.isRequired,
-            })
+            dependentName: PropTypes.string.isRequired,
+            dependentTitle: PropTypes.string.isRequired,
+            optional: PropTypes.bool,
+            implied: PropTypes.bool,
         })
     )
 };

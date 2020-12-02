@@ -115,6 +115,20 @@ const fetchPluginData = async ({createNode, reporter}) => {
                         type: 'JenkinsPlugin',
                         contentDigest: crypto.createHash('md5').update(`plugin${pluginData.name.trim()}`).digest('hex')
                     }
+                }).then(() => {
+                    return Promise.all(pluginData.dependencies.map(dependency => {
+                        const mergedId = `${pluginData.name.trim()}:${dependency.name.trim()}`;
+                        return createNode({
+                            ...dependency,
+                            dependentTitle: pluginData.title,
+                            dependentName: pluginData.name,
+                            id: mergedId,
+                            internal: {
+                                type: 'JenkinsPluginDependency',
+                                contentDigest: crypto.createHash('md5').update(`dep${mergedId}`).digest('hex')
+                            }
+                        });
+                    }));
                 });
             }));
         }
