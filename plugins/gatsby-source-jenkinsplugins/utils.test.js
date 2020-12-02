@@ -43,7 +43,7 @@ describe('Utils', () => {
             .get('/rest/api/content?expand=body.view&title=iOS+Device+Connector+Plugin')
             .replyWithFile(200, path.join(__dirname, '__mocks__', 'wiki.jenkins.io.io-device-connector-plugin.json'), {'Content-Type': 'application/json'});
 
-        const createNode = jest.fn();
+        const createNode = jest.fn().mockResolvedValue();
         await utils.fetchPluginData({createNode, reporter: _reporter});
         expect(createNode.mock.calls[0][0]).toMatchSnapshot();
     });
