@@ -8,10 +8,6 @@ pipeline {
     label 'docker&&linux'
   }
 
-  triggers {
-    cron('H H/3 * * *')
-  }
-
   options {
     timeout(time: 60, unit: 'MINUTES')
     ansiColor('xterm')
@@ -42,27 +38,6 @@ pipeline {
       steps {
         runDockerCommand('node:14',  'npm run lint')
         runDockerCommand('node:14',  'npm run test')
-      }
-    }
-
-    stage('Deploy to azure') {
-      when { expression { return infra.isTrusted() } }
-      environment {
-        PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
-      }
-      steps {
-        runDockerCommand("mcr.microsoft.com/blobxfer:1.9.1", 'upload \
-          --local-path public \
-          --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
-          --storage-account prodpluginsite \
-          --remote-path pluginsite \
-          --recursive \
-          --mode file \
-          --skip-on-md5-match \
-          --file-md5 \
-          --connect-timeout 30 \
-          --delete \
-          --verbose')
       }
     }
   }
