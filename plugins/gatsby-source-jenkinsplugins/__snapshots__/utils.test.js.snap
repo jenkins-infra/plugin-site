@@ -887,7 +887,7 @@ Object {
 <p><a href=\\"http://i.imgur.com/LB2Tb.png\\" class=\\"external-link\\" rel=\\"nofollow\\"><span class=\\"confluence-embedded-file-wrapper confluence-embedded-manual-size\\"><img class=\\"confluence-embedded-image confluence-external-resource\\" width=\\"400\\" src=\\"http://i.imgur.com/LB2Tb.png\\" data-image-src=\\"http://i.imgur.com/LB2Tb.png\\"></span></a> <a href=\\"http://i.imgur.com/wTLVR.png\\" class=\\"external-link\\" rel=\\"nofollow\\"><span class=\\"confluence-embedded-file-wrapper confluence-embedded-manual-size\\"><img class=\\"confluence-embedded-image confluence-external-resource\\" width=\\"400\\" src=\\"http://i.imgur.com/wTLVR.png\\" data-image-src=\\"http://i.imgur.com/wTLVR.png\\"></span></a></p>
 
 <h1 id=\\"iOSDeviceConnectorPlugin-Feedbackrequested\\">Feedback requested</h1>
-<p>This plugin came into being as a Kohsuke&apos;s post-JavaOne hobby project, to explore what needs to be done in order to make iOS app development properly automated. If you do iOS app development for real, please let us know what needs to be done!</p>
+<p>This plugin came into being as a Kohsuke's post-JavaOne hobby project, to explore what needs to be done in order to make iOS app development properly automated. If you do iOS app development for real, please let us know what needs to be done!</p>
 
 
 <h1 id=\\"iOSDeviceConnectorPlugin-Changelog\\">Changelog</h1>

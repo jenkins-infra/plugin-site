@@ -320,11 +320,6 @@ transform: scale(-1, 1);
 
 .filterOptions {display:none;}
 
-#pluginPage #grid-box .content .content h1{font-size:1.67rem; margin:4rem 0 .5rem}
-#pluginPage #grid-box .content .content h2{font-size:1.33rem; margin:3rem 0 .5rem}
-#pluginPage #grid-box .content .content h3{font-size:1.25rem; margin:2rem 0 .5rem}
-#pluginPage #grid-box .content .content h4{font-size:1.1rem; margin:1.5rem 0 .5rem}
-#pluginPage #grid-box .content .content h5{font-size:1rem; margin:1.5rem 0 .5rem}
 /*----old-stuff-------*/
 
 body .item-finder.Tiles .Entry-box{
@@ -916,6 +911,7 @@ a.card:hover {
 
 #grid-box .content {
   word-break: break-word;
+  padding-top: 1rem;
 }
 
 #pluginPage #grid-box .content .main table {
