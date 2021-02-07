@@ -27,7 +27,6 @@ exports.createPages = async ({graphql, actions}) => {
         context: { }
     });
 
-    
     createPage({
         path: '/ui/search/',
         component: searchPage,

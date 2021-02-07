@@ -72,7 +72,7 @@ exports.sourceNodes = async (
         ]);
     } catch (err) {
         reporter.panic(
-            `gatsby-source-jenkinsplugin: Failed to parse API call -  ${err}`
+            `gatsby-source-jenkinsplugin: Failed to parse API call -  ${err.stack || err}`
         );
     }
 };

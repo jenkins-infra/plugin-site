@@ -14,30 +14,67 @@ import SearchBox from '../components/SearchBox';
 import Filters from '../components/Filters';
 import ActiveFilters from '../components/ActiveFilters';
 import fetch from 'isomorphic-fetch';
-
+import algoliasearch from 'algoliasearch/lite';
 
 const doSearch = (data, setResults) => {
-    const {categories, labels, page, query, sort} = data;
-    const params = querystring.stringify({
-        categories,
-        labels,
-        page,
-        q: query,
-        sort
-    });
-    const url = `${process.env.GATSBY_API_URL || '/api'}/plugins?${params}`;
+    const {page, query, sort} = data;
+    let {categories, labels} = data;
+    if (!Array.isArray(categories)) { categories = [categories]; }
+    categories = categories.filter(Boolean);
+    if (!Array.isArray(labels)) { labels = [labels]; }
+    labels = labels.filter(Boolean);
+
     setResults(null);
-    fetch(url, {mode: 'cors'})
-        .then((response) => {
-            if (response.status >= 300 || response.status < 200) {
-                const error = new Error(response.statusText);
-                error.response = response;
-                throw error;
-            }
-            return response;
-        })
-        .then(response => response.json())
-        .then(setResults);
+    if (process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY) {
+        const searchClient = algoliasearch(
+            process.env.GATSBY_ALGOLIA_APP_ID,
+            process.env.GATSBY_ALGOLIA_SEARCH_KEY
+        );
+        const index = searchClient.initIndex('Plugins');
+        const filters = [];
+        if (categories && categories.length) {
+            filters.push(`(${categories.map(c => `categories:${c}`).join(' OR ')})`);
+        }
+        if (labels && labels.length) {
+            filters.push(`(${labels.map(l => `labels:${l}`).join(' OR ')})`);
+        }
+        index.search(query, {filters: filters.join(' AND ')}).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
+            setResults({
+                total: nbHits,
+                pages: nbPages,
+                page: page + 1,
+                limit: hitsPerPage,
+                plugins: hits.map(hit => {
+                    return {
+                        ...hit,
+                        stats: {
+                            currentInstalls: hit.currentInstalls
+                        }
+                    };
+                })
+            });
+        });
+    } else {
+        const params = querystring.stringify({
+            categories,
+            labels,
+            page,
+            q: query,
+            sort
+        });
+        const url = `${process.env.GATSBY_API_URL || '/api'}/plugins?${params}`;
+        fetch(url, {mode: 'cors'})
+            .then((response) => {
+                if (response.status >= 300 || response.status < 200) {
+                    const error = new Error(response.statusText);
+                    error.response = response;
+                    throw error;
+                }
+                return response;
+            })
+            .then(response => response.json())
+            .then(setResults);
+    }
 };
 
 
@@ -64,7 +101,7 @@ function SearchPage({location}) {
     };
 
     const searchPage = 'templates/search.jsx';
-    
+
     React.useEffect(() => {
         const qs = location.search.replace(/^\?/, '');
         if (!qs) {

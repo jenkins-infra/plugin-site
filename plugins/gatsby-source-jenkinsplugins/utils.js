@@ -106,7 +106,7 @@ const fetchPluginData = async ({createNode, reporter}) => {
 
         for (const plugin of pluginsContainer.plugins) {
             promises.push(getPluginContent({plugin, reporter}).then(pluginData => {
-                return createNode({
+                const p = createNode({
                     ...pluginData,
                     id: pluginData.name.trim(),
                     parent: null,
@@ -115,7 +115,23 @@ const fetchPluginData = async ({createNode, reporter}) => {
                         type: 'JenkinsPlugin',
                         contentDigest: crypto.createHash('md5').update(`plugin${pluginData.name.trim()}`).digest('hex')
                     }
-                }).then(() => {
+                });
+                if (!p || !p.then) {
+                    console.log('p', p, plugin);
+                    return new Error('no promise returned');
+                }
+                p.then(() => {
+                    return Promise.all(pluginData.maintainers.map(maintainer => {
+                        return createNode({
+                            ...maintainer,
+                            internal: {
+                                type: 'JenkinsMaintainer',
+                                contentDigest: crypto.createHash('md5').update(maintainer.id).digest('hex')
+                            }
+                        });
+                    }));
+                });
+                return p.then(() => {
                     return Promise.all(pluginData.dependencies.map(dependency => {
                         const mergedId = `${pluginData.name.trim()}:${dependency.name.trim()}`;
                         return createNode({
