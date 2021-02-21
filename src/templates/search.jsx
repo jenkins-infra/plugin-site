@@ -3,6 +3,8 @@ import React from 'react';
 import querystring from 'querystring';
 import PropTypes from 'prop-types';
 import {navigate} from 'gatsby';
+import fetch from 'isomorphic-fetch';
+import algoliasearch from 'algoliasearch/lite';
 
 import Layout from '../layout';
 import useFilterHooks from '../components/FiltersHooks';
@@ -13,8 +15,7 @@ import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
 import Filters from '../components/Filters';
 import ActiveFilters from '../components/ActiveFilters';
-import fetch from 'isomorphic-fetch';
-import algoliasearch from 'algoliasearch/lite';
+import SearchByAlgolia from '../components/SearchByAlgolia';
 
 const doSearch = (data, setResults) => {
     const {page, query, sort} = data;
@@ -144,6 +145,7 @@ function SearchPage({location}) {
                         </div>
                         <div className={'col-md-3'}>
                             <Views view={view} setView={setView} />
+                            {(process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY) && <SearchByAlgolia />}
                         </div>
                     </div>
                     <div className="row">
