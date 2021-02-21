@@ -99,6 +99,9 @@ spec:
       }
       environment {
         PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
+        GATSBY_ALGOLIA_APP_ID = credentials('algolia-plugins-app-id')
+        GATSBY_ALGOLIA_SEARCH_KEY = credentials('algolia-plugins-search-key')
+        GATSBY_ALGOLIA_WRITE_KEY = credentials('algolia-plugins-write-key')
       }
       steps {
         container('blobxfer') {
