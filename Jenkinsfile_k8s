@@ -60,7 +60,7 @@ spec:
   }
 
   stages {
-    stage('Yarn Install') {
+    stage('NPM Install') {
       steps {
         container('node') {
           sh 'NODE_ENV=development npm ci'
