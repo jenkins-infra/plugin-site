@@ -14,7 +14,7 @@ function Maintainers({maintainers}) {
             <PluginMaintainers maintainers={maintainers.slice(0, 2)} />
             {maintainers.length > 2 && (
                 <div key="more_maintainers">
-                    {`(${maintainers.length - 2} other contributers)`}
+                    {`(${maintainers.length - 2} other contributors)`}
                 </div>
             )}
         </>
