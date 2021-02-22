@@ -45,14 +45,7 @@ const doSearch = (data, setResults) => {
                 pages: nbPages,
                 page: page + 1,
                 limit: hitsPerPage,
-                plugins: hits.map(hit => {
-                    return {
-                        ...hit,
-                        stats: {
-                            currentInstalls: hit.currentInstalls
-                        }
-                    };
-                })
+                plugins: hits
             });
         });
     } else {
