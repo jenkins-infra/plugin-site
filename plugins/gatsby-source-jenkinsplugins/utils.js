@@ -117,6 +117,13 @@ const fetchPluginData = async ({createNode, reporter}) => {
                     }
                 });
                 if (!p || !p.then) {
+                    if (process.env.GATSBY_SENTRY_DSN) {
+                        const Sentry = require('@sentry/node');
+                        Sentry.init({
+                            dsn: process.env.GATSBY_SENTRY_DSN
+                        });
+                        Sentry.captureMessage(new Error(`Error creatingNode for plugin: ${pluginData.name.trim()}`), {extra: {pluginData: pluginData, p: p}});
+                    }
                     console.log('p', p, plugin);
                     return new Error('no promise returned');
                 }
@@ -261,7 +268,6 @@ const fetchPluginVersions = async ({createNode, reporter}) => {
                         .digest('hex')
                 }
             });
-        
         }
     }
     sectionActivity.end();
