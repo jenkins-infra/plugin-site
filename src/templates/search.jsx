@@ -145,9 +145,15 @@ function SearchPage({location}) {
                         </div>
                         <div className={'col-md-3'}>
                             <Views view={view} setView={setView} />
-                            {(process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY) && <SearchByAlgolia />}
                         </div>
                     </div>
+                    {(process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY) && (
+                        <div className="row">
+                            <div className="col-md-12 text-center">
+                                <SearchByAlgolia />
+                            </div>
+                        </div>
+                    ) }
                     <div className="row">
                         <div className="col-md-12">
                             <ActiveFilters
