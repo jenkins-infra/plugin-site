@@ -16,7 +16,7 @@ pipeline {
 
   stages {
 
-    stage('Yarn Install') {
+    stage('NPM Install') {
       steps {
         runDockerCommand('node:14',  'npm ci')
       }

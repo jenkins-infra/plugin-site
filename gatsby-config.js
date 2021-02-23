@@ -94,8 +94,16 @@ module.exports = {
                 color: 'tomato',
                 showSpinner: false,
             },
-        }
-    ]
+        },
+        process.env.GATSBY_ALGOLIA_WRITE_KEY ? {
+            resolve: 'gatsby-plugin-algolia',
+            options: {
+                appId: process.env.GATSBY_ALGOLIA_APP_ID,
+                apiKey: process.env.GATSBY_ALGOLIA_WRITE_KEY,
+                queries: require('./src/utils/algolia-queries')
+            },
+        } : null
+    ].filter(Boolean)
 };
 
 // fancy little script to take any ENV variables starting with GATSBY_CONFIG_ and replace the existing export

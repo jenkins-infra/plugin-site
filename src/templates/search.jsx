@@ -3,6 +3,8 @@ import React from 'react';
 import querystring from 'querystring';
 import PropTypes from 'prop-types';
 import {navigate} from 'gatsby';
+import fetch from 'isomorphic-fetch';
+import algoliasearch from 'algoliasearch/lite';
 
 import Layout from '../layout';
 import useFilterHooks from '../components/FiltersHooks';
@@ -13,31 +15,60 @@ import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
 import Filters from '../components/Filters';
 import ActiveFilters from '../components/ActiveFilters';
-import fetch from 'isomorphic-fetch';
-
+import SearchByAlgolia from '../components/SearchByAlgolia';
 
 const doSearch = (data, setResults) => {
-    const {categories, labels, page, query, sort} = data;
-    const params = querystring.stringify({
-        categories,
-        labels,
-        page,
-        q: query,
-        sort
-    });
-    const url = `${process.env.GATSBY_API_URL || '/api'}/plugins?${params}`;
+    const {page, query, sort} = data;
+    let {categories, labels} = data;
+    if (!Array.isArray(categories)) { categories = [categories]; }
+    categories = categories.filter(Boolean);
+    if (!Array.isArray(labels)) { labels = [labels]; }
+    labels = labels.filter(Boolean);
+
     setResults(null);
-    fetch(url, {mode: 'cors'})
-        .then((response) => {
-            if (response.status >= 300 || response.status < 200) {
-                const error = new Error(response.statusText);
-                error.response = response;
-                throw error;
-            }
-            return response;
-        })
-        .then(response => response.json())
-        .then(setResults);
+    if (process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY) {
+        const searchClient = algoliasearch(
+            process.env.GATSBY_ALGOLIA_APP_ID,
+            process.env.GATSBY_ALGOLIA_SEARCH_KEY
+        );
+        const index = searchClient.initIndex('Plugins');
+        const filters = [];
+        if (categories && categories.length) {
+            filters.push(`(${categories.map(c => `categories:${c}`).join(' OR ')})`);
+        }
+        if (labels && labels.length) {
+            filters.push(`(${labels.map(l => `labels:${l}`).join(' OR ')})`);
+        }
+        index.search(query, {filters: filters.join(' AND ')}).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
+            setResults({
+                total: nbHits,
+                pages: nbPages,
+                page: page + 1,
+                limit: hitsPerPage,
+                plugins: hits
+            });
+        });
+    } else {
+        const params = querystring.stringify({
+            categories,
+            labels,
+            page,
+            q: query,
+            sort
+        });
+        const url = `${process.env.GATSBY_API_URL || '/api'}/plugins?${params}`;
+        fetch(url, {mode: 'cors'})
+            .then((response) => {
+                if (response.status >= 300 || response.status < 200) {
+                    const error = new Error(response.statusText);
+                    error.response = response;
+                    throw error;
+                }
+                return response;
+            })
+            .then(response => response.json())
+            .then(setResults);
+    }
 };
 
 
@@ -64,7 +95,7 @@ function SearchPage({location}) {
     };
 
     const searchPage = 'templates/search.jsx';
-    
+
     React.useEffect(() => {
         const qs = location.search.replace(/^\?/, '');
         if (!qs) {
@@ -109,6 +140,13 @@ function SearchPage({location}) {
                             <Views view={view} setView={setView} />
                         </div>
                     </div>
+                    {(process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY) && (
+                        <div className="row">
+                            <div className="col-md-12 text-center">
+                                <SearchByAlgolia />
+                            </div>
+                        </div>
+                    ) }
                     <div className="row">
                         <div className="col-md-12">
                             <ActiveFilters

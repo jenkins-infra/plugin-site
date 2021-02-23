@@ -62,6 +62,7 @@
     "@babel/core": "^7.12.10",
     "@sentry/browser": "^5.29.2",
     "@svgr/webpack": "^5.5.0",
+    "algoliasearch": "^4.8.4",
     "chart.js": "^2.9.4",
     "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
@@ -97,6 +98,7 @@
     "reactstrap": "^8.9.0"
   },
   "devDependencies": {
+    "@sentry/node": "^6.2.0",
     "axios-retry": "^3.1.9",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
@@ -110,6 +112,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-standard": "^5.0.0",
     "gatsby": "^2.31.1",
+    "gatsby-plugin-algolia": "^0.16.2",
     "gatsby-plugin-nprogress": "^2.9.0",
     "gatsby-source-custom-api": "^2.1.4",
     "husky": "^4.3.6",

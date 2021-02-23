@@ -60,7 +60,7 @@ spec:
   }
 
   stages {
-    stage('Yarn Install') {
+    stage('NPM Install') {
       steps {
         container('node') {
           sh 'NODE_ENV=development npm ci'
@@ -98,7 +98,11 @@ spec:
         branch "master"
       }
       environment {
+        GATSBY_SENTRY_DSN = "https://495b0bd32a5e4a2287c3fe4b061ee24f@sentry.io/1882460"
         PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
+        GATSBY_ALGOLIA_APP_ID = credentials('algolia-plugins-app-id')
+        GATSBY_ALGOLIA_SEARCH_KEY = credentials('algolia-plugins-search-key')
+        GATSBY_ALGOLIA_WRITE_KEY = credentials('algolia-plugins-write-key')
       }
       steps {
         container('blobxfer') {
