@@ -18,8 +18,8 @@ import ActiveFilters from '../components/ActiveFilters';
 import SearchByAlgolia from '../components/SearchByAlgolia';
 
 const doSearch = (data, setResults) => {
-    const {page, query, sort} = data;
-    let {categories, labels} = data;
+    const {query, sort} = data;
+    let {categories, labels, page} = data;
     if (!Array.isArray(categories)) { categories = [categories]; }
     categories = categories.filter(Boolean);
     if (!Array.isArray(labels)) { labels = [labels]; }
@@ -39,7 +39,12 @@ const doSearch = (data, setResults) => {
         if (labels && labels.length) {
             filters.push(`(${labels.map(l => `labels:${l}`).join(' OR ')})`);
         }
-        index.search(query, {filters: filters.join(' AND ')}).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
+
+        if (page === undefined || page === null) {
+            page = 1;
+        }
+
+        index.search(query, {page: page-1, filters: filters.join(' AND ')}).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
             setResults({
                 total: nbHits,
                 pages: nbPages,
