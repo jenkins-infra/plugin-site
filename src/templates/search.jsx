@@ -47,7 +47,7 @@ const doSearch = (data, setResults) => {
         index.search(query, {page: page-1, filters: filters.join(' AND ')}).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
             setResults({
                 total: nbHits,
-                pages: nbPages,
+                pages: nbPages + 1,
                 page: page + 1,
                 limit: hitsPerPage,
                 plugins: hits
