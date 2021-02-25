@@ -13,15 +13,15 @@ export default class Pages extends React.PureComponent {
 
   render() {
       const {updatePage, current, pages} = this.props;
-      const handlePageClick = (data) => updatePage(data.selected + 1);
+      const handlePageClick = (data) => updatePage(data.selected);
 
       return (
           <ReactPaginate
               pageCount={pages}
               marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
+              pageRangeDisplayed={this.props.pagesToDisplay}
               onPageChange={handlePageClick}
-              forcePage={current-1}
+              forcePage={current}
 
               breakLabel={'...'}
               breakClassName={'page-item disabled'}
