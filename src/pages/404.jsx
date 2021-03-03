@@ -1,12 +1,14 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import Layout from '../layout';
+import SEO from '../components/SEO';
 
 const title = 'Plugin page not found';
 const notFoundPage = 'pages/404.jsx';
 
 const NotFound = () => (
     <Layout reportProblemRelativeSourcePath={notFoundPage} reportProblemUrl="" reportProblemTitle={title}>
+        <SEO title={title} />
         <div className="not-found-box">
             <div className="not-found">
                 <i className="icon-plug" />
