@@ -46,6 +46,7 @@ function pluginQueries() {
             paginationLimitedTo: 2000, // they recommend 1000, to keep speed up and prevent people from scraping, but both are fine to us
             attributesToSnippet: ['content:20'],
             optionalWords: [
+                'jenkins',
                 'plugin',
                 'plugins'
             ],
