@@ -4,11 +4,12 @@ import Pages from './Pages';
 
 
 function Pagination({limit, page, pages, total, setPage}) {
-    const start = (limit * page) - (limit - 1);
-    const end = limit * page <= total ? limit * page : total;
     if (total == 0) {
         return null;
     }
+
+    const start = (limit * (page - 1));
+    const end = Math.min(limit * (page), total);
 
     return (
         <>
