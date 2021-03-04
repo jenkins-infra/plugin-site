@@ -17,6 +17,8 @@ import Filters from '../components/Filters';
 import ActiveFilters from '../components/ActiveFilters';
 import SearchByAlgolia from '../components/SearchByAlgolia';
 
+const useAlgolia = process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY;
+
 const doSearch = (data, setResults) => {
     const {query, sort} = data;
     let {categories, labels, page} = data;
@@ -26,7 +28,7 @@ const doSearch = (data, setResults) => {
     labels = labels.filter(Boolean);
 
     setResults(null);
-    if (process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY) {
+    if (useAlgolia) {
         const searchClient = algoliasearch(
             process.env.GATSBY_ALGOLIA_APP_ID,
             process.env.GATSBY_ALGOLIA_SEARCH_KEY
@@ -44,7 +46,14 @@ const doSearch = (data, setResults) => {
             page = 1;
         }
 
-        index.search(query, {page: page-1, filters: filters.join(' AND ')}).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
+        index.search(
+            query,
+            {
+                hitsPerPage: 50,
+                page: page-1,
+                filters: filters.join(' AND ')
+            }
+        ).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
             setResults({
                 total: nbHits,
                 pages: nbPages + 1,
@@ -54,13 +63,7 @@ const doSearch = (data, setResults) => {
             });
         });
     } else {
-        const params = querystring.stringify({
-            categories,
-            labels,
-            page,
-            q: query,
-            sort
-        });
+        const params = querystring.stringify({categories, labels, page, q: query, sort});
         const url = `${process.env.GATSBY_API_URL || '/api'}/plugins?${params}`;
         fetch(url, {mode: 'cors'})
             .then((response) => {
@@ -72,6 +75,10 @@ const doSearch = (data, setResults) => {
                 return response;
             })
             .then(response => response.json())
+            .then(data => {
+                data.pages = data.pages + 1;
+                return data;
+            })
             .then(setResults);
     }
 };
@@ -145,7 +152,7 @@ function SearchPage({location}) {
                             <Views view={view} setView={setView} />
                         </div>
                     </div>
-                    {(process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY) && (
+                    {!!useAlgolia && (
                         <div className="row">
                             <div className="col-md-12 text-center">
                                 <SearchByAlgolia />
