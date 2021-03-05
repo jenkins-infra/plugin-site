@@ -81,7 +81,7 @@ async function makeReactLayout() {
         cssLines.push(`@import url('${elm.attr('href')}');`);
         elm.remove();
     });
-    $('.searchbox').delete();
+    $('.searchbox').remove();
 
     const keyConversion = {
         class: 'className',
