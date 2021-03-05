@@ -81,6 +81,7 @@ async function makeReactLayout() {
         cssLines.push(`@import url('${elm.attr('href')}');`);
         elm.remove();
     });
+    $('.searchbox').remove();
 
     const keyConversion = {
         class: 'className',
@@ -92,7 +93,7 @@ async function makeReactLayout() {
 
     const handleNode = (node, indent = 0) => {
         const prefix = ''.padStart(6+indent);
-        
+
         if (node.name === 'link' && node.attribs && node.attribs.rel === 'stylesheet') {
             delete node.attribs.crossorigin;
             node.attribs.type = 'text/css';
