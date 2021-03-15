@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useCopyToClipboard from '../hooks/useCopyToClipboard';
-import * as styles from './InstallViaCLI.module.css';
+import {root, copy} from './InstallViaCLI.module.css';
 
 function InstallViaCLI({pluginId, version}) {
     // isCopied is reset after 3 second timeout
@@ -9,13 +9,13 @@ function InstallViaCLI({pluginId, version}) {
     const body = `jenkins-plugin-cli --plugins ${pluginId}:${version}`;
 
     return (
-        <div className={styles.root}>
+        <div className={root}>
             <span>
                 {'Install via '}
                 <a href="https://github.com/jenkinsci/plugin-installation-manager-tool">cli</a>
                 {': '}
             </span>
-            <code className={styles.copy} title="click to copy" onClick={() => handleCopy(body)}>
+            <code className={copy} title="click to copy" onClick={() => handleCopy(body)}>
                 {body}
             </code>
             {isCopied && (<span>{' Copied '}</span>)}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './Checksum.module.css';
+import {checksums} from './Checksum.module.css';
 
 function base64ToHex(str) {
     const raw = atob(str);
@@ -17,7 +17,7 @@ function Checksum({type, value}) {
         return null;
     }
     return (
-        <div className={styles.checksum}>
+        <div className={checksums}>
             <span>
                 {type}
                 :

@@ -110,10 +110,8 @@ function SearchPage({location}) {
 
     React.useEffect(() => {
         const qs = location.search.replace(/^\?/, '');
-        if (!qs) {
-            return;
-        }
         const parsed = querystring.parse(qs);
+        parsed.query = parsed.query || '';
         setData(parsed);
         setQuery(parsed.query);
         doSearch(parsed, setResults);
