@@ -40,7 +40,6 @@ export const PluginFragment = graphql`
     name
     labels
     maintainers {
-      email
       id
       name
     }
