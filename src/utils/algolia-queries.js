@@ -17,7 +17,6 @@ function pluginQueries() {
               trend
             }
             maintainers {
-              email
               name
               id
             }

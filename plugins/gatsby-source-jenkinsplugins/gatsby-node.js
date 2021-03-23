@@ -15,7 +15,6 @@ plugins: `
   maintainers: {
     id: String
     name: String
-    email: String
   }
   excerpt: String
   gav: String

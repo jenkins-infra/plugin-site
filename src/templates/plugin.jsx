@@ -175,7 +175,6 @@ PluginPage.propTypes = {
             excerpt: PropTypes.string,
             labels: PropTypes.arrayOf(PropTypes.string),
             maintainers: PropTypes.arrayOf(PropTypes.shape({
-                email: PropTypes.string,
                 id: PropTypes.string,
                 name: PropTypes.string
             })),
