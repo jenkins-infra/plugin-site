@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WarningsIcon from './WarningsIcon'
+import WarningsIcon from './WarningsIcon';
 
 function PluginGovernanceStatus({plugin}) {
     if (!plugin || !plugin.labels) {

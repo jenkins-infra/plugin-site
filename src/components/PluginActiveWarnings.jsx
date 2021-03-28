@@ -1,5 +1,5 @@
 import React from 'react';
-import WarningsIcon from './WarningsIcon'
+import WarningsIcon from './WarningsIcon';
 import PropTypes from 'prop-types';
 
 function PluginActiveWarnings({securityWarnings}) {
