@@ -1,7 +1,12 @@
-import {StaticImage} from 'gatsby-plugin-image';
 import React from 'react';
+import src from '../images/warning.svg';
 
-const JenkinsVoltron = () => <StaticImage src="../images/warning.svg" className="alert-icon" aria-label="Warning"/>;
+const WarningsIcon = () => (<img
+    src={src}
+    alt="Warning Icon"
+    className="alert-icon"
+    aria-label="Warning"
+/>);
 
-export default JenkinsVoltron;
+export default WarningsIcon;
 
