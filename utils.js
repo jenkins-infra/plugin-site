@@ -7,7 +7,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 async function makeReactLayout() {
-    const headerUrl = process.env.HEADER_FILE || 'https://jenkins.io/template/index.html';
+    const headerUrl = process.env.HEADER_FILE || 'https://www.jenkins.io/template/index.html';
     const manifestUrl = url.resolve(headerUrl, '/site.webmanifest');
 
     if (!headerUrl) {
@@ -50,7 +50,7 @@ async function makeReactLayout() {
         if ( src.startsWith('/')) {
             $(this).attr('src', `${baseUrl}${src}`);
         } else {
-            $(this).attr('src', src.replace('https://jenkins.io', baseUrl));
+            $(this).attr('src', src.replace('https://jenkins.io', baseUrl).replace('https://www.jenkins.io', baseUrl));
         }
     });
     $('a, link').each(function () {
@@ -59,7 +59,7 @@ async function makeReactLayout() {
         if (href.startsWith('/')) {
             $(this).attr('href', `${baseUrl}${href}`);
         } else {
-            $(this).attr('href', href.replace('https://jenkins.io', baseUrl));
+            $(this).attr('href', href.replace('https://jenkins.io', baseUrl).replace('https://www.jenkins.io', baseUrl));
         }
     });
     // Even though we're supplying our own this one still causes a conflict.
