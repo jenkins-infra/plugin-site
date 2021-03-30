@@ -61,7 +61,7 @@
   },
   "homepage": "https://plugins.jenkins.io/",
   "dependencies": {
-    "@babel/core": "^7.13.13",
+    "@babel/core": "^7.13.14",
     "@halkeye/react-paginate": "^7.2.3",
     "@sentry/browser": "^6.2.3",
     "algoliasearch": "^4.8.6",
