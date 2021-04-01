@@ -69,7 +69,7 @@
     "copy-to-clipboard": "^3.3.1",
     "find-package-json": "^1.2.0",
     "gatsby-image": "^2.10.0",
-    "gatsby-plugin-canonical-urls": "^2.9.0",
+    "gatsby-plugin-canonical-urls": "^2.10.0",
     "gatsby-plugin-favicon": "^3.1.6",
     "gatsby-plugin-polyfill-io": "^1.1.0",
     "gatsby-plugin-postcss": "^2.3.13",
