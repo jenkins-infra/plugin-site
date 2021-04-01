@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useStaticQuery, graphql} from 'gatsby';
 import classNames from 'classnames';
-import styles from '../styles/main.module.css';
+import * as styles from '../styles/main.module.css';
 import Category from './Category';
 
 function Categories({clearCriteria, toggleCategory, activeCategories, activeLabels, toggleLabel}) {

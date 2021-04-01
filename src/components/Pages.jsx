@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from '@halkeye/react-paginate';
 
 export default class Pages extends React.PureComponent {
 

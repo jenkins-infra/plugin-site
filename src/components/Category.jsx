@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useStaticQuery, graphql} from 'gatsby';
 import classNames from 'classnames';
-import styles from '../styles/main.module.css';
+import * as styles from '../styles/main.module.css';
 import Label from './Label';
 
 function Category({activeCategories, category, toggleCategory, toggleLabel, activeLabels}) {
@@ -19,7 +19,7 @@ function Category({activeCategories, category, toggleCategory, toggleLabel, acti
         }
     `);
     const handleOnChange = () => toggleCategory(category);
-    
+
     const matchedLabels = category.labels.map((id) => data.labels.edges.find(({node: label}) => label.id === id));
     const checked = activeCategories.find((active) => active === category.id) !== undefined;
     return (

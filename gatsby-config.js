@@ -18,20 +18,9 @@ module.exports = {
     },
     plugins: [
         'gatsby-transformer-sharp',
+        'gatsby-plugin-image',
         'gatsby-plugin-sharp',
         'gatsby-plugin-react-helmet',
-        {
-            resolve: 'gatsby-plugin-svgr',
-            options: {
-                svgo: false,
-            }
-        },
-        {
-            resolve: 'gatsby-plugin-polyfill-io',
-            options: {
-                features: ['Array.prototype.map', 'fetch']
-            },
-        },
         {
             resolve: 'gatsby-plugin-sitemap',
             options: {
@@ -47,41 +36,6 @@ module.exports = {
                 policy: process.env.DISABLE_SEARCH_ENGINE ?
                     [{userAgent: '*', disallow: ['/']}] :
                     [{userAgent: '*', allow: '/'}]
-            }
-        },
-        {
-            resolve: 'gatsby-plugin-favicon',
-            options: {
-                logo: './src/images/android-chrome-512x512.png',
-                appName: 'Jenkins Plugins',
-                appDescription: 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software',
-                dir: 'rtl',
-                lang: 'en-US',
-                background: '#2b5797',
-                theme_color: '#ffffff',
-                display: 'minimal-ui',
-                orientation: 'any',
-                start_url: '/',
-                version: '1.0',
-                icons: {
-                    android: true,
-                    appleIcon: true,
-                    appleStartup: true,
-                    coast: false,
-                    favicons: true,
-                    firefox: true,
-                    opengraph: false,
-                    twitter: false,
-                    yandex: false,
-                    windows: false
-                }
-            }
-        },
-        {
-            resolve: 'gatsby-source-filesystem',
-            options: {
-                name: 'images',
-                path: `${__dirname}/src/images`
             }
         },
         {
