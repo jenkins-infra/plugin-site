@@ -2,11 +2,13 @@
 /* eslint-disable no-console */
 const url = require('url');
 
+const mkdirp = require('mkdirp');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
 async function makeReactLayout() {
-    const headerUrl = process.env.HEADER_FILE || 'https://jenkins.io/template/index.html';
+    const headerUrl = process.env.HEADER_FILE || 'https://www.jenkins.io/template/index.html';
+    const manifestUrl = url.resolve(headerUrl, '/site.webmanifest');
 
     if (!headerUrl) {
         return null;
@@ -48,7 +50,7 @@ async function makeReactLayout() {
         if ( src.startsWith('/')) {
             $(this).attr('src', `${baseUrl}${src}`);
         } else {
-            $(this).attr('src', src.replace('https://jenkins.io', baseUrl));
+            $(this).attr('src', src.replace('https://jenkins.io', baseUrl).replace('https://www.jenkins.io', baseUrl));
         }
     });
     $('a, link').each(function () {
@@ -57,13 +59,13 @@ async function makeReactLayout() {
         if (href.startsWith('/')) {
             $(this).attr('href', `${baseUrl}${href}`);
         } else {
-            $(this).attr('href', href.replace('https://jenkins.io', baseUrl));
+            $(this).attr('href', href.replace('https://jenkins.io', baseUrl).replace('https://www.jenkins.io', baseUrl));
         }
     });
     // Even though we're supplying our own this one still causes a conflict.
     $('link[href$="/css/font-icons.css"]').remove();
     // Prevents: Access to resource at 'https://jenkins.io/site.webmanifest' from origin 'https://plugins.jenkins.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-    $('link[href$="site.webmanifest"]').remove();
+    $('link[href$="site.webmanifest"]').attr('href', '/site.webmanifest');
     // lets get rid of all the head tags since we are populating them with the SEO component
     $('meta[content*="{{"]').remove();
     //
@@ -152,7 +154,24 @@ async function makeReactLayout() {
 
 
     jsxLines.push('}');
+
+
+    console.info(`Downloading site manifest file from '${manifestUrl}'`);
+    const manifest = await axios
+        .get(manifestUrl)
+        .then((results) => {
+            if (results.status !== 200) {
+                throw results.data;
+            }
+            results.data.icons.forEach(icon => {
+                icon.src = url.resolve(manifestUrl, icon.src);
+            });
+            results.data.start_url = 'https://plugins.jenkins.io';
+            return JSON.stringify(results.data);
+        });
+
     return {
+        manifest: manifest,
         jsxLines: jsxLines.map(str => str.trimEnd()).filter(Boolean).join('\n'),
         cssLines: cssLines.map(str => str.trimEnd()).filter(Boolean).join('\n')
     };
@@ -163,7 +182,11 @@ exports.makeReactLayout = makeReactLayout;
 if (require.main === module) {
     makeReactLayout().then(data => {
         const fs = require('fs');
-        const {jsxLines, cssLines} = data;
+        const {jsxLines, cssLines, manifest} = data;
+        if (manifest) {
+            mkdirp.sync('static');
+            fs.writeFileSync('./static/site.webmanifest', manifest);
+        }
         if (jsxLines) {
             fs.writeFileSync('./src/layout.jsx', jsxLines);
         }

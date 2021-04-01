@@ -1,6 +1,6 @@
 import React from 'react';
+import WarningsIcon from './WarningsIcon';
 import PropTypes from 'prop-types';
-import {ReactComponent as Warning} from '../images/warning.svg';
 
 function PluginActiveWarnings({securityWarnings}) {
 
@@ -13,7 +13,7 @@ function PluginActiveWarnings({securityWarnings}) {
     }
     return (
         <div className="alert alert-danger alert-with-icon">
-            <Warning className="alert-icon" aria-label="Security warning"/>
+            <WarningsIcon />
             {active.length == 1 ? singleWarning(active[0]) : multipleWarnings(active)}
         </div>
     );

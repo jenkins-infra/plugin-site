@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ReactComponent as Warning} from '../images/warning.svg';
-
+import WarningsIcon from './WarningsIcon';
 
 function PluginGovernanceStatus({plugin}) {
     if (!plugin || !plugin.labels) {
@@ -11,7 +10,7 @@ function PluginGovernanceStatus({plugin}) {
         if (id === 'adopt-this-plugin') {
             return (
                 <div className="alert alert-warning alert-with-icon" key={id}>
-                    <Warning className="alert-icon" aria-label="Warning"/>
+                    <WarningsIcon />
                     <b>This plugin is up for adoption!</b>
                     {' We are looking for new maintainers. Visit our '}
                     <a href="https://jenkins.io/doc/developer/plugin-governance/adopt-a-plugin/">Adopt a Plugin</a>
@@ -21,7 +20,7 @@ function PluginGovernanceStatus({plugin}) {
         } else if (id === 'deprecated') {
             return (
                 <div className="alert alert-warning alert-with-icon" key={id}>
-                    <Warning className="alert-icon" aria-label="Warning"/>
+                    <WarningsIcon />
                     <b>Deprecated:</b>
                     {`This plugin has been marked as deprecated.
                     In general, this means that this plugin is either obsolete, no longer being developed, or may no longer work.

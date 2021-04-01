@@ -2,11 +2,16 @@
 /* eslint-disable no-console */
 const path = require('path');
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 
 const {makeReactLayout} = require('./utils.js');
 
 exports.onPreBootstrap = async () => {
-    const {jsxLines, cssLines} = await makeReactLayout();
+    const {jsxLines, cssLines, manifest} = await makeReactLayout();
+    if (manifest) {
+        mkdirp.sync('static');
+        fs.writeFileSync('./static/site.webmanifest', manifest);
+    }
     if (jsxLines) {
         fs.writeFileSync('./src/layout.jsx', jsxLines);
     }
@@ -15,8 +20,7 @@ exports.onPreBootstrap = async () => {
     }
 };
 
-exports.createPages = async ({graphql, actions}) => {
-    const {createPage} = actions;
+exports.createPages = async ({graphql, actions: {createPage}}) => {
     const pluginPage = path.resolve('src/templates/plugin.jsx');
     const indexPage = path.resolve('src/templates/index.jsx');
     const searchPage = path.resolve('src/templates/search.jsx');
