@@ -62,7 +62,7 @@
     "@babel/core": "^7.12.10",
     "@sentry/browser": "^6.2.0",
     "@svgr/webpack": "^5.5.0",
-    "algoliasearch": "^4.8.4",
+    "algoliasearch": "^4.8.6",
     "chart.js": "^2.9.4",
     "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
