@@ -115,7 +115,7 @@
     "gatsby-plugin-algolia": "^0.17.0",
     "gatsby-plugin-nprogress": "^3.1.0",
     "gatsby-source-custom-api": "^2.1.4",
-    "gatsby-source-filesystem": "^3.1.0",
+    "gatsby-source-filesystem": "^3.2.0",
     "husky": "^6.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
