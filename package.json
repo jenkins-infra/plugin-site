@@ -83,7 +83,7 @@
     "postcss-calc": "^8.0.0",
     "postcss-css-variables": "^0.17.0",
     "postcss-extend": "^1.0.5",
-    "postcss-import": "^14.0.0",
+    "postcss-import": "^14.0.1",
     "postcss-merge-rules": "^4.0.3",
     "postcss-nesting": "^7.0.1",
     "postcss-preset-env": "^6.7.0",
