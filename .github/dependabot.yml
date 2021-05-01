@@ -6,5 +6,4 @@ updates:
     interval: monthly
   open-pull-requests-limit: 10
   ignore:
-    - match:
-        dependency_name: "husky"
+    - dependency_name: "husky"
