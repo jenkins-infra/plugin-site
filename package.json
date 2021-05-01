@@ -63,7 +63,7 @@
   "dependencies": {
     "@babel/core": "^7.13.14",
     "@halkeye/react-paginate": "^7.2.3",
-    "@sentry/browser": "^6.2.3",
+    "@sentry/browser": "^6.3.5",
     "algoliasearch": "^4.8.6",
     "chart.js": "^2.9.4",
     "cheerio": "^1.0.0-rc.5",
