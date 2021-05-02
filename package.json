@@ -112,7 +112,7 @@
     "eslint-plugin-standard": "^5.0.0",
     "gatsby": "^3.1.2",
     "gatsby-cli": "^3.1.0",
-    "gatsby-plugin-algolia": "^0.17.0",
+    "gatsby-plugin-algolia": "^0.19.0",
     "gatsby-plugin-nprogress": "^3.4.0",
     "gatsby-source-custom-api": "^2.1.4",
     "gatsby-source-filesystem": "^3.4.0",
