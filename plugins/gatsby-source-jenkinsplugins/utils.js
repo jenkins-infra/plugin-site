@@ -100,11 +100,13 @@ const fetchPluginData = async ({createNode, reporter}) => {
     const promises = [];
     let page = 1;
     let pluginsContainer;
+    const names = [];
     do {
         const url = `https://plugins.jenkins.io/api/plugins/?limit=100&page=${page}`;
         pluginsContainer = await requestGET({url, reporter});
 
         for (const plugin of pluginsContainer.plugins) {
+            names.push(plugin.name);
             promises.push(getPluginContent({plugin, reporter}).then(pluginData => {
                 const p = createNode({
                     ...pluginData,
@@ -159,6 +161,26 @@ const fetchPluginData = async ({createNode, reporter}) => {
         page = pluginsContainer.page + 1;
     } while (!page || pluginsContainer.page < pluginsContainer.pages);
     await Promise.all(promises);
+    const updateUrl = 'https://updates.jenkins.io/current/update-center.actual.json';
+    const updateData = await requestGET({url: updateUrl, reporter});
+    const suspendedPromises = [];
+    for (const deprecation of Object.keys(updateData.deprecations)) {
+        if (names.indexOf(deprecation) == -1) {
+            suspendedPromises.push(createNode({
+                wiki: updateData.deprecations[deprecation],
+                id: deprecation,
+                name: deprecation,
+                suspended: true,
+                parent: null,
+                children: [],
+                internal: {
+                    type: 'JenkinsPlugin',
+                    contentDigest: crypto.createHash('md5').update(deprecation.trim()).digest('hex')
+                }
+            }));
+        }
+    }
+    await Promise.all(suspendedPromises);
     sectionActivity.end();
 };
 
