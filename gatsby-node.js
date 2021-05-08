@@ -44,7 +44,6 @@ exports.createPages = async ({graphql, actions: {createPage}}) => {
           node {
             id
             name
-            suspended
           }
         }
       }
@@ -57,9 +56,35 @@ exports.createPages = async ({graphql, actions: {createPage}}) => {
         result.data.allJenkinsPlugin.edges.forEach(edge => {
             createPage({
                 path: `/${edge.node.name.trim()}/`,
-                component: edge.node.suspended ? tombstonePage: pluginPage,
+                component: pluginPage,
                 context: {
                     name: edge.node.name.trim()
+                }
+            });
+        });
+    });
+
+    await graphql(`{
+      allSuspendedPlugin {
+        edges {
+          node {
+            id
+            url
+          }
+        }
+      }
+    }`).then(result => {
+        if (result.errors) {
+            console.log(result.errors);
+            throw result.errors;
+        }
+
+        result.data.allSuspendedPlugin.edges.forEach(edge => {
+            createPage({
+                path: `/${edge.node.id.trim()}/`,
+                component: tombstonePage,
+                context: {
+                    name: edge.node.id.trim()
                 }
             });
         });

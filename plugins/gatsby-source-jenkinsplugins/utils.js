@@ -161,20 +161,19 @@ const fetchPluginData = async ({createNode, reporter}) => {
         page = pluginsContainer.page + 1;
     } while (!page || pluginsContainer.page < pluginsContainer.pages);
     await Promise.all(promises);
-    const updateUrl = 'https://updates.jenkins.io/current/update-center.actual.json';
+    const updateUrl = 'https://updates.jenkins.io/update-center.actual.json';
     const updateData = await requestGET({url: updateUrl, reporter});
     const suspendedPromises = [];
     for (const deprecation of Object.keys(updateData.deprecations)) {
-        if (names.indexOf(deprecation) == -1) {
+        if (!names.includes(deprecation)) {
             suspendedPromises.push(createNode({
-                wiki: updateData.deprecations[deprecation],
+                ...updateData.deprecations[deprecation],
                 id: deprecation,
                 name: deprecation,
-                suspended: true,
                 parent: null,
                 children: [],
                 internal: {
-                    type: 'JenkinsPlugin',
+                    type: 'SuspendedPlugin',
                     contentDigest: crypto.createHash('md5').update(deprecation.trim()).digest('hex')
                 }
             }));
