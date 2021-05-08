@@ -22,6 +22,7 @@ exports.onPreBootstrap = async () => {
 
 exports.createPages = async ({graphql, actions: {createPage}}) => {
     const pluginPage = path.resolve('src/templates/plugin.jsx');
+    const tombstonePage = path.resolve('src/templates/tombstone.jsx');
     const indexPage = path.resolve('src/templates/index.jsx');
     const searchPage = path.resolve('src/templates/search.jsx');
 
@@ -43,6 +44,7 @@ exports.createPages = async ({graphql, actions: {createPage}}) => {
           node {
             id
             name
+            suspended
           }
         }
       }
@@ -55,7 +57,7 @@ exports.createPages = async ({graphql, actions: {createPage}}) => {
         result.data.allJenkinsPlugin.edges.forEach(edge => {
             createPage({
                 path: `/${edge.node.name.trim()}/`,
-                component: pluginPage,
+                component: edge.node.suspended ? tombstonePage: pluginPage,
                 context: {
                     name: edge.node.name.trim()
                 }
