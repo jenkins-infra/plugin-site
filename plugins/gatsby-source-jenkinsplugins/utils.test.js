@@ -26,6 +26,9 @@ describe('Utils', () => {
         };
     });
     it('Get plugin data for a wiki based plugin', async () => {
+        nock('https://updates.jenkins.io')
+            .get('/update-center.actual.json')
+            .reply(200, {deprecations: []});
         nock('https://plugins.jenkins.io')
             .get('/api/plugins/?limit=100&page=1')
             .reply(200, {

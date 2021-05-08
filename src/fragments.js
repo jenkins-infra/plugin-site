@@ -7,7 +7,6 @@ export const PluginFragment = graphql`
     title
     url
     version
-    suspended
     wiki {
       content
       url
