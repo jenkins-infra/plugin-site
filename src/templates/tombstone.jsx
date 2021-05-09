@@ -23,7 +23,7 @@ function TombstonePage({data: {suspendedPlugin: plugin}}) {
                 </div>
                 <div className="alert alert-warning alert-with-icon">
                     <WarningsIcon/>
-                    {'Plugin was removed from distribution, see '}
+                    {'Plugin distribution has been suspended, see '}
                     <a href={plugin.url}>{plugin.url.replace('https://issues.jenkins.io/browse/', '')}</a>
                     {' for details.'}
                 </div>
