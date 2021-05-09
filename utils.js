@@ -28,6 +28,7 @@ async function makeReactLayout() {
         '@import \'./styles/roboto-fonts.css\';',
         '@import \'./styles/base.css\';',
         '@import \'./styles/font-icons.css\';',
+        '@import \'github-syntax-light/lib/github-light.css\';'
     ];
 
     console.info(`Downloading header file from '${headerUrl}'`);
