@@ -921,3 +921,9 @@ a.card:hover {
 #pluginPage #grid-box .content .main td {
   padding: 1em;
 }
+
+.markdown-body pre {
+  background-color: rgb(246, 248, 250);
+  padding: 16px;
+  border-radius: 4px;
+}
