@@ -29,6 +29,9 @@ describe('Utils', () => {
         nock('https://updates.jenkins.io')
             .get('/update-center.actual.json')
             .reply(200, {deprecations: []});
+        nock('https://www.jenkins.io')
+            .get('/doc/pipeline/steps/contents.json')
+            .reply(200, []);
         nock('https://plugins.jenkins.io')
             .get('/api/plugins/?limit=100&page=1')
             .reply(200, {

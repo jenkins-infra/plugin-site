@@ -111,6 +111,7 @@ Object {
   "excerpt": "Talks to iOS devices connected to slaves and do stuff.",
   "firstRelease": "2012-10-07T18:59:35.16Z",
   "gav": "org.jenkins-ci.plugins:ios-device-connector:1.2",
+  "hasPipelineSteps": false,
   "id": "ios-device-connector",
   "internal": Object {
     "contentDigest": "7da41342fb756c851d4b5a9b6b6f9f3e",
