@@ -33,6 +33,7 @@ export const PluginFragment = graphql`
     scm {
       link
     }
+    hasPipelineSteps
     requiredCore
     releaseTimestamp
     previousVersion

@@ -101,16 +101,20 @@ const fetchPluginData = async ({createNode, reporter}) => {
     let page = 1;
     let pluginsContainer;
     const names = [];
+    const pipelinePluginsUrl = 'https://www.jenkins.io/doc/pipeline/steps/contents.json';
+    const pipelinePluginIds = await requestGET({url: pipelinePluginsUrl, reporter});
     do {
         const url = `https://plugins.jenkins.io/api/plugins/?limit=100&page=${page}`;
         pluginsContainer = await requestGET({url, reporter});
 
         for (const plugin of pluginsContainer.plugins) {
-            names.push(plugin.name);
+            const pluginName = plugin.name.trim();
+            names.push(pluginName);
             promises.push(getPluginContent({plugin, reporter}).then(pluginData => {
                 const p = createNode({
                     ...pluginData,
-                    id: pluginData.name.trim(),
+                    id: pluginName,
+                    hasPipelineSteps: pipelinePluginIds.includes(pluginName),
                     parent: null,
                     children: [],
                     internal: {
