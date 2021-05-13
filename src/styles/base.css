@@ -26,12 +26,31 @@ body .showResults.item-finder .filters {top:5px; padding-top:1rem !important; ma
 body .showResults.item-finder .filters .row {border:none; padding:0}
 body .showResults.item-finder .filters .row > div {font-size:.75rem; padding:0 .5rem;  overflow:hidden;}
 body .showResults.item-finder .filters .row > div label {white-space:nowrap;}
-body .showResults.item-finder .filters .Cols3 {column-count:1; -moz-column-count:1;}
 
 body .showResults #plugin-search-form .nav > .btn-group {display:inline-block;}
 body .showResults #plugin-search-form p,
 body .showResults #plugin-search-form h1,
 body .showResults #plugin-search-form:before {display:none}
+
+.CategoryList,
+.CategoryList ul{
+  padding:0;
+  margin:0;
+  list-style:none;
+  vertical-align:middle;   
+}
+.CategoryList > li > label{
+  font-weight:bold;
+}
+.CategoryList > li > ul {
+  padding:0 0 1rem 0;
+}
+.CategoryList>li{
+  -webkit-column-break-inside: avoid; /* Chrome, Safari */
+  page-break-inside: avoid;           /* Theoretically FF 20+ */
+  break-inside: avoid-column;         /* IE 11 */
+  display:table;                      /* Actually FF 20+ */
+}
 
 .filters .show-all{
     border: none;
@@ -71,8 +90,8 @@ h1.title {
 }
 
 body #grid-box .NoLabels {padding: 2rem 0; background:#e5f8ff}
-body #grid-box .NoLabels .Cols3 {font-size:.875rem}
-body #grid-box .NoLabels .Cols3 label > span {margin-left:.5rem}
+body #grid-box .NoLabels .CategoryList {font-size:.875rem}
+body #grid-box .NoLabels .CategoryList label > span {margin-left:.5rem}
 body #grid-box .NoLabels .Entry-box {
   display: block;
   padding: 0.25rem 0;
@@ -900,10 +919,6 @@ a.card:hover {
   
 #pluginPage #grid-box .content .main td {
     padding: 1em;
-}
-
-#searchpage .Cols3 {
-  column-count: 1;
 }
 
 /* From atlassian batch.css - https://wiki.jenkins.io/s/f68dfafb2b4588f7b31742327b4469ae-CDN/en_GB/6441/82994790ee2f720a5ec8daf4850ac5b7b34d2194/be65c4ed0984ca532b26983f5fc1813e/_/download/contextbatch/css/_super/batch.css?atlassian.aui.raphael.disabled=true */

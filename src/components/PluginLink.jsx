@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'gatsby';
-import * as styles from '../styles/main.module.css';
-import classNames from 'classnames';
 import {cleanTitle} from '../commons/helper';
 
 
 export default function PluginLink({title = '', name = ''}) {
     return (
-        <div className={classNames(styles.Item, 'Entry-box')}>
+        <div className={'Entry-box'}>
             <Link key={name} to={`/${name}/`} className="titleOnly">
                 {cleanTitle(title)}
             </Link>

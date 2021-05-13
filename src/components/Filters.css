@@ -5,10 +5,9 @@
     box-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.15);
     font-size: 0.85rem;
     font-weight: 200;
-    padding: 4rem 1rem 1.5rem 1rem !important;
+    padding: 0 1rem 1.5rem 1rem;
     position: relative;
     text-align: left;
-    top: -4rem;
     & fieldset {
         margin-bottom: 1rem;
     }
