@@ -24,7 +24,7 @@ function Categories({clearCriteria, toggleCategory, activeCategories, activeLabe
     const anyCriteria = activeCategories.length > 0 || activeLabels.length > 0;
     
     return (
-        <fieldset className={'Categories'}>
+        <fieldset className="Categories">
             <legend>
                 Categories
                 {anyCriteria && (
