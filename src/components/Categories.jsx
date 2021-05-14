@@ -33,7 +33,7 @@ function Categories({clearCriteria, toggleCategory, activeCategories, activeLabe
                     </button>
                 )}
             </legend>
-            <ul className={'CategoryList'}>
+            <ul className="CategoryList">
                 {data.categories.edges.map(({node: category}) => (
                     <Category
                         key={category.id}
