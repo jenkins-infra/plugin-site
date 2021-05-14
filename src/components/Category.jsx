@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useStaticQuery, graphql} from 'gatsby';
 import classNames from 'classnames';
-import * as styles from '../styles/main.module.css';
 import Label from './Label';
 
 function Category({activeCategories, category, toggleCategory, toggleLabel, activeLabels}) {
@@ -23,7 +22,7 @@ function Category({activeCategories, category, toggleCategory, toggleLabel, acti
     const matchedLabels = category.labels.map((id) => data.labels.edges.find(({node: label}) => label.id === id));
     const checked = activeCategories.find((active) => active === category.id) !== undefined;
     return (
-        <li className={classNames(styles[category.id], category.id, {mask: checked})}>
+        <li className={classNames(category.id, {mask: checked})}>
             <label>
                 <input type="checkbox" name="categories" value={category.id}
                     checked={checked} onChange={handleOnChange}/>

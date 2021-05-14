@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useStaticQuery, graphql} from 'gatsby';
-import classNames from 'classnames';
-import * as styles from '../styles/main.module.css';
 import Category from './Category';
 
 function Categories({clearCriteria, toggleCategory, activeCategories, activeLabels, toggleLabel}) {
@@ -26,7 +24,7 @@ function Categories({clearCriteria, toggleCategory, activeCategories, activeLabe
     const anyCriteria = activeCategories.length > 0 || activeLabels.length > 0;
     
     return (
-        <fieldset className={classNames(styles.Categories)}>
+        <fieldset className="Categories">
             <legend>
                 Categories
                 {anyCriteria && (
@@ -35,7 +33,7 @@ function Categories({clearCriteria, toggleCategory, activeCategories, activeLabe
                     </button>
                 )}
             </legend>
-            <ul className={classNames(styles.Cols3, 'Cols3')}>
+            <ul className="CategoryList">
                 {data.categories.edges.map(({node: category}) => (
                     <Category
                         key={category.id}
