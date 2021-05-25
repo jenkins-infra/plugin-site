@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import View from './View';
 
-const views = ['Tiles', 'List', 'Table'];
+const views = ['Tiles', 'List'];
 
 function Views({view, setView}) {
     return (

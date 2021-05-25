@@ -32,6 +32,10 @@ body .showResults #plugin-search-form p,
 body .showResults #plugin-search-form h1,
 body .showResults #plugin-search-form:before {display:none}
 
+.page-link {
+  cursor: pointer
+}
+
 .CategoryList,
 .CategoryList ul{
   padding:0;

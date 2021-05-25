@@ -49,7 +49,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
         <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemUrl={`/${plugin.name}`} reportProblemTitle={plugin.title}>
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
 
-            <div className="row flex pluginContainer">
+            <div className="row flex pluginContainer flex-column-reverse flex-md-row">
                 <div className="col-md-9 main">
                     <div className="title-wrapper">
                         <h1 className="title">
@@ -80,11 +80,6 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     </div>
                 </div>
                 <div className="col-md-3 gutter">
-                    <a href="#releases" onClick={() => setState({selectedTab: 'releases'})} className="btn btn-secondary">
-                        <i className="icon-box" />
-                        <span>Archives</span>
-                        <span className="v">Get past versions</span>
-                    </a>
                     <h5>{`Version: ${plugin.version}`}</h5>
                     <PluginLastReleased plugin={plugin} />
                     <div>

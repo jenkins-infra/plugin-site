@@ -27,7 +27,7 @@ export default class Pages extends React.PureComponent {
               breakClassName={'page-item disabled'}
               breakLinkClassName={'page-link'}
 
-              pageClassName={'page-item'}
+              pageClassName={'page-item d-none d-sm-block'}
               pageLinkClassName={'page-link'}
               nextClassName={'page-item'}
               nextLinkClassName={'page-link'}
