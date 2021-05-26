@@ -48,18 +48,17 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
     return (
         <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemUrl={`/${plugin.name}`} reportProblemTitle={plugin.title}>
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
-
-            <div className="row flex pluginContainer">
+            <div className="title-wrapper">
+                <h1 className="title">
+                    {cleanTitle(plugin.title)}
+                </h1>
+                <div className="plugin-id">
+                    {'ID: '}
+                    {plugin.name}
+                </div>
+            </div>
+            <div className="row flex pluginContainer flex-column-reverse flex-md-row">
                 <div className="col-md-9 main">
-                    <div className="title-wrapper">
-                        <h1 className="title">
-                            {cleanTitle(plugin.title)}
-                        </h1>
-                        <div className="plugin-id">
-                            {'ID: '}
-                            {plugin.name}
-                        </div>
-                    </div>
                     <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
                     <PluginGovernanceStatus plugin={plugin} />
                     <ul className="nav nav-tabs">
@@ -79,12 +78,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                             reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}/>}
                     </div>
                 </div>
-                <div className="col-md-3 gutter">
-                    <a href="#releases" onClick={() => setState({selectedTab: 'releases'})} className="btn btn-secondary">
-                        <i className="icon-box" />
-                        <span>Archives</span>
-                        <span className="v">Get past versions</span>
-                    </a>
+                <div className="col-md-3 sidebar">
                     <h5>{`Version: ${plugin.version}`}</h5>
                     <PluginLastReleased plugin={plugin} />
                     <div>

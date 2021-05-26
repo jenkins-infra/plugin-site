@@ -32,6 +32,10 @@ body .showResults #plugin-search-form p,
 body .showResults #plugin-search-form h1,
 body .showResults #plugin-search-form:before {display:none}
 
+.page-link {
+  cursor: pointer
+}
+
 .CategoryList,
 .CategoryList ul{
   padding:0;
@@ -248,16 +252,15 @@ transform: scale(-1, 1);
 .maintainers > .maintainer {display:block;}
 
 #pluginPage #grid-box {font-size:.875rem;}
-#pluginPage #grid-box .gutter {padding:2rem }
-#pluginPage #grid-box .gutter > .btn { display:block; text-align:left; padding:.5rem 1rem .75rem 3.5rem; position:relative; margin-bottom:1rem}
-#pluginPage #grid-box .gutter > .btn i {font-size:2.25rem; position:absolute; left:.75rem; top:.5rem}
-#pluginPage #grid-box .gutter > .btn > span {font-size:1.1rem; line-height:1.3rem; font-weight:500}
-#pluginPage #grid-box .gutter > .btn > .v {display:block; font-weight:200; font-size:.75rem; white-space:normal}
-#pluginPage #grid-box .gutter .lbl {display:inline-block; margin-right:.5rem}
-##pluginPage #grid-box .gutter .label-link a{display:block; line-height: 1.5rem; padding: 4px 0;}
-#pluginPage #grid-box .gutter .chart {margin:1rem 0 0}
+#pluginPage #grid-box .sidebar > .btn { display:block; text-align:left; padding:.5rem 1rem .75rem 3.5rem; position:relative; margin-bottom:1rem}
+#pluginPage #grid-box .sidebar > .btn i {font-size:2.25rem; position:absolute; left:.75rem; top:.5rem}
+#pluginPage #grid-box .sidebar > .btn > span {font-size:1.1rem; line-height:1.3rem; font-weight:500}
+#pluginPage #grid-box .sidebar > .btn > .v {display:block; font-weight:200; font-size:.75rem; white-space:normal}
+#pluginPage #grid-box .sidebar .lbl {display:inline-block; margin-right:.5rem}
+##pluginPage #grid-box .sidebar .label-link a{display:block; line-height: 1.5rem; padding: 4px 0;}
+#pluginPage #grid-box .sidebar .chart {margin:1rem 0 0}
 
-.gutter .sidebarSection {
+.sidebar .sidebarSection {
   margin-top: 1rem;
   padding-top:.5rem;
   border-top: 1px #AAA solid;
@@ -318,6 +321,9 @@ transform: scale(-1, 1);
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
+  max-width: 72rem;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .plugin-id {

@@ -14,7 +14,7 @@ function Pagination({limit, page, pages, total, setPage}) {
     return (
         <>
             <div className="row nav-link">
-                {`${start} to ${end} of ${total}`}
+                {`${start+1} to ${end} of ${total}`}
             </div>
             {pages > 1 &&
                 <Pages

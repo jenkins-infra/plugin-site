@@ -161,13 +161,9 @@
     }
 }
 .SearchResults--List {
-    &.SearchResults--GridBox {
-        display: table;
-    }
     & .SearchResults--ItemBox {
         height: initial;
         min-height: initial;
-        width: initial;
     }
     & .Plugin--IconContainer {
         bottom: initial;
@@ -185,37 +181,8 @@
             position: initial;
         }
     }
-}
-.SearchResults--Table {
-    &.SearchResults--GridBox {
-        display: table;
-    }
-    & .SearchResults--ItemBox {
+    & .Plugin--ExcerptContainer {
         height: initial;
-        min-height: initial;
-        width: initial;
-    }
-    & .Plugin--PluginContainer {
-        display: grid;
-        grid-gap: 1em;
-        grid-template-areas: "title installs version labels excerpt authors";
-        grid-template-columns: 15em 5em 7em 7em 1fr 5em;
-
-        @media (max-width: 992px) {
-            grid-template-areas: "title" "installs" "version" "labels" "excerpt" "authors";
-        }
-        & .Plugin--IconContainer {
-            display: none;
-            visibility: hidden;
-        }
-        & .Plugin--AuthorsContainer {
-            position: initial;
-        }
-        & .Plugin--LabelsContainer {
-            margin: 0;
-            & .label-link {
-                display: block;
-            }
-        }
+        margin-bottom: 1rem;
     }
 }
