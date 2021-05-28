@@ -28,7 +28,7 @@ function IndexPage() {
                 <div className="logo"><JenkinsVoltron /></div>
                 <div className="content">
                     <h1>{pageTitle}</h1>
-                    <p>Discover the 1500+ community contributed Jenkins plugins to support building, deploying and automating any project.</p>
+                    <p>Discover the 1800+ community contributed Jenkins plugins to support building, deploying and automating any project.</p>
                     <SearchBox
                         handleOnSubmit={handleOnSubmit}
                         query={query}
