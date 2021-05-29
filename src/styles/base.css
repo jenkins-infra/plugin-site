@@ -320,7 +320,7 @@ transform: scale(-1, 1);
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
+  margin: 1rem auto 0;
   max-width: 72rem;
   padding-left: 15px;
   padding-right: 15px;
