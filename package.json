@@ -134,5 +134,8 @@
     "stylelint-order": "^4.1.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "stylelint-selector-bem-pattern": "^2.1.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   }
 }
