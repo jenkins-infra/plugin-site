@@ -73,7 +73,7 @@
     "gatsby-plugin-canonical-urls": "^3.6.0",
     "gatsby-plugin-image": "^1.4.0",
     "gatsby-plugin-postcss": "^4.6.0",
-    "gatsby-plugin-react-helmet": "^4.4.0",
+    "gatsby-plugin-react-helmet": "^4.6.0",
     "gatsby-plugin-robots-txt": "^1.6.2",
     "gatsby-plugin-sharp": "^3.4.0",
     "gatsby-plugin-sitemap": "^4.2.0",
