@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 
-const {makeReactLayout} = require('./utils.js');
+const {makeReactLayout} = require('./utils');
 
 exports.onPreBootstrap = async () => {
     const {jsxLines, cssLines, manifest} = await makeReactLayout();

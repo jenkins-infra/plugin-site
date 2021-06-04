@@ -14,6 +14,7 @@ const chartData = (labels, data) => {
             {
                 label: 'Installs',
                 data,
+                fill: true,
                 backgroundColor: 'rgba(0,220,255,0.3)',
                 pointBackgroundColor: '#3399cc',
                 pointRadius: 2,
@@ -27,8 +28,10 @@ const options = (data) => {
     return {
         responsive: true,
         maintainAspectRatio: false,
-        legend: {
-            display: false
+        plugins: {
+            legend: {
+                display: false
+            }
         },
         elements: {
             line: {
@@ -39,19 +42,16 @@ const options = (data) => {
             }
         },
         scales: {
-            xAxes: [{
+            x: {
                 ticks: {
-                    fontSize: 9,
+                    font: {size: '9px'}
                 }
-            }],
-            yAxes: [{
-                display: false,
-                ticks: {
-                    min: 0,
-                    max: calculateMax(data),
-                    fontSize: 9,
-                }
-            }]
+            },
+            y: {
+                min: 0,
+                max: calculateMax(data),
+                display: false
+            }
         }
     };
 };
@@ -68,7 +68,7 @@ function LineChart({installations}) {
     }
     const labels = [];
     const data = [];
-    const height = 80;
+    const height = 90;
     const length = installations.length;
     installations.slice(length > 12 ? length - 12 : 0, length).forEach((installation) => {
         labels.push(moment.utc(installation.timestamp).format('MMM'));
@@ -79,8 +79,7 @@ function LineChart({installations}) {
         <div style={styles.graphContainer}>
             <Line data={lineData}
                 options={options(data)}
-                height={height}
-                redraw />
+                height={height}/>
         </div>
     );
 }

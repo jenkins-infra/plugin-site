@@ -52,7 +52,7 @@ const {
     fetchPluginVersions,
     fetchCategoryData,
     fetchLabelData,
-} = require('./utils.js');
+} = require('./utils');
 
 
 exports.sourceNodes = async (
