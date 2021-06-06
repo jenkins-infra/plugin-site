@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Line} from 'react-chartjs-2';
 import moment from 'moment';
+import {ResizeObserver as ResizeObserverPolyfill} from '@juggle/resize-observer';
 
 const calculateMax = (data) => {
     return 1.2 * Math.max(...data);
@@ -63,6 +64,9 @@ const styles = {
 };
 
 function LineChart({installations}) {
+    if (typeof window !== 'undefined') {
+        window.ResizeObserver = window.ResizeObserver || ResizeObserverPolyfill;
+    }
     if (!installations) {
         return null;
     }
