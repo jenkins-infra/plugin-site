@@ -63,6 +63,7 @@
   "dependencies": {
     "@babel/core": "^7.14.3",
     "@halkeye/react-paginate": "^7.2.3",
+    "@juggle/resize-observer": "^3.3.1",
     "@sentry/browser": "^6.5.1",
     "algoliasearch": "^4.9.1",
     "chart.js": "^3.3.2",
