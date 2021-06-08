@@ -7,6 +7,7 @@ import {cleanTitle} from '../commons/helper';
 import Layout from '../layout';
 import SEO from '../components/SEO';
 import LineChart from '../components/LineChart';
+import MavenDependency from '../components/MavenDependency';
 import PluginDependencies from '../components/PluginDependencies';
 import PluginLabels from '../components/PluginLabels';
 import PluginLastReleased from '../components/PluginLastReleased';
@@ -74,8 +75,11 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         </>)}
                         {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} versions={versions.edges.map(edge => edge.node)} />}
                         {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.id} />}
-                        {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies}
-                            reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}/>}
+                        {state.selectedTab === 'dependencies' && <>
+                            <PluginDependencies dependencies={plugin.dependencies}
+                                reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}/>
+                            <MavenDependency gav={plugin.gav} hasBomEntry={plugin.hasBomEntry}/>
+                        </>}
                     </div>
                 </div>
                 <div className="col-md-3 sidebar">
@@ -95,6 +99,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                                 installations={plugin.stats.installations}
                             />
                         </div>
+                        <div className="label-link"><a href={`https://stats.jenkins.io/pluginversions/${plugin.name}.html`}>Installs by version</a></div>
                     </div>
                     <div className="sidebarSection">
                         <h5>Links</h5>
@@ -168,6 +173,8 @@ PluginPage.propTypes = {
                 version: PropTypes.string
             })),
             excerpt: PropTypes.string,
+            gav: PropTypes.string.isRequired,
+            hasBomEntry: PropTypes.bool,
             labels: PropTypes.arrayOf(PropTypes.string),
             maintainers: PropTypes.arrayOf(PropTypes.shape({
                 id: PropTypes.string,

@@ -1,0 +1,13 @@
+.copy-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  min-height: 3rem;
+}
+
+.copy-success {
+    position: absolute;
+    right: 4rem;
+    white-space: nowrap;
+    line-height: 1rem;
+}

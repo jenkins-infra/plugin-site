@@ -943,7 +943,7 @@ a.card:hover {
   padding: 1em;
 }
 
-.markdown-body pre {
+.markdown-body pre, .code-wrapper pre {
   background-color: rgb(246, 248, 250);
   padding: 16px;
   border-radius: 4px;

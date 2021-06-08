@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useCopyToClipboard from '../hooks/useCopyToClipboard';
-import {root, copy} from './InstallViaCLI.module.css';
+import {root} from './InstallViaCLI.module.css';
+import ClipboardButton from './ClipboardButton';
 
 function InstallViaCLI({pluginId, version}) {
     // isCopied is reset after 3 second timeout
-    const [isCopied, handleCopy] = useCopyToClipboard(3000);
     const body = `jenkins-plugin-cli --plugins ${pluginId}:${version}`;
 
     return (
@@ -15,10 +14,10 @@ function InstallViaCLI({pluginId, version}) {
                 <a href="https://github.com/jenkinsci/plugin-installation-manager-tool">cli</a>
                 {': '}
             </span>
-            <code className={copy} title="click to copy" onClick={() => handleCopy(body)}>
+            <code>
                 {body}
             </code>
-            {isCopied && (<span>{' Copied '}</span>)}
+            <ClipboardButton content={body}/>
         </div>
     );
 }
