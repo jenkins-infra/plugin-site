@@ -32,6 +32,9 @@ describe('Utils', () => {
         nock('https://www.jenkins.io')
             .get('/doc/pipeline/steps/contents.json')
             .reply(200, []);
+        nock('https://raw.githubusercontent.com:443')
+            .get('/jenkinsci/bom/master/bom-latest/pom.xml')
+            .reply(200, '');
         nock('https://plugins.jenkins.io')
             .get('/api/plugins/?limit=100&page=1')
             .reply(200, {

@@ -4,6 +4,7 @@ export const PluginFragment = graphql`
   fragment JenkinsPluginFragment on JenkinsPlugin {
     id
     gav
+    hasBomEntry
     title
     url
     version

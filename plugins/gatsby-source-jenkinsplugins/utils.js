@@ -6,6 +6,7 @@ const {execSync} = require('child_process');
 const URL = require('url');
 const axiosRetry = require('axios-retry');
 const dateFNs = require('date-fns');
+const {parseStringPromise} = require('xml2js');
 
 axiosRetry(axios, {retries: 3});
 
@@ -103,10 +104,10 @@ const fetchPluginData = async ({createNode, reporter}) => {
     const names = [];
     const pipelinePluginsUrl = 'https://www.jenkins.io/doc/pipeline/steps/contents.json';
     const pipelinePluginIds = await requestGET({url: pipelinePluginsUrl, reporter});
+    const bomDependencies = await fetchBomDependencies(reporter);
     do {
         const url = `https://plugins.jenkins.io/api/plugins/?limit=100&page=${page}`;
         pluginsContainer = await requestGET({url, reporter});
-
         for (const plugin of pluginsContainer.plugins) {
             const pluginName = plugin.name.trim();
             names.push(pluginName);
@@ -115,6 +116,7 @@ const fetchPluginData = async ({createNode, reporter}) => {
                     ...pluginData,
                     id: pluginName,
                     hasPipelineSteps: pipelinePluginIds.includes(pluginName),
+                    hasBomEntry: !!bomDependencies.find(artifactId => pluginData.gav.includes(`:${artifactId}:`)),
                     parent: null,
                     children: [],
                     internal: {
@@ -165,6 +167,23 @@ const fetchPluginData = async ({createNode, reporter}) => {
         page = pluginsContainer.page + 1;
     } while (!page || pluginsContainer.page < pluginsContainer.pages);
     await Promise.all(promises);
+    await fetchSuspendedPlugins({names, createNode, reporter});
+    sectionActivity.end();
+};
+
+const fetchBomDependencies = async (reporter) => {
+    try {
+        const bomUrl = 'https://raw.githubusercontent.com/jenkinsci/bom/master/bom-latest/pom.xml';
+        const bom = await requestGET({url: bomUrl, reporter});
+        const xml = await parseStringPromise(bom);
+        return xml.project.dependencyManagement[0].dependencies[0].dependency.map(dep => dep.artifactId);
+    } catch(ex) {
+        console.warn('Failed to fetch BOM data', ex);
+    }
+    return [];
+};
+
+const fetchSuspendedPlugins = async ({names, createNode, reporter}) => {
     const updateUrl = 'https://updates.jenkins.io/update-center.actual.json';
     const updateData = await requestGET({url: updateUrl, reporter});
     const suspendedPromises = [];
@@ -184,7 +203,6 @@ const fetchPluginData = async ({createNode, reporter}) => {
         }
     }
     await Promise.all(suspendedPromises);
-    sectionActivity.end();
 };
 
 const fetchCategoryData = async ({createNode, reporter}) => {
@@ -266,7 +284,6 @@ const fetchPluginVersions = async ({createNode, reporter}) => {
     sectionActivity.start();
     const url = 'https://updates.jenkins.io/plugin-versions.json';
     const json = await requestGET({url, reporter});
-
     for (const pluginVersions of Object.values(json.plugins)) {
         for (const data of Object.values(pluginVersions)) {
             /*
