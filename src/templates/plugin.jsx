@@ -7,7 +7,6 @@ import {cleanTitle} from '../commons/helper';
 import Layout from '../layout';
 import SEO from '../components/SEO';
 import LineChart from '../components/LineChart';
-import MavenDependency from '../components/MavenDependency';
 import PluginDependencies from '../components/PluginDependencies';
 import PluginLabels from '../components/PluginLabels';
 import PluginLastReleased from '../components/PluginLastReleased';
@@ -75,11 +74,10 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         </>)}
                         {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} versions={versions.edges.map(edge => edge.node)} />}
                         {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.id} />}
-                        {state.selectedTab === 'dependencies' && <>
-                            <PluginDependencies dependencies={plugin.dependencies}
-                                reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}/>
-                            <MavenDependency gav={plugin.gav} hasBomEntry={plugin.hasBomEntry}/>
-                        </>}
+                        {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies}
+                            reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
+                            hasBomEntry={plugin.hasBomEntry}
+                            gav={plugin.gav}/>}
                     </div>
                 </div>
                 <div className="col-md-3 sidebar">

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'gatsby';
+import MavenDependency from './MavenDependency';
 import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 
-function PluginDependencies({dependencies, reverseDependencies} ) {
+function PluginDependencies({dependencies, reverseDependencies, gav, hasBomEntry} ) {
     const [isShowImplied, setShowImplied] = React.useState(false);
     const toggleShowImplied = (e) => {
         e && e.preventDefault();
@@ -95,6 +96,7 @@ function PluginDependencies({dependencies, reverseDependencies} ) {
                     : (<div className="empty">No dependencies found</div>)
             }
             <h2>Dependent plugins</h2>
+            <MavenDependency gav={gav} hasBomEntry={hasBomEntry}/>
             {
                 reverseDependencies.length ? splitByType(reverseDependencies, reverseDependencyLink)
                     : (<div className="empty">No dependent plugins found</div>)
@@ -120,7 +122,9 @@ PluginDependencies.propTypes = {
             optional: PropTypes.bool,
             implied: PropTypes.bool,
         })
-    )
+    ),
+    gav: PropTypes.string,
+    hasBomEntry: PropTypes.bool
 };
 
 export default PluginDependencies;
