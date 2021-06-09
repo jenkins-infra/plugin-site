@@ -97,7 +97,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                                 installations={plugin.stats.installations}
                             />
                         </div>
-                        <div className="label-link"><a href={`https://stats.jenkins.io/pluginversions/${plugin.name}.html`}>Installs by version</a></div>
+                        <div className="label-link"><a href={`https://stats.jenkins.io/pluginversions/${plugin.name}.html`}>View detailed version information</a></div>
                     </div>
                     <div className="sidebarSection">
                         <h5>Links</h5>
