@@ -19,7 +19,7 @@ function MavenDependency({gav, hasBomEntry} ) {
                     {' '}
                     <a href="https://github.com/jenkinsci/bom#readme">Jenkins plugin BOM</a>
                     {' '}
-                    and the following depndency snippet:
+                    and the following dependency snippet:
                 </>
             </p>}
             <div className="code-wrapper position-relative">
