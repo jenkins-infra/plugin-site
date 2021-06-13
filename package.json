@@ -102,7 +102,7 @@
     "@sentry/node": "^6.5.1",
     "axios-retry": "^3.1.9",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.6.3",
+    "babel-jest": "^27.0.2",
     "babel-preset-gatsby": "^1.6.0",
     "eslint": "^7.27.0",
     "eslint-config-standard": "^16.0.3",
