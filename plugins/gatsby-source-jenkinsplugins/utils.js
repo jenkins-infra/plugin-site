@@ -95,7 +95,7 @@ const getPluginContent = async ({plugin, reporter}) => {
     });
 };
 
-const fetchPluginData = async ({createNode, reporter}) => {
+const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
     const sectionActivity = reporter.activityTimer('fetch plugins info');
     sectionActivity.start();
     const promises = [];
@@ -105,15 +105,28 @@ const fetchPluginData = async ({createNode, reporter}) => {
     const pipelinePluginsUrl = 'https://www.jenkins.io/doc/pipeline/steps/contents.json';
     const pipelinePluginIds = await requestGET({url: pipelinePluginsUrl, reporter});
     const bomDependencies = await fetchBomDependencies(reporter);
+    const updateUrl = 'https://updates.jenkins.io/update-center.actual.json';
+    const updateData = await requestGET({url: updateUrl, reporter});
     do {
         const url = `https://plugins.jenkins.io/api/plugins/?limit=100&page=${page}`;
         pluginsContainer = await requestGET({url, reporter});
         for (const plugin of pluginsContainer.plugins) {
             const pluginName = plugin.name.trim();
             names.push(pluginName);
+            const pluginUC = updateData.plugins[pluginName];
+            pluginUC.maintainers = pluginUC.developers;
+            pluginUC.maintainers.forEach(maint => {maint.id = maint.developerId, delete(maint.developerId);});
+            delete(pluginUC.developers);
             promises.push(getPluginContent({plugin, reporter}).then(pluginData => {
                 const p = createNode({
-                    ...pluginData,
+                    ...pluginUC,
+                    stats: pluginData.stats,
+                    wiki: pluginData.wiki,
+                    securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
+                        .map(w => checkActive(w, pluginUC)),
+                    dependencies: pluginData.dependencies,
+                    categories: pluginData.categories,
+                    firstRelease: firstReleases[pluginName].toISOString(),
                     id: pluginName,
                     hasPipelineSteps: pipelinePluginIds.includes(pluginName),
                     hasBomEntry: !!bomDependencies.find(artifactId => pluginData.gav.includes(`:${artifactId}:`)),
@@ -167,8 +180,13 @@ const fetchPluginData = async ({createNode, reporter}) => {
         page = pluginsContainer.page + 1;
     } while (!page || pluginsContainer.page < pluginsContainer.pages);
     await Promise.all(promises);
-    await fetchSuspendedPlugins({names, createNode, reporter});
+    await fetchSuspendedPlugins({updateData, names, createNode});
     sectionActivity.end();
+};
+
+const checkActive = (warning, plugin) => {
+    warning.active = !!warning.versions.find(version => plugin.version.match(`^${version.pattern}$`));
+    return warning;
 };
 
 const fetchBomDependencies = async (reporter) => {
@@ -183,9 +201,7 @@ const fetchBomDependencies = async (reporter) => {
     return [];
 };
 
-const fetchSuspendedPlugins = async ({names, createNode, reporter}) => {
-    const updateUrl = 'https://updates.jenkins.io/update-center.actual.json';
-    const updateData = await requestGET({url: updateUrl, reporter});
+const fetchSuspendedPlugins = async ({updateData, names, createNode}) => {
     const suspendedPromises = [];
     for (const deprecation of Object.keys(updateData.deprecations)) {
         if (!names.includes(deprecation)) {
@@ -279,7 +295,7 @@ const fetchSiteInfo = async ({createNode, reporter}) => {
 };
 
 
-const fetchPluginVersions = async ({createNode, reporter}) => {
+const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin versions');
     sectionActivity.start();
     const url = 'https://updates.jenkins.io/plugin-versions.json';
@@ -296,9 +312,13 @@ const fetchPluginVersions = async ({createNode, reporter}) => {
             url	"https://updates.jenkins.io/download/plugins/42crunch-security-audit/2.1/42crunch-security-audit.hpi"
             version 2.1
             */
+            const date = dateFNs.parse(data.buildDate, 'MMMM d, yyyy', new Date(0));
+            if (!firstReleases[data.name] || firstReleases[data.name].getTime() > date.getTime()) {
+                firstReleases[data.name] = date;
+            }
             createNode({
                 ...data,
-                buildDate: dateFNs.parse(data.buildDate, 'MMMM d, yyyy', new Date(0)),
+                buildDate: date,
                 id: `${data.name}_${data.version}`,
                 parent: null,
                 children: [],

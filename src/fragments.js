@@ -31,9 +31,11 @@ export const PluginFragment = graphql`
         lastVersion
       }
     }
-    scm {
-      link
+    issueTrackers {
+      reportUrl
+      viewUrl
     }
+    scm
     hasPipelineSteps
     requiredCore
     releaseTimestamp
