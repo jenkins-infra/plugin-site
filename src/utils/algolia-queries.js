@@ -16,7 +16,7 @@ function pluginQueries() {
               currentInstalls
               trend
             }
-            maintainers {
+            developers {
               name
               id
             }
@@ -76,8 +76,8 @@ function pluginQueries() {
             attributesToIndex: [
                 'name',
                 'title',
-                'maintainers.name',
-                'maintainers.id',
+                'developers.name',
+                'developers.id',
             ],
         },
     };

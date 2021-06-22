@@ -13,7 +13,7 @@ import PluginLastReleased from '../components/PluginLastReleased';
 import PluginActiveWarnings from '../components/PluginActiveWarnings';
 import PluginInactiveWarnings from '../components/PluginInactiveWarnings';
 import PluginGovernanceStatus from '../components/PluginGovernanceStatus';
-import PluginMaintainers from '../components/PluginMaintainers';
+import PluginDevelopers from '../components/PluginDevelopers';
 import PluginReadableInstalls from '../components/PluginReadableInstalls';
 import PluginIssues from '../components/PluginIssues';
 import PluginReleases from '../components/PluginReleases';
@@ -116,7 +116,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     </div>
                     <div className="sidebarSection">
                         <h5>Maintainers</h5>
-                        <PluginMaintainers maintainers={plugin.maintainers} />
+                        <PluginDevelopers developers={plugin.developers} />
                     </div>
                     {shouldShowWikiUrl(plugin.wiki) &&
                         <div className="sidebarSection">
@@ -179,7 +179,7 @@ PluginPage.propTypes = {
             gav: PropTypes.string.isRequired,
             hasBomEntry: PropTypes.bool,
             labels: PropTypes.arrayOf(PropTypes.string),
-            maintainers: PropTypes.arrayOf(PropTypes.shape({
+            developers: PropTypes.arrayOf(PropTypes.shape({
                 id: PropTypes.string,
                 name: PropTypes.string
             })),

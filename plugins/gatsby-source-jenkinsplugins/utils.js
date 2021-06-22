@@ -114,9 +114,7 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
             const pluginName = plugin.name.trim();
             names.push(pluginName);
             const pluginUC = updateData.plugins[pluginName];
-            pluginUC.maintainers = pluginUC.developers;
-            pluginUC.maintainers.forEach(maint => {maint.id = maint.developerId, delete(maint.developerId);});
-            delete(pluginUC.developers);
+            pluginUC.developers.forEach(maint => {maint.id = maint.developerId, delete(maint.developerId);});
             promises.push(getPluginContent({plugin, reporter}).then(pluginData => {
                 const p = createNode({
                     ...pluginUC,
@@ -129,12 +127,12 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
                     firstRelease: firstReleases[pluginName].toISOString(),
                     id: pluginName,
                     hasPipelineSteps: pipelinePluginIds.includes(pluginName),
-                    hasBomEntry: !!bomDependencies.find(artifactId => pluginData.gav.includes(`:${artifactId}:`)),
+                    hasBomEntry: !!bomDependencies.find(artifactId => pluginUC.gav.includes(`:${artifactId}:`)),
                     parent: null,
                     children: [],
                     internal: {
                         type: 'JenkinsPlugin',
-                        contentDigest: crypto.createHash('md5').update(`plugin${pluginData.name.trim()}`).digest('hex')
+                        contentDigest: crypto.createHash('md5').update(`plugin${pluginName}`).digest('hex')
                     }
                 });
                 if (!p || !p.then) {
@@ -143,17 +141,17 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
                         Sentry.init({
                             dsn: process.env.GATSBY_SENTRY_DSN
                         });
-                        Sentry.captureMessage(new Error(`Error creatingNode for plugin: ${pluginData.name.trim()}`), {extra: {pluginData: pluginData, p: p}});
+                        Sentry.captureMessage(new Error(`Error creatingNode for plugin: ${pluginName}`), {extra: {pluginData: pluginData, p: p}});
                     }
                     console.log('p', p, plugin);
                     return new Error('no promise returned');
                 }
                 p.then(() => {
-                    return Promise.all(pluginData.maintainers.map(maintainer => {
+                    return Promise.all(pluginUC.developers.map(maintainer => {
                         return createNode({
                             ...maintainer,
                             internal: {
-                                type: 'JenkinsMaintainer',
+                                type: 'JenkinsDeveloper',
                                 contentDigest: crypto.createHash('md5').update(maintainer.id).digest('hex')
                             }
                         });
@@ -161,11 +159,11 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
                 });
                 return p.then(() => {
                     return Promise.all(pluginData.dependencies.map(dependency => {
-                        const mergedId = `${pluginData.name.trim()}:${dependency.name.trim()}`;
+                        const mergedId = `${pluginName}:${dependency.name.trim()}`;
                         return createNode({
                             ...dependency,
-                            dependentTitle: pluginData.title,
-                            dependentName: pluginData.name,
+                            dependentTitle: pluginUC.title,
+                            dependentName: pluginUC.name,
                             id: mergedId,
                             internal: {
                                 type: 'JenkinsPluginDependency',

@@ -43,7 +43,7 @@ export const PluginFragment = graphql`
     previousTimestamp
     name
     labels
-    maintainers {
+    developers {
       id
       name
     }
