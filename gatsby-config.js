@@ -49,12 +49,6 @@ module.exports = {
                 showSpinner: false,
             },
         },
-        {
-            resolve: 'gatsby-plugin-plausible',
-            options: {
-                domain: process.env.GATSBY_PLAUSIBLE_KEY,
-            },
-        },
         process.env.GATSBY_ALGOLIA_WRITE_KEY ? {
             resolve: 'gatsby-plugin-algolia',
             options: {
