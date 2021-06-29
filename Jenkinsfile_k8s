@@ -47,6 +47,7 @@ spec:
   environment {
     GET_CONTENT = "true"
     NODE_ENV = "production"
+    GATSBY_PLAUSIBLE_KEY = "plugins.jenkins.io"
     HOME = "${WORKSPACE}"
   }
 
