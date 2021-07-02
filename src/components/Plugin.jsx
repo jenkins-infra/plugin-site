@@ -6,24 +6,24 @@ import {Link} from 'gatsby';
 import {cleanTitle} from '../commons/helper';
 import Icon from '../components/Icon';
 import PluginLabels from '../components/PluginLabels';
-import PluginMaintainers from '../components/PluginMaintainers';
+import PluginDevelopers from '../components/PluginDevelopers';
 
-function Maintainers({maintainers}) {
+function Developers({developers}) {
     return (
         <>
-            <PluginMaintainers maintainers={maintainers.slice(0, 2)} />
-            {maintainers.length > 2 && (
-                <div key="more_maintainers">
-                    {`(${maintainers.length - 2} other contributors)`}
+            <PluginDevelopers developers={developers.slice(0, 2)} />
+            {developers.length > 2 && (
+                <div key="more_developers">
+                    {`(${developers.length - 2} other contributors)`}
                 </div>
             )}
         </>
     );
 }
 
-Maintainers.propTypes = PluginMaintainers.propTypes;
+Developers.propTypes = PluginDevelopers.propTypes;
 
-function Plugin({plugin: {name, title, stats, requiredCore, labels, excerpt, maintainers}}) {
+function Plugin({plugin: {name, title, stats, requiredCore, labels, excerpt, developers}}) {
     return (
         <Link to={`/${name}/`} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
@@ -47,7 +47,7 @@ function Plugin({plugin: {name, title, stats, requiredCore, labels, excerpt, mai
             </div>
             <div className="Plugin--ExcerptContainer" dangerouslySetInnerHTML={{__html: excerpt}} />
             <div className="Plugin--AuthorsContainer">
-                <Maintainers maintainers={maintainers} />
+                <Developers developers={developers} />
             </div>
         </Link>
     );
@@ -57,7 +57,7 @@ Plugin.propTypes = {
     plugin: PropTypes.shape({
         excerpt: PropTypes.string,
         labels: PropTypes.arrayOf(PropTypes.string),
-        maintainers: PropTypes.arrayOf(PropTypes.shape({
+        developers: PropTypes.arrayOf(PropTypes.shape({
             id: PropTypes.string,
             name: PropTypes.string
         })),

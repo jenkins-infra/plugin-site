@@ -2,12 +2,13 @@
 
 exports[`Utils Get plugin data for a wiki based plugin 1`] = `
 Object {
-  "buildDate": "2012-10-10",
+  "buildDate": "Oct 10, 2012",
   "categories": Array [
     "languagesPlatforms",
     "buildManagement",
   ],
   "children": Array [],
+  "defaultBranch": "master",
   "dependencies": Array [
     Object {
       "implied": true,
@@ -108,8 +109,9 @@ Object {
       "version": "1.0.4",
     },
   ],
+  "developers": Array [],
   "excerpt": "Talks to iOS devices connected to slaves and do stuff.",
-  "firstRelease": "2012-10-07T18:59:35.16Z",
+  "firstRelease": "1970-01-01T00:00:00.000Z",
   "gav": "org.jenkins-ci.plugins:ios-device-connector:1.2",
   "hasBomEntry": false,
   "hasPipelineSteps": false,
@@ -118,32 +120,29 @@ Object {
     "contentDigest": "7da41342fb756c851d4b5a9b6b6f9f3e",
     "type": "JenkinsPlugin",
   },
+  "issueTrackers": Array [
+    Object {
+      "reportUrl": "https://www.jenkins.io/participate/report-issue/redirect/#17020",
+      "type": "jira",
+      "viewUrl": "https://issues.jenkins.io/issues/?jql=component=17020",
+    },
+  ],
   "labels": Array [
     "builder",
     "ios",
   ],
-  "maintainers": Array [
-    Object {
-      "email": null,
-      "id": "kohsuke",
-      "name": null,
-    },
-  ],
   "name": "ios-device-connector",
   "parent": null,
-  "previousTimestamp": "2012-10-08T20:04:52.00Z",
+  "popularity": 275,
+  "previousTimestamp": "2012-10-08T20:04:36.00Z",
   "previousVersion": "1.1",
-  "releaseTimestamp": "2012-10-10T17:27:58.00Z",
+  "releaseTimestamp": "2012-10-10T17:27:42.00Z",
   "requiredCore": "1.466",
-  "scm": Object {
-    "inLatestRelease": null,
-    "issues": null,
-    "link": "https://github.com/jenkinsci/ios-device-connector-plugin",
-    "pullRequests": null,
-    "sinceLatestRelease": null,
-  },
-  "securityWarnings": null,
+  "scm": "https://github.com/jenkinsci/ios-device-connector-plugin",
+  "securityWarnings": Array [],
   "sha1": "B2z2wTyA8l5uwz9HqD+xhG9Hjns=",
+  "sha256": "Tray3+tyfE6xoTu1Rge9+INkcj5y7Bgw7nPm//saiYw=",
+  "size": 1548862,
   "stats": Object {
     "currentInstalls": 365,
     "installations": Array [
@@ -869,7 +868,7 @@ Object {
     "trend": -15,
   },
   "title": "iOS Device connector",
-  "url": "http://updates.jenkins-ci.org/download/plugins/ios-device-connector/1.2/ios-device-connector.hpi",
+  "url": "https://updates.jenkins.io/download/plugins/ios-device-connector/1.2/ios-device-connector.hpi",
   "version": "1.2",
   "wiki": Object {
     "content": "

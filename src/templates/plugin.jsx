@@ -13,7 +13,7 @@ import PluginLastReleased from '../components/PluginLastReleased';
 import PluginActiveWarnings from '../components/PluginActiveWarnings';
 import PluginInactiveWarnings from '../components/PluginInactiveWarnings';
 import PluginGovernanceStatus from '../components/PluginGovernanceStatus';
-import PluginMaintainers from '../components/PluginMaintainers';
+import PluginDevelopers from '../components/PluginDevelopers';
 import PluginReadableInstalls from '../components/PluginReadableInstalls';
 import PluginIssues from '../components/PluginIssues';
 import PluginReleases from '../components/PluginReleases';
@@ -46,7 +46,8 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
     const pluginPage = 'templates/plugin.jsx';
 
     return (
-        <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemUrl={`/${plugin.name}`} reportProblemTitle={plugin.title}>
+        <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemTitle={plugin.title}
+            reportProblemUrl={plugin.issueTrackers && plugin.issueTrackers[0] ? plugin.issueTrackers[0].reportUrl : `/${plugin.name}`}>
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
             <div className="title-wrapper">
                 <h1 className="title">
@@ -101,7 +102,11 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     </div>
                     <div className="sidebarSection">
                         <h5>Links</h5>
-                        {plugin.scm && plugin.scm.link && <div className="label-link"><a href={plugin.scm.link}>GitHub</a></div>}
+                        {plugin.scm && <div className="label-link"><a href={plugin.scm}>GitHub</a></div>}
+                        {plugin.issueTrackers && plugin.issueTrackers[0] && <>
+                            <div className="label-link"><a href={plugin.issueTrackers[0].viewUrl}>Open issues</a></div>
+                            <div className="label-link"><a href={plugin.issueTrackers[0].reportUrl}>Report an issue</a></div>
+                        </>}
                         {plugin.hasPipelineSteps && <div className="label-link"><a href={`https://www.jenkins.io/doc/pipeline/steps/${plugin.name}`}>Pipeline Step Reference</a></div>}
                         <div className="label-link"><a href={`https://javadoc.jenkins.io/plugin/${plugin.name}`}>Javadoc</a></div>
                     </div>
@@ -111,7 +116,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     </div>
                     <div className="sidebarSection">
                         <h5>Maintainers</h5>
-                        <PluginMaintainers maintainers={plugin.maintainers} />
+                        <PluginDevelopers developers={plugin.developers} />
                     </div>
                     {shouldShowWikiUrl(plugin.wiki) &&
                         <div className="sidebarSection">
@@ -174,19 +179,13 @@ PluginPage.propTypes = {
             gav: PropTypes.string.isRequired,
             hasBomEntry: PropTypes.bool,
             labels: PropTypes.arrayOf(PropTypes.string),
-            maintainers: PropTypes.arrayOf(PropTypes.shape({
+            developers: PropTypes.arrayOf(PropTypes.shape({
                 id: PropTypes.string,
                 name: PropTypes.string
             })),
             name: PropTypes.string.isRequired,
             requiredCore: PropTypes.string,
-            scm: PropTypes.shape({
-                inLatestRelease: PropTypes.string,
-                issues: PropTypes.string,
-                link: PropTypes.string,
-                pullRequests: PropTypes.string,
-                sinceLatestRelease: PropTypes.string
-            }),
+            scm: PropTypes.string,
             securityWarnings: PropTypes.arrayOf(PropTypes.shape({
                 active: PropTypes.boolean,
                 id: PropTypes.string,

@@ -1,5 +1,9 @@
 /* eslint-disable sort-keys, no-console */
-
+try {
+    require('dotenv').config();
+} catch(e) {
+    console.warn('problem loading .env', e);//expected in production
+}
 // This is the content of your gatsby-config.js
 // and what you need to provide as schema:
 module.exports = {
