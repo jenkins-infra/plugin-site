@@ -1,3 +1,4 @@
+
 // import {graphql} from 'gatsby';
 import React from 'react';
 import querystring from 'querystring';
@@ -76,6 +77,7 @@ const doSearch = (data, setResults) => {
             })
             .then(response => response.json())
             .then(data => {
+                data.plugins.forEach(p => p.developers = p.maintainers);
                 data.pages = data.pages + 1;
                 return data;
             })

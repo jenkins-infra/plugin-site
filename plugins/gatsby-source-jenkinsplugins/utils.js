@@ -7,6 +7,7 @@ const URL = require('url');
 const axiosRetry = require('axios-retry');
 const dateFNs = require('date-fns');
 const {parseStringPromise} = require('xml2js');
+const categoryList = require('./categories.json');
 
 axiosRetry(axios, {retries: 3});
 
@@ -95,7 +96,9 @@ const getPluginContent = async ({plugin, reporter}) => {
     });
 };
 
-const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
+const unique = (value, index, self) => self.indexOf(value) === index;
+
+const fetchPluginData = async ({createNode, reporter, firstReleases, labelToCategory}) => {
     const sectionActivity = reporter.activityTimer('fetch plugins info');
     sectionActivity.start();
     const promises = [];
@@ -107,6 +110,10 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
     const bomDependencies = await fetchBomDependencies(reporter);
     const updateUrl = 'https://updates.jenkins.io/update-center.actual.json';
     const updateData = await requestGET({url: updateUrl, reporter});
+    const detachedUrl = 'https://raw.githubusercontent.com/jenkinsci/jenkins/master/core/src/main/resources/jenkins/split-plugins.txt';
+    const detachedPluginsData = await requestGET({url: detachedUrl, reporter});
+    const detachedPlugins = detachedPluginsData.split('\n')
+        .filter(row => row.length && !row.startsWith('#')).map(row => row.split(' '));
     do {
         const url = `https://plugins.jenkins.io/api/plugins/?limit=100&page=${page}`;
         pluginsContainer = await requestGET({url, reporter});
@@ -122,8 +129,8 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
                     wiki: pluginData.wiki,
                     securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
                         .map(w => checkActive(w, pluginUC)),
-                    dependencies: pluginData.dependencies,
-                    categories: pluginData.categories,
+                    dependencies: pluginUC.dependencies.concat(getImpliedDependencies(plugin, detachedPlugins, updateData)),
+                    categories: pluginUC.labels.map(label => labelToCategory[label]).filter(unique),
                     firstRelease: firstReleases[pluginName].toISOString(),
                     id: pluginName,
                     hasPipelineSteps: pipelinePluginIds.includes(pluginName),
@@ -182,6 +189,27 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
     sectionActivity.end();
 };
 
+const getImpliedDependencies= (plugin, detachedPlugins, updateData) => {
+    const implied = [];
+    for (const detached of detachedPlugins) {
+        const [detachedPlugin, detachedCore, detachedVersion] = detached;
+        if (versionToNumber(detachedCore) > versionToNumber(plugin.requiredCore)) {
+            const title = updateData.plugins[detachedPlugin].title;
+            implied.push({name: detachedPlugin,
+                version: detachedVersion,
+                title: title,
+                implied: true,
+                optional: false});
+        }
+    }
+    return implied;
+};
+
+const versionToNumber = (version) => {
+    const [major, minor] = version.split('.').map(n => parseInt(n));
+    return major * 1E5 + minor;
+};
+
 const checkActive = (warning, plugin) => {
     warning.active = !!warning.versions.find(version => plugin.version.match(`^${version.pattern}$`));
     return warning;
@@ -219,13 +247,13 @@ const fetchSuspendedPlugins = async ({updateData, names, createNode}) => {
     await Promise.all(suspendedPromises);
 };
 
-const fetchCategoryData = async ({createNode, reporter}) => {
-    const sectionActivity = reporter.activityTimer('fetch categories info');
+const processCategoryData = async ({createNode, reporter, labelToCategory}) => {
+    const sectionActivity = reporter.activityTimer('process categories');
     sectionActivity.start();
-    const url = 'https://plugins.jenkins.io/api/categories/?limit=100';
-    const categoriesContainer = await requestGET({url, reporter});
-
-    for (const category of categoriesContainer.categories) {
+    for (const category of categoryList) {
+        for (const label of category.labels) {
+            labelToCategory[label] = category.id;
+        }
         createNode({
             ...category,
             id: category.id.trim(),
@@ -246,23 +274,27 @@ const fetchCategoryData = async ({createNode, reporter}) => {
 const fetchLabelData = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch labels info');
     sectionActivity.start();
-    const url = 'https://plugins.jenkins.io/api/labels/?limit=100';
-    const labelsContainer = await requestGET({url, reporter});
-
-    for (const label of labelsContainer.labels) {
-        createNode({
-            ...label,
-            id: label.id.trim(),
-            parent: null,
-            children: [],
-            internal: {
-                type: 'JenkinsPluginLabel',
-                contentDigest: crypto
-                    .createHash('md5')
-                    .update(`label${label.name}`)
-                    .digest('hex')
-            }
-        });
+    const url = 'https://raw.githubusercontent.com/jenkinsci/jenkins/master/core/src/main/resources/hudson/model/Messages.properties';
+    const messages = await requestGET({url, reporter});
+    const keyPrefix = 'UpdateCenter.PluginCategory';
+    for (const line of messages.split('\n')) {
+        const [key, value] = line.split('=', 2).map(s => s.trim());
+        const labelId = key.substring(keyPrefix.length + 1);
+        if (key.startsWith(keyPrefix)) {
+            createNode({
+                title: value,
+                id: labelId,
+                parent: null,
+                children: [],
+                internal: {
+                    type: 'JenkinsPluginLabel',
+                    contentDigest: crypto
+                        .createHash('md5')
+                        .update(`label${labelId}`)
+                        .digest('hex')
+                }
+            });
+        }
     }
     sectionActivity.end();
 };
@@ -301,13 +333,13 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
     for (const pluginVersions of Object.values(json.plugins)) {
         for (const data of Object.values(pluginVersions)) {
             /*
-            buildDate	"May 13, 2020"
-            dependencies	[…]
-            name	"42crunch-security-audit"
-            requiredCore	"2.164.3"
-            sha1	"nQl64SC4dvbFE0Kbwkdqe2C0hG8="
-            sha256	"rMxlZQqnAofpD1/vNosqcPgghuhXKzRrpLuLHV8XUQ8="
-            url	"https://updates.jenkins.io/download/plugins/42crunch-security-audit/2.1/42crunch-security-audit.hpi"
+            buildDate    "May 13, 2020"
+            dependencies    […]
+            name    "42crunch-security-audit"
+            requiredCore    "2.164.3"
+            sha1    "nQl64SC4dvbFE0Kbwkdqe2C0hG8="
+            sha256    "rMxlZQqnAofpD1/vNosqcPgghuhXKzRrpLuLHV8XUQ8="
+            url    "https://updates.jenkins.io/download/plugins/42crunch-security-audit/2.1/42crunch-security-audit.hpi"
             version 2.1
             */
             const date = dateFNs.parse(data.buildDate, 'MMMM d, yyyy', new Date(0));
@@ -336,7 +368,7 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
 module.exports = {
     fetchSiteInfo,
     fetchLabelData,
-    fetchCategoryData,
+    processCategoryData,
     fetchPluginData,
     fetchPluginVersions,
     getPluginContent,
