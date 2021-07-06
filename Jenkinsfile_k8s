@@ -48,6 +48,8 @@ spec:
     GET_CONTENT = "true"
     NODE_ENV = "production"
     HOME = "${WORKSPACE}"
+    GATSBY_MATOMO_SITE_ID = "1"
+    GATSBY_MATOMO_SITE_URL = "https://jenkins-matomo.do.g4v.dev"
   }
 
   triggers {

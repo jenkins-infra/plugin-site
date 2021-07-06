@@ -87,6 +87,7 @@ async function makeReactLayout() {
     $('.searchbox').remove();
     $('script[src*="docsearch"]').remove();
     $('script:contains("docsearch")').remove();
+    $('script:contains("google-analytics.com")').remove();
 
     const keyConversion = {
         class: 'className',
