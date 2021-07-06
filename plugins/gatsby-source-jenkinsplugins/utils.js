@@ -96,8 +96,6 @@ const getPluginContent = async ({plugin, reporter}) => {
     });
 };
 
-const unique = (value, index, self) => self.indexOf(value) === index;
-
 const fetchPluginData = async ({createNode, reporter, firstReleases, labelToCategory}) => {
     const sectionActivity = reporter.activityTimer('fetch plugins info');
     sectionActivity.start();
@@ -130,7 +128,7 @@ const fetchPluginData = async ({createNode, reporter, firstReleases, labelToCate
                     securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
                         .map(w => checkActive(w, pluginUC)),
                     dependencies: pluginUC.dependencies.concat(getImpliedDependencies(plugin, detachedPlugins, updateData)),
-                    categories: pluginUC.labels.map(label => labelToCategory[label]).filter(unique),
+                    categories: Array.from(new Set(pluginUC.labels.map(label => labelToCategory[label]))),
                     firstRelease: firstReleases[pluginName].toISOString(),
                     id: pluginName,
                     hasPipelineSteps: pipelinePluginIds.includes(pluginName),
