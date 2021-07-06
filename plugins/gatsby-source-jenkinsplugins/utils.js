@@ -127,7 +127,7 @@ const fetchPluginData = async ({createNode, reporter, firstReleases, labelToCate
                     wiki: pluginData.wiki,
                     securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
                         .map(w => checkActive(w, pluginUC)),
-                    dependencies: pluginUC.dependencies.concat(getImpliedDependencies(plugin, detachedPlugins, updateData)),
+                    dependencies: getImpliedDependenciesAndTitles(pluginUC, detachedPlugins, updateData),
                     categories: Array.from(new Set(pluginUC.labels.map(label => labelToCategory[label]))),
                     firstRelease: firstReleases[pluginName].toISOString(),
                     id: pluginName,
@@ -187,20 +187,24 @@ const fetchPluginData = async ({createNode, reporter, firstReleases, labelToCate
     sectionActivity.end();
 };
 
-const getImpliedDependencies= (plugin, detachedPlugins, updateData) => {
-    const implied = [];
+const getImpliedDependenciesAndTitles = (plugin, detachedPlugins, updateData) => {
     for (const detached of detachedPlugins) {
         const [detachedPlugin, detachedCore, detachedVersion] = detached;
         if (versionToNumber(detachedCore) > versionToNumber(plugin.requiredCore)) {
-            const title = updateData.plugins[detachedPlugin].title;
-            implied.push({name: detachedPlugin,
+            plugin.dependencies.push({name: detachedPlugin,
                 version: detachedVersion,
-                title: title,
                 implied: true,
                 optional: false});
         }
     }
-    return implied;
+    for (const dependency of plugin.dependencies) {
+        if (!updateData.plugins[dependency.name]) {
+            dependency.title = dependency.name; // optional dependency suspended
+        } else {
+            dependency.title = updateData.plugins[dependency.name].title;
+        }
+    }
+    return plugin.dependencies;
 };
 
 const versionToNumber = (version) => {
