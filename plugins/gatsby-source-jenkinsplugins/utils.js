@@ -183,7 +183,7 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
 };
 
 const checkActive = (warning, plugin) => {
-    warning.active = !!warning.versions.find(version => plugin.version.match(`^${version.pattern}$`));
+    warning.active = !!warning.versions.find(version => plugin.version.match(`^(${version.pattern})$`));
     return warning;
 };
 
