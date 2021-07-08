@@ -9,7 +9,6 @@ function pluginQueries() {
               content
             }
             name
-            categories
             excerpt
             labels
             stats {
@@ -70,7 +69,6 @@ function pluginQueries() {
                 'desc(stats.currentInstalls)'
             ],
             attributesForFaceting: [
-                'categories',
                 'labels'
             ],
             attributesToIndex: [

@@ -96,7 +96,7 @@ const getPluginContent = async ({plugin, reporter}) => {
     });
 };
 
-const fetchPluginData = async ({createNode, reporter, firstReleases, labelToCategory}) => {
+const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
     const sectionActivity = reporter.activityTimer('fetch plugins info');
     sectionActivity.start();
     const promises = [];
@@ -128,7 +128,6 @@ const fetchPluginData = async ({createNode, reporter, firstReleases, labelToCate
                     securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
                         .map(w => checkActive(w, pluginUC)),
                     dependencies: getImpliedDependenciesAndTitles(pluginUC, detachedPlugins, updateData),
-                    categories: Array.from(new Set(pluginUC.labels.map(label => labelToCategory[label]))),
                     firstRelease: firstReleases[pluginName].toISOString(),
                     id: pluginName,
                     hasPipelineSteps: pipelinePluginIds.includes(pluginName),
@@ -249,13 +248,10 @@ const fetchSuspendedPlugins = async ({updateData, names, createNode}) => {
     await Promise.all(suspendedPromises);
 };
 
-const processCategoryData = async ({createNode, reporter, labelToCategory}) => {
+const processCategoryData = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('process categories');
     sectionActivity.start();
     for (const category of categoryList) {
-        for (const label of category.labels) {
-            labelToCategory[label] = category.id;
-        }
         createNode({
             ...category,
             id: category.id.trim(),

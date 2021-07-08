@@ -3,10 +3,6 @@
 exports[`Utils Get plugin data for a wiki based plugin 1`] = `
 Object {
   "buildDate": "Oct 10, 2012",
-  "categories": Array [
-    "buildManagement",
-    "languagesPlatforms",
-  ],
   "children": Array [],
   "defaultBranch": "master",
   "dependencies": Array [
