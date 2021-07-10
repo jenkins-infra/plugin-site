@@ -43,7 +43,7 @@ function pluginQueries() {
         synonyms: [
             {
                 type: 'synonym',
-                synonyms: ['perforce','p4'],
+                synonyms: ['perforce', 'p4'],
                 objectID: 'syn-1617250859718-18'
             }
         ],

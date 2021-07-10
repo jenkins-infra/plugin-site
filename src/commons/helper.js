@@ -24,8 +24,8 @@ export function cleanTitle(title) {
         .replace(' plugin', '')
         .replace(' Plug-in', '')
         .replace(' plug-in', '')
-        .replace(' for Jenkins','')
-        .replace('Hudson ','');
+        .replace(' for Jenkins', '')
+        .replace('Hudson ', '');
 }
 
 export const defaultPluginSiteTitle = 'Jenkins Plugins';

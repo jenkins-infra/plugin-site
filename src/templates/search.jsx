@@ -3,7 +3,7 @@
 import React from 'react';
 import querystring from 'querystring';
 import PropTypes from 'prop-types';
-import {navigate,useStaticQuery, graphql} from 'gatsby';
+import {navigate, useStaticQuery, graphql} from 'gatsby';
 import fetch from 'isomorphic-fetch';
 import algoliasearch from 'algoliasearch/lite';
 
