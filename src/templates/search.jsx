@@ -1,8 +1,9 @@
+
 // import {graphql} from 'gatsby';
 import React from 'react';
 import querystring from 'querystring';
 import PropTypes from 'prop-types';
-import {navigate} from 'gatsby';
+import {navigate, useStaticQuery, graphql} from 'gatsby';
 import fetch from 'isomorphic-fetch';
 import algoliasearch from 'algoliasearch/lite';
 
@@ -17,16 +18,19 @@ import Filters from '../components/Filters';
 import ActiveFilters from '../components/ActiveFilters';
 import SearchByAlgolia from '../components/SearchByAlgolia';
 
+
 const useAlgolia = process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY;
 
-const doSearch = (data, setResults) => {
+const doSearch = (data, setResults, categoryList) => {
     const {query, sort} = data;
     let {categories, labels, page} = data;
     if (!Array.isArray(categories)) { categories = [categories]; }
     categories = categories.filter(Boolean);
     if (!Array.isArray(labels)) { labels = [labels]; }
     labels = labels.filter(Boolean);
-
+    for (const categoryId of categories) {
+        categoryList.edges.filter(e => e.node.id == categoryId).forEach(e => labels.push(...e.node.labels));
+    }
     setResults(null);
     if (useAlgolia) {
         const searchClient = algoliasearch(
@@ -35,9 +39,6 @@ const doSearch = (data, setResults) => {
         );
         const index = searchClient.initIndex('Plugins');
         const filters = [];
-        if (categories && categories.length) {
-            filters.push(`(${categories.map(c => `categories:${c}`).join(' OR ')})`);
-        }
         if (labels && labels.length) {
             filters.push(`(${labels.map(l => `labels:${l}`).join(' OR ')})`);
         }
@@ -63,7 +64,7 @@ const doSearch = (data, setResults) => {
             });
         });
     } else {
-        const params = querystring.stringify({categories, labels, page, q: query, sort});
+        const params = querystring.stringify({labels, page, q: query, sort});
         const url = `${process.env.GATSBY_API_URL || '/api'}/plugins?${params}`;
         fetch(url, {mode: 'cors'})
             .then((response) => {
@@ -76,6 +77,7 @@ const doSearch = (data, setResults) => {
             })
             .then(response => response.json())
             .then(data => {
+                data.plugins.forEach(p => p.developers = p.maintainers);
                 data.pages = data.pages + 1;
                 return data;
             })
@@ -106,6 +108,20 @@ function SearchPage({location}) {
         doSearch(newData, setResults);
     };
 
+    const categoryList = useStaticQuery(graphql`
+        query {
+            categories: allJenkinsPluginCategory {
+                edges {
+                    node {
+                        id
+                        labels
+                        title
+                    }
+                }
+            }
+        }
+    `).categories;
+
     const searchPage = 'templates/search.jsx';
 
     React.useEffect(() => {
@@ -114,7 +130,7 @@ function SearchPage({location}) {
         parsed.query = parsed.query || '';
         setData(parsed);
         setQuery(parsed.query);
-        doSearch(parsed, setResults);
+        doSearch(parsed, setResults, categoryList);
     }, []);
 
     return (

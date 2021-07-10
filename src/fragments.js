@@ -49,7 +49,6 @@ export const PluginFragment = graphql`
     }
     firstRelease
     excerpt
-    categories
     buildDate
     dependencies {
       implied

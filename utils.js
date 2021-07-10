@@ -123,7 +123,7 @@ async function makeReactLayout() {
         } else if (node.type === 'comment') {
             return;
         } else if (node.type === 'text') {
-            const text = node.data.replace('\u00A0','&nbsp;');
+            const text = node.data.replace('\u00A0', '&nbsp;');
             jsxLines.push(`${prefix}${text}`);
         } else if (node.children && node.children.length) {
             jsxLines.push(`${prefix}<${node.name} ${attrs}>`);

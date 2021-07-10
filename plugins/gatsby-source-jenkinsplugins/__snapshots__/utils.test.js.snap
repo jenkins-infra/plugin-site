@@ -3,10 +3,6 @@
 exports[`Utils Get plugin data for a wiki based plugin 1`] = `
 Object {
   "buildDate": "Oct 10, 2012",
-  "categories": Array [
-    "languagesPlatforms",
-    "buildManagement",
-  ],
   "children": Array [],
   "defaultBranch": "master",
   "dependencies": Array [
@@ -107,6 +103,13 @@ Object {
       "optional": false,
       "title": "Trilead API",
       "version": "1.0.4",
+    },
+    Object {
+      "implied": true,
+      "name": "sshd",
+      "optional": false,
+      "title": "SSHD",
+      "version": "3.0.1",
     },
   ],
   "developers": Array [],

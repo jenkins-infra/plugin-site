@@ -37,7 +37,7 @@ function useFilterHooks({doSearch, setResults}) {
 
     ['sort', 'categories', 'labels', 'view', 'page'].forEach(key => {
         ret[`set${ucFirst(key)}`] = (val) => {
-            const newData = {...data,[key]: val};
+            const newData = {...data, [key]: val};
             navigate(`/ui/search?${querystring.stringify({...newData, query})}`);
             ret.setData(newData);
             doSearch(newData, setResults);

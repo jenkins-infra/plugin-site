@@ -1,0 +1,68 @@
+[
+    {
+        "id": "languagesPlatforms",
+        "title": "Platforms",
+        "description": "Jenkins plugins that are designed to give added support for building, testing or deploying to specific languages or platforms.",
+        "labels":
+        [
+            "ios",
+            "dotnet",
+            "android",
+            "ruby"
+        ]
+    },
+
+    {
+        "id": "userInterface",
+        "title": "User interface",
+        "description": "Add-ons designed to make your iteraction with Jenkins better.",
+        "labels":
+        [
+            "ui",
+            "listview-column"
+        ]
+    },
+
+    {
+        "id": "adminTools",
+        "title": "Administration",
+        "description": "Add functionality to help streamline your administration of Jenkins.",
+        "labels":
+        [
+            "slaves",
+            "page-decorator",
+            "user",
+            "cluster",
+            "cli"
+        ]
+    },
+
+    {
+        "id": "scm",
+        "title": "Source code management",
+        "description": "Connect to your Jenkins to your SCM.",
+        "labels":
+        [
+            "scm",
+            "scm-related"
+        ]
+    },
+
+    {
+        "id": "buildManagement",
+        "title": "Build management",
+        "description": "Add new means of trigger jobs and new ways to ensure environment consistency for you automated processes.",
+        "labels":
+        [
+            "trigger",
+            "buildwrapper",
+            "notifier",
+            "deployment",
+            "parameter",
+            "post-build",
+            "builder",
+            "report",
+            "upload"
+        ]
+    }
+]

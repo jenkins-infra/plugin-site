@@ -2,7 +2,7 @@ const {
     fetchSiteInfo,
     fetchPluginData,
     fetchPluginVersions,
-    fetchCategoryData,
+    processCategoryData,
     fetchLabelData,
 } = require('./utils');
 
@@ -16,7 +16,7 @@ exports.sourceNodes = async (
         const firstReleases = {};
         await Promise.all([
             fetchSiteInfo({createNode, reporter}),
-            fetchCategoryData({createNode, reporter}),
+            processCategoryData({createNode, reporter}),
             fetchLabelData({createNode, reporter}),
             fetchPluginVersions({createNode, reporter, firstReleases}),
         ]).then(() => fetchPluginData({createNode, reporter, firstReleases}));

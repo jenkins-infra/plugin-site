@@ -31,6 +31,7 @@ module.exports = {
         'import'
     ],
     'rules': {
+        'comma-spacing': 2,
         'eol-last': 2,
         'import/extensions': ['error', 'ignorePackages', {'js': 'never', 'jsx': 'never'}],
         'import/no-unresolved': [2],
@@ -73,7 +74,7 @@ module.exports = {
         'react/react-in-jsx-scope': 2,
         'react/self-closing-comp': 2,
         'semi': [2],
-        'space-before-function-paren': [2, {'anonymous': 'always','named': 'never'}],
+        'space-before-function-paren': [2, {'anonymous': 'always', 'named': 'never'}],
         'strict': [2, 'global'],
     },
     'settings': {

@@ -9,7 +9,6 @@ function pluginQueries() {
               content
             }
             name
-            categories
             excerpt
             labels
             stats {
@@ -44,7 +43,7 @@ function pluginQueries() {
         synonyms: [
             {
                 type: 'synonym',
-                synonyms: ['perforce','p4'],
+                synonyms: ['perforce', 'p4'],
                 objectID: 'syn-1617250859718-18'
             }
         ],
@@ -70,7 +69,6 @@ function pluginQueries() {
                 'desc(stats.currentInstalls)'
             ],
             attributesForFaceting: [
-                'categories',
                 'labels'
             ],
             attributesToIndex: [
