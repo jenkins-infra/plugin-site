@@ -27,6 +27,18 @@ describe('Utils', () => {
             }
         };
     });
+    it('Fix GitHub URL: submodule gets expanded', () => {
+        expect(utils.fixGitHubUrl('https://github.com/jenkinsci/blueocean-plugin/blueocean-bitbucket-pipeline', 'master'))
+            .toBe('https://github.com/jenkinsci/blueocean-plugin/tree/master/blueocean-bitbucket-pipeline');
+    });
+    it('Fix GitHub URL: expanded stays expanded', () => {
+        expect(utils.fixGitHubUrl('https://github.com/jenkinsci/blueocean-plugin/tree/master/blueocean-bitbucket-pipeline', 'master'))
+            .toBe('https://github.com/jenkinsci/blueocean-plugin/tree/master/blueocean-bitbucket-pipeline');
+    });
+    it('Fix GitHub URL: no submodule, keep short', () => {
+        expect(utils.fixGitHubUrl('https://github.com/jenkinsci/junit-plugin', ''))
+            .toBe('https://github.com/jenkinsci/junit-plugin');
+    });
     it('Get plugin data for a wiki based plugin', async () => {
         nock('https://updates.jenkins.io')
             .get('/update-center.actual.json')
