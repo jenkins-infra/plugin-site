@@ -112,6 +112,9 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
     const detachedPluginsData = await requestGET({url: detachedUrl, reporter});
     const detachedPlugins = detachedPluginsData.split('\n')
         .filter(row => row.length && !row.startsWith('#')).map(row => row.split(' '));
+    for (const deprecation of Object.keys(updateData.deprecations)) {
+        updateData.plugins[deprecation] && updateData.plugins[deprecation].labels.push('deprecated');
+    }
     do {
         const url = `https://plugins.jenkins.io/api/plugins/?limit=100&page=${page}`;
         pluginsContainer = await requestGET({url, reporter});
