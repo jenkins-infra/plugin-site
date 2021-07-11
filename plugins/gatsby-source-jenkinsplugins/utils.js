@@ -123,6 +123,7 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
             names.push(pluginName);
             const pluginUC = updateData.plugins[pluginName];
             pluginUC.developers.forEach(maint => {maint.id = maint.developerId, delete(maint.developerId);});
+            pluginUC.scm = fixGitHubUrl(pluginUC.scm, pluginUC.defaultBranch || 'master');
             promises.push(getPluginContent({plugin, reporter}).then(pluginData => {
                 const p = createNode({
                     ...pluginUC,
@@ -217,6 +218,14 @@ const versionToNumber = (version) => {
 const checkActive = (warning, plugin) => {
     warning.active = !!warning.versions.find(version => plugin.version.match(`^(${version.pattern})$`));
     return warning;
+};
+
+const fixGitHubUrl = (url, defaultBranch) => {
+    const match = url && url.match(/^(https?:\/\/github.com\/[^/]+\/[^/]+)\/(.+)$/);
+    if (match && defaultBranch && !match[2].startsWith('tree/')) {
+        return `${match[1]}/tree/${defaultBranch}/${match[2]}`;
+    }
+    return url;
 };
 
 const fetchBomDependencies = async (reporter) => {
@@ -372,6 +381,7 @@ module.exports = {
     processCategoryData,
     fetchPluginData,
     fetchPluginVersions,
+    fixGitHubUrl,
     getPluginContent,
     requestGET
 };
