@@ -8,6 +8,7 @@ import fetch from 'isomorphic-fetch';
 import algoliasearch from 'algoliasearch/lite';
 
 import Layout from '../layout';
+import forceArray from '../utils/forceArray';
 import useFilterHooks from '../components/FiltersHooks';
 import SEO from '../components/SEO';
 import Footer from '../components/Footer';
@@ -18,19 +19,22 @@ import Filters from '../components/Filters';
 import ActiveFilters from '../components/ActiveFilters';
 import SearchByAlgolia from '../components/SearchByAlgolia';
 
+function groupBy(objectArray, property) {
+    return objectArray.reduce((acc, obj) => {
+        const key = obj[property];
+        acc[key] = obj;
+        return acc;
+    }, {});
+}
 
 const useAlgolia = process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY;
 
-const doSearch = (data, setResults, categoryList) => {
+const doSearch = (data, setResults, categoriesMap) => {
     const {query, sort} = data;
-    let {categories, labels, page} = data;
-    if (!Array.isArray(categories)) { categories = [categories]; }
-    categories = categories.filter(Boolean);
-    if (!Array.isArray(labels)) { labels = [labels]; }
-    labels = labels.filter(Boolean);
-    for (const categoryId of categories) {
-        categoryList.edges.filter(e => e.node.id == categoryId).forEach(e => labels.push(...e.node.labels));
-    }
+    const labels = forceArray(data.labels).concat(
+        ...forceArray(data.categories).filter(Boolean).map(categoryId => categoriesMap[categoryId].labels)
+    ).filter(Boolean);
+    let page = data.page;
     setResults(null);
     if (useAlgolia) {
         const searchClient = algoliasearch(
@@ -90,25 +94,7 @@ const doSearch = (data, setResults, categoryList) => {
 function SearchPage({location}) {
     const [showFilter, setShowFilter] = React.useState(true);
     const [results, setResults] = React.useState(null);
-    const {
-        sort, setSort,
-        clearCriteria,
-        categories, toggleCategory,
-        labels, toggleLabel,
-        view, setView,
-        page, setPage,
-        query, setQuery, clearQuery,
-        setData
-    } = useFilterHooks({doSearch, setResults});
-
-    const handleOnSubmit = (e) => {
-        const newData = {sort, categories, labels, view, page, query};
-        e.preventDefault();
-        navigate(`/ui/search?${querystring.stringify(newData)}`);
-        doSearch(newData, setResults);
-    };
-
-    const categoryList = useStaticQuery(graphql`
+    const categoriesMap = groupBy(useStaticQuery(graphql`
         query {
             categories: allJenkinsPluginCategory {
                 edges {
@@ -120,7 +106,24 @@ function SearchPage({location}) {
                 }
             }
         }
-    `).categories;
+    `).categories.edges.map(edge => edge.node), 'id');
+    const {
+        sort, setSort,
+        clearCriteria,
+        categories, toggleCategory,
+        labels, toggleLabel,
+        view, setView,
+        page, setPage,
+        query, setQuery, clearQuery,
+        setData
+    } = useFilterHooks({doSearch, setResults, categoriesMap});
+
+    const handleOnSubmit = (e) => {
+        const newData = {sort, categories, labels, view, page, query};
+        e.preventDefault();
+        navigate(`/ui/search?${querystring.stringify(newData)}`);
+        doSearch(newData, setResults, categoriesMap);
+    };
 
     const searchPage = 'templates/search.jsx';
 
@@ -130,7 +133,7 @@ function SearchPage({location}) {
         parsed.query = parsed.query || '';
         setData(parsed);
         setQuery(parsed.query);
-        doSearch(parsed, setResults, categoryList);
+        doSearch(parsed, setResults, categoriesMap);
     }, []);
 
     return (

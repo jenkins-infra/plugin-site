@@ -22,7 +22,7 @@ function Categories({clearCriteria, toggleCategory, activeCategories, activeLabe
         clearCriteria();
     };
     const anyCriteria = activeCategories.length > 0 || activeLabels.length > 0;
-    
+
     return (
         <fieldset className="Categories">
             <legend>
