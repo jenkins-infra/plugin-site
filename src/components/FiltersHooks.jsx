@@ -11,7 +11,7 @@ const DEFAULT_DATA = {
     page: 1,
 };
 
-function useFilterHooks({doSearch, setResults}) {
+function useFilterHooks({doSearch, setResults, categoriesMap}) {
     const [query, setQuery] = React.useState('');
     const [data, setData] = React.useState(DEFAULT_DATA);
 
@@ -40,7 +40,7 @@ function useFilterHooks({doSearch, setResults}) {
             const newData = {...data, [key]: val};
             navigate(`/ui/search?${querystring.stringify({...newData, query})}`);
             ret.setData(newData);
-            doSearch(newData, setResults);
+            doSearch(newData, setResults, categoriesMap);
         };
     });
 
