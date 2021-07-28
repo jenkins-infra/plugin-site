@@ -62,46 +62,39 @@ const shouldFetchPluginContent = (id) => {
 
 
 const pluginWikiUrlRe = /^https?:\/\/wiki.jenkins(?:-ci.org|.io)\/display\/(?:jenkins|hudson)\/([^/]*)\/?$/i;
-const getPluginContent = async ({plugin, reporter}) => {
-    plugin.id = plugin.id || plugin.name;
-    plugin.wiki = plugin.wiki || {};
-    // absolutely required fields
-    plugin.wiki.content = plugin.wiki.content || '';
-    plugin.wiki.url = plugin.wiki.url || '';
-
-    if (!shouldFetchPluginContent(plugin.id)) {
-        return plugin;
+const getPluginContent = async ({wiki, pluginName, reporter}) => {
+    if (!shouldFetchPluginContent(pluginName)) {
+        wiki.content = '';
+        return wiki;
     }
     let matches;
-    if ((matches = pluginWikiUrlRe.exec(plugin.wiki.url)) != null) {
+    if ((matches = pluginWikiUrlRe.exec(wiki.url)) != null) {
         try {
             return await requestGET({
                 reporter,
                 url: `https://wiki.jenkins.io/rest/api/content?expand=body.view&title=${matches[1]}`
             }).then(async data => {
-                const result = data.results.find(result => plugin.wiki.url.includes(result._links.webui)) || data.results[0];
-                plugin.wiki.content = await getContentFromConfluencePage(
+                const result = data.results.find(result => wiki.url.includes(result._links.webui)) || data.results[0];
+                wiki.content = getContentFromConfluencePage(
                     'https://wiki.jenkins.io/',
                     `<body class="wiki-content">${result.body.view.value}</body>`);
-                return plugin;
+                return wiki;
             });
         } catch (e) {
-            console.error(`Error fetching wiki content for ${plugin.name}`, e);
+            console.error(`Error fetching wiki content for ${pluginName}`, e);
         }
     }
 
-    return requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${plugin.name}`}).then(data => {
-        plugin.wiki.content = data.wiki.content || '';
-        return plugin;
+    return requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`}).then(data => {
+        wiki.content = data.wiki.content || '';
+        return wiki;
     });
 };
 
-const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
+const fetchPluginData = async ({createNode, reporter, firstReleases, stats}) => {
     const sectionActivity = reporter.activityTimer('fetch plugins info');
     sectionActivity.start();
     const promises = [];
-    let page = 1;
-    let pluginsContainer;
     const names = [];
     const pipelinePluginsUrl = 'https://www.jenkins.io/doc/pipeline/steps/contents.json';
     const pipelinePluginIds = await requestGET({url: pipelinePluginsUrl, reporter});
@@ -119,76 +112,76 @@ const fetchPluginData = async ({createNode, reporter, firstReleases}) => {
             deprecatedPlugin.deprecationNotice = updateData.deprecations[deprecation].url;
         }
     }
-    do {
-        const url = `https://plugins.jenkins.io/api/plugins/?limit=100&page=${page}`;
-        pluginsContainer = await requestGET({url, reporter});
-        for (const plugin of pluginsContainer.plugins) {
-            const pluginName = plugin.name.trim();
-            names.push(pluginName);
-            const pluginUC = updateData.plugins[pluginName];
-            pluginUC.developers.forEach(maint => {maint.id = maint.developerId, delete(maint.developerId);});
-            pluginUC.scm = fixGitHubUrl(pluginUC.scm, pluginUC.defaultBranch || 'master');
-            promises.push(getPluginContent({plugin, reporter}).then(pluginData => {
-                const p = createNode({
-                    ...pluginUC,
-                    stats: pluginData.stats,
-                    wiki: pluginData.wiki,
-                    securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
-                        .map(w => checkActive(w, pluginUC)),
-                    dependencies: getImpliedDependenciesAndTitles(pluginUC, detachedPlugins, updateData),
-                    firstRelease: firstReleases[pluginName].toISOString(),
-                    id: pluginName,
-                    hasPipelineSteps: pipelinePluginIds.includes(pluginName),
-                    hasBomEntry: !!bomDependencies.find(artifactId => pluginUC.gav.includes(`:${artifactId}:`)),
-                    parent: null,
-                    children: [],
-                    internal: {
-                        type: 'JenkinsPlugin',
-                        contentDigest: crypto.createHash('md5').update(`plugin${pluginName}`).digest('hex')
-                    }
-                });
-                if (!p || !p.then) {
-                    if (process.env.GATSBY_SENTRY_DSN) {
-                        const Sentry = require('@sentry/node');
-                        Sentry.init({
-                            dsn: process.env.GATSBY_SENTRY_DSN
-                        });
-                        Sentry.captureMessage(new Error(`Error creatingNode for plugin: ${pluginName}`), {extra: {pluginData: pluginData, p: p}});
-                    }
-                    console.log('p', p, plugin);
-                    return new Error('no promise returned');
+    const documentationListUrl = 'https://updates.jenkins.io/current/plugin-documentation-urls.json';
+    const documentation = await requestGET({url: documentationListUrl, reporter});
+    for (const plugin of Object.values(updateData.plugins)) {
+        const pluginName = plugin.name.trim();
+        names.push(pluginName);
+        const developers = plugin.developers || [];
+        developers.forEach(maint => {maint.id = maint.developerId, delete(maint.developerId);});
+        plugin.scm = fixGitHubUrl(plugin.scm, plugin.defaultBranch || 'master');
+        const pluginStats = stats[pluginName] || {installations: null};
+        pluginStats.trend = computeTrend(plugin, stats, updateData.plugins);
+        const allDependencies = getImpliedDependenciesAndTitles(plugin, detachedPlugins, updateData);
+        promises.push(getPluginContent({wiki: documentation[pluginName] || {}, pluginName, reporter}).then(wiki => {
+            const p = createNode({
+                ...plugin,
+                stats: pluginStats,
+                wiki: wiki,
+                securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
+                    .map(w => checkActive(w, plugin)),
+                dependencies: allDependencies,
+                firstRelease: firstReleases[pluginName] && firstReleases[pluginName].toISOString(),
+                id: pluginName,
+                hasPipelineSteps: pipelinePluginIds.includes(pluginName),
+                hasBomEntry: !!bomDependencies.find(artifactId => plugin.gav.includes(`:${artifactId}:`)),
+                parent: null,
+                children: [],
+                internal: {
+                    type: 'JenkinsPlugin',
+                    contentDigest: crypto.createHash('md5').update(`plugin${pluginName}`).digest('hex')
                 }
-                p.then(() => {
-                    return Promise.all(pluginUC.developers.map(maintainer => {
-                        return createNode({
-                            ...maintainer,
-                            internal: {
-                                type: 'JenkinsDeveloper',
-                                contentDigest: crypto.createHash('md5').update(maintainer.id).digest('hex')
-                            }
-                        });
-                    }));
-                });
-                return p.then(() => {
-                    return Promise.all(pluginData.dependencies.map(dependency => {
-                        const mergedId = `${pluginName}:${dependency.name.trim()}`;
-                        return createNode({
-                            ...dependency,
-                            dependentTitle: pluginUC.title,
-                            dependentName: pluginUC.name,
-                            id: mergedId,
-                            internal: {
-                                type: 'JenkinsPluginDependency',
-                                contentDigest: crypto.createHash('md5').update(`dep${mergedId}`).digest('hex')
-                            }
-                        });
-                    }));
-                });
-            }));
-        }
-        await Promise.all(promises);
-        page = pluginsContainer.page + 1;
-    } while (!page || pluginsContainer.page < pluginsContainer.pages);
+            });
+            if (!p || !p.then) {
+                if (process.env.GATSBY_SENTRY_DSN) {
+                    const Sentry = require('@sentry/node');
+                    Sentry.init({
+                        dsn: process.env.GATSBY_SENTRY_DSN
+                    });
+                    Sentry.captureMessage(new Error(`Error creatingNode for plugin: ${pluginName}`), {extra: {pluginData: plugin, p: p}});
+                }
+                //console.log('p', p, plugin);
+                return new Error('no promise returned');
+            }
+            p.then(() => {
+                return Promise.all(developers.map(maintainer => {
+                    return createNode({
+                        ...maintainer,
+                        internal: {
+                            type: 'JenkinsDeveloper',
+                            contentDigest: crypto.createHash('md5').update(maintainer.id).digest('hex')
+                        }
+                    });
+                }));
+            });
+            return p.then(() => {
+                return Promise.all(allDependencies.map(dependency => {
+                    const mergedId = `${pluginName}:${dependency.name.trim()}`;
+                    return createNode({
+                        ...dependency,
+                        dependentTitle: plugin.title,
+                        dependentName: plugin.name,
+                        id: mergedId,
+                        internal: {
+                            type: 'JenkinsPluginDependency',
+                            contentDigest: crypto.createHash('md5').update(`dep${mergedId}`).digest('hex')
+                        }
+                    });
+                }));
+            });
+        }));
+    }
+
     await Promise.all(promises);
     await fetchSuspendedPlugins({updateData, names, createNode});
     sectionActivity.end();
@@ -204,6 +197,7 @@ const getImpliedDependenciesAndTitles = (plugin, detachedPlugins, updateData) =>
                 optional: false});
         }
     }
+    plugin.dependencies = plugin.dependencies || [];
     for (const dependency of plugin.dependencies) {
         if (!updateData.plugins[dependency.name]) {
             dependency.title = dependency.name; // optional dependency suspended
@@ -230,6 +224,35 @@ const fixGitHubUrl = (url, defaultBranch) => {
         return `${match[1]}/tree/${defaultBranch}/${match[2]}`;
     }
     return url;
+};
+
+const computeTrend = (plugin, stats, plugins) => {
+    if (!stats[plugin.name]) {
+        return 0;
+    }
+    const increase = getPercentage(plugin.name, stats, 1) - getPercentage(plugin.name, stats, 2);
+    const maxDependent = Object.values(plugins)
+        .filter(p => isMandatoryDependency(p, plugin))
+        .map(p => [p.name, getPercentage(p.name, stats, 1)])
+        .reduce((a, b) => a[1] > b[1] ? a : b, ['', 0])[1];
+    const independence = 1 - maxDependent / getPercentage(plugin.name, stats, 1);
+    return Math.round(1E6 * increase * Math.max(0, independence)) || 0;
+};
+
+const isMandatoryDependency = (p, plugin) => p.dependencies && !!p.dependencies
+    .filter(d => !d.optional && d.name == plugin.name).length;
+
+const getPercentage = (name, stats, monthsAgo) => {
+    if (!stats[name]) {
+        return 0;
+    }
+    const installations = stats[name].installations;
+    const coreInstallations = stats.core.installations;
+    if (!installations[installations.length - monthsAgo]) {
+        return 0;
+    }
+    return installations[installations.length - monthsAgo].total
+            / coreInstallations[coreInstallations.length - monthsAgo].total;
 };
 
 const fetchBomDependencies = async (reporter) => {
@@ -338,6 +361,37 @@ const fetchSiteInfo = async ({createNode, reporter}) => {
     sectionActivity.end();
 };
 
+const fetchStats = async ({reporter, stats}) => {
+    const timeSpan = 12;
+    const totalUrl = 'https://stats.jenkins.io/jenkins-stats/svg/total-jenkins.csv';
+    const totalInstalls = (await requestGET({url: totalUrl, reporter})).trim().split('\n');
+    stats.core = {installations: []};
+    const timestamps = [];
+    for (let monthsAgo = 1; monthsAgo <= timeSpan; monthsAgo++) {
+        const [month, coreInstalls] = csvParse(totalInstalls[totalInstalls.length - monthsAgo]);
+        const pluginInstallsUrl = `https://stats.jenkins.io/jenkins-stats/svg/${month}-plugins.csv`;
+        const timestamp = Date.parse(`${month}`.replace(/(..)$/, '-$1'));
+        timestamps.push(timestamp);
+        const pluginInstalls = (await requestGET({url: pluginInstallsUrl, reporter})).split('\n');
+        stats.core.installations[timeSpan - monthsAgo] = {timestamp: timestamp, total: coreInstalls};
+        for (const pluginRow of pluginInstalls) {
+            const [pluginName, installs] = csvParse(pluginRow);
+            stats[pluginName] = stats[pluginName] || {installations: []};
+            stats[pluginName].installations[timeSpan - monthsAgo] = {timestamp: timestamp, total: installs};
+        }
+    }
+    for (const pluginName of Object.keys(stats)) {
+        for (let idx = 0; idx < timeSpan; idx++) {
+            stats[pluginName].installations[idx] = stats[pluginName].installations[idx]
+                || {total: 0, timestamp: timestamps[idx]};
+        }
+        stats[pluginName].currentInstalls = stats[pluginName].installations[timeSpan - 1].total || 0;
+    }
+};
+
+const csvParse = (row) => {
+    return row.split(',').map(s => s ? JSON.parse(s) : s).map(s => isNaN(parseInt(s)) ? s : parseInt(s));
+};
 
 const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin versions');
@@ -386,6 +440,7 @@ module.exports = {
     fetchPluginData,
     fetchPluginVersions,
     fixGitHubUrl,
+    fetchStats,
     getPluginContent,
     requestGET
 };
