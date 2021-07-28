@@ -36,49 +36,79 @@
       "wiki": "https://plugins.jenkins.io/ios-device-connector"
     },
     "external-monitor-job": {
-      "title": "External Monitor Job Type"
+      "title": "External Monitor Job Type",
+      "name": "external-monitor-job",
+      "requiredCore": "2.300"
     },
     "ldap": {
-      "title": "LDAP"
+      "title": "LDAP",
+      "name": "ldap",
+        "requiredCore": "2.300"
     },
     "pam-auth": {
-      "title": "PAM Authentication"
+      "title": "PAM Authentication",
+        "name": "pam-auth",
+        "requiredCore": "2.300"
     },
     "mailer": {
-      "title": "Mailer"
+      "title": "Mailer",
+        "name": "mailer",
+        "requiredCore": "2.300"
     },
     "matrix-auth": {
-      "title": "Matrix Authorization Strategy"
+      "title": "Matrix Authorization Strategy",
+        "name": "matrix-auth",
+        "requiredCore": "2.300"
     },
     "windows-slaves": {
-      "title": "WMI Windows Agents"
+      "title": "WMI Windows Agents",
+        "name": "windows-slaves",
+        "requiredCore": "2.300"
     },
     "antisamy-markup-formatter": {
-      "title": "OWASP Markup Formatter"
+      "title": "OWASP Markup Formatter",
+   "name": "antisamy-markup-formatter",
+        "requiredCore": "2.300"
     },
     "matrix-project": {
-      "title": "Matrix Project"
+      "title": "Matrix Project",
+        "name": "matrix-project",
+        "requiredCore": "2.300"
     },
     "junit": {
-      "title": "JUnit"
+      "title": "JUnit",
+        "name": "junit",
+        "requiredCore": "2.300"
     },
     "bouncycastle-api": {
-      "title": "bouncycastle API"
+      "title": "bouncycastle API",
+        "name": "bouncycastle-api",
+        "requiredCore": "2.300"
     },
     "command-launcher": {
-      "title": "Command Agent Launcher"
+      "title": "Command Agent Launcher",
+        "name": "command-launcher",
+        "requiredCore": "2.300"
     },
     "jdk-tool": {
-      "title": "Oracle Java SE Development Kit Installer"
+      "title": "Oracle Java SE Development Kit Installer",
+        "name": "jdk-tool",
+        "requiredCore": "2.300"
     },
     "jaxb": {
-      "title": "JAXB"
+      "title": "JAXB",
+        "name": "jaxb",
+        "requiredCore": "2.300"
     },
     "trilead-api": {
-      "title": "Trilead API"
+      "title": "Trilead API",
+        "name": "trilead-api",
+        "requiredCore": "2.300"
     },
     "sshd": {
-      "title": "SSHD"
+      "title": "SSHD",
+        "name": "sshd",
+        "requiredCore": "2.300"
     }
   }
 }
