@@ -150,7 +150,6 @@ const fetchPluginData = async ({createNode, reporter, firstReleases, stats}) => 
                     });
                     Sentry.captureMessage(new Error(`Error creatingNode for plugin: ${pluginName}`), {extra: {pluginData: plugin, p: p}});
                 }
-                //console.log('p', p, plugin);
                 return new Error('no promise returned');
             }
             p.then(() => {
