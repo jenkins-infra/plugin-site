@@ -119,7 +119,7 @@
     "gatsby-plugin-matomo": "^0.10.0",
     "gatsby-plugin-nprogress": "^3.8.0",
     "gatsby-source-custom-api": "^2.1.4",
-    "gatsby-source-filesystem": "^3.8.0",
+    "gatsby-source-filesystem": "^3.10.0",
     "husky": "^4.3.7",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.6",
