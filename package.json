@@ -64,7 +64,7 @@
     "@babel/core": "^7.14.8",
     "@halkeye/react-paginate": "^7.2.3",
     "@juggle/resize-observer": "^3.3.1",
-    "@sentry/browser": "^6.8.0",
+    "@sentry/browser": "^6.10.0",
     "algoliasearch": "^4.10.3",
     "chart.js": "^3.5.0",
     "cheerio": "^1.0.0-rc.10",
