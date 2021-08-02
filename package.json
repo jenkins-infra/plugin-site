@@ -117,7 +117,7 @@
     "gatsby-cli": "^3.10.0",
     "gatsby-plugin-algolia": "^0.20.1",
     "gatsby-plugin-matomo": "^0.10.0",
-    "gatsby-plugin-nprogress": "^3.8.0",
+    "gatsby-plugin-nprogress": "^3.10.0",
     "gatsby-source-custom-api": "^2.1.4",
     "gatsby-source-filesystem": "^3.10.0",
     "husky": "^4.3.7",
