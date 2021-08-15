@@ -21,13 +21,19 @@ function PluginGovernanceStatus({plugin}) {
             return (
                 <div className="alert alert-warning alert-with-icon" key={id}>
                     <WarningsIcon />
-                    <b>Deprecated:</b>
-                    {`This plugin has been marked as deprecated.
-                    In general, this means that this plugin is either obsolete, no longer being developed, or may no longer work.
-                    See the documentation below for further information about the cause for the deprecation, and suggestions on how to proceed.
-                    The deprecation process is also documented `}
-                    <a href="https://jenkins.io/doc/developer/plugin-governance/deprecating-or-removing-plugin">here</a>
-                    {'.'}
+                    <p>
+                        <b>Deprecated:</b>
+                        {'This plugin has been marked as '}
+                        <a href="https://jenkins.io/doc/developer/plugin-governance/deprecating-or-removing-plugin">deprecated</a>
+                        {'. In general, this means that this plugin is either obsolete, no longer being developed, or may no longer work.'}
+                    </p>
+                    {'More information about the cause of this deprecation, and suggestions on how to proceed may be found'}
+                    {plugin.deprecationNotice && <>
+                        {' at '}
+                        <a href={plugin.deprecationNotice}>{plugin.deprecationNotice}</a>
+                        {'.'}
+                    </>}
+                    {!plugin.deprecationNotice && ' in the documentation below.'}
                 </div>
             );
         } else {

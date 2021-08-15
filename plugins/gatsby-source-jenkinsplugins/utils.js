@@ -106,7 +106,11 @@ const fetchPluginData = async ({createNode, reporter, firstReleases, stats}) => 
     const detachedPlugins = detachedPluginsData.split('\n')
         .filter(row => row.length && !row.startsWith('#')).map(row => row.split(' '));
     for (const deprecation of Object.keys(updateData.deprecations)) {
-        updateData.plugins[deprecation] && updateData.plugins[deprecation].labels.push('deprecated');
+        const deprecatedPlugin = updateData.plugins[deprecation];
+        if (deprecatedPlugin) {
+            deprecatedPlugin.labels.push('deprecated');
+            deprecatedPlugin.deprecationNotice = updateData.deprecations[deprecation].url;
+        }
     }
     const documentationListUrl = 'https://updates.jenkins.io/current/plugin-documentation-urls.json';
     const documentation = await requestGET({url: documentationListUrl, reporter});

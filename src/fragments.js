@@ -21,6 +21,7 @@ export const PluginFragment = graphql`
       trend
     }
     sha1
+    deprecationNotice
     securityWarnings {
       active
       id
