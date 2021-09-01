@@ -113,7 +113,7 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-standard": "^5.0.0",
-    "gatsby": "^3.10.2",
+    "gatsby": "^3.13.0",
     "gatsby-cli": "^3.13.0",
     "gatsby-plugin-algolia": "^0.22.0",
     "gatsby-plugin-matomo": "^0.10.0",
