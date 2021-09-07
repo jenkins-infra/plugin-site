@@ -164,6 +164,7 @@
     & .SearchResults--ItemBox {
         height: initial;
         min-height: initial;
+        width: calc(100% - 0.4rem);
     }
     & .Plugin--IconContainer {
         bottom: initial;

@@ -12,13 +12,11 @@ const DEFAULT_DATA = {
 };
 
 function useFilterHooks({doSearch, setResults, categoriesMap}) {
-    const [query, setQuery] = React.useState('');
     const [data, setData] = React.useState(DEFAULT_DATA);
 
     const ret = {
         ...data,
-        setData,
-        query, setQuery
+        setData
     };
 
     ret.clearQuery = () => ret.setQuery('');
@@ -35,14 +33,22 @@ function useFilterHooks({doSearch, setResults, categoriesMap}) {
         setData(newData);
     };
 
-    ['sort', 'categories', 'labels', 'view', 'page'].forEach(key => {
+    ['sort', 'categories', 'labels', 'view', 'page', 'query'].forEach(key => {
         ret[`set${ucFirst(key)}`] = (val) => {
             const newData = {...data, [key]: val};
-            navigate(`/ui/search?${querystring.stringify({...newData, query})}`);
+            if (key != 'page') {
+                newData.page = 1;
+            }
+            navigate(`/ui/search?${querystring.stringify({...newData})}`);
             ret.setData(newData);
             doSearch(newData, setResults, categoriesMap);
         };
     });
+
+    ret['setQuerySilent'] = (val) => {
+        const newData = {...data, query: val, page: 1};
+        ret.setData(newData);
+    };
 
     ret.clearCriteria = () => {
         ret.setCategories([]);

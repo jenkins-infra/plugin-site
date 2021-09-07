@@ -6,6 +6,7 @@ import {Link} from 'gatsby';
 import {cleanTitle} from '../commons/helper';
 import Icon from '../components/Icon';
 import PluginLabels from '../components/PluginLabels';
+import PluginLastReleased from '../components/PluginLastReleased';
 import PluginDevelopers from '../components/PluginDevelopers';
 
 function Developers({developers}) {
@@ -23,7 +24,7 @@ function Developers({developers}) {
 
 Developers.propTypes = PluginDevelopers.propTypes;
 
-function Plugin({plugin: {name, title, stats, requiredCore, labels, excerpt, developers}}) {
+function Plugin({plugin: {name, title, stats, labels, excerpt, developers, ...rest}}) {
     return (
         <Link to={`/${name}/`} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
@@ -38,8 +39,7 @@ function Plugin({plugin: {name, title, stats, requiredCore, labels, excerpt, dev
             </div>
             <div className="Plugin--VersionContainer">
                 <span className="jc">
-                    <span className="j">Jenkins</span>
-                    <span className="c">{`${requiredCore} +`}</span>
+                    <PluginLastReleased plugin={rest}/>
                 </span>
             </div>
             <div className="Plugin--LabelsContainer">

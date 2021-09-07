@@ -19,7 +19,7 @@ function pluginQueries() {
               name
               id
             }
-            requiredCore
+            releaseTimestamp
             version
           }
         }
