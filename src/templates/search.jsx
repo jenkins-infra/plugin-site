@@ -114,7 +114,7 @@ function SearchPage({location}) {
         labels, toggleLabel,
         view, setView,
         page, setPage,
-        query, setQuery, clearQuery,
+        query, setQuerySilent, clearQuery,
         setData
     } = useFilterHooks({doSearch, setResults, categoriesMap});
 
@@ -132,7 +132,6 @@ function SearchPage({location}) {
         const parsed = querystring.parse(qs);
         parsed.query = parsed.query || '';
         setData(parsed);
-        setQuery(parsed.query);
         doSearch(parsed, setResults, categoriesMap);
     }, []);
 
@@ -161,7 +160,7 @@ function SearchPage({location}) {
                                 showFilter={showFilter}
                                 setShowFilter={setShowFilter}
                                 query={query}
-                                setQuery={setQuery}
+                                setQuery={setQuerySilent}
                                 handleOnSubmit={handleOnSubmit}
                             />
                         </div>
