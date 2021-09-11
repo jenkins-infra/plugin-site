@@ -47,7 +47,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
 
     return (
         <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemTitle={plugin.title}
-            reportProblemUrl={plugin.issueTrackers && plugin.issueTrackers[0] ? plugin.issueTrackers[0].reportUrl : `/${plugin.name}`}>
+            reportProblemUrl={plugin?.issueTrackers?.find(tracker => tracker.reportUrl)?.reportUrl || `/${plugin.name}`}>
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
             <div className="title-wrapper">
                 <h1 className="title">
