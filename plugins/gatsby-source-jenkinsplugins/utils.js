@@ -43,6 +43,7 @@ const getPluginContent = async ({wiki, pluginName, reporter}) => {
     }
     return requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`}).then(data => {
         wiki.content = data.wiki.content || '';
+        wiki.url = data.wiki.url || '';
         return wiki;
     });
 };

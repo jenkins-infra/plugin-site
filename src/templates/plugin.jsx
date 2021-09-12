@@ -19,7 +19,7 @@ import PluginIssues from '../components/PluginIssues';
 import PluginReleases from '../components/PluginReleases';
 
 function shouldShowWikiUrl({url}) {
-    return url && url.includes('github.com/jenkins-infra/plugins-wiki-docs');
+    return url?.startsWith('https://wiki.jenkins-ci.org') || url?.startsWith('https://wiki.jenkins.io') || url?.includes('github.com/jenkins-infra/plugins-wiki-docs');
 }
 
 function shouldShowGitHubUrl({url}) {
@@ -123,11 +123,11 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                             <h5>Help us improve this page!</h5>
                             {'This content is served from the  '}
                             <a href={plugin.wiki.url} target="_wiki">Jenkins Wiki Export</a>
-                            {' which was now in a '}
-                            <a href="https://groups.google.com/forum/#!msg/jenkinsci-dev/lNmas8aBRrI/eL3u7A6qBwAJ" rel="noopener noreferrer" target="_blank">read-only state</a>
-                            {' and now '}
+                            {' which is now '}
                             <a href="https://www.jenkins.io/blog/2021/09/04/wiki-attacked/" rel="noopener noreferrer" target="_blank">permanatly offline</a>
-                            {'. We recommend moving the plugin documentation to GitHub, see '}
+                            {' and before that a '}
+                            <a href="https://groups.google.com/forum/#!msg/jenkinsci-dev/lNmas8aBRrI/eL3u7A6qBwAJ" rel="noopener noreferrer" target="_blank">read-only state</a>
+                            {'. We would love your help in moving plugin documentation to GitHub, see '}
                             <a href="https://jenkins.io/blog/2019/10/21/plugin-docs-on-github/" rel="noopener noreferrer" target="_blank">the guidelines</a>
                             {'.'}
                         </div>
