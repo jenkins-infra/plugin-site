@@ -120,7 +120,7 @@ Object {
   "hasPipelineSteps": false,
   "id": "ios-device-connector",
   "internal": Object {
-    "contentDigest": "7da41342fb756c851d4b5a9b6b6f9f3e",
+    "contentDigest": "0d06372538374458b993554af9540915",
     "type": "JenkinsPlugin",
   },
   "issueTrackers": Array [
