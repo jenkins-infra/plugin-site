@@ -124,7 +124,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                             {'This content is served from the  '}
                             <a href={plugin.wiki.url} target="_wiki">Jenkins Wiki Export</a>
                             {' which is now '}
-                            <a href="https://www.jenkins.io/blog/2021/09/04/wiki-attacked/" rel="noopener noreferrer" target="_blank">permanatly offline</a>
+                            <a href="https://www.jenkins.io/blog/2021/09/04/wiki-attacked/" rel="noopener noreferrer" target="_blank">permanently offline</a>
                             {' and before that a '}
                             <a href="https://groups.google.com/forum/#!msg/jenkinsci-dev/lNmas8aBRrI/eL3u7A6qBwAJ" rel="noopener noreferrer" target="_blank">read-only state</a>
                             {'. We would love your help in moving plugin documentation to GitHub, see '}
