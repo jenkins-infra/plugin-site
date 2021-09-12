@@ -45,8 +45,12 @@ const getPluginContent = async ({wiki, pluginName, reporter}) => {
         return wiki;
     }
     return requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`}).then(data => {
-        wiki.content = data.wiki.content || '';
-        wiki.url = data.wiki.url || '';
+        if (!data.wiki) {
+            console.warn('Results from plugin site did not include wiki', pluginName, data);
+            return wiki;
+        }
+        wiki.content = data.wiki.content || wiki.content || '';
+        wiki.url = data.wiki.url || wiki.url || '';
         return wiki;
     });
 };
