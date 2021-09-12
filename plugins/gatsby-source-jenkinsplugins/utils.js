@@ -1,9 +1,7 @@
 /* eslint-disable no-console */
 const axios = require('axios');
 const crypto = require('crypto');
-const cheerio = require('cheerio');
 const {execSync} = require('child_process');
-const URL = require('url');
 const axiosRetry = require('axios-retry');
 const dateFNs = require('date-fns');
 const {default: PQueue} = require('p-queue'); // NOTE - pinned at p-queue@6.6.2 because 7 requires whole project to be esm
@@ -31,29 +29,6 @@ const requestGET = ({url, reporter}) => {
         });
 };
 
-function getContentFromConfluencePage(url, content) {
-    const $ = cheerio.load(cheerio.load(content)('.wiki-content').html());
-
-    $('.conf-macro.output-inline th:contains("Plugin Information")').parents('table').remove();
-
-    // Remove any table of contents
-    $('.toc').remove();
-    // remove jira issue table
-    $('.jira-table.conf-macro.output-block').remove();
-
-    // remove jira issue list
-    $('.jira-issues').remove();
-
-    // Replace href/src with the wiki url
-    $('[href]').each((idx, elm) => {
-        $(elm).attr('href', URL.resolve(url, $(elm).attr('href')));
-    });
-    $('[src]').each((idx, elm) => {
-        $(elm).attr('src', URL.resolve(url, $(elm).attr('src')));
-    });
-    return ($('body') || $).html();
-}
-
 const shouldFetchPluginContent = (id) => {
     if (process.env.GET_CONTENT_SINGLE && process.env.GET_CONTENT_SINGLE === id) {
         return true;
@@ -64,32 +39,18 @@ const shouldFetchPluginContent = (id) => {
     return true;
 };
 
-const pluginWikiUrlRe = /^https?:\/\/wiki.jenkins(?:-ci.org|.io)\/display\/(?:jenkins|hudson)\/([^/]*)\/?$/i;
 const getPluginContent = async ({wiki, pluginName, reporter}) => {
     if (!shouldFetchPluginContent(pluginName)) {
         wiki.content = '';
         return wiki;
     }
-    let matches;
-    if ((matches = pluginWikiUrlRe.exec(wiki.url)) != null) {
-        try {
-            return await requestGET({
-                reporter,
-                url: `https://wiki.jenkins.io/rest/api/content?expand=body.view&title=${matches[1]}`
-            }).then(async data => {
-                const result = data.results.find(result => wiki.url.includes(result._links.webui)) || data.results[0];
-                wiki.content = getContentFromConfluencePage(
-                    'https://wiki.jenkins.io/',
-                    `<body class="wiki-content">${result.body.view.value}</body>`);
-                return wiki;
-            });
-        } catch (e) {
-            console.error(`Error fetching wiki content for ${pluginName}`, e);
-        }
-    }
-
     return requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`}).then(data => {
-        wiki.content = data.wiki.content || '';
+        if (!data.wiki) {
+            console.warn('Results from plugin site did not include wiki', pluginName, data);
+            return wiki;
+        }
+        wiki.content = data.wiki.content || wiki.content || '';
+        wiki.url = data.wiki.url || wiki.url || '';
         return wiki;
     });
 };

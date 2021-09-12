@@ -120,7 +120,7 @@ Object {
   "hasPipelineSteps": false,
   "id": "ios-device-connector",
   "internal": Object {
-    "contentDigest": "0d06372538374458b993554af9540915",
+    "contentDigest": "3275b9945464cac28ae92de1343c87c9",
     "type": "JenkinsPlugin",
   },
   "issueTrackers": Array [
@@ -208,44 +208,7 @@ Object {
   "url": "https://updates.jenkins.io/download/plugins/ios-device-connector/1.2/ios-device-connector.hpi",
   "version": "1.2",
   "wiki": Object {
-    "content": "
-
-
-<p>This plugin lists up all the iOS devices connected to the master and all the Jenkins slaves, and provide operations to them.</p>
-
-<p>Specifically, the current version provides the following functionalities:</p>
-
-<ul>
-	<li>UI that lists all the connected devices and their properties.</li>
-	<li>Build step that lets you deploy *.ipa to a device (a build running on one slave can deploy app to iOS connected to another slave.)</li>
-	<li>Web UI and CLI commands to deploy *.ipa</li>
-</ul>
-
-
-<p><a href=\\"http://i.imgur.com/LB2Tb.png\\" class=\\"external-link\\" rel=\\"nofollow\\"><span class=\\"confluence-embedded-file-wrapper confluence-embedded-manual-size\\"><img class=\\"confluence-embedded-image confluence-external-resource\\" width=\\"400\\" src=\\"http://i.imgur.com/LB2Tb.png\\" data-image-src=\\"http://i.imgur.com/LB2Tb.png\\"></span></a> <a href=\\"http://i.imgur.com/wTLVR.png\\" class=\\"external-link\\" rel=\\"nofollow\\"><span class=\\"confluence-embedded-file-wrapper confluence-embedded-manual-size\\"><img class=\\"confluence-embedded-image confluence-external-resource\\" width=\\"400\\" src=\\"http://i.imgur.com/wTLVR.png\\" data-image-src=\\"http://i.imgur.com/wTLVR.png\\"></span></a></p>
-
-<h1 id=\\"iOSDeviceConnectorPlugin-Feedbackrequested\\">Feedback requested</h1>
-<p>This plugin came into being as a Kohsuke's post-JavaOne hobby project, to explore what needs to be done in order to make iOS app development properly automated. If you do iOS app development for real, please let us know what needs to be done!</p>
-
-
-<h1 id=\\"iOSDeviceConnectorPlugin-Changelog\\">Changelog</h1>
-<h3 id=\\"iOSDeviceConnectorPlugin-Version1.2(Oct10,2012)\\">Version 1.2 (Oct 10, 2012)</h3>
-<ul>
-	<li>Devices can be attribuetd to a wrong computer (<a href=\\"https://issues.jenkins-ci.org/browse/JENKINS-15446\\">JENKINS-15446</a>)</li>
-</ul>
-
-
-<h3 id=\\"iOSDeviceConnectorPlugin-Version1.1(Oct8,2012)\\">Version 1.1 (Oct 8, 2012)</h3>
-<ul>
-	<li>Icon images were broken</li>
-	<li>Ignore slaves that are marked offline.</li>
-</ul>
-
-
-<h3 id=\\"iOSDeviceConnectorPlugin-Version1.0(Oct7,2012)\\">Version 1.0 (Oct 7, 2012)</h3>
-<ul>
-	<li>Initial release</li>
-</ul>",
+    "content": "<p>This plugin lists up all the iOS devices connected to the master and all the Jenkins slaves, and provide operations to them.</p>",
     "url": "https://wiki.jenkins-ci.org/display/JENKINS/iOS+Device+Connector+Plugin",
   },
 }
