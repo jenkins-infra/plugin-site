@@ -4,8 +4,12 @@ const crypto = require('crypto');
 const {execSync} = require('child_process');
 const axiosRetry = require('axios-retry');
 const dateFNs = require('date-fns');
+const {default: PQueue} = require('p-queue'); // NOTE - pinned at p-queue@6.6.2 because 7 requires whole project to be esm
 const {parseStringPromise} = require('xml2js');
 const categoryList = require('./categories.json');
+
+
+const API_URL = process.env.JENKINS_IO_API_URL || 'https://plugins.jenkins.io/api';
 
 axiosRetry(axios, {retries: 3});
 
@@ -35,7 +39,6 @@ const shouldFetchPluginContent = (id) => {
     return true;
 };
 
-
 const getPluginContent = async ({wiki, pluginName, reporter}) => {
     if (!shouldFetchPluginContent(pluginName)) {
         wiki.content = '';
@@ -48,10 +51,69 @@ const getPluginContent = async ({wiki, pluginName, reporter}) => {
     });
 };
 
-const fetchPluginData = async ({createNode, reporter, firstReleases, stats}) => {
+const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, documentation, bomDependencies, pipelinePluginIds, firstReleases, createContentDigest, createNodeId, reporter, plugin}) => {
+    return async function () {
+        const pluginName = plugin.name.trim();
+        names.push(pluginName);
+        const developers = plugin.developers || [];
+        developers.forEach(maint => {maint.id = maint.developerId, delete(maint.developerId);});
+        plugin.scm = fixGitHubUrl(plugin.scm, plugin.defaultBranch || 'master');
+        const pluginStats = stats[pluginName] || {installations: null};
+        pluginStats.trend = computeTrend(plugin, stats, updateData.plugins);
+        const allDependencies = getImpliedDependenciesAndTitles(plugin, detachedPlugins, updateData);
+        const wiki = await getPluginContent({wiki: documentation[pluginName] || {}, pluginName, reporter});
+
+        const pluginNode = {
+            ...plugin,
+            id: createNodeId(plugin.name.trim()),
+            stats: pluginStats,
+            wiki: wiki,
+            securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
+                .map(w => checkActive(w, plugin)),
+            dependencies: allDependencies,
+            firstRelease: firstReleases[pluginName] && firstReleases[pluginName].toISOString(),
+            hasPipelineSteps: pipelinePluginIds.includes(pluginName),
+            hasBomEntry: !!bomDependencies.find(artifactId => plugin.gav.includes(`:${artifactId}:`)),
+            parent: null,
+            children: [],
+            internal: {
+                type: 'JenkinsPlugin',
+            }
+        };
+        pluginNode.internal.contentDigest = createContentDigest(pluginNode);
+        createNode(pluginNode);
+
+        for (const maintainer of developers) {
+            const developerNode = {
+                ...maintainer,
+                id: createNodeId(maintainer.id),
+                internal: {
+                    type: 'JenkinsDeveloper',
+                    contentDigest: crypto.createHash('md5').update(maintainer.id).digest('hex')
+                }
+            };
+            developerNode.internal.contentDigest = createContentDigest(developerNode);
+            createNode(developerNode);
+        }
+        for (const dependency of allDependencies) {
+            const dependencyNode = {
+                ...dependency,
+                dependentTitle: plugin.title,
+                dependentName: plugin.name,
+                id: createNodeId(`${pluginName}:${dependency.name.trim()}`),
+                internal: {
+                    type: 'JenkinsPluginDependency',
+                }
+            };
+            dependencyNode.internal.contentDigest = createContentDigest(dependencyNode);
+            createNode(dependencyNode);
+        }
+    };
+};
+
+const fetchPluginData = async ({createNode, createContentDigest, createNodeId, reporter, firstReleases, stats}) => {
     const sectionActivity = reporter.activityTimer('fetch plugins info');
     sectionActivity.start();
-    const promises = [];
     const names = [];
     const pipelinePluginsUrl = 'https://www.jenkins.io/doc/pipeline/steps/contents.json';
     const pipelinePluginIds = await requestGET({url: pipelinePluginsUrl, reporter});
@@ -71,74 +133,25 @@ const fetchPluginData = async ({createNode, reporter, firstReleases, stats}) => 
     }
     const documentationListUrl = 'https://updates.jenkins.io/current/plugin-documentation-urls.json';
     const documentation = await requestGET({url: documentationListUrl, reporter});
-    for (const plugin of Object.values(updateData.plugins)) {
-        const pluginName = plugin.name.trim();
-        names.push(pluginName);
-        const developers = plugin.developers || [];
-        developers.forEach(maint => {maint.id = maint.developerId, delete(maint.developerId);});
-        plugin.scm = fixGitHubUrl(plugin.scm, plugin.defaultBranch || 'master');
-        const pluginStats = stats[pluginName] || {installations: null};
-        pluginStats.trend = computeTrend(plugin, stats, updateData.plugins);
-        const allDependencies = getImpliedDependenciesAndTitles(plugin, detachedPlugins, updateData);
-        promises.push(getPluginContent({wiki: documentation[pluginName] || {}, pluginName, reporter}).then(wiki => {
-            const p = createNode({
-                ...plugin,
-                stats: pluginStats,
-                wiki: wiki,
-                securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
-                    .map(w => checkActive(w, plugin)),
-                dependencies: allDependencies,
-                firstRelease: firstReleases[pluginName] && firstReleases[pluginName].toISOString(),
-                id: pluginName,
-                hasPipelineSteps: pipelinePluginIds.includes(pluginName),
-                hasBomEntry: !!bomDependencies.find(artifactId => plugin.gav.includes(`:${artifactId}:`)),
-                parent: null,
-                children: [],
-                internal: {
-                    type: 'JenkinsPlugin',
-                    contentDigest: crypto.createHash('md5').update(`plugin${pluginName}`).digest('hex')
-                }
-            });
-            if (!p || !p.then) {
-                if (process.env.GATSBY_SENTRY_DSN) {
-                    const Sentry = require('@sentry/node');
-                    Sentry.init({
-                        dsn: process.env.GATSBY_SENTRY_DSN
-                    });
-                    Sentry.captureMessage(new Error(`Error creatingNode for plugin: ${pluginName}`), {extra: {pluginData: plugin, p: p}});
-                }
-                return new Error('no promise returned');
-            }
-            p.then(() => {
-                return Promise.all(developers.map(maintainer => {
-                    return createNode({
-                        ...maintainer,
-                        internal: {
-                            type: 'JenkinsDeveloper',
-                            contentDigest: crypto.createHash('md5').update(maintainer.id).digest('hex')
-                        }
-                    });
-                }));
-            });
-            return p.then(() => {
-                return Promise.all(allDependencies.map(dependency => {
-                    const mergedId = `${pluginName}:${dependency.name.trim()}`;
-                    return createNode({
-                        ...dependency,
-                        dependentTitle: plugin.title,
-                        dependentName: plugin.name,
-                        id: mergedId,
-                        internal: {
-                            type: 'JenkinsPluginDependency',
-                            contentDigest: crypto.createHash('md5').update(`dep${mergedId}`).digest('hex')
-                        }
-                    });
-                }));
-            });
-        }));
-    }
 
-    await Promise.all(promises);
+    const queue = new PQueue({concurrency: 100, autoStart: true});
+    Object.values(updateData.plugins).forEach(plugin => queue.add(processPlugin({
+        plugin,
+        names,
+        stats,
+        updateData,
+        detachedPlugins,
+        documentation,
+        bomDependencies,
+        pipelinePluginIds,
+        firstReleases,
+        createNode,
+        createContentDigest,
+        createNodeId,
+        reporter
+    })));
+    await queue.onIdle();
+
     await fetchSuspendedPlugins({updateData, names, createNode});
     sectionActivity.end();
 };
@@ -295,7 +308,7 @@ const fetchLabelData = async ({createNode, reporter}) => {
 const fetchSiteInfo = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin api info');
     sectionActivity.start();
-    const url = 'https://plugins.jenkins.io/api/info';
+    const url = `${API_URL}/info`;
     const info = await requestGET({url, reporter});
 
     createNode({
