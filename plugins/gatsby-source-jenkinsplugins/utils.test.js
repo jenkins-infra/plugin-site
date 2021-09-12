@@ -57,12 +57,11 @@ describe('Utils', () => {
             .reply(200, await readText('split-plugins.txt'));
         nock('https://plugins.jenkins.io').persist()
             .get(/\/api\/plugin\/.*/)
-            .reply(200, '{"wiki":{"content": ""}}');
-        nock('https://wiki.jenkins.io')
-            .get('/rest/api/content?expand=body.view&title=iOS+Device+Connector+Plugin')
-            .replyWithFile(200, path.join(__dirname, '__mocks__', 'wiki.jenkins.io.io-device-connector-plugin.json'), {'Content-Type': 'application/json'});
+            .reply(200, '{"wiki":{"content": "<p>This plugin lists up all the iOS devices connected to the master and all the Jenkins slaves, and provide operations to them.</p>"}}');
 
         const createNode = jest.fn().mockResolvedValue();
+        const createContentDigest = require('gatsby-core-utils').createContentDigest;
+        const createNodeId = jest.fn(key => key);
         const firstReleases = {'ios-device-connector': new Date(0)};
         const labelToCategory = {'ios': 'languagesPlatforms', 'builder': 'buildManagement'};
         const stats = {
@@ -82,7 +81,7 @@ describe('Utils', () => {
                 {'timestamp': 1619841600000, 'total': 275},
                 {'timestamp': 1622520000000, 'total': 269}]}
         };
-        await utils.fetchPluginData({createNode, reporter: _reporter, firstReleases, labelToCategory, stats});
+        await utils.fetchPluginData({createNode, createNodeId, createContentDigest, reporter: _reporter, firstReleases, labelToCategory, stats});
         expect(createNode.mock.calls[0][0]).toMatchSnapshot();
     });
 });
