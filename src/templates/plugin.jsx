@@ -48,7 +48,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
     return (
         <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemTitle={plugin.title}
             reportProblemUrl={plugin?.issueTrackers?.find(tracker => tracker.reportUrl)?.reportUrl || `/${plugin.name}`}>
-            <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.id}`}/>
+            <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.name}`}/>
             <div className="title-wrapper">
                 <h1 className="title">
                     {cleanTitle(plugin.title)}
@@ -73,8 +73,8 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         {state.selectedTab === 'documentation' && (<>
                             {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
                         </>)}
-                        {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.id} versions={versions.edges.map(edge => edge.node)} />}
-                        {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.id} />}
+                        {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.name} versions={versions.edges.map(edge => edge.node)} />}
+                        {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.name} />}
                         {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies}
                             reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
                             hasBomEntry={plugin.hasBomEntry}
