@@ -12,6 +12,7 @@ import forceArray from '../utils/forceArray';
 import useFilterHooks from '../components/FiltersHooks';
 import SEO from '../components/SEO';
 import Footer from '../components/Footer';
+import SuspendedPlugins from '../components/SuspendedPlugins';
 import Views from '../components/Views';
 import SearchResults from '../components/SearchResults';
 import SearchBox from '../components/SearchBox';
@@ -94,7 +95,7 @@ const doSearch = (data, setResults, categoriesMap) => {
 function SearchPage({location}) {
     const [showFilter, setShowFilter] = React.useState(true);
     const [results, setResults] = React.useState(null);
-    const categoriesMap = groupBy(useStaticQuery(graphql`
+    const graphqlData = useStaticQuery(graphql`
         query {
             categories: allJenkinsPluginCategory {
                 edges {
@@ -105,8 +106,18 @@ function SearchPage({location}) {
                     }
                 }
             }
+ suspendedPlugins: allSuspendedPlugin {
+        edges {
+          node {
+            id
+            url
+          }
         }
-    `).categories.edges.map(edge => edge.node), 'id');
+      }
+        }
+    `);
+    const categoriesMap = groupBy(graphqlData.categories.edges.map(edge => edge.node), 'id');
+    const suspendedPlugins = graphqlData.suspendedPlugins.edges.map(edge => edge.node.id);
     const {
         sort, setSort,
         clearCriteria,
@@ -159,7 +170,7 @@ function SearchPage({location}) {
                             <SearchBox
                                 showFilter={showFilter}
                                 setShowFilter={setShowFilter}
-                                query={query}
+                                query={query || ''}
                                 setQuery={setQuerySilent}
                                 handleOnSubmit={handleOnSubmit}
                             />
@@ -196,6 +207,7 @@ function SearchPage({location}) {
                                 setPage={setPage}
                                 results={results}
                             />
+                            <SuspendedPlugins pluginIds={suspendedPlugins.filter(e => query && query.length >2 && e.includes(query))}/>
                         </div>
                     </div>
                 </div>
