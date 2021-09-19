@@ -5,9 +5,6 @@ function pluginQueries() {
           node {
             id
             title
-            wiki {
-              content
-            }
             name
             excerpt
             labels
@@ -26,13 +23,10 @@ function pluginQueries() {
       }
     }
     `;
-    function pageToAlgoliaRecord({node: {id, wiki: {content}, ...rest}}) {
+    function pageToAlgoliaRecord({node: {id, ...rest}}) {
         return {
             objectID: id,
             slug: `/${id.trim()}/`,
-            wiki: {
-                content: content.substr(0, 5000),
-            },
             ...rest,
         };
     }
@@ -49,7 +43,6 @@ function pluginQueries() {
         ],
         settings: {
             paginationLimitedTo: 2000, // they recommend 1000, to keep speed up and prevent people from scraping, but both are fine to us
-            attributesToSnippet: ['content:20'],
             optionalWords: [
                 'jenkins',
                 'plugin',
@@ -76,6 +69,7 @@ function pluginQueries() {
                 'title',
                 'developers.name',
                 'developers.id',
+                'excerpt'
             ],
         },
     };
