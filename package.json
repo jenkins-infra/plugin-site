@@ -96,7 +96,7 @@
     "react-helmet": "^6.1.0",
     "react-radio-group": "^3.0.3",
     "react-timeago": "^6.2.1",
-    "reactstrap": "^8.9.0"
+    "reactstrap": "^8.10.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.13.0",
