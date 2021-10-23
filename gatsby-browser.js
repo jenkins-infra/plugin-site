@@ -4,7 +4,7 @@ exports.onInitialClientRender = function () {
     let prevLocation = {...location};
     // Make sure we record anchor changes so we know when tabs are selected
     window.addEventListener('hashchange', () => {
-        gatsbyMatomo.onRouteUpdate({location, prevLocation});
+        gatsbyMatomo.onRouteUpdate({location, prevLocation}, {});
         prevLocation = {...location};
     });
 };
