@@ -43,6 +43,11 @@ function getDefaultTab() {
 
 function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
     const [state, setState] = useState({selectedTab: getDefaultTab()});
+    const switchTab = (tab) => {
+        const _paq = window._paq || [];
+        _paq.push(['trackEvent', 'Plugin Page', 'Click Tab', tab]);
+        setState({selectedTab: tab});
+    };
     const pluginPage = 'templates/plugin.jsx';
 
     return (
@@ -62,10 +67,10 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                 <div className="col-md-9 main">
                     <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
                     <PluginGovernanceStatus plugin={plugin} />
-                    <ul className="nav nav-tabs">
+                    <ul className="nav nav-pills">
                         {tabs.map(tab => (
                             <li className="nav-item" key={tab.id}>
-                                <a className={`nav-link ${state.selectedTab === tab.id ? 'active' : ''}`} href={`#${tab.id}`} onClick={() => setState({selectedTab: tab.id})}>{tab.label}</a>
+                                <a className={`nav-link ${state.selectedTab === tab.id ? 'active' : ''}`} href={`#${tab.id}`} onClick={() => switchTab(tab.id)}>{tab.label}</a>
                             </li>
                         ))}
                     </ul>
