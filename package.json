@@ -77,7 +77,7 @@
     "gatsby-plugin-react-helmet": "^4.14.0",
     "gatsby-plugin-robots-txt": "^1.6.9",
     "gatsby-plugin-sharp": "^3.14.0",
-    "gatsby-plugin-sitemap": "^4.9.0",
+    "gatsby-plugin-sitemap": "^4.10.0",
     "gatsby-transformer-sharp": "^3.10.0",
     "github-syntax-light": "^0.5.0",
     "isomorphic-fetch": "^3.0.0",
