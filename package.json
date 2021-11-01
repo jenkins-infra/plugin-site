@@ -124,7 +124,7 @@
     "husky": "^4.3.7",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
-    "jest-junit": "^12.3.0",
+    "jest-junit": "^13.0.0",
     "lint-staged": "^11.1.1",
     "mkdirp": "^1.0.4",
     "nock": "^13.1.1",
