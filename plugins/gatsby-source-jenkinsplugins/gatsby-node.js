@@ -6,9 +6,10 @@ const {
     fetchLabelData,
     fetchStats,
 } = require('./utils');
+const {createRemoteFileNode} = require('gatsby-source-filesystem');
 
 exports.sourceNodes = async (
-    {actions: {createNode}, reporter, createContentDigest, createNodeId},
+    {actions: {createNode, createNodeField}, reporter, createContentDigest, createNodeId},
     { /* options */ } // eslint-disable-line no-empty-pattern
 ) => {
     try {
@@ -16,14 +17,26 @@ exports.sourceNodes = async (
         const stats = {};
         await Promise.all([
             fetchStats({reporter, stats}),
-            fetchSiteInfo({createNode, createContentDigest, createNodeId, reporter}),
-            processCategoryData({createNode, createContentDigest, createNodeId, reporter}),
-            fetchLabelData({createNode, createContentDigest, createNodeId, reporter}),
-            fetchPluginVersions({createNode, createContentDigest, createNodeId, reporter, firstReleases}),
-        ]).then(() => fetchPluginData({createNode, createContentDigest, createNodeId, reporter, firstReleases, stats}));
+            fetchSiteInfo({createNode, createNodeField, createContentDigest, createNodeId, createRemoteFileNode, reporter}),
+            processCategoryData({createNode, createNodeField, createContentDigest, createNodeId, createRemoteFileNode, reporter}),
+            fetchLabelData({createNode, createNodeField, createContentDigest, createNodeId, createRemoteFileNode, reporter}),
+            fetchPluginVersions({createNode, createNodeField, createContentDigest, createNodeId, createRemoteFileNode, reporter, firstReleases}),
+        ]).then(() => fetchPluginData({createNode, createNodeField, createContentDigest, createNodeId, createRemoteFileNode, reporter, firstReleases, stats}));
     } catch (err) {
         reporter.panic(
             `gatsby-source-jenkinsplugin: Failed to parse API call -  ${err.stack || err}`
         );
     }
+};
+
+exports.createSchemaCustomization = ({actions}) => {
+    const {createTypes} = actions;
+    createTypes(`
+        type JenkinsPlugin implements Node {
+            wiki: JenkinsPluginWiki @link(from: "name", by: "plugin")
+        }
+        type JenkinsPluginWiki implements Node {
+            childMarkdownRemark: MarkdownRemark
+        }
+    `);
 };

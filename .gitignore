@@ -109,3 +109,4 @@ yarn-error.log
 # IDE
 .idea
 static/site.webmanifest
+schema.graphql

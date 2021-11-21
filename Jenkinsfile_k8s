@@ -27,7 +27,7 @@ spec:
   restartPolicy: "Never"
   containers:
     - name: "node"
-      image: "node:14"
+      image: "node:14.17"
       securityContext:
         privileged: false
       tty: true
@@ -127,7 +127,7 @@ spec:
       }
       steps {
         container('blobxfer') {
-          sh("""blobxfer upload \
+          sh('''blobxfer upload \
             --local-path public \
             --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
             --storage-account prodpluginsite \
@@ -138,7 +138,7 @@ spec:
             --file-md5 \
             --connect-timeout 30 \
             --delete
-          """)
+          ''')
         }
       }
     }

@@ -17,6 +17,9 @@ export const formatter = buildFormatter(Object.assign(enStrings, {
   FIXME - 2019-12-14 - Replace with regex so we don't have to worry about case
   */
 export function cleanTitle(title) {
+    if (!title) {
+        return title;
+    }
     return title
         .replace('Jenkins ', '')
         .replace('jenkins ', '')

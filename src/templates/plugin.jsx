@@ -41,6 +41,27 @@ function getDefaultTab() {
     return tabs[0].id;
 }
 
+const PluginWikiContent = ({wiki}) => {
+    if (wiki?.childMarkdownRemark) {
+        return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childMarkdownRemark.html}} />;
+    }
+    if (wiki?.internal?.content) {
+        return <div className="content" dangerouslySetInnerHTML={{__html: wiki.internal.content}} />;
+    }
+    return null;
+};
+PluginWikiContent.displayName = 'PluginWikiContent';
+PluginWikiContent.propTypes = {
+    wiki: PropTypes.shape({
+        childMarkdownRemark: PropTypes.shape({
+            html: PropTypes.string.isRequired
+        }),
+        internal: PropTypes.shape({
+            content: PropTypes.string.isRequired
+        })
+    }).isRequired,
+};
+
 function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
     const [state, setState] = useState({selectedTab: getDefaultTab()});
     const switchTab = (tab) => {
@@ -75,9 +96,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         ))}
                     </ul>
                     <div>
-                        {state.selectedTab === 'documentation' && (<>
-                            {plugin.wiki.content && <div className="content" dangerouslySetInnerHTML={{__html: plugin.wiki.content}} />}
-                        </>)}
+                        {state.selectedTab === 'documentation' && <PluginWikiContent wiki={plugin.wiki} />}
                         {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.name} versions={versions.edges.map(edge => edge.node)} />}
                         {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.name} />}
                         {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies}
@@ -182,6 +201,11 @@ PluginPage.propTypes = {
                 implied: PropTypes.bool,
                 version: PropTypes.string
             })),
+            issueTrackers: PropTypes.arrayOf(PropTypes.shape({
+                viewUrl: PropTypes.string,
+                reportUrl: PropTypes.string,
+            })),
+            hasPipelineSteps: PropTypes.boolean,
             excerpt: PropTypes.string,
             gav: PropTypes.string.isRequired,
             hasBomEntry: PropTypes.bool,
