@@ -39,13 +39,13 @@ function PluginGovernanceStatus({plugin}) {
         } else {
             return null;
         }
-            
     });
 }
-  
+
 PluginGovernanceStatus.propTypes = {
     plugin: PropTypes.shape({
-        labels: PropTypes.arrayOf(PropTypes.string).isRequired
+        labels: PropTypes.arrayOf(PropTypes.string).isRequired,
+        deprecationNotice: PropTypes.string
     })
 };
 
