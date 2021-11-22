@@ -62,10 +62,13 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
     if (!shouldFetchPluginContent(pluginName)) {
         return createWikiNode('text/plain', wiki.url, '');
     }
-    const matches = wiki.url.match(/^https?:\/\/wiki.jenkins(-ci.org|.io)\/display\/(jenkins|hudson)\/([^/]*)\/?$/i);
     try {
-        if (matches) {
+        if (wiki.url.match(/^https?:\/\/wiki.jenkins(-ci.org|.io)\/display\/(jenkins|hudson)\/([^/]*)\/?$/i)) {
             const url = `https://raw.githubusercontent.com/jenkins-infra/plugins-wiki-docs/master/${pluginName}/README.md`;
+            const body = await requestGET({reporter, url: url});
+            return createWikiNode('text/markdown', url, body);
+        } else if (wiki.url.match(/\/README.md$/i)) {
+            const url = wiki.url;
             const body = await requestGET({reporter, url: url});
             return createWikiNode('text/markdown', url, body);
         } else {
