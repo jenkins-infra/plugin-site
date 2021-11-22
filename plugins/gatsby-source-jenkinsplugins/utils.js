@@ -93,7 +93,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
 
         const pluginNode = {
             ...plugin,
-            id: createNodeId(plugin.name.trim()),
+            id: createNodeId(`${plugin.name.trim()} <<< JenkinsPlugin`),
             stats: pluginStats,
             securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
                 .map(w => checkActive(w, plugin)),
@@ -113,7 +113,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
         for (const maintainer of developers) {
             const developerNode = {
                 ...maintainer,
-                id: createNodeId(maintainer.id),
+                id: createNodeId(`${maintainer.id} <<< JenkinsDeveloper`),
                 internal: {
                     type: 'JenkinsDeveloper',
                     contentDigest: crypto.createHash('md5').update(maintainer.id).digest('hex')
@@ -127,7 +127,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
                 ...dependency,
                 dependentTitle: plugin.title,
                 dependentName: plugin.name,
-                id: createNodeId(`${pluginName}:${dependency.name.trim()}`),
+                id: createNodeId(`${pluginName}:${dependency.name.trim()} <<< JenkinsPluginDependency`),
                 internal: {
                     type: 'JenkinsPluginDependency',
                 }
