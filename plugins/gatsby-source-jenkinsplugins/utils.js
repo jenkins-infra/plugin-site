@@ -25,6 +25,10 @@ const requestGET = async ({url, reporter}) => {
         }
         return results.data;
     } catch (err) {
+        if (err?.response?.status == 404) {
+            reporter.error(`${url} does not return any data`);
+            return null;
+        }
         reporter.panic(`error trying to fetch ${url}`, err);
         throw err;
     } finally {
@@ -66,15 +70,19 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
         if (wiki.url.match(/^https?:\/\/wiki.jenkins(-ci.org|.io)\/display\/(jenkins|hudson)\/([^/]*)\/?$/i)) {
             const url = `https://raw.githubusercontent.com/jenkins-infra/plugins-wiki-docs/master/${pluginName}/README.md`;
             const body = await requestGET({reporter, url: url});
-            return createWikiNode('text/markdown', url, body);
-        } else if (wiki.url.match(/\/README.md$/i)) {
+            if (body) {
+                return createWikiNode('text/markdown', url, body);
+            }
+        }
+        if (wiki.url.match(/\/README.md$/i)) {
             const url = wiki.url;
             const body = await requestGET({reporter, url: url});
-            return createWikiNode('text/markdown', url, body);
-        } else {
-            const data = await requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`});
-            return createWikiNode('text/html', wiki.url, data.wiki.content);
+            if (body) {
+                return createWikiNode('text/markdown', url, body);
+            }
         }
+        const data = await requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`});
+        return createWikiNode('text/html', wiki.url, data.wiki.content);
     } catch (err) {
         reporter.error(`error fetching ${pluginName}`, err);
         return createWikiNode('text/plain', wiki.url, 'MISSING');
