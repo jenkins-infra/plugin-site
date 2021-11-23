@@ -19,6 +19,7 @@ describe('Utils', () => {
     beforeEach(async () => {
         _reporter = {
             panic: (...args) => { throw args[0]; },
+            error: jest.fn(),
             activityTimer: () => {
                 return {
                     start: jest.fn(),
@@ -50,7 +51,7 @@ describe('Utils', () => {
             .get('/doc/pipeline/steps/contents.json')
             .reply(200, []);
         nock('https://raw.githubusercontent.com:443')
-            .get('/jenkinsci/bom/master/bom-latest/pom.xml')
+            .get('/jenkinsci/bom/master/bom-weekly/pom.xml')
             .reply(200, '');
         nock('https://raw.githubusercontent.com:443')
             .get('/jenkinsci/jenkins/master/core/src/main/resources/jenkins/split-plugins.txt')
@@ -82,6 +83,6 @@ describe('Utils', () => {
                 {'timestamp': 1622520000000, 'total': 269}]}
         };
         await utils.fetchPluginData({createNode, createNodeId, createContentDigest, reporter: _reporter, firstReleases, labelToCategory, stats});
-        expect(createNode.mock.calls[0][0]).toMatchSnapshot();
+        expect(createNode.mock.calls.filter(call => call[0].name === 'ios-device-connector').map(args => args[0])).toMatchSnapshot();
     });
 });

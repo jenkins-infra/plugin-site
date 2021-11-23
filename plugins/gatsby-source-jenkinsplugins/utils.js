@@ -25,7 +25,7 @@ const requestGET = async ({url, reporter}) => {
         }
         return results.data;
     } catch (err) {
-        reporter.error(`error trying to fetch ${url}`, err);
+        reporter.panic(`error trying to fetch ${url}`, err);
         throw err;
     } finally {
         activity.end();
@@ -47,7 +47,7 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
     const createWikiNode = async (mediaType, url, content) => {
         return createNode({
             id: `${pluginName} <<< JenkinsPluginWiki`,
-            plugin: pluginName,
+            name: pluginName,
             url: url,
             baseHref: `${path.dirname(url)}/`,
             internal: {
@@ -91,7 +91,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
         const pluginStats = stats[pluginName] || {installations: null};
         pluginStats.trend = computeTrend(plugin, stats, updateData.plugins);
         const allDependencies = getImpliedDependenciesAndTitles(plugin, detachedPlugins, updateData);
-        await getPluginContent({wiki: documentation[pluginName] || {}, pluginName, reporter, createNode, createNodeId, createNodeField, createRemoteFileNode, createContentDigest});
+        await getPluginContent({wiki: documentation[pluginName] || {url: ''}, pluginName, reporter, createNode, createNodeId, createNodeField, createRemoteFileNode, createContentDigest});
         delete plugin.wiki;
 
         const pluginNode = {
@@ -263,7 +263,7 @@ const fetchBomDependencies = async (reporter) => {
         const xml = await parseStringPromise(bom);
         return xml.project.dependencyManagement[0].dependencies[0].dependency.map(dep => dep.artifactId);
     } catch(ex) {
-        console.warn('Failed to fetch BOM data', ex);
+        reporter.error('Failed to fetch BOM data', ex);
     }
     return [];
 };

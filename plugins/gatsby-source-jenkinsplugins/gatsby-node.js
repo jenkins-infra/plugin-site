@@ -33,7 +33,7 @@ exports.createSchemaCustomization = ({actions}) => {
     const {createTypes} = actions;
     createTypes(`
         type JenkinsPlugin implements Node {
-            wiki: JenkinsPluginWiki @link(from: "name", by: "plugin")
+            wiki: JenkinsPluginWiki @link(from: "name", by: "name")
         }
         type JenkinsPluginWiki implements Node {
             childMarkdownRemark: MarkdownRemark
