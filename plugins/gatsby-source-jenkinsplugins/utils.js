@@ -47,6 +47,9 @@ const shouldFetchPluginContent = (id) => {
     return true;
 };
 
+
+const LEGACY_WIKI_URL_RE = /^https?:\/\/wiki.jenkins(-ci.org|.io)\/display\/(jenkins|hudson)\/([^/]*)\/?$/i;
+const MARKDOWN_BLOB_RE = /https?:\/\/github.com\/(jenkinsci|jenkins-infra)\/([^/.]+)\/blob\/([^/]+)\/(.+\.(md))$/;
 const getPluginContent = async ({wiki, pluginName, reporter, createNode, createContentDigest}) => {
     const createWikiNode = async (mediaType, url, content) => {
         return createNode({
@@ -67,15 +70,16 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
         return createWikiNode('text/plain', wiki.url, '');
     }
     try {
-        if (wiki.url.match(/^https?:\/\/wiki.jenkins(-ci.org|.io)\/display\/(jenkins|hudson)\/([^/]*)\/?$/i)) {
+        if (LEGACY_WIKI_URL_RE.exec(wiki.url)) {
             const url = `https://raw.githubusercontent.com/jenkins-infra/plugins-wiki-docs/master/${pluginName}/README.md`;
             const body = await requestGET({reporter, url: url});
             if (body) {
                 return createWikiNode('text/markdown', url, body);
             }
         }
-        if (wiki.url.match(/\/README.md$/i)) {
-            const url = wiki.url;
+        if (MARKDOWN_BLOB_RE.exec(wiki.url)) {
+            const matches = wiki.url.match(MARKDOWN_BLOB_RE);
+            const url = `https://raw.githubusercontent.com/${matches[1]}/${matches[2]}/${matches[3]}/${matches[4]}`;
             const body = await requestGET({reporter, url: url});
             if (body) {
                 return createWikiNode('text/markdown', url, body);
