@@ -18,13 +18,13 @@ pipeline {
 
     stage('NPM Install') {
       steps {
-        runDockerCommand('node:14',  'npm ci')
+        runDockerCommand('node:14.17',  'npm ci')
       }
     }
 
     stage('Build Production') {
       steps {
-        runDockerCommand('node:14',  'npm run build')
+        runDockerCommand('node:14.17',  'npm run build')
       }
     }
 
@@ -36,8 +36,8 @@ pipeline {
 
     stage('Lint and Test') {
       steps {
-        runDockerCommand('node:14',  'npm run lint')
-        runDockerCommand('node:14',  'npm run test')
+        runDockerCommand('node:14.17',  'npm run lint')
+        runDockerCommand('node:14.17',  'npm run test')
       }
     }
   }

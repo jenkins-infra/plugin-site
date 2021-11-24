@@ -9,7 +9,7 @@ export const PluginFragment = graphql`
     url
     version
     wiki {
-      content
+      html
       url
     }
     stats {

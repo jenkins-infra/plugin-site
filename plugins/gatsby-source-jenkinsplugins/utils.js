@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const axios = require('axios');
+const path = require('path');
 const crypto = require('crypto');
 const {execSync} = require('child_process');
 const axiosRetry = require('axios-retry');
@@ -13,24 +14,31 @@ const API_URL = process.env.JENKINS_IO_API_URL || 'https://plugins.jenkins.io/ap
 
 axiosRetry(axios, {retries: 3});
 
-const requestGET = ({url, reporter}) => {
+const requestGET = async ({url, reporter}) => {
     const activity = reporter.activityTimer(`Fetching '${url}'`);
     activity.start();
 
-    return axios
-        .get(url)
-        .then((results) => {
-            activity.end();
-
-            if (results.status !== 200) {
-                throw results.data;
-            }
-            return results.data;
-        });
+    try {
+        const results = await axios.get(url);
+        if (results.status !== 200) {
+            throw results.data;
+        }
+        return results.data;
+    } catch (err) {
+        if (err?.response?.status == 404) {
+            reporter.error(`${url} does not return any data`);
+            return null;
+        }
+        reporter.panic(`error trying to fetch ${url}`, err);
+        throw err;
+    } finally {
+        activity.end();
+    }
 };
 
+const singleContents = process.env.GET_CONTENT_SINGLE?.split(',')?.map(s => s.trim());
 const shouldFetchPluginContent = (id) => {
-    if (process.env.GET_CONTENT_SINGLE && process.env.GET_CONTENT_SINGLE === id) {
+    if (singleContents && singleContents.includes(id)) {
         return true;
     }
     if (!process.env.GET_CONTENT) {
@@ -39,23 +47,53 @@ const shouldFetchPluginContent = (id) => {
     return true;
 };
 
-const getPluginContent = async ({wiki, pluginName, reporter}) => {
+
+const LEGACY_WIKI_URL_RE = /^https?:\/\/wiki.jenkins(-ci.org|.io)\/display\/(jenkins|hudson)\/([^/]*)\/?$/i;
+const MARKDOWN_BLOB_RE = /https?:\/\/github.com\/(jenkinsci|jenkins-infra)\/([^/.]+)\/blob\/([^/]+)\/(.+\.(md))$/;
+const getPluginContent = async ({wiki, pluginName, reporter, createNode, createContentDigest}) => {
+    const createWikiNode = async (mediaType, url, content) => {
+        return createNode({
+            id: `${pluginName} <<< JenkinsPluginWiki`,
+            name: pluginName,
+            url: url,
+            baseHref: `${path.dirname(url)}/`,
+            internal: {
+                type: 'JenkinsPluginWiki',
+                content: content,
+                contentDigest: createContentDigest(content),
+                mediaType: mediaType,
+            }
+        });
+    };
+
     if (!shouldFetchPluginContent(pluginName)) {
-        wiki.content = '';
-        return wiki;
+        return createWikiNode('text/plain', wiki.url, '');
     }
-    return requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`}).then(data => {
-        if (!data.wiki) {
-            console.warn('Results from plugin site did not include wiki', pluginName, data);
-            return wiki;
+    try {
+        if (LEGACY_WIKI_URL_RE.exec(wiki.url)) {
+            const url = `https://raw.githubusercontent.com/jenkins-infra/plugins-wiki-docs/master/${pluginName}/README.md`;
+            const body = await requestGET({reporter, url: url});
+            if (body) {
+                return createWikiNode('text/markdown', url, body);
+            }
         }
-        wiki.content = data.wiki.content || wiki.content || '';
-        wiki.url = data.wiki.url || wiki.url || '';
-        return wiki;
-    });
+        if (MARKDOWN_BLOB_RE.exec(wiki.url)) {
+            const matches = wiki.url.match(MARKDOWN_BLOB_RE);
+            const url = `https://raw.githubusercontent.com/${matches[1]}/${matches[2]}/${matches[3]}/${matches[4]}`;
+            const body = await requestGET({reporter, url: url});
+            if (body) {
+                return createWikiNode('text/markdown', url, body);
+            }
+        }
+        const data = await requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`});
+        return createWikiNode('text/html', wiki.url, data.wiki.content);
+    } catch (err) {
+        reporter.error(`error fetching ${pluginName}`, err);
+        return createWikiNode('text/plain', wiki.url, 'MISSING');
+    }
 };
 
-const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, documentation, bomDependencies, pipelinePluginIds, firstReleases, createContentDigest, createNodeId, reporter, plugin}) => {
+const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, documentation, bomDependencies, pipelinePluginIds, firstReleases, createContentDigest, createNodeId, createNodeField, createRemoteFileNode, reporter, plugin}) => {
     return async function () {
         const pluginName = plugin.name.trim();
         names.push(pluginName);
@@ -65,13 +103,13 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
         const pluginStats = stats[pluginName] || {installations: null};
         pluginStats.trend = computeTrend(plugin, stats, updateData.plugins);
         const allDependencies = getImpliedDependenciesAndTitles(plugin, detachedPlugins, updateData);
-        const wiki = await getPluginContent({wiki: documentation[pluginName] || {}, pluginName, reporter});
+        await getPluginContent({wiki: documentation[pluginName] || {url: ''}, pluginName, reporter, createNode, createNodeId, createNodeField, createRemoteFileNode, createContentDigest});
+        delete plugin.wiki;
 
         const pluginNode = {
             ...plugin,
-            id: createNodeId(plugin.name.trim()),
+            id: createNodeId(`${plugin.name.trim()} <<< JenkinsPlugin`),
             stats: pluginStats,
-            wiki: wiki,
             securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
                 .map(w => checkActive(w, plugin)),
             dependencies: allDependencies,
@@ -90,7 +128,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
         for (const maintainer of developers) {
             const developerNode = {
                 ...maintainer,
-                id: createNodeId(maintainer.id),
+                id: createNodeId(`${maintainer.id} <<< JenkinsDeveloper`),
                 internal: {
                     type: 'JenkinsDeveloper',
                     contentDigest: crypto.createHash('md5').update(maintainer.id).digest('hex')
@@ -104,7 +142,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
                 ...dependency,
                 dependentTitle: plugin.title,
                 dependentName: plugin.name,
-                id: createNodeId(`${pluginName}:${dependency.name.trim()}`),
+                id: createNodeId(`${pluginName}:${dependency.name.trim()} <<< JenkinsPluginDependency`),
                 internal: {
                     type: 'JenkinsPluginDependency',
                 }
@@ -115,7 +153,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
     };
 };
 
-const fetchPluginData = async ({createNode, createContentDigest, createNodeId, reporter, firstReleases, stats}) => {
+const fetchPluginData = async ({createNode, createContentDigest, createNodeId, createNodeField, createRemoteFileNode, reporter, firstReleases, stats}) => {
     const sectionActivity = reporter.activityTimer('fetch plugins info');
     sectionActivity.start();
     const names = [];
@@ -152,6 +190,8 @@ const fetchPluginData = async ({createNode, createContentDigest, createNodeId, r
         createNode,
         createContentDigest,
         createNodeId,
+        createNodeField,
+        createRemoteFileNode,
         reporter
     })));
     await queue.onIdle();
@@ -230,12 +270,12 @@ const getPercentage = (name, stats, monthsAgo) => {
 
 const fetchBomDependencies = async (reporter) => {
     try {
-        const bomUrl = 'https://raw.githubusercontent.com/jenkinsci/bom/master/bom-latest/pom.xml';
+        const bomUrl = 'https://raw.githubusercontent.com/jenkinsci/bom/master/bom-weekly/pom.xml';
         const bom = await requestGET({url: bomUrl, reporter});
         const xml = await parseStringPromise(bom);
         return xml.project.dependencyManagement[0].dependencies[0].dependency.map(dep => dep.artifactId);
     } catch(ex) {
-        console.warn('Failed to fetch BOM data', ex);
+        reporter.error('Failed to fetch BOM data', ex);
     }
     return [];
 };

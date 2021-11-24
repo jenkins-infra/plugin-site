@@ -2,7 +2,8 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import PropTypes from 'prop-types';
 import {StaticQuery, graphql} from 'gatsby';
-import URL from 'url';
+
+const urlResolve = (base, url) => new URL(url, base).toString();
 
 const SEO = ({title, description, image, pathname, article}) => (
     <StaticQuery
@@ -22,8 +23,8 @@ const SEO = ({title, description, image, pathname, article}) => (
             const seo = {
                 title: title || defaultTitle,
                 description: description || defaultDescription,
-                image: URL.resolve(siteUrl, image || defaultImage),
-                url: URL.resolve(siteUrl, pathname || '/'),
+                image: urlResolve(siteUrl, image || defaultImage),
+                url: urlResolve(siteUrl, pathname || '/'),
             };
             return (
                 <>

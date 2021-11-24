@@ -19,8 +19,8 @@ function Category({activeCategories, category, toggleCategory, toggleLabel, acti
     `);
     const handleOnChange = () => toggleCategory(category);
 
-    const matchedLabels = category.labels.map((id) => data.labels.edges.find(({node: label}) => label.id === id));
-    const checked = activeCategories.find((active) => active === category.id) !== undefined;
+    const matchedLabels = category?.labels?.map((id) => data.labels.edges.find(({node: label}) => label.id === id)) || [];
+    const checked = activeCategories?.find((active) => active === category.id) !== undefined;
     return (
         <li className={classNames(category.id, {mask: checked})}>
             <label>

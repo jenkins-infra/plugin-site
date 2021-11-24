@@ -42,7 +42,48 @@ module.exports = {
 };
 
 module.exports.plugins = [
+    {
+        resolve: 'gatsby-transformer-asciidoc',
+        options: {
+            attributes: {
+            },
+        },
+    },
     'gatsby-transformer-sharp',
+    {
+        resolve: 'gatsby-transformer-remark',
+        options: {
+            excerpt_separator: '<!-- excerpt -->',
+            plugins: [
+                {resolve: 'gatsby-remark-remote-relative-images'},
+                {
+                    resolve: 'gatsby-remark-images',
+                    options: {
+                        maxWidth: 1200
+                    }
+                },
+                {
+                    resolve: 'gatsby-remark-responsive-iframe'
+                },
+                {
+                    resolve: 'gatsby-remark-embed-youtube',
+                    options: {
+                        width: 800,
+                        height: 400
+                    }
+                },
+                {
+                    resolve: 'gatsby-remark-autolink-headers',
+                    options: {
+                        isIconAfterHeader: true
+                    }
+                },
+                'gatsby-remark-prismjs',
+                'gatsby-remark-copy-linked-files',
+                'gatsby-remark-emoji'
+            ]
+        }
+    },
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
@@ -96,5 +137,11 @@ module.exports.plugins = [
             siteUrl: module.exports.siteMetadata.siteUrl.trim('/'),
             respectDnt: false, // firefox has do not track on by default, and all this data is anonymised, so for enable it for now
         }
-    } : null
+    } : null,
+    {
+        resolve: 'gatsby-plugin-extract-schema',
+        options: {
+            dest: `${__dirname}/schema.graphql`,
+        },
+    },
 ].filter(Boolean);
