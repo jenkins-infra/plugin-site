@@ -29,14 +29,40 @@ exports.sourceNodes = async (
     }
 };
 
+
+function getNestedObject(obj, path) {
+    const properties = Array.isArray(path) ? path : path.split('.');
+    return properties.reduce((prev, curr) => prev && prev[curr], obj);
+}
+
 exports.createSchemaCustomization = ({actions}) => {
-    const {createTypes} = actions;
+    const {createFieldExtension, createTypes} = actions;
+
+    createFieldExtension({
+        name: 'unionFields',
+        args: {
+            fields: '[String!]!',
+        },
+        extend(options) {
+            return {
+                resolve(source) {
+                    for (const field of options.fields) {
+                        const value = getNestedObject(source, field.split('.'));
+                        if (value) {
+                            return value;
+                        }
+                    }
+                    return null;
+                },
+            };
+        },
+    });
     createTypes(`
         type JenkinsPlugin implements Node {
             wiki: JenkinsPluginWiki @link(from: "name", by: "name")
         }
         type JenkinsPluginWiki implements Node {
-            childMarkdownRemark: MarkdownRemark
+            html: String @unionFields(fields: ["childMarkdownRemark.html","internal.content"])
         }
     `);
 };

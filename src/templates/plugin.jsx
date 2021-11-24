@@ -42,23 +42,20 @@ function getDefaultTab() {
 }
 
 const PluginWikiContent = ({wiki}) => {
-    if (wiki?.childMarkdownRemark) {
-        return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childMarkdownRemark.html}} />;
+    if (wiki?.html) {
+        return <div className="content" dangerouslySetInnerHTML={{__html: wiki.html}} />;
     }
-    if (wiki?.internal?.content) {
-        return <div className="content" dangerouslySetInnerHTML={{__html: wiki.internal.content}} />;
-    }
-    return null;
+    return (<div className="content">
+        Documentation for this plugin is here:
+        {' '}
+        <a href={wiki.url} />
+    </div>);
 };
 PluginWikiContent.displayName = 'PluginWikiContent';
 PluginWikiContent.propTypes = {
     wiki: PropTypes.shape({
-        childMarkdownRemark: PropTypes.shape({
-            html: PropTypes.string.isRequired
-        }),
-        internal: PropTypes.shape({
-            content: PropTypes.string.isRequired
-        })
+        html: PropTypes.string,
+        url: PropTypes.string.isRequired
     }).isRequired,
 };
 
