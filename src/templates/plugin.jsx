@@ -51,7 +51,7 @@ const PluginWikiContent = ({wiki}) => {
     return (<div className="content">
         Documentation for this plugin is here:
         {' '}
-        <a href={wiki.url} />
+        <a href={wiki.url}>{wiki.url}</a>
     </div>);
 };
 PluginWikiContent.displayName = 'PluginWikiContent';
