@@ -67,7 +67,7 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
     };
 
     if (!shouldFetchPluginContent(pluginName)) {
-        return createWikiNode('text/plain', wiki.url, '');
+        return createWikiNode('text/pluginhtml', wiki.url, '');
     }
     try {
         if (LEGACY_WIKI_URL_RE.exec(wiki.url)) {
