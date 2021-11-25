@@ -29,40 +29,43 @@ exports.sourceNodes = async (
     }
 };
 
-
-function getNestedObject(obj, path) {
-    const properties = Array.isArray(path) ? path : path.split('.');
-    return properties.reduce((prev, curr) => prev && prev[curr], obj);
-}
-
 exports.createSchemaCustomization = ({actions}) => {
-    const {createFieldExtension, createTypes} = actions;
+    const {createTypes} = actions;
 
-    createFieldExtension({
-        name: 'unionFields',
-        args: {
-            fields: '[String!]!',
-        },
-        extend(options) {
-            return {
-                resolve(source) {
-                    for (const field of options.fields) {
-                        const value = getNestedObject(source, field.split('.'));
-                        if (value) {
-                            return value;
-                        }
-                    }
-                    return null;
-                },
-            };
-        },
-    });
     createTypes(`
         type JenkinsPlugin implements Node {
             wiki: JenkinsPluginWiki @link(from: "name", by: "name")
         }
-        type JenkinsPluginWiki implements Node {
-            html: String @unionFields(fields: ["childMarkdownRemark.html","internal.content"])
-        }
     `);
 };
+
+
+async function onCreateNode({node, actions, loadNodeContent, createNodeId, reporter, createContentDigest}) {
+    if (!['text/pluginhtml'].includes(node.internal.mediaType)) {
+        return;
+    }
+
+    const {createNode, createParentChildLink} = actions; // Load Asciidoc contents
+    const html = await loadNodeContent(node); // Load Asciidoc file for extracting
+
+    try {
+        const htmlNode = {
+            id: createNodeId(`${node.id} >>> PluginHTML`),
+            parent: node.id,
+            internal: {
+                type: 'JenkinsPluginHtml'
+            },
+            children: [],
+            html,
+        };
+
+        htmlNode.internal.contentDigest = createContentDigest(htmlNode);
+        createNode(htmlNode);
+        createParentChildLink({parent: node, child: htmlNode});
+    } catch (err) {
+        reporter.panicOnBuild(`Error processing html ${node.absolutePath ? `file ${node.absolutePath}` : `in node ${node.id}`}:\n ${err.message}`);
+    }
+}
+exports.onCreateNode = onCreateNode;
+
+

@@ -8,7 +8,7 @@ Array [
     "internal": Object {
       "content": "MISSING",
       "contentDigest": "10d1208b485425756fcc932229386b02",
-      "mediaType": "text/plain",
+      "mediaType": "text/pluginhtml",
       "type": "JenkinsPluginWiki",
     },
     "name": "ios-device-connector",

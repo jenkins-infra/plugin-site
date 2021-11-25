@@ -9,8 +9,13 @@ export const PluginFragment = graphql`
     url
     version
     wiki {
-      html
-      url
+        childMarkdownRemark {
+            html
+        }
+        childJenkinsPluginHtml {
+            html
+        }
+        url
     }
     stats {
       currentInstalls

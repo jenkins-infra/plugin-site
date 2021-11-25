@@ -86,10 +86,10 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
             }
         }
         const data = await requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`});
-        return createWikiNode('text/html', wiki.url, data.wiki.content);
+        return createWikiNode('text/pluginhtml', wiki.url, data.wiki.content);
     } catch (err) {
         reporter.error(`error fetching ${pluginName}`, err);
-        return createWikiNode('text/plain', wiki.url, 'MISSING');
+        return createWikiNode('text/pluginhtml', wiki.url, 'MISSING');
     }
 };
 
