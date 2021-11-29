@@ -60,13 +60,16 @@ const doSearch = (data, setResults, categoriesMap) => {
                 filters: filters.join(' AND ')
             }
         ).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
-            setResults({
+            return setResults({
                 total: nbHits,
                 pages: nbPages + 1,
                 page: page + 1,
                 limit: hitsPerPage,
                 plugins: hits
             });
+        }).catch(err => {
+            window?.Sentry?.captureException(err);
+            // FIXME alert/console.log/somehow tell user something went wrong
         });
     } else {
         const params = querystring.stringify({labels, page, q: query, sort});
@@ -86,7 +89,11 @@ const doSearch = (data, setResults, categoriesMap) => {
                 data.pages = data.pages + 1;
                 return data;
             })
-            .then(setResults);
+            .then(setResults)
+            .catch(err => {
+                window?.Sentry?.captureException(err);
+                // FIXME alert/console.log/somehow tell user something went wrong
+            });
     }
 };
 
