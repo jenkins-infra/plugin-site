@@ -17,6 +17,7 @@ import PluginDevelopers from '../components/PluginDevelopers';
 import PluginReadableInstalls from '../components/PluginReadableInstalls';
 import PluginIssues from '../components/PluginIssues';
 import PluginReleases from '../components/PluginReleases';
+import PluginIssueTrackers from '../components/PluginIssueTrackers';
 
 function shouldShowWikiUrl({url}) {
     return url?.startsWith('https://wiki.jenkins-ci.org') || url?.startsWith('https://wiki.jenkins.io') || url?.includes('github.com/jenkins-infra/plugins-wiki-docs');
@@ -132,10 +133,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     <div className="sidebarSection">
                         <h5>Links</h5>
                         {plugin.scm && <div className="label-link"><a href={plugin.scm}>GitHub</a></div>}
-                        {plugin.issueTrackers && plugin.issueTrackers[0] && <>
-                            <div className="label-link"><a href={plugin.issueTrackers[0].viewUrl}>Open issues</a></div>
-                            <div className="label-link"><a href={plugin.issueTrackers[0].reportUrl}>Report an issue</a></div>
-                        </>}
+                        <PluginIssueTrackers issueTrackers={plugin.issueTrackers} />
                         {plugin.hasPipelineSteps && <div className="label-link"><a href={`https://www.jenkins.io/doc/pipeline/steps/${plugin.name}`}>Pipeline Step Reference</a></div>}
                         <div className="label-link"><a href={`https://javadoc.jenkins.io/plugin/${plugin.name}`}>Javadoc</a></div>
                     </div>
