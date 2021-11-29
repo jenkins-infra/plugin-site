@@ -7,7 +7,8 @@ module.exports = {
     'extends': [
         'eslint:recommended',
         'plugin:import/recommended',
-        'plugin:react/recommended'
+        'plugin:react/recommended',
+        'plugin:promise/recommended'
     ],
     'overrides': [
         {
@@ -27,6 +28,7 @@ module.exports = {
     ],
     'parser': 'babel-eslint',
     'plugins': [
+        'promise',
         'react',
         'import'
     ],

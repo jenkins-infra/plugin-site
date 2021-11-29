@@ -1,14 +1,12 @@
 /* eslint-env node */
 /* eslint-disable no-console */
-const url = require('url');
-
-const mkdirp = require('mkdirp');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const fs = require('fs/promises');
 
 async function makeReactLayout() {
     const headerUrl = process.env.HEADER_FILE || 'https://www.jenkins.io/template/index.html';
-    const manifestUrl = url.resolve(headerUrl, '/site.webmanifest');
+    const manifestUrl = new URL('/site.webmanifest', headerUrl).toString();
 
     if (!headerUrl) {
         return null;
@@ -32,7 +30,7 @@ async function makeReactLayout() {
     ];
 
     console.info(`Downloading header file from '${headerUrl}'`);
-    const parsedHeaderUrl = url.parse(headerUrl);
+    const parsedHeaderUrl = new URL(headerUrl);
     const baseUrl = `${parsedHeaderUrl.protocol}//${parsedHeaderUrl.hostname}${ parsedHeaderUrl.port ? `:${parsedHeaderUrl.port}` : ''}`;
     const content = await axios
         .get(headerUrl)
@@ -149,10 +147,10 @@ async function makeReactLayout() {
     jsxLines.push('  return (');
     jsxLines.push('    <div id={id}>');
     jsxLines.push('      <Helmet>');
-    $('head').children(':not(link[rel="stylesheet"])').each((idx, child) => handleNode(child, 2));
-    $('head').children('link[rel="stylesheet"]').each((idx, child) => handleNode(child, 2));
+    $('head').children(':not(link[rel="stylesheet"])').each((_, child) => handleNode(child, 2));
+    $('head').children('link[rel="stylesheet"]').each((_, child) => handleNode(child, 2));
     jsxLines.push('      </Helmet>');
-    $('body').children().each((idx, child) => handleNode(child, 0));
+    $('body').children().each((_, child) => handleNode(child, 0));
     jsxLines.push('    </div>');
     jsxLines.push('  );');
 
@@ -168,7 +166,7 @@ async function makeReactLayout() {
                 throw results.data;
             }
             results.data.icons.forEach(icon => {
-                icon.src = url.resolve(manifestUrl, icon.src);
+                icon.src = new URL(icon.src, manifestUrl).toString();
             });
             results.data.start_url = 'https://plugins.jenkins.io';
             return JSON.stringify(results.data);
@@ -181,21 +179,22 @@ async function makeReactLayout() {
     };
 }
 
+async function saveReactLayout({jsxLines, cssLines, manifest}) {
+    if (manifest) {
+        await fs.mkdir('static', {recursive: true});
+        await fs.writeFile('./static/site.webmanifest', manifest);
+    }
+    if (jsxLines) {
+        await fs.writeFile('./src/layout.jsx', jsxLines);
+    }
+    if (cssLines) {
+        await fs.writeFile('./src/layout.css', cssLines);
+    }
+}
+
 exports.makeReactLayout = makeReactLayout;
+exports.saveReactLayout = saveReactLayout;
 
 if (require.main === module) {
-    makeReactLayout().then(data => {
-        const fs = require('fs');
-        const {jsxLines, cssLines, manifest} = data;
-        if (manifest) {
-            mkdirp.sync('static');
-            fs.writeFileSync('./static/site.webmanifest', manifest);
-        }
-        if (jsxLines) {
-            fs.writeFileSync('./src/layout.jsx', jsxLines);
-        }
-        if (cssLines) {
-            fs.writeFileSync('./src/layout.css', cssLines);
-        }
-    });
+    makeReactLayout().then(saveReactLayout).catch(console.error);
 }
