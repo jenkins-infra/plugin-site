@@ -1,22 +1,11 @@
 /* eslint-env node */
 /* eslint-disable no-console */
 const path = require('path');
-const fs = require('fs/promises');
 
-const {makeReactLayout} = require('./utils');
+const {makeReactLayout, saveReactLayout} = require('./makeLayout');
 
 exports.onPreBootstrap = async () => {
-    const {jsxLines, cssLines, manifest} = await makeReactLayout();
-    if (manifest) {
-        await fs.mkdir('static', {recursive: true});
-        await fs.writeFile('./static/site.webmanifest', manifest);
-    }
-    if (jsxLines) {
-        await fs.writeFile('./src/layout.jsx', jsxLines);
-    }
-    if (cssLines) {
-        await fs.writeFile('./src/layout.css', cssLines);
-    }
+    await makeReactLayout().then(saveReactLayout);
 };
 
 

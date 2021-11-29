@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 const axios = require('axios');
 const cheerio = require('cheerio');
+const fs = require('fs/promises');
 
 async function makeReactLayout() {
     const headerUrl = process.env.HEADER_FILE || 'https://www.jenkins.io/template/index.html';
@@ -178,21 +179,22 @@ async function makeReactLayout() {
     };
 }
 
+async function saveReactLayout({jsxLines, cssLines, manifest}) {
+    if (manifest) {
+        await fs.mkdir('static', {recursive: true});
+        await fs.writeFile('./static/site.webmanifest', manifest);
+    }
+    if (jsxLines) {
+        await fs.writeFile('./src/layout.jsx', jsxLines);
+    }
+    if (cssLines) {
+        await fs.writeFile('./src/layout.css', cssLines);
+    }
+}
+
 exports.makeReactLayout = makeReactLayout;
+exports.saveReactLayout = saveReactLayout;
 
 if (require.main === module) {
-    (async function () {
-        const fs = require('fs/promises');
-        const {jsxLines, cssLines, manifest} = await makeReactLayout();
-        if (manifest) {
-            await fs.mkdir('static', {recursive: true});
-            await fs.writeFile('./static/site.webmanifest', manifest);
-        }
-        if (jsxLines) {
-            await fs.writeFile('./src/layout.jsx', jsxLines);
-        }
-        if (cssLines) {
-            await fs.writeFile('./src/layout.css', cssLines);
-        }
-    })();
+    makeReactLayout().then(saveReactLayout).catch(console.error);
 }
