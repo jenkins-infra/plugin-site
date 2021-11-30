@@ -1,4 +1,0 @@
-Related to issue # 
-
-Summary of this pull request: 
-
