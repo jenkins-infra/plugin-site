@@ -5,7 +5,7 @@
     "packageRules": [
         {
             "matchPackageNames": ["p-queue"],
-            "enabled": false,
+            "enabled": false
         },
         {
             "matchUpdateTypes": ["minor", "patch", "pin", "digest","devDependencies"],
