@@ -39,6 +39,7 @@ export const PluginFragment = graphql`
     }
     issueTrackers {
       reportUrl
+      type
       viewUrl
     }
     scm

@@ -1,8 +1,8 @@
 import React from 'react';
 import querystring from 'querystring';
 import {navigate} from 'gatsby';
+import ucFirst from '../utils/ucfirst';
 
-const ucFirst = s => s.substr(0, 1).toUpperCase() + s.substr(1).toLowerCase();
 const DEFAULT_DATA = {
     sort: 'relevance',
     categories: [],
