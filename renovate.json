@@ -1,0 +1,18 @@
+{
+    "extends": [
+        "config:base"
+    ],
+    "schedule": [
+        "every weekday"
+    ],
+    "packageRules": [
+        {
+            "matchPackageNames": ["p-queue", "husky"],
+            "enabled": false
+        },
+        {
+            "matchUpdateTypes": ["minor", "patch", "pin", "digest","devDependencies"],
+            "automerge": true
+        }
+    ]
+}
