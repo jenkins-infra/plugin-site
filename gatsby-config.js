@@ -49,6 +49,29 @@ module.exports.plugins = [
             },
         },
     },
+    {
+        resolve: '@halkeye/gatsby-transformer-rehype',
+        options: {
+            filter: node => node.internal.type === 'JenkinsPluginWiki',
+            source: node => node.internal.content,
+            contextFields: [],
+            // EmitParseErrors mode (optional, default: false)
+            emitParseErrors: true,
+            // Verbose mode (optional, default: false)
+            verbose: true,
+            // Plugins configs (optional but most likely you need one)
+            plugins: [
+                {
+                    resolve: '@halkeye/gatsby-rehype-autolink-headers',
+                    options: {
+                        elements: ['h1', 'h2', 'h3'],
+                        isIconAfterHeader: true
+                    }
+                },
+                // 'gatsby-rehype-prismjs',
+            ],
+        }
+    },
     'gatsby-transformer-sharp',
     {
         resolve: 'gatsby-transformer-remark',

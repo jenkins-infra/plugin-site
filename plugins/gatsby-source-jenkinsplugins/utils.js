@@ -2,6 +2,7 @@
 const axios = require('axios');
 const path = require('path');
 const crypto = require('crypto');
+const cheerio = require('cheerio');
 const {execSync} = require('child_process');
 const axiosRetry = require('axios-retry');
 const dateFNs = require('date-fns');
@@ -86,6 +87,11 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
             }
         }
         const data = await requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`});
+
+        const $ = cheerio.load(data.wiki.content);
+        $('a[id^="user-content"][href^="#"]').remove();
+        data.wiki.content = $.html();
+
         return createWikiNode('text/pluginhtml', wiki.url, data.wiki.content);
     } catch (err) {
         reporter.error(`error fetching ${pluginName}`, err);
