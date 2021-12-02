@@ -64,7 +64,7 @@ module.exports.plugins = [
                 {
                     resolve: '@halkeye/gatsby-rehype-autolink-headers',
                     options: {
-                        elements: ['h1', 'h2', 'h3'],
+                        prependId: 'plugin-content-',
                         isIconAfterHeader: true
                     }
                 },
