@@ -46,8 +46,8 @@ const PluginWikiContent = ({wiki}) => {
     if (wiki?.childMarkdownRemark) {
         return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childMarkdownRemark.html}} />;
     }
-    if (wiki?.childJenkinsPluginHtml) {
-        return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childJenkinsPluginHtml.html}} />;
+    if (wiki?.childHtmlRehype) {
+        return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childHtmlRehype.html}} />;
     }
     return (<div className="content">
         Documentation for this plugin is here:
@@ -61,7 +61,7 @@ PluginWikiContent.propTypes = {
         childMarkdownRemark: PropTypes.shape({
             html: PropTypes.string,
         }),
-        childJenkinsPluginHtml: PropTypes.shape({
+        childHtmlRehype: PropTypes.shape({
             html: PropTypes.string,
         }),
         url: PropTypes.string.isRequired
