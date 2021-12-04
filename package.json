@@ -115,6 +115,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "7.16.0",
     "@sentry/node": "6.15.0",
+    "@testing-library/jest-dom": "^5.16.0",
+    "@testing-library/react": "^12.1.2",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "axios-retry": "3.2.4",
     "babel-jest": "27.4.2",
@@ -138,6 +140,7 @@
     "husky": "^4.3.7",
     "identity-obj-proxy": "3.0.0",
     "jest": "27.4.3",
+    "jest-canvas-mock": "^2.3.1",
     "jest-junit": "13.0.0",
     "lint-staged": "12.1.2",
     "nock": "13.2.1",

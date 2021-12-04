@@ -25,6 +25,7 @@ module.exports = {
                 '__mocks__/**/*.js',
                 '__mocks__/**/*.jsx',
                 '**/*.test.js',
+                '**/*.test.jsx',
             ],
             'plugins': [
                 'jest'
@@ -32,6 +33,14 @@ module.exports = {
             'rules': {
                 'jest/no-hooks': 'off',
                 'jest/prefer-expect-assertions': 'off'
+            }
+        },
+        {
+            'files': [
+                '*config.js',
+            ],
+            'rules': {
+                'sort-keys': 'error'
             }
         }
     ],

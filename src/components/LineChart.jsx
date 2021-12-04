@@ -67,7 +67,7 @@ function LineChart({installations}) {
     if (typeof window !== 'undefined') {
         window.ResizeObserver = window.ResizeObserver || ResizeObserverPolyfill;
     }
-    if (!installations) {
+    if (!installations?.length) {
         return null;
     }
     const labels = [];
@@ -87,6 +87,10 @@ function LineChart({installations}) {
         </div>
     );
 }
+
+LineChart.defaultProps = {
+    installations: []
+};
 
 LineChart.propTypes = {
     installations: PropTypes.arrayOf(PropTypes.shape({
