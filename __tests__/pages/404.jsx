@@ -4,25 +4,25 @@ import {useStaticQuery} from 'gatsby';
 import Page404 from '../../src/pages/404';
 
 
-beforeEach(() => {
-    useStaticQuery.mockImplementationOnce(() => {
-        return {
-            jenkinsPluginSiteInfo: {
-                api: {
-                    commit: 'FAKECommit'
+describe('page404', () => {
+    beforeEach(() => {
+        useStaticQuery.mockImplementationOnce(() => {
+            return {
+                jenkinsPluginSiteInfo: {
+                    api: {
+                        commit: 'FAKECommit'
+                    },
+                    website: {
+                        commit: 'FAKECommit'
+                    }
                 },
-                website: {
-                    commit: 'FAKECommit'
+                site: {
+                    buildTime: new Date(1578980455).getUTCDate()
                 }
-            },
-            site: {
-                buildTime: new Date(1578980455).getUTCDate()
-            }
-        };
+            };
+        });
     });
-});
 
-describe('Page404', () => {
     it('renders correctly', () => {
         const tree = renderer.create(<Page404 />).toJSON();
         expect(tree).toBeTruthy();

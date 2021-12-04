@@ -12,8 +12,12 @@ module.exports = {
     ],
     'overrides': [
         {
-            'env': {'jest': true},
-            'extends': ['plugin:jest/recommended'],
+            'env': {
+                'jest/globals': true
+            },
+            'extends': [
+                'plugin:jest/all'
+            ],
             'files': [
                 'loadershim.js',
                 '__tests__/**/*.js',
@@ -22,11 +26,16 @@ module.exports = {
                 '__mocks__/**/*.jsx',
                 '**/*.test.js',
             ],
-            'plugins': ['jest'],
-            'rules': {}
+            'plugins': [
+                'jest'
+            ],
+            'rules': {
+                'jest/no-hooks': 'off',
+                'jest/prefer-expect-assertions': 'off'
+            }
         }
     ],
-    'parser': 'babel-eslint',
+    'parser': '@babel/eslint-parser',
     'plugins': [
         'promise',
         'react',
@@ -80,7 +89,7 @@ module.exports = {
         'strict': [2, 'global'],
     },
     'settings': {
-        'import/extensions': [ '.js', '.jsx' ],
+        'import/extensions': ['.js', '.jsx'],
         'import/resolver': {'node': {'extensions': ['.js', '.jsx']}},
         'react': {'version': 'detect'},
     },
