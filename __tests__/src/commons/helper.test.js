@@ -3,10 +3,10 @@ import {cleanTitle} from '../../../src/commons/helper';
 describe('helpers', () => {
     describe('cleanTitle', () => {
         it('works', () => {
-            expect(cleanTitle('Jenkins foo')).toEqual('foo');
+            expect(cleanTitle('Jenkins foo')).toBe('foo');
         });
         it('undefined doesnt error', () => {
-            expect(cleanTitle(undefined)).toEqual(undefined);
+            expect(cleanTitle(undefined)).toBeUndefined();
         });
     });
 });

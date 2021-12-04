@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Utils Get plugin data for a wiki based plugin 1`] = `
+exports[`utils get plugin data for a wiki based plugin 1`] = `
 Array [
   Object {
     "baseHref": "https://wiki.jenkins-ci.org/display/JENKINS/",
