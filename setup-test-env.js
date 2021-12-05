@@ -1,18 +1,20 @@
 import '@testing-library/jest-dom/extend-expect';
 import 'jest-canvas-mock';
 
-class ResizeObserver {
-    observe() {}
-    unobserve() {}
-    disconnect() {}
+if (global.window) {
+    class ResizeObserver {
+        observe() {}
+        unobserve() {}
+        disconnect() {}
+    }
+
+    window.ResizeObserver = ResizeObserver;
+
+    class MutationObserver {
+        disconnect() {}
+        unobserve() {}
+        observe() {}
+    }
+
+    window.MutationObserver = MutationObserver;
 }
-
-window.ResizeObserver = ResizeObserver;
-
-class MutationObserver {
-    disconnect() {}
-    unobserve() {}
-    observe() {}
-}
-
-window.MutationObserver = MutationObserver;

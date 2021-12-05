@@ -26,8 +26,7 @@ describe('lineChart', () => {
         ];
         const {getByRole} = render(<LineChart installations={installations} />);
 
-        const canvas = getByRole('img');
-        expect(canvas).toBeTruthy();
+        expect(getByRole('img')).toBeTruthy();
     });
 });
 
