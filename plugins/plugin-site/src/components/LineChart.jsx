@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Line} from 'react-chartjs-2';
 import {ResizeObserver as ResizeObserverPolyfill} from '@juggle/resize-observer';
+import {Line} from 'react-chartjs-2';
+import {Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Filler} from 'chart.js';
+
+ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Filler);
+
 const MONTHS = {
     0: 'Jan',
     1: 'Feb',
@@ -24,17 +28,16 @@ const calculateMax = (data) => {
 const chartData = (labels, data) => {
     return {
         labels: labels,
-        datasets: [
-            {
-                label: 'Installs',
-                data,
-                fill: true,
-                backgroundColor: 'rgba(0,220,255,0.3)',
-                pointBackgroundColor: '#3399cc',
-                pointRadius: 2,
-                pointHitRadius: 10,
-            }
-        ]
+        datasets: [{
+            label: 'Installs',
+            data,
+            fill: true,
+            backgroundColor: ['rgba(0,220,255,0.3)'],
+            borderColor: 'rgb(75, 192, 192)',
+            pointBackgroundColor: '#3399cc',
+            pointRadius: 2,
+            pointHitRadius: 10,
+        }]
     };
 };
 
