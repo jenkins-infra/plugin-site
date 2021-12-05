@@ -19,7 +19,7 @@ module.exports = {
                 'plugin:jest/all'
             ],
             'files': [
-                'loadershim.js',
+                'jest-*.js',
                 '__tests__/**/*.js',
                 '__tests__/**/*.jsx',
                 '__mocks__/**/*.js',

@@ -45,6 +45,7 @@ spec:
   }
 
   environment {
+    TZ = "UTC"
     GET_CONTENT = "true"
     NODE_ENV = "production"
     HOME = "${WORKSPACE}"
