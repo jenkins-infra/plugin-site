@@ -124,6 +124,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
             hasBomEntry: !!bomDependencies.find(artifactId => plugin.gav.includes(`:${artifactId}:`)),
             parent: null,
             children: [],
+            buildDate: plugin.buildDate ? dateFNs.parse(plugin.buildDate, 'MMMM d, yyyy', new Date(0)) : null,
             internal: {
                 type: 'JenkinsPlugin',
             }
