@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {render} from '@testing-library/react';
-// import {screen} from '@testing-library/dom';
 
 import PluginLastReleased from './PluginLastReleased';
 
@@ -12,7 +11,6 @@ describe('pluginLastReleased', () => {
     });
     it('both release timestamp and builDate', async () => {
         const {container} = render(<PluginLastReleased releaseTimestamp="2017-02-09T15:19:10.00Z" buildDate="Feb 09, 2017" />);
-        // screen.debug();
 
         expect(container).toHaveTextContent('Released: 5 years ago');
         expect(container.querySelector('time')).toHaveAttribute('datetime', '2017-02-09T15:19:10.000Z');
@@ -20,7 +18,6 @@ describe('pluginLastReleased', () => {
     });
     it('only timestamp and no buildDate', async () => {
         const {container} = render(<PluginLastReleased releaseTimestamp="2017-02-09T15:19:10.00Z" />);
-        // screen.debug();
 
         expect(container).toHaveTextContent('Released: 5 years ago');
         expect(container.querySelector('time')).toHaveAttribute('datetime', '2017-02-09T15:19:10.000Z');
@@ -28,7 +25,6 @@ describe('pluginLastReleased', () => {
     });
     it('no timestamp and only buildDate', async () => {
         const {container} = render(<PluginLastReleased buildDate="Feb 09, 2017" />);
-        // screen.debug();
 
         expect(container).toHaveTextContent('Released: 5 years ago');
         expect(container.querySelector('time')).toHaveAttribute('datetime', '2017-02-09T00:00:00.000Z');
