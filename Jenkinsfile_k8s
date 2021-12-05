@@ -110,6 +110,9 @@ spec:
     }
 
     stage('Lint and Test') {
+      environment {
+        NODE_ENV = "development"
+      }
       steps {
         container('node') {
           sh 'npm run lint'
