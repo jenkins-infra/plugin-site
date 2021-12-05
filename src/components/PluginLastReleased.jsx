@@ -4,18 +4,17 @@ import moment from 'moment';
 import TimeAgo from 'react-timeago';
 import {formatter} from '../commons/helper';
 
-const getTime = (plugin) => {
-    if (plugin.releaseTimestamp !== null) {
-    // 2017-02-09T15:19:10.00Z
-        return moment.utc(plugin.releaseTimestamp);
-    } else {
-    // 2017-02-09
-        return moment.utc(plugin.buildDate, 'YYYY-MM-DD');
+const getTime = (releaseTimestamp, buildDate) => {
+    if (releaseTimestamp) {
+        // 2017-02-09T15:19:10.00Z
+        return moment.utc(releaseTimestamp);
     }
+    // 2017-02-09
+    return moment.utc(buildDate, ['MMM DD, YYYY', 'YYYY-MM-DD'], true);
 };
-  
-function PluginLastReleased({plugin}) {
-    const time = getTime(plugin);
+
+function PluginLastReleased({releaseTimestamp, buildDate}) {
+    const time = getTime(releaseTimestamp, buildDate);
     return (
         <div>
             {'Released: '}
@@ -23,12 +22,11 @@ function PluginLastReleased({plugin}) {
         </div>
     );
 }
-  
+
 PluginLastReleased.propTypes = {
-    plugin: PropTypes.shape({
-        releaseTimestamp: PropTypes.string,
-        buildDate: PropTypes.string
-    })
+    releaseTimestamp: PropTypes.string,
+    buildDate: PropTypes.string
 };
+PluginLastReleased.displayName = 'PluginLastReleased';
 
 export default PluginLastReleased;
