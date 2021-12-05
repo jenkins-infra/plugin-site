@@ -24,7 +24,7 @@ function Developers({developers}) {
 
 Developers.propTypes = PluginDevelopers.propTypes;
 
-function Plugin({plugin: {name, title, stats, labels, excerpt, developers, ...rest}}) {
+function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp}}) {
     return (
         <Link to={`/${name}/`} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
@@ -39,7 +39,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, ...re
             </div>
             <div className="Plugin--VersionContainer">
                 <span className="jc">
-                    <PluginLastReleased plugin={rest}/>
+                    <PluginLastReleased buildDate={buildDate} releaseTimestamp={releaseTimestamp} />
                 </span>
             </div>
             <div className="Plugin--LabelsContainer">
@@ -56,6 +56,8 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, ...re
 Plugin.propTypes = {
     plugin: PropTypes.shape({
         excerpt: PropTypes.string,
+        buildDate: PropTypes.string,
+        releaseTimestamp: PropTypes.string,
         labels: PropTypes.arrayOf(PropTypes.string),
         developers: PropTypes.arrayOf(PropTypes.shape({
             id: PropTypes.string,

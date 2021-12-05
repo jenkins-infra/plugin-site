@@ -113,7 +113,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                 </div>
                 <div className="col-md-3 sidebar">
                     <h5>{`Version: ${plugin.version}`}</h5>
-                    <PluginLastReleased plugin={plugin} />
+                    <PluginLastReleased buildDate={plugin.buildDate} releaseTimestamp={plugin.releaseTimestamp} />
                     <div>
                         {'Requires Jenkins '}
                         {plugin.requiredCore}
@@ -197,6 +197,8 @@ PluginPage.propTypes = {
             )
         }),
         jenkinsPlugin: PropTypes.shape({
+            buildDate: PropTypes.string,
+            releaseTimestamp: PropTypes.string,
             dependencies: PropTypes.arrayOf(PropTypes.shape({
                 name: PropTypes.string,
                 title: PropTypes.string,
