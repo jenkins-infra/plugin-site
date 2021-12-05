@@ -1,8 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Line} from 'react-chartjs-2';
-import moment from 'moment';
 import {ResizeObserver as ResizeObserverPolyfill} from '@juggle/resize-observer';
+const MONTHS = {
+    0: 'Jan',
+    1: 'Feb',
+    2: 'Mar',
+    3: 'Apr',
+    4: 'May',
+    5: 'Jun',
+    6: 'Jul',
+    7: 'Aug',
+    8: 'Sep',
+    9: 'Oct',
+    10: 'Nov',
+    11: 'Dec',
+};
 
 const calculateMax = (data) => {
     return 1.2 * Math.max(...data);
@@ -75,15 +88,13 @@ function LineChart({installations}) {
     const height = 90;
     const length = installations.length;
     installations.slice(length > 12 ? length - 12 : 0, length).forEach((installation) => {
-        labels.push(moment.utc(installation.timestamp).format('MMM'));
+        labels.push(MONTHS[new Date(installation.timestamp).getUTCMonth()]),
         data.push(installation.total);
     });
     const lineData = chartData(labels, data);
     return (
         <div style={styles.graphContainer}>
-            <Line data={lineData}
-                options={options(data)}
-                height={height}/>
+            <Line data={lineData} options={options(data)} height={height}/>
         </div>
     );
 }
