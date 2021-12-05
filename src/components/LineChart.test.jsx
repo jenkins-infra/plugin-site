@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {render} from '@testing-library/react';
-import {screen} from '@testing-library/dom';
 
 import LineChart from './LineChart';
 
@@ -25,10 +24,7 @@ describe('lineChart', () => {
             {'timestamp': 1633046400000, 'total': 4647},
             {'timestamp': 1635724800000, 'total': 4704}
         ];
-        const {getByRole, rerender} = render(<LineChart installations={installations} />);
-        screen.debug();
-        rerender(<LineChart installations={installations} />);
-        screen.debug();
+        const {getByRole} = render(<LineChart installations={installations} />);
 
         const canvas = getByRole('img');
         expect(canvas).toBeTruthy();
