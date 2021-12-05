@@ -15,7 +15,7 @@ Array [
     "url": "https://wiki.jenkins-ci.org/display/JENKINS/iOS+Device+Connector+Plugin",
   },
   Object {
-    "buildDate": "Oct 10, 2012",
+    "buildDate": 2012-10-10T00:00:00.000Z,
     "children": Array [],
     "defaultBranch": "master",
     "dependencies": Array [
@@ -133,7 +133,7 @@ Array [
     "hasPipelineSteps": false,
     "id": "ios-device-connector <<< JenkinsPlugin",
     "internal": Object {
-      "contentDigest": "e6ef6abee2844c73aad5033953f12e10",
+      "contentDigest": "f5534973aae4f62f5c453dca7f0f45e3",
       "type": "JenkinsPlugin",
     },
     "issueTrackers": Array [

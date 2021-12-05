@@ -31,5 +31,3 @@ describe('pluginLastReleased', () => {
         expect(container.querySelector('time')).toHaveAttribute('title', '2017-02-09 00:00');
     });
 });
-
-

@@ -1,4 +1,5 @@
 module.exports = {
+    globalSetup: './jest-global-setup.js',
     globals: {
         __PATH_PREFIX__: '',
     },
@@ -11,8 +12,8 @@ module.exports = {
         'default',
         'jest-junit'
     ],
-    setupFiles: ['<rootDir>/loadershim.js'],
-    setupFilesAfterEnv: ['<rootDir>/setup-test-env.js'],
+    setupFiles: ['<rootDir>/jest-loadershim.js'],
+    setupFilesAfterEnv: ['<rootDir>/jest-setup-test-env.js'],
     testEnvironment: 'jsdom',
     testPathIgnorePatterns: ['node_modules', '\\.cache', '<rootDir>.*/public'],
     testURL: 'http://localhost',

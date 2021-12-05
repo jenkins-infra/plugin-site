@@ -2,6 +2,7 @@ pipeline {
   environment {
     GET_CONTENT = "true"
     NODE_ENV = "production"
+    TZ = "UTC"
   }
 
   agent {

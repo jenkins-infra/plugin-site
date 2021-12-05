@@ -35,6 +35,13 @@ exports.createSchemaCustomization = ({actions}) => {
     createTypes(`
         type JenkinsPlugin implements Node {
             wiki: JenkinsPluginWiki @link(from: "name", by: "name")
+            buildDate: Date
+            previousTimestamp: Date
+            releaseTimestamp: Date
+        }
+
+        type JenkinsPluginVersion implements Node {
+            buildDate: Date
         }
     `);
 };
