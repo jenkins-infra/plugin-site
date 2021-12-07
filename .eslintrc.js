@@ -54,11 +54,7 @@ module.exports = {
         'comma-spacing': 2,
         'eol-last': 2,
         'import/extensions': ['error', 'ignorePackages', {'js': 'never', 'jsx': 'never'}],
-        'import/no-unresolved': [2, {
-            ignore: [
-                '@reach/router' // we need to load the one provided by gatsby so they match up and stuff
-            ]
-        }],
+        'import/no-unresolved': [2],
         'indent': ['error', 4],
         'jsx-quotes': 2,
         'key-spacing': [2],
