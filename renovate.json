@@ -11,7 +11,11 @@
             "enabled": false
         },
         {
-            "matchUpdateTypes": ["minor", "patch", "pin", "digest","devDependencies"],
+            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+            "automerge": true
+        },
+        {
+            "matchDepTypes": ["devDependencies"],
             "automerge": true
         }
     ]
