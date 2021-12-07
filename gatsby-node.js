@@ -29,6 +29,7 @@ async function createPluginPages({graphql, createPage}) {
     result.data.allJenkinsPlugin.edges.forEach(edge => {
         createPage({
             path: `/${edge.node.name.trim()}/`,
+            matchPath: `/${edge.node.name.trim()}/*`,
             component: pluginPage,
             context: {
                 name: edge.node.name.trim()
@@ -57,6 +58,7 @@ async function createSuspendedPluginPages({graphql, createPage}) {
     result.data.allSuspendedPlugin.edges.forEach(edge => {
         createPage({
             path: `/${edge.node.id.trim()}/`,
+            matchPath: `/${edge.node.id.trim()}/*`,
             component: tombstonePage,
             context: {
                 name: edge.node.id.trim()
