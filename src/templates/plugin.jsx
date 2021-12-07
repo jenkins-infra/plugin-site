@@ -71,12 +71,12 @@ PluginWikiContent.propTypes = {
 
 function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
     const pluginPage = 'templates/plugin.jsx';
-    const uri = `/${plugin.name.trim()}/`;
+    const baseUri = `/${plugin.name.trim()}/`;
 
     return (
         <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemTitle={plugin.title}
             reportProblemUrl={plugin?.issueTrackers?.find(tracker => tracker.reportUrl)?.reportUrl || `/${plugin.name}`}>
-            <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={uri}/>
+            <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={baseUri}/>
             <div className="title-wrapper">
                 <h1 className="title">
                     {cleanTitle(plugin.title)}
@@ -95,32 +95,32 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                             <li className="nav-item" key={tab.label}>
                                 <Link
                                     getProps={isActive}
-                                    to={tab.id ? `${uri}/${tab.id}` : `${uri}/`}>
+                                    to={tab.id ? `${baseUri}${tab.id}` : `${baseUri}`}>
                                     {tab.label}
                                 </Link>
                             </li>
                         ))}
                     </ul>
                     <div>
-                        <Router basepath={uri} primary={false}>
+                        <Router>
                             <PluginDependencies
-                                path={'/dependencies'}
+                                path={`${baseUri}dependencies`}
                                 dependencies={plugin.dependencies}
                                 reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
                                 hasBomEntry={plugin.hasBomEntry}
                                 gav={plugin.gav}
                             />
                             <PluginReleases
-                                path={'/releases'}
+                                path={`${baseUri}releases`}
                                 pluginId={plugin.name}
                                 versions={versions.edges.map(edge => edge.node)}
                             />
                             <PluginIssues
-                                path={'/issues'}
+                                path={`${baseUri}issues`}
                                 pluginId={plugin.name}
                             />
-                            <PluginWikiContent path="/" wiki={plugin.wiki} />
-                            <Redirect from="*" to={`${uri}/`} noThrow default />
+                            <PluginWikiContent path={baseUri} wiki={plugin.wiki} />
+                            <Redirect from="*" to={`${baseUri}`} noThrow default />
                         </Router>
 
                     </div>
