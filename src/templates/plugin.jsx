@@ -69,8 +69,9 @@ PluginWikiContent.propTypes = {
     }).isRequired,
 };
 
-function PluginPage({uri, data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
+function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
     const pluginPage = 'templates/plugin.jsx';
+    const uri = `/${plugin.name.trim()}/`;
 
     return (
         <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemTitle={plugin.title}
@@ -193,7 +194,6 @@ function PluginPage({uri, data: {jenkinsPlugin: plugin, reverseDependencies: rev
 
 PluginPage.displayName = 'PluginPage';
 PluginPage.propTypes = {
-    uri: PropTypes.string.isRequired,
     data: PropTypes.shape({
         versions: PropTypes.shape({
             edges: PropTypes.arrayOf(
