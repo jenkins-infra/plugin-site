@@ -5,13 +5,14 @@
     "schedule": [
         "every weekday"
     ],
+    "labels": ["dependencies"],
     "packageRules": [
         {
             "matchPackageNames": ["p-queue", "husky"],
             "enabled": false
         },
         {
-            "matchUpdateTypes": ["minor", "patch", "pin", "digest","devDependencies"],
+            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
             "automerge": true
         }
     ]
