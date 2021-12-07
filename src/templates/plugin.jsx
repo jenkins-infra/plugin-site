@@ -1,6 +1,7 @@
-import {graphql} from 'gatsby';
-import React, {useState} from 'react';
+import React from 'react';
+import {graphql, Link} from 'gatsby';
 import PropTypes from 'prop-types';
+import {Router, Redirect} from '@reach/router';
 
 import {cleanTitle} from '../commons/helper';
 
@@ -19,6 +20,14 @@ import PluginIssues from '../components/PluginIssues';
 import PluginReleases from '../components/PluginReleases';
 import PluginIssueTrackers from '../components/PluginIssueTrackers';
 
+const isActive = ({href, location}) => {
+    // slightly more complicated to handle both /scp and /scp/
+    const cannonicalHref = href.split('/').filter(Boolean).slice(0, 3).join('/');
+    const cannonicalLocation = location.pathname.split('/').filter(Boolean).slice(0, 3).join('/');
+    const isCurrent = cannonicalHref === cannonicalLocation;
+    return isCurrent ? {className: 'nav-link active'} : {className: 'nav-link'};
+};
+
 function shouldShowWikiUrl({url}) {
     return url?.startsWith('https://wiki.jenkins-ci.org') || url?.startsWith('https://wiki.jenkins.io') || url?.includes('github.com/jenkins-infra/plugins-wiki-docs');
 }
@@ -28,19 +37,11 @@ function shouldShowGitHubUrl({url}) {
 }
 
 const tabs = [
-    {id: 'documentation', label: 'Documentation'},
+    {id: '', label: 'Documentation'},
     {id: 'releases', label: 'Releases'},
     {id: 'issues', label: 'Issues'},
     {id: 'dependencies', label: 'Dependencies'},
 ];
-
-function getDefaultTab() {
-    const tabName = (typeof window !== 'undefined' && window.location.hash.replace('#', '')) || tabs[0].id;
-    if (tabs.find(tab => tab.id === tabName)) {
-        return tabName;
-    }
-    return tabs[0].id;
-}
 
 const PluginWikiContent = ({wiki}) => {
     if (wiki?.childMarkdownRemark) {
@@ -69,18 +70,13 @@ PluginWikiContent.propTypes = {
 };
 
 function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
-    const [state, setState] = useState({selectedTab: getDefaultTab()});
-    const switchTab = (tab) => {
-        const _paq = window._paq || [];
-        _paq.push(['trackEvent', 'Plugin Page', 'Click Tab', tab]);
-        setState({selectedTab: tab});
-    };
     const pluginPage = 'templates/plugin.jsx';
+    const baseUri = `/${plugin.name.trim()}/`;
 
     return (
         <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemTitle={plugin.title}
             reportProblemUrl={plugin?.issueTrackers?.find(tracker => tracker.reportUrl)?.reportUrl || `/${plugin.name}`}>
-            <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.name}`}/>
+            <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={baseUri}/>
             <div className="title-wrapper">
                 <h1 className="title">
                     {cleanTitle(plugin.title)}
@@ -96,19 +92,37 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     <PluginGovernanceStatus plugin={plugin} />
                     <ul className="nav nav-pills">
                         {tabs.map(tab => (
-                            <li className="nav-item" key={tab.id}>
-                                <a className={`nav-link ${state.selectedTab === tab.id ? 'active' : ''}`} href={`#${tab.id}`} onClick={() => switchTab(tab.id)}>{tab.label}</a>
+                            <li className="nav-item" key={tab.label}>
+                                <Link
+                                    getProps={isActive}
+                                    to={tab.id ? `${baseUri}${tab.id}` : `${baseUri}`}>
+                                    {tab.label}
+                                </Link>
                             </li>
                         ))}
                     </ul>
                     <div>
-                        {state.selectedTab === 'documentation' && <PluginWikiContent wiki={plugin.wiki} />}
-                        {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.name} versions={versions.edges.map(edge => edge.node)} />}
-                        {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.name} />}
-                        {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies}
-                            reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
-                            hasBomEntry={plugin.hasBomEntry}
-                            gav={plugin.gav}/>}
+                        <Router>
+                            <PluginDependencies
+                                path={`${baseUri}dependencies`}
+                                dependencies={plugin.dependencies}
+                                reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
+                                hasBomEntry={plugin.hasBomEntry}
+                                gav={plugin.gav}
+                            />
+                            <PluginReleases
+                                path={`${baseUri}releases`}
+                                pluginId={plugin.name}
+                                versions={versions.edges.map(edge => edge.node)}
+                            />
+                            <PluginIssues
+                                path={`${baseUri}issues`}
+                                pluginId={plugin.name}
+                            />
+                            <PluginWikiContent path={baseUri} wiki={plugin.wiki} />
+                            <Redirect from="*" to={`${baseUri}`} noThrow default />
+                        </Router>
+
                     </div>
                 </div>
                 <div className="col-md-3 sidebar">
@@ -178,6 +192,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
     );
 }
 
+PluginPage.displayName = 'PluginPage';
 PluginPage.propTypes = {
     data: PropTypes.shape({
         versions: PropTypes.shape({
