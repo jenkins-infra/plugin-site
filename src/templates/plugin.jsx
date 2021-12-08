@@ -86,6 +86,11 @@ Tabs.propTypes = {
     selectedTab: PropTypes.string.isRequired
 };
 
+export function useSelectedPluginTab(tabs) {
+    const tabName = global?.window?.location?.hash?.replace('#', '') || tabs[0].id;
+    return tabs.find(tab => tab.id === tabName) || tabs[0];
+}
+
 function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
     const tabs = [
         {id: 'documentation', label: 'Documentation'},
@@ -94,8 +99,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
         {id: 'dependencies', label: 'Dependencies'},
     ];
 
-    const tabName = global?.window?.location?.hash?.replace('#', '') || tabs[0].id;
-    const selectedTab = (tabs.find(tab => tab.id === tabName) || tab[0]).id;
+    const selectedTab = useSelectedPluginTab(tabs);
 
     const pluginPage = 'templates/plugin.jsx';
 
@@ -116,17 +120,17 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                 <div className="col-md-9 main">
                     <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
                     <PluginGovernanceStatus plugin={plugin} />
-                    <Tabs tabs={tabs} selectedTab={selectedTab} />
+                    <Tabs tabs={tabs} selectedTab={selectedTab.id} />
                     <div>
                         {(function () {
-                            if (selectedTab === 'releases') {
+                            if (selectedTab.id === 'releases') {
                                 return <PluginReleases pluginId={plugin.name} versions={versions.edges.map(edge => edge.node)} />;
                             }
 
-                            if (selectedTab === 'issues') {
+                            if (selectedTab.id === 'issues') {
                                 return <PluginIssues pluginId={plugin.name} />;
                             }
-                            if (selectedTab === 'dependencies') {
+                            if (selectedTab.id === 'dependencies') {
                                 return (<PluginDependencies dependencies={plugin.dependencies}
                                     reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
                                     hasBomEntry={plugin.hasBomEntry}

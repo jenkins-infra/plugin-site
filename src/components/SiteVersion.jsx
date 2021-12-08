@@ -18,6 +18,7 @@ function SiteVersion() {
             }
         }
     `);
+    if (!data) { return null; }
     const pluginSiteApiVersion = data.jenkinsPluginSiteInfo.api.commit;
     const pluginSiteVersion = data.jenkinsPluginSiteInfo.website.commit;
     const buildTime = data.site.buildTime;

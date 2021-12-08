@@ -14,7 +14,7 @@ function PluginLabels({labels}) {
                 }
             }
         }
-    `).labels.edges.reduce((prev, {node: label}) => {
+    `)?.labels.edges.reduce((prev, {node: label}) => {
         prev[label.id] = label.title;
         return prev;
     }, {});
