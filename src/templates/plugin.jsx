@@ -1,6 +1,7 @@
 import {graphql} from 'gatsby';
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import {useLocation} from '@gatsbyjs/reach-router';
 
 import {cleanTitle} from '../commons/helper';
 
@@ -34,14 +35,6 @@ const tabs = [
     {id: 'dependencies', label: 'Dependencies'},
 ];
 
-function getDefaultTab() {
-    const tabName = (typeof window !== 'undefined' && window.location.hash.replace('#', '')) || tabs[0].id;
-    if (tabs.find(tab => tab.id === tabName)) {
-        return tabName;
-    }
-    return tabs[0].id;
-}
-
 const PluginWikiContent = ({wiki}) => {
     if (wiki?.childMarkdownRemark) {
         return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childMarkdownRemark.html}} />;
@@ -69,11 +62,13 @@ PluginWikiContent.propTypes = {
 };
 
 function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
-    const [state, setState] = useState({selectedTab: getDefaultTab()});
+    const location = useLocation();
+    const tabName = location.hash.replace('#', '') || tabs[0].id;
+    const selectedTab = (tabs.find(tab => tab.id === tabName) || tab[0]).id;
+
     const switchTab = (tab) => {
         const _paq = window._paq || [];
         _paq.push(['trackEvent', 'Plugin Page', 'Click Tab', tab]);
-        setState({selectedTab: tab});
     };
     const pluginPage = 'templates/plugin.jsx';
 
@@ -97,18 +92,27 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     <ul className="nav nav-pills">
                         {tabs.map(tab => (
                             <li className="nav-item" key={tab.id}>
-                                <a className={`nav-link ${state.selectedTab === tab.id ? 'active' : ''}`} href={`#${tab.id}`} onClick={() => switchTab(tab.id)}>{tab.label}</a>
+                                <a className={`nav-link ${selectedTab === tab.id ? 'active' : ''}`} href={`#${tab.id}`} onClick={() => switchTab(tab.id)}>{tab.label}</a>
                             </li>
                         ))}
                     </ul>
                     <div>
-                        {state.selectedTab === 'documentation' && <PluginWikiContent wiki={plugin.wiki} />}
-                        {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.name} versions={versions.edges.map(edge => edge.node)} />}
-                        {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.name} />}
-                        {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies}
-                            reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
-                            hasBomEntry={plugin.hasBomEntry}
-                            gav={plugin.gav}/>}
+                        {(function () {
+                            if (selectedTab === 'releases') {
+                                return <PluginReleases pluginId={plugin.name} versions={versions.edges.map(edge => edge.node)} />;
+                            }
+
+                            if (selectedTab === 'issues') {
+                                return <PluginIssues pluginId={plugin.name} />;
+                            }
+                            if (selectedTab === 'dependencies') {
+                                return (<PluginDependencies dependencies={plugin.dependencies}
+                                    reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
+                                    hasBomEntry={plugin.hasBomEntry}
+                                    gav={plugin.gav}/>);
+                            }
+                            return <PluginWikiContent wiki={plugin.wiki} />;
+                        })()}
                     </div>
                 </div>
                 <div className="col-md-3 sidebar">
@@ -178,6 +182,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
     );
 }
 
+PluginPage.displayName = 'PluginPage';
 PluginPage.propTypes = {
     data: PropTypes.shape({
         versions: PropTypes.shape({
