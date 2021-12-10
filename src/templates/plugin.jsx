@@ -1,5 +1,5 @@
 import {graphql} from 'gatsby';
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {cleanTitle} from '../commons/helper';
@@ -25,21 +25,6 @@ function shouldShowWikiUrl({url}) {
 
 function shouldShowGitHubUrl({url}) {
     return url && url.startsWith('https://github.com');
-}
-
-const tabs = [
-    {id: 'documentation', label: 'Documentation'},
-    {id: 'releases', label: 'Releases'},
-    {id: 'issues', label: 'Issues'},
-    {id: 'dependencies', label: 'Dependencies'},
-];
-
-function getDefaultTab() {
-    const tabName = (typeof window !== 'undefined' && window.location.hash.replace('#', '')) || tabs[0].id;
-    if (tabs.find(tab => tab.id === tabName)) {
-        return tabName;
-    }
-    return tabs[0].id;
 }
 
 const PluginWikiContent = ({wiki}) => {
@@ -68,13 +53,54 @@ PluginWikiContent.propTypes = {
     }).isRequired,
 };
 
+
+const switchTab = (tab) => {
+    const _paq = window._paq || [];
+    _paq.push(['trackEvent', 'Plugin Page', 'Click Tab', tab]);
+};
+
+const Tabs = ({tabs, selectedTab}) => {
+    // Tabs are client side only
+    // only render them on the client
+    // also forces gatsby to render based on hash
+    if (!global.window) { return null; }
+    return (
+        <ul className="nav nav-pills">
+            {tabs.map(tab => {
+                const isSelected = selectedTab === tab.id;
+                return (
+                    <li className="nav-item" key={tab.id}>
+                        <a className={`nav-link ${isSelected ? 'active' : ''}`} href={`#${tab.id}`} onClick={() => switchTab(tab.id)}>{tab.label}</a>
+                    </li>
+                );
+            })}
+        </ul>
+    );
+};
+Tabs.displayName = 'Tabs';
+Tabs.propTypes = {
+    tabs: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+    })),
+    selectedTab: PropTypes.string.isRequired
+};
+
+export function useSelectedPluginTab(tabs) {
+    const tabName = global?.window?.location?.hash?.replace('#', '') || tabs[0].id;
+    return tabs.find(tab => tab.id === tabName) || tabs[0];
+}
+
 function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
-    const [state, setState] = useState({selectedTab: getDefaultTab()});
-    const switchTab = (tab) => {
-        const _paq = window._paq || [];
-        _paq.push(['trackEvent', 'Plugin Page', 'Click Tab', tab]);
-        setState({selectedTab: tab});
-    };
+    const tabs = [
+        {id: 'documentation', label: 'Documentation'},
+        {id: 'releases', label: 'Releases'},
+        {id: 'issues', label: 'Issues'},
+        {id: 'dependencies', label: 'Dependencies'},
+    ];
+
+    const selectedTab = useSelectedPluginTab(tabs);
+
     const pluginPage = 'templates/plugin.jsx';
 
     return (
@@ -94,21 +120,24 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                 <div className="col-md-9 main">
                     <PluginActiveWarnings securityWarnings={plugin.securityWarnings} />
                     <PluginGovernanceStatus plugin={plugin} />
-                    <ul className="nav nav-pills">
-                        {tabs.map(tab => (
-                            <li className="nav-item" key={tab.id}>
-                                <a className={`nav-link ${state.selectedTab === tab.id ? 'active' : ''}`} href={`#${tab.id}`} onClick={() => switchTab(tab.id)}>{tab.label}</a>
-                            </li>
-                        ))}
-                    </ul>
+                    <Tabs tabs={tabs} selectedTab={selectedTab.id} />
                     <div>
-                        {state.selectedTab === 'documentation' && <PluginWikiContent wiki={plugin.wiki} />}
-                        {state.selectedTab === 'releases' && <PluginReleases pluginId={plugin.name} versions={versions.edges.map(edge => edge.node)} />}
-                        {state.selectedTab === 'issues' && <PluginIssues pluginId={plugin.name} />}
-                        {state.selectedTab === 'dependencies' && <PluginDependencies dependencies={plugin.dependencies}
-                            reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
-                            hasBomEntry={plugin.hasBomEntry}
-                            gav={plugin.gav}/>}
+                        {(function () {
+                            if (selectedTab.id === 'releases') {
+                                return <PluginReleases pluginId={plugin.name} versions={versions.edges.map(edge => edge.node)} />;
+                            }
+
+                            if (selectedTab.id === 'issues') {
+                                return <PluginIssues pluginId={plugin.name} />;
+                            }
+                            if (selectedTab.id === 'dependencies') {
+                                return (<PluginDependencies dependencies={plugin.dependencies}
+                                    reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
+                                    hasBomEntry={plugin.hasBomEntry}
+                                    gav={plugin.gav}/>);
+                            }
+                            return <PluginWikiContent wiki={plugin.wiki} />;
+                        })()}
                     </div>
                 </div>
                 <div className="col-md-3 sidebar">
@@ -178,6 +207,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
     );
 }
 
+PluginPage.displayName = 'PluginPage';
 PluginPage.propTypes = {
     data: PropTypes.shape({
         versions: PropTypes.shape({
