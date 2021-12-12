@@ -2,11 +2,12 @@ pipeline {
   environment {
     GET_CONTENT = "true"
     NODE_ENV = "production"
+    HOME = "${env.WORKSPACE}"
     TZ = "UTC"
   }
 
   agent {
-    label 'docker&&linux'
+    dockerfile true
   }
 
   options {
@@ -19,13 +20,13 @@ pipeline {
 
     stage('NPM Install') {
       steps {
-        runDockerCommand('node:14.17',  'npm ci')
+        sh('npm ci')
       }
     }
 
     stage('Build Production') {
       steps {
-        runDockerCommand('node:14.17',  'npm run build')
+        sh('npm run build')
       }
     }
 
@@ -37,23 +38,9 @@ pipeline {
 
     stage('Lint and Test') {
       steps {
-        runDockerCommand('node:14.17',  'npm run lint')
-        runDockerCommand('node:14.17',  'npm run test')
+        sh('npm run lint')
+        sh('npm run test')
       }
     }
   }
-}
-
-def runDockerCommand(image, cmd) {
-  sh """
-    docker run \
-      --network host \
-      --rm -e GET_CONTENT \
-      -w "\$PWD" \
-      -e HOME="\$PWD" \
-      -v "\$PWD:\$PWD" \
-      -u \$(id -u):\$(id -g) \
-      $image \
-      $cmd
-  """
 }
