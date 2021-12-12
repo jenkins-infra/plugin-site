@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "gatsby develop -p 3000 -H 0.0.0.0",
     "start": "gatsby develop -p 3000 -H 0.0.0.0",
-    "build": "gatsby build",
+    "build": "npx --node-arg '-r esm-wallaby' gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "eslint --ext .js,.jsx .",
