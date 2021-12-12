@@ -1,12 +1,12 @@
-import {
+const {
     fetchSiteInfo,
     fetchPluginData,
     fetchPluginVersions,
     processCategoryData,
     fetchLabelData,
     fetchStats,
-} from './utils';
-import {createRemoteFileNode} from 'gatsby-source-filesystem';
+} = require('./utils');
+const {createRemoteFileNode} = require('gatsby-source-filesystem');
 
 exports.sourceNodes = async (
     {actions: {createNode, createNodeField}, reporter, createContentDigest, createNodeId},

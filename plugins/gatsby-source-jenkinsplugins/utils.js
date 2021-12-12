@@ -1,23 +1,22 @@
 /* eslint-disable no-console */
-import fs from 'fs';
-import axios from 'axios';
-import path from 'path';
-import crypto from 'crypto';
-import cheerio from 'cheerio';
-import {execSync} from 'child_process';
-import axiosRetry from 'axios-retry';
-import {parse as parseDate} from 'date-fns';
-import PQueue from 'p-queue'; // NOTE - pinned at p-queue@6.6.2 because 7 requires whole project to be esm
-import {parseStringPromise} from 'xml2js';
+const axios = require('axios');
+const path = require('path');
+const crypto = require('crypto');
+const cheerio = require('cheerio');
+const {execSync} = require('child_process');
+const axiosRetry = require('axios-retry');
+const {parse: parseDate} = require('date-fns');
+const PQueue = require('p-queue').default; // NOTE - pinned at p-queue@6.6.2 because 7 requires whole project to be esm
+const {parseStringPromise} = require('xml2js');
+const CATEGORY_LIST = require('./categories.json');
 
-import {unified} from 'unified';
-import remarkParse from 'remark-parse';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkGfm from 'remark-gfm';
-import remarkRehype from 'remark-rehype';
-import rehypeStringify from 'rehype-stringify';
+const unified = require('unified');
+const remarkParse = require('remark-parse');
+const remarkFrontmatter = require('remark-frontmatter');
+const remarkGfm = require('remark-gfm');
+const remarkRehype = require('remark-rehype');
+const rehypeStringify = require('rehype-stringify');
 
-const CATEGORY_LIST = JSON.parse(fs.readFileSync(path.join(__dirname, './categories.json')).toString());
 const API_URL = process.env.JENKINS_IO_API_URL || 'https://plugins.jenkins.io/api';
 
 axiosRetry(axios, {retries: 3});
@@ -123,7 +122,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
         const pluginName = plugin.name.trim();
         names.push(pluginName);
         const developers = plugin.developers || [];
-        developers.forEach(maint => {maint.id = maint.developerId, delete(maint.developerId);});
+        developers.forEach(maint => {maint.id = maint.developerId, delete (maint.developerId);});
         plugin.scm = fixGitHubUrl(plugin.scm, plugin.defaultBranch || 'master');
         const pluginStats = stats[pluginName] || {installations: null};
         pluginStats.trend = computeTrend(plugin, stats, updateData.plugins);
@@ -230,10 +229,12 @@ const getImpliedDependenciesAndTitles = (plugin, detachedPlugins, updateData) =>
     for (const detached of detachedPlugins) {
         const [detachedPlugin, detachedCore, detachedVersion] = detached;
         if (versionToNumber(detachedCore) > versionToNumber(plugin.requiredCore)) {
-            plugin.dependencies.push({name: detachedPlugin,
+            plugin.dependencies.push({
+                name: detachedPlugin,
                 version: detachedVersion,
                 implied: true,
-                optional: false});
+                optional: false
+            });
         }
     }
     plugin.dependencies = plugin.dependencies || [];
@@ -291,7 +292,7 @@ const getPercentage = (name, stats, monthsAgo) => {
         return 0;
     }
     return installations[installations.length - monthsAgo].total
-            / coreInstallations[coreInstallations.length - monthsAgo].total;
+        / coreInstallations[coreInstallations.length - monthsAgo].total;
 };
 
 const fetchBomDependencies = async (reporter) => {
@@ -300,7 +301,7 @@ const fetchBomDependencies = async (reporter) => {
         const bom = await requestGET({url: bomUrl, reporter});
         const xml = await parseStringPromise(bom);
         return xml.project.dependencyManagement[0].dependencies[0].dependency.map(dep => dep.artifactId);
-    } catch(ex) {
+    } catch (ex) {
         reporter.error('Failed to fetch BOM data', ex);
     }
     return [];
