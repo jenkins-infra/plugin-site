@@ -1,16 +1,23 @@
 /* eslint-disable no-console */
-const axios = require('axios');
-const path = require('path');
-const crypto = require('crypto');
-const cheerio = require('cheerio');
-const {execSync} = require('child_process');
-const axiosRetry = require('axios-retry');
-const dateFNs = require('date-fns');
-const {default: PQueue} = require('p-queue'); // NOTE - pinned at p-queue@6.6.2 because 7 requires whole project to be esm
-const {parseStringPromise} = require('xml2js');
-const categoryList = require('./categories.json');
+import fs from 'fs';
+import axios from 'axios';
+import path from 'path';
+import crypto from 'crypto';
+import cheerio from 'cheerio';
+import {execSync} from 'child_process';
+import axiosRetry from 'axios-retry';
+import {parse as parseDate} from 'date-fns';
+import PQueue from 'p-queue'; // NOTE - pinned at p-queue@6.6.2 because 7 requires whole project to be esm
+import {parseStringPromise} from 'xml2js';
 
+import {unified} from 'unified';
+import remarkParse from 'remark-parse';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
 
+const CATEGORY_LIST = JSON.parse(fs.readFileSync(path.join(__dirname, './categories.json')).toString());
 const API_URL = process.env.JENKINS_IO_API_URL || 'https://plugins.jenkins.io/api';
 
 axiosRetry(axios, {retries: 3});
@@ -26,7 +33,7 @@ const requestGET = async ({url, reporter}) => {
         }
         return results.data;
     } catch (err) {
-        if (err?.response?.status == 404) {
+        if (err && err.response && err.response.status == 404) {
             reporter.error(`${url} does not return any data`);
             return null;
         }
@@ -53,6 +60,18 @@ const LEGACY_WIKI_URL_RE = /^https?:\/\/wiki.jenkins(-ci.org|.io)\/display\/(jen
 const MARKDOWN_BLOB_RE = /https?:\/\/github.com\/(jenkinsci|jenkins-infra)\/([^/.]+)\/blob\/([^/]+)\/(.+\.(md))$/;
 const getPluginContent = async ({wiki, pluginName, reporter, createNode, createContentDigest}) => {
     const createWikiNode = async (mediaType, url, content) => {
+        if (mediaType === 'text/markdown') {
+            const file = await unified()
+                .use(remarkParse)
+                .use(remarkFrontmatter)
+                .use(remarkGfm)
+                .use(remarkRehype)
+                .use(rehypeStringify)
+                .process(content);
+
+            content = String(file);
+            mediaType = 'text/pluginhtml';
+        }
         return createNode({
             id: `${pluginName} <<< JenkinsPluginWiki`,
             name: pluginName,
@@ -124,7 +143,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
             hasBomEntry: !!bomDependencies.find(artifactId => plugin.gav.includes(`:${artifactId}:`)),
             parent: null,
             children: [],
-            buildDate: plugin.buildDate ? dateFNs.parse(plugin.buildDate, 'MMMM d, yyyy', new Date(0)) : null,
+            buildDate: plugin.buildDate ? parseDate(plugin.buildDate, 'MMMM d, yyyy', new Date(0)) : null,
             internal: {
                 type: 'JenkinsPlugin',
             }
@@ -310,7 +329,7 @@ const fetchSuspendedPlugins = async ({updateData, names, createNode}) => {
 const processCategoryData = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('process categories');
     sectionActivity.start();
-    for (const category of categoryList) {
+    for (const category of CATEGORY_LIST) {
         createNode({
             ...category,
             id: category.id.trim(),
@@ -430,7 +449,7 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
             url    "https://updates.jenkins.io/download/plugins/42crunch-security-audit/2.1/42crunch-security-audit.hpi"
             version 2.1
             */
-            const date = dateFNs.parse(data.buildDate, 'MMMM d, yyyy', new Date(0));
+            const date = parseDate(data.buildDate, 'MMMM d, yyyy', new Date(0));
             if (!firstReleases[data.name] || firstReleases[data.name].getTime() > date.getTime()) {
                 firstReleases[data.name] = date;
             }
@@ -453,7 +472,7 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
     sectionActivity.end();
 };
 
-module.exports = {
+export {
     fetchSiteInfo,
     fetchLabelData,
     processCategoryData,

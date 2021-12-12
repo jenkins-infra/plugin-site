@@ -28,9 +28,6 @@ function shouldShowGitHubUrl({url}) {
 }
 
 const PluginWikiContent = ({wiki}) => {
-    if (wiki?.childMarkdownRemark) {
-        return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childMarkdownRemark.html}} />;
-    }
     if (wiki?.childHtmlRehype) {
         return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childHtmlRehype.html}} />;
     }
@@ -43,9 +40,6 @@ const PluginWikiContent = ({wiki}) => {
 PluginWikiContent.displayName = 'PluginWikiContent';
 PluginWikiContent.propTypes = {
     wiki: PropTypes.shape({
-        childMarkdownRemark: PropTypes.shape({
-            html: PropTypes.string,
-        }),
         childHtmlRehype: PropTypes.shape({
             html: PropTypes.string,
         }),
