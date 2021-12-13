@@ -473,7 +473,7 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
     sectionActivity.end();
 };
 
-export {
+module.exports = {
     fetchSiteInfo,
     fetchLabelData,
     processCategoryData,
