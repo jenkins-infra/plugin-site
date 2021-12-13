@@ -1,0 +1,12 @@
+@import './styles/ubuntu-fonts.css';
+@import './styles/lato-fonts.css';
+@import './styles/roboto-fonts.css';
+@import './styles/base.css';
+@import './styles/font-icons.css';
+@import 'github-syntax-light/lib/github-light.css';
+@import url('https://www.jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css');
+@import url('https://www.jenkins.io/assets/bower/tether/css/tether.min.css');
+@import url('https://www.jenkins.io/css/jenkins.css');
+@import url('https://www.jenkins.io/assets/bower/ionicons/css/ionicons.min.css');
+@import url('https://www.jenkins.io/css/footer.css');
+@import url('https://www.jenkins.io/css/font-awesome.min.css');

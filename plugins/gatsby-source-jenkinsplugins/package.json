@@ -1,2 +1,16 @@
 {
+    "name": "@jenkins-cd/gatsby-source-jenkinsplugins",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "build": "exit 0",
+        "test": "jest"
+    },
+    "keywords": [],
+    "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
+    "license": "MIT",
+    "description": "",
+    "jest": {
+        "globalSetup": "./jest-global-setup.js"
+    }
 }
