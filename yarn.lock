@@ -1457,7 +1457,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.15.4":
+"@babel/preset-env@npm:^7.15.4, @babel/preset-env@npm:^7.16.4":
   version: 7.16.4
   resolution: "@babel/preset-env@npm:7.16.4"
   dependencies:
@@ -2170,12 +2170,41 @@ __metadata:
 "@jenkins-cd/gatsby-rehype-rewrite-img-src@*, @jenkins-cd/gatsby-rehype-rewrite-img-src@workspace:plugins/gatsby-rehype-rewrite-img-src":
   version: 0.0.0-use.local
   resolution: "@jenkins-cd/gatsby-rehype-rewrite-img-src@workspace:plugins/gatsby-rehype-rewrite-img-src"
+  dependencies:
+    "@babel/preset-env": ^7.16.4
+    babel-jest: 27.4.4
+    babel-preset-gatsby: 2.3.0
+    eslint: ^8.4.1
+    hast-util-to-html: ^2.0.3
+    jest: ^27.4.4
+    rehype: ^11.0.0
+    unist-util-visit: ^2.0.3
   languageName: unknown
   linkType: soft
 
 "@jenkins-cd/gatsby-source-jenkinsplugins@*, @jenkins-cd/gatsby-source-jenkinsplugins@workspace:plugins/gatsby-source-jenkinsplugins":
   version: 0.0.0-use.local
   resolution: "@jenkins-cd/gatsby-source-jenkinsplugins@workspace:plugins/gatsby-source-jenkinsplugins"
+  dependencies:
+    "@babel/preset-env": ^7.16.4
+    axios: ^0.21.4
+    axios-retry: 3.2.4
+    babel-jest: 27.4.4
+    cheerio: ^1.0.0-rc.10
+    date-fns: ^2.27.0
+    eslint: ^8.4.1
+    find-package-json: ^1.2.0
+    gatsby-source-filesystem: 4.3.0
+    nock: 13.2.1
+    p-queue: ^6.6.2
+    rehype-stringify: ^8.0.0
+    remark: ^13.0.0
+    remark-frontmatter: ^3.0.0
+    remark-gfm: ^1.0.0
+    remark-parse: ^9.0.0
+    remark-rehype: ^8.1.0
+    unified: ^9.2.2
+    xml2js: 0.4.23
   languageName: unknown
   linkType: soft
 
@@ -2214,7 +2243,6 @@ __metadata:
     eslint-plugin-promise: 5.2.0
     eslint-plugin-react: 7.27.1
     eslint-plugin-standard: 5.0.0
-    esm-wallaby: ^3.2.25
     find-package-json: ^1.2.0
     fsevents: ^2.3.2
     gatsby: 4.3.0
@@ -2243,8 +2271,6 @@ __metadata:
     jest-canvas-mock: 2.3.1
     jest-junit: 13.0.0
     lint-staged: 12.1.2
-    nock: 13.2.1
-    p-queue: ^6.6.2
     postcss-calc: ^8.0.0
     postcss-css-variables: ^0.18.0
     postcss-extend: ^1.0.5
@@ -6052,7 +6078,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"comma-separated-tokens@npm:^1.0.0":
+"comma-separated-tokens@npm:^1.0.0, comma-separated-tokens@npm:^1.0.1":
   version: 1.0.8
   resolution: "comma-separated-tokens@npm:1.0.8"
   checksum: 0adcb07174fa4d08cf0f5c8e3aec40a36b5ff0c2c720e5e23f50fe02e6789d1d00a67036c80e0c1e1539f41d3e7f0101b074039dd833b4e4a59031b659d6ca0d
@@ -6784,7 +6810,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:^2.25.0":
+"date-fns@npm:^2.25.0, date-fns@npm:^2.27.0":
   version: 2.27.0
   resolution: "date-fns@npm:2.27.0"
   checksum: db62036b3816eb0322c9532b353beac7f660a91e1a55dbd21c14893c621ebb8509f21c66ba287844dabd34dee0207edd54a9537bce6bb7cab9383dedc6b8bc90
@@ -7999,7 +8025,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.4.1, eslint@npm:^8.3.0":
+"eslint@npm:8.4.1, eslint@npm:^8.3.0, eslint@npm:^8.4.1":
   version: 8.4.1
   resolution: "eslint@npm:8.4.1"
   dependencies:
@@ -8094,13 +8120,6 @@ __metadata:
   bin:
     eslint: bin/eslint.js
   checksum: cc85af9985a3a11085c011f3d27abe8111006d34cc274291b3c4d7bea51a4e2ff6135780249becd919ba7f6d6d1ecc38a6b73dacb6a7be08d38453b344dc8d37
-  languageName: node
-  linkType: hard
-
-"esm-wallaby@npm:^3.2.25":
-  version: 3.2.25
-  resolution: "esm-wallaby@npm:3.2.25"
-  checksum: 7cdf39100164510183fe7c6ed3e8282df039f8af479c087a44f9a5142c9b20f18c3ea98941389cedfdff233bc565c16adad72839e3c5ea750f06419d0a419162
   languageName: node
   linkType: hard
 
@@ -10333,7 +10352,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"has@npm:^1.0.3":
+"has@npm:^1.0.1, has@npm:^1.0.3":
   version: 1.0.3
   resolution: "has@npm:1.0.3"
   dependencies:
@@ -10411,6 +10430,26 @@ __metadata:
     xtend: ^4.0.0
     zwitch: ^1.0.0
   checksum: dfa4da83ce718bae8a91a88ee4c5ef43e0091dcd32775de633669b412f2ada35a71bb79c4e4b2851175a5a50861d7abe2049d45b97176b892b861d71591a18e6
+  languageName: node
+  linkType: hard
+
+"hast-util-to-html@npm:^2.0.3":
+  version: 2.1.0
+  resolution: "hast-util-to-html@npm:2.1.0"
+  dependencies:
+    ccount: ^1.0.0
+    comma-separated-tokens: ^1.0.1
+    has: ^1.0.1
+    hast-util-is-element: ^1.0.0
+    hast-util-whitespace: ^1.0.0
+    html-void-elements: ^1.0.0
+    kebab-case: ^1.0.0
+    property-information: ^3.1.0
+    space-separated-tokens: ^1.0.0
+    stringify-entities: ^1.0.1
+    unist-util-is: ^2.0.0
+    xtend: ^4.0.1
+  checksum: e34b18fbdb4309ccc4b3027ae909294ef2ad66139bead4f3e9962e39ef1879e9a589b63472d753c09af58246f42106c7e0016b1dc91d0dc9314eb29a62a2af8c
   languageName: node
   linkType: hard
 
@@ -12336,7 +12375,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:27.4.4":
+"jest@npm:27.4.4, jest@npm:^27.4.4":
   version: 27.4.4
   resolution: "jest@npm:27.4.4"
   dependencies:
@@ -12599,6 +12638,13 @@ __metadata:
     array-includes: ^3.1.3
     object.assign: ^4.1.2
   checksum: dcee22e6382ee5a6bd4187333a44b6420d9d079838119a07055d6e88d137dd0afadc97a2246152b0b65006bd5fc393112dc0cef01956a01a66c1713913953c66
+  languageName: node
+  linkType: hard
+
+"kebab-case@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "kebab-case@npm:1.0.1"
+  checksum: 8cf5f5d534c534cbe0bef0a633290ed4ca4821d32108e5016a1e4d07b6844d863150b9ff00ef56848e1ed4cf6b96ac7b019ebc2658b80547034c12a057f4e231
   languageName: node
   linkType: hard
 
@@ -16370,6 +16416,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"property-information@npm:^3.1.0":
+  version: 3.2.0
+  resolution: "property-information@npm:3.2.0"
+  checksum: ed2614520d8a608735f84e69ae428146eda4ec5e5971906fb1cdfce2b51c79a3e51b74288df72d154c38999db6b398d52a3d982f50bb982d0eee4c4016a82d65
+  languageName: node
+  linkType: hard
+
 "property-information@npm:^5.0.0, property-information@npm:^5.3.0":
   version: 5.6.0
   resolution: "property-information@npm:5.6.0"
@@ -17458,6 +17511,8 @@ __metadata:
     eslint-config-google: ^0.14.0
     eslint-plugin-filenames: latest
     eslint-plugin-react: latest
+    husky: ^4.3.7
+    lint-staged: 12.1.2
   languageName: unknown
   linkType: soft
 
@@ -18429,6 +18484,18 @@ __metadata:
   dependencies:
     safe-buffer: ~5.1.0
   checksum: 9ab7e56f9d60a28f2be697419917c50cac19f3e8e6c28ef26ed5f4852289fe0de5d6997d29becf59028556f2c62983790c1d9ba1e2a3cc401768ca12d5183a5b
+  languageName: node
+  linkType: hard
+
+"stringify-entities@npm:^1.0.1":
+  version: 1.3.2
+  resolution: "stringify-entities@npm:1.3.2"
+  dependencies:
+    character-entities-html4: ^1.0.0
+    character-entities-legacy: ^1.0.0
+    is-alphanumerical: ^1.0.0
+    is-hexadecimal: ^1.0.0
+  checksum: 4cbe43d89ef25d45034e60733caf9e27becf7521cb1e132749fd11ac34acb42214427db14ec6ed4b64ac077ccf09df7a1192a75f6104a38303a0462967bcd347
   languageName: node
   linkType: hard
 
@@ -19596,6 +19663,13 @@ __metadata:
   version: 1.1.6
   resolution: "unist-util-generated@npm:1.1.6"
   checksum: 86239ff88a08800d52198f2f0e15911f05bab2dad17cef95550f7c2728f15ebb0344694fcc3101d05762d88adaf86cb85aa7a3300fedabd0b6d7d00b41cdcb7f
+  languageName: node
+  linkType: hard
+
+"unist-util-is@npm:^2.0.0":
+  version: 2.1.3
+  resolution: "unist-util-is@npm:2.1.3"
+  checksum: 21a49b65797b8c139d1282a833c931df0a2296c482bb4808e3e189b60efe001730baf0736111cd50a05d3ace106b3f204a85cc38f88dc74b8077a220613831fe
   languageName: node
   linkType: hard
 

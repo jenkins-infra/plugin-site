@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
+        "lint": "eslint --ext .js,.jsx .",
         "build": "exit 0",
         "test": "jest"
     },
@@ -12,5 +13,28 @@
     "description": "",
     "jest": {
         "globalSetup": "./jest-global-setup.js"
+    },
+    "dependencies": {
+        "axios": "^0.21.4",
+        "axios-retry": "3.2.4",
+        "cheerio": "^1.0.0-rc.10",
+        "date-fns": "^2.27.0",
+        "find-package-json": "^1.2.0",
+        "gatsby-source-filesystem": "4.3.0",
+        "p-queue": "^6.6.2",
+        "rehype-stringify": "^8.0.0",
+        "remark": "^13.0.0",
+        "remark-frontmatter": "^3.0.0",
+        "remark-gfm": "^1.0.0",
+        "remark-parse": "^9.0.0",
+        "remark-rehype": "^8.1.0",
+        "unified": "^9.2.2",
+        "xml2js": "0.4.23"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.16.4",
+        "babel-jest": "27.4.4",
+        "eslint": "^8.4.1",
+        "nock": "13.2.1"
     }
 }
