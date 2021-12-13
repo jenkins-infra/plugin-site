@@ -9,11 +9,9 @@ export const PluginFragment = graphql`
     url
     version
     wiki {
-        childMarkdownRemark {
-            html
-        }
         childHtmlRehype {
             html
+            rehypeTOC: tableOfContents
         }
         url
     }

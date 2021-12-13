@@ -64,8 +64,18 @@ module.exports.plugins = [
                 {
                     resolve: '@halkeye/gatsby-rehype-autolink-headers',
                     options: {
-                        prependId: 'plugin-content-',
                         isIconAfterHeader: true
+                    }
+                },
+                {
+                    resolve: '@halkeye/gatsby-rehype-rewrite-ids',
+                    options: {
+                        prefix: 'plugin-content-'
+                    }
+                },
+                {
+                    resolve: 'gatsby-rehype-rewrite-img-src',
+                    options: {
                     }
                 },
                 // 'gatsby-rehype-prismjs',
@@ -73,40 +83,6 @@ module.exports.plugins = [
         }
     },
     'gatsby-transformer-sharp',
-    {
-        resolve: 'gatsby-transformer-remark',
-        options: {
-            excerpt_separator: '<!-- excerpt -->',
-            plugins: [
-                {resolve: 'gatsby-remark-remote-relative-images'},
-                {
-                    resolve: 'gatsby-remark-images',
-                    options: {
-                        maxWidth: 1200
-                    }
-                },
-                {
-                    resolve: 'gatsby-remark-responsive-iframe'
-                },
-                {
-                    resolve: 'gatsby-remark-embed-youtube',
-                    options: {
-                        width: 800,
-                        height: 400
-                    }
-                },
-                {
-                    resolve: 'gatsby-remark-autolink-headers',
-                    options: {
-                        isIconAfterHeader: true
-                    }
-                },
-                'gatsby-remark-prismjs',
-                'gatsby-remark-copy-linked-files',
-                'gatsby-remark-emoji'
-            ]
-        }
-    },
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',

@@ -5,11 +5,17 @@ const crypto = require('crypto');
 const cheerio = require('cheerio');
 const {execSync} = require('child_process');
 const axiosRetry = require('axios-retry');
-const dateFNs = require('date-fns');
-const {default: PQueue} = require('p-queue'); // NOTE - pinned at p-queue@6.6.2 because 7 requires whole project to be esm
+const {parse: parseDate} = require('date-fns');
+const PQueue = require('p-queue').default; // NOTE - pinned at p-queue@6.6.2 because 7 requires whole project to be esm
 const {parseStringPromise} = require('xml2js');
-const categoryList = require('./categories.json');
+const CATEGORY_LIST = require('./categories.json');
 
+const unified = require('unified');
+const remarkParse = require('remark-parse');
+const remarkFrontmatter = require('remark-frontmatter');
+const remarkGfm = require('remark-gfm');
+const remarkRehype = require('remark-rehype');
+const rehypeStringify = require('rehype-stringify');
 
 const API_URL = process.env.JENKINS_IO_API_URL || 'https://plugins.jenkins.io/api';
 
@@ -26,7 +32,7 @@ const requestGET = async ({url, reporter}) => {
         }
         return results.data;
     } catch (err) {
-        if (err?.response?.status == 404) {
+        if (err && err.response && err.response.status == 404) {
             reporter.error(`${url} does not return any data`);
             return null;
         }
@@ -53,6 +59,18 @@ const LEGACY_WIKI_URL_RE = /^https?:\/\/wiki.jenkins(-ci.org|.io)\/display\/(jen
 const MARKDOWN_BLOB_RE = /https?:\/\/github.com\/(jenkinsci|jenkins-infra)\/([^/.]+)\/blob\/([^/]+)\/(.+\.(md))$/;
 const getPluginContent = async ({wiki, pluginName, reporter, createNode, createContentDigest}) => {
     const createWikiNode = async (mediaType, url, content) => {
+        if (mediaType === 'text/markdown') {
+            const file = await unified()
+                .use(remarkParse)
+                .use(remarkFrontmatter)
+                .use(remarkGfm)
+                .use(remarkRehype)
+                .use(rehypeStringify)
+                .process(content);
+
+            content = String(file);
+            mediaType = 'text/pluginhtml';
+        }
         return createNode({
             id: `${pluginName} <<< JenkinsPluginWiki`,
             name: pluginName,
@@ -104,7 +122,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
         const pluginName = plugin.name.trim();
         names.push(pluginName);
         const developers = plugin.developers || [];
-        developers.forEach(maint => {maint.id = maint.developerId, delete(maint.developerId);});
+        developers.forEach(maint => {maint.id = maint.developerId, delete (maint.developerId);});
         plugin.scm = fixGitHubUrl(plugin.scm, plugin.defaultBranch || 'master');
         const pluginStats = stats[pluginName] || {installations: null};
         pluginStats.trend = computeTrend(plugin, stats, updateData.plugins);
@@ -124,7 +142,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
             hasBomEntry: !!bomDependencies.find(artifactId => plugin.gav.includes(`:${artifactId}:`)),
             parent: null,
             children: [],
-            buildDate: plugin.buildDate ? dateFNs.parse(plugin.buildDate, 'MMMM d, yyyy', new Date(0)) : null,
+            buildDate: plugin.buildDate ? parseDate(plugin.buildDate, 'MMMM d, yyyy', new Date(0)) : null,
             internal: {
                 type: 'JenkinsPlugin',
             }
@@ -211,10 +229,12 @@ const getImpliedDependenciesAndTitles = (plugin, detachedPlugins, updateData) =>
     for (const detached of detachedPlugins) {
         const [detachedPlugin, detachedCore, detachedVersion] = detached;
         if (versionToNumber(detachedCore) > versionToNumber(plugin.requiredCore)) {
-            plugin.dependencies.push({name: detachedPlugin,
+            plugin.dependencies.push({
+                name: detachedPlugin,
                 version: detachedVersion,
                 implied: true,
-                optional: false});
+                optional: false
+            });
         }
     }
     plugin.dependencies = plugin.dependencies || [];
@@ -272,7 +292,7 @@ const getPercentage = (name, stats, monthsAgo) => {
         return 0;
     }
     return installations[installations.length - monthsAgo].total
-            / coreInstallations[coreInstallations.length - monthsAgo].total;
+        / coreInstallations[coreInstallations.length - monthsAgo].total;
 };
 
 const fetchBomDependencies = async (reporter) => {
@@ -281,7 +301,7 @@ const fetchBomDependencies = async (reporter) => {
         const bom = await requestGET({url: bomUrl, reporter});
         const xml = await parseStringPromise(bom);
         return xml.project.dependencyManagement[0].dependencies[0].dependency.map(dep => dep.artifactId);
-    } catch(ex) {
+    } catch (ex) {
         reporter.error('Failed to fetch BOM data', ex);
     }
     return [];
@@ -310,7 +330,7 @@ const fetchSuspendedPlugins = async ({updateData, names, createNode}) => {
 const processCategoryData = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('process categories');
     sectionActivity.start();
-    for (const category of categoryList) {
+    for (const category of CATEGORY_LIST) {
         createNode({
             ...category,
             id: category.id.trim(),
@@ -430,7 +450,7 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
             url    "https://updates.jenkins.io/download/plugins/42crunch-security-audit/2.1/42crunch-security-audit.hpi"
             version 2.1
             */
-            const date = dateFNs.parse(data.buildDate, 'MMMM d, yyyy', new Date(0));
+            const date = parseDate(data.buildDate, 'MMMM d, yyyy', new Date(0));
             if (!firstReleases[data.name] || firstReleases[data.name].getTime() > date.getTime()) {
                 firstReleases[data.name] = date;
             }

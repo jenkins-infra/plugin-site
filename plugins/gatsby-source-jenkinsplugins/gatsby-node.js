@@ -10,7 +10,7 @@ const {createRemoteFileNode} = require('gatsby-source-filesystem');
 
 exports.sourceNodes = async (
     {actions: {createNode, createNodeField}, reporter, createContentDigest, createNodeId},
-    { /* options */ } // eslint-disable-line no-empty-pattern
+    { /* options */} // eslint-disable-line no-empty-pattern
 ) => {
     try {
         const firstReleases = {};
