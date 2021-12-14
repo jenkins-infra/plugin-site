@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-<<<<<<< HEAD
 const axios = require('axios');
 const path = require('path');
 const crypto = require('crypto');

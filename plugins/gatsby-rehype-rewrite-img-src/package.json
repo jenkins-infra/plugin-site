@@ -12,7 +12,8 @@
     "license": "MIT",
     "description": "",
     "jest": {
-        "globalSetup": "./jest-global-setup.js"
+        "globalSetup": "./jest-global-setup.js",
+        "transform": {}
     },
     "dependencies": {
         "unist-util-visit": "^2.0.3"
@@ -20,7 +21,6 @@
     "devDependencies": {
         "@babel/preset-env": "^7.16.4",
         "babel-jest": "27.4.4",
-        "babel-preset-gatsby": "2.3.0",
         "eslint": "^8.4.1",
         "hast-util-to-html": "^2.0.3",
         "jest": "^27.4.4",

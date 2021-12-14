@@ -67,7 +67,7 @@ spec:
     stage('NPM Install') {
       steps {
         container('node') {
-          sh 'NODE_ENV=development npm ci'
+          sh 'NODE_ENV=development yarn install'
         }
       }
     }
@@ -80,7 +80,7 @@ spec:
       }
       steps {
         container('node') {
-          sh 'npm run build'
+          sh 'yarn build'
         }
       }
     }
@@ -97,7 +97,7 @@ spec:
       }
       steps {
         container('node') {
-          sh 'npm run build'
+          sh 'yarn build'
         }
       }
     }
@@ -105,7 +105,7 @@ spec:
     stage('Check build') {
       steps {
         container('node') {
-          sh 'test -e public/index.html || exit 1'
+          sh 'test -e ./plugins/plugin-site/public/index.html || exit 1'
         }
       }
     }
@@ -116,8 +116,8 @@ spec:
       }
       steps {
         container('node') {
-          sh 'npm run lint'
-          sh 'npm run test'
+          sh 'yarn lint'
+          sh 'yarn test'
         }
       }
     }
@@ -131,7 +131,8 @@ spec:
       }
       steps {
         container('blobxfer') {
-          sh('''blobxfer upload \
+          sh('''
+              blobxfer upload \
             --local-path public \
             --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
             --storage-account prodpluginsite \

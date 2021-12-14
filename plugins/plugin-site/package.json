@@ -15,11 +15,6 @@
     "test": "jest",
     "test:watch": "npm test -- --watch"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --fix"
@@ -131,7 +126,6 @@
     "gatsby-plugin-nprogress": "4.3.0",
     "gatsby-source-custom-api": "2.3.2",
     "gatsby-source-filesystem": "4.3.0",
-    "husky": "^4.3.7",
     "identity-obj-proxy": "3.0.0",
     "jest": "27.4.4",
     "jest-canvas-mock": "2.3.1",

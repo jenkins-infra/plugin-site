@@ -4,9 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "lint": "yarn workspaces foreach -t -p -v run lint",
-        "test": "yarn workspaces foreach -t -p -v run test",
-        "build": "yarn workspaces foreach -t -p -v run build"
+        "lint": "yarn workspaces foreach -t -p -v -i run lint",
+        "test": "yarn workspaces foreach -t -p -v -i run test",
+        "build": "yarn workspaces foreach -t -p -v -i run build"
     },
     "workspaces": [
         "plugins/*"
