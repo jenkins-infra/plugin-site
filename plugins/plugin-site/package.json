@@ -13,7 +13,7 @@
     "lint": "eslint --ext .js,.jsx .",
     "stylelint": "stylelint --fix 'src/**/*.js'",
     "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "yarn test --watch"
   },
   "lint-staged": {
     "*.{js,jsx}": [
