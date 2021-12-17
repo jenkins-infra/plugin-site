@@ -67,8 +67,9 @@ license your work under the terms of the [MIT License](LICENSE).
 ## Run locally
 
 ```
-npm install
-npm run dev
+yarn install
+cd ./plugins/plugin-site
+yarn dev
 Open http://localhost:3000
 ```
 
@@ -79,7 +80,7 @@ To aid with development mode, an environment variable of GET_CONTENT is needed t
 ESLint with React linting options have been enabled.
 
 ```
-npm run lint
+yarn lint
 ```
 
 ## Tests
@@ -87,11 +88,12 @@ npm run lint
 Execute tests via
 
 ```
-npm test
+yarn test
 ```
 
 or run in watch mode
 
 ```
-npm test:watch
+cd ./plugins/plugin-site
+yarn test:watch
 ```

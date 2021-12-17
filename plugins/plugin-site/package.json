@@ -1,0 +1,155 @@
+{
+  "private": true,
+  "name": "@jenkins-cd/jenkins-plugin-site",
+  "version": "0.0.1",
+  "description": "Jenkins Plugin Site",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gatsby develop -p 3000 -H 0.0.0.0",
+    "start": "gatsby develop -p 3000 -H 0.0.0.0",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "lint": "eslint --ext .js,.jsx .",
+    "stylelint": "stylelint --fix 'src/**/*.js'",
+    "test": "jest",
+    "test:watch": "yarn test --watch"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jenkins-infra/plugin-site.git"
+  },
+  "keywords": [
+    "jenkins-ci",
+    "plugins",
+    "gatsby"
+  ],
+  "engines": {
+    "node": ">= 14.17"
+  },
+  "author": "Michael McCaskill <https://github.com/michaelmccaskill>",
+  "contributors": [
+    {
+      "name": "Gavin Mogan",
+      "email": "https://github.com/halkeye"
+    },
+    {
+      "name": "Gus Reiber",
+      "email": "https://github.com/gusreiber"
+    },
+    {
+      "name": "Thorsten Scherler",
+      "email": "https://github.com/scherler aka scherler"
+    },
+    {
+      "name": "Michael McCaskill",
+      "email": "https://github.com/michaelmccaskill"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://issues.jenkins-ci.org/secure/RapidBoard.jspa?rapidView=1&projectKey=WEBSITE&view=detail"
+  },
+  "homepage": "https://plugins.jenkins.io/",
+  "dependencies": {
+    "@babel/core": "^7.15.0",
+    "@halkeye/gatsby-rehype-autolink-headers": "^1.0.1",
+    "@halkeye/gatsby-rehype-rewrite-ids": "^1.0.0",
+    "@halkeye/gatsby-transformer-rehype": "^1.0.1",
+    "@halkeye/react-paginate": "^7.2.3",
+    "@jenkins-cd/gatsby-rehype-rewrite-img-src": "*",
+    "@jenkins-cd/gatsby-source-jenkinsplugins": "*",
+    "@juggle/resize-observer": "^3.3.1",
+    "@sentry/browser": "^6.12.0",
+    "@sentry/node": "6.16.1",
+    "algoliasearch": "^4.11.0",
+    "chart.js": "^3.5.1",
+    "cheerio": "^1.0.0-rc.10",
+    "classnames": "^2.3.1",
+    "copy-to-clipboard": "^3.3.1",
+    "find-package-json": "^1.2.0",
+    "gatsby-plugin-canonical-urls": "^4.2.0",
+    "gatsby-plugin-extract-schema": "^0.2.0",
+    "gatsby-plugin-image": "^2.2.0",
+    "gatsby-plugin-postcss": "^5.2.0",
+    "gatsby-plugin-react-helmet": "^5.2.0",
+    "gatsby-plugin-robots-txt": "^1.6.14",
+    "gatsby-plugin-sharp": "^4.2.0",
+    "gatsby-plugin-sitemap": "^5.2.0",
+    "gatsby-remark-source-name": "^1.0.0",
+    "gatsby-transformer-asciidoc": "^3.2.0",
+    "gatsby-transformer-sharp": "^4.2.0",
+    "github-syntax-light": "^0.5.0",
+    "isomorphic-fetch": "^3.0.0",
+    "postcss-calc": "^8.0.0",
+    "postcss-css-variables": "^0.18.0",
+    "postcss-extend": "^1.0.5",
+    "postcss-import": "^14.0.2",
+    "postcss-merge-rules": "^5.0.2",
+    "postcss-nesting": "^10.0.2",
+    "postcss-preset-env": "^7.0.0",
+    "postcss-pxtorem": "^6.0.0",
+    "postcss-url": "^10.1.3",
+    "prismjs": "^1.25.0",
+    "react-chartjs-2": "^3.3.0",
+    "react-helmet": "^6.1.0",
+    "react-radio-group": "^3.0.3",
+    "react-timeago": "^6.2.1",
+    "reactstrap": "^8.10.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "7.16.0",
+    "@testing-library/jest-dom": "5.16.1",
+    "@testing-library/react": "12.1.2",
+    "@typescript-eslint/eslint-plugin": "5.6.0",
+    "axios-retry": "3.2.4",
+    "babel-jest": "27.4.4",
+    "babel-preset-gatsby": "2.3.0",
+    "dotenv": "10.0.0",
+    "eslint": "8.4.1",
+    "eslint-config-standard": "16.0.3",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-jest": "25.3.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "5.2.0",
+    "eslint-plugin-react": "7.27.1",
+    "eslint-plugin-standard": "5.0.0",
+    "gatsby": "4.3.0",
+    "gatsby-cli": "4.3.0",
+    "gatsby-plugin-algolia": "0.24.0",
+    "gatsby-plugin-matomo": "0.11.0",
+    "gatsby-plugin-nprogress": "4.3.0",
+    "gatsby-source-custom-api": "2.3.2",
+    "gatsby-source-filesystem": "4.3.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "27.4.4",
+    "jest-canvas-mock": "2.3.1",
+    "jest-junit": "13.0.0",
+    "lint-staged": "12.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-test-renderer": "17.0.2",
+    "remark": "^13.0.0",
+    "remark-frontmatter": "^3.0.0",
+    "remark-gfm": "^1.0.0",
+    "remark-parse": "^9.0.0",
+    "remark-rehype": "^8.1.0",
+    "stylelint": "14.1.0",
+    "stylelint-config-recommended": "6.0.0",
+    "stylelint-config-standard": "24.0.0",
+    "stylelint-config-styled-components": "0.1.1",
+    "stylelint-order": "5.0.0",
+    "stylelint-processor-styled-components": "1.10.0",
+    "stylelint-selector-bem-pattern": "2.1.1",
+    "unified": "^9.2.2",
+    "xml2js": "0.4.23"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
+  }
+}

@@ -1,12 +1,12 @@
-const {
+import {
     fetchSiteInfo,
     fetchPluginData,
     fetchPluginVersions,
     processCategoryData,
     fetchLabelData,
     fetchStats,
-} = require('./utils');
-const {createRemoteFileNode} = require('gatsby-source-filesystem');
+} from './utils';
+import {createRemoteFileNode} from 'gatsby-source-filesystem';
 
 exports.sourceNodes = async (
     {actions: {createNode, createNodeField}, reporter, createContentDigest, createNodeId},
@@ -45,3 +45,4 @@ exports.createSchemaCustomization = ({actions}) => {
         }
     `);
 };
+
