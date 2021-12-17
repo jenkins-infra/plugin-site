@@ -3114,7 +3114,7 @@ __metadata:
     postcss-extend: 1.0.5
     postcss-import: 14.0.2
     postcss-merge-rules: 5.0.3
-    postcss-nesting: 10.0.2
+    postcss-nesting: 10.0.3
     postcss-preset-env: 7.0.1
     postcss-pxtorem: 6.0.0
     postcss-url: 10.1.3
@@ -17072,7 +17072,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:10.0.2, postcss-nesting@npm:^10.0.2":
+"postcss-nesting@npm:10.0.3":
+  version: 10.0.3
+  resolution: "postcss-nesting@npm:10.0.3"
+  dependencies:
+    postcss-selector-parser: ^6.0.7
+  peerDependencies:
+    postcss: ^8.3
+  bin:
+    postcss-nesting: dist/cli.mjs
+  checksum: 69e267421bc105857fd6a2f34af6b540aab395c7a61bce1150956ee0b077328df89496760f3611fe63cc2c9fc17c2b8ba3916e834ea751b69a978c08e964fbb8
+  languageName: node
+  linkType: hard
+
+"postcss-nesting@npm:^10.0.2":
   version: 10.0.2
   resolution: "postcss-nesting@npm:10.0.2"
   dependencies:
@@ -17361,7 +17374,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-selector-parser@npm:^6, postcss-selector-parser@npm:^6.0.2, postcss-selector-parser@npm:^6.0.4, postcss-selector-parser@npm:^6.0.5, postcss-selector-parser@npm:^6.0.6":
+"postcss-selector-parser@npm:^6, postcss-selector-parser@npm:^6.0.2, postcss-selector-parser@npm:^6.0.4, postcss-selector-parser@npm:^6.0.5, postcss-selector-parser@npm:^6.0.6, postcss-selector-parser@npm:^6.0.7":
   version: 6.0.7
   resolution: "postcss-selector-parser@npm:6.0.7"
   dependencies:
