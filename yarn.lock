@@ -228,7 +228,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.1.0, @babel/core@npm:^7.12.3, @babel/core@npm:^7.15.0, @babel/core@npm:^7.15.5, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5":
+"@babel/core@npm:7.16.0, @babel/core@npm:^7.1.0, @babel/core@npm:^7.12.3, @babel/core@npm:^7.15.5, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5":
   version: 7.16.0
   resolution: "@babel/core@npm:7.16.0"
   dependencies:
@@ -251,7 +251,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:^7.15.4, @babel/eslint-parser@npm:^7.16.3":
+"@babel/eslint-parser@npm:7.16.3, @babel/eslint-parser@npm:^7.15.4":
   version: 7.16.3
   resolution: "@babel/eslint-parser@npm:7.16.3"
   dependencies:
@@ -265,7 +265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-plugin@npm:^7.14.5":
+"@babel/eslint-plugin@npm:7.14.5":
   version: 7.14.5
   resolution: "@babel/eslint-plugin@npm:7.14.5"
   dependencies:
@@ -2146,7 +2146,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.15.4, @babel/preset-env@npm:^7.16.4":
+"@babel/preset-env@npm:7.16.4, @babel/preset-env@npm:^7.15.4":
   version: 7.16.4
   resolution: "@babel/preset-env@npm:7.16.4"
   dependencies:
@@ -2230,7 +2230,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.16.5":
+"@babel/preset-env@npm:7.16.5":
   version: 7.16.5
   resolution: "@babel/preset-env@npm:7.16.5"
   dependencies:
@@ -2776,7 +2776,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@halkeye/gatsby-rehype-autolink-headers@npm:^1.0.1":
+"@halkeye/gatsby-rehype-autolink-headers@npm:1.0.1":
   version: 1.0.1
   resolution: "@halkeye/gatsby-rehype-autolink-headers@npm:1.0.1"
   dependencies:
@@ -2791,7 +2791,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@halkeye/gatsby-rehype-rewrite-ids@npm:^1.0.0":
+"@halkeye/gatsby-rehype-rewrite-ids@npm:1.0.0":
   version: 1.0.0
   resolution: "@halkeye/gatsby-rehype-rewrite-ids@npm:1.0.0"
   dependencies:
@@ -2804,7 +2804,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@halkeye/gatsby-transformer-rehype@npm:^1.0.1":
+"@halkeye/gatsby-transformer-rehype@npm:1.0.1":
   version: 1.0.1
   resolution: "@halkeye/gatsby-transformer-rehype@npm:1.0.1"
   dependencies:
@@ -2820,7 +2820,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@halkeye/react-paginate@npm:^7.2.3":
+"@halkeye/react-paginate@npm:7.2.3":
   version: 7.2.3
   resolution: "@halkeye/react-paginate@npm:7.2.3"
   dependencies:
@@ -2962,12 +2962,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jenkins-cd/gatsby-rehype-rewrite-img-src@workspace:plugins/gatsby-rehype-rewrite-img-src"
   dependencies:
-    "@babel/preset-env": ^7.16.4
+    "@babel/preset-env": 7.16.4
     babel-jest: 27.4.4
-    eslint: ^8.4.1
-    hast-util-to-html: ^2.0.3
-    jest: ^27.4.4
-    rehype: ^11.0.0
+    eslint: 8.4.1
+    hast-util-to-html: 2.1.0
+    jest: 27.4.4
+    rehype: 11.0.0
     unist-util-visit: ^2.0.3
   languageName: unknown
   linkType: soft
@@ -2976,16 +2976,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jenkins-cd/gatsby-source-jenkinsplugins@workspace:plugins/gatsby-source-jenkinsplugins"
   dependencies:
-    "@babel/preset-env": ^7.16.5
+    "@babel/preset-env": 7.16.5
     axios: ^0.21.4
     axios-retry: 3.2.4
     babel-jest: 27.4.4
     cheerio: ^1.0.0-rc.10
     date-fns: ^2.27.0
-    eslint: ^8.4.1
+    eslint: 8.4.1
     find-package-json: ^1.2.0
     gatsby-source-filesystem: 4.3.0
-    jest: ^27.4.5
+    jest: 27.4.5
     nock: 13.2.1
     p-queue: ^6.6.2
     rehype-stringify: ^8.0.0
@@ -3003,28 +3003,28 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jenkins-cd/jenkins-plugin-site@workspace:plugins/plugin-site"
   dependencies:
-    "@babel/core": ^7.15.0
+    "@babel/core": 7.16.0
     "@babel/plugin-proposal-class-properties": 7.16.0
-    "@halkeye/gatsby-rehype-autolink-headers": ^1.0.1
-    "@halkeye/gatsby-rehype-rewrite-ids": ^1.0.0
-    "@halkeye/gatsby-transformer-rehype": ^1.0.1
-    "@halkeye/react-paginate": ^7.2.3
+    "@halkeye/gatsby-rehype-autolink-headers": 1.0.1
+    "@halkeye/gatsby-rehype-rewrite-ids": 1.0.0
+    "@halkeye/gatsby-transformer-rehype": 1.0.1
+    "@halkeye/react-paginate": 7.2.3
     "@jenkins-cd/gatsby-rehype-rewrite-img-src": "*"
     "@jenkins-cd/gatsby-source-jenkinsplugins": "*"
-    "@juggle/resize-observer": ^3.3.1
-    "@sentry/browser": ^6.12.0
+    "@juggle/resize-observer": 3.3.1
+    "@sentry/browser": 6.16.1
     "@sentry/node": 6.16.1
     "@testing-library/jest-dom": 5.16.1
     "@testing-library/react": 12.1.2
     "@typescript-eslint/eslint-plugin": 5.6.0
-    algoliasearch: ^4.11.0
+    algoliasearch: 4.11.0
     axios-retry: 3.2.4
     babel-jest: 27.4.4
     babel-preset-gatsby: 2.3.0
-    chart.js: ^3.5.1
-    cheerio: ^1.0.0-rc.10
-    classnames: ^2.3.1
-    copy-to-clipboard: ^3.3.1
+    chart.js: 3.6.2
+    cheerio: 1.0.0-rc.10
+    classnames: 2.3.1
+    copy-to-clipboard: 3.3.1
     dotenv: 10.0.0
     eslint: 8.4.1
     eslint-config-standard: 16.0.3
@@ -3034,56 +3034,56 @@ __metadata:
     eslint-plugin-promise: 5.2.0
     eslint-plugin-react: 7.27.1
     eslint-plugin-standard: 5.0.0
-    find-package-json: ^1.2.0
+    find-package-json: 1.2.0
     fsevents: ^2.3.2
     gatsby: 4.3.0
     gatsby-cli: 4.3.0
     gatsby-plugin-algolia: 0.24.0
-    gatsby-plugin-canonical-urls: ^4.2.0
-    gatsby-plugin-extract-schema: ^0.2.0
-    gatsby-plugin-image: ^2.2.0
+    gatsby-plugin-canonical-urls: 4.3.0
+    gatsby-plugin-extract-schema: 0.2.1
+    gatsby-plugin-image: 2.3.0
     gatsby-plugin-matomo: 0.11.0
     gatsby-plugin-nprogress: 4.3.0
-    gatsby-plugin-postcss: ^5.2.0
-    gatsby-plugin-react-helmet: ^5.2.0
-    gatsby-plugin-robots-txt: ^1.6.14
-    gatsby-plugin-sharp: ^4.2.0
-    gatsby-plugin-sitemap: ^5.2.0
-    gatsby-remark-source-name: ^1.0.0
+    gatsby-plugin-postcss: 5.3.0
+    gatsby-plugin-react-helmet: 5.3.0
+    gatsby-plugin-robots-txt: 1.6.14
+    gatsby-plugin-sharp: 4.3.0
+    gatsby-plugin-sitemap: 5.3.0
+    gatsby-remark-source-name: 1.0.0
     gatsby-source-custom-api: 2.3.2
     gatsby-source-filesystem: 4.3.0
-    gatsby-transformer-asciidoc: ^3.2.0
-    gatsby-transformer-sharp: ^4.2.0
-    github-syntax-light: ^0.5.0
+    gatsby-transformer-asciidoc: 3.3.0
+    gatsby-transformer-sharp: 4.3.0
+    github-syntax-light: 0.5.0
     identity-obj-proxy: 3.0.0
-    isomorphic-fetch: ^3.0.0
+    isomorphic-fetch: 3.0.0
     jest: 27.4.4
     jest-canvas-mock: 2.3.1
     jest-junit: 13.0.0
     lint-staged: 12.1.2
-    postcss-calc: ^8.0.0
-    postcss-css-variables: ^0.18.0
-    postcss-extend: ^1.0.5
-    postcss-import: ^14.0.2
-    postcss-merge-rules: ^5.0.2
-    postcss-nesting: ^10.0.2
-    postcss-preset-env: ^7.0.0
-    postcss-pxtorem: ^6.0.0
-    postcss-url: ^10.1.3
-    prismjs: ^1.25.0
+    postcss-calc: 8.0.0
+    postcss-css-variables: 0.18.0
+    postcss-extend: 1.0.5
+    postcss-import: 14.0.2
+    postcss-merge-rules: 5.0.3
+    postcss-nesting: 10.0.2
+    postcss-preset-env: 7.0.1
+    postcss-pxtorem: 6.0.0
+    postcss-url: 10.1.3
+    prismjs: 1.25.0
     react: 17.0.2
-    react-chartjs-2: ^3.3.0
+    react-chartjs-2: 3.3.0
     react-dom: 17.0.2
-    react-helmet: ^6.1.0
-    react-radio-group: ^3.0.3
+    react-helmet: 6.1.0
+    react-radio-group: 3.0.3
     react-test-renderer: 17.0.2
-    react-timeago: ^6.2.1
-    reactstrap: ^8.10.0
-    remark: ^13.0.0
-    remark-frontmatter: ^3.0.0
-    remark-gfm: ^1.0.0
-    remark-parse: ^9.0.0
-    remark-rehype: ^8.1.0
+    react-timeago: 6.2.1
+    reactstrap: 8.10.1
+    remark: 13.0.0
+    remark-frontmatter: 3.0.0
+    remark-gfm: 1.0.0
+    remark-parse: 9.0.0
+    remark-rehype: 8.1.0
     stylelint: 14.1.0
     stylelint-config-recommended: 6.0.0
     stylelint-config-standard: 24.0.0
@@ -3091,7 +3091,7 @@ __metadata:
     stylelint-order: 5.0.0
     stylelint-processor-styled-components: 1.10.0
     stylelint-selector-bem-pattern: 2.1.1
-    unified: ^9.2.2
+    unified: 9.2.2
     xml2js: 0.4.23
   dependenciesMeta:
     fsevents:
@@ -3850,7 +3850,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@juggle/resize-observer@npm:^3.3.1":
+"@juggle/resize-observer@npm:3.3.1":
   version: 3.3.1
   resolution: "@juggle/resize-observer@npm:3.3.1"
   checksum: ddabc4044276a2cb57d469c4917206c7e39f2463aa8e3430e33e4eda554412afe29c22afa40e6708b49dad5d56768dc83acd68a704b1dcd49a0906bb96b991b2
@@ -3954,7 +3954,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/browser@npm:^6.12.0":
+"@sentry/browser@npm:6.16.1":
   version: 6.16.1
   resolution: "@sentry/browser@npm:6.16.1"
   dependencies:
@@ -5273,7 +5273,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"algoliasearch@npm:^4.11.0, algoliasearch@npm:^4.9.1":
+"algoliasearch@npm:4.11.0, algoliasearch@npm:^4.9.1":
   version: 4.11.0
   resolution: "algoliasearch@npm:4.11.0"
   dependencies:
@@ -6633,7 +6633,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chart.js@npm:^3.5.1":
+"chart.js@npm:3.6.2":
   version: 3.6.2
   resolution: "chart.js@npm:3.6.2"
   checksum: 0883adced890eb0ee77a8374e6f89412a82df694f25767a5b14a200735922adf6521366a1419a24025e53203ea00ed70ba1dfc86e2f030c9ef183c6909f9dbdd
@@ -6653,7 +6653,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cheerio@npm:^1.0.0-rc.10":
+"cheerio@npm:1.0.0-rc.10, cheerio@npm:^1.0.0-rc.10":
   version: 1.0.0-rc.10
   resolution: "cheerio@npm:1.0.0-rc.10"
   dependencies:
@@ -6741,7 +6741,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.3, classnames@npm:^2.3.1":
+"classnames@npm:2.3.1, classnames@npm:^2.2.3":
   version: 2.3.1
   resolution: "classnames@npm:2.3.1"
   checksum: 14db8889d56c267a591f08b0834989fe542d47fac659af5a539e110cc4266694e8de86e4e3bbd271157dbd831361310a8293e0167141e80b0f03a0f175c80960
@@ -7221,7 +7221,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"copy-to-clipboard@npm:^3.3.1":
+"copy-to-clipboard@npm:3.3.1":
   version: 3.3.1
   resolution: "copy-to-clipboard@npm:3.3.1"
   dependencies:
@@ -8613,7 +8613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-google@npm:^0.14.0":
+"eslint-config-google@npm:0.14.0":
   version: 0.14.0
   resolution: "eslint-config-google@npm:0.14.0"
   peerDependencies:
@@ -8947,7 +8947,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.4.1, eslint@npm:^8.3.0, eslint@npm:^8.4.1":
+"eslint@npm:8.4.1":
   version: 8.4.1
   resolution: "eslint@npm:8.4.1"
   dependencies:
@@ -9589,7 +9589,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-package-json@npm:^1.2.0":
+"find-package-json@npm:1.2.0, find-package-json@npm:^1.2.0":
   version: 1.2.0
   resolution: "find-package-json@npm:1.2.0"
   checksum: ea3fc597c3b3bbdb93f91d62debe7b58f388d55e71c2879e3bd77472c78ce8f7ac2c38f5a2d314176f05cb54808554203c72518b27689efa76e46284094a4370
@@ -10018,7 +10018,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-canonical-urls@npm:^4.2.0":
+"gatsby-plugin-canonical-urls@npm:4.3.0":
   version: 4.3.0
   resolution: "gatsby-plugin-canonical-urls@npm:4.3.0"
   dependencies:
@@ -10029,7 +10029,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-extract-schema@npm:^0.2.0":
+"gatsby-plugin-extract-schema@npm:0.2.1":
   version: 0.2.1
   resolution: "gatsby-plugin-extract-schema@npm:0.2.1"
   dependencies:
@@ -10040,7 +10040,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-image@npm:^2.2.0":
+"gatsby-plugin-image@npm:2.3.0":
   version: 2.3.0
   resolution: "gatsby-plugin-image@npm:2.3.0"
   dependencies:
@@ -10112,7 +10112,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-postcss@npm:^5.2.0":
+"gatsby-plugin-postcss@npm:5.3.0":
   version: 5.3.0
   resolution: "gatsby-plugin-postcss@npm:5.3.0"
   dependencies:
@@ -10125,7 +10125,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-react-helmet@npm:^5.2.0":
+"gatsby-plugin-react-helmet@npm:5.3.0":
   version: 5.3.0
   resolution: "gatsby-plugin-react-helmet@npm:5.3.0"
   dependencies:
@@ -10137,7 +10137,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-robots-txt@npm:^1.6.14":
+"gatsby-plugin-robots-txt@npm:1.6.14":
   version: 1.6.14
   resolution: "gatsby-plugin-robots-txt@npm:1.6.14"
   dependencies:
@@ -10149,7 +10149,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-sharp@npm:^4.2.0":
+"gatsby-plugin-sharp@npm:4.3.0":
   version: 4.3.0
   resolution: "gatsby-plugin-sharp@npm:4.3.0"
   dependencies:
@@ -10177,7 +10177,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-sitemap@npm:^5.2.0":
+"gatsby-plugin-sitemap@npm:5.3.0":
   version: 5.3.0
   resolution: "gatsby-plugin-sitemap@npm:5.3.0"
   dependencies:
@@ -10302,7 +10302,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-source-name@npm:^1.0.0":
+"gatsby-remark-source-name@npm:1.0.0":
   version: 1.0.0
   resolution: "gatsby-remark-source-name@npm:1.0.0"
   checksum: 7a680304c586b811be26aba977dd516cf829e1f7c5b548f44f324bee6c598f789ba002b169f5b9b1421ddb87c0333a5ebeec0e49b485f46bc39081305fe36ed7
@@ -10387,7 +10387,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-transformer-asciidoc@npm:^3.2.0":
+"gatsby-transformer-asciidoc@npm:3.3.0":
   version: 3.3.0
   resolution: "gatsby-transformer-asciidoc@npm:3.3.0"
   dependencies:
@@ -10399,7 +10399,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-transformer-sharp@npm:^4.2.0":
+"gatsby-transformer-sharp@npm:4.3.0":
   version: 4.3.0
   resolution: "gatsby-transformer-sharp@npm:4.3.0"
   dependencies:
@@ -10775,7 +10775,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"github-syntax-light@npm:^0.5.0":
+"github-syntax-light@npm:0.5.0":
   version: 0.5.0
   resolution: "github-syntax-light@npm:0.5.0"
   checksum: 34dc6c2542467757cf4665d39358bf7f6dc5f859c726b3d1780dd6840b582a9c1082cef21298730665e2b735ffc09ce9b566af69ec940dec116dc607e74b8b00
@@ -11355,7 +11355,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hast-util-to-html@npm:^2.0.3":
+"hast-util-to-html@npm:2.1.0":
   version: 2.1.0
   resolution: "hast-util-to-html@npm:2.1.0"
   dependencies:
@@ -12668,7 +12668,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isomorphic-fetch@npm:^3.0.0":
+"isomorphic-fetch@npm:3.0.0":
   version: 3.0.0
   resolution: "isomorphic-fetch@npm:3.0.0"
   dependencies:
@@ -13572,7 +13572,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:27.4.4, jest@npm:^27.4.4":
+"jest@npm:27.4.4":
   version: 27.4.4
   resolution: "jest@npm:27.4.4"
   dependencies:
@@ -13590,7 +13590,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:^27.4.5":
+"jest@npm:27.4.5":
   version: 27.4.5
   resolution: "jest@npm:27.4.5"
   dependencies:
@@ -16567,7 +16567,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-calc@npm:^8.0.0":
+"postcss-calc@npm:8.0.0, postcss-calc@npm:^8.0.0":
   version: 8.0.0
   resolution: "postcss-calc@npm:8.0.0"
   dependencies:
@@ -16637,7 +16637,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-css-variables@npm:^0.18.0":
+"postcss-css-variables@npm:0.18.0":
   version: 0.18.0
   resolution: "postcss-css-variables@npm:0.18.0"
   dependencies:
@@ -16750,7 +16750,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-extend@npm:^1.0.5":
+"postcss-extend@npm:1.0.5":
   version: 1.0.5
   resolution: "postcss-extend@npm:1.0.5"
   dependencies:
@@ -16815,7 +16815,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-import@npm:^14.0.2":
+"postcss-import@npm:14.0.2":
   version: 14.0.2
   resolution: "postcss-import@npm:14.0.2"
   dependencies:
@@ -16916,7 +16916,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-merge-rules@npm:^5.0.2, postcss-merge-rules@npm:^5.0.3":
+"postcss-merge-rules@npm:5.0.3, postcss-merge-rules@npm:^5.0.3":
   version: 5.0.3
   resolution: "postcss-merge-rules@npm:5.0.3"
   dependencies:
@@ -17024,7 +17024,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:^10.0.2":
+"postcss-nesting@npm:10.0.2, postcss-nesting@npm:^10.0.2":
   version: 10.0.2
   resolution: "postcss-nesting@npm:10.0.2"
   dependencies:
@@ -17179,7 +17179,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-preset-env@npm:^7.0.0":
+"postcss-preset-env@npm:7.0.1":
   version: 7.0.1
   resolution: "postcss-preset-env@npm:7.0.1"
   dependencies:
@@ -17234,7 +17234,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-pxtorem@npm:^6.0.0":
+"postcss-pxtorem@npm:6.0.0":
   version: 6.0.0
   resolution: "postcss-pxtorem@npm:6.0.0"
   peerDependencies:
@@ -17356,7 +17356,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-url@npm:^10.1.3":
+"postcss-url@npm:10.1.3":
   version: 10.1.3
   resolution: "postcss-url@npm:10.1.3"
   dependencies:
@@ -17526,7 +17526,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prismjs@npm:^1.25.0":
+"prismjs@npm:1.25.0":
   version: 1.25.0
   resolution: "prismjs@npm:1.25.0"
   checksum: 04d8eae9d1b26b76c350bc65621584c8f8cab80ace7da3953f8aef2f9a8dd4b4f71c1d15bc5c67f126ddc90cd5af613919dc1340589a6c57355bed86fa3ac010
@@ -17858,7 +17858,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-chartjs-2@npm:^3.3.0":
+"react-chartjs-2@npm:3.3.0":
   version: 3.3.0
   resolution: "react-chartjs-2@npm:3.3.0"
   peerDependencies:
@@ -17927,7 +17927,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-helmet@npm:^6.1.0":
+"react-helmet@npm:6.1.0":
   version: 6.1.0
   resolution: "react-helmet@npm:6.1.0"
   dependencies:
@@ -17979,7 +17979,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-radio-group@npm:^3.0.3":
+"react-radio-group@npm:3.0.3":
   version: 3.0.3
   resolution: "react-radio-group@npm:3.0.3"
   dependencies:
@@ -18033,7 +18033,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-timeago@npm:^6.2.1":
+"react-timeago@npm:6.2.1":
   version: 6.2.1
   resolution: "react-timeago@npm:6.2.1"
   peerDependencies:
@@ -18067,7 +18067,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reactstrap@npm:^8.10.0":
+"reactstrap@npm:8.10.1":
   version: 8.10.1
   resolution: "reactstrap@npm:8.10.1"
   dependencies:
@@ -18345,7 +18345,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rehype@npm:^11.0.0":
+"rehype@npm:11.0.0, rehype@npm:^11.0.0":
   version: 11.0.0
   resolution: "rehype@npm:11.0.0"
   dependencies:
@@ -18356,7 +18356,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-frontmatter@npm:^3.0.0":
+"remark-frontmatter@npm:3.0.0, remark-frontmatter@npm:^3.0.0":
   version: 3.0.0
   resolution: "remark-frontmatter@npm:3.0.0"
   dependencies:
@@ -18366,7 +18366,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-gfm@npm:^1.0.0":
+"remark-gfm@npm:1.0.0, remark-gfm@npm:^1.0.0":
   version: 1.0.0
   resolution: "remark-gfm@npm:1.0.0"
   dependencies:
@@ -18402,6 +18402,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"remark-parse@npm:9.0.0, remark-parse@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "remark-parse@npm:9.0.0"
+  dependencies:
+    mdast-util-from-markdown: ^0.8.0
+  checksum: 50104880549639b7dd7ae6f1e23c214915fe9c054f02f3328abdaee3f6de6d7282bf4357c3c5b106958fe75e644a3c248c2197755df34f9955e8e028fc74868f
+  languageName: node
+  linkType: hard
+
 "remark-parse@npm:^6.0.3":
   version: 6.0.3
   resolution: "remark-parse@npm:6.0.3"
@@ -18425,16 +18434,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-parse@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "remark-parse@npm:9.0.0"
-  dependencies:
-    mdast-util-from-markdown: ^0.8.0
-  checksum: 50104880549639b7dd7ae6f1e23c214915fe9c054f02f3328abdaee3f6de6d7282bf4357c3c5b106958fe75e644a3c248c2197755df34f9955e8e028fc74868f
-  languageName: node
-  linkType: hard
-
-"remark-rehype@npm:^8.1.0":
+"remark-rehype@npm:8.1.0, remark-rehype@npm:^8.1.0":
   version: 8.1.0
   resolution: "remark-rehype@npm:8.1.0"
   dependencies:
@@ -18474,7 +18474,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark@npm:^13.0.0":
+"remark@npm:13.0.0, remark@npm:^13.0.0":
   version: 13.0.0
   resolution: "remark@npm:13.0.0"
   dependencies:
@@ -18720,10 +18720,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root@workspace:."
   dependencies:
-    "@babel/eslint-parser": ^7.16.3
-    "@babel/eslint-plugin": ^7.14.5
-    eslint: ^8.3.0
-    eslint-config-google: ^0.14.0
+    "@babel/eslint-parser": 7.16.3
+    "@babel/eslint-plugin": 7.14.5
+    eslint: 8.4.1
+    eslint-config-google: 0.14.0
     eslint-plugin-filenames: latest
     eslint-plugin-react: latest
     husky: ^4.3.7
@@ -20801,20 +20801,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unified@npm:^8.4.2":
-  version: 8.4.2
-  resolution: "unified@npm:8.4.2"
-  dependencies:
-    bail: ^1.0.0
-    extend: ^3.0.0
-    is-plain-obj: ^2.0.0
-    trough: ^1.0.0
-    vfile: ^4.0.0
-  checksum: c2af7662d6375b14721df305786b15ba3228cd39c37da748bff00ed08ababd12ce52568f475347f270b1dea72fb0b9608563574a55c29e4f73f8be7ce0a01b4a
-  languageName: node
-  linkType: hard
-
-"unified@npm:^9.0.0, unified@npm:^9.1.0, unified@npm:^9.2.2":
+"unified@npm:9.2.2, unified@npm:^9.0.0, unified@npm:^9.1.0, unified@npm:^9.2.2":
   version: 9.2.2
   resolution: "unified@npm:9.2.2"
   dependencies:
@@ -20825,6 +20812,19 @@ __metadata:
     trough: ^1.0.0
     vfile: ^4.0.0
   checksum: 7c24461be7de4145939739ce50d18227c5fbdf9b3bc5a29dabb1ce26dd3e8bd4a1c385865f6f825f3b49230953ee8b591f23beab3bb3643e3e9dc37aa8a089d5
+  languageName: node
+  linkType: hard
+
+"unified@npm:^8.4.2":
+  version: 8.4.2
+  resolution: "unified@npm:8.4.2"
+  dependencies:
+    bail: ^1.0.0
+    extend: ^3.0.0
+    is-plain-obj: ^2.0.0
+    trough: ^1.0.0
+    vfile: ^4.0.0
+  checksum: c2af7662d6375b14721df305786b15ba3228cd39c37da748bff00ed08ababd12ce52568f475347f270b1dea72fb0b9608563574a55c29e4f73f8be7ce0a01b4a
   languageName: node
   linkType: hard
 
