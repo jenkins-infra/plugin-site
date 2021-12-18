@@ -1,5 +1,7 @@
 import React from 'react';
 import {useStaticQuery, graphql} from 'gatsby';
+import TimeAgo from 'react-timeago';
+import {formatter} from '../commons/helper';
 
 function SiteVersion() {
 
@@ -30,7 +32,10 @@ function SiteVersion() {
             {' / API '}
             <a href={`https://github.com/jenkins-infra/plugin-site-api/commit/${pluginSiteApiVersion}`}>{pluginSiteApiVersion.substr(0, 7)}</a>
             <br />
-            <small>{buildTime}</small>
+            <small>
+                Last Built:
+                {typeof window !== 'undefined' ? <TimeAgo date={new Date(buildTime)} formatter={formatter}/> : buildTime}
+            </small>
         </p>
     );
 }
