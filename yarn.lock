@@ -3023,6 +3023,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jenkins-cd/gatsby-jenkinsci-fieldextensions@workspace:plugins/gatsby-jenkinsci-fieldextensions":
+  version: 0.0.0-use.local
+  resolution: "@jenkins-cd/gatsby-jenkinsci-fieldextensions@workspace:plugins/gatsby-jenkinsci-fieldextensions"
+  dependencies:
+    cheerio: 1.0.0-rc.10
+    jest: 27.4.5
+  languageName: unknown
+  linkType: soft
+
 "@jenkins-cd/gatsby-rehype-rewrite-img-src@*, @jenkins-cd/gatsby-rehype-rewrite-img-src@workspace:plugins/gatsby-rehype-rewrite-img-src":
   version: 0.0.0-use.local
   resolution: "@jenkins-cd/gatsby-rehype-rewrite-img-src@workspace:plugins/gatsby-rehype-rewrite-img-src"
