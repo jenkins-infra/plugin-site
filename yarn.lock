@@ -841,6 +841,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-proposal-decorators@npm:7.16.5":
+  version: 7.16.5
+  resolution: "@babel/plugin-proposal-decorators@npm:7.16.5"
+  dependencies:
+    "@babel/helper-create-class-features-plugin": ^7.16.5
+    "@babel/helper-plugin-utils": ^7.16.5
+    "@babel/plugin-syntax-decorators": ^7.16.5
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: dec0c4a02bec3dba9b889eb50082e13ac351522364dfdce43a2e3913fe817ad07634c27fbc256c002149946c0fb0c9fe8db90220b0d000c3b05ee9925264976a
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-proposal-dynamic-import@npm:^7.16.0":
   version: 7.16.0
   resolution: "@babel/plugin-proposal-dynamic-import@npm:7.16.0"
@@ -1195,6 +1208,17 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 3e80814b5b6d4fe17826093918680a351c2d34398a914ce6e55d8083d72a9bdde4fbaf6a2dcea0e23a03de26dc2917ae3efd603d27099e2b98380345703bf948
+  languageName: node
+  linkType: hard
+
+"@babel/plugin-syntax-decorators@npm:^7.16.5":
+  version: 7.16.5
+  resolution: "@babel/plugin-syntax-decorators@npm:7.16.5"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.16.5
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 7c20f78ac37bd3df693282ebc9b29dd79f97680ef9286efe5727e517a457f866b0a3d3413f729287943afc5b143729b51f983cb7c7f6fc04cc320dcb2f24c858
   languageName: node
   linkType: hard
 
@@ -18804,6 +18828,7 @@ __metadata:
   dependencies:
     "@babel/eslint-parser": 7.16.5
     "@babel/eslint-plugin": 7.16.5
+    "@babel/plugin-proposal-decorators": 7.16.5
     eslint: 8.5.0
     eslint-config-google: 0.14.0
     eslint-plugin-filenames: latest

@@ -50,7 +50,7 @@ def runDockerCommand(image, cmd) {
       --network host \
       --rm -e GET_CONTENT \
       -w "\$PWD" \
-      -e HOME="\$PWD" \
+      -e HOME="/tmp" \
       -v "\$PWD:\$PWD" \
       -u \$(id -u):\$(id -g) \
       $image \
