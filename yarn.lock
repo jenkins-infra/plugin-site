@@ -3103,7 +3103,7 @@ __metadata:
     fsevents: ^2.3.2
     gatsby: 4.4.0
     gatsby-cli: 4.4.0
-    gatsby-plugin-algolia: 0.24.0
+    gatsby-plugin-algolia: 0.25.0
     gatsby-plugin-canonical-urls: 4.4.0
     gatsby-plugin-extract-schema: 0.2.1
     gatsby-plugin-image: 2.4.0
@@ -9978,16 +9978,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-algolia@npm:0.24.0":
-  version: 0.24.0
-  resolution: "gatsby-plugin-algolia@npm:0.24.0"
+"gatsby-plugin-algolia@npm:0.25.0":
+  version: 0.25.0
+  resolution: "gatsby-plugin-algolia@npm:0.25.0"
   dependencies:
     algoliasearch: ^4.9.1
     deep-equal: ^2.0.5
     lodash.chunk: ^4.2.0
   peerDependencies:
     gatsby: ^2.0.0 || ^3.0.0 || ^4.0.0
-  checksum: 46dc9c8510c9bf94e51086d91b3d5fdd65190c74b585817580d91c640fd87eae3226e3279c52124c74373ba4a995301100b184b9fc6d34cf5b61251acc9f46a4
+  checksum: efb6a4f3aba8fe7a66be38a6b49033d0fa17c9d5de6ab42b08ed6850fc10929b30f44c6c5bca6d1b8f95b4e9819fa1320126afd76e6ab9f5ebf37b68a12f5989
   languageName: node
   linkType: hard
 
