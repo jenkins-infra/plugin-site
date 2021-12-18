@@ -133,7 +133,7 @@ spec:
         container('blobxfer') {
           sh('''
               blobxfer upload \
-            --local-path public \
+            --local-path ./plugins/plugin-site/public \
             --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
             --storage-account prodpluginsite \
             --remote-path pluginsite \
