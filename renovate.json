@@ -5,14 +5,55 @@
     "schedule": [
         "every weekday"
     ],
-    "labels": ["dependencies"],
+    "labels": [
+        "dependencies"
+    ],
+    "npm": {
+        "stabilityDays": 3
+    },
+    "regexManagers": [
+        {
+            "fileMatch": [
+                "^Jenkinsfile$",
+                "^Jenkinsfile_k8s$"
+            ],
+            "matchStrings": [
+                "image '(?<depName>[a-z/-]+):(?<currentValue>[a-z0-9.-]+)@(?<currentDigest>sha256:[a-f0-9]+)'",
+                "image: \"(?<depName>[a-z/-]+):(?<currentValue>[a-z0-9.-]+)@(?<currentDigest>sha256:[a-f0-9]+)\""
+            ],
+            "datasourceTemplate": "docker",
+            "versioningTemplate": "docker"
+        }
+    ],
     "packageRules": [
         {
-            "matchPackageNames": ["p-queue", "husky"],
+            "matchPackageNames": [
+                "node"
+            ],
+            "major": {
+                "enabled": true
+            },
+            "separateMultipleMajor": true,
+            "allowedVersions": "^14 || ^16 || ^18 || ^20"
+        },
+        {
+            "extends": "monorepo:remark",
             "enabled": false
         },
         {
-            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+            "matchPackageNames": [
+                "p-queue",
+                "husky"
+            ],
+            "enabled": false
+        },
+        {
+            "matchUpdateTypes": [
+                "minor",
+                "patch",
+                "pin",
+                "digest"
+            ],
             "automerge": true
         }
     ]
