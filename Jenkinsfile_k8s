@@ -48,7 +48,7 @@ spec:
     TZ = "UTC"
     GET_CONTENT = "true"
     NODE_ENV = "production"
-    HOME = "${WORKSPACE}"
+    HOME = "/tmp"
     GATSBY_MATOMO_SITE_ID = "1"
     GATSBY_MATOMO_SITE_URL = "https://jenkins-matomo.do.g4v.dev"
   }
