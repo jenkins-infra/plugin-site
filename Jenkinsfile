@@ -2,6 +2,7 @@ pipeline {
   environment {
     GET_CONTENT = "true"
     NODE_ENV = "production"
+    HOME = "/tmp"
     TZ = "UTC"
   }
 
@@ -18,42 +19,52 @@ pipeline {
   stages {
 
     stage('NPM Install') {
+      agent {
+        docker {
+          image 'node:14.17'
+          reuseNode true
+        }
+      }
       steps {
-        runDockerCommand('node:14.17',  'yarn install')
+        sh('yarn install')
       }
     }
 
     stage('Build Production') {
+      agent {
+        docker {
+          image 'node:14.17'
+          reuseNode true
+        }
+      }
       steps {
-        runDockerCommand('node:14.17',  'yarn build')
+        sh('yarn build')
       }
     }
 
     stage('Check build') {
+      agent {
+        docker {
+          image 'node:14.17'
+          reuseNode true
+        }
+      }
       steps {
         sh 'test -e ./plugins/plugin-site/public/index.html || exit 1'
       }
     }
 
     stage('Lint and Test') {
+      agent {
+        docker {
+          image 'node:14.17'
+          reuseNode true
+        }
+      }
       steps {
-        runDockerCommand('node:14.17',  'yarn lint')
-        runDockerCommand('node:14.17',  'yarn test')
+        sh('yarn lint')
+        sh('yarn test')
       }
     }
   }
-}
-
-def runDockerCommand(image, cmd) {
-  sh """
-    docker run \
-      --network host \
-      --rm -e GET_CONTENT \
-      -w "\$PWD" \
-      -e HOME="/tmp" \
-      -v "\$PWD:\$PWD" \
-      -u \$(id -u):\$(id -g) \
-      $image \
-      $cmd
-  """
 }
