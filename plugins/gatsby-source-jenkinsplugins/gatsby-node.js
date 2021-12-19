@@ -35,13 +35,16 @@ exports.createSchemaCustomization = ({actions}) => {
     createTypes(`
         type JenkinsPlugin implements Node {
             wiki: JenkinsPluginWiki @link(from: "name", by: "name")
-            buildDate: Date
-            previousTimestamp: Date
-            releaseTimestamp: Date
+            releases: [JenkinsPluginVersion] @link(from: "name", by: "name")
+            buildDate: Date @dateformat
+            previousTimestamp: Date @dateformat
+            releaseTimestamp: Date @dateformat
         }
 
         type JenkinsPluginVersion implements Node {
-            buildDate: Date
+            buildDate: Date @dateformat
+            plugin: JenkinsPlugin @link(from: "name", by: "name")
+            machineVersion: String @machineVersion(field: "version")
         }
     `);
 };

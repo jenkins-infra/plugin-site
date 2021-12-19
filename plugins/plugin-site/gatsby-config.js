@@ -43,6 +43,9 @@ module.exports = {
 
 module.exports.plugins = [
     {
+        resolve: '@jenkins-cd/gatsby-jenkinsci-fieldextensions'
+    },
+    {
         resolve: 'gatsby-transformer-asciidoc',
         options: {
             attributes: {
