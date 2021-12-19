@@ -1,0 +1,20 @@
+{
+  "name": "@jenkins-cd/gatsby-jenkinsci-fieldextensions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ext .js,.jsx .",
+    "build": "exit 0",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "27.4.5"
+  },
+  "dependencies": {
+    "cheerio": "1.0.0-rc.10"
+  }
+}
