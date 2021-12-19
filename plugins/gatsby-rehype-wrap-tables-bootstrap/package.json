@@ -1,0 +1,29 @@
+{
+    "name": "@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "lint": "eslint --ext .js,.jsx .",
+        "build": "exit 0",
+        "test": "jest"
+    },
+    "keywords": [],
+    "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
+    "license": "MIT",
+    "description": "",
+    "jest": {
+        "globalSetup": "./jest-global-setup.js",
+        "transform": {}
+    },
+    "dependencies": {
+        "unist-util-visit-parents": "^3.0.0"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "7.16.5",
+        "babel-jest": "27.4.5",
+        "eslint": "8.5.0",
+        "hast-util-to-html": "2.1.0",
+        "jest": "27.4.5",
+        "rehype": "11.0.0"
+    }
+}

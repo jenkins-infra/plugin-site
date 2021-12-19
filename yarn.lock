@@ -3046,6 +3046,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap@*, @jenkins-cd/gatsby-rehype-wrap-tables-bootstrap@workspace:plugins/gatsby-rehype-wrap-tables-bootstrap":
+  version: 0.0.0-use.local
+  resolution: "@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap@workspace:plugins/gatsby-rehype-wrap-tables-bootstrap"
+  dependencies:
+    "@babel/preset-env": 7.16.5
+    babel-jest: 27.4.5
+    eslint: 8.5.0
+    hast-util-to-html: 2.1.0
+    jest: 27.4.5
+    rehype: 11.0.0
+    unist-util-visit-parents: ^3.0.0
+  languageName: unknown
+  linkType: soft
+
 "@jenkins-cd/gatsby-source-jenkinsplugins@*, @jenkins-cd/gatsby-source-jenkinsplugins@workspace:plugins/gatsby-source-jenkinsplugins":
   version: 0.0.0-use.local
   resolution: "@jenkins-cd/gatsby-source-jenkinsplugins@workspace:plugins/gatsby-source-jenkinsplugins"
@@ -3084,6 +3098,7 @@ __metadata:
     "@halkeye/gatsby-transformer-rehype": 1.0.1
     "@halkeye/react-paginate": 7.2.3
     "@jenkins-cd/gatsby-rehype-rewrite-img-src": "*"
+    "@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap": "*"
     "@jenkins-cd/gatsby-source-jenkinsplugins": "*"
     "@juggle/resize-observer": 3.3.1
     "@sentry/browser": 6.16.1
