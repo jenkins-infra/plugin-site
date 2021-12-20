@@ -75,6 +75,9 @@ async function makeReactLayout() {
     $('.nav-link[href="https://plugins.jenkins.io/"]').attr('href', '/');
     $('#grid-box').empty();
     $('#grid-box').append('{children}');
+    if (process.env.NETLIFY) {
+        $('#footer .col-md-4').prepend('<div class="mb-3"><a href="https://www.netlify.com"><img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" alt="Deploys by Netlify" /></a></div>');
+    }
     $('#footer .col-md-4').prepend('<ReportAProblem />');
     $('#creativecommons').append('<SiteVersion />');
     $('link[rel="stylesheet"]').each((_, elm) => {
