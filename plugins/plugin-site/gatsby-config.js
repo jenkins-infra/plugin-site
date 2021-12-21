@@ -78,9 +78,10 @@ module.exports.plugins = [
                 },
                 {
                     resolve: '@jenkins-cd/gatsby-rehype-rewrite-img-src',
-                    options: {
-                    }
                 },
+                {
+                    resolve: '@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap'
+                }
                 // 'gatsby-rehype-prismjs',
             ],
         }

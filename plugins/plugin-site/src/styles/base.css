@@ -934,8 +934,12 @@ a.card:hover {
   padding-top: 1rem;
 }
 
+#grid-box .content table {
+  word-break: normal;
+}
+
 #pluginPage #grid-box .content .main table {
-  border: 1px solid silver;  
+  border: 1px solid silver;
 }
 
 #pluginPage #grid-box .content .main td {
