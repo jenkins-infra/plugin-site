@@ -61,6 +61,8 @@ async function makeReactLayout() {
             $(this).attr('href', href.replace('https://jenkins.io', baseUrl).replace('https://www.jenkins.io', baseUrl));
         }
     });
+    // remove canonical as we add our own
+    $('link[rel="canonical"]').remove();
     // Even though we're supplying our own this one still causes a conflict.
     $('link[href$="/css/font-icons.css"]').remove();
     // Prevents: Access to resource at 'https://jenkins.io/site.webmanifest' from origin 'https://plugins.jenkins.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
@@ -75,6 +77,9 @@ async function makeReactLayout() {
     $('.nav-link[href="https://plugins.jenkins.io/"]').attr('href', '/');
     $('#grid-box').empty();
     $('#grid-box').append('{children}');
+    if (process.env.NETLIFY) {
+        $('#footer .col-md-4').prepend('<div class="mb-3"><a href="https://www.netlify.com"><img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" alt="Deploys by Netlify" /></a></div>');
+    }
     $('#footer .col-md-4').prepend('<ReportAProblem />');
     $('#creativecommons').append('<SiteVersion />');
     $('link[rel="stylesheet"]').each((_, elm) => {
