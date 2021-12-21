@@ -32,6 +32,7 @@ const SEO = ({title, description, image, pathname, article}) => {
             <Helmet title={seo.title} titleTemplate={seo.title === defaultTitle ? '%s' : titleTemplate}>
                 <meta name="description" content={seo.description} />
                 <meta name="image" content={seo.image} />
+                {seo.url && <link href={seo.url} rel="canonical" />}
                 {seo.url && <meta property="og:url" content={seo.url} />}
                 {(article ? true : null) && (
                     <meta property="og:type" content="article" />
