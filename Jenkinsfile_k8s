@@ -103,10 +103,9 @@ spec:
     }
 
     stage('Check build') {
+      when { expression { return !fileExists('./plugins/plugin-site/public/index.html') } }
       steps {
-        container('node') {
-          sh 'test -e ./plugins/plugin-site/public/index.html || exit 1'
-        }
+        error("Something went wrong, index.html was not generated")
       }
     }
 
@@ -144,6 +143,31 @@ spec:
             --connect-timeout 30 \
             --delete
           ''')
+        }
+      }
+    }
+
+    stage('Deploy to preview site') {
+      when {
+        changeRequest target: 'master'
+      }
+      environment {
+        NETLIFY_AUTH_TOKEN = credentials('NETLIFY_AUTH_TOKEN')
+      }
+      steps {
+        container('node') {
+          sh('npm install -g netlify-cli')
+          script {
+            def netlifySite = readJSON(text: sh(script: 'netlify sites:list jenkins-plugin-site-pr --json', returnStdout: true).trim()).find { it.name == "jenkins-plugin-site-pr" }
+            env.NETLIFY_SITE_ID = netlifySite['site_id']
+            env.NETLIFY_DOMAIN = netlifySite['default_domain']
+          }
+          sh('netlify deploy --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
+          script {
+            pullRequest.comment("""✔️ Deploy Preview for jenkins-plugin-site-pr ready!
+
+            😎 Browse the preview: https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app""".stripIndent())
+          }
         }
       }
     }
