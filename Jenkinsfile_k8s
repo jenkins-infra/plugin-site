@@ -165,9 +165,7 @@ spec:
           }
           sh('yarn exec netlify deploy --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
           script {
-            pullRequest.comment("""✔️ Deploy Preview for jenkins-plugin-site-pr ready!
-
-            😎 Browse the preview: https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app""".stripIndent())
+            pullRequest.comment("""✔️ Deploy Preview for jenkins-plugin-site-pr ready!\n\n😎 Browse the preview: https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app""".stripIndent())
           }
         }
       }
