@@ -51,6 +51,8 @@ spec:
     HOME = "/tmp"
     GATSBY_MATOMO_SITE_ID = "1"
     GATSBY_MATOMO_SITE_URL = "https://jenkins-matomo.do.g4v.dev"
+    DISABLE_SEARCH_ENGINE = "${env.CHANGE_ID ? "true" : ""}"
+    NETLIFY = "${env.CHANGE_ID ? "true" : ""}"
   }
 
   triggers {
