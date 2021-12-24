@@ -154,7 +154,7 @@ spec:
         changeRequest target: 'master'
       }
       environment {
-        NETLIFY_AUTH_TOKEN = credentials('NETLIFY_AUTH_TOKEN')
+        NETLIFY_AUTH_TOKEN = credentials('netlify-auth-token')
       }
       steps {
         container('node') {
