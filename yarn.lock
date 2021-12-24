@@ -3124,6 +3124,7 @@ __metadata:
     eslint-plugin-react: 7.27.1
     eslint-plugin-standard: 5.0.0
     find-package-json: 1.2.0
+    font-awesome: 4.5.0
     fsevents: ^2.3.2
     gatsby: 4.4.0
     gatsby-cli: 4.4.0
@@ -9732,6 +9733,13 @@ __metadata:
     debug:
       optional: true
   checksum: 7fcdb089a733d2aa39041880790e9f772df009fcd0b243fee7e10acf0e14a8dab5208cf79eb1de35b9cc6033d4dde7f95becadfaa360c50d460b4c730b375e80
+  languageName: node
+  linkType: hard
+
+"font-awesome@npm:4.5.0":
+  version: 4.5.0
+  resolution: "font-awesome@npm:4.5.0"
+  checksum: 940d872d5dc37360c9d02849cbf0f62beb077df9a48b914dd370d213dd1db13725f1b1bdfd31fe3571ee997a0e56828e7cedb3b82422dc0e82f29bf75fee333f
   languageName: node
   linkType: hard
 

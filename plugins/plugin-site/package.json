@@ -74,6 +74,7 @@
     "classnames": "2.3.1",
     "copy-to-clipboard": "3.3.1",
     "find-package-json": "1.2.0",
+    "font-awesome": "4.5.0",
     "gatsby-plugin-canonical-urls": "4.4.0",
     "gatsby-plugin-extract-schema": "0.2.1",
     "gatsby-plugin-image": "2.4.0",

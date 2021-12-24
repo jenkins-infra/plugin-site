@@ -26,6 +26,7 @@ async function makeReactLayout() {
         '@import \'./styles/roboto-fonts.css\';',
         '@import \'./styles/base.css\';',
         '@import \'./styles/font-icons.css\';',
+        '@import \'font-awesome\';',
         '@import \'github-syntax-light/lib/github-light.css\';'
     ];
 
@@ -65,6 +66,7 @@ async function makeReactLayout() {
     $('link[rel="canonical"]').remove();
     // Even though we're supplying our own this one still causes a conflict.
     $('link[href$="/css/font-icons.css"]').remove();
+    $('link[href$="/css/font-awesome.min.css"]').remove();
     // Prevents: Access to resource at 'https://jenkins.io/site.webmanifest' from origin 'https://plugins.jenkins.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
     $('link[href$="site.webmanifest"]').attr('href', '/site.webmanifest');
     // lets get rid of all the head tags since we are populating them with the SEO component
