@@ -56,7 +56,7 @@ spec:
   }
 
   triggers {
-    cron('H H/3 * * *')
+    cron("${env.BRANCH_NAME == 'master' ? 'H H/3 * * *' : ''}")
   }
 
   options {
