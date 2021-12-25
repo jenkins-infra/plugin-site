@@ -92,7 +92,7 @@
     "postcss-extend": "1.0.5",
     "postcss-import": "14.0.2",
     "postcss-merge-rules": "5.0.3",
-    "postcss-nesting": "10.0.3",
+    "postcss-nesting": "10.1.0",
     "postcss-preset-env": "7.0.2",
     "postcss-pxtorem": "6.0.0",
     "postcss-url": "10.1.3",
