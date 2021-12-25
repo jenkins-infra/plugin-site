@@ -165,8 +165,8 @@ spec:
           }
           sh('yarn exec netlify deploy --message "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
           script {
-            def body = """✔️ Deploy Preview for jenkins-plugin-site-pr ready!\n\n😎 Browse the preview: https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app""".stripIndent()
-            def comment = pullRequest.comments.toList().find { it.user == "infra-ci-jenkins-io" }
+            def body = """<!-- DEPLOY PREVIEW -->✔️ Deploy Preview for jenkins-plugin-site-pr ready!\n\n😎 Browse the preview: https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app""".stripIndent()
+            def comment = pullRequest.comments.toList().find { it.body.contains("<!-- DEPLOY PREVIEW -->") }
             if (comment != null) {
               pullRequest.editComment(comment.id, body)
             } else {
