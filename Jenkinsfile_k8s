@@ -9,8 +9,8 @@ def recordDeployment(owner, repo, status, environmentURL, environment = "preview
         "DESCIPTION=${description}",
     ]) {
       def id = readJSON(text: sh(script: 'gh api repos/${OWNER}/${REPO}/deployments -f "ref=${GIT_COMMIT}" -f "environment=${ENVIRONMENT}" -f "description=${DESCIPTION}" -X POST', returnStdout: true).trim()).id
-      if (id == ""){
-        error("Unable to create deployment")
+      if (id == ''){
+        error('Unable to create deployment')
       }
       withEnv([ "DEPLOYMENT_ID=${id}" ]) {
         sh('gh api repos/${OWNER}/${REPO}/deployments/${DEPLOYMENT_ID}/statuses -f "state=${STATUS}"  -f "environment=${ENVIRONMENT}" -f "description=${DESCIPTION}" -f "log_url=${BUILD_URL}/console" -f "environment_url=${ENVIRONMENT_URL}"')
@@ -190,23 +190,23 @@ spec:
       post {
         success {
           container('builder') {
-            recordDeployment("jenkins-infra", "plugin-site", "success", "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+            recordDeployment('jenkins-infra', 'plugin-site', 'success', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
           }
         }
         failure {
           container('builder') {
-            recordDeployment("jenkins-infra", "plugin-site", "failure", "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+            recordDeployment('jenkins-infra', 'plugin-site', 'failure', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
           }
         }
       }
       steps {
         container('node') {
           script {
-            def netlifySite = readJSON(text: sh(script: 'yarn exec netlify sites:list --json', returnStdout: true).trim()).find { it.name == "jenkins-plugin-site-pr" }
+            def netlifySite = readJSON(text: sh(script: 'yarn exec netlify sites:list --json', returnStdout: true).trim()).find { it.name == 'jenkins-plugin-site-pr' }
             env.NETLIFY_SITE_ID = netlifySite['site_id']
             env.NETLIFY_DOMAIN = netlifySite['default_domain']
 
-            sh("""yarn exec netlify deploy --message "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public""")
+            sh('yarn exec netlify deploy --message "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
           }
         }
       }
