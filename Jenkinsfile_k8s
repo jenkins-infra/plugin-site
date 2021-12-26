@@ -1,37 +1,22 @@
 def recordDeployment(owner, repo, status, environmentURL, environment = "preview", description = "Deploy to preview environment") {
-  def deployURL = "https://api.github.com/repos/${owner}/${repo}/deployments"
-  def response = httpRequest(
-    authentication: 'github-app-infra',
-    httpMode: 'POST',
-    requestBody: writeJSON(returnText: true, json: [
-      "ref": env.GIT_COMMIT,
-      "environment": environment,
-      "description": description
-    ]),
-    responseHandle: 'STRING',
-    url: deployURL,
-  )
-
-  def id = readJSON(text: response.content).id
-  if (id == ""){
-    error("Unable to create deployment")
+  withCredentials([usernamePassword(credentialsId: 'github-app-infra', usernameVariable: 'GITHUB_APP', passwordVariable: 'GH_TOKEN')]) {
+    withEnv([
+        "OWNER=${owner}",
+        "REPO=${repo}",
+        "STATUS=${status}",
+        "ENVIRONMENT_URL=${environmentURL}",
+        "ENVIRONMENT=${environment}",
+        "DESCIPTION=${description}",
+    ]) {
+      def id = readJSON(text: sh(script: 'gh api repos/${OWNER}/${REPO}/deployments -f "ref=${GIT_COMMIT}" -f "environment=${ENVIRONMENT}" -f "description=${DESCIPTION}" -X POST', returnStdout: true).trim()).id
+      if (id == ""){
+        error("Unable to create deployment")
+      }
+      withEnv([ "DEPLOYMENT_ID=${id}" ]) {
+        sh('gh api repos/${OWNER}/${REPO}/deployments/${DEPLOYMENT_ID}/statuses -f "state=${STATUS}"  -f "environment=${ENVIRONMENT}" -f "description=${DESCIPTION}" -f "log_url=${BUILD_URL}/console" -f "environment_url=${ENVIRONMENT_URL}"')
+      }
+    }
   }
-
-  httpRequest(
-    authentication: 'github-app-infra',
-    httpMode: 'POST',
-    requestBody: writeJSON(
-      returnText: true,
-      json: [
-        "state": status,
-        "environment": environment,
-        "description": description,
-        "log_url": "${env.BUILD_URL}/console",
-        "environment_url": environmentURL
-      ]
-    ),
-    url: "${deployURL}/${id}/statuses"
-  )
 }
 
 pipeline {
@@ -71,6 +56,13 @@ spec:
       - cat
     - name: "blobxfer"
       image: "mcr.microsoft.com/blobxfer:1.9.1"
+      command:
+      - cat
+      securityContext:
+        privileged: false
+      tty: true
+    - name: "builder"
+      image: "jenkinsciinfra/builder:1.2.0"
       command:
       - cat
       securityContext:
@@ -197,10 +189,14 @@ spec:
       }
       post {
         success {
-          recordDeployment("jenkins-infra", "plugin-site", "success", "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+          container('builder') {
+            recordDeployment("jenkins-infra", "plugin-site", "success", "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+          }
         }
         failure {
-          recordDeployment("jenkins-infra", "plugin-site", "failure", "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+          container('builder') {
+            recordDeployment("jenkins-infra", "plugin-site", "failure", "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+          }
         }
       }
       steps {
