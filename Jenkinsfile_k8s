@@ -1,7 +1,7 @@
 def recordDeployment(owner, repo, status, environmentURL, environment = "preview", description = "Deploy to preview environment") {
   def deployURL = "https://api.github.com/repos/${owner}/${repo}/deployments"
   def response = httpRequest(
-    authentication: 'githubapp-jenkins',
+    authentication: 'github-app-infra',
     httpMode: 'POST',
     requestBody: writeJSON(returnText: true, json: [
       "ref": env.GIT_COMMIT,
@@ -18,7 +18,7 @@ def recordDeployment(owner, repo, status, environmentURL, environment = "preview
   }
 
   httpRequest(
-    authentication: 'githubapp-jenkins',
+    authentication: 'github-app-infra',
     httpMode: 'POST',
     requestBody: writeJSON(
       returnText: true,
@@ -194,7 +194,6 @@ spec:
       }
       environment {
         NETLIFY_AUTH_TOKEN = credentials('netlify-auth-token')
-        GITHUB = credentials('githubapp-jenkins')
       }
       post {
         success {
