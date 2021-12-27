@@ -20,11 +20,11 @@ import PluginReleases from '../components/PluginReleases';
 import PluginIssueTrackers from '../components/PluginIssueTrackers';
 
 function shouldShowWikiUrl({url}) {
-    return url?.startsWith('https://wiki.jenkins-ci.org') || url?.startsWith('https://wiki.jenkins.io') || url?.includes('github.com/jenkins-infra/plugins-wiki-docs');
+    return url?.startsWith('https://wiki.jenkins-ci.org/') || url?.startsWith('https://wiki.jenkins.io/') || url?.includes('github.com/jenkins-infra/plugins-wiki-docs');
 }
 
 function shouldShowGitHubUrl({url}) {
-    return url && url.startsWith('https://github.com');
+    return url && url.startsWith('https://github.com/');
 }
 
 const PluginWikiContent = ({wiki}) => {
