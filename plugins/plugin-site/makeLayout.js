@@ -110,8 +110,7 @@ async function makeReactLayout() {
         }
         const attrs = Object.entries(node.attribs || {}).map(([key, val]) => {
             key = keyConversion[key] || key;
-            val = val.replace(/"/g, '\\"');
-            return `${key}="${val}"`;
+            return `${key}=${JSON.stringify(val)}`;
         }).join(' ');
         if (node.name === 'script') {
             // FIXME - handle me
