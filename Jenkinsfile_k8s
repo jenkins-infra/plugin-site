@@ -1,5 +1,5 @@
 def recordDeployment(owner, repo, status, environmentURL, environment = "preview", description = "Deploy to preview environment") {
-  withCredentials([usernamePassword(credentialsId: 'github-app-infra', usernameVariable: 'GITHUB_APP', passwordVariable: 'GH_TOKEN')]) {
+  withCredentials([usernamePassword(credentialsId: 'github-access-token', usernameVariable: 'GITHUB_APP', passwordVariable: 'GH_TOKEN')]) {
     withEnv([
         "OWNER=${owner}",
         "REPO=${repo}",
