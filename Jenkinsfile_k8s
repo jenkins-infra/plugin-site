@@ -48,13 +48,15 @@ spec:
     TZ = "UTC"
     GET_CONTENT = "true"
     NODE_ENV = "production"
-    HOME = "${WORKSPACE}"
+    HOME = "/tmp"
     GATSBY_MATOMO_SITE_ID = "1"
     GATSBY_MATOMO_SITE_URL = "https://jenkins-matomo.do.g4v.dev"
+    DISABLE_SEARCH_ENGINE = "${env.CHANGE_ID ? "true" : ""}"
+    NETLIFY = "${env.CHANGE_ID ? "true" : ""}"
   }
 
   triggers {
-    cron('H H/3 * * *')
+    cron("${env.BRANCH_NAME == 'master' ? 'H H/3 * * *' : ''}")
   }
 
   options {
@@ -67,7 +69,7 @@ spec:
     stage('NPM Install') {
       steps {
         container('node') {
-          sh 'NODE_ENV=development npm ci'
+          sh 'NODE_ENV=development yarn install'
         }
       }
     }
@@ -80,7 +82,7 @@ spec:
       }
       steps {
         container('node') {
-          sh 'npm run build'
+          sh 'yarn build'
         }
       }
     }
@@ -97,16 +99,15 @@ spec:
       }
       steps {
         container('node') {
-          sh 'npm run build'
+          sh 'yarn build'
         }
       }
     }
 
     stage('Check build') {
+      when { expression { return !fileExists('./plugins/plugin-site/public/index.html') } }
       steps {
-        container('node') {
-          sh 'test -e public/index.html || exit 1'
-        }
+        error("Something went wrong, index.html was not generated")
       }
     }
 
@@ -116,8 +117,8 @@ spec:
       }
       steps {
         container('node') {
-          sh 'npm run lint'
-          sh 'npm run test'
+          sh 'yarn lint'
+          sh 'yarn test'
         }
       }
     }
@@ -131,8 +132,9 @@ spec:
       }
       steps {
         container('blobxfer') {
-          sh('''blobxfer upload \
-            --local-path public \
+          sh('''
+              blobxfer upload \
+            --local-path ./plugins/plugin-site/public \
             --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
             --storage-account prodpluginsite \
             --remote-path pluginsite \
@@ -143,6 +145,34 @@ spec:
             --connect-timeout 30 \
             --delete
           ''')
+        }
+      }
+    }
+
+    stage('Deploy to preview site') {
+      when {
+        changeRequest target: 'master'
+      }
+      environment {
+        NETLIFY_AUTH_TOKEN = credentials('netlify-auth-token')
+      }
+      steps {
+        container('node') {
+          script {
+            def netlifySite = readJSON(text: sh(script: 'yarn exec netlify sites:list --json', returnStdout: true).trim()).find { it.name == "jenkins-plugin-site-pr" }
+            env.NETLIFY_SITE_ID = netlifySite['site_id']
+            env.NETLIFY_DOMAIN = netlifySite['default_domain']
+          }
+          sh('yarn exec netlify deploy --message "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
+          script {
+            def body = """<!-- DEPLOY PREVIEW -->✔️ Deploy Preview for jenkins-plugin-site-pr ready!\n\n😎 Browse the preview: https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app""".stripIndent()
+            def comment = pullRequest.comments.toList().find { it.body.contains("<!-- DEPLOY PREVIEW -->") }
+            if (comment != null) {
+              pullRequest.editComment(comment.id, body)
+            } else {
+              pullRequest.comment(body)
+            }
+          }
         }
       }
     }

@@ -1,12 +1,12 @@
-const {
+import {
     fetchSiteInfo,
     fetchPluginData,
     fetchPluginVersions,
     processCategoryData,
     fetchLabelData,
     fetchStats,
-} = require('./utils');
-const {createRemoteFileNode} = require('gatsby-source-filesystem');
+} from './utils';
+import {createRemoteFileNode} from 'gatsby-source-filesystem';
 
 exports.sourceNodes = async (
     {actions: {createNode, createNodeField}, reporter, createContentDigest, createNodeId},
@@ -35,16 +35,14 @@ exports.createSchemaCustomization = ({actions}) => {
     createTypes(`
         type JenkinsPlugin implements Node {
             wiki: JenkinsPluginWiki @link(from: "name", by: "name")
-            releases: [JenkinsPluginVersion] @link(from: "name", by: "name")
-            buildDate: Date @dateformat
-            previousTimestamp: Date @dateformat
-            releaseTimestamp: Date @dateformat
+            buildDate: Date
+            previousTimestamp: Date
+            releaseTimestamp: Date
         }
 
         type JenkinsPluginVersion implements Node {
-            buildDate: Date @dateformat
-            plugin: JenkinsPlugin @link(from: "name", by: "name")
-            machineVersion: String @machineVersion(field: "version")
+            buildDate: Date
         }
     `);
 };
+

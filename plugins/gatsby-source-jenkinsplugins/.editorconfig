@@ -10,6 +10,3 @@ indent_size = 4
 
 [package.json]
 indent_size = 2
-
-[plugins/**/package.json]
-indent_size = 2

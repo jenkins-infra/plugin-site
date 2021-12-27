@@ -1,14 +1,14 @@
 /* eslint-disable sort-keys, no-console */
 try {
     require('dotenv').config();
-} catch(e) {
+} catch (e) {
     console.warn('problem loading .env', e);//expected in production
 }
 
 // fancy little script to take any ENV variables starting with GATSBY_CONFIG_ and replace the existing export
 Object.keys(process.env).forEach(key => {
     const PREFIX = 'GATSBY_CONFIG_';
-    if (!key.startsWith(PREFIX)) { return; }
+    if (!key.startsWith(PREFIX)) {return;}
     // take the env key, less the prefix, split by __ to get the section, then lowercase, and replace _[letter] to be [upper]
     // so GATSBY_CONFIG_SITE_METADATA__URL => siteMetadata.url = value
     const splits = key.substr(PREFIX.length).split('__').map(k => k.toLowerCase().replace(/_(.)/, (_, val) => val.toUpperCase()));
@@ -43,6 +43,9 @@ module.exports = {
 
 module.exports.plugins = [
     {
+        resolve: '@jenkins-cd/gatsby-jenkinsci-fieldextensions'
+    },
+    {
         resolve: 'gatsby-transformer-asciidoc',
         options: {
             attributes: {
@@ -74,10 +77,11 @@ module.exports.plugins = [
                     }
                 },
                 {
-                    resolve: 'gatsby-rehype-rewrite-img-src',
-                    options: {
-                    }
+                    resolve: '@jenkins-cd/gatsby-rehype-rewrite-img-src',
                 },
+                {
+                    resolve: '@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap'
+                }
                 // 'gatsby-rehype-prismjs',
             ],
         }
@@ -104,8 +108,8 @@ module.exports.plugins = [
         }
     },
     {
-        resolve: 'gatsby-source-jenkinsplugins',
-        options: { }
+        resolve: '@jenkins-cd/gatsby-source-jenkinsplugins',
+        options: {}
     },
     {
         resolve: 'gatsby-plugin-nprogress',
