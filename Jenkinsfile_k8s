@@ -12,7 +12,7 @@ def recordDeployment(owner, repo, status, environmentURL, environment = "preview
     if (id == ''){
       error('Unable to create deployment')
     }
-    def json = writeJSON(returnText: true, json: [
+    json = writeJSON(returnText: true, json: [
         "state": status,
         "environment": environment,
         "description": description,
