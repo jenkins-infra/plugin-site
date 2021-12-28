@@ -8,7 +8,7 @@ def recordDeployment(owner, repo, status, environmentURL, environment = "preview
         "ENVIRONMENT=${environment}",
         "DESCIPTION=${description}",
     ]) {
-      def id = readJSON(text: sh(script: 'gh api repos/${OWNER}/${REPO}/deployments -f "ref=${GIT_COMMIT}" -f "environment=${ENVIRONMENT}" -f "description=${DESCIPTION}" -X POST', returnStdout: true).trim()).id
+      def id = readJSON(text: sh(script: 'gh api repos/${OWNER}/${REPO}/deployments -f "ref=${GIT_COMMIT}" -f "environment=${ENVIRONMENT}" -f "description=${DESCIPTION}" -f "required_contexts=[]" -f "auto_merge=false" -f "transient_environment=false" -X POST', returnStdout: true).trim()).id
       if (id == ''){
         error('Unable to create deployment')
       }
