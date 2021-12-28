@@ -1,21 +1,25 @@
 def recordDeployment(owner, repo, status, environmentURL, environment = "preview", description = "Deploy to preview environment") {
   withCredentials([usernamePassword(credentialsId: 'github-app-infra', usernameVariable: 'GITHUB_APP', passwordVariable: 'GH_TOKEN')]) {
-    withEnv([
-        "OWNER=${owner}",
-        "REPO=${repo}",
-        "STATUS=${status}",
-        "ENVIRONMENT_URL=${environmentURL}",
-        "ENVIRONMENT=${environment}",
-        "DESCIPTION=${description}",
-    ]) {
-      def id = readJSON(text: sh(script: 'gh api repos/${OWNER}/${REPO}/deployments -f "ref=${GIT_COMMIT}" -f "environment=${ENVIRONMENT}" -f "description=${DESCIPTION}" -f "required_contexts=[]" -f "auto_merge=false" -f "transient_environment=false" -X POST', returnStdout: true).trim()).id
-      if (id == ''){
-        error('Unable to create deployment')
-      }
-      withEnv([ "DEPLOYMENT_ID=${id}" ]) {
-        sh('gh api repos/${OWNER}/${REPO}/deployments/${DEPLOYMENT_ID}/statuses -f "state=${STATUS}"  -f "environment=${ENVIRONMENT}" -f "description=${DESCIPTION}" -f "log_url=${BUILD_URL}/console" -f "environment_url=${ENVIRONMENT_URL}"')
-      }
+    def json = writeJSON(returnText: true, json: [
+        "ref": env.GIT_COMMIT,
+        "environment": environment,
+        "description": description,
+        "required_contexts":[],
+        "auto_merge":false,
+        "transient_environment":false,
+    ])
+    def id = readJSON(text: sh(script: "gh api repos/${owner}/${repo}/deployments  -X POST --input - << EOF\n${json}\nEOF", returnStdout: true).trim()).id
+    if (id == ''){
+      error('Unable to create deployment')
     }
+    def json = writeJSON(returnText: true, json: [
+        "state": status,
+        "environment": environment,
+        "description": description,
+        "log_url": "${BUILD_URL}/console",
+        "environment_url": environmentURL,
+    ])
+    sh("gh api repos/${owner}/${repo}/deployments/${id}/statuses  -X POST --input - << EOF\n${json}\nEOF")
   }
 }
 
