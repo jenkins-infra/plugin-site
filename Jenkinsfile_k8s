@@ -1,3 +1,29 @@
+def recordDeployment(owner, repo, ref, status, environmentURL, environment = "preview", description = "Deploy to preview environment") {
+  withCredentials([usernamePassword(credentialsId: 'github-app-infra', usernameVariable: 'GITHUB_APP', passwordVariable: 'GH_TOKEN')]) {
+    def json = writeJSON(returnText: true, json: [
+        "ref": ref,
+        "environment": environment,
+        "description": description,
+        "required_contexts": [],
+        "auto_merge": false,
+        "auto_inactive": false,
+        "transient_environment": false,
+    ])
+    def id = readJSON(text: sh(script: "gh api repos/${owner}/${repo}/deployments  -X POST --input - << EOF\n${json}\nEOF", returnStdout: true).trim()).id
+    if (id == ''){
+      error('Unable to create deployment')
+    }
+    json = writeJSON(returnText: true, json: [
+        "state": status,
+        "environment": environment,
+        "description": description,
+        "log_url": "${BUILD_URL}console",
+        "environment_url": environmentURL,
+    ])
+    sh("gh api repos/${owner}/${repo}/deployments/${id}/statuses  -X POST --input - << EOF\n${json}\nEOF")
+  }
+}
+
 pipeline {
   agent {
     kubernetes {
@@ -40,6 +66,13 @@ spec:
       securityContext:
         privileged: false
       tty: true
+    - name: "builder"
+      image: "jenkinsciinfra/builder:1.2.0"
+      command:
+      - cat
+      securityContext:
+        privileged: false
+      tty: true
       '''
     }
   }
@@ -49,10 +82,6 @@ spec:
     GET_CONTENT = "true"
     NODE_ENV = "production"
     HOME = "/tmp"
-    GATSBY_MATOMO_SITE_ID = "1"
-    GATSBY_MATOMO_SITE_URL = "https://jenkins-matomo.do.g4v.dev"
-    DISABLE_SEARCH_ENGINE = "${env.CHANGE_ID ? "true" : ""}"
-    NETLIFY = "${env.CHANGE_ID ? "true" : ""}"
   }
 
   triggers {
@@ -62,6 +91,7 @@ spec:
   options {
     timeout(time: 60, unit: 'MINUTES')
     ansiColor('xterm')
+    disableConcurrentBuilds()
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
   }
 
@@ -80,6 +110,10 @@ spec:
           branch "master"
         }
       }
+      environment {
+        DISABLE_SEARCH_ENGINE = "true"
+        NETLIFY = "true"
+      }
       steps {
         container('node') {
           sh 'yarn build'
@@ -92,6 +126,8 @@ spec:
         branch "master"
       }
       environment {
+        GATSBY_MATOMO_SITE_ID = "1"
+        GATSBY_MATOMO_SITE_URL = "https://jenkins-matomo.do.g4v.dev"
         GATSBY_SENTRY_DSN = "https://495b0bd32a5e4a2287c3fe4b061ee24f@sentry.io/1882460"
         GATSBY_ALGOLIA_APP_ID = credentials('algolia-plugins-app-id')
         GATSBY_ALGOLIA_SEARCH_KEY = credentials('algolia-plugins-search-key')
@@ -156,22 +192,26 @@ spec:
       environment {
         NETLIFY_AUTH_TOKEN = credentials('netlify-auth-token')
       }
+      post {
+        success {
+          container('builder') {
+            recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'success', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+          }
+        }
+        failure {
+          container('builder') {
+            recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'failure', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+          }
+        }
+      }
       steps {
         container('node') {
           script {
-            def netlifySite = readJSON(text: sh(script: 'yarn exec netlify sites:list --json', returnStdout: true).trim()).find { it.name == "jenkins-plugin-site-pr" }
+            def netlifySite = readJSON(text: sh(script: 'yarn exec netlify sites:list --json', returnStdout: true).trim()).find { it.name == 'jenkins-plugin-site-pr' }
             env.NETLIFY_SITE_ID = netlifySite['site_id']
             env.NETLIFY_DOMAIN = netlifySite['default_domain']
-          }
-          sh('yarn exec netlify deploy --message "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
-          script {
-            def body = """<!-- DEPLOY PREVIEW -->✔️ Deploy Preview for jenkins-plugin-site-pr ready!\n\n😎 Browse the preview: https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app""".stripIndent()
-            def comment = pullRequest.comments.toList().find { it.body.contains("<!-- DEPLOY PREVIEW -->") }
-            if (comment != null) {
-              pullRequest.editComment(comment.id, body)
-            } else {
-              pullRequest.comment(body)
-            }
+
+            sh('yarn exec netlify deploy --message "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
           }
         }
       }
