@@ -2628,6 +2628,7 @@ __metadata:
   resolution: "@jenkins-cd/gatsby-source-jenkinsplugins@workspace:plugins/gatsby-source-jenkinsplugins"
   dependencies:
     "@babel/preset-env": 7.17.10
+    asciidoctor: ^2.2.5
     axios: ^0.27.0
     axios-retry: 3.2.5
     babel-jest: 28.1.0
@@ -6066,7 +6067,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"asciidoctor@npm:^2.2.6":
+"asciidoctor@npm:^2.2.5, asciidoctor@npm:^2.2.6":
   version: 2.2.6
   resolution: "asciidoctor@npm:2.2.6"
   dependencies:

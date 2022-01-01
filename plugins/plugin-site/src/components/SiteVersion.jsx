@@ -11,9 +11,6 @@ function SiteVersion() {
                 buildTime
             }
             jenkinsPluginSiteInfo {
-                api {
-                    commit
-                }
                 website {
                     commit
                 }
@@ -21,7 +18,6 @@ function SiteVersion() {
         }
     `);
     if (!data) { return null; }
-    const pluginSiteApiVersion = data.jenkinsPluginSiteInfo.api.commit;
     const pluginSiteVersion = data.jenkinsPluginSiteInfo.website.commit;
     const buildTime = data.site.buildTime;
 
@@ -29,8 +25,6 @@ function SiteVersion() {
         <p>
             {'UI '}
             <a href={`https://github.com/jenkins-infra/plugin-site/commit/${pluginSiteVersion}`}>{pluginSiteVersion.substr(0, 7)}</a>
-            {' / API '}
-            <a href={`https://github.com/jenkins-infra/plugin-site-api/commit/${pluginSiteApiVersion}`}>{pluginSiteApiVersion.substr(0, 7)}</a>
             <br />
             <small>
                 Last Built:

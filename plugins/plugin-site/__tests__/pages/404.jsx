@@ -9,9 +9,6 @@ describe('page404', () => {
         useStaticQuery.mockImplementationOnce(() => {
             return {
                 jenkinsPluginSiteInfo: {
-                    api: {
-                        commit: 'FAKECommit'
-                    },
                     website: {
                         commit: 'FAKECommit'
                     }

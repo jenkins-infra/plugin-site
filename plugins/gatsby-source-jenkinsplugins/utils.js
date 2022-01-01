@@ -2,12 +2,12 @@
 const axios = require('axios');
 const path = require('path');
 const crypto = require('crypto');
-const cheerio = require('cheerio');
 const {execSync} = require('child_process');
 const axiosRetry = require('axios-retry');
 const {parse: parseDate} = require('date-fns');
 const PQueue = require('p-queue').default; // NOTE - pinned at p-queue@6.6.2 because 7 requires whole project to be esm
 const {parseStringPromise} = require('xml2js');
+const findPackageVersion = require('find-package-json');
 const CATEGORY_LIST = require('./categories.json');
 
 const unified = require('unified');
@@ -17,11 +17,11 @@ const remarkGfm = require('remark-gfm');
 const remarkRehype = require('remark-rehype');
 const rehypeStringify = require('rehype-stringify');
 
-const API_URL = process.env.JENKINS_IO_API_URL || 'https://plugins.jenkins.io/api';
+const asciidoctor = require('asciidoctor')();
 
 axiosRetry(axios, {retries: 3});
 
-const requestGET = async ({url, reporter}) => {
+const requestGET = async ({url, reporter, skipError}) => {
     const activity = reporter.activityTimer(`Fetching '${url}'`);
     activity.start();
 
@@ -33,7 +33,9 @@ const requestGET = async ({url, reporter}) => {
         return results.data;
     } catch (err) {
         if (err && err.response && err.response.status == 404) {
-            reporter.error(`${url} does not return any data`);
+            if (!skipError) {
+                reporter.error(`${url} does not return any data`);
+            }
             return null;
         }
         reporter.panic(`error trying to fetch ${url}`, err);
@@ -57,7 +59,8 @@ const shouldFetchPluginContent = (id) => {
 
 const LEGACY_WIKI_URL_RE = /^https?:\/\/wiki.jenkins(-ci.org|.io)\/display\/(jenkins|hudson)\/([^/]*)\/?$/i;
 const MARKDOWN_BLOB_RE = /https?:\/\/github.com\/(jenkinsci|jenkins-infra)\/([^/.]+)\/blob\/([^/]+)\/(.+\.(md))$/;
-const getPluginContent = async ({wiki, pluginName, reporter, createNode, createContentDigest}) => {
+const ASCIIDOC_BLOB_RE = /https?:\/\/github.com\/(jenkinsci|jenkins-infra)\/([^/.]+)\/blob\/([^/]+)\/(.+\.(adoc))$/;
+const getPluginContent = async ({wiki, pluginName, reporter, createNode, createContentDigest, defaultBranch}) => {
     const createWikiNode = async (mediaType, url, content) => {
         if (mediaType === 'text/markdown') {
             const file = await unified()
@@ -69,6 +72,15 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
                 .process(content);
 
             content = String(file);
+            mediaType = 'text/pluginhtml';
+        }
+        if (mediaType === 'text/asciidoctor') {
+            content = asciidoctor.convert(content, {
+                'safe': 'server',
+                'attributes': {
+                    'skip-front-matter': true,
+                }
+            });
             mediaType = 'text/pluginhtml';
         }
         return createNode({
@@ -104,13 +116,43 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
                 return createWikiNode('text/markdown', url, body);
             }
         }
-        const data = await requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`});
+        if (ASCIIDOC_BLOB_RE.exec(wiki.url)) {
+            const matches = wiki.url.match(ASCIIDOC_BLOB_RE);
+            const url = `https://raw.githubusercontent.com/${matches[1]}/${matches[2]}/${matches[3]}/${matches[4]}`;
+            const body = await requestGET({reporter, url: url});
+            if (body) {
+                return createWikiNode('text/asciidoctor', url, body);
+            }
+        }
+        const promises = [
+            {filename: 'README.md', type: 'text/markdown'},
+            {filename: 'readme.md', type: 'text/markdown'},
+            {filename: 'README.adoc', type: 'text/asciidoctor'},
+            {filename: 'readme.adoc', type: 'text/asciidoctor'},
+        ].map(async type => {
+            try {
+                let url = wiki.url.replace('https://github.com/', 'https://raw.githubusercontent.com/');
+                if (!url.includes('/tree/')) {
+                    url = url.split('/').concat([defaultBranch || 'master']).join('/');
+                }
+                url = url.split('/').concat([type.filename]).join('/');
+                const body = await requestGET({reporter, url: url, skipError: true});
+                if (body) {
+                    return createWikiNode(type.type, url, body);
+                }
+            } catch (err) {
+                reporter.error(err);
+            }
+            throw new Error('no results');
+        });
+        const fetched = await Promise.any(promises);
+        if (fetched) {
+            return fetched;
+        }
 
-        const $ = cheerio.load(data.wiki.content);
-        $('a[id^="user-content"][href^="#"]').remove();
-        data.wiki.content = $.html();
+        reporter.panic(`https://plugins.jenkins.io/api/plugin/${pluginName}`);
 
-        return createWikiNode('text/pluginhtml', wiki.url, data.wiki.content);
+        return createWikiNode('text/pluginhtml', wiki.url, '');
     } catch (err) {
         reporter.error(`error fetching ${pluginName}`, err);
         return createWikiNode('text/pluginhtml', wiki.url, 'MISSING');
@@ -128,7 +170,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, c
         const pluginStats = stats[pluginName] || {installations: null};
         pluginStats.trend = computeTrend(plugin, stats, updateData.plugins);
         const allDependencies = getImpliedDependenciesAndTitles(plugin, detachedPlugins, updateData);
-        await getPluginContent({wiki: documentation[pluginName] || {url: ''}, pluginName, reporter, createNode, createNodeId, createNodeField, createRemoteFileNode, createContentDigest});
+        await getPluginContent({wiki: documentation[pluginName] || {url: ''}, pluginName, reporter, createNode, createNodeId, createNodeField, createRemoteFileNode, createContentDigest, defaultBranch: plugin.defaultBranch});
         delete plugin.wiki;
         const pluginNode = {
             ...plugin,
@@ -401,16 +443,11 @@ const fetchLabelData = async ({createNode, reporter}) => {
 const fetchSiteInfo = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin api info');
     sectionActivity.start();
-    const url = `${API_URL}/info`;
-    const info = await requestGET({url, reporter});
 
     createNode({
-        api: {
-            ...info
-        },
         website: {
             commit: execSync('git rev-parse HEAD').toString().trim(),
-            version: require('find-package-json')().next().value.version,
+            version: findPackageVersion().next().value.version,
         },
         id: 'pluginSiteInfo',
         parent: null,
