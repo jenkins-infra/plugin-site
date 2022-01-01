@@ -124,33 +124,36 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
                 return createWikiNode('text/asciidoctor', url, body);
             }
         }
-        const promises = [
-            {filename: 'README.md', type: 'text/markdown'},
-            {filename: 'readme.md', type: 'text/markdown'},
-            {filename: 'README.adoc', type: 'text/asciidoctor'},
-            {filename: 'readme.adoc', type: 'text/asciidoctor'},
-        ].map(async type => {
-            try {
-                let url = wiki.url.replace('https://github.com/', 'https://raw.githubusercontent.com/');
-                if (!url.includes('/tree/')) {
-                    url = url.split('/').concat([defaultBranch || 'master']).join('/');
+        if (wiki.url.startsWith('https://github.com/') || wiki.url.startsWith('https://www.github.com/')) {
+            const promises = [
+                {filename: 'README.md', type: 'text/markdown'},
+                {filename: 'readme.md', type: 'text/markdown'},
+                {filename: 'README.adoc', type: 'text/asciidoctor'},
+                {filename: 'readme.adoc', type: 'text/asciidoctor'},
+            ].map(async type => {
+                try {
+                    let url = wiki.url.replace('https://github.com/', 'https://raw.githubusercontent.com/');
+                    if (!url.includes('/tree/')) {
+                        url = url.split('/').concat([defaultBranch || 'master']).join('/');
+                    }
+                    // remove extra slashes on the end
+                    url = url.replace(/\/+$/, '');
+                    url = url.split('/').concat([type.filename]).join('/');
+                    const body = await requestGET({reporter, url: url, skipError: true});
+                    if (body) {
+                        return createWikiNode(type.type, url, body);
+                    }
+                } catch (err) {
+                    reporter.error(err);
                 }
-                url = url.split('/').concat([type.filename]).join('/');
-                const body = await requestGET({reporter, url: url, skipError: true});
-                if (body) {
-                    return createWikiNode(type.type, url, body);
-                }
-            } catch (err) {
-                reporter.error(err);
+                throw new Error('no results');
+            });
+            const fetched = await Promise.any(promises);
+            if (fetched) {
+                return fetched;
             }
-            throw new Error('no results');
-        });
-        const fetched = await Promise.any(promises);
-        if (fetched) {
-            return fetched;
         }
-
-        reporter.panic(`https://plugins.jenkins.io/api/plugin/${pluginName}`);
+        reporter.error(`${pluginName} has no content that can be fetched from ${wiki.url}`);
 
         return createWikiNode('text/pluginhtml', wiki.url, '');
     } catch (err) {
