@@ -12,7 +12,7 @@
   "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
   "license": "MIT",
   "devDependencies": {
-    "jest": "27.4.5"
+    "jest": "27.4.7"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.10"
