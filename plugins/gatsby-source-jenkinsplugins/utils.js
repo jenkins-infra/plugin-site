@@ -45,6 +45,65 @@ const requestGET = async ({url, reporter, skipError}) => {
     }
 };
 
+class EmptyResultsError extends Error {
+    constructor(url, ...params) {
+        // Pass remaining arguments (including vendor specific ones) to parent constructor
+        super(...params);
+
+        // Maintains proper stack trace for where our error was thrown (only available on V8)
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, EmptyResultsError);
+        }
+
+        this.name = 'EmptyResultsError';
+        this.url = url;
+    }
+}
+
+async function findReadmeFromGenericGithub({wikiUrl, defaultBranch, requestGET, reporter, createWikiNode}) {
+    if (new URL(wikiUrl).host !== 'github.com') {
+        return null;
+    }
+
+    const promises = [
+        {filename: 'README.md', type: 'text/markdown'},
+        {filename: 'readme.md', type: 'text/markdown'},
+        {filename: 'README.adoc', type: 'text/asciidoctor'},
+        {filename: 'readme.adoc', type: 'text/asciidoctor'},
+    ].map(async type => {
+        let url = wikiUrl.replace('https://github.com/', 'https://raw.githubusercontent.com/');
+        // remove extra slashes on the end
+        url = url.replace(/\/+$/, '');
+        if (url.includes('/tree/')) {
+            url = url.split('/').filter(i => i !== 'tree').join('/');
+        } else {
+            url = url.split('/').concat([defaultBranch || 'master']).join('/');
+        }
+        url = url.split('/').concat([type.filename]).join('/');
+        const body = await requestGET({reporter, url: url, skipError: true});
+        if (!body) {
+            throw new EmptyResultsError(url);
+        }
+        return createWikiNode(type.type, url, body);
+    });
+
+    try {
+        const fetched = await Promise.any(promises);
+        if (fetched) {
+            return fetched;
+        }
+    } catch (e) {
+        if (e instanceof AggregateError) {
+            e.errors = e.errors.filter(e => !(e instanceof EmptyResultsError));
+            if (!e.errors.length) { return null; }
+            throw new Error(e.errors.map(e => e.message).join(','));
+        }
+        throw e;
+    }
+
+    return null;
+}
+
 const singleContents = process.env.GET_CONTENT_SINGLE?.split(',')?.map(s => s.trim());
 const shouldFetchPluginContent = (id) => {
     if (singleContents && singleContents.includes(id)) {
@@ -124,34 +183,15 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
                 return createWikiNode('text/asciidoctor', url, body);
             }
         }
-        if (wiki.url.startsWith('https://github.com/') || wiki.url.startsWith('https://www.github.com/')) {
-            const promises = [
-                {filename: 'README.md', type: 'text/markdown'},
-                {filename: 'readme.md', type: 'text/markdown'},
-                {filename: 'README.adoc', type: 'text/asciidoctor'},
-                {filename: 'readme.adoc', type: 'text/asciidoctor'},
-            ].map(async type => {
-                try {
-                    let url = wiki.url.replace('https://github.com/', 'https://raw.githubusercontent.com/');
-                    if (!url.includes('/tree/')) {
-                        url = url.split('/').concat([defaultBranch || 'master']).join('/');
-                    }
-                    // remove extra slashes on the end
-                    url = url.replace(/\/+$/, '');
-                    url = url.split('/').concat([type.filename]).join('/');
-                    const body = await requestGET({reporter, url: url, skipError: true});
-                    if (body) {
-                        return createWikiNode(type.type, url, body);
-                    }
-                } catch (err) {
-                    reporter.error(err);
-                }
-                throw new Error('no results');
-            });
-            const fetched = await Promise.any(promises);
-            if (fetched) {
-                return fetched;
-            }
+        const fetched = await findReadmeFromGenericGithub({
+            wikiUrl: wiki.url,
+            defaultBranch: defaultBranch || 'master',
+            requestGET,
+            reporter,
+            createWikiNode,
+        });
+        if (fetched) {
+            return fetched;
         }
         reporter.error(`${pluginName} has no content that can be fetched from ${wiki.url}`);
 
@@ -544,5 +584,6 @@ module.exports = {
     fixGitHubUrl,
     fetchStats,
     getPluginContent,
-    requestGET
+    requestGET,
+    findReadmeFromGenericGithub,
 };

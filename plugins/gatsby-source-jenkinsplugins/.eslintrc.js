@@ -4,6 +4,9 @@ module.exports = {
         'es6': true,
         'node': true
     },
+    'globals': {
+        'AggregateError': true
+    },
     'extends': [
         'eslint:recommended',
         'plugin:import/recommended',
