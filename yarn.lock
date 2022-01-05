@@ -18087,7 +18087,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"netlify-cli@npm:^8.4.2":
+"netlify-cli@npm:8.4.2":
   version: 8.4.2
   resolution: "netlify-cli@npm:8.4.2"
   dependencies:
@@ -22152,7 +22152,7 @@ __metadata:
     eslint-plugin-react: latest
     husky: ^4.3.7
     lint-staged: 12.1.4
-    netlify-cli: ^8.4.2
+    netlify-cli: 8.4.2
   languageName: unknown
   linkType: soft
 
