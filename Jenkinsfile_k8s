@@ -55,6 +55,11 @@ spec:
     - name: "jnlp"
       image: "jenkinsciinfra/builder"
       imagePullPolicy: Always
+      resources:
+        limits: {}
+        requests:
+          memory: "2Gi"
+          cpu: "1"
       '''
     }
   }
