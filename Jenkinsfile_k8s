@@ -79,7 +79,10 @@ spec:
   stages {
     stage('NPM Install') {
       steps {
-        sh 'NODE_ENV=development yarn install'
+        sh '''
+          npm install --global yarn
+          NODE_ENV=development yarn install
+        '''
       }
     }
 
