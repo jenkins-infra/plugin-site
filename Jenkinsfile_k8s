@@ -74,7 +74,7 @@ spec:
   options {
     timeout(time: 60, unit: 'MINUTES')
     ansiColor('xterm')
-    disableConcurrentBuilds()
+    disableConcurrentBuilds(abortPrevious: true)
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
   }
 
