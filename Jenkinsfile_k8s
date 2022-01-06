@@ -81,7 +81,7 @@ spec:
   }
 
   stages {
-    stage('NPM Install') {
+    stage('Install Dependancies') {
       steps {
         sh 'NODE_ENV=development yarn install'
       }
