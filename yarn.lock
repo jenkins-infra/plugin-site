@@ -4265,7 +4265,7 @@ __metadata:
     postcss-extend: 1.0.5
     postcss-import: 14.0.2
     postcss-merge-rules: 5.0.3
-    postcss-nesting: 10.1.0
+    postcss-nesting: 10.1.1
     postcss-preset-env: 7.1.0
     postcss-pxtorem: 6.0.0
     postcss-url: 10.1.3
@@ -21282,16 +21282,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:10.1.0":
-  version: 10.1.0
-  resolution: "postcss-nesting@npm:10.1.0"
+"postcss-nesting@npm:10.1.1":
+  version: 10.1.1
+  resolution: "postcss-nesting@npm:10.1.1"
   dependencies:
-    postcss-selector-parser: ^6.0.7
+    postcss-selector-parser: ^6.0.8
   peerDependencies:
     postcss: ^8.3
-  bin:
-    postcss-nesting: dist/cli.mjs
-  checksum: f2413cb1504e17b36872952f752d1f94716a13ae9f39564e84db22e4d259c33c124f44f178d44a66398eb05282433d90fe70170345f92886557c4c250b1bdea9
+  checksum: b05aba21d7788ff201eaa6cfb1040dab9841e7745d784951483e853134953383bdc53ee55f5fdd759247bb9808fd008ae312fa7d69a9322812b8c2f9746b3e35
   languageName: node
   linkType: hard
 
@@ -21590,6 +21588,16 @@ __metadata:
     cssesc: ^3.0.0
     util-deprecate: ^1.0.2
   checksum: 661808ad629e3f289e0d237fbe9bb13766dadd2d548ec09ae86f68118f5d98be0f25bbaf5cd88486c5416e2eefaa9f73c59c2fc98dc370872fa51b250c7d1d9c
+  languageName: node
+  linkType: hard
+
+"postcss-selector-parser@npm:^6.0.8":
+  version: 6.0.8
+  resolution: "postcss-selector-parser@npm:6.0.8"
+  dependencies:
+    cssesc: ^3.0.0
+    util-deprecate: ^1.0.2
+  checksum: 550351c8d04216106e259f7c433652aa6742dd7ddbedf7afdc313526963bb170589a6fefd1bc1fe6268a2cf9f5073d4ecb09bc7b5b4bef49edf80634300500af
   languageName: node
   linkType: hard
 
