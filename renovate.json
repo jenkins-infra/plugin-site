@@ -28,6 +28,12 @@
     "packageRules": [
         {
             "matchPackageNames": [
+                "jenkinsciinfra/builder"
+            ],
+            "automerge": true
+        },
+        {
+            "matchPackageNames": [
                 "node"
             ],
             "major": {
