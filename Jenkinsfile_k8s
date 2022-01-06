@@ -171,10 +171,10 @@ spec:
       }
       post {
         success {
-          recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'success', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+          recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'success', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app", "preview-${CHANGE_ID}")
         }
         failure {
-          recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'failure', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+          recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'failure', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app", "preview-${CHANGE_ID}")
         }
       }
       steps {
