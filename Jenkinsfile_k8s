@@ -53,8 +53,7 @@ spec:
   automountServiceAccountToken: false
   containers:
     - name: "jnlp"
-      image: "jenkinsciinfra/builder"
-      imagePullPolicy: Always
+      image: "jenkinsciinfra/builder:2.0.3"
       resources:
         limits: {}
         requests:
@@ -68,8 +67,6 @@ spec:
     TZ = "UTC"
     GET_CONTENT = "true"
     NODE_ENV = "production"
-    HOME = "/tmp"
-    PATH = "/tmp/.npm-packages/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   }
 
   triggers {
@@ -84,17 +81,7 @@ spec:
   }
 
   stages {
-    stage('Setup NPM and Yarn') {
-      steps {
-        sh '''
-          mkdir "${HOME}/.npm-packages"
-          npm config set prefix "${HOME}/.npm-packages"
-          npm install --global yarn
-        '''
-      }
-    }
-
-    stage('NPM Install') {
+    stage('Install Dependancies') {
       steps {
         sh 'NODE_ENV=development yarn install'
       }
