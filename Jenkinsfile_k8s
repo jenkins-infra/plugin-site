@@ -7,7 +7,7 @@ def recordDeployment(owner, repo, ref, status, environmentURL, environment = "pr
         "required_contexts": [],
         "auto_merge": false,
         "auto_inactive": false,
-        "transient_environment": false,
+        "transient_environment": environment != "production",
     ])
     def id = readJSON(text: sh(script: "gh api repos/${owner}/${repo}/deployments  -X POST --input - << EOF\n${json}\nEOF", returnStdout: true).trim()).id
     if (id == ''){
