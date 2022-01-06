@@ -1,7 +1,32 @@
+def recordDeployment(owner, repo, ref, status, environmentURL, environment = "preview", description = "Deploy to preview environment") {
+  withCredentials([usernamePassword(credentialsId: 'github-app-infra', usernameVariable: 'GITHUB_APP', passwordVariable: 'GH_TOKEN')]) {
+    def json = writeJSON(returnText: true, json: [
+        "ref": ref,
+        "environment": environment,
+        "description": description,
+        "required_contexts": [],
+        "auto_merge": false,
+        "auto_inactive": false,
+        "transient_environment": environment != "production",
+    ])
+    def id = readJSON(text: sh(script: "gh api repos/${owner}/${repo}/deployments  -X POST --input - << EOF\n${json}\nEOF", returnStdout: true).trim()).id
+    if (id == ''){
+      error('Unable to create deployment')
+    }
+    json = writeJSON(returnText: true, json: [
+        "state": status,
+        "environment": environment,
+        "description": description,
+        "log_url": "${BUILD_URL}console",
+        "environment_url": environmentURL,
+    ])
+    sh("gh api repos/${owner}/${repo}/deployments/${id}/statuses  -X POST --input - << EOF\n${json}\nEOF")
+  }
+}
+
 pipeline {
   agent {
     kubernetes {
-      inheritFrom 'jnlp-linux'
       yaml '''
 apiVersion: "v1"
 kind: "Pod"
@@ -25,21 +50,15 @@ spec:
                 values:
                   - linux
   restartPolicy: "Never"
+  automountServiceAccountToken: false
   containers:
-    - name: "node"
-      image: "node:14.17"
-      securityContext:
-        privileged: false
-      tty: true
-      command:
-      - cat
-    - name: "blobxfer"
-      image: "mcr.microsoft.com/blobxfer:1.9.1"
-      command:
-      - cat
-      securityContext:
-        privileged: false
-      tty: true
+    - name: "jnlp"
+      image: "jenkinsciinfra/builder:2.0.3@sha256:562ca29a65a85738b96ff49416e99e338b65a5c47161acc9acbe23c5f870fa6e"
+      resources:
+        limits: {}
+        requests:
+          memory: "4Gi"
+          cpu: "2"
       '''
     }
   }
@@ -48,11 +67,6 @@ spec:
     TZ = "UTC"
     GET_CONTENT = "true"
     NODE_ENV = "production"
-    HOME = "/tmp"
-    GATSBY_MATOMO_SITE_ID = "1"
-    GATSBY_MATOMO_SITE_URL = "https://jenkins-matomo.do.g4v.dev"
-    DISABLE_SEARCH_ENGINE = "${env.CHANGE_ID ? "true" : ""}"
-    NETLIFY = "${env.CHANGE_ID ? "true" : ""}"
   }
 
   triggers {
@@ -62,15 +76,14 @@ spec:
   options {
     timeout(time: 60, unit: 'MINUTES')
     ansiColor('xterm')
+    disableConcurrentBuilds(abortPrevious: true)
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
   }
 
   stages {
-    stage('NPM Install') {
+    stage('Install Dependancies') {
       steps {
-        container('node') {
-          sh 'NODE_ENV=development yarn install'
-        }
+        sh 'NODE_ENV=development yarn install'
       }
     }
 
@@ -80,10 +93,12 @@ spec:
           branch "master"
         }
       }
+      environment {
+        DISABLE_SEARCH_ENGINE = "true"
+        NETLIFY = "true"
+      }
       steps {
-        container('node') {
-          sh 'yarn build'
-        }
+        sh 'yarn build'
       }
     }
 
@@ -92,15 +107,15 @@ spec:
         branch "master"
       }
       environment {
+        GATSBY_MATOMO_SITE_ID = "1"
+        GATSBY_MATOMO_SITE_URL = "https://jenkins-matomo.do.g4v.dev"
         GATSBY_SENTRY_DSN = "https://495b0bd32a5e4a2287c3fe4b061ee24f@sentry.io/1882460"
         GATSBY_ALGOLIA_APP_ID = credentials('algolia-plugins-app-id')
         GATSBY_ALGOLIA_SEARCH_KEY = credentials('algolia-plugins-search-key')
         GATSBY_ALGOLIA_WRITE_KEY = credentials('algolia-plugins-write-key')
       }
       steps {
-        container('node') {
-          sh 'yarn build'
-        }
+        sh 'yarn build'
       }
     }
 
@@ -116,10 +131,10 @@ spec:
         NODE_ENV = "development"
       }
       steps {
-        container('node') {
-          sh 'yarn lint'
-          sh 'yarn test'
-        }
+        sh '''
+          yarn lint
+          yarn test
+        '''
       }
     }
 
@@ -131,21 +146,19 @@ spec:
         PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
       }
       steps {
-        container('blobxfer') {
-          sh('''
-              blobxfer upload \
-            --local-path ./plugins/plugin-site/public \
-            --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
-            --storage-account prodpluginsite \
-            --remote-path pluginsite \
-            --recursive \
-            --mode file \
-            --skip-on-md5-match \
-            --file-md5 \
-            --connect-timeout 30 \
-            --delete
-          ''')
-        }
+        sh('''
+            blobxfer upload \
+          --local-path ./plugins/plugin-site/public \
+          --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
+          --storage-account prodpluginsite \
+          --remote-path pluginsite \
+          --recursive \
+          --mode file \
+          --skip-on-md5-match \
+          --file-md5 \
+          --connect-timeout 30 \
+          --delete
+        ''')
       }
     }
 
@@ -156,23 +169,21 @@ spec:
       environment {
         NETLIFY_AUTH_TOKEN = credentials('netlify-auth-token')
       }
+      post {
+        success {
+          recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'success', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+        }
+        failure {
+          recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'failure', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+        }
+      }
       steps {
-        container('node') {
-          script {
-            def netlifySite = readJSON(text: sh(script: 'yarn exec netlify sites:list --json', returnStdout: true).trim()).find { it.name == "jenkins-plugin-site-pr" }
-            env.NETLIFY_SITE_ID = netlifySite['site_id']
-            env.NETLIFY_DOMAIN = netlifySite['default_domain']
-          }
+        script {
+          def netlifySite = readJSON(text: sh(script: 'yarn exec netlify sites:list --json', returnStdout: true).trim()).find { it.name == 'jenkins-plugin-site-pr' }
+          env.NETLIFY_SITE_ID = netlifySite['site_id']
+          env.NETLIFY_DOMAIN = netlifySite['default_domain']
+
           sh('yarn exec netlify deploy --message "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
-          script {
-            def body = """<!-- DEPLOY PREVIEW -->✔️ Deploy Preview for jenkins-plugin-site-pr ready!\n\n😎 Browse the preview: https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app""".stripIndent()
-            def comment = pullRequest.comments.toList().find { it.body.contains("<!-- DEPLOY PREVIEW -->") }
-            if (comment != null) {
-              pullRequest.editComment(comment.id, body)
-            } else {
-              pullRequest.comment(body)
-            }
-          }
         }
       }
     }
