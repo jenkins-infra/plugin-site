@@ -4260,7 +4260,7 @@ __metadata:
     jest-canvas-mock: 2.3.1
     jest-junit: 13.0.0
     lint-staged: 12.1.5
-    postcss-calc: 8.1.0
+    postcss-calc: 8.2.0
     postcss-css-variables: 0.18.0
     postcss-extend: 1.0.5
     postcss-import: 14.0.2
@@ -20942,15 +20942,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-calc@npm:8.1.0":
-  version: 8.1.0
-  resolution: "postcss-calc@npm:8.1.0"
+"postcss-calc@npm:8.2.0":
+  version: 8.2.0
+  resolution: "postcss-calc@npm:8.2.0"
   dependencies:
     postcss-selector-parser: ^6.0.2
     postcss-value-parser: ^4.0.2
   peerDependencies:
     postcss: ^8.2.2
-  checksum: 2517fdcd57814897c6e9698ccdb8642d45ace673b1cf2fbebbb2fc54902cd0cb1eacce8b5b4d93ab47e9cd0095f3c4492a1d89525eaca7a750489df3dad90263
+  checksum: 87ce7e64cacbab77b52a52be95d8b0b04c92ad11284fdf23263941d5411ae8fd0435eef9173952c93fe0b9c47405cb1aad121d90d9efef586a8744475f58ede5
   languageName: node
   linkType: hard
 
