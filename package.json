@@ -22,7 +22,7 @@
         "eslint-plugin-react": "latest",
         "husky": "^4.3.7",
         "lint-staged": "12.1.5",
-        "netlify-cli": "8.6.12"
+        "netlify-cli": "8.6.15"
     },
     "husky": {
         "hooks": {
