@@ -53,7 +53,7 @@ spec:
   automountServiceAccountToken: false
   containers:
     - name: "jnlp"
-      image: "jenkinsciinfra/builder:2.0.6@sha256:211e2b8d1d5bdcbbbff5a7a9eb8a78a020a0946e52d257a666cb3e45d0c51e78"
+      image: "jenkinsciinfra/builder:2.0.7@sha256:8fd127b2abeb94acb34f528cf54007f1718fad9bee40257bad1e3b3ccacc16c6"
       resources:
         limits: {}
         requests:
@@ -180,11 +180,7 @@ spec:
         }
       }
       steps {
-        sh('''
-             curl -qsL https://github.com/halkeye/netlify-golang-deploy/releases/download/v0.1.4/netlify-golang-deploy_0.1.4_Linux_x86_64.tar.gz | tar xzf - netlify-golang-deploy
-             mv netlify-golang-deploy netlify-deploy
-            ./netlify-deploy --siteName "jenkins-plugin-site-pr" --title "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public
-          ''')
+        sh('/usr/local/bin/netlify-deploy --siteName "jenkins-plugin-site-pr" --title "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
       }
     }
   }
