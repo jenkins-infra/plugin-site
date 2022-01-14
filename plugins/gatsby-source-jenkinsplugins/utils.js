@@ -117,7 +117,7 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
     }
 };
 
-const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, documentation, bomDependencies, pipelinePluginIds, firstReleases, createContentDigest, createNodeId, createNodeField, createRemoteFileNode, reporter, plugin}) => {
+const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, canonicalLabels, documentation, bomDependencies, pipelinePluginIds, firstReleases, createContentDigest, createNodeId, createNodeField, createRemoteFileNode, reporter, plugin}) => {
     return async function () {
         const pluginName = plugin.name.trim();
         names.push(pluginName);
@@ -129,10 +129,11 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, d
         const allDependencies = getImpliedDependenciesAndTitles(plugin, detachedPlugins, updateData);
         await getPluginContent({wiki: documentation[pluginName] || {url: ''}, pluginName, reporter, createNode, createNodeId, createNodeField, createRemoteFileNode, createContentDigest});
         delete plugin.wiki;
-
+        console.log(canonicalLabels);
         const pluginNode = {
             ...plugin,
             id: createNodeId(`${plugin.name.trim()} <<< JenkinsPlugin`),
+            labels: Array.from(new Set(plugin.labels.map(lbl => canonicalLabels[lbl] || lbl))),
             stats: pluginStats,
             securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
                 .map(w => checkActive(w, plugin)),
@@ -187,10 +188,7 @@ const fetchPluginData = async ({createNode, createContentDigest, createNodeId, c
     const bomDependencies = await fetchBomDependencies(reporter);
     const updateUrl = 'https://updates.jenkins.io/update-center.actual.json';
     const updateData = await requestGET({url: updateUrl, reporter});
-    const detachedUrl = 'https://raw.githubusercontent.com/jenkinsci/jenkins/master/core/src/main/resources/jenkins/split-plugins.txt';
-    const detachedPluginsData = await requestGET({url: detachedUrl, reporter});
-    const detachedPlugins = detachedPluginsData.split('\n')
-        .filter(row => row.length && !row.startsWith('#')).map(row => row.split(' '));
+    const detachedPlugins = await getCoreResourceAsTuples('jenkins/split-plugins.txt', ' ', reporter);
     for (const deprecation of Object.keys(updateData.deprecations)) {
         const deprecatedPlugin = updateData.plugins[deprecation];
         if (deprecatedPlugin) {
@@ -201,6 +199,12 @@ const fetchPluginData = async ({createNode, createContentDigest, createNodeId, c
     const documentationListUrl = 'https://updates.jenkins.io/current/plugin-documentation-urls.json';
     const documentation = await requestGET({url: documentationListUrl, reporter});
 
+    const canonicalLabelPairs = await getCoreResourceAsTuples('jenkins/canonical-labels.txt', ' ', reporter);
+    const canonicalLabels = {};
+    for (const [key, value] of canonicalLabelPairs) {
+        canonicalLabels[key] = value;
+    }
+
     const queue = new PQueue({concurrency: 100, autoStart: true});
     Object.values(updateData.plugins).forEach(plugin => queue.add(processPlugin({
         plugin,
@@ -208,6 +212,7 @@ const fetchPluginData = async ({createNode, createContentDigest, createNodeId, c
         stats,
         updateData,
         detachedPlugins,
+        canonicalLabels,
         documentation,
         bomDependencies,
         pipelinePluginIds,
@@ -348,14 +353,19 @@ const processCategoryData = async ({createNode, reporter}) => {
     sectionActivity.end();
 };
 
+const getCoreResourceAsTuples = async (resourcePath, delimiter, reporter) => {
+    const url = `https://raw.githubusercontent.com/jenkinsci/jenkins/master/core/src/main/resources/${resourcePath}`;
+    const content = await requestGET({url, reporter});
+    const parseLine = line => line.split(delimiter).map(word => word.trim());
+    return content.split('\n').filter(row => row.length && !row.startsWith('#')).map(parseLine);
+};
+
 const fetchLabelData = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch labels info');
     sectionActivity.start();
-    const url = 'https://raw.githubusercontent.com/jenkinsci/jenkins/master/core/src/main/resources/hudson/model/Messages.properties';
-    const messages = await requestGET({url, reporter});
+    const messages = await getCoreResourceAsTuples('hudson/model/Messages.properties', '=', reporter);
     const keyPrefix = 'UpdateCenter.PluginCategory';
-    for (const line of messages.split('\n')) {
-        const [key, value] = line.split('=', 2).map(s => s.trim());
+    for (const [key, value] of messages) {
         const labelId = key.substring(keyPrefix.length + 1);
         if (key.startsWith(keyPrefix)) {
             createNode({
