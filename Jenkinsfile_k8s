@@ -53,7 +53,7 @@ spec:
   automountServiceAccountToken: false
   containers:
     - name: "jnlp"
-      image: "jenkinsciinfra/builder:2.0.4@sha256:e6bf1eb8b87443b2f188629ce67ad6ecc05b852a74b8a1ea8ac9b589a1ff11a7"
+      image: "jenkinsciinfra/builder:2.0.7@sha256:8fd127b2abeb94acb34f528cf54007f1718fad9bee40257bad1e3b3ccacc16c6"
       resources:
         limits: {}
         requests:
@@ -180,13 +180,7 @@ spec:
         }
       }
       steps {
-        script {
-          def netlifySite = readJSON(text: sh(script: 'yarn exec netlify sites:list --json', returnStdout: true).trim()).find { it.name == 'jenkins-plugin-site-pr' }
-          env.NETLIFY_SITE_ID = netlifySite['site_id']
-          env.NETLIFY_DOMAIN = netlifySite['default_domain']
-
-          sh('yarn exec netlify deploy --message "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
-        }
+        sh('/usr/local/bin/netlify-deploy --siteName "jenkins-plugin-site-pr" --title "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
       }
     }
   }
