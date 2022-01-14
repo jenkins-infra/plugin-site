@@ -122,6 +122,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, c
         const pluginName = plugin.name.trim();
         names.push(pluginName);
         const developers = plugin.developers || [];
+        const labels = plugin.labels || [];
         developers.forEach(maint => {maint.id = maint.developerId, delete (maint.developerId);});
         plugin.scm = fixGitHubUrl(plugin.scm, plugin.defaultBranch || 'master');
         const pluginStats = stats[pluginName] || {installations: null};
@@ -132,7 +133,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, c
         const pluginNode = {
             ...plugin,
             id: createNodeId(`${plugin.name.trim()} <<< JenkinsPlugin`),
-            labels: Array.from(new Set(plugin.labels.map(lbl => canonicalLabels[lbl] || lbl))),
+            labels: Array.from(new Set(labels.map(lbl => canonicalLabels[lbl] || lbl))),
             stats: pluginStats,
             securityWarnings: updateData.warnings.filter(p => p.name == pluginName)
                 .map(w => checkActive(w, plugin)),
