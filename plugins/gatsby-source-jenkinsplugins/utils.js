@@ -129,7 +129,6 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, c
         const allDependencies = getImpliedDependenciesAndTitles(plugin, detachedPlugins, updateData);
         await getPluginContent({wiki: documentation[pluginName] || {url: ''}, pluginName, reporter, createNode, createNodeId, createNodeField, createRemoteFileNode, createContentDigest});
         delete plugin.wiki;
-        console.log(canonicalLabels);
         const pluginNode = {
             ...plugin,
             id: createNodeId(`${plugin.name.trim()} <<< JenkinsPlugin`),
