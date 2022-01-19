@@ -19,7 +19,7 @@
         "unist-util-visit-parents": "^3.0.0"
     },
     "devDependencies": {
-        "@babel/preset-env": "7.16.8",
+        "@babel/preset-env": "7.16.10",
         "babel-jest": "27.4.6",
         "eslint": "8.7.0",
         "hast-util-to-html": "2.1.0",
