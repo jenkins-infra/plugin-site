@@ -3575,7 +3575,7 @@ __metadata:
     cheerio: 1.0.0-rc.10
     classnames: 2.3.1
     copy-to-clipboard: 3.3.1
-    dotenv: 14.2.0
+    dotenv: 14.3.2
     eslint: 8.7.0
     eslint-config-standard: 16.0.3
     eslint-plugin-import: 2.25.4
@@ -8858,10 +8858,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:14.2.0":
-  version: 14.2.0
-  resolution: "dotenv@npm:14.2.0"
-  checksum: 85a0e44918ef49e64c278f757dab50a156b9a6ca67f708876fd81d265e575e35b67387fc681d910df99368d6c1edca66cd546edeb0f7db3b499cb876c999233e
+"dotenv@npm:14.3.2":
+  version: 14.3.2
+  resolution: "dotenv@npm:14.3.2"
+  checksum: 86c06758915d6facc35275f4a7fafc16705b6f3b44befaa8abca91367991efc8ff8db5437d3cc14778231d19fb97610fe82d60f8a53ba723cdb69fe4171439aa
   languageName: node
   linkType: hard
 
