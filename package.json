@@ -21,7 +21,7 @@
         "eslint-plugin-filenames": "latest",
         "eslint-plugin-react": "latest",
         "husky": "^4.3.7",
-        "lint-staged": "12.3.1"
+        "lint-staged": "12.3.2"
     },
     "husky": {
         "hooks": {
