@@ -101,7 +101,7 @@
     "react-helmet": "6.1.0",
     "react-radio-group": "3.0.3",
     "react-timeago": "6.2.1",
-    "reactstrap": "8.10.1"
+    "reactstrap": "9.0.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "7.16.7",
