@@ -3730,7 +3730,7 @@ __metadata:
     remark-gfm: 1.0.0
     remark-parse: 9.0.0
     remark-rehype: 8.1.0
-    stylelint: 14.3.0
+    stylelint: 14.4.0
     stylelint-config-recommended: 6.0.0
     stylelint-config-standard: 24.0.0
     stylelint-config-styled-components: 0.1.1
@@ -8153,6 +8153,13 @@ __metadata:
   peerDependencies:
     postcss: ^8.0.9
   checksum: 6fdacdce48e1351a8fd73472b7dfaae573ce7d4f5bba8385afc9c765d01055920b851d288228ecb0d535d163b22f8d7941e095b9da995956cd3309e41d1bffa2
+  languageName: node
+  linkType: hard
+
+"css-functions-list@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "css-functions-list@npm:3.0.0"
+  checksum: 4499ff204b4c172300f1f452bd684b50271fc31085879a5f1515301d01596d1f803f3fdd1c58cc3b24332448519e7584f92c8f81bdd10114c37f26f0c24c61ab
   languageName: node
   linkType: hard
 
@@ -15917,6 +15924,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nanoid@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "nanoid@npm:3.2.0"
+  bin:
+    nanoid: bin/nanoid.cjs
+  checksum: 3d1d5a69fea84e538057cf64106e713931c4ef32af344068ecff153ff91252f39b0f2b472e09b0dfff43ac3cf520c92938d90e6455121fe93976e23660f4fccc
+  languageName: node
+  linkType: hard
+
 "nanomatch@npm:^1.2.9":
   version: 1.2.13
   resolution: "nanomatch@npm:1.2.13"
@@ -18052,7 +18068,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.2.15, postcss@npm:^8.2.9, postcss@npm:^8.3.11, postcss@npm:^8.3.6, postcss@npm:^8.4.5":
+"postcss@npm:^8.2.15, postcss@npm:^8.2.9, postcss@npm:^8.3.11, postcss@npm:^8.3.6":
   version: 8.4.5
   resolution: "postcss@npm:8.4.5"
   dependencies:
@@ -18060,6 +18076,17 @@ __metadata:
     picocolors: ^1.0.0
     source-map-js: ^1.0.1
   checksum: b78abdd89c10f7b48f4bdcd376104a19d6e9c7495ab521729bdb3df315af6c211360e9f06887ad3bc0ab0f61a04b91d68ea11462997c79cced58b9ccd66fac07
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.4.6":
+  version: 8.4.6
+  resolution: "postcss@npm:8.4.6"
+  dependencies:
+    nanoid: ^3.2.0
+    picocolors: ^1.0.0
+    source-map-js: ^1.0.2
+  checksum: 60e7808f39c4a9d0fa067bfd5eb906168c4eb6d3ff0093f7d314d1979b001a16363deedccd368a7df869c63ad4ae350d27da439c94ff3fb0f8fc93d49fe38a90
   languageName: node
   linkType: hard
 
@@ -19963,6 +19990,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"source-map-js@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "source-map-js@npm:1.0.2"
+  checksum: c049a7fc4deb9a7e9b481ae3d424cc793cb4845daa690bc5a05d428bf41bf231ced49b4cf0c9e77f9d42fdb3d20d6187619fc586605f5eabe995a316da8d377c
+  languageName: node
+  linkType: hard
+
 "source-map-resolve@npm:^0.5.0":
   version: 0.5.3
   resolution: "source-map-resolve@npm:0.5.3"
@@ -20602,13 +20636,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint@npm:14.3.0":
-  version: 14.3.0
-  resolution: "stylelint@npm:14.3.0"
+"stylelint@npm:14.4.0":
+  version: 14.4.0
+  resolution: "stylelint@npm:14.4.0"
   dependencies:
     balanced-match: ^2.0.0
     colord: ^2.9.2
     cosmiconfig: ^7.0.1
+    css-functions-list: ^3.0.0
     debug: ^4.3.3
     execall: ^2.0.0
     fast-glob: ^3.2.11
@@ -20630,7 +20665,7 @@ __metadata:
     normalize-path: ^3.0.0
     normalize-selector: ^0.2.0
     picocolors: ^1.0.0
-    postcss: ^8.4.5
+    postcss: ^8.4.6
     postcss-media-query-parser: ^0.2.3
     postcss-resolve-nested-selector: ^0.1.1
     postcss-safe-parser: ^6.0.0
@@ -20648,7 +20683,7 @@ __metadata:
     write-file-atomic: ^4.0.0
   bin:
     stylelint: bin/stylelint.js
-  checksum: aaec6712f875da4e71ad0b748ba2b001ab56ab892cd31aedb553fffc265ce427b668b817975a612c53e8f0e0d5b7edd211cc8842f201bc2622055a74befaedf0
+  checksum: 06dda5cd95dabbd53c5c94621c29d22ec07fee4ad91552019d68ec64dbd7f442ac94189e930d80e989da027c355152eeaa4c4de51c37394dfe83efd42dc828d6
   languageName: node
   linkType: hard
 
