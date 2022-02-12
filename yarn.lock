@@ -3731,7 +3731,7 @@ __metadata:
     remark-parse: 9.0.0
     remark-rehype: 8.1.0
     stylelint: 14.5.0
-    stylelint-config-recommended: 6.0.0
+    stylelint-config-recommended: 7.0.0
     stylelint-config-standard: 25.0.0
     stylelint-config-styled-components: 0.1.1
     stylelint-order: 5.0.0
@@ -20573,16 +20573,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-config-recommended@npm:6.0.0":
-  version: 6.0.0
-  resolution: "stylelint-config-recommended@npm:6.0.0"
-  peerDependencies:
-    stylelint: ^14.0.0
-  checksum: 103b3c122253a908f91f5728d39eff6fed3866157e29a6e550da051cfc207b0d159b7434e0806126e3c3939e6528a0a1cd5a1cf00b835dd49b3a18ba4a007fa1
-  languageName: node
-  linkType: hard
-
-"stylelint-config-recommended@npm:^7.0.0":
+"stylelint-config-recommended@npm:7.0.0, stylelint-config-recommended@npm:^7.0.0":
   version: 7.0.0
   resolution: "stylelint-config-recommended@npm:7.0.0"
   peerDependencies:
