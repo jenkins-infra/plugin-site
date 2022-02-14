@@ -3667,7 +3667,7 @@ __metadata:
     axios-retry: 3.2.4
     babel-jest: 27.5.1
     babel-preset-gatsby: 2.4.0
-    chart.js: 3.7.0
+    chart.js: 3.7.1
     cheerio: 1.0.0-rc.10
     classnames: 2.3.1
     copy-to-clipboard: 3.3.1
@@ -7361,10 +7361,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chart.js@npm:3.7.0":
-  version: 3.7.0
-  resolution: "chart.js@npm:3.7.0"
-  checksum: 050d675d15742e873ec10aa3c77fecd43d16062a5f188615795a08158b8aed591f98f2f067adf5d3f6b710093ea3a754977b2418fb30ff0babdeabbcf6898e5e
+"chart.js@npm:3.7.1":
+  version: 3.7.1
+  resolution: "chart.js@npm:3.7.1"
+  checksum: f9d118d3b7dd3c36b6da7a8d71ac9e5d9673b81095cc66c3f61ff91674e20020c6700f8c9c6f93713fa8474eb471ded106114346ccc6afa88b4a7d0eb73dcea4
   languageName: node
   linkType: hard
 
