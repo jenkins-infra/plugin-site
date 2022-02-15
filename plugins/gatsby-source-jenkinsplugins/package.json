@@ -16,7 +16,7 @@
         "transform": {}
     },
     "dependencies": {
-        "axios": "^0.24.0",
+        "axios": "^0.26.0",
         "axios-retry": "3.2.4",
         "cheerio": "^1.0.0-rc.10",
         "date-fns": "^2.27.0",
@@ -33,10 +33,10 @@
         "xml2js": "0.4.23"
     },
     "devDependencies": {
-        "@babel/preset-env": "7.16.7",
-        "babel-jest": "27.4.6",
-        "eslint": "8.6.0",
-        "jest": "27.4.7",
-        "nock": "13.2.1"
+        "@babel/preset-env": "7.16.11",
+        "babel-jest": "27.5.1",
+        "eslint": "8.9.0",
+        "jest": "27.5.1",
+        "nock": "13.2.4"
     }
 }

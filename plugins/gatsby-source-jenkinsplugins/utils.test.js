@@ -57,6 +57,9 @@ describe('utils', () => {
         nock('https://raw.githubusercontent.com:443')
             .get('/jenkinsci/jenkins/master/core/src/main/resources/jenkins/split-plugins.txt')
             .reply(200, await readText('split-plugins.txt'));
+        nock('https://raw.githubusercontent.com:443')
+            .get('/jenkinsci/jenkins/master/core/src/main/resources/jenkins/canonical-labels.txt')
+            .reply(200, '');
         nock('https://plugins.jenkins.io').persist()
             .get(/\/api\/plugin\/.*/)
             .reply(200, '{"wiki":{"content": "<p>This plugin lists up all the iOS devices connected to the master and all the Jenkins slaves, and provide operations to them.</p>"}}');

@@ -29,7 +29,7 @@ function Category({activeCategories, category, toggleCategory, toggleLabel, acti
                 <span>{category.title}</span>
             </label>
             <ul>
-                {matchedLabels.map(({node: label}) => {
+                {matchedLabels.filter(Boolean).map(({node: label}) => {
                     return(
                         <Label
                             key={label.id}

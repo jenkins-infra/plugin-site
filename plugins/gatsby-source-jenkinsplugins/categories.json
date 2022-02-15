@@ -29,7 +29,7 @@
         "description": "Add functionality to help streamline your administration of Jenkins.",
         "labels":
         [
-            "slaves",
+            "agent",
             "page-decorator",
             "user",
             "cluster",
