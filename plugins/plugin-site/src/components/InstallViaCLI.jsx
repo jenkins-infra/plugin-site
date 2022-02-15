@@ -10,8 +10,8 @@ function InstallViaCLI({pluginId, version}) {
     return (
         <div className={root}>
             <span>
-                {'Install via '}
-                <a href="https://github.com/jenkinsci/plugin-installation-manager-tool">cli</a>
+                {'Using '}
+                <a href="https://github.com/jenkinsci/plugin-installation-manager-tool">the CLI tool</a>
                 {': '}
             </span>
             <code>

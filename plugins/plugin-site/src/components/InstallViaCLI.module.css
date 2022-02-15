@@ -6,3 +6,7 @@
 .root span {
     margin-right: 5px;
 }
+
+.root code {
+    white-space: nowrap;
+}
