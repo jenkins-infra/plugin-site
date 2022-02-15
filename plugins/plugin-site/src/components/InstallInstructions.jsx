@@ -26,7 +26,7 @@ function InstallInstructions({isShowInstructions, toggleShowInstructions, plugin
                         </a>
                         {'. Download one of the '}
                         <a href="#releases" onClick={e=>{toggleShowInstructions(e);location.href='#releases';}}>
-                            {'older releases'}
+                            {'releases'}
                         </a>
                         {' and upload it to your Jenkins instance.'}
                     </li>
