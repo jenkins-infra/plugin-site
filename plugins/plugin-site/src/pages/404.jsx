@@ -5,6 +5,9 @@ import {Helmet} from 'react-helmet';
 
 const title = 'Plugin page not found';
 const notFoundPage = 'pages/404.jsx';
+const prefillText = location.href.substring(
+    location.href.lastIndexOf('/') + 1, location.href.length
+);
 
 const NotFound = () => (
     <Layout reportProblemRelativeSourcePath={notFoundPage} reportProblemUrl="" reportProblemTitle={title}>
@@ -17,7 +20,7 @@ const NotFound = () => (
                 <p>
                     We are sorry but the page you are looking for does not exist.
                     <br />
-                    <Link to="/">Search again</Link>
+                    <Link to={`/ui/search?query=${prefillText}`} >Search again</Link>
                     ?
                 </p>
             </div>
