@@ -32,5 +32,8 @@
         "*.{js,jsx}": [
             "eslint --fix"
         ]
+    },
+    "dependencies": {
+        "prop-types": "^15.8.1"
     }
 }

@@ -18152,6 +18152,7 @@ __metadata:
     eslint-plugin-react: latest
     husky: ^4.3.7
     lint-staged: 12.3.6
+    prop-types: ^15.8.1
   languageName: unknown
   linkType: soft
 
