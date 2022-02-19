@@ -27,6 +27,6 @@ const NotFound = ({location}) => (
 );
 
 NotFound.propTypes = {
-    location: PropTypes.any,
+    location: PropTypes.string.isRequired,
 };
 export default NotFound;
