@@ -27,6 +27,8 @@ const NotFound = ({location}) => (
 );
 
 NotFound.propTypes = {
-    location: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+        href: PropTypes.string.isRequired,
+    }).isRequired
 };
 export default NotFound;
