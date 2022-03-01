@@ -21,7 +21,7 @@
         "cheerio": "^1.0.0-rc.10",
         "date-fns": "^2.27.0",
         "find-package-json": "^1.2.0",
-        "gatsby-source-filesystem": "4.4.0",
+        "gatsby-source-filesystem": "4.9.0",
         "p-queue": "^6.6.2",
         "rehype-stringify": "^8.0.0",
         "remark": "^13.0.0",
