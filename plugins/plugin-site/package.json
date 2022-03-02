@@ -153,5 +153,8 @@
   },
   "optionalDependencies": {
     "fsevents": "^2.3.2"
+  },
+  "resolutions": {
+    "supports-color": "^8"
   }
 }
