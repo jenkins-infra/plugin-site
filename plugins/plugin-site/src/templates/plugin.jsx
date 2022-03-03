@@ -125,10 +125,12 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                                 return <PluginIssues pluginId={plugin.name} />;
                             }
                             if (selectedTab.id === 'dependencies') {
-                                return (<PluginDependencies dependencies={plugin.dependencies}
-                                    reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
-                                    hasBomEntry={plugin.hasBomEntry}
-                                    gav={plugin.gav}/>);
+                                return (
+                                    <PluginDependencies dependencies={plugin.dependencies}
+                                        reverseDependencies={reverseDependencies.edges.map(dep => dep.node)}
+                                        hasBomEntry={plugin.hasBomEntry}
+                                        gav={plugin.gav}/>
+                                );
                             }
                             return <PluginWikiContent wiki={plugin.wiki} />;
                         })()}
