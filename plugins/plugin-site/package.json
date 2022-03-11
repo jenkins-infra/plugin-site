@@ -123,7 +123,7 @@
     "gatsby": "4.4.0",
     "gatsby-cli": "4.4.0",
     "gatsby-plugin-algolia": "0.26.0",
-    "gatsby-plugin-matomo": "0.11.0",
+    "gatsby-plugin-matomo": "0.11.1",
     "gatsby-plugin-nprogress": "4.4.0",
     "gatsby-source-custom-api": "2.3.2",
     "gatsby-source-filesystem": "4.4.0",
