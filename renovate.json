@@ -50,7 +50,8 @@
             "matchPackageNames": [
                 "p-queue",
                 "husky",
-                "rehype"
+                "rehype",
+                "rehype-stringify"
             ],
             "enabled": false
         },
