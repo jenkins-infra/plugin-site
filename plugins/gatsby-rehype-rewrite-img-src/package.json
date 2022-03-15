@@ -16,7 +16,7 @@
         "transform": {}
     },
     "dependencies": {
-        "unist-util-visit": "^2.0.3"
+        "unist-util-visit": "^4.0.0"
     },
     "devDependencies": {
         "@babel/preset-env": "7.16.11",
