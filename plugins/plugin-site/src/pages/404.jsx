@@ -18,7 +18,7 @@ const NotFound = ({location}) => (
                 <p>
                     We are sorry but the page you are looking for does not exist.
                     <br />
-                    <Link to={`/ui/search?query=${location.href.substring(location.href.lastIndexOf('/') + 1, location.href.length)}`} >Search again</Link>
+                    <Link to={`/ui/search?query=${location.href.split('/').filter(Boolean).reverse()[0]}`} >Search again</Link>
                     ?
                 </p>
             </div>
