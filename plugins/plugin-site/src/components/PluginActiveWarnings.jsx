@@ -32,7 +32,8 @@ function multipleWarnings(active) {
                     );
                 })}
             </ul>
-        </div>);
+        </div>
+    );
 }
 
 function singleWarning(warning) {
