@@ -81,7 +81,7 @@ spec:
   }
 
   stages {
-    stage('Install Dependancies') {
+    stage('Install Dependencies') {
       steps {
         sh 'NODE_ENV=development yarn install'
       }
