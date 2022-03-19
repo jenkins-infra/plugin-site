@@ -15,13 +15,13 @@
     "devDependencies": {
         "@babel/eslint-parser": "7.17.0",
         "@babel/eslint-plugin": "7.17.7",
-        "@babel/plugin-proposal-decorators": "7.17.2",
+        "@babel/plugin-proposal-decorators": "7.17.8",
         "eslint": "8.11.0",
         "eslint-config-google": "0.14.0",
         "eslint-plugin-filenames": "latest",
         "eslint-plugin-react": "latest",
         "husky": "^4.3.7",
-        "lint-staged": "12.3.6"
+        "lint-staged": "12.3.7"
     },
     "husky": {
         "hooks": {
