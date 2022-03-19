@@ -5,7 +5,7 @@ import InstallViaCLI from './InstallViaCLI';
 
 function InstallInstructions({isShowInstructions, toggleShowInstructions, pluginId, pluginVersion}) {
     return (
-        <Modal placement="bottom" isOpen={isShowInstructions} target="pluginDependencies" toggle={toggleShowInstructions}>
+        <Modal placement="bottom" className="wide" isOpen={isShowInstructions} target="pluginDependencies" toggle={toggleShowInstructions}>
             <ModalHeader toggle={toggleShowInstructions}>Installation options</ModalHeader >
             <ModalBody>
                 <ol>

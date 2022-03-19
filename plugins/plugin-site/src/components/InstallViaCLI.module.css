@@ -1,6 +1,6 @@
 .root {
     position: relative;
-    line-height: 3rem;
+    line-height: 2rem;
 }
 
 .root span {
@@ -8,5 +8,10 @@
 }
 
 .root code {
+    margin-right: 3rem;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    overflow: hidden;
+    display: block;
 }

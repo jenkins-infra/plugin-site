@@ -955,3 +955,16 @@ a.card:hover {
 .markdown-body clipboard-copy {
   display: none;
 }
+
+@media (min-width: 576px) {
+  .modal-dialog.wide {
+    max-width: none;
+    margin: 0.5rem;
+  }
+}
+
+@media (min-width: 776px) {
+  .modal-dialog.wide {
+    max-width: 700px;
+  }
+}
