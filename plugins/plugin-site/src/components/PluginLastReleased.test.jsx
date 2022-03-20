@@ -9,7 +9,7 @@ describe('pluginLastReleased', () => {
         jest.useFakeTimers();
         jest.setSystemTime(new Date('2021-12-04').getTime());
     });
-    it('both release timestamp and builDate', async () => {
+    it('both release timestamp and buildDate', async () => {
         const {container} = render(<PluginLastReleased releaseTimestamp="2017-02-09T15:19:10.00Z" buildDate="Feb 09, 2017" />);
 
         expect(container).toHaveTextContent('Released: 5 years ago');
