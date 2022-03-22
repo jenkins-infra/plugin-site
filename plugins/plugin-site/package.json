@@ -147,7 +147,7 @@
     "stylelint-order": "5.0.0",
     "stylelint-processor-styled-components": "1.10.0",
     "stylelint-selector-bem-pattern": "2.1.1",
-    "unified": "9.2.2",
+    "unified": "10.1.2",
     "xml2js": "0.4.23"
   },
   "optionalDependencies": {
