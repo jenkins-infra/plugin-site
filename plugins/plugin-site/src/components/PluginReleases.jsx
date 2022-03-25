@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import TimeAgo from 'react-timeago';
 
-import Checksum from './Checksum';
 import InstallViaCLI from './InstallViaCLI';
 
 import {formatter} from '../commons/helper';
@@ -50,16 +49,24 @@ function PluginReleases({pluginId, versions}) {
                             </h5>
                         </div>
                         <div className="card-body">
+                            {release.bodyHTML && (<>
+                                <div
+                                    className="card-text"
+                                    dangerouslySetInnerHTML={{__html: release.bodyHTML}}
+                                />
+                                <hr/>
+                            </>)}
                             <div>
-                                <InstallViaCLI pluginId={pluginId} version={version.version} />
-                            </div>
-                            {release.bodyHTML && (<blockquote
-                                className="card-text"
-                                dangerouslySetInnerHTML={{__html: release.bodyHTML}}
-                            />)}
-                            <div>
-                                <Checksum type="SHA-1" value={version.sha1} />
-                                <Checksum type="SHA-256" value={version.sha256} />
+                                <h5>Installation options</h5>
+                                <ul>
+                                    <li><InstallViaCLI pluginId={pluginId} version={version.version} /></li>
+                                    <li>
+                                        {'Download: '}
+                                        <a href={version.url}>{'direct link'}</a>
+                                        {', '}
+                                        <a href={`https://updates.jenkins.io/download/plugins/${pluginId}/#${version.version}`}>{'checksums'}</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

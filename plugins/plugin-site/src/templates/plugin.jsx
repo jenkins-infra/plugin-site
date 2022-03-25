@@ -6,6 +6,7 @@ import {cleanTitle} from '../commons/helper';
 
 import Layout from '../layout';
 import SEO from '../components/SEO';
+import InstallInstructions from '../components/InstallInstructions';
 import LineChart from '../components/LineChart';
 import PluginDependencies from '../components/PluginDependencies';
 import PluginLabels from '../components/PluginLabels';
@@ -97,6 +98,11 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
 
     const pluginPage = 'templates/plugin.jsx';
 
+    const [isShowInstructions, setShowInstructions] = React.useState(false);
+    const toggleShowInstructions = (e) => {
+        e && e.preventDefault();
+        setShowInstructions(!isShowInstructions);
+    };
     return (
         <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemTitle={plugin.title}
             reportProblemUrl={plugin?.issueTrackers?.find(tracker => tracker.reportUrl)?.reportUrl || `/${plugin.name}`}>
@@ -105,10 +111,13 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                 <h1 className="title">
                     {cleanTitle(plugin.title)}
                 </h1>
-                <div className="plugin-id">
-                    {'ID: '}
-                    {plugin.name}
-                </div>
+                <button className="btn btn-secondary" onClick={toggleShowInstructions}>
+                    How to install
+                </button>
+                <InstallInstructions isShowInstructions={isShowInstructions}
+                    toggleShowInstructions={toggleShowInstructions}
+                    pluginId={plugin.name}
+                    pluginVersion={plugin.version}/>
             </div>
             <div className="row flex pluginContainer flex-column-reverse flex-md-row">
                 <div className="col-md-9 main">
