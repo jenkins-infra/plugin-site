@@ -16,7 +16,6 @@ import PluginInactiveWarnings from '../components/PluginInactiveWarnings';
 import PluginGovernanceStatus from '../components/PluginGovernanceStatus';
 import PluginDevelopers from '../components/PluginDevelopers';
 import PluginReadableInstalls from '../components/PluginReadableInstalls';
-import PluginIssues from '../components/PluginIssues';
 import PluginReleases from '../components/PluginReleases';
 import PluginIssueTrackers from '../components/PluginIssueTrackers';
 
@@ -128,10 +127,6 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         {(function () {
                             if (selectedTab.id === 'releases') {
                                 return <PluginReleases pluginId={plugin.name} versions={versions.edges.map(edge => edge.node)} />;
-                            }
-
-                            if (selectedTab.id === 'issues') {
-                                return <PluginIssues pluginId={plugin.name} />;
                             }
                             if (selectedTab.id === 'dependencies') {
                                 return (
