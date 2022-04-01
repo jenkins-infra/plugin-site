@@ -959,7 +959,7 @@ a.card:hover {
 @media (min-width: 576px) {
   .modal-dialog.wide {
     max-width: none;
-    margin: 0.5rem;
+    margin: 0.5rem auto;
   }
 }
 
