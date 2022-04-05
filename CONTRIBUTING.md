@@ -66,7 +66,7 @@ license your work under the terms of the [MIT License](LICENSE).
 
 ## Run locally
 
-To set the `GATSBY_ALGOLIA_APP_ID` and `GATSBY_ALGOLIA_SEARCH_KEY` as environment variables, for example if you are using Linux or macOC, please do the following:
+Supposedly the necessary environment variables have been set with the `.env` file. However, to set the `GATSBY_ALGOLIA_APP_ID` and `GATSBY_ALGOLIA_SEARCH_KEY` as environment variables manually, for example if you are using Linux or macOC, please do the following:
 
 ```shell
 export GATSBY_ALGOLIA_APP_ID=HF9WKP9QU1

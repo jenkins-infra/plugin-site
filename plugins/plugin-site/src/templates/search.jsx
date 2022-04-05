@@ -28,8 +28,6 @@ function groupBy(objectArray, property) {
     }, {});
 }
 
-const useAlgolia = process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY;
-
 const doSearch = (data, setResults, categoriesMap) => {
     const {query} = data;
     const labels = forceArray(data.labels).concat(
@@ -37,44 +35,40 @@ const doSearch = (data, setResults, categoriesMap) => {
     ).filter(Boolean);
     let page = data.page;
     setResults(null);
-    if (useAlgolia) {
-        const searchClient = algoliasearch(
-            process.env.GATSBY_ALGOLIA_APP_ID,
-            process.env.GATSBY_ALGOLIA_SEARCH_KEY
-        );
-        const index = searchClient.initIndex('Plugins');
-        const filters = [];
-        if (labels && labels.length) {
-            filters.push(`(${labels.map(l => `labels:${l}`).join(' OR ')})`);
-        }
-
-        if (page === undefined || page === null) {
-            page = 1;
-        }
-
-        index.search(
-            query,
-            {
-                hitsPerPage: 50,
-                page: page - 1,
-                filters: filters.join(' AND ')
-            }
-        ).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
-            return setResults({
-                total: nbHits,
-                pages: nbPages + 1,
-                page: page + 1,
-                limit: hitsPerPage,
-                plugins: hits
-            });
-        }).catch(err => {
-            window?.Sentry?.captureException(err);
-            // FIXME alert/console.log/somehow tell user something went wrong
-        });
+    const searchClient = algoliasearch(
+        process.env.GATSBY_ALGOLIA_APP_ID,
+        process.env.GATSBY_ALGOLIA_SEARCH_KEY
+    );
+    const index = searchClient.initIndex('Plugins');
+    const filters = [];
+    if (labels && labels.length) {
+        filters.push(`(${labels.map(l => `labels:${l}`).join(' OR ')})`);
     }
+
+    if (page === undefined || page === null) {
+        page = 1;
+    }
+
+    index.search(
+        query,
+        {
+            hitsPerPage: 50,
+            page: page - 1,
+            filters: filters.join(' AND ')
+        }
+    ).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
+        return setResults({
+            total: nbHits,
+            pages: nbPages + 1,
+            page: page + 1,
+            limit: hitsPerPage,
+            plugins: hits
+        });
+    }).catch(err => {
+        window?.Sentry?.captureException(err);
+        // FIXME alert/console.log/somehow tell user something went wrong
+    });
 };
-
-
 
 function SearchPage({location}) {
     const [showFilter, setShowFilter] = React.useState(true);
