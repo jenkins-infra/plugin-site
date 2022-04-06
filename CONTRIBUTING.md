@@ -73,13 +73,6 @@ GATSBY_ALGOLIA_APP_ID=HF9WKP9QU1
 GATSBY_ALGOLIA_SEARCH_KEY=4ef9c8513249915cc20e3b32c450abcb
 ```
 
-However, to set the `GATSBY_ALGOLIA_APP_ID` and `GATSBY_ALGOLIA_SEARCH_KEY` as environment variables manually, for example if you are using Linux or macOC, please do the following:
-
-```shell
-export GATSBY_ALGOLIA_APP_ID=HF9WKP9QU1
-export GATSBY_ALGOLIA_SEARCH_KEY=4ef9c8513249915cc20e3b32c450abcb
-```
-If you are using a Windows computer you can set the above values by creating new environment variables under System. 
 
 ```
 yarn install
