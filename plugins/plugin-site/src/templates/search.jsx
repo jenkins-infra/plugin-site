@@ -28,6 +28,8 @@ function groupBy(objectArray, property) {
     }, {});
 }
 
+const useAlgolia = process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY;
+
 const doSearch = (data, setResults, categoriesMap) => {
     const {query} = data;
     const labels = forceArray(data.labels).concat(
@@ -35,7 +37,6 @@ const doSearch = (data, setResults, categoriesMap) => {
     ).filter(Boolean);
     let page = data.page;
     setResults(null);
-    const useAlgolia = process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY;
     if (useAlgolia) {
         const searchClient = algoliasearch(
             process.env.GATSBY_ALGOLIA_APP_ID,
@@ -55,7 +56,7 @@ const doSearch = (data, setResults, categoriesMap) => {
             query,
             {
                 hitsPerPage: 50,
-                page: page - 1,
+                page: page-1,
                 filters: filters.join(' AND ')
             }
         ).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
