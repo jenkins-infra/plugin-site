@@ -4,7 +4,6 @@ import React from 'react';
 import querystring from 'querystring';
 import PropTypes from 'prop-types';
 import {navigate, useStaticQuery, graphql} from 'gatsby';
-import fetch from 'isomorphic-fetch';
 import algoliasearch from 'algoliasearch/lite';
 
 import Layout from '../layout';
@@ -31,7 +30,7 @@ function groupBy(objectArray, property) {
 const useAlgolia = process.env.GATSBY_ALGOLIA_APP_ID && process.env.GATSBY_ALGOLIA_SEARCH_KEY;
 
 const doSearch = (data, setResults, categoriesMap) => {
-    const {query, sort} = data;
+    const {query} = data;
     const labels = forceArray(data.labels).concat(
         ...forceArray(data.categories).filter(Boolean).map(categoryId => categoriesMap[categoryId].labels)
     ).filter(Boolean);
@@ -71,33 +70,8 @@ const doSearch = (data, setResults, categoriesMap) => {
             window?.Sentry?.captureException(err);
             // FIXME alert/console.log/somehow tell user something went wrong
         });
-    } else {
-        const params = querystring.stringify({labels, page, q: query, sort});
-        const url = `${process.env.GATSBY_API_URL || '/api'}/plugins?${params}`;
-        fetch(url, {mode: 'cors'})
-            .then((response) => {
-                if (response.status >= 300 || response.status < 200) {
-                    const error = new Error(response.statusText);
-                    error.response = response;
-                    throw error;
-                }
-                return response;
-            })
-            .then(response => response.json())
-            .then(data => {
-                data.plugins.forEach(p => p.developers = p.maintainers);
-                data.pages = data.pages + 1;
-                return data;
-            })
-            .then(setResults)
-            .catch(err => {
-                window?.Sentry?.captureException(err);
-                // FIXME alert/console.log/somehow tell user something went wrong
-            });
     }
 };
-
-
 
 function SearchPage({location}) {
     const [showFilter, setShowFilter] = React.useState(true);
