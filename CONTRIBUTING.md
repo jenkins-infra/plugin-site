@@ -66,7 +66,7 @@ license your work under the terms of the [MIT License](LICENSE).
 
 ## Run locally
 
-Supposedly the necessary environment variables have been set with a `.env` file. You can simply copy and paste the following in a `.env` file placed at the root of this directory:
+You can simply copy and paste the following in a `.env` file placed at the root of this directory:
 
 ```shell
 GATSBY_ALGOLIA_APP_ID=HF9WKP9QU1
