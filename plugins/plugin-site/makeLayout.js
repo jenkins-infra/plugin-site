@@ -97,11 +97,26 @@ async function makeReactLayout() {
         'charSet': 'charset',
         'http-equiv': 'httpEquiv',
         'stop-color': 'stopColor',
-        'crossorigin': 'crossOrigin'
+        'crossorigin': 'crossOrigin',
+        'lineargradient': 'linearGradient',
+        'gradienttransform': 'gradientTransform',
+        'gradientunits': 'gradientUnits',
+        'viewbox': 'viewBox',
+        'xlink:href': 'xlinkHref',
+        'xmlns:xlink': 'xmlnsXlink',
+    };
+
+    const nodeConversions = {
+        'lineargradient': 'linearGradient',
+        'gradienttransform': 'gradientTransform',
     };
 
     const handleNode = (node, indent = 0) => {
         const prefix = ''.padStart(6+indent);
+
+        if (node.name) {
+            node.name = nodeConversions[node.name] || node.name;
+        }
 
         if (node.name === 'link' && node.attribs && node.attribs.rel === 'stylesheet') {
             delete node.attribs.crossorigin;
