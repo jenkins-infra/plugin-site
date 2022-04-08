@@ -245,7 +245,7 @@ PluginPage.propTypes = {
                 viewUrl: PropTypes.string,
                 reportUrl: PropTypes.string,
             })),
-            hasPipelineSteps: PropTypes.boolean,
+            hasPipelineSteps: PropTypes.bool,
             excerpt: PropTypes.string,
             gav: PropTypes.string.isRequired,
             hasBomEntry: PropTypes.bool,
