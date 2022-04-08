@@ -134,7 +134,6 @@
     "lint-staged": "12.3.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-test-renderer": "17.0.2",
     "remark": "13.0.0",
     "remark-frontmatter": "3.0.0",
     "remark-gfm": "1.0.0",
