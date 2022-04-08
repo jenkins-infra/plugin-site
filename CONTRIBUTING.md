@@ -66,14 +66,6 @@ license your work under the terms of the [MIT License](LICENSE).
 
 ## Run locally
 
-You can simply copy and paste the following in a `.env` file placed at the root of this directory:
-
-```shell
-GATSBY_ALGOLIA_APP_ID=HF9WKP9QU1
-GATSBY_ALGOLIA_SEARCH_KEY=4ef9c8513249915cc20e3b32c450abcb
-```
-
-
 ```
 yarn install
 cd ./plugins/plugin-site
