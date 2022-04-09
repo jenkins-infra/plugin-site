@@ -123,7 +123,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, c
         names.push(pluginName);
         const developers = plugin.developers || [];
         const labels = plugin.labels || [];
-        developers.forEach(maint => {maint.id = maint.developerId, delete (maint.developerId);});
+        developers.forEach(convertDeveloper);
         plugin.scm = fixGitHubUrl(plugin.scm, plugin.defaultBranch || 'master');
         const pluginStats = stats[pluginName] || {installations: null};
         pluginStats.trend = computeTrend(plugin, stats, updateData.plugins);
@@ -269,6 +269,13 @@ const fixGitHubUrl = (url, defaultBranch) => {
         return `${match[1]}/tree/${defaultBranch}/${match[2]}`;
     }
     return url;
+};
+
+const convertDeveloper = (maint) => {
+    maint.id = maint.developerId;
+    // graceful degradation: if names are lost, use ID
+    maint.name = maint.name || maint.id.replace('_', ' ');
+    delete (maint.developerId);
 };
 
 const computeTrend = (plugin, stats, plugins) => {
