@@ -1,5 +1,4 @@
 import React from 'react';
-import WarningsIcon from './WarningsIcon';
 import PropTypes from 'prop-types';
 
 function PluginActiveWarnings({securityWarnings}) {
@@ -13,7 +12,7 @@ function PluginActiveWarnings({securityWarnings}) {
     }
     return (
         <div className="alert alert-danger alert-with-icon">
-            <WarningsIcon />
+            <ion-icon class="report" name="warning" />
             {active.length == 1 ? singleWarning(active[0]) : multipleWarnings(active)}
         </div>
     );

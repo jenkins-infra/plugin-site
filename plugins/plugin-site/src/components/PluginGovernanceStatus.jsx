@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WarningsIcon from './WarningsIcon';
 
 function PluginGovernanceStatus({plugin}) {
     if (!plugin || !plugin.labels) {
@@ -10,7 +9,7 @@ function PluginGovernanceStatus({plugin}) {
         if (id === 'adopt-this-plugin') {
             return (
                 <div className="alert alert-warning alert-with-icon" key={id}>
-                    <WarningsIcon />
+                    <ion-icon class="report" name="warning" />
                     <b>This plugin is up for adoption!</b>
                     {' We are looking for new maintainers. Visit our '}
                     <a href="https://jenkins.io/doc/developer/plugin-governance/adopt-a-plugin/">Adopt a Plugin</a>
@@ -20,7 +19,7 @@ function PluginGovernanceStatus({plugin}) {
         } else if (id === 'deprecated') {
             return (
                 <div className="alert alert-warning alert-with-icon" key={id}>
-                    <WarningsIcon />
+                    <ion-icon class="report" name="warning" />
                     <p>
                         <b>Deprecated:</b>
                         {'This plugin has been marked as '}

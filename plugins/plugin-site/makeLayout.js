@@ -104,6 +104,7 @@ async function makeReactLayout() {
         'viewbox': 'viewBox',
         'xlink:href': 'xlinkHref',
         'xmlns:xlink': 'xmlnsXlink',
+        'nomodule': 'noModule'
     };
 
     const nodeConversions = {
@@ -168,8 +169,12 @@ async function makeReactLayout() {
     jsxLines.push('      <Helmet>');
     $('head').children(':not(link[rel="stylesheet"])').each((_, child) => handleNode(child, 2));
     $('head').children('link[rel="stylesheet"]').each((_, child) => handleNode(child, 2));
+    $('head').children('script').each((_, child) => handleNode(child, 2));
     jsxLines.push('      </Helmet>');
-    $('body').children().each((_, child) => handleNode(child, 0));
+    $('body').children(':not(script)').each((_, child) => handleNode(child, 0));
+    jsxLines.push('      <Helmet>');
+    $('body').children('script').each((_, child) => handleNode(child, 2));
+    jsxLines.push('      </Helmet>');
     jsxLines.push('    </div>');
     jsxLines.push('  );');
 
