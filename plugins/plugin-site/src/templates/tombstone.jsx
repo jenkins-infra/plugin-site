@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '../layout';
 import SEO from '../components/SEO';
-import WarningsIcon from '../components/WarningsIcon';
 
 function TombstonePage({data: {suspendedPlugin: plugin}}) {
     const pluginPage = 'templates/plugin.jsx';
@@ -22,7 +21,7 @@ function TombstonePage({data: {suspendedPlugin: plugin}}) {
                     </div>
                 </div>
                 <div className="alert alert-warning alert-with-icon">
-                    <WarningsIcon/>
+                    <ion-icon class="report" name="warning" />
                     {'Plugin distribution has been suspended, see '}
                     <a href={plugin.url}>{plugin.url.replace('https://issues.jenkins.io/browse/', '')}</a>
                     {' for details.'}
