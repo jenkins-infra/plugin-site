@@ -7,8 +7,8 @@ function ReportAProblem({reportProblemTitle, reportProblemUrl, reportProblemRela
     return (
         <p className="box">
             <a href={reportProblemUrl.includes('://') ? reportProblemUrl : pluginSiteReportUrl} title={title}>
-                Report a problem
                 <ion-icon class="report" name="warning" />
+                Report a problem
             </a>
         </p>
     );
