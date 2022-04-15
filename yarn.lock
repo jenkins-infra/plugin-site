@@ -2714,7 +2714,7 @@ __metadata:
     gatsby-plugin-sharp: 4.4.0
     gatsby-plugin-sitemap: 5.4.0
     gatsby-remark-source-name: 1.0.0
-    gatsby-source-custom-api: 2.3.5
+    gatsby-source-custom-api: 2.3.6
     gatsby-source-filesystem: 4.4.0
     gatsby-transformer-asciidoc: 3.4.0
     gatsby-transformer-sharp: 4.4.0
@@ -10184,14 +10184,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-custom-api@npm:2.3.5":
-  version: 2.3.5
-  resolution: "gatsby-source-custom-api@npm:2.3.5"
+"gatsby-source-custom-api@npm:2.3.6":
+  version: 2.3.6
+  resolution: "gatsby-source-custom-api@npm:2.3.6"
   dependencies:
     gatsby-source-filesystem: ^2.0.29
     node-fetch: ^2.6.1
     uuid: ^3.3.2
-  checksum: 64f0f3848194bd36242b9e32fd6465e2778a7cb4d36e1601c9783b2b7d2da5e110144b9af7f4e0a3ce68f173d127e82302369ecae3d8046ef9b18642855481dc
+  checksum: cccf3f86ec3354cef52e80429de92051015ae21ace5dcac2f4d0536806b93e77cc0dbe67a2981a1d3cc5057e1e5cc662df11ad1674b5318639fc35e60c26d8b2
   languageName: node
   linkType: hard
 
