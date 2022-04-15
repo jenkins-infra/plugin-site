@@ -125,7 +125,6 @@
     "gatsby-plugin-algolia": "0.26.0",
     "gatsby-plugin-matomo": "0.13.0",
     "gatsby-plugin-nprogress": "4.4.0",
-    "gatsby-source-custom-api": "2.3.6",
     "gatsby-source-filesystem": "4.4.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "27.5.1",
