@@ -34,10 +34,6 @@ module.exports = {
         description: 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software',
         image: 'https://jenkins.io/images/logo-title-opengraph.png',
         twitterUsername: '@JenkinsCI'
-    },
-    proxy: {
-        prefix: '/api',
-        url: process.env.DEV_OVERRIDE_API_PROXY || 'https://plugins.jenkins.io',
     }
 };
 
