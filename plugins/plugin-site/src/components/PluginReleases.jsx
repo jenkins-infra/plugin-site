@@ -16,7 +16,7 @@ function PluginReleases({pluginId, versions}) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await axios(`${process.env.GATSBY_API_URL || '/api'}/plugin/${pluginId}/releases`);
+                const result = await axios(`${process.env.GATSBY_API_URL || 'https://plugin-site-issues.jenkins.io/api'}/plugin/${pluginId}/releases`);
                 let releases = [];
                 if (result && result.data && result.data.releases) {
                     releases = result.data.releases;
@@ -29,15 +29,15 @@ function PluginReleases({pluginId, versions}) {
         fetchData();
         return;
     }, []);
-    
+
     if (!versions) {
         return (<div id="pluginReleases--container" className="container" />);
     }
-    
+
     return (
         <div id="pluginReleases--container" className="container">
             {versions.map(version => {
-                const release = releases.find(release => version.version === release.tag_name.replace(/^[^0-9]*/, '')) || {};
+                const release = releases.find(release => version.version === release.tagName.replace(/^[^0-9]*/, '')) || {};
                 return (
                     <div key={version.id} className="item card">
                         <div className="card-header">
