@@ -22,7 +22,7 @@ function PluginGovernanceStatus({plugin}) {
                     <ion-icon class="alert-icon" name="warning" />
                     <p>
                         <b>Deprecated:</b>
-                        {'This plugin has been marked as '}
+                        {' This plugin has been marked as '}
                         <a href="https://jenkins.io/doc/developer/plugin-governance/deprecating-or-removing-plugin">deprecated</a>
                         {'. In general, this means that this plugin is either obsolete, no longer being developed, or may no longer work.'}
                     </p>
