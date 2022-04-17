@@ -28,7 +28,7 @@ function shouldShowWikiUrl({url}) {
 }
 
 function shouldShowGitHubUrl({url}) {
-    return url?.startsWith('https://github.com/') && !shouldShowGitHubUrl(url);
+    return url?.startsWith('https://github.com/') && !shouldShowWikiUrl({url});
 }
 
 const PluginWikiContent = ({wiki}) => {
