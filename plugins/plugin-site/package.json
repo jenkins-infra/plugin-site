@@ -108,7 +108,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "7.16.7",
     "@testing-library/jest-dom": "5.16.4",
-    "@testing-library/react": "12.1.5",
+    "@testing-library/react": "13.1.1",
     "@typescript-eslint/eslint-plugin": "5.23.0",
     "axios-retry": "3.2.5",
     "babel-jest": "28.1.0",
