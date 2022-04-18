@@ -33,5 +33,9 @@
         "*.{js,jsx}": [
             "eslint --fix"
         ]
+    },
+    "resolutions": {
+        "lint-staged/supports-color": "^8",
+        "supports-color": "^8"
     }
 }

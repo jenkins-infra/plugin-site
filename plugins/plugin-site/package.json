@@ -155,6 +155,7 @@
     "fsevents": "^2.3.2"
   },
   "resolutions": {
+    "lint-staged/supports-color": "^8",
     "supports-color": "^8"
   }
 }
