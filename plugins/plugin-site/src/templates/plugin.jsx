@@ -261,7 +261,7 @@ PluginPage.propTypes = {
             requiredCore: PropTypes.string,
             scm: PropTypes.string,
             securityWarnings: PropTypes.arrayOf(PropTypes.shape({
-                active: PropTypes.boolean,
+                active: PropTypes.bool,
                 id: PropTypes.string,
                 message: PropTypes.string,
                 url: PropTypes.string,
