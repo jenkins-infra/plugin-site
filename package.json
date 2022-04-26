@@ -22,7 +22,7 @@
         "eslint-plugin-filenames": "latest",
         "eslint-plugin-react": "latest",
         "husky": "^4.3.7",
-        "lint-staged": "12.4.0"
+        "lint-staged": "12.4.1"
     },
     "husky": {
         "hooks": {
