@@ -16,7 +16,6 @@ module.exports = {
     setupFilesAfterEnv: ['<rootDir>/jest-setup-test-env.js'],
     testEnvironment: 'jsdom',
     testPathIgnorePatterns: ['node_modules', '\\.cache', '<rootDir>.*/public'],
-    testURL: 'http://localhost',
     transform: {
         '^.+\\.jsx?$': '<rootDir>/jest-preprocess.js',
     },
