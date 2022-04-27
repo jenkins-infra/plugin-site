@@ -2722,7 +2722,7 @@ __metadata:
     isomorphic-fetch: 3.0.0
     jest: 28.0.2
     jest-canvas-mock: 2.3.1
-    jest-environment-jsdom: ^28.0.2
+    jest-environment-jsdom: 28.0.2
     jest-junit: 13.2.0
     lint-staged: 12.4.1
     postcss-calc: 8.2.4
@@ -12725,7 +12725,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-environment-jsdom@npm:^28.0.2":
+"jest-environment-jsdom@npm:28.0.2":
   version: 28.0.2
   resolution: "jest-environment-jsdom@npm:28.0.2"
   dependencies:
