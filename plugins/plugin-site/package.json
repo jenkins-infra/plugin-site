@@ -108,7 +108,7 @@
     "@babel/plugin-proposal-class-properties": "7.16.7",
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "12.1.5",
-    "@typescript-eslint/eslint-plugin": "5.21.0",
+    "@typescript-eslint/eslint-plugin": "5.22.0",
     "axios-retry": "3.2.5",
     "babel-jest": "28.0.3",
     "babel-preset-gatsby": "2.4.0",
