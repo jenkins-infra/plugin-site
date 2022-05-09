@@ -1,9 +1,7 @@
 {
     "extends": [
-        "config:base"
-    ],
-    "schedule": [
-        "every weekday"
+        "config:base",
+        "schedule:monthly"
     ],
     "labels": [
         "dependencies"
