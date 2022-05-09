@@ -113,7 +113,7 @@
     "babel-jest": "28.1.0",
     "babel-preset-gatsby": "2.4.0",
     "dotenv": "16.0.0",
-    "eslint": "8.14.0",
+    "eslint": "8.15.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jest": "26.1.5",
