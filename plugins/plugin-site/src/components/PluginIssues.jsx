@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import TimeAgo from 'react-timeago';
+import {formatter} from '../commons/helper';
 
 function PluginIssues({pluginId}) {
     const [isLoading, setIsLoading] = useState(false);
@@ -34,11 +36,6 @@ function PluginIssues({pluginId}) {
                         <tr>
                             <th scope="col">Key</th>
                             <th scope="col">Summary</th>
-                            <th scope="col">Assignee</th>
-                            <th scope="col">Reporter</th>
-                            <th scope="col">Priority</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Resolution</th>
                             <th scope="col">Created</th>
                             <th scope="col">Updated</th>
                         </tr>
@@ -49,13 +46,8 @@ function PluginIssues({pluginId}) {
                                 <tr key={issue.key}>
                                     <th scope="row"><a href={issue.url}>{issue.key}</a></th>
                                     <td>{issue.summary}</td>
-                                    <td>{issue.assignee}</td>
-                                    <td>{issue.reporter}</td>
-                                    <td>{issue.priority}</td>
-                                    <td>{issue.status}</td>
-                                    <td>{issue.resolution}</td>
-                                    <td>{issue.created}</td>
-                                    <td>{issue.updated}</td>
+                                    <td><TimeAgo date={new Date(issue.created)} formatter={formatter}/></td>
+                                    <td><TimeAgo date={new Date(issue.updated)} formatter={formatter}/></td>
                                 </tr>
                             );
                         })}
