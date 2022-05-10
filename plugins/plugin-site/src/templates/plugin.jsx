@@ -134,7 +134,11 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                             }
 
                             if (selectedTab.id === 'issues') {
-                                return <PluginIssues pluginId={plugin.name} />;
+                                if (plugin?.issueTrackers?.length) {
+                                    return <PluginIssues pluginId={plugin.name} />;
+                                } else {
+                                    return <div className="alert alert-warning mt-3">This plugin does not specify any issue tracker.</div>;
+                                }
                             }
                             if (selectedTab.id === 'dependencies') {
                                 return (
