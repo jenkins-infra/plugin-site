@@ -124,7 +124,7 @@ async function makeReactLayout() {
             node.attribs.type = 'text/css';
             node.attribs.media = 'all';
         }
-        const attrs = Object.entries(node.attribs || {}).map(([key, val]) => {
+        let attrs = Object.entries(node.attribs || {}).map(([key, val]) => {
             key = keyConversion[key] || key;
             return `${key}=${JSON.stringify(val)}`;
         }).join(' ');
@@ -136,7 +136,10 @@ async function makeReactLayout() {
                 }
                 throw new Error(`not sure how to handle ${child.type}`);
             });
-            jsxLines.push(`${prefix}<${node.name} ${attrs} dangerouslySetInnerHTML={{__html: ${JSON.stringify(text)}}} />`);
+            if (text && text.length) {
+                attrs = `${attrs} dangerouslySetInnerHTML={{__html: ${JSON.stringify(text)}}}`;
+            }
+            jsxLines.push(`${prefix}<${node.name} ${attrs} />`);
             return;
         } else if (node.type === 'comment') {
             return;
