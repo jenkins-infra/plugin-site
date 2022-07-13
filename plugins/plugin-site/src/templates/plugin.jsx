@@ -178,7 +178,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         {plugin.hasPipelineSteps && <div className="label-link"><a href={`https://www.jenkins.io/doc/pipeline/steps/${plugin.name}`}>Pipeline Step Reference</a></div>}
                         {plugin.hasExtensions && <div className="label-link"><a href={`https://www.jenkins.io/doc/developer/extensions/${plugin.name}`}>Extensions</a></div>}
                         <div className="label-link"><a href={`https://javadoc.jenkins.io/plugin/${plugin.name}`}>Javadoc</a></div>
-                    </div>                   
+                    </div>
                     <div className="sidebarSection">
                         <h5>Labels</h5>
                         <PluginLabels labels={plugin.labels} />
