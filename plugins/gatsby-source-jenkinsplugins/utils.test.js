@@ -51,6 +51,9 @@ describe('utils', () => {
         nock('https://www.jenkins.io')
             .get('/doc/pipeline/steps/contents.json')
             .reply(200, []);
+        nock('https://www.jenkins.io')
+            .get('/doc/developer/extensions/contents.json')
+            .reply(200, []);
         nock('https://raw.githubusercontent.com:443')
             .get('/jenkinsci/bom/master/bom-weekly/pom.xml')
             .reply(200, '');
