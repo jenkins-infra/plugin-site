@@ -117,7 +117,7 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
     }
 };
 
-const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, canonicalLabels, documentation, bomDependencies, pipelinePluginIds, firstReleases, createContentDigest, createNodeId, createNodeField, createRemoteFileNode, reporter, plugin}) => {
+const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, canonicalLabels, documentation, bomDependencies, pipelinePluginIds, pluginExtensionList, firstReleases, createContentDigest, createNodeId, createNodeField, createRemoteFileNode, reporter, plugin}) => {
     return async function () {
         const pluginName = plugin.name.trim();
         names.push(pluginName);
@@ -140,6 +140,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, c
             dependencies: allDependencies,
             firstRelease: firstReleases[pluginName] && firstReleases[pluginName].toISOString(),
             hasPipelineSteps: pipelinePluginIds.includes(pluginName),
+            hasExtensions: pluginExtensionList.includes(pluginName),
             hasBomEntry: !!bomDependencies.find(artifactId => plugin.gav.includes(`:${artifactId}:`)),
             parent: null,
             children: [],
@@ -199,6 +200,9 @@ const fetchPluginData = async ({createNode, createContentDigest, createNodeId, c
     const documentationListUrl = 'https://updates.jenkins.io/current/plugin-documentation-urls.json';
     const documentation = await requestGET({url: documentationListUrl, reporter});
 
+    const pluginExtensionsUrl = 'https://www.jenkins.io/doc/developer/extensions/contents.json';
+    const pluginExtensionList = await requestGET({url: pluginExtensionsUrl, reporter});
+
     const canonicalLabelPairs = await getCoreResourceAsTuples('jenkins/canonical-labels.txt', ' ', reporter);
     const canonicalLabels = {};
     for (const [key, value] of canonicalLabelPairs) {
@@ -216,6 +220,7 @@ const fetchPluginData = async ({createNode, createContentDigest, createNodeId, c
         documentation,
         bomDependencies,
         pipelinePluginIds,
+        pluginExtensionList,
         firstReleases,
         createNode,
         createContentDigest,
