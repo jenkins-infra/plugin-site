@@ -176,8 +176,9 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         {plugin.scm && <div className="label-link"><a href={plugin.scm}>GitHub</a></div>}
                         <PluginIssueTrackers issueTrackers={plugin.issueTrackers} />
                         {plugin.hasPipelineSteps && <div className="label-link"><a href={`https://www.jenkins.io/doc/pipeline/steps/${plugin.name}`}>Pipeline Step Reference</a></div>}
+                        {plugin.hasExtensions && <div className="label-link"><a href={`https://www.jenkins.io/doc/developer/extensions/${plugin.name}`}>Extensions</a></div>}
                         <div className="label-link"><a href={`https://javadoc.jenkins.io/plugin/${plugin.name}`}>Javadoc</a></div>
-                    </div>
+                    </div>                   
                     <div className="sidebarSection">
                         <h5>Labels</h5>
                         <PluginLabels labels={plugin.labels} />
@@ -253,6 +254,7 @@ PluginPage.propTypes = {
                 reportUrl: PropTypes.string,
             })),
             hasPipelineSteps: PropTypes.bool,
+            hasExtensions: PropTypes.bool,
             excerpt: PropTypes.string,
             gav: PropTypes.string.isRequired,
             hasBomEntry: PropTypes.bool,

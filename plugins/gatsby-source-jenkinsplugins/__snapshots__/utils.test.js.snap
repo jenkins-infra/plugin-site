@@ -131,6 +131,7 @@ Array [
     "gav": "org.jenkins-ci.plugins:ios-device-connector:1.2",
     "hasBomEntry": false,
     "hasPipelineSteps": false,
+    "hasExtensions":false,
     "id": "ios-device-connector <<< JenkinsPlugin",
     "internal": Object {
       "contentDigest": "f5534973aae4f62f5c453dca7f0f45e3",

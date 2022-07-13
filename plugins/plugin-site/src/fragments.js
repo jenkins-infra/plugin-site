@@ -42,6 +42,7 @@ export const PluginFragment = graphql`
     }
     scm
     hasPipelineSteps
+    hasExtensions
     requiredCore
     releaseTimestamp
     previousVersion
