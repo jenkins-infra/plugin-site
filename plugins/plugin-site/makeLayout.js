@@ -5,7 +5,7 @@ const cheerio = require('cheerio');
 const fs = require('fs/promises');
 
 async function makeReactLayout() {
-    const headerUrl = process.env.HEADER_FILE || 'https://www.jenkins.io/template/index.html';
+    const headerUrl = 'https://deploy-preview-5274--jenkins-io-site-pr.netlify.app/template/index.html';
     const manifestUrl = new URL('/site.webmanifest', headerUrl).toString();
 
     if (!headerUrl) {
