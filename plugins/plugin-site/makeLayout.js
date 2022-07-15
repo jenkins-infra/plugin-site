@@ -1,6 +1,7 @@
 /* eslint-env node */
 /* eslint-disable no-console */
 const axios = require('axios');
+const styleToObject = require('style-to-object');
 const cheerio = require('cheerio');
 const fs = require('fs/promises');
 
@@ -126,6 +127,9 @@ async function makeReactLayout() {
         }
         let attrs = Object.entries(node.attribs || {}).map(([key, val]) => {
             key = keyConversion[key] || key;
+            if (key === 'style') {
+                return `${key}={${JSON.stringify(styleToObject(val))}}`;
+            }
             return `${key}=${JSON.stringify(val)}`;
         }).join(' ');
         if (node.name === 'script') {
