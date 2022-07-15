@@ -3005,6 +3005,7 @@ __metadata:
     remark-gfm: 1.0.0
     remark-parse: 9.0.0
     remark-rehype: 8.1.0
+    style-to-object: ^0.3.0
     stylelint: 14.8.2
     stylelint-config-recommended: 7.0.0
     stylelint-config-standard: 25.0.0
