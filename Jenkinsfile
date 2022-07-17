@@ -65,6 +65,9 @@ pipeline {
     }
 
     stage('Lint and Test') {
+      environment {
+        NODE_ENV = "development"
+      }
       agent {
         docker {
           image 'node:14.17'
