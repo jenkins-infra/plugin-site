@@ -7,27 +7,23 @@
         "lint": "yarn workspaces foreach -t -p -v -i run lint",
         "test": "yarn workspaces foreach -t -p -v -i run test",
         "build": "yarn workspaces foreach -t -p -v -i run build",
-        "dev": "yarn workspace @jenkins-cd/jenkins-plugin-site dev"
+        "dev": "yarn workspace @jenkins-cd/jenkins-plugin-site dev",
+        "postinstall": "husky install"
     },
     "workspaces": [
         "plugins/*"
     ],
     "version": "0.0.1",
     "devDependencies": {
-        "@babel/eslint-parser": "7.17.0",
+        "@babel/eslint-parser": "7.18.2",
         "@babel/eslint-plugin": "7.17.7",
-        "@babel/plugin-proposal-decorators": "7.17.9",
-        "eslint": "8.15.0",
+        "@babel/plugin-proposal-decorators": "7.18.6",
+        "eslint": "8.20.0",
         "eslint-config-google": "0.14.0",
         "eslint-plugin-filenames": "latest",
         "eslint-plugin-react": "latest",
-        "husky": "^4.3.7",
-        "lint-staged": "12.4.1"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
+        "husky": "^8.0.0",
+        "lint-staged": "13.0.3"
     },
     "lint-staged": {
         "*.{js,jsx}": [
@@ -37,5 +33,6 @@
     "resolutions": {
         "lint-staged/supports-color": "^8",
         "supports-color": "^8"
-    }
+    },
+    "packageManager": "yarn@3.2.1"
 }
