@@ -11,9 +11,6 @@ const readText = async (fileName) => {const buffer = await fs.promises.readFile(
 
 describe('utils', () => {
     let _reporter;
-    afterEach(() => {
-        nock.cleanAll();
-    });
     beforeEach(async () => {
         process.env.GET_CONTENT = true;
         nock.disableNetConnect();
@@ -28,6 +25,9 @@ describe('utils', () => {
                 };
             }
         };
+    });
+    afterEach(() => {
+        nock.cleanAll();
     });
     it('fix GitHub URL: submodule gets expanded', () => {
         expect(utils.fixGitHubUrl('https://github.com/jenkinsci/blueocean-plugin/blueocean-bitbucket-pipeline', 'master'))
