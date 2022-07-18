@@ -2635,7 +2635,7 @@ __metadata:
     date-fns: ^2.27.0
     eslint: 8.15.0
     find-package-json: ^1.2.0
-    gatsby-source-filesystem: 4.9.0
+    gatsby-source-filesystem: 4.18.1
     jest: 28.1.0
     nock: 13.2.8
     p-queue: ^6.6.2
@@ -7188,7 +7188,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:^3.4.2, chokidar@npm:^3.4.3, chokidar@npm:^3.5.2, chokidar@npm:^3.5.3":
+"chokidar@npm:^3.4.2, chokidar@npm:^3.4.3, chokidar@npm:^3.5.3":
   version: 3.5.3
   resolution: "chokidar@npm:3.5.3"
   dependencies:
@@ -10398,7 +10398,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^10.0.0, fs-extra@npm:^10.1.0":
+"fs-extra@npm:^10.1.0":
   version: 10.1.0
   resolution: "fs-extra@npm:10.1.0"
   dependencies:
@@ -10576,7 +10576,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-core-utils@npm:^3.18.1, gatsby-core-utils@npm:^3.9.0":
+"gatsby-core-utils@npm:^3.18.1":
   version: 3.18.1
   resolution: "gatsby-core-utils@npm:3.18.1"
   dependencies:
@@ -10975,28 +10975,6 @@ __metadata:
   peerDependencies:
     gatsby: ^4.0.0-next
   checksum: d576eb16addf2afd7d1120796dbaa8efb6d1d1351ca013544acf73b489831cc87f1fc0567056a51d6a817e0d55239db3aba3e7d9dbe7bbc0552a7113bf0b555c
-  languageName: node
-  linkType: hard
-
-"gatsby-source-filesystem@npm:4.9.0":
-  version: 4.9.0
-  resolution: "gatsby-source-filesystem@npm:4.9.0"
-  dependencies:
-    "@babel/runtime": ^7.15.4
-    chokidar: ^3.5.2
-    file-type: ^16.5.3
-    fs-extra: ^10.0.0
-    gatsby-core-utils: ^3.9.0
-    got: ^9.6.0
-    md5-file: ^5.0.0
-    mime: ^2.5.2
-    pretty-bytes: ^5.4.1
-    progress: ^2.0.3
-    valid-url: ^1.0.9
-    xstate: ^4.26.1
-  peerDependencies:
-    gatsby: ^4.0.0-next
-  checksum: fa49a2d129cc9918c3f9d7f4c2ec763d4198df1e8b19459daf14958fe3cfc96182bc4d877d1cdf62631631d482ad539d64cdcb69ce8dcf9f3366a66737a68856
   languageName: node
   linkType: hard
 
