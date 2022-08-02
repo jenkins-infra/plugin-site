@@ -31,7 +31,7 @@ function multipleWarnings(active) {
                     );
                 })}
             </ul>
-            <div><a href="https://www.jenkins.io/security/plugins/#unresolved">{'Learn why we do this.'}</div>
+            <div><a href="https://www.jenkins.io/security/plugins/#unresolved">{'Learn why we do this.'}</a></div>
         </div>
     );
 }
@@ -43,7 +43,7 @@ function singleWarning(warning) {
             <div className="active-warning">
                 <a href={warning.url}>{warning.message}</a>
             </div>
-            <div><a href="https://www.jenkins.io/security/plugins/#unresolved">{'Learn why we do this.'}</div>
+            <div><a href="https://www.jenkins.io/security/plugins/#unresolved">{'Learn why we do this.'}</a></div>
         </div>
     );
 }
