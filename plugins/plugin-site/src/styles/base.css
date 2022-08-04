@@ -41,7 +41,7 @@ body .showResults #plugin-search-form:before {display:none}
   padding:0;
   margin:0;
   list-style:none;
-  vertical-align:middle;   
+  vertical-align:middle;
 }
 .CategoryList > li > label{
   font-weight:bold;
@@ -102,6 +102,11 @@ body #grid-box .NoLabels .Entry-box {
   line-height: 1rem;
   font-size:.875rem
 }
+
+#searchpage #grid-box {
+  margin-top: 25px;
+}
+
 body #grid-box .NoLabels .Entry-box a {cursor:pointer}
 body #grid-box .NoLabels legend {font-size:1.1rem; }
 
@@ -269,6 +274,7 @@ transform: scale(-1, 1);
 #pluginPage #grid-box {
   margin-left: 15px;
   margin-right: 15px;
+  margin-top: 50px;
 }
 
 #pluginPage #grid-box .download {margin:2rem 0 2rem -.5rem;}
@@ -919,9 +925,9 @@ a.card:hover {
 }
 
 #pluginPage #grid-box .content .main table {
-    border: 1px solid silver;  
+    border: 1px solid silver;
 }
-  
+
 #pluginPage #grid-box .content .main td {
     padding: 1em;
 }
