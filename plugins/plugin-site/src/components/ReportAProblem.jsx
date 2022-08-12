@@ -27,9 +27,9 @@ function ReportAProblem({reportProblemTitle, reportProblemUrl, reportProblemRela
 }
 
 ReportAProblem.propTypes = {
-    reportProblemTitle: PropTypes.string.isRequired,
-    reportProblemUrl: PropTypes.string.isRequired,
-    reportProblemRelativeSourcePath: PropTypes.string.isRequired
+    reportProblemTitle: PropTypes.string,
+    reportProblemUrl: PropTypes.string,
+    reportProblemRelativeSourcePath: PropTypes.string
 };
 
 export default ReportAProblem;
