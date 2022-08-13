@@ -99,16 +99,13 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
 
     const selectedTab = useSelectedPluginTab(tabs);
 
-    const pluginPage = 'templates/plugin.jsx';
-
     const [isShowInstructions, setShowInstructions] = React.useState(false);
     const toggleShowInstructions = (e) => {
         e && e.preventDefault();
         setShowInstructions(!isShowInstructions);
     };
     return (
-        <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemTitle={plugin.title}
-            reportProblemUrl={plugin?.issueTrackers?.find(tracker => tracker.reportUrl)?.reportUrl || `/${plugin.name}`}>
+        <Layout id="pluginPage">
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.name}`}/>
             <div className="title-wrapper">
                 <h1 className="title">
