@@ -20,6 +20,8 @@ import PluginIssues from '../components/PluginIssues';
 import PluginReleases from '../components/PluginReleases';
 import PluginIssueTrackers from '../components/PluginIssueTrackers';
 
+import {useSelectedPluginTab} from '../hooks/useSelectedTab';
+
 function shouldShowWikiUrl({url}) {
     return url?.startsWith('https://wiki.jenkins-ci.org/') ||
         url?.startsWith('https://wiki.jenkins.io/') ||
@@ -83,11 +85,6 @@ Tabs.propTypes = {
     })),
     selectedTab: PropTypes.string.isRequired
 };
-
-export function useSelectedPluginTab(tabs) {
-    const tabName = global?.window?.location?.hash?.replace('#', '') || tabs[0].id;
-    return tabs.find(tab => tab.id === tabName) || tabs[0];
-}
 
 function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
     const tabs = [
