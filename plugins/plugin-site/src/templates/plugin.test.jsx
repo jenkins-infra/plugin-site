@@ -3,7 +3,9 @@ import React from 'react';
 
 import {render} from '@testing-library/react';
 
-import PluginPage, {useSelectedPluginTab} from './plugin';
+import {useSelectedPluginTab} from '../hooks/useSelectedTab';
+
+import PluginPage from './plugin';
 
 describe('component - PluginPage', () => {
     it('renders', async () => {
