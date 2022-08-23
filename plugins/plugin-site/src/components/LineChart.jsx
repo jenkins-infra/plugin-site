@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {ResizeObserver as ResizeObserverPolyfill} from '@juggle/resize-observer';
 import {Line} from 'react-chartjs-2';
-import {Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Filler} from 'chart.js';
+import {Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Filler, Tooltip} from 'chart.js';
 
-ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Filler);
+ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Filler, Tooltip);
 
 const MONTHS = {
     0: 'Jan',
