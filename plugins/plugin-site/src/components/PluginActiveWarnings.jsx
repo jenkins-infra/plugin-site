@@ -21,7 +21,9 @@ function PluginActiveWarnings({securityWarnings}) {
 function multipleWarnings(active) {
     return (
         <div>
-            {'The current version of this plugin contains multiple vulnerabilities:'}
+            {'The Jenkins project announced unresolved security vulnerabilities affecting the current version of this plugin ('}
+            <a href="https://www.jenkins.io/security/plugins/#unresolved">{'why?'}</a>
+            {'):'}
             <ul className="active-warning">
                 { active.map(warning => {
                     return (
@@ -38,7 +40,9 @@ function multipleWarnings(active) {
 function singleWarning(warning) {
     return (
         <div>
-            {'The current version of this plugin contains a vulnerability:'}
+            {'The Jenkins project announced an unresolved security vulnerability affecting the current version of this plugin ('}
+            <a href="https://www.jenkins.io/security/plugins/#unresolved">{'why?'}</a>
+            {'):'}
             <div className="active-warning">
                 <a href={warning.url}>{warning.message}</a>
             </div>

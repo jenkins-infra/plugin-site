@@ -20,6 +20,8 @@ import PluginIssues from '../components/PluginIssues';
 import PluginReleases from '../components/PluginReleases';
 import PluginIssueTrackers from '../components/PluginIssueTrackers';
 
+import {useSelectedPluginTab} from '../hooks/useSelectedTab';
+
 function shouldShowWikiUrl({url}) {
     return url?.startsWith('https://wiki.jenkins-ci.org/') ||
         url?.startsWith('https://wiki.jenkins.io/') ||
@@ -84,11 +86,6 @@ Tabs.propTypes = {
     selectedTab: PropTypes.string.isRequired
 };
 
-export function useSelectedPluginTab(tabs) {
-    const tabName = global?.window?.location?.hash?.replace('#', '') || tabs[0].id;
-    return tabs.find(tab => tab.id === tabName) || tabs[0];
-}
-
 function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseDependencies, versions}}) {
     const tabs = [
         {id: 'documentation', label: 'Documentation'},
@@ -99,16 +96,13 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
 
     const selectedTab = useSelectedPluginTab(tabs);
 
-    const pluginPage = 'templates/plugin.jsx';
-
     const [isShowInstructions, setShowInstructions] = React.useState(false);
     const toggleShowInstructions = (e) => {
         e && e.preventDefault();
         setShowInstructions(!isShowInstructions);
     };
     return (
-        <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemTitle={plugin.title}
-            reportProblemUrl={plugin?.issueTrackers?.find(tracker => tracker.reportUrl)?.reportUrl || `/${plugin.name}`}>
+        <Layout id="pluginPage">
             <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.name}`}/>
             <div className="title-wrapper">
                 <h1 className="title">
