@@ -21,7 +21,7 @@ describe('gatsby-node', () => {
             const versions = ['0.1', '1.0-b9', '1.0-b10', '1.0-rc2', '1.0', '1.0.9', '1.0.10',
                 '1.0.10-2', '1.1', '2.0', '4.7.1.1'];
             for (let idx = 1; idx < versions.length; idx++) {
-                it (`sorted ${versions[idx - 1]} ${versions[idx]}`, () => {
+                it (`Version ${versions[idx - 1]} should be less than ${versions[idx]}`, () => {
                     const oldVal = fieldExtensions.machineVersion({field: 'version'}).resolve({version: versions[idx - 1]});
                     const newVal = fieldExtensions.machineVersion({field: 'version'}).resolve({version: versions[idx]});
                     // localeCompare instead of < to keep ESLint happy
