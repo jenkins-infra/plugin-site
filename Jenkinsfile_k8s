@@ -83,6 +83,7 @@ spec:
   stages {
     stage('Install Dependencies') {
       steps {
+        sh 'rm .nvmrc'
         sh 'NODE_ENV=development yarn install'
       }
     }
