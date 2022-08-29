@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'gatsby';
 
 function PluginDevelopers({developers}) {
     return (
         <>
             {developers.map((developer) => (
                 <div className="maintainer" key={developer.id}>
-                    <a href={`/ui/search?query=${developer.id}`}>{developer.name || developer.id}</a>
+                    <Link to={`/ui/search?query=${developer.id}`}>{developer.name || developer.id}</Link>
                 </div>
             ))}
         </>
