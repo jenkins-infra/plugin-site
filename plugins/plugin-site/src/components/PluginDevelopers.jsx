@@ -6,7 +6,7 @@ function PluginDevelopers({developers}) {
         <>
             {developers.map((developer) => (
                 <div className="maintainer" key={developer.id}>
-                    {developer.name || developer.id}
+                    <a href={`/ui/search?query=${developer.id}`}>{developer.name || developer.id}</a>
                 </div>
             ))}
         </>
