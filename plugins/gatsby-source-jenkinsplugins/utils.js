@@ -463,7 +463,7 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
     for (const pluginVersions of Object.values(json.plugins)) {
         for (const data of Object.values(pluginVersions)) {
             /*
-            buildDate    "May 13, 2020"
+            releaseTimestamp    "2012-10-10T17:27:42.00Z"
             dependencies    […]
             name    "42crunch-security-audit"
             requiredCore    "2.164.3"
@@ -472,13 +472,14 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
             url    "https://updates.jenkins.io/download/plugins/42crunch-security-audit/2.1/42crunch-security-audit.hpi"
             version 2.1
             */
-            const date = parseDate(data.buildDate, 'MMMM d, yyyy', new Date(0));
+            const date = new Date(data.releaseTimestamp);
             if (!firstReleases[data.name] || firstReleases[data.name].getTime() > date.getTime()) {
                 firstReleases[data.name] = date;
             }
+            delete(data.buildDate);
             createNode({
                 ...data,
-                buildDate: date,
+                releaseTimestamp: date,
                 id: `${data.name}_${data.version}`,
                 parent: null,
                 children: [],

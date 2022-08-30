@@ -223,7 +223,7 @@ PluginPage.propTypes = {
                     node: PropTypes.shape({
                         id: PropTypes.string.isRequired,
                         name: PropTypes.string.isRequired,
-                        buildDate: PropTypes.string.isRequired,
+                        releaseTimestamp: PropTypes.string.isRequired,
                         requiredCore: PropTypes.string.isRequired,
                         sha1: PropTypes.string.isRequired,
                         sha256: PropTypes.string.isRequired,
@@ -272,7 +272,7 @@ PluginPage.propTypes = {
             })),
             sha1: PropTypes.string,
             stats: PropTypes.shape({
-                currentInstalls: PropTypes.number.isRequired,
+                currentInstalls: PropTypes.number,
                 installations: PropTypes.arrayOf(PropTypes.shape({
                     timestamp: PropTypes.number,
                     total: PropTypes.number
@@ -310,7 +310,7 @@ export const pageQuery = graphql`
     versions: allJenkinsPluginVersion(filter: {name: {eq: $name}}, sort: {fields: machineVersion, order: DESC}) {
       edges {
         node {
-          buildDate
+          releaseTimestamp
           compatibleSinceVersion
           dependencies {
             optional
