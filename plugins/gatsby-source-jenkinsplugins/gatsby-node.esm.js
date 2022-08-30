@@ -41,7 +41,7 @@ exports.createSchemaCustomization = ({actions}) => {
         }
 
         type JenkinsPluginVersion implements Node {
-            buildDate: Date
+            releaseTimestamp: Date
         }
     `);
 };

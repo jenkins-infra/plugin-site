@@ -9,7 +9,7 @@ function PluginReadableInstalls({currentInstalls}) {
 }
 
 PluginReadableInstalls.propTypes = {
-    currentInstalls: PropTypes.number.isRequired
+    currentInstalls: PropTypes.number
 };
 
 export default PluginReadableInstalls;

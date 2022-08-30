@@ -49,7 +49,7 @@ function PluginReleases({pluginId, versions}) {
                             <h5 className="card-title d-flex justify-content-between">
                                 <div><a href={version.url}>{release.name && release.name != release.tagName ? release.name : version.version}</a></div>
                                 <div>
-                                    <TimeAgo date={new Date(version.buildDate)} formatter={formatter}/>
+                                    <TimeAgo date={new Date(version.releaseTimestamp)} formatter={formatter}/>
                                 </div>
                             </h5>
                         </div>
@@ -85,7 +85,7 @@ PluginReleases.propTypes = {
     pluginId: PropTypes.string.isRequired,
     versions: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired,
-        buildDate: PropTypes.string.isRequired,
+        releaseTimestamp: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         requiredCore: PropTypes.string.isRequired,
         sha1: PropTypes.string.isRequired,

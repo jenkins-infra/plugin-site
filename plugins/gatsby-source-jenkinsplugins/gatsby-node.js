@@ -42,7 +42,7 @@ exports.createSchemaCustomization = ({actions}) => {
         }
 
         type JenkinsPluginVersion implements Node {
-            buildDate: Date @dateformat
+            releaseTimestamp: Date @dateformat
             plugin: JenkinsPlugin @link(from: "name", by: "name")
             machineVersion: String @machineVersion(field: "version")
         }
