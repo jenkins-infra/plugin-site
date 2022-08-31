@@ -9,3 +9,7 @@
 #pluginReleases--container .card-body .card-text h2 {
     font-size: 1.2rem;
 }
+
+#pluginReleases--container .github-icon {
+    margin-left: 7px;
+}

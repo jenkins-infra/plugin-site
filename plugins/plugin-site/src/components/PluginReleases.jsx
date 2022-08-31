@@ -47,7 +47,12 @@ function PluginReleases({pluginId, versions}) {
                     <div key={version.id} className="item card">
                         <div className="card-header">
                             <h5 className="card-title d-flex justify-content-between">
-                                <div><a href={version.url}>{release.name && release.name != release.tagName ? release.name : version.version}</a></div>
+                                <div>
+                                    <a href={version.url}>{release.name && release.name != release.tagName ? release.name : version.version}</a>
+                                    {release.bodyHTML && (<>
+                                        <a href={release.htmlURL} title="See the release on GitHub" className="github-icon"><ion-icon name="logo-github" /></a>
+                                    </>)}
+                                </div>
                                 <div>
                                     <TimeAgo date={new Date(version.releaseTimestamp)} formatter={formatter}/>
                                 </div>
