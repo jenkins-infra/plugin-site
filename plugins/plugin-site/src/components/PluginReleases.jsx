@@ -9,6 +9,11 @@ import {formatter} from '../commons/helper';
 
 import './PluginReleases.css';
 
+function stripTag(tagName, pluginId) {
+    // assume tags are in the form ${pluginId}${infix}${version} or ${prefix}${version}
+    // where pluginId may contain digits, but prefix and infix cannot and version always starts with a digit
+    return tagName.replace(pluginId, '').replace(/^[^0-9]*/, '');
+}
 
 function PluginReleases({pluginId, versions}) {
     const [releases, setReleases] = useState([]);
@@ -37,10 +42,7 @@ function PluginReleases({pluginId, versions}) {
     return (
         <div id="pluginReleases--container" className="container">
             {versions.map(version => {
-                console.log(version.version);
-                // assume tags are in the form ${pluginId}${infix}${version} or ${prefix}${version}
-                // where pluginId may contain digits, but prefix and infix cannot and version always starts with a digit
-                const release = releases.find(release => version.version === release.tagName.replace(pluginId, '').replace(/^[^0-9]*/, '')) || {};
+                const release = releases.find(release => version.version === stripTag(release.tagName, pluginId)) || {};
                 return (
                     <div key={version.id} className="item card">
                         <div className="card-header">
