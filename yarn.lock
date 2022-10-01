@@ -2598,7 +2598,7 @@ __metadata:
   resolution: "@jenkins-cd/gatsby-jenkinsci-fieldextensions@workspace:plugins/gatsby-jenkinsci-fieldextensions"
   dependencies:
     cheerio: 1.0.0-rc.10
-    jest: 28.1.0
+    jest: 28.1.3
   languageName: unknown
   linkType: soft
 
@@ -2607,10 +2607,10 @@ __metadata:
   resolution: "@jenkins-cd/gatsby-rehype-rewrite-img-src@workspace:plugins/gatsby-rehype-rewrite-img-src"
   dependencies:
     "@babel/preset-env": 7.17.10
-    babel-jest: 28.1.0
+    babel-jest: 28.1.3
     eslint: 8.15.0
     hast-util-to-html: 2.1.0
-    jest: 28.1.0
+    jest: 28.1.3
     rehype: 11.0.0
     unist-util-visit: ^2.0.3
   languageName: unknown
@@ -2621,10 +2621,10 @@ __metadata:
   resolution: "@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap@workspace:plugins/gatsby-rehype-wrap-tables-bootstrap"
   dependencies:
     "@babel/preset-env": 7.17.10
-    babel-jest: 28.1.0
+    babel-jest: 28.1.3
     eslint: 8.15.0
     hast-util-to-html: 2.1.0
-    jest: 28.1.0
+    jest: 28.1.3
     rehype: 11.0.0
     unist-util-visit-parents: ^3.0.0
   languageName: unknown
@@ -2637,13 +2637,13 @@ __metadata:
     "@babel/preset-env": 7.17.10
     axios: ^0.27.0
     axios-retry: 3.2.5
-    babel-jest: 28.1.0
+    babel-jest: 28.1.3
     cheerio: ^1.0.0-rc.10
     date-fns: ^2.27.0
     eslint: 8.15.0
     find-package-json: ^1.2.0
     gatsby-source-filesystem: 4.18.1
-    jest: 28.1.0
+    jest: 28.1.3
     nock: 13.2.9
     p-queue: ^6.6.2
     rehype-stringify: ^8.0.0
@@ -2773,7 +2773,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/core@npm:^28.1.0, @jest/core@npm:^28.1.3":
+"@jest/core@npm:^28.1.3":
   version: 28.1.3
   resolution: "@jest/core@npm:28.1.3"
   dependencies:
@@ -2953,7 +2953,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/transform@npm:^28.1.0, @jest/transform@npm:^28.1.3":
+"@jest/transform@npm:^28.1.3":
   version: 28.1.3
   resolution: "@jest/transform@npm:28.1.3"
   dependencies:
@@ -6219,23 +6219,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-jest@npm:28.1.0":
-  version: 28.1.0
-  resolution: "babel-jest@npm:28.1.0"
-  dependencies:
-    "@jest/transform": ^28.1.0
-    "@types/babel__core": ^7.1.14
-    babel-plugin-istanbul: ^6.1.1
-    babel-preset-jest: ^28.0.2
-    chalk: ^4.0.0
-    graceful-fs: ^4.2.9
-    slash: ^3.0.0
-  peerDependencies:
-    "@babel/core": ^7.8.0
-  checksum: b09195e04d58a763aa06423ffd6f3c4d1be0b40626fbbc65ca7c5668562d23624f36aee0821d9fef7496eb6a6df45c9215025451f1a64d064bfd4b0279cbe4c8
-  languageName: node
-  linkType: hard
-
 "babel-jest@npm:28.1.3, babel-jest@npm:^28.1.3":
   version: 28.1.3
   resolution: "babel-jest@npm:28.1.3"
@@ -6488,7 +6471,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-preset-jest@npm:^28.0.2, babel-preset-jest@npm:^28.1.3":
+"babel-preset-jest@npm:^28.1.3":
   version: 28.1.3
   resolution: "babel-preset-jest@npm:28.1.3"
   dependencies:
@@ -13215,7 +13198,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:^28.1.0, jest-cli@npm:^28.1.3":
+"jest-cli@npm:^28.1.3":
   version: 28.1.3
   resolution: "jest-cli@npm:28.1.3"
   dependencies:
@@ -13645,24 +13628,6 @@ __metadata:
     merge-stream: ^2.0.0
     supports-color: ^8.0.0
   checksum: e921c9a1b8f0909da9ea07dbf3592f95b653aef3a8bb0cbcd20fc7f9a795a1304adecac31eecb308992c167e8d7e75c522061fec38a5928ace0f9571c90169ca
-  languageName: node
-  linkType: hard
-
-"jest@npm:28.1.0":
-  version: 28.1.0
-  resolution: "jest@npm:28.1.0"
-  dependencies:
-    "@jest/core": ^28.1.0
-    import-local: ^3.0.2
-    jest-cli: ^28.1.0
-  peerDependencies:
-    node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-  peerDependenciesMeta:
-    node-notifier:
-      optional: true
-  bin:
-    jest: bin/jest.js
-  checksum: f025164c408cf5ddb6e74dac1e8cbaf94c1c31dd1c67aba4ceee5989b2d8a77886db8ed1fb88853b45cf194b14cd802b454bbbe6b278a1e2140250297dc100d3
   languageName: node
   linkType: hard
 
