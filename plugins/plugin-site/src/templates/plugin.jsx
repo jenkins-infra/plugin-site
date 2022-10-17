@@ -37,6 +37,9 @@ const PluginWikiContent = ({wiki}) => {
     if (wiki?.childHtmlRehype) {
         return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childHtmlRehype.html}} />;
     }
+    if (!wiki) {
+        return (<div className="content">No documentation found for this plugin.</div>)
+    }
     return (<div className="content">
         Documentation for this plugin is here:
         {' '}
@@ -181,21 +184,19 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         <h5>Maintainers</h5>
                         <PluginDevelopers developers={plugin.developers} />
                     </div>
-                    {shouldShowWikiUrl(plugin.wiki) &&
+                    {shouldShowWikiUrl(plugin.wiki || {}) &&
                         <div className="sidebarSection">
                             <h5>Help us improve this page!</h5>
                             {'This content is served from the  '}
                             <a href={plugin.wiki.url} target="_wiki">Jenkins Wiki Export</a>
                             {' which is now '}
                             <a href="https://www.jenkins.io/blog/2021/09/04/wiki-attacked/" rel="noopener noreferrer" target="_blank">permanently offline</a>
-                            {' and before that a '}
-                            <a href="https://groups.google.com/forum/#!msg/jenkinsci-dev/lNmas8aBRrI/eL3u7A6qBwAJ" rel="noopener noreferrer" target="_blank">read-only state</a>
                             {'. We would love your help in moving plugin documentation to GitHub, see '}
                             <a href="https://jenkins.io/blog/2019/10/21/plugin-docs-on-github/" rel="noopener noreferrer" target="_blank">the guidelines</a>
                             {'.'}
                         </div>
                     }
-                    {shouldShowGitHubUrl(plugin.wiki) &&
+                    {shouldShowGitHubUrl(plugin.wiki || {}) &&
                         <div className="sidebarSection">
                             <h5>Help us improve this page!</h5>
                             {'To propose a change submit a pull request to  '}
