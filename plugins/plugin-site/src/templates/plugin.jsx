@@ -38,7 +38,7 @@ const PluginWikiContent = ({wiki}) => {
         return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childHtmlRehype.html}} />;
     }
     if (!wiki) {
-        return (<div className="content">No documentation found for this plugin.</div>)
+        return (<div className="content">No documentation found for this plugin.</div>);
     }
     return (<div className="content">
         Documentation for this plugin is here:
