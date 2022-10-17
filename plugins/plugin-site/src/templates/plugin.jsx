@@ -22,15 +22,15 @@ import PluginIssueTrackers from '../components/PluginIssueTrackers';
 
 import {useSelectedPluginTab} from '../hooks/useSelectedTab';
 
-function shouldShowWikiUrl({url}) {
+function shouldShowWikiUrl(url) {
     return url?.startsWith('https://wiki.jenkins-ci.org/') ||
         url?.startsWith('https://wiki.jenkins.io/') ||
         url?.includes('github.com/jenkins-infra/plugins-wiki-docs') ||
         url?.includes('raw.githubusercontent.com/jenkins-infra/plugins-wiki-doc');
 }
 
-function shouldShowGitHubUrl({url}) {
-    return url?.startsWith('https://github.com/') && !shouldShowWikiUrl({url});
+function shouldShowGitHubUrl(url) {
+    return url?.startsWith('https://github.com/') && !shouldShowWikiUrl(url);
 }
 
 const PluginWikiContent = ({wiki}) => {
@@ -184,7 +184,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         <h5>Maintainers</h5>
                         <PluginDevelopers developers={plugin.developers} />
                     </div>
-                    {shouldShowWikiUrl(plugin.wiki || {}) &&
+                    {shouldShowWikiUrl(plugin?.wiki?.url) &&
                         <div className="sidebarSection">
                             <h5>Help us improve this page!</h5>
                             {'This content is served from the  '}
@@ -196,7 +196,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                             {'.'}
                         </div>
                     }
-                    {shouldShowGitHubUrl(plugin.wiki || {}) &&
+                    {shouldShowGitHubUrl(plugin?.wiki?.url) &&
                         <div className="sidebarSection">
                             <h5>Help us improve this page!</h5>
                             {'To propose a change submit a pull request to  '}

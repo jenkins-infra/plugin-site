@@ -75,7 +75,7 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
             id: `${pluginName} <<< JenkinsPluginWiki`,
             name: pluginName,
             url: url,
-            baseHref: `${url && path.dirname(url)}/`,
+            baseHref: `${path.dirname(url)}/`,
             internal: {
                 type: 'JenkinsPluginWiki',
                 content: content,
@@ -478,7 +478,7 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
             if (!firstReleases[data.name] || firstReleases[data.name].getTime() > date.getTime()) {
                 firstReleases[data.name] = date;
             }
-            delete(data.buildDate);
+            delete (data.buildDate);
             createNode({
                 ...data,
                 releaseTimestamp: date,
