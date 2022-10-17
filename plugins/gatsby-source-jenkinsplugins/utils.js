@@ -75,7 +75,7 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
             id: `${pluginName} <<< JenkinsPluginWiki`,
             name: pluginName,
             url: url,
-            baseHref: `${path.dirname(url)}/`,
+            baseHref: `${url && path.dirname(url)}/`,
             internal: {
                 type: 'JenkinsPluginWiki',
                 content: content,
@@ -84,7 +84,9 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
             }
         });
     };
-
+    if (!wiki.url) {
+        return null;
+    }
     if (!shouldFetchPluginContent(pluginName)) {
         return createWikiNode('text/pluginhtml', wiki.url, '');
     }
