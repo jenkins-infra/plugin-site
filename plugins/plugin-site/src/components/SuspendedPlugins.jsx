@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'gatsby';
 
 function SuspendedPlugins({pluginIds}) {
-    return (!!pluginIds.length && <div className="alert alert-info">
+    return (!!pluginIds.length && <div className="alert alert-warning">
         <>One or more suspended plugins match your query: </>
         <>
             {pluginIds.map((name, index) => {

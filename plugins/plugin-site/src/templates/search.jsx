@@ -173,6 +173,7 @@ function SearchPage({location}) {
                             />
                         </div>
                     </div>
+                    <SuspendedPlugins pluginIds={suspendedPlugins.filter(e => query && query.length >2 && e.includes(query))}/>
                     <div className="view">
                         <div className="col-md-12">
                             <SearchResults
@@ -182,7 +183,6 @@ function SearchPage({location}) {
                                 setPage={setPage}
                                 results={results}
                             />
-                            <SuspendedPlugins pluginIds={suspendedPlugins.filter(e => query && query.length >2 && e.includes(query))}/>
                         </div>
                     </div>
                 </div>
