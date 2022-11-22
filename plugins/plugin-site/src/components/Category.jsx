@@ -50,7 +50,7 @@ Category.propTypes = {
     activeLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
     category: PropTypes.shape({
         id: PropTypes.string.isRequired,
-        labels: PropTypes.arrayOf(PropTypes.string).isRequired,
+        labels: PropTypes.arrayOf(PropTypes.string),
         title: PropTypes.string.isRequired
     }).isRequired,
     toggleCategory: PropTypes.func.isRequired,

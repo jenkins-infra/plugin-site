@@ -20,13 +20,11 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
         <fieldset className="SearchBox--Container">
             <div className="form-group">
                 <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                        {setShowFilter && <Button color="primary" onClick={handleToggleShowFilter}>
-                            {'Browse '}
-                            <span>{showFilter ? '▼' : '◄' }</span>
-                        </Button>}
-                        {!setShowFilter && <Button onClick={handleOnSubmit} color="primary">Browse</Button>}
-                    </InputGroupAddon>
+                    {setShowFilter && <Button color="primary" onClick={handleToggleShowFilter}>
+                        {'Browse '}
+                        <span>{showFilter ? '▼' : '◄' }</span>
+                    </Button>}
+                    {!setShowFilter && <Button onClick={handleOnSubmit} color="primary">Browse</Button>}
                     <Input
                         name="query"
                         value={query}
@@ -39,11 +37,9 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="Find plugins..."
                     />
-                    <InputGroupAddon addonType="append">
-                        <Button color="primary" onClick={handleOnSubmit}>
-                            <i className={classNames('icon-search')} />
-                        </Button>
-                    </InputGroupAddon>
+                    <Button color="primary" onClick={handleOnSubmit}>
+                        <i className={classNames('icon-search')} />
+                    </Button>
                 </InputGroup>
             </div>
         </fieldset>
