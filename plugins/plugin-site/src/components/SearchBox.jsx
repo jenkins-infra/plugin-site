@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
     InputGroup,
-    InputGroupAddon,
     Input,
     Button
 } from 'reactstrap';
