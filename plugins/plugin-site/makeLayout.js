@@ -6,7 +6,7 @@ const cheerio = require('cheerio');
 const fs = require('fs/promises');
 
 async function makeReactLayout() {
-    const headerUrl = process.env.HEADER_FILE || 'https://www.jenkins.io/template/index.html';
+    const headerUrl = process.env.HEADER_FILE || 'https://deploy-preview-5668--jenkins-io-site-pr.netlify.app/template/index.html';
     const manifestUrl = new URL('/site.webmanifest', headerUrl).toString();
 
     if (!headerUrl) {
@@ -93,6 +93,9 @@ async function makeReactLayout() {
     $('script:contains("docsearch")').remove();
     $('script:contains("google-analytics.com")').remove();
 
+    // remove extra whitespace after navbar
+    $('jio-navbar + div.pt-4').remove();
+
     const keyConversion = {
         class: 'className',
         'charSet': 'charset',
@@ -165,6 +168,10 @@ async function makeReactLayout() {
             } else if (node.name === 'reportaproblem') {
                 tempAttrs = 'reportProblemUrl={reportProblemUrl} reportProblemTitle={reportProblemTitle} reportProblemRelativeSourcePath={reportProblemRelativeSourcePath}';
                 node.name = 'ReportAProblem';
+            } else if (node.name === 'jio-navbar') {
+                tempAttrs = 'className="fixed-top" property="https://plugins.jenkins.io"';
+            } else if (node.name === 'jio-footer') {
+                tempAttrs = 'githubBranch="master" githubRepo="jenkins-infra/plugin-site" property="https://plugins.jenkins.io" sourcePath={reportProblemRelativeSourcePath} />';
             }
             jsxLines.push(`${prefix}<${node.name} ${tempAttrs} />`);
         }
