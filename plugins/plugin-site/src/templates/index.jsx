@@ -22,7 +22,7 @@ function IndexPage() {
     const indexPage = 'templates/index.jsx';
 
     return (
-        <Layout reportProblemRelativeSourcePath={indexPage} reportProblemUrl="" reportProblemTitle={pageTitle}>
+        <Layout sourcePath={indexPage}>
             <SEO />
             <div className="IndexPage--Container jumbotron" onSubmit={handleOnSubmit}>
                 <div className="logo"><JenkinsVoltron /></div>

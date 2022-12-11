@@ -7,7 +7,7 @@ import SEO from '../components/SEO';
 function TombstonePage({data: {suspendedPlugin: plugin}}) {
     const pluginPage = 'templates/plugin.jsx';
     return (
-        <Layout id="pluginPage" reportProblemRelativeSourcePath={pluginPage} reportProblemUrl={`/${plugin.id}`} reportProblemTitle={plugin.id}>
+        <Layout id="pluginPage" sourcePath={pluginPage}>
             <SEO title={plugin.id} description={`Deprecated plugin: ${plugin.id}`} pathname={`/${plugin.id}`}/>
 
             <div className="container">
