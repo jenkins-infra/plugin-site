@@ -124,7 +124,7 @@ function SearchPage({location}) {
     }, []);
 
     return (
-        <Layout id="searchpage" reportProblemRelativeSourcePath={searchPage} reportProblemUrl={`/ui/search?${querystring.stringify({query})}`} reportProblemTitle="Search">
+        <Layout id="searchpage" sourcePath={searchPage}>
             <SEO pathname={'/ui/search'} title="Search Results" />
 
             <div className="row d-flex">

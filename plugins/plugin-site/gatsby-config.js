@@ -31,6 +31,8 @@ module.exports = {
         siteUrl: 'https://plugins.jenkins.io/',
         title: 'Jenkins Plugins',
         titleTemplate: '%s | Jenkins plugin',
+        twitter: '@jenkinsci',
+        githubRepo: 'jenkins-infra/plugin-site',
         description: 'Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software',
         image: 'https://jenkins.io/images/logo-title-opengraph.png',
         twitterUsername: '@JenkinsCI'
@@ -38,6 +40,22 @@ module.exports = {
 };
 
 module.exports.plugins = [
+    {
+        resolve: '@jenkinsci/gatsby-plugin-jenkins-layout',
+        options: {
+            siteUrl: 'https://plugins.jenkins.io/',
+            githubBranch: 'master',
+            githubRepo: 'jenkins-infra/plugin-site',
+            extraCss: [
+                '@import \'./styles/ubuntu-fonts.css\';',
+                '@import \'./styles/lato-fonts.css\';',
+                '@import \'./styles/roboto-fonts.css\';',
+                '@import \'./styles/base.css\';',
+                '@import \'./styles/font-icons.css\';',
+                '@import \'github-syntax-light/lib/github-light.css\';'
+            ],
+        },
+    },
     {
         resolve: '@jenkins-cd/gatsby-jenkinsci-fieldextensions'
     },

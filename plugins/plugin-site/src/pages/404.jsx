@@ -13,7 +13,7 @@ const NotFound = ({location}) => {
         searchQuery = location.href.split('/').filter(Boolean).reverse()[0];
     }
 
-    return (<Layout reportProblemRelativeSourcePath={notFoundPage} reportProblemUrl="" reportProblemTitle={title}>
+    return (<Layout sourcePath={notFoundPage}>
         <Helmet><title>{title}</title></Helmet>
         <div className="not-found-box">
             <div className="not-found">

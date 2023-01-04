@@ -2,13 +2,6 @@
 /* eslint-disable no-console */
 const path = require('path');
 
-const {makeReactLayout, saveReactLayout} = require('./makeLayout');
-
-exports.onPreBootstrap = async () => {
-    await makeReactLayout().then(saveReactLayout);
-};
-
-
 async function createPluginPages({graphql, createPage}) {
     const pluginPage = path.resolve('src/templates/plugin.jsx');
     const result = await graphql(`{
@@ -71,13 +64,13 @@ exports.createPages = async ({graphql, actions: {createPage}}) => {
     createPage({
         path: '/',
         component: indexPage,
-        context: { }
+        context: {}
     });
 
     createPage({
         path: '/ui/search/',
         component: searchPage,
-        context: { }
+        context: {}
     });
 
     await Promise.all([
