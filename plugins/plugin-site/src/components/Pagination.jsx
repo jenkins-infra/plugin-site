@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Pages from "./Pages";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Pages from './Pages';
 
 function Pagination({ limit, page, pages, total, setPage }) {
     if (total == 0) {
         return null;
     }
 
-    const start = limit * (page - 1);
-    const end = Math.min(limit * page, total);
+    const start = (limit * (page - 1));
+    const end = Math.min(limit * (page), total);
 
     return (
         <>
@@ -32,7 +32,7 @@ Pagination.propTypes = {
     page: PropTypes.number.isRequired,
     pages: PropTypes.number.isRequired,
     total: PropTypes.number.isRequired,
-    setPage: PropTypes.func.isRequired,
+    setPage: PropTypes.func.isRequired
 };
 
 export default Pagination;
