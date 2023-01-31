@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Pages from './Pages';
 
-function Pagination({ limit, page, pages, total, setPage }) {
+
+function Pagination({limit, page, pages, total, setPage}) {
     if (total == 0) {
         return null;
     }
@@ -13,16 +14,16 @@ function Pagination({ limit, page, pages, total, setPage }) {
     return (
         <>
             <div className="nav-link">
-                {`${start + 1} to ${end} of ${total}`}
+                {`${start+1} to ${end} of ${total}`}
             </div>
-            {pages > 1 && (
+            {pages > 1 &&
                 <Pages
                     current={page}
                     pages={pages}
                     pagesToDisplay={5}
                     updatePage={setPage}
                 />
-            )}
+            }
         </>
     );
 }
