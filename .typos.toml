@@ -1,0 +1,13 @@
+[files]
+extend-exclude = [
+    "*.map",
+    "*.min.css",
+    "*.min.js",
+    "*.js",
+    "*.css",
+    "*.svg",
+    "plugins/gatsby-source-jenkinsplugins/categories.json"
+]
+
+[default]
+check-filename = false
