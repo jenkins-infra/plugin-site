@@ -20,7 +20,7 @@ pipeline {
     stage('Check for typos') {
       steps {
         sh '''
-          curl -qsL https://github.com/crate-ci/typos/releases/download/v1.13.19/typos-v1.13.19-x86_64-unknown-linux-musl.tar.gz | tar xvzf - ./typos
+          curl -qsL https://github.com/crate-ci/typos/releases/download/v1.13.9/typos-v1.13.9-x86_64-unknown-linux-musl.tar.gz | tar xvzf - ./typos
           curl -qsL https://github.com/halkeye/typos-json-to-checkstyle/releases/download/v0.1.1/typos-checkstyle-v0.1.1-x86_64 > typos-checkstyle && chmod 0755 typos-checkstyle
           ./typos --format json | ./typos-checkstyle - > checkstyle.xml || true
         '''
