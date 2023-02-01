@@ -158,7 +158,7 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     </div>
                     <div>
                         {'ID: '}
-                        {plugin.id}
+                        {plugin.name}
                     </div>
                     <div className="sidebarSection">
                         {plugin.stats && <h5>
@@ -288,8 +288,7 @@ PluginPage.propTypes = {
                 content: PropTypes.string,
                 url: PropTypes.string
             }).isRequired,
-            version: PropTypes.string,
-            id: PropTypes.string
+            version: PropTypes.string
         }).isRequired,
         reverseDependencies: PropTypes.shape({
             edges: PropTypes.arrayOf(
