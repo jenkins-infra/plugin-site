@@ -288,7 +288,8 @@ PluginPage.propTypes = {
                 content: PropTypes.string,
                 url: PropTypes.string
             }).isRequired,
-            version: PropTypes.string
+            version: PropTypes.string,
+            id: PropTypes.string
         }).isRequired,
         reverseDependencies: PropTypes.shape({
             edges: PropTypes.arrayOf(
