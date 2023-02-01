@@ -111,10 +111,6 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                 <h1 className="title">
                     {cleanTitle(plugin.title)}
                 </h1>
-                <div className="plugin-id">
-                    {'ID: '}
-                    {plugin.id}
-                </div>
                 <button className="btn btn-secondary" onClick={toggleShowInstructions}>
                     How to install
                 </button>
@@ -159,6 +155,10 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                     <div>
                         {'Requires Jenkins '}
                         {plugin.requiredCore}
+                    </div>
+                    <div>
+                        {'ID: '}
+                        {plugin.id}
                     </div>
                     <div className="sidebarSection">
                         {plugin.stats && <h5>
