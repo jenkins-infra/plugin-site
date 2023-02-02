@@ -156,6 +156,10 @@ function PluginPage({data: {jenkinsPlugin: plugin, reverseDependencies: reverseD
                         {'Requires Jenkins '}
                         {plugin.requiredCore}
                     </div>
+                    <div>
+                        {'ID: '}
+                        {plugin.name}
+                    </div>
                     <div className="sidebarSection">
                         {plugin.stats && <h5>
                             {'Installs: '}
