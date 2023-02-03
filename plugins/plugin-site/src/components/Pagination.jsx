@@ -4,12 +4,31 @@ import Pages from './Pages';
 
 
 function Pagination({limit, page, pages, total, setPage}) {
+    const [pagesToDisplay, setPagesToDisplay] = React.useState(5);
+
     if (total == 0) {
         return null;
     }
 
     const start = (limit * (page - 1));
     const end = Math.min(limit * (page), total);
+
+    React.useEffect(() => {
+        if (window.innerWidth < 768) {
+            setPagesToDisplay(2);
+        }
+
+        const handleWindowResize = () => {
+            if (window.innerWidth < 768) {
+                setPagesToDisplay(2);
+            } else {
+                setPagesToDisplay(5);
+            }
+        };
+
+        window.addEventListener('resize', handleWindowResize);
+        return () => window.removeEventListener('resize', handleWindowResize);
+    }, []);
 
     return (
         <>
@@ -20,7 +39,7 @@ function Pagination({limit, page, pages, total, setPage}) {
                 <Pages
                     current={page}
                     pages={pages}
-                    pagesToDisplay={5}
+                    pagesToDisplay={pagesToDisplay}
                     updatePage={setPage}
                 />
             }
