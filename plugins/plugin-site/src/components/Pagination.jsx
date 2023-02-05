@@ -12,7 +12,7 @@ function Pagination({limit, page, pages, total, setPage}) {
     const end = Math.min(limit * (page), total);
 
     return (
-        <>
+        <div className="Pagination--Container">
             <div className="nav-link">
                 {`${start+1} to ${end} of ${total}`}
             </div>
@@ -24,7 +24,7 @@ function Pagination({limit, page, pages, total, setPage}) {
                     updatePage={setPage}
                 />
             }
-        </>
+        </div>
     );
 }
 
