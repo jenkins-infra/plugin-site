@@ -11,16 +11,10 @@
     },
     "regexManagers": [
         {
-            "fileMatch": [
-                "^Jenkinsfile$",
-                "^Jenkinsfile_k8s$"
-            ],
-            "matchStrings": [
-                "image '(?<depName>[a-z/-]+):(?<currentValue>[a-z0-9.-]+)@(?<currentDigest>sha256:[a-f0-9]+)'",
-                "image: \"(?<depName>[a-z/-]+):(?<currentValue>[a-z0-9.-]+)@(?<currentDigest>sha256:[a-f0-9]+)\""
-            ],
-            "datasourceTemplate": "docker",
-            "versioningTemplate": "docker"
+            "fileMatch": ["Jenkinsfile_k8s"],
+            "matchStrings": ["image: \"jenkinsciinfra/builder:(?<currentValue>.*?)\"\n"],
+            "depNameTemplate": "jenkinsciinfra/builder",
+            "datasourceTemplate": "docker"
         }
     ],
     "packageRules": [
