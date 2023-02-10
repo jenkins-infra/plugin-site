@@ -14,6 +14,10 @@ spec:
       operator: "Equal"
       value: "linux"
       effect: "NoSchedule"
+    - key: "jenkins"
+      operator: "Equal"
+      value: "infra.ci.jenkins.io"
+      effect: "NoSchedule"
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
