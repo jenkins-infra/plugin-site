@@ -15,13 +15,13 @@ function Pagination({limit, page, pages, total, setPage}) {
     const end = Math.min(limit * (page), total);
 
     React.useEffect(() => {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 576) {
             setPagesToDisplay(1);
             setMarginPagesDisplayed(1);
         }
 
         const handleWindowResize = () => {
-            if (window.innerWidth < 768) {
+            if (window.innerWidth < 576) {
                 setPagesToDisplay(1);
                 setMarginPagesDisplayed(1);
             } else {
