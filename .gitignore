@@ -107,10 +107,7 @@ public/
 # End of https://www.gitignore.io/api/node
 
 .cache/
-public/
 
-src/layout.jsx
-src/layout.css
 netlifyctl
 junit.xml
 yarn-error.log
@@ -118,4 +115,3 @@ yarn-error.log
 # IDE
 .idea
 static/site.webmanifest
-schema.graphql
