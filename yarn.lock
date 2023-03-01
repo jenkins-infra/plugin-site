@@ -2726,7 +2726,7 @@ __metadata:
     postcss-css-variables: 0.18.0
     postcss-extend: 1.0.5
     postcss-import: 14.1.0
-    postcss-merge-rules: 5.1.3
+    postcss-merge-rules: 5.1.4
     postcss-nesting: 10.1.10
     postcss-preset-env: 7.7.2
     postcss-pxtorem: 6.0.0
@@ -17692,9 +17692,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-merge-rules@npm:5.1.3":
-  version: 5.1.3
-  resolution: "postcss-merge-rules@npm:5.1.3"
+"postcss-merge-rules@npm:5.1.4":
+  version: 5.1.4
+  resolution: "postcss-merge-rules@npm:5.1.4"
   dependencies:
     browserslist: ^4.21.4
     caniuse-api: ^3.0.0
@@ -17702,7 +17702,7 @@ __metadata:
     postcss-selector-parser: ^6.0.5
   peerDependencies:
     postcss: ^8.2.15
-  checksum: 0ddaddff98cd7f3fac2b0e716c641f529a61a8668be6d5b48d60770d0a1246126088e1d606f309b9748ff598a3794f3fd6dd5b8c3d79112f84744cab5375d4d9
+  checksum: 8ab6a569babe6cb412d6612adee74f053cea7edb91fa013398515ab36754b1fec830d68782ed8cdfb44cffdc6b78c79eab157bff650f428aa4460d3f3857447e
   languageName: node
   linkType: hard
 
