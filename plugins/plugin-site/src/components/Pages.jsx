@@ -8,18 +8,19 @@ export default class Pages extends React.PureComponent {
         current: PropTypes.number.isRequired,
         pages: PropTypes.number.isRequired,
         pagesToDisplay: PropTypes.number.isRequired,
-        updatePage: PropTypes.func.isRequired
+        updatePage: PropTypes.func.isRequired,
+        marginPagesDisplayed: PropTypes.number.isRequired
     };
 
     render() {
-        const {updatePage, current, pages} = this.props;
+        const {updatePage, current, pages, marginPagesDisplayed} = this.props;
         const handlePageClick = (data) => updatePage(data.selected + 1);
 
         return (
             <ReactPaginate
                 pageCount={pages - 1}
                 pageRangeDisplayed={this.props.pagesToDisplay}
-                marginPagesDisplayed={2}
+                marginPagesDisplayed={marginPagesDisplayed}
                 onPageChange={handlePageClick}
                 forcePage={current - 1}
 
@@ -27,7 +28,7 @@ export default class Pages extends React.PureComponent {
                 breakClassName={'page-item disabled'}
                 breakLinkClassName={'page-link'}
 
-                pageClassName={'page-item d-none d-sm-block'}
+                pageClassName={'page-item'}
                 pageLinkClassName={'page-link'}
                 nextClassName={'page-item'}
                 nextLinkClassName={'page-link'}
