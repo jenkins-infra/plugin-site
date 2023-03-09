@@ -3,7 +3,10 @@
 const path = require('path');
 
 async function createPluginPages({graphql, createPage}) {
-    const pluginPage = path.resolve('src/templates/plugin.jsx');
+    const templatesPluginReleases = path.resolve('src/templates/plugin_releases.jsx');
+    const templatesPluginDocumentation = path.resolve('src/templates/plugin_documentation.jsx');
+    const templatesPluginIssues = path.resolve('src/templates/plugin_issues.jsx');
+    const templatesPluginDependencies = path.resolve('src/templates/plugin_dependencies.jsx');
     const result = await graphql(`{
       allJenkinsPlugin {
         edges {
@@ -22,7 +25,28 @@ async function createPluginPages({graphql, createPage}) {
     result.data.allJenkinsPlugin.edges.forEach(edge => {
         createPage({
             path: `/${edge.node.name.trim()}/`,
-            component: pluginPage,
+            component: templatesPluginDocumentation,
+            context: {
+                name: edge.node.name.trim()
+            }
+        });
+        createPage({
+            path: `/${edge.node.name.trim()}/releases`,
+            component: templatesPluginReleases,
+            context: {
+                name: edge.node.name.trim()
+            }
+        });
+        createPage({
+            path: `/${edge.node.name.trim()}/issues`,
+            component: templatesPluginIssues,
+            context: {
+                name: edge.node.name.trim()
+            }
+        });
+        createPage({
+            path: `/${edge.node.name.trim()}/dependencies`,
+            component: templatesPluginDependencies,
             context: {
                 name: edge.node.name.trim()
             }
