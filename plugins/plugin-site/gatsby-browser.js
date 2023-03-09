@@ -1,15 +1,14 @@
-const gatsbyMatomo = require('gatsby-plugin-matomo/gatsby-browser');
-
-exports.onInitialClientRender = function () {
-    let prevLocation = {...location};
-    // Make sure we record anchor changes so we know when tabs are selected
-    window.addEventListener('hashchange', () => {
-        gatsbyMatomo.onRouteUpdate({location, prevLocation}, {});
-        prevLocation = {...location};
-    });
-};
-
 exports.onClientEntry = function () {
+    if (window.location.hash === '#releases') {
+        window.location.href = `/${window.location.pathname.split('/')[1]}/releases`;
+    }
+    else if (window.location.hash === '#issues') {
+        window.location.href = `/${window.location.pathname.split('/')[1]}/issues`;
+    }
+    else if (window.location.hash === '#dependencies') {
+        window.location.href = `/${window.location.pathname.split('/')[1]}/dependencies`;
+    }
+
     require.ensure(['@sentry/browser'], (require) => {
         const Sentry = require('@sentry/browser');
         Sentry.init({
