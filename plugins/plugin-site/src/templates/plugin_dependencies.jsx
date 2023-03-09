@@ -2,9 +2,8 @@ import {graphql} from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {PropTypesJenkinsPlugin} from '../proptypes';
-
-import PluginDependencies from '../components/PluginDependencies';
 import PluginPageLayout from '../components/PluginPageLayout';
+import PluginDependencies from '../components/PluginDependencies';
 
 const TemplatePluginDependencies = ({data: {jenkinsPlugin: plugin, reverseDependencies}}) => {
     return (

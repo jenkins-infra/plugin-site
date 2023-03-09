@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {PropTypesJenkinsPlugin} from '../proptypes';
 
-import PluginReleases from '../components/PluginReleases';
 import PluginPageLayout from '../components/PluginPageLayout';
+import PluginReleases from '../components/PluginReleases';
 
 const TemplatePluginReleases = ({data: {jenkinsPlugin: plugin, versions}}) => {
     return (
