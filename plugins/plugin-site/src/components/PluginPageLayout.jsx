@@ -31,10 +31,10 @@ function shouldShowGitHubUrl({url}) {
 
 function PluginPageLayout({plugin, children}) {
     const tabs = [
-        {id: 'documentation', to: `/${plugin.name}`, label: 'Documentation'},
-        {id: 'releases', to: `/${plugin.name}/releases`, label: 'Releases'},
-        {id: 'issues', to: `/${plugin.name}/issues`, label: 'Issues'},
-        {id: 'dependencies', to: `/${plugin.name}/dependencies`, label: 'Dependencies'},
+        {id: 'documentation', to: `/${plugin.name}/`, label: 'Documentation'},
+        {id: 'releases', to: `/${plugin.name}/releases/`, label: 'Releases'},
+        {id: 'issues', to: `/${plugin.name}/issues/`, label: 'Issues'},
+        {id: 'dependencies', to: `/${plugin.name}/dependencies/`, label: 'Dependencies'},
     ];
 
     const [isShowInstructions, setShowInstructions] = React.useState(false);
