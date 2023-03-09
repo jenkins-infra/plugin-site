@@ -22,8 +22,7 @@ PluginPageTabs.propTypes = {
         id: PropTypes.string.isRequired,
         to: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
-    })),
-    selectedTab: PropTypes.string.isRequired
+    }))
 };
 
 export default PluginPageTabs;
