@@ -31,21 +31,21 @@ async function createPluginPages({graphql, createPage}) {
             }
         });
         createPage({
-            path: `/${edge.node.name.trim()}/releases`,
+            path: `/${edge.node.name.trim()}/releases/`,
             component: templatesPluginReleases,
             context: {
                 name: edge.node.name.trim()
             }
         });
         createPage({
-            path: `/${edge.node.name.trim()}/issues`,
+            path: `/${edge.node.name.trim()}/issues/`,
             component: templatesPluginIssues,
             context: {
                 name: edge.node.name.trim()
             }
         });
         createPage({
-            path: `/${edge.node.name.trim()}/dependencies`,
+            path: `/${edge.node.name.trim()}/dependencies/`,
             component: templatesPluginDependencies,
             context: {
                 name: edge.node.name.trim()
