@@ -44,7 +44,7 @@ function PluginReleases({pluginId, versions}) {
             {versions.map(version => {
                 const release = releases.find(release => version.version === stripTag(release.tagName, pluginId)) || {};
                 return (
-                    <div key={version.id} className="item card">
+                    <div key={version.id} id={`version_${version.version}`} className="item card">
                         <div className="card-header">
                             <h5 className="card-title d-flex justify-content-between">
                                 <div className="d-flex align-items-center">
