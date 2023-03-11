@@ -65,6 +65,7 @@ spec:
   stages {
     stage('Install Dependencies') {
       steps {
+        sh 'asdf install'
         sh 'NODE_ENV=development yarn install'
       }
     }
