@@ -2737,7 +2737,6 @@ __metadata:
     react-chartjs-2: 4.3.1
     react-dom: 17.0.2
     react-helmet: 6.1.0
-    react-html-parser: 2.0.2
     react-medium-image-zoom: 5.1.3
     react-radio-group: 3.0.3
     react-timeago: 7.1.0
@@ -8733,7 +8732,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"domelementtype@npm:1, domelementtype@npm:^1.3.1":
+"domelementtype@npm:1":
   version: 1.3.1
   resolution: "domelementtype@npm:1.3.1"
   checksum: 7893da40218ae2106ec6ffc146b17f203487a52f5228b032ea7aa470e41dfe03e1bd762d0ee0139e792195efda765434b04b43cddcf63207b098f6ae44b36ad6
@@ -8765,15 +8764,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"domhandler@npm:^2.3.0":
-  version: 2.4.2
-  resolution: "domhandler@npm:2.4.2"
-  dependencies:
-    domelementtype: 1
-  checksum: 49bd70c9c784f845cd047e1dfb3611bd10891c05719acfc93f01fc726a419ed09fbe0b69f9064392d556a63fffc5a02010856cedae9368f4817146d95a97011f
-  languageName: node
-  linkType: hard
-
 "domhandler@npm:^4.0.0, domhandler@npm:^4.2.0, domhandler@npm:^4.3.1":
   version: 4.3.1
   resolution: "domhandler@npm:4.3.1"
@@ -8783,7 +8773,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"domutils@npm:^1.5.1, domutils@npm:^1.7.0":
+"domutils@npm:^1.7.0":
   version: 1.7.0
   resolution: "domutils@npm:1.7.0"
   dependencies:
@@ -9015,13 +9005,6 @@ __metadata:
   dependencies:
     ansi-colors: ^4.1.1
   checksum: 1c0911e14a6f8d26721c91e01db06092a5f7675159f0261d69c403396a385afd13dd76825e7678f66daffa930cfaa8d45f506fb35f818a2788463d022af1b884
-  languageName: node
-  linkType: hard
-
-"entities@npm:^1.1.1":
-  version: 1.1.2
-  resolution: "entities@npm:1.1.2"
-  checksum: d537b02799bdd4784ffd714d000597ed168727bddf4885da887c5a491d735739029a00794f1998abbf35f3f6aeda32ef5c15010dca1817d401903a501b6d3e05
   languageName: node
   linkType: hard
 
@@ -12193,20 +12176,6 @@ __metadata:
     domutils: ^3.0.1
     entities: ^4.3.0
   checksum: 06d5c71e8313597722bc429ae2a7a8333d77bd3ab07ccb916628384b37332027b047f8619448d8f4a3312b6609c6ea3302a4e77435d859e9e686999e6699ca39
-  languageName: node
-  linkType: hard
-
-"htmlparser2@npm:^3.9.0":
-  version: 3.10.1
-  resolution: "htmlparser2@npm:3.10.1"
-  dependencies:
-    domelementtype: ^1.3.1
-    domhandler: ^2.3.0
-    domutils: ^1.5.1
-    entities: ^1.1.1
-    inherits: ^2.0.1
-    readable-stream: ^3.1.1
-  checksum: 6875f7dd875aa10be17d9b130e3738cd8ed4010b1f2edaf4442c82dfafe9d9336b155870dcc39f38843cbf7fef5e4fcfdf0c4c1fd4db3a1b91a1e0ee8f6c3475
   languageName: node
   linkType: hard
 
@@ -18754,17 +18723,6 @@ __metadata:
   peerDependencies:
     react: ">=16.3.0"
   checksum: a4998479dab7fc1c2799eddefb1870a9d881b5f71cfdf97979a9882e42f4bb50402d55335f308f461e735e01a06f46b16cc7b4e6bcb22c7a4a6f85a753c5c106
-  languageName: node
-  linkType: hard
-
-"react-html-parser@npm:2.0.2":
-  version: 2.0.2
-  resolution: "react-html-parser@npm:2.0.2"
-  dependencies:
-    htmlparser2: ^3.9.0
-  peerDependencies:
-    react: ^0.14.0 || ^15.0.0 || ^16.0.0-0
-  checksum: 2e6bf4cd90b07667de5771eec7738155c3df39114b28df4a117722b17412015aa9115fd2cb76ca959fd364909de70ebc6032f13ae0fec16d888c792fbaa2226c
   languageName: node
   linkType: hard
 
