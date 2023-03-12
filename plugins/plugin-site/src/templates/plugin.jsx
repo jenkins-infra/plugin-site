@@ -19,6 +19,7 @@ import PluginReadableInstalls from '../components/PluginReadableInstalls';
 import PluginIssues from '../components/PluginIssues';
 import PluginReleases from '../components/PluginReleases';
 import PluginIssueTrackers from '../components/PluginIssueTrackers';
+import MakeImgZoomable from "../components/MakeImgZoomable";
 
 import {useSelectedPluginTab} from '../hooks/useSelectedTab';
 
@@ -35,7 +36,8 @@ function shouldShowGitHubUrl(url) {
 
 const PluginWikiContent = ({wiki}) => {
     if (wiki?.childHtmlRehype) {
-        return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childHtmlRehype.html}} />;
+        const content = <div className="content" dangerouslySetInnerHTML={{__html: wiki.childHtmlRehype.html}} />;
+        return MakeImgZoomable(content);
     }
     if (!wiki) {
         return (<div className="content">No documentation found for this plugin.</div>);
