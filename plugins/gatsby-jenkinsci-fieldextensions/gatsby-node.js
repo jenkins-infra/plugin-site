@@ -37,7 +37,7 @@ exports.createSchemaCustomization = ({actions}) => {
                     // 2.29 => s00002_s00029_s00000
                     // 2.290 => s00002_s00290_s00000
                     // 2.290-rc4 => s00002_s00290_r00004
-                    return padArrayEnd(value.split(/[.-]/), 4, 0).map(val => getQualifier(val)
+                    return padArrayEnd(value.split(/\+build\.|[.-]/), 4, 0).map(val => getQualifier(val)
                                 + val.toString().replace(/^rc/, '').replace(/^[ab](\d)/, '$1').padStart(5, '0')).join('_');
                 },
             };

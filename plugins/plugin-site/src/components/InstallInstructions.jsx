@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {navigate} from 'gatsby';
 import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import InstallViaCLI from './InstallViaCLI';
 
@@ -25,7 +26,7 @@ function InstallInstructions({isShowInstructions, toggleShowInstructions, plugin
                             {'Using direct upload'}
                         </a>
                         {'. Download one of the '}
-                        <a href="#releases" onClick={e=>{toggleShowInstructions(e);location.href='#releases';}}>
+                        <a href="#releases" onClick={e=>{toggleShowInstructions(e);navigate(`/${pluginId}/releases/`);}}>
                             {'releases'}
                         </a>
                         {' and upload it to your Jenkins instance.'}

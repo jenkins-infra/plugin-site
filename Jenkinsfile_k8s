@@ -35,7 +35,7 @@ spec:
   automountServiceAccountToken: false
   containers:
     - name: "jnlp"
-      image: "jenkinsciinfra/builder:2.0.55@sha256:77dd8139b078d307e3dcb7f68dbf6d57b357776229ccaafb93cbb5a54a07d349"
+      image: "jenkinsciinfra/builder:2.2.26@sha256:a0f78672a31ba638c284794d6a942a83cb10633ae32f5bfc1184bc50a9d4abbb"
       resources:
         limits: {}
         requests:
@@ -65,6 +65,7 @@ spec:
   stages {
     stage('Install Dependencies') {
       steps {
+        sh 'asdf install'
         sh 'NODE_ENV=development yarn install'
       }
     }

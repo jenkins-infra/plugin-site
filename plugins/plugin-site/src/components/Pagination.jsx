@@ -35,7 +35,7 @@ function Pagination({limit, page, pages, total, setPage}) {
     }, []);
 
     return (
-        <>
+        <div className="Pagination--Container">
             <div className="nav-link">
                 {`${start+1} to ${end} of ${total}`}
             </div>
@@ -48,7 +48,7 @@ function Pagination({limit, page, pages, total, setPage}) {
                     marginPagesDisplayed={marginPagesDisplayed}
                 />
             }
-        </>
+        </div>
     );
 }
 
