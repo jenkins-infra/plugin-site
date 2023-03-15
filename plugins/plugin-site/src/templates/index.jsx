@@ -19,7 +19,7 @@ function IndexPage() {
         navigate(`/ui/search?${querystring.stringify({query})}`);
     };
     const pageTitle = 'Plugins Index';
-    const indexPage = 'templates/index.jsx';
+    const indexPage = 'plugins/plugin-site/src/templates/index.jsx';
 
     return (
         <Layout sourcePath={indexPage}>

@@ -113,7 +113,7 @@ function SearchPage({location}) {
         doSearch(newData, setResults, categoriesMap);
     };
 
-    const searchPage = 'templates/search.jsx';
+    const searchPage = 'plugins/plugin-site/src/templates/search.jsx';
 
     React.useEffect(() => {
         const qs = location.search.replace(/^\?/, '');

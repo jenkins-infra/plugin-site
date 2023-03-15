@@ -5,7 +5,7 @@ import Layout from '../layout';
 import SEO from '../components/SEO';
 
 function TombstonePage({data: {suspendedPlugin: plugin}}) {
-    const pluginPage = 'templates/plugin.jsx';
+    const pluginPage = 'plugins/plugin-site/src/templates/tombstone.jsx';
     return (
         <Layout id="pluginPage" sourcePath={pluginPage}>
             <SEO title={plugin.id} description={`Deprecated plugin: ${plugin.id}`} pathname={`/${plugin.id}`}/>
