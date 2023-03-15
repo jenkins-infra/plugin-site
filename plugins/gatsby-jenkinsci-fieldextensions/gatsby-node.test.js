@@ -21,14 +21,13 @@ describe('gatsby-node', () => {
             const versions = ['0.1', '1.0-b9', '1.0-b10', '1.0-rc2', '1.0', '1.0.9', '1.0.10',
                 '1.0.10-2', '1.1', '1.9+build.201606131328', '1.13+build.202205140447',
                 '1.14-651.v429b_16b_db_60e', '2.0', '4.7.1.1'];
-            for (let idx = 1; idx < versions.length; idx++) {
-                it (`Version ${versions[idx - 1]} should be less than ${versions[idx]}`, () => {
-                    const oldVal = fieldExtensions.machineVersion({field: 'version'}).resolve({version: versions[idx - 1]});
-                    const newVal = fieldExtensions.machineVersion({field: 'version'}).resolve({version: versions[idx]});
-                    // localeCompare instead of < to keep ESLint happy
-                    expect(oldVal.localeCompare(newVal)).toBe(-1);
-                });
-            }
+            const pairs = versions.map((v, i) => [versions[i - 1], v]).slice(1);
+            it.each(pairs) ('version %s should be less than %s', (older, newer) => {
+                const oldVal = fieldExtensions.machineVersion({field: 'version'}).resolve({version: older});
+                const newVal = fieldExtensions.machineVersion({field: 'version'}).resolve({version: newer});
+                // localeCompare instead of < to keep ESLint happy
+                expect(oldVal.localeCompare(newVal)).toBe(-1);
+            });
         });
 
         describe('strippedHtml', () => {
