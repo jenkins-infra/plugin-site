@@ -5,7 +5,7 @@ import {Helmet} from 'react-helmet';
 import PropTypes from 'prop-types';
 
 const title = 'Plugin page not found';
-const notFoundPage = 'pages/404.jsx';
+const notFoundPage = 'plugins/plugin-site/src/pages/404.jsx';
 
 const NotFound = ({location}) => {
     let searchQuery = '';
