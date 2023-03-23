@@ -7,7 +7,9 @@ function PluginDevelopers({developers}) {
         <>
             {developers.map((developer) => (
                 <div className="maintainer" key={developer.id}>
-                    <Link to={`/ui/search?query=${developer.id}`}>{developer.name || developer.id}</Link>
+                    <Link to={`/ui/search?query=${developer.id}`} onClick={e => e.stopPropagation()}>
+                        {developer.name || developer.id}
+                    </Link>
                 </div>
             ))}
         </>
