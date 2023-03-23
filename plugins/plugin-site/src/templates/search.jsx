@@ -114,7 +114,7 @@ function SearchPage({location}) {
 
     const searchPage = 'plugins/plugin-site/src/templates/search.jsx';
 
-    // triggered on page load and when intenal <Link> clicked, e.g. for label
+    // triggered on page load and when internal <Link> clicked, e.g. for label
     React.useEffect(() => {
         const qs = location.search.replace(/^\?/, '');
         const parsed = querystring.parse(qs);
