@@ -104,7 +104,7 @@ function SearchPage({location}) {
         page, setPage,
         query, setQuerySilent, clearQuery,
         setData
-    } = useFilterHooks({doSearch, setResults, categoriesMap});
+    } = useFilterHooks();
 
     const handleOnSubmit = (e) => {
         const newData = {sort, categories, labels, view, page, query};
