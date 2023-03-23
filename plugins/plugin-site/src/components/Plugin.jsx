@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Link} from 'gatsby';
+import {navigate} from 'gatsby';
 
 import {cleanTitle} from '../commons/helper';
 import Icon from '../components/Icon';
@@ -26,7 +26,7 @@ Developers.propTypes = PluginDevelopers.propTypes;
 
 function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp}}) {
     return (
-        <Link to={`/${name}/`} className="Plugin--PluginContainer">
+        <div onClick={() => navigate(`/${name}/`)} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
                 <Icon title={title} />
             </div>
@@ -49,7 +49,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
             <div className="Plugin--AuthorsContainer">
                 <Developers developers={developers} />
             </div>
-        </Link>
+        </div>
     );
 }
 
@@ -71,9 +71,6 @@ Plugin.propTypes = {
         }).isRequired,
         title: PropTypes.string.isRequired,
         version: PropTypes.string,
-        wiki: PropTypes.shape({
-            url: PropTypes.string
-        }).isRequire,
     }).isRequired
 };
 

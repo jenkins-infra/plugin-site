@@ -110,18 +110,18 @@ function SearchPage({location}) {
         const newData = {sort, categories, labels, view, page, query};
         e.preventDefault();
         navigate(`/ui/search?${querystring.stringify(newData)}`);
-        doSearch(newData, setResults, categoriesMap);
     };
 
     const searchPage = 'plugins/plugin-site/src/templates/search.jsx';
 
+    // triggered on page load and when intenal <Link> clicked, e.g. for label
     React.useEffect(() => {
         const qs = location.search.replace(/^\?/, '');
         const parsed = querystring.parse(qs);
         parsed.query = parsed.query || '';
         setData(parsed);
         doSearch(parsed, setResults, categoriesMap);
-    }, []);
+    }, [location]);
 
     return (
         <Layout id="searchpage" sourcePath={searchPage}>

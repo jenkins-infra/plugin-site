@@ -26,7 +26,7 @@ function PluginLabels({labels}) {
         const text = (allLabels[id] || id).replace(' development', '');
         return (
             <div className="label-link" key={id}>
-                <Link to={`/ui/search/?labels=${id}`}>{text}</Link>
+                <Link to={`/ui/search/?labels=${id}`} onClick={e => e.stopPropagation()}>{text}</Link>
             </div>
         );
     });
