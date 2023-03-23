@@ -499,9 +499,9 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
 };
 
 const fetchPluginHealthScore = async ({createNode, reporter}) => {
-    const sectionActivity = reporter.activityTimer(`fetch plugin health score`);
+    const sectionActivity = reporter.activityTimer('fetch plugin health score');
     sectionActivity.start();
-    const url = "https://plugin-health.jenkins.io/api/scores";
+    const url = 'https://plugin-health.jenkins.io/api/scores';
     const json = await requestGET({url, reporter});
     for (const pluginName of Object.keys(json)) {
         const data = json[pluginName];

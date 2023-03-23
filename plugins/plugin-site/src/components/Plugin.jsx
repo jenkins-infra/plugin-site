@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {navigate} from 'gatsby';
+import {navigate, useStaticQuery, graphql} from 'gatsby';
 import {cleanTitle} from '../commons/helper';
 import Icon from '../components/Icon';
 import PluginLabels from '../components/PluginLabels';
 import PluginLastReleased from '../components/PluginLastReleased';
 import PluginDevelopers from '../components/PluginDevelopers';
 import PluginHealthScore from '../components/PluginHealthScore';
-import { useStaticQuery, graphql } from "gatsby";
+
 
 function Developers({developers}) {
     return (
@@ -27,7 +27,7 @@ Developers.propTypes = PluginDevelopers.propTypes;
 function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp}}) {
     let progress = 0;
     let color =
-    progress > 80 ? "#87d068" : progress > 60 ? "#e5e512" : "#fe3535";
+    progress > 80 ? '#87d068' : progress > 60 ? '#e5e512' : '#fe3535';
 
     const graphqlData = useStaticQuery(graphql`
         query {
@@ -42,14 +42,14 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
         }
     `);
 
-    let health = graphqlData.allJenkinsPluginHealthScore.edges.find(
+    const health = graphqlData.allJenkinsPluginHealthScore.edges.find(
         (edge) => edge.node.id === name
     );
 
     if (health) {
         progress = health.node.value;
         color =
-        progress > 80 ? "#87d068" : progress > 60 ? "#e5e512" : "#fe3535";
+        progress > 80 ? '#87d068' : progress > 60 ? '#e5e512' : '#fe3535';
     }
 
     return (
