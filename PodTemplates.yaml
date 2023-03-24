@@ -29,7 +29,7 @@ spec:
       command:
       - cat
     - name: "blobxfer"
-      image: "mcr.microsoft.com/blobxfer:1.9.1"
+      image: "mcr.microsoft.com/blobxfer:1.11.0"
       command:
       - cat
       securityContext:
