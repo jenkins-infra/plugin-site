@@ -162,12 +162,17 @@
 }
 
 .Plugin--HealthScoreContainer{
-    bottom: -0.75rem;
+    bottom: 0rem;
     position: absolute;
     width: 100%;
-    & h6{
-        margin-bottom: 0px;
+    & div{
+        display: flex;
+        justify-content: space-between;
+        font-size: 1rem;
+        font-weight: bold;
+        row-gap: 0.5rem;
     }
+    
 }
 .SearchResults--List {
     & .SearchResults--ItemBox {

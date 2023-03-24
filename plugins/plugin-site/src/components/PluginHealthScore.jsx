@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Progress} from 'antd';
+import {Progress} from 'reactstrap';
 
 function PluginHealthScore({healthScore, color}) {
     return (
         <>
-            <h6>Health Score</h6>
-            <Progress percent={healthScore} strokeColor={color} />
+            <div>
+                Health Score
+                <spam>
+                    {healthScore}
+                    /100
+                </spam>
+            </div>
+            <Progress value={healthScore} color={color} style={{height: '10px'}} striped/>
         </>
     );
 }

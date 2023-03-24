@@ -27,7 +27,7 @@ Developers.propTypes = PluginDevelopers.propTypes;
 function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp}}) {
     let progress = 0;
     let color =
-    progress > 80 ? '#87d068' : progress > 60 ? '#e5e512' : '#fe3535';
+    progress > 80 ? 'success' : progress > 60 ? 'warning' : 'danger';
 
     const graphqlData = useStaticQuery(graphql`
         query {
@@ -49,7 +49,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
     if (health) {
         progress = health.node.value;
         color =
-        progress > 80 ? '#87d068' : progress > 60 ? '#e5e512' : '#fe3535';
+        progress > 80 ? 'success' : progress > 60 ? 'warning' : 'danger';
     }
 
     return (
