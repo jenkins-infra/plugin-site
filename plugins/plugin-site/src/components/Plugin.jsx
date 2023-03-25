@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {navigate, useStaticQuery, graphql} from 'gatsby';
+import {navigate} from 'gatsby';
 import {cleanTitle} from '../commons/helper';
 import Icon from '../components/Icon';
 import PluginLabels from '../components/PluginLabels';
@@ -24,33 +24,7 @@ function Developers({developers}) {
 
 Developers.propTypes = PluginDevelopers.propTypes;
 
-function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp}}) {
-    let progress = 0;
-    let color =
-    progress > 80 ? 'success' : progress > 60 ? 'warning' : 'danger';
-
-    const graphqlData = useStaticQuery(graphql`
-        query {
-            allJenkinsPluginHealthScore {
-                edges {
-                    node {
-                        id
-                        value
-                    }
-                }
-            }
-        }
-    `);
-
-    const health = graphqlData.allJenkinsPluginHealthScore.edges.find(
-        (edge) => edge.node.id === name
-    );
-
-    if (health) {
-        progress = health.node.value;
-        color =
-        progress > 80 ? 'success' : progress > 60 ? 'warning' : 'danger';
-    }
+function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp, healthScore}}) {
 
     return (
         <div onClick={() => navigate(`/${name}/`)} className="Plugin--PluginContainer">
@@ -77,7 +51,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
                 <Developers developers={developers} />
             </div>
             <div className="Plugin--HealthScoreContainer">
-                <PluginHealthScore healthScore={progress} color={color} />
+                <PluginHealthScore healthScore={healthScore} />
             </div>
         </div>
     );
@@ -93,6 +67,7 @@ Plugin.propTypes = {
             id: PropTypes.string,
             name: PropTypes.string
         })),
+        healthScore: PropTypes.number,
         name: PropTypes.string.isRequired,
         requiredCore: PropTypes.string,
         sha1: PropTypes.string,
