@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import {navigate} from 'gatsby';
-
+import {navigate, useStaticQuery, graphql} from 'gatsby';
 import {cleanTitle} from '../commons/helper';
 import Icon from '../components/Icon';
 import PluginLabels from '../components/PluginLabels';
 import PluginLastReleased from '../components/PluginLastReleased';
 import PluginDevelopers from '../components/PluginDevelopers';
+import PluginHealthScore from '../components/PluginHealthScore';
+
 
 function Developers({developers}) {
     return (
@@ -25,6 +25,33 @@ function Developers({developers}) {
 Developers.propTypes = PluginDevelopers.propTypes;
 
 function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp}}) {
+    let progress = 0;
+    let color =
+    progress > 80 ? 'success' : progress > 60 ? 'warning' : 'danger';
+
+    const graphqlData = useStaticQuery(graphql`
+        query {
+            allJenkinsPluginHealthScore {
+                edges {
+                    node {
+                        id
+                        value
+                    }
+                }
+            }
+        }
+    `);
+
+    const health = graphqlData.allJenkinsPluginHealthScore.edges.find(
+        (edge) => edge.node.id === name
+    );
+
+    if (health) {
+        progress = health.node.value;
+        color =
+        progress > 80 ? 'success' : progress > 60 ? 'warning' : 'danger';
+    }
+
     return (
         <div onClick={() => navigate(`/${name}/`)} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
@@ -48,6 +75,9 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
             <div className="Plugin--ExcerptContainer" dangerouslySetInnerHTML={{__html: excerpt}} />
             <div className="Plugin--AuthorsContainer">
                 <Developers developers={developers} />
+            </div>
+            <div className="Plugin--HealthScoreContainer">
+                <PluginHealthScore healthScore={progress} color={color} />
             </div>
         </div>
     );
