@@ -108,7 +108,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "7.18.6",
-    "@jenkinsci/gatsby-plugin-jenkins-layout": "1.4.0",
+    "@jenkinsci/gatsby-plugin-jenkins-layout": "1.4.2",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "12.1.2",
     "@typescript-eslint/eslint-plugin": "5.54.1",
