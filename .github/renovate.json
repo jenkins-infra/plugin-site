@@ -7,7 +7,7 @@
         "dependencies"
     ],
     "npm": {
-        "stabilityDays": 1
+        "stabilityDays": 3
     },
     "regexManagers": [
         {
