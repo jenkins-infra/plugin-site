@@ -12,6 +12,16 @@ function pluginQueries() {
               currentInstalls
               trend
             }
+            healthScore {
+                value
+                    version
+                    details {
+                        key
+                        value
+                        coefficient
+                    }
+                    timestamp
+            }
             developers {
               name
               id

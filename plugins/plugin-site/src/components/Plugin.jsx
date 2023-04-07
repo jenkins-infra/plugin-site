@@ -67,7 +67,9 @@ Plugin.propTypes = {
             id: PropTypes.string,
             name: PropTypes.string
         })),
-        healthScore: PropTypes.number,
+        healthScore: PropTypes.shape({
+            value: PropTypes.number,
+        }),
         name: PropTypes.string.isRequired,
         requiredCore: PropTypes.string,
         sha1: PropTypes.string,

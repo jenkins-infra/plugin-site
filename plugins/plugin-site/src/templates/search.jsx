@@ -91,20 +91,11 @@ function SearchPage({location}) {
           }
         }
       }
-      pluginHealthScore: allJenkinsPluginHealthScore {
-        edges {
-            node {
-                id
-                value
-            }
-           }
-         }
         }
     `);
 
     const categoriesMap = groupBy(graphqlData.categories.edges.map(edge => edge.node), 'id');
     const suspendedPlugins = graphqlData.suspendedPlugins.edges.map(edge => edge.node.id);
-    const healthScoresMap = groupBy(graphqlData.pluginHealthScore.edges.map(edge => edge.node), 'id');
     const {
         sort, setSort,
         clearCriteria,
@@ -132,13 +123,6 @@ function SearchPage({location}) {
         setData(parsed);
         doSearch(parsed, setResults, categoriesMap);
     }, [location]);
-
-    if(results) {
-        results.plugins = results.plugins.map(plugin => {
-            plugin.healthScore = healthScoresMap[plugin.name]?.value;
-            return plugin;
-        });
-    }
 
     return (
         <Layout id="searchpage" sourcePath={searchPage}>

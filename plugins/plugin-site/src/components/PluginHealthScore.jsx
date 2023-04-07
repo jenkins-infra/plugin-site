@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Progress} from 'reactstrap';
 
 function PluginHealthScore({healthScore}) {
-    const score = healthScore || 0;
+    const score = healthScore.value || 0;
     const color =
     score > 80 ? 'success' : score > 60 ? 'warning' : 'danger';
     return (
@@ -21,7 +21,9 @@ function PluginHealthScore({healthScore}) {
 }
 
 PluginHealthScore.propTypes = {
-    healthScore: PropTypes.number,
+    healthScore: PropTypes.shape({
+        value: PropTypes.number,
+    }),
 };
 
 export default PluginHealthScore;

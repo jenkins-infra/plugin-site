@@ -38,6 +38,7 @@ exports.createSchemaCustomization = ({actions}) => {
         type JenkinsPlugin implements Node {
             wiki: JenkinsPluginWiki @link(from: "name", by: "name")
             releases: [JenkinsPluginVersion] @link(from: "name", by: "name")
+            healthScore: JenkinsPluginHealthScore @link(from: "name", by: "id")
             buildDate: Date @dateformat
             previousTimestamp: Date @dateformat
             releaseTimestamp: Date @dateformat
