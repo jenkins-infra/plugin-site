@@ -31,7 +31,7 @@ pipeline {
     stage('NPM Install') {
       agent {
         docker {
-          image 'node:14.17'
+          image 'node:18.15.0'
           reuseNode true
         }
       }
@@ -43,7 +43,7 @@ pipeline {
     stage('Build Production') {
       agent {
         docker {
-          image 'node:14.17'
+          image 'node:18.15.0'
           reuseNode true
         }
       }
@@ -55,7 +55,7 @@ pipeline {
     stage('Check build') {
       agent {
         docker {
-          image 'node:14.17'
+          image 'node:18.15.0'
           reuseNode true
         }
       }
@@ -70,7 +70,7 @@ pipeline {
       }
       agent {
         docker {
-          image 'node:14.17'
+          image 'node:18.15.0'
           reuseNode true
         }
       }
