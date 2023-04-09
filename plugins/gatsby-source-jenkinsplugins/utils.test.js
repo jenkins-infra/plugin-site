@@ -96,8 +96,8 @@ describe('utils', () => {
     });
     it('get plugin healthScore data', async () => {
         nock('https://plugin-health.jenkins.io')
-        .get('/api/scores')
-        .reply(200, JSON.parse(await readText('plugin-health-score.json')));
+            .get('/api/scores')
+            .reply(200, JSON.parse(await readText('plugin-health-score.json')));
         const createNode = jest.fn().mockResolvedValue();
 
         await utils.fetchPluginHealthScore({createNode, reporter: _reporter});
