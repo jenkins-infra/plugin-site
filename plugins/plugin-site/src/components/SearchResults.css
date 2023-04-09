@@ -9,7 +9,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 0;
+    justify-content: center;
+    margin: 0 2rem 0;
 }
 .SearchResults--ItemBox {
     background: #fff;
@@ -178,7 +179,7 @@
     & .SearchResults--ItemBox {
         height: initial;
         min-height: initial;
-        width: calc(100% - 0.4rem);
+        width: calc(100% - 1rem);
     }
     & .Plugin--IconContainer {
         bottom: initial;

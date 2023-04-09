@@ -142,8 +142,8 @@ function SearchPage({location}) {
                         toggleLabel={toggleLabel}
                     />
                 </div>)}
-                <div className={showFilter ? 'col-md-9' : 'offset-md-1 col-md-11'}>
-                    <div className="row pt-4">
+                <div className={showFilter ? 'col-md-9' : 'offset-md-1 col-md-10'}>
+                    <div className="row pt-4 add-m">
                         <div className={'col-md-9'}>
                             <SearchBox
                                 showFilter={showFilter}
@@ -158,7 +158,7 @@ function SearchPage({location}) {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-9 text-center">
+                        <div className="col-md-12 text-center">
                             <SearchByAlgolia />
                         </div>
                     </div>
