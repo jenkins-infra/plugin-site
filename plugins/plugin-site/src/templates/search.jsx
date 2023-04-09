@@ -157,7 +157,7 @@ function SearchPage({location}) {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-12 text-center ">
+                        <div className="col-md-12 text-center">
                             <SearchByAlgolia />
                         </div>
                     </div>
