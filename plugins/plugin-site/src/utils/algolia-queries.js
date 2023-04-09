@@ -33,7 +33,7 @@ function pluginQueries() {
       }
     }
     `;
-    function pageToAlgoliaRecord({ node: { id, ...rest } }) {
+    function pageToAlgoliaRecord({node: {id, ...rest}}) {
         return {
             objectID: id,
             slug: `/${id.trim()}/`,
@@ -42,36 +42,36 @@ function pluginQueries() {
     }
     return {
         query: pageQuery,
-        transformer: ({ data }) => data.pages.edges.map(pageToAlgoliaRecord),
-        indexName: "Plugins",
+        transformer: ({data}) => data.pages.edges.map(pageToAlgoliaRecord),
+        indexName: 'Plugins',
         synonyms: [
             {
-                type: "synonym",
-                synonyms: ["perforce", "p4"],
-                objectID: "syn-1617250859718-18",
+                type: 'synonym',
+                synonyms: ['perforce', 'p4'],
+                objectID: 'syn-1617250859718-18',
             },
         ],
         settings: {
             paginationLimitedTo: 2000, // they recommend 1000, to keep speed up and prevent people from scraping, but both are fine to us
-            optionalWords: ["jenkins", "plugin", "plugins"],
+            optionalWords: ['jenkins', 'plugin', 'plugins'],
             ranking: [
-                "typo",
-                "geo",
-                "words",
-                "filters",
-                "proximity",
-                "attribute",
-                "exact",
-                "custom",
+                'typo',
+                'geo',
+                'words',
+                'filters',
+                'proximity',
+                'attribute',
+                'exact',
+                'custom',
             ],
-            customRanking: ["desc(stats.currentInstalls)"],
-            attributesForFaceting: ["labels"],
+            customRanking: ['desc(stats.currentInstalls)'],
+            attributesForFaceting: ['labels'],
             attributesToIndex: [
-                "name",
-                "title",
-                "developers.name",
-                "developers.id",
-                "excerpt",
+                'name',
+                'title',
+                'developers.name',
+                'developers.id',
+                'excerpt',
             ],
         },
     };
