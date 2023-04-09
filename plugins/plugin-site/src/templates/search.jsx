@@ -141,7 +141,7 @@ function SearchPage({location}) {
                         toggleLabel={toggleLabel}
                     />
                 </div>)}
-                <div className={showFilter ? 'col-md-9 ' : ' offset-md-1 col-md-10'}>
+                <div className={showFilter ? 'col-md-9' : 'offset-md-1 col-md-10'}>
                     <div className="row pt-4 add-m">
                         <div className={'col-md-9'}>
                             <SearchBox
