@@ -14,13 +14,6 @@ function pluginQueries() {
             }
             healthScore {
               value
-              version
-              details {
-                key
-                value
-                coefficient
-              }
-              timestamp
             }
             developers {
               name
