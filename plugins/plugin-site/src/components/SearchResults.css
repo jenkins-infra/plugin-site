@@ -21,7 +21,7 @@
     display: block;
     flex: 0 0 auto;
     font-size: 0.85rem;
-    height: 16.5rem;
+    height: 18.5rem;
     margin: 0.25rem;
     min-height: 6rem;
     opacity: 0.9;
@@ -56,7 +56,7 @@
     }
 }
 .Plugin--IconContainer {
-    bottom: 0.25rem;
+    bottom: 3rem;
     display: block;
     grid-area: icon;
     opacity: 0.75;
@@ -148,7 +148,7 @@
     word-wrap: break-word;
 }
 .Plugin--AuthorsContainer {
-    bottom: 1rem;
+    bottom: 3rem;
     grid-area: authors;
     max-width: 8rem;
     overflow: hidden;
@@ -160,6 +160,20 @@
         line-height: 1rem;
         margin-right: 0.5rem;
     }
+}
+
+.Plugin--HealthScoreContainer{
+    bottom: 0rem;
+    position: absolute;
+    width: 100%;
+    & div{
+        display: flex;
+        justify-content: space-between;
+        font-size: 1rem;
+        font-weight: bold;
+        row-gap: 0.5rem;
+    }
+    
 }
 .SearchResults--List {
     & .SearchResults--ItemBox {
@@ -186,6 +200,10 @@
     & .Plugin--ExcerptContainer {
         height: initial;
         margin-bottom: 1rem;
+    }
+    & .Plugin--HealthScoreContainer {
+        position: initial;
+        margin-top: 10px;
     }
 }
 .Pagination--Container {

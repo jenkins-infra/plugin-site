@@ -93,6 +93,7 @@ function SearchPage({location}) {
       }
         }
     `);
+
     const categoriesMap = groupBy(graphqlData.categories.edges.map(edge => edge.node), 'id');
     const suspendedPlugins = graphqlData.suspendedPlugins.edges.map(edge => edge.node.id);
     const {

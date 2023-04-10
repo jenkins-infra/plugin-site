@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import {navigate} from 'gatsby';
-
 import {cleanTitle} from '../commons/helper';
 import Icon from '../components/Icon';
 import PluginLabels from '../components/PluginLabels';
 import PluginLastReleased from '../components/PluginLastReleased';
 import PluginDevelopers from '../components/PluginDevelopers';
+import PluginHealthScore from '../components/PluginHealthScore';
+
 
 function Developers({developers}) {
     return (
@@ -24,7 +24,8 @@ function Developers({developers}) {
 
 Developers.propTypes = PluginDevelopers.propTypes;
 
-function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp}}) {
+function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp, healthScore}}) {
+
     return (
         <div onClick={() => navigate(`/${name}/`)} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
@@ -49,6 +50,9 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
             <div className="Plugin--AuthorsContainer">
                 <Developers developers={developers} />
             </div>
+            <div className="Plugin--HealthScoreContainer">
+                <PluginHealthScore healthScore={healthScore} />
+            </div>
         </div>
     );
 }
@@ -63,6 +67,9 @@ Plugin.propTypes = {
             id: PropTypes.string,
             name: PropTypes.string
         })),
+        healthScore: PropTypes.shape({
+            value: PropTypes.number,
+        }),
         name: PropTypes.string.isRequired,
         requiredCore: PropTypes.string,
         sha1: PropTypes.string,

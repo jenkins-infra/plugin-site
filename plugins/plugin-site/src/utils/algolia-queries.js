@@ -12,6 +12,9 @@ function pluginQueries() {
               currentInstalls
               trend
             }
+            healthScore {
+              value
+            }
             developers {
               name
               id
@@ -38,16 +41,12 @@ function pluginQueries() {
             {
                 type: 'synonym',
                 synonyms: ['perforce', 'p4'],
-                objectID: 'syn-1617250859718-18'
-            }
+                objectID: 'syn-1617250859718-18',
+            },
         ],
         settings: {
             paginationLimitedTo: 2000, // they recommend 1000, to keep speed up and prevent people from scraping, but both are fine to us
-            optionalWords: [
-                'jenkins',
-                'plugin',
-                'plugins'
-            ],
+            optionalWords: ['jenkins', 'plugin', 'plugins'],
             ranking: [
                 'typo',
                 'geo',
@@ -56,26 +55,20 @@ function pluginQueries() {
                 'proximity',
                 'attribute',
                 'exact',
-                'custom'
+                'custom',
             ],
-            customRanking: [
-                'desc(stats.currentInstalls)'
-            ],
-            attributesForFaceting: [
-                'labels'
-            ],
+            customRanking: ['desc(stats.currentInstalls)'],
+            attributesForFaceting: ['labels'],
             attributesToIndex: [
                 'name',
                 'title',
                 'developers.name',
                 'developers.id',
-                'excerpt'
+                'excerpt',
             ],
         },
     };
 }
 
-const queries = [
-    pluginQueries(),
-];
+const queries = [pluginQueries()];
 module.exports = queries;
