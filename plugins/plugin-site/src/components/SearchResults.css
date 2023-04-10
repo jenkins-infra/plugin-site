@@ -201,6 +201,10 @@
         height: initial;
         margin-bottom: 1rem;
     }
+    & .Plugin--HealthScoreContainer {
+        position: initial;
+        margin-top: 10px;
+    }
 }
 .Pagination--Container {
     display: flex;
