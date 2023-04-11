@@ -2817,7 +2817,7 @@ __metadata:
     remark-parse: ^9.0.0
     remark-rehype: ^8.1.0
     unified: ^9.2.2
-    xml2js: 0.4.23
+    xml2js: 0.5.0
   languageName: unknown
   linkType: soft
 
@@ -2916,7 +2916,7 @@ __metadata:
     stylelint-processor-styled-components: 1.10.0
     stylelint-selector-bem-pattern: 2.1.1
     unified: 10.1.2
-    xml2js: 0.4.23
+    xml2js: 0.5.0
   dependenciesMeta:
     fsevents:
       optional: true
@@ -22980,7 +22980,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"xml2js@npm:0.4.23, xml2js@npm:^0.4.5":
+"xml2js@npm:0.5.0":
+  version: 0.5.0
+  resolution: "xml2js@npm:0.5.0"
+  dependencies:
+    sax: ">=0.6.0"
+    xmlbuilder: ~11.0.0
+  checksum: 1aa71d62e5bc2d89138e3929b9ea46459157727759cbc62ef99484b778641c0cd21fb637696c052d901a22f82d092a3e740a16b4ce218e81ac59b933535124ea
+  languageName: node
+  linkType: hard
+
+"xml2js@npm:^0.4.5":
   version: 0.4.23
   resolution: "xml2js@npm:0.4.23"
   dependencies:
