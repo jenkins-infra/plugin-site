@@ -15,23 +15,24 @@ function PluginHealthScore({healthScore, name}) {
             <div>
                 <div>
                     Health Score
-                    <span
+                    <a
+                        href={`https://plugin-health.jenkins.io/scores/${name}`}
                         id={tooltipId}
-                        style={{marginLeft: '5px',
-                            color: '#0D6EFD'}}
+                        style={{marginLeft: '5px'}}
                         onClick={(e) => {
                             e.stopPropagation();
-                            setTooltipOpen(true);
+                            setTooltipOpen(!tooltipOpen);
                         }}
                     >
                         ?
-                    </span>
+                    </a>
                     <Tooltip
                         placement="top"
                         isOpen={tooltipOpen}
                         autohide={false}
                         target={tooltipId}
                         toggle={toggle}
+                        onClick={(e) => {e.stopPropagation();}}
                     >
                         View the details about plugin&apos;s
                         {' '}
