@@ -19,7 +19,7 @@ pipeline {
   stages {
     stage('Check for typos') {
       steps {
-        sh 'typos --format json | ./typos-checkstyle - > checkstyle.xml || true'
+        sh 'typos --format json | typos-checkstyle - > checkstyle.xml || true'
         recordIssues(tools: [checkStyle(id: 'typos', name: 'Typos', pattern: 'checkstyle.xml')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]])
       }
     }
