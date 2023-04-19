@@ -503,8 +503,8 @@ const fetchPluginHealthScore = async ({createNode, reporter}) => {
     sectionActivity.start();
     const url = 'https://plugin-health.jenkins.io/api/scores';
     const json = await requestGET({url, reporter});
-    for (const pluginName of Object.keys(json)) {
-        const data = json[pluginName];
+    for (const pluginName of Object.keys(json.plugins)) {
+        const data = json.plugins[pluginName];
         createNode({
             ...data,
             id: pluginName,
