@@ -62,7 +62,7 @@ license your work under the terms of the [MIT License](LICENSE).
 
 ## Requirements
 
-- node 16+
+- node 18+
 
 ## Run locally
 

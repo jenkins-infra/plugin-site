@@ -7,7 +7,7 @@
         "dependencies"
     ],
     "npm": {
-        "stabilityDays": 1
+        "stabilityDays": 3
     },
     "regexManagers": [
         {
@@ -38,7 +38,7 @@
                 "enabled": true
             },
             "separateMultipleMajor": true,
-            "allowedVersions": "^14 || ^16 || ^18 || ^20"
+            "allowedVersions": "^18 || ^20"
         },
         {
             "extends": "monorepo:remark",

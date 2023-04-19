@@ -19,11 +19,7 @@ pipeline {
   stages {
     stage('Check for typos') {
       steps {
-        sh '''
-          curl -qsL https://github.com/crate-ci/typos/releases/download/v1.13.9/typos-v1.13.9-x86_64-unknown-linux-musl.tar.gz | tar xvzf - ./typos
-          curl -qsL https://github.com/halkeye/typos-json-to-checkstyle/releases/download/v0.1.1/typos-checkstyle-v0.1.1-x86_64 > typos-checkstyle && chmod 0755 typos-checkstyle
-          ./typos --format json | ./typos-checkstyle - > checkstyle.xml || true
-        '''
+        sh 'typos --format json | typos-checkstyle - > checkstyle.xml || true'
         recordIssues(tools: [checkStyle(id: 'typos', name: 'Typos', pattern: 'checkstyle.xml')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]])
       }
     }
@@ -31,7 +27,7 @@ pipeline {
     stage('NPM Install') {
       agent {
         docker {
-          image 'node:14.17'
+          image 'node:18.15.0'
           reuseNode true
         }
       }
@@ -43,7 +39,7 @@ pipeline {
     stage('Build Production') {
       agent {
         docker {
-          image 'node:14.17'
+          image 'node:18.15.0'
           reuseNode true
         }
       }
@@ -55,7 +51,7 @@ pipeline {
     stage('Check build') {
       agent {
         docker {
-          image 'node:14.17'
+          image 'node:18.15.0'
           reuseNode true
         }
       }
@@ -70,7 +66,7 @@ pipeline {
       }
       agent {
         docker {
-          image 'node:14.17'
+          image 'node:18.15.0'
           reuseNode true
         }
       }

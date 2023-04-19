@@ -224,3 +224,47 @@ Array [
   },
 ]
 `;
+
+exports[`utils get plugin healthScore data 1`] = `
+Array [
+  Object {
+    "children": Array [],
+    "details": Array [
+      Object {
+        "coefficient": 1,
+        "key": "update-center-plugin-publication",
+        "value": 1,
+      },
+      Object {
+        "coefficient": 1,
+        "key": "security",
+        "value": 1,
+      },
+      Object {
+        "coefficient": 0.5,
+        "key": "repository-configuration",
+        "value": 0.7,
+      },
+      Object {
+        "coefficient": 0.8,
+        "key": "adoption",
+        "value": 1,
+      },
+      Object {
+        "coefficient": 0.8,
+        "key": "deprecation",
+        "value": 1,
+      },
+    ],
+    "id": "aws-java-sdk-sns",
+    "internal": Object {
+      "contentDigest": "f789c60332b91b320525aea3639a7c73",
+      "type": "JenkinsPluginHealthScore",
+    },
+    "parent": null,
+    "timestamp": "2023-03-24T15:15:33.022244Z",
+    "value": 96,
+    "version": "1.12.406-370.v8f993c987059",
+  },
+]
+`;

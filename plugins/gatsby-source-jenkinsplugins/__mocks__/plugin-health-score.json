@@ -1,0 +1,22 @@
+{
+    "aws-java-sdk-sns": {
+        "value": 96,
+        "version": "1.12.406-370.v8f993c987059",
+        "details": [
+            {
+                "key": "update-center-plugin-publication",
+                "value": 1,
+                "coefficient": 1
+            },
+            { "key": "security", "value": 1, "coefficient": 1 },
+            {
+                "key": "repository-configuration",
+                "value": 0.7,
+                "coefficient": 0.5
+            },
+            { "key": "adoption", "value": 1, "coefficient": 0.8 },
+            { "key": "deprecation", "value": 1, "coefficient": 0.8 }
+        ],
+        "timestamp": "2023-03-24T15:15:33.022244Z"
+    }
+}

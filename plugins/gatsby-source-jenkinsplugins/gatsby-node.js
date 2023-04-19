@@ -2,6 +2,7 @@ const {
     fetchSiteInfo,
     fetchPluginData,
     fetchPluginVersions,
+    fetchPluginHealthScore,
     processCategoryData,
     fetchLabelData,
     fetchStats,
@@ -21,6 +22,7 @@ exports.sourceNodes = async (
             processCategoryData({createNode, createNodeField, createContentDigest, createNodeId, createRemoteFileNode, reporter}),
             fetchLabelData({createNode, createNodeField, createContentDigest, createNodeId, createRemoteFileNode, reporter}),
             fetchPluginVersions({createNode, createNodeField, createContentDigest, createNodeId, createRemoteFileNode, reporter, firstReleases}),
+            fetchPluginHealthScore({createNode, createNodeField, createContentDigest, createNodeId, createRemoteFileNode, reporter}),
         ]).then(() => fetchPluginData({createNode, createNodeField, createContentDigest, createNodeId, createRemoteFileNode, reporter, firstReleases, stats}));
     } catch (err) {
         reporter.panic(
@@ -36,6 +38,7 @@ exports.createSchemaCustomization = ({actions}) => {
         type JenkinsPlugin implements Node {
             wiki: JenkinsPluginWiki @link(from: "name", by: "name")
             releases: [JenkinsPluginVersion] @link(from: "name", by: "name")
+            healthScore: JenkinsPluginHealthScore @link(from: "name", by: "id")
             buildDate: Date @dateformat
             previousTimestamp: Date @dateformat
             releaseTimestamp: Date @dateformat

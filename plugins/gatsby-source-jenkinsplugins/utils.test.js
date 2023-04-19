@@ -94,4 +94,13 @@ describe('utils', () => {
         await utils.fetchPluginData({createNode, createNodeId, createContentDigest, reporter: _reporter, firstReleases, labelToCategory, stats});
         expect(createNode.mock.calls.filter(call => call[0].name === 'ios-device-connector').map(args => args[0])).toMatchSnapshot();
     });
+    it('get plugin healthScore data', async () => {
+        nock('https://plugin-health.jenkins.io')
+            .get('/api/scores')
+            .reply(200, JSON.parse(await readText('plugin-health-score.json')));
+        const createNode = jest.fn().mockResolvedValue();
+
+        await utils.fetchPluginHealthScore({createNode, reporter: _reporter});
+        expect(createNode.mock.calls.filter(call => call[0].id === 'aws-java-sdk-sns').map(args => args[0])).toMatchSnapshot();
+    });
 });
