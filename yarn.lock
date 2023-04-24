@@ -2941,7 +2941,7 @@ __metadata:
     remark-rehype: 10.1.0
     stylelint: 14.16.1
     stylelint-config-recommended: 8.0.0
-    stylelint-config-standard: 26.0.0
+    stylelint-config-standard: 33.0.0
     stylelint-config-styled-components: 0.1.1
     stylelint-order: 5.0.0
     stylelint-processor-styled-components: 1.10.0
@@ -21195,7 +21195,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-config-recommended@npm:8.0.0, stylelint-config-recommended@npm:^8.0.0":
+"stylelint-config-recommended@npm:8.0.0":
   version: 8.0.0
   resolution: "stylelint-config-recommended@npm:8.0.0"
   peerDependencies:
@@ -21204,14 +21204,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-config-standard@npm:26.0.0":
-  version: 26.0.0
-  resolution: "stylelint-config-standard@npm:26.0.0"
-  dependencies:
-    stylelint-config-recommended: ^8.0.0
+"stylelint-config-recommended@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "stylelint-config-recommended@npm:12.0.0"
   peerDependencies:
-    stylelint: ^14.9.0
-  checksum: c1fe44df1755bcccc740b385a24acffa922d331d9f9ba39dafad81cc9643e6c1f870abd1ee73b2737d6903e06efb83b2a1ee26d786faef0123fc22e1f09c13fe
+    stylelint: ^15.5.0
+  checksum: d1de0fa2673c8aa4e50259eb7320cc17e7d09d13a176afea943b3227befcaaaf4e78b546ec076ace1e031ff526c81ea5dc6efa98dd7dc77c582b7352a128d37c
+  languageName: node
+  linkType: hard
+
+"stylelint-config-standard@npm:33.0.0":
+  version: 33.0.0
+  resolution: "stylelint-config-standard@npm:33.0.0"
+  dependencies:
+    stylelint-config-recommended: ^12.0.0
+  peerDependencies:
+    stylelint: ^15.5.0
+  checksum: c901e52901f6eb72285a869b04ed55eddfb94b794d2599eee4cc9d56365c874c2276563d26848d29c3665ca7de361bf8abb9f6f7d80073f16013afff60938bad
   languageName: node
   linkType: hard
 
