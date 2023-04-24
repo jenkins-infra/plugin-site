@@ -2834,7 +2834,7 @@ __metadata:
     "@jenkins-cd/gatsby-rehype-rewrite-img-src": "*"
     "@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap": "*"
     "@jenkins-cd/gatsby-source-jenkinsplugins": "*"
-    "@jenkinsci/gatsby-plugin-jenkins-layout": 1.4.2
+    "@jenkinsci/gatsby-plugin-jenkins-layout": 1.5.0
     "@juggle/resize-observer": 3.3.1
     "@sentry/browser": 7.7.0
     "@sentry/node": 7.7.0
@@ -2923,9 +2923,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jenkinsci/gatsby-plugin-jenkins-layout@npm:1.4.2":
-  version: 1.4.2
-  resolution: "@jenkinsci/gatsby-plugin-jenkins-layout@npm:1.4.2"
+"@jenkinsci/gatsby-plugin-jenkins-layout@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@jenkinsci/gatsby-plugin-jenkins-layout@npm:1.5.0"
   dependencies:
     axios: ^0.27.2
     cheerio: ^1.0.0-rc.12
@@ -2936,7 +2936,7 @@ __metadata:
   peerDependencies:
     react: "*"
     react-dom: "*"
-  checksum: ea31e47b352535b74f0530b0cdbbd86ecfa3657cefe14080a9d7d465b5300b778178e4639f21c786ceba5f09c4e1541c5c467409796226ee59a2bf0046fff457
+  checksum: 9d07b081e1d61998620514e3b7d8046cd3682bb6aba772a9da0a9bd39875bfbe66aa0d227966c313daf1a54c0694cce660a84343dcd2d1f210543e301f99bfb7
   languageName: node
   linkType: hard
 
