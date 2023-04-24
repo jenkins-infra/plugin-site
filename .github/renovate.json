@@ -9,6 +9,7 @@
     "npm": {
         "stabilityDays": 3
     },
+    "rebaseWhen": "conflicted",
     "regexManagers": [
         {
             "fileMatch": [
