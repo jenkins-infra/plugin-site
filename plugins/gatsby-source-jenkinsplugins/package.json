@@ -16,7 +16,7 @@
         "transform": {}
     },
     "dependencies": {
-        "axios": "^0.27.0",
+        "axios": "^1.0.0",
         "axios-retry": "3.4.0",
         "cheerio": "^1.0.0-rc.10",
         "date-fns": "^2.27.0",
