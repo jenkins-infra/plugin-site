@@ -31,8 +31,8 @@
         ]
     },
     "resolutions": {
-        "lint-staged/supports-color": "^8",
-        "supports-color": "^8"
+        "lint-staged/supports-color": "^9.0.0",
+        "supports-color": "^9.0.0"
     },
     "packageManager": "yarn@3.5.0"
 }
