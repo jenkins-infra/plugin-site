@@ -1870,12 +1870,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.0, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.16.7, @babel/runtime@npm:^7.18.0, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.0, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.18.0, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.18.6
   resolution: "@babel/runtime@npm:7.18.6"
   dependencies:
     regenerator-runtime: ^0.13.4
   checksum: 8b707b64ae0524db617d0c49933b258b96376a38307dc0be8fb42db5697608bcc1eba459acce541e376cff5ed5c5287d24db5780bd776b7c75ba2c2e26ff8a2c
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.17.9":
+  version: 7.21.0
+  resolution: "@babel/runtime@npm:7.21.0"
+  dependencies:
+    regenerator-runtime: ^0.13.11
+  checksum: 7b33e25bfa9e0e1b9e8828bb61b2d32bdd46b41b07ba7cb43319ad08efc6fda8eb89445193e67d6541814627df0ca59122c0ea795e412b99c5183a0540d338ab
   languageName: node
   linkType: hard
 
@@ -2870,7 +2879,7 @@ __metadata:
     gatsby-plugin-nprogress: 4.18.0
     gatsby-plugin-postcss: 5.18.0
     gatsby-plugin-react-helmet: 5.18.0
-    gatsby-plugin-robots-txt: 1.7.1
+    gatsby-plugin-robots-txt: 1.8.0
     gatsby-plugin-sharp: 4.25.1
     gatsby-plugin-sitemap: 5.18.1
     gatsby-remark-source-name: 1.0.0
@@ -11197,15 +11206,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-robots-txt@npm:1.7.1":
-  version: 1.7.1
-  resolution: "gatsby-plugin-robots-txt@npm:1.7.1"
+"gatsby-plugin-robots-txt@npm:1.8.0":
+  version: 1.8.0
+  resolution: "gatsby-plugin-robots-txt@npm:1.8.0"
   dependencies:
-    "@babel/runtime": ^7.16.7
+    "@babel/runtime": ^7.17.9
     generate-robotstxt: ^8.0.3
   peerDependencies:
-    gatsby: ^4.0.0 || ^3.0.0 || ^2.0.0
-  checksum: e98c8aa1aa8b01e58657709ca97e4429e5a7c0b640449e10167d64bfbc6f0d9338908a7616ef00a051f9c78ea4a03d380b5cf7d45b3aaf44227607c6e9264cc1
+    gatsby: ^5.0.0
+  checksum: 0fe740f6cb008400a718f7e5eb1a9e86fe5fa0aee521f0014aa0c7ae27a681a220ee971dcd519c8967262d7a02e07c78e6685cba59dd187dd4b532ff37d9a1d6
   languageName: node
   linkType: hard
 
@@ -19491,6 +19500,13 @@ __metadata:
   version: 1.4.2
   resolution: "regenerate@npm:1.4.2"
   checksum: 3317a09b2f802da8db09aa276e469b57a6c0dd818347e05b8862959c6193408242f150db5de83c12c3fa99091ad95fb42a6db2c3329bfaa12a0ea4cbbeb30cb0
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.13.11":
+  version: 0.13.11
+  resolution: "regenerator-runtime@npm:0.13.11"
+  checksum: 27481628d22a1c4e3ff551096a683b424242a216fee44685467307f14d58020af1e19660bf2e26064de946bad7eff28950eae9f8209d55723e2d9351e632bbb4
   languageName: node
   linkType: hard
 
