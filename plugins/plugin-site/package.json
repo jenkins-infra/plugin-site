@@ -69,7 +69,7 @@
     "@sentry/browser": "7.49.0",
     "@sentry/node": "7.49.0",
     "algoliasearch": "4.17.0",
-    "chart.js": "3.9.1",
+    "chart.js": "4.2.1",
     "cheerio": "1.0.0-rc.12",
     "classnames": "2.3.2",
     "copy-to-clipboard": "3.3.3",
