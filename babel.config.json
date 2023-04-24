@@ -14,7 +14,8 @@
                 "targets": {
                     "browsers": [
                         ">0.25%",
-                        "not dead"
+                        "not dead",
+                        "not IE 11"
                     ]
                 }
             }
