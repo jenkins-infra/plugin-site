@@ -65,7 +65,7 @@
     "@jenkins-cd/gatsby-rehype-rewrite-img-src": "*",
     "@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap": "*",
     "@jenkins-cd/gatsby-source-jenkinsplugins": "*",
-    "@juggle/resize-observer": "3.3.1",
+    "@juggle/resize-observer": "3.4.0",
     "@sentry/browser": "7.7.0",
     "@sentry/node": "7.7.0",
     "algoliasearch": "4.15.0",
