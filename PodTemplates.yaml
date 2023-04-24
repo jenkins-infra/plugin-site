@@ -22,7 +22,7 @@ spec:
   restartPolicy: "Never"
   containers:
     - name: "node"
-      image: "node:15"
+      image: "node:18"
       securityContext:
         privileged: false
       tty: true
