@@ -1,7 +1,4 @@
-
-// import {graphql} from 'gatsby';
 import React from 'react';
-import querystring from 'querystring';
 import PropTypes from 'prop-types';
 import {navigate, useStaticQuery, graphql} from 'gatsby';
 import algoliasearch from 'algoliasearch/lite';
@@ -110,7 +107,7 @@ function SearchPage({location}) {
     const handleOnSubmit = (e) => {
         const newData = {sort, categories, labels, view, page, query};
         e.preventDefault();
-        navigate(`/ui/search?${querystring.stringify(newData)}`);
+        navigate(`/ui/search?${new URLSearchParams(newData)}`);
     };
 
     const searchPage = 'plugins/plugin-site/src/templates/search.jsx';
