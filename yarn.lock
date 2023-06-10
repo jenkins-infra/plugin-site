@@ -3623,7 +3623,7 @@ __metadata:
     jest-environment-jsdom: 28.1.3
     jest-junit: 16.0.0
     lint-staged: 13.2.2
-    postcss-calc: 8.2.4
+    postcss-calc: 9.0.1
     postcss-css-variables: 0.19.0
     postcss-extend: 1.0.5
     postcss-import: 15.1.0
@@ -17803,7 +17803,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-calc@npm:8.2.4, postcss-calc@npm:^8.2.3":
+"postcss-calc@npm:9.0.1":
+  version: 9.0.1
+  resolution: "postcss-calc@npm:9.0.1"
+  dependencies:
+    postcss-selector-parser: ^6.0.11
+    postcss-value-parser: ^4.2.0
+  peerDependencies:
+    postcss: ^8.2.2
+  checksum: 7327ed83bfec544ab8b3e38353baa72ff6d04378b856db4ad82dbd68ce0b73668867ef182b5d4025f9dd9aa9c64aacc50cd1bd9db8d8b51ccc4cb97866b9d72b
+  languageName: node
+  linkType: hard
+
+"postcss-calc@npm:^8.2.3":
   version: 8.2.4
   resolution: "postcss-calc@npm:8.2.4"
   dependencies:
