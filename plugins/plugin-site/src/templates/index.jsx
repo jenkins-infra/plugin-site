@@ -1,6 +1,5 @@
 import React from 'react';
 import {navigate} from 'gatsby';
-import querystring from 'querystring';
 
 import Layout from '../layout';
 
@@ -16,7 +15,7 @@ function IndexPage() {
     const [query, setQuery] = React.useState('');
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        navigate(`/ui/search?${querystring.stringify({query})}`);
+        navigate(`/ui/search?${new URLSearchParams({query})}`);
     };
     const pageTitle = 'Plugins Index';
     const indexPage = 'plugins/plugin-site/src/templates/index.jsx';
