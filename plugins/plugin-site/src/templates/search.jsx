@@ -114,8 +114,7 @@ function SearchPage({location}) {
 
     // triggered on page load and when internal <Link> clicked, e.g. for label
     React.useEffect(() => {
-        const qs = location.search.replace(/^\?/, '');
-        const parsed = querystring.parse(qs);
+        const parsed = Object.fromEntries(new URLSearchParams(location.search));
         parsed.query = parsed.query || '';
         setData(parsed);
         doSearch(parsed, setResults, categoriesMap);
