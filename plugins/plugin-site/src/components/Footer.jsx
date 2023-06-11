@@ -15,7 +15,7 @@ function Footer() {
             }
           }
         }
-        newly: allJenkinsPlugin(sort: {fields: firstRelease, order: DESC}, limit: 10, filter: {firstRelease: {ne: null}}) {
+        newly: allJenkinsPlugin(sort: {firstRelease: DESC}, limit: 10, filter: {firstRelease: {ne: null}}) {
           edges {
             node {
               title
@@ -24,7 +24,7 @@ function Footer() {
             }
           }
         }
-        updated: allJenkinsPlugin(sort: {fields: releaseTimestamp, order: DESC}, limit: 10, filter: {releaseTimestamp: { ne: null }}) {
+        updated: allJenkinsPlugin(sort: {releaseTimestamp: DESC}, limit: 10, filter: {releaseTimestamp: { ne: null }}) {
           edges {
             node {
               title
@@ -33,7 +33,7 @@ function Footer() {
             }
           }
         }
-        trend: allJenkinsPlugin(sort: {fields: stats___trend, order: DESC}, limit: 10) {
+        trend: allJenkinsPlugin(sort: {stats: {trend: DESC}}, limit: 10) {
           edges {
             node {
               title

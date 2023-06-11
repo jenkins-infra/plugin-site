@@ -47,8 +47,7 @@ export const pageQuery = graphql`
         name: {eq: $name}
       }
       sort: {
-        fields: [dependentTitle]
-        order: ASC
+        dependentTitle: ASC
       }) {
       edges {
         node {
