@@ -47,12 +47,7 @@
         },
         {
             "matchPackageNames": [
-                "p-queue",
                 "husky",
-                "rehype",
-                "rehype-stringify",
-                "unist-util-visit-parents",
-                "unist-util-visit",
                 "reactstrap"
             ],
             "enabled": false

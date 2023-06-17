@@ -70,5 +70,4 @@ function pluginQueries() {
     };
 }
 
-const queries = [pluginQueries()];
-module.exports = queries;
+export default [pluginQueries()];

@@ -1,21 +1,24 @@
 /* eslint-disable no-console */
-const axios = require('axios');
-const path = require('path');
-const crypto = require('crypto');
-const cheerio = require('cheerio');
-const {execSync} = require('child_process');
-const axiosRetry = require('axios-retry');
-const {parse: parseDate} = require('date-fns');
-const PQueue = require('p-queue').default; // NOTE - pinned at p-queue@6.6.2 because 7 requires whole project to be esm
-const {parseStringPromise} = require('xml2js');
+import axios from 'axios';
+import path from 'path';
+import crypto from 'crypto';
+import {load} from 'cheerio';
+import {execSync} from 'child_process';
+import axiosRetry from 'axios-retry';
+import {parse as parseDate} from 'date-fns';
+import PQueue from 'p-queue';
+import {parseStringPromise} from 'xml2js';
+import {createRequire} from 'module';
+const require = createRequire(import.meta.url);
 const CATEGORY_LIST = require('./categories.json');
 
-const unified = require('unified');
-const remarkParse = require('remark-parse');
-const remarkFrontmatter = require('remark-frontmatter');
-const remarkGfm = require('remark-gfm');
-const remarkRehype = require('remark-rehype');
-const rehypeStringify = require('rehype-stringify');
+import unified from 'unified';
+import remarkParse from 'remark-parse';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+import findPackageJson from 'find-package-json';
 
 const API_URL = process.env.JENKINS_IO_API_URL || 'https://plugins.jenkins.io/api';
 
@@ -108,7 +111,7 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
         }
         const data = await requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`});
 
-        const $ = cheerio.load(data.wiki.content);
+        const $ = load(data.wiki.content);
         $('a[id^="user-content"][href^="#"]').remove();
         data.wiki.content = $.html();
 
@@ -182,7 +185,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, c
     };
 };
 
-const fetchPluginData = async ({createNode, createContentDigest, createNodeId, createNodeField, createRemoteFileNode, reporter, firstReleases, stats}) => {
+export const fetchPluginData = async ({createNode, createContentDigest, createNodeId, createNodeField, createRemoteFileNode, reporter, firstReleases, stats}) => {
     const sectionActivity = reporter.activityTimer('fetch plugins info');
     sectionActivity.start();
     const names = [];
@@ -270,7 +273,7 @@ const checkActive = (warning, plugin) => {
     return warning;
 };
 
-const fixGitHubUrl = (url, defaultBranch) => {
+export const fixGitHubUrl = (url, defaultBranch) => {
     const match = url && url.match(/^(https?:\/\/github.com\/[^/]+\/[^/]+)\/(.+)$/);
     if (match && defaultBranch && !match[2].startsWith('tree/')) {
         return `${match[1]}/tree/${defaultBranch}/${match[2]}`;
@@ -326,7 +329,7 @@ const fetchBomDependencies = async (reporter) => {
     return [];
 };
 
-const fetchSuspendedPlugins = async ({updateData, names, createNode}) => {
+export const fetchSuspendedPlugins = async ({updateData, names, createNode}) => {
     const suspendedPromises = [];
     for (const deprecation of Object.keys(updateData.deprecations)) {
         if (!names.includes(deprecation)) {
@@ -346,7 +349,7 @@ const fetchSuspendedPlugins = async ({updateData, names, createNode}) => {
     await Promise.all(suspendedPromises);
 };
 
-const processCategoryData = async ({createNode, reporter}) => {
+export const processCategoryData = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('process categories');
     sectionActivity.start();
     for (const category of CATEGORY_LIST) {
@@ -374,7 +377,7 @@ const getCoreResourceAsTuples = async (resourcePath, delimiter, reporter) => {
     return content.split('\n').filter(row => row.length && !row.startsWith('#')).map(parseLine);
 };
 
-const fetchLabelData = async ({createNode, reporter}) => {
+export const fetchLabelData = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch labels info');
     sectionActivity.start();
     const messages = await getCoreResourceAsTuples('hudson/model/Messages.properties', '=', reporter);
@@ -400,7 +403,7 @@ const fetchLabelData = async ({createNode, reporter}) => {
     sectionActivity.end();
 };
 
-const fetchSiteInfo = async ({createNode, reporter}) => {
+export const fetchSiteInfo = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin api info');
     sectionActivity.start();
     const url = `${API_URL}/info`;
@@ -412,7 +415,7 @@ const fetchSiteInfo = async ({createNode, reporter}) => {
         },
         website: {
             commit: execSync('git rev-parse HEAD').toString().trim(),
-            version: require('find-package-json')().next().value.version,
+            version: findPackageJson().next().value.version,
         },
         id: 'pluginSiteInfo',
         parent: null,
@@ -425,7 +428,7 @@ const fetchSiteInfo = async ({createNode, reporter}) => {
     sectionActivity.end();
 };
 
-const fetchStats = async ({reporter, stats}) => {
+export const fetchStats = async ({reporter, stats}) => {
     const timeSpan = 12;
     const totalUrl = 'https://stats.jenkins.io/jenkins-stats/svg/total-jenkins.csv';
     const totalInstalls = (await requestGET({url: totalUrl, reporter})).trim().split('\n');
@@ -457,7 +460,7 @@ const csvParse = (row) => {
     return row.split(',').map(s => s ? JSON.parse(s) : s).map(s => isNaN(parseInt(s)) ? s : parseInt(s));
 };
 
-const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
+export const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin versions');
     sectionActivity.start();
     const url = 'https://updates.jenkins.io/plugin-versions.json';
@@ -498,7 +501,7 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
     sectionActivity.end();
 };
 
-const fetchPluginHealthScore = async ({createNode, reporter}) => {
+export const fetchPluginHealthScore = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin health score');
     sectionActivity.start();
     const url = 'https://plugin-health.jenkins.io/api/scores';
@@ -520,17 +523,4 @@ const fetchPluginHealthScore = async ({createNode, reporter}) => {
         });
     }
     sectionActivity.end();
-};
-
-module.exports = {
-    fetchSiteInfo,
-    fetchLabelData,
-    processCategoryData,
-    fetchPluginData,
-    fetchPluginVersions,
-    fetchPluginHealthScore,
-    fixGitHubUrl,
-    fetchStats,
-    getPluginContent,
-    requestGET
 };

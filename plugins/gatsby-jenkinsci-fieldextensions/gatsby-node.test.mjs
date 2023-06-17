@@ -2,7 +2,8 @@
  * @jest-environment node
  */
 
-const {createSchemaCustomization} = require('./gatsby-node');
+import {createSchemaCustomization} from './gatsby-node.mjs';
+import {jest, describe, beforeAll, expect, it} from '@jest/globals';
 
 describe('gatsby-node', () => {
     describe('createSchemaCustomization', () => {

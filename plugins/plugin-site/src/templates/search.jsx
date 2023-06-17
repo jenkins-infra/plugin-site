@@ -4,7 +4,7 @@ import {navigate, useStaticQuery, graphql} from 'gatsby';
 import algoliasearch from 'algoliasearch/lite';
 
 import Layout from '../layout';
-import forceArray from '../utils/forceArray';
+import forceArray from '../utils/forceArray.mjs';
 import useFilterHooks from '../components/FiltersHooks';
 import SEO from '../components/SEO';
 import Footer from '../components/Footer';

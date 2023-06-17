@@ -30,9 +30,5 @@
             "eslint --fix"
         ]
     },
-    "resolutions": {
-        "lint-staged/supports-color": "^8",
-        "supports-color": "^8"
-    },
     "packageManager": "yarn@3.6.0"
 }
