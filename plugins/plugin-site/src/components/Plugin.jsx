@@ -6,7 +6,7 @@ import Icon from '../components/Icon';
 import PluginLabels from '../components/PluginLabels';
 import PluginLastReleased from '../components/PluginLastReleased';
 import PluginDevelopers from '../components/PluginDevelopers';
-import PluginHealthScore from '../components/PluginHealthScore';
+import PluginHealthScoreProgressBar from './PluginHealthScoreProgressBar';
 
 
 function Developers({developers}) {
@@ -51,7 +51,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
                 <Developers developers={developers} />
             </div>
             <div className="Plugin--HealthScoreContainer">
-                <PluginHealthScore healthScore={healthScore} name={name}/>
+                <PluginHealthScoreProgressBar healthScore={healthScore} name={name}/>
             </div>
         </div>
     );

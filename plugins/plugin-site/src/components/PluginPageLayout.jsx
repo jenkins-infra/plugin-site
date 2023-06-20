@@ -35,6 +35,7 @@ function PluginPageLayout({plugin, children}) {
         {id: 'releases', to: `/${plugin.name}/releases/`, label: 'Releases'},
         {id: 'issues', to: `/${plugin.name}/issues/`, label: 'Issues'},
         {id: 'dependencies', to: `/${plugin.name}/dependencies/`, label: 'Dependencies'},
+        {id: 'health-score', to: `/${plugin.name}/health-score/`, label: 'Health Score'},
     ];
 
     const [isShowInstructions, setShowInstructions] = React.useState(false);

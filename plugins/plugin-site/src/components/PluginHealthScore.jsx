@@ -1,67 +1,13 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
-import {Progress, Tooltip} from 'reactstrap';
+import React from 'react';
 
-function PluginHealthScore({healthScore, name}) {
-    if (!healthScore) {
-        return null;
-    }
-    
-    const score = healthScore.value || 0;
-    const color =
-    score > 80 ? 'success' : score > 60 ? 'warning' : 'danger';
-
-    const tooltipId = `tooltip-${name}`;
-    const [tooltipOpen, setTooltipOpen] = useState(false);
-    const toggle = () => setTooltipOpen(!tooltipOpen);
+function PluginHealthScore() {
     return (
-        <>
-            <div>
-                <div>
-                    Health Score
-                    <a
-                        href={`https://plugin-health.jenkins.io/scores/${name}`}
-                        id={tooltipId}
-                        style={{marginLeft: '5px'}}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            setTooltipOpen(!tooltipOpen);
-                        }}
-                    >
-                        ?
-                    </a>
-                    <Tooltip
-                        placement="top"
-                        isOpen={tooltipOpen}
-                        autohide={false}
-                        target={tooltipId}
-                        toggle={toggle}
-                        onClick={(e) => {e.stopPropagation();}}
-                    >
-                        View the details about plugin&apos;s
-                        {' '}
-                        <a
-                            href={`https://plugin-health.jenkins.io/scores/${name}`}
-                        >
-                            health score
-                        </a>
-                    </Tooltip>
-                </div>
-                <div>
-                    {score}
-                    /100
-                </div>
-            </div>
-            <Progress value={score} color={color} style={{height: '10px'}} striped/>
-        </>
+        <div id="pluginHealthScore--container" className="container">
+            Hello
+        </div>
     );
 }
 
-PluginHealthScore.propTypes = {
-    healthScore: PropTypes.shape({
-        value: PropTypes.number,
-    }),
-    name: PropTypes.string,
+PluginHealthScore.prototype = {
 };
-
 export default PluginHealthScore;
