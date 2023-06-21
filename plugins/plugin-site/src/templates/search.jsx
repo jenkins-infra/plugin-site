@@ -1,7 +1,4 @@
-
-// import {graphql} from 'gatsby';
 import React from 'react';
-import querystring from 'querystring';
 import PropTypes from 'prop-types';
 import {navigate, useStaticQuery, graphql} from 'gatsby';
 import algoliasearch from 'algoliasearch/lite';
@@ -110,15 +107,14 @@ function SearchPage({location}) {
     const handleOnSubmit = (e) => {
         const newData = {sort, categories, labels, view, page, query};
         e.preventDefault();
-        navigate(`/ui/search?${querystring.stringify(newData)}`);
+        navigate(`/ui/search?${new URLSearchParams(newData)}`);
     };
 
     const searchPage = 'plugins/plugin-site/src/templates/search.jsx';
 
     // triggered on page load and when internal <Link> clicked, e.g. for label
     React.useEffect(() => {
-        const qs = location.search.replace(/^\?/, '');
-        const parsed = querystring.parse(qs);
+        const parsed = Object.fromEntries(new URLSearchParams(location.search));
         parsed.query = parsed.query || '';
         setData(parsed);
         doSearch(parsed, setResults, categoriesMap);

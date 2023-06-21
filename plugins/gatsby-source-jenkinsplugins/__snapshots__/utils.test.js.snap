@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`utils get plugin data for a wiki based plugin 1`] = `
-Array [
-  Object {
+[
+  {
     "baseHref": "https://wiki.jenkins-ci.org/display/JENKINS/",
     "id": "ios-device-connector <<< JenkinsPluginWiki",
-    "internal": Object {
+    "internal": {
       "content": "MISSING",
       "contentDigest": "10d1208b485425756fcc932229386b02",
       "mediaType": "text/pluginhtml",
@@ -14,110 +14,110 @@ Array [
     "name": "ios-device-connector",
     "url": "https://wiki.jenkins-ci.org/display/JENKINS/iOS+Device+Connector+Plugin",
   },
-  Object {
+  {
     "buildDate": 2012-10-10T00:00:00.000Z,
-    "children": Array [],
+    "children": [],
     "defaultBranch": "master",
-    "dependencies": Array [
-      Object {
+    "dependencies": [
+      {
         "implied": true,
         "name": "external-monitor-job",
         "optional": false,
         "title": "External Monitor Job Type",
         "version": "1.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "ldap",
         "optional": false,
         "title": "LDAP",
         "version": "1.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "pam-auth",
         "optional": false,
         "title": "PAM Authentication",
         "version": "1.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "mailer",
         "optional": false,
         "title": "Mailer",
         "version": "1.2",
       },
-      Object {
+      {
         "implied": true,
         "name": "matrix-auth",
         "optional": false,
         "title": "Matrix Authorization Strategy",
         "version": "1.0.2",
       },
-      Object {
+      {
         "implied": true,
         "name": "windows-slaves",
         "optional": false,
         "title": "WMI Windows Agents",
         "version": "1.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "antisamy-markup-formatter",
         "optional": false,
         "title": "OWASP Markup Formatter",
         "version": "1.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "matrix-project",
         "optional": false,
         "title": "Matrix Project",
         "version": "1.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "junit",
         "optional": false,
         "title": "JUnit",
         "version": "1.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "bouncycastle-api",
         "optional": false,
         "title": "bouncycastle API",
         "version": "2.16.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "command-launcher",
         "optional": false,
         "title": "Command Agent Launcher",
         "version": "1.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "jdk-tool",
         "optional": false,
         "title": "Oracle Java SE Development Kit Installer",
         "version": "1.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "jaxb",
         "optional": false,
         "title": "JAXB",
         "version": "2.3.0",
       },
-      Object {
+      {
         "implied": true,
         "name": "trilead-api",
         "optional": false,
         "title": "Trilead API",
         "version": "1.0.4",
       },
-      Object {
+      {
         "implied": true,
         "name": "sshd",
         "optional": false,
@@ -125,7 +125,7 @@ Array [
         "version": "3.0.1",
       },
     ],
-    "developers": Array [],
+    "developers": [],
     "excerpt": "Talks to iOS devices connected to slaves and do stuff.",
     "firstRelease": "1970-01-01T00:00:00.000Z",
     "gav": "org.jenkins-ci.plugins:ios-device-connector:1.2",
@@ -133,18 +133,18 @@ Array [
     "hasExtensions": false,
     "hasPipelineSteps": false,
     "id": "ios-device-connector <<< JenkinsPlugin",
-    "internal": Object {
+    "internal": {
       "contentDigest": "1da1c7c8d56f5351f4d3c618759f7689",
       "type": "JenkinsPlugin",
     },
-    "issueTrackers": Array [
-      Object {
+    "issueTrackers": [
+      {
         "reportUrl": "https://www.jenkins.io/participate/report-issue/redirect/#17020",
         "type": "jira",
         "viewUrl": "https://issues.jenkins.io/issues/?jql=component=17020",
       },
     ],
-    "labels": Array [
+    "labels": [
       "builder",
       "ios",
     ],
@@ -156,62 +156,62 @@ Array [
     "releaseTimestamp": "2012-10-10T17:27:42.00Z",
     "requiredCore": "1.466",
     "scm": "https://github.com/jenkinsci/ios-device-connector-plugin",
-    "securityWarnings": Array [],
+    "securityWarnings": [],
     "sha1": "B2z2wTyA8l5uwz9HqD+xhG9Hjns=",
     "sha256": "Tray3+tyfE6xoTu1Rge9+INkcj5y7Bgw7nPm//saiYw=",
     "size": 1548862,
-    "stats": Object {
+    "stats": {
       "currentInstalls": 269,
-      "installations": Array [
-        Object {
+      "installations": [
+        {
           "timestamp": 1590984000000,
           "total": 349,
         },
-        Object {
+        {
           "timestamp": 1593576000000,
           "total": 348,
         },
-        Object {
+        {
           "timestamp": 1596254400000,
           "total": 341,
         },
-        Object {
+        {
           "timestamp": 1598932800000,
           "total": 347,
         },
-        Object {
+        {
           "timestamp": 1601524800000,
           "total": 318,
         },
-        Object {
+        {
           "timestamp": 1604203200000,
           "total": 325,
         },
-        Object {
+        {
           "timestamp": 1606798800000,
           "total": 312,
         },
-        Object {
+        {
           "timestamp": 1609477200000,
           "total": 301,
         },
-        Object {
+        {
           "timestamp": 1612155600000,
           "total": 297,
         },
-        Object {
+        {
           "timestamp": 1614574800000,
           "total": 303,
         },
-        Object {
+        {
           "timestamp": 1617249600000,
           "total": 290,
         },
-        Object {
+        {
           "timestamp": 1619841600000,
           "total": 275,
         },
-        Object {
+        {
           "timestamp": 1622520000000,
           "total": 269,
         },
@@ -226,13 +226,13 @@ Array [
 `;
 
 exports[`utils get plugin healthScore data 1`] = `
-Array [
-  Object {
-    "children": Array [],
-    "details": Object {
-      "adoption": Object {
-        "components": Object {
-          "up-for-adoption": Object {
+[
+  {
+    "children": [],
+    "details": {
+      "adoption": {
+        "components": {
+          "up-for-adoption": {
             "max": 1,
             "value": 1,
           },
@@ -240,9 +240,9 @@ Array [
         "value": 1,
         "weight": 0.8,
       },
-      "deprecation": Object {
-        "components": Object {
-          "deprecation": Object {
+      "deprecation": {
+        "components": {
+          "deprecation": {
             "max": 1,
             "value": 1,
           },
@@ -250,25 +250,25 @@ Array [
         "value": 1,
         "weight": 0.8,
       },
-      "repository-configuration": Object {
-        "components": Object {
-          "dependabot": Object {
+      "repository-configuration": {
+        "components": {
+          "dependabot": {
             "max": 0.15,
             "value": 0.15,
           },
-          "dependabot-pull-requests": Object {
+          "dependabot-pull-requests": {
             "max": -0.15,
             "value": 0,
           },
-          "documentation-migration": Object {
+          "documentation-migration": {
             "max": 0.15,
             "value": 0.15,
           },
-          "jenkinsfile": Object {
+          "jenkinsfile": {
             "max": 0.65,
             "value": 0.65,
           },
-          "jep-229": Object {
+          "jep-229": {
             "max": 0.05,
             "value": 0.05,
           },
@@ -276,9 +276,9 @@ Array [
         "value": 0.85,
         "weight": 0.5,
       },
-      "security": Object {
-        "components": Object {
-          "security": Object {
+      "security": {
+        "components": {
+          "security": {
             "max": 1,
             "value": 1,
           },
@@ -286,9 +286,9 @@ Array [
         "value": 1,
         "weight": 1,
       },
-      "update-center-plugin-publication": Object {
-        "components": Object {
-          "update-center-plugin-publication-probe": Object {
+      "update-center-plugin-publication": {
+        "components": {
+          "update-center-plugin-publication-probe": {
             "max": 1,
             "value": 1,
           },
@@ -298,7 +298,7 @@ Array [
       },
     },
     "id": "aws-java-sdk-sns",
-    "internal": Object {
+    "internal": {
       "contentDigest": "f789c60332b91b320525aea3639a7c73",
       "type": "JenkinsPluginHealthScore",
     },

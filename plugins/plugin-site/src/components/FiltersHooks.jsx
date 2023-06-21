@@ -1,5 +1,4 @@
 import React from 'react';
-import querystring from 'querystring';
 import {navigate} from 'gatsby';
 import ucFirst from '../utils/ucfirst';
 
@@ -39,7 +38,7 @@ function useFilterHooks() {
             if (key != 'page') {
                 newData.page = 1;
             }
-            navigate(`/ui/search?${querystring.stringify({...newData})}`);
+            navigate(`/ui/search?${new URLSearchParams({...newData})}`);
             ret.setData(newData);
         };
     });

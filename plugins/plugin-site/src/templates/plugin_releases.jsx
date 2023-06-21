@@ -44,7 +44,9 @@ export const pageQuery = graphql`
       ...JenkinsPluginFragment
     }
 
-    versions: allJenkinsPluginVersion(filter: {name: {eq: $name}}, sort: {fields: machineVersion, order: DESC}) {
+    versions: allJenkinsPluginVersion(
+       filter: {name: {eq: $name}},
+       sort: {machineVersion: DESC}) {
       edges {
         node {
           releaseTimestamp

@@ -15,10 +15,10 @@
     ],
     "version": "0.0.1",
     "devDependencies": {
-        "@babel/eslint-parser": "7.21.3",
-        "@babel/eslint-plugin": "7.19.1",
-        "@babel/plugin-proposal-decorators": "7.21.0",
-        "eslint": "8.39.0",
+        "@babel/eslint-parser": "7.22.5",
+        "@babel/eslint-plugin": "7.22.5",
+        "@babel/plugin-proposal-decorators": "7.22.5",
+        "eslint": "8.42.0",
         "eslint-config-google": "0.14.0",
         "eslint-plugin-filenames": "latest",
         "eslint-plugin-react": "latest",
@@ -34,5 +34,5 @@
         "lint-staged/supports-color": "^8",
         "supports-color": "^8"
     },
-    "packageManager": "yarn@3.5.0"
+    "packageManager": "yarn@3.6.0"
 }
