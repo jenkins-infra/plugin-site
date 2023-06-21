@@ -1,13 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function PluginHealthScore() {
+function PluginHealthScore(healthScore) {
     return (
         <div id="pluginHealthScore--container" className="container">
-            Hello
+            <pre>{JSON.stringify(healthScore, null, 2)}</pre>
         </div>
     );
 }
 
-PluginHealthScore.prototype = {
+PluginHealthScore.propTypes = {
+    healthScore: {
+        value: PropTypes.number.isRequired,
+        details: PropTypes.shape({}).isRequired
+    }
 };
 export default PluginHealthScore;

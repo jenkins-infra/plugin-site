@@ -6,10 +6,10 @@ import {PropTypesJenkinsPlugin} from '../proptypes';
 import PluginPageLayout from '../components/PluginPageLayout';
 import PluginHealthScore from '../components/PluginHealthScore';
 
-const TemplatePluginHealthScore = ({data: {jenkinsPlugin: plugin}}) => {
+const TemplatePluginHealthScore = ({data: {jenkinsPlugin: plugin, healthScore}}) => {
     return (
         <PluginPageLayout plugin={plugin}>
-            <PluginHealthScore />
+            <PluginHealthScore healthScore={healthScore}/>
         </PluginPageLayout>
     );
 };
@@ -18,7 +18,9 @@ TemplatePluginHealthScore.displayName = 'PluginPage';
 TemplatePluginHealthScore.propTypes = {
     data: PropTypes.shape({
         jenkinsPlugin: PropTypesJenkinsPlugin.isRequired,
-    }).isRequired
+        healthScore: PropTypes.shape({
+        }).isRequired
+    })
 };
 
 /* eslint no-undef: "off" */
@@ -28,12 +30,9 @@ export const pageQuery = graphql`
             ...JenkinsPluginFragment
         }
 
-        health: allJenkinsPluginVersion(filter: {name: {eq: $name}}) {
-            edges {
-                node {
-                    id
-                    name
-                }
+        healthScore: allJenkinsPluginHealthScore(filter: {name: {eq: $name}}) {
+            nodes {
+                id
             }
         }
     }
