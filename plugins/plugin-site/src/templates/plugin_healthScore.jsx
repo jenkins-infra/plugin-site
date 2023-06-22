@@ -14,7 +14,7 @@ const TemplatePluginHealthScore = ({data: {jenkinsPlugin: plugin, healthScore}})
     );
 };
 
-TemplatePluginHealthScore.displayName = 'PluginPage';
+TemplatePluginHealthScore.displayName = 'TemplatePluginHealthScore';
 TemplatePluginHealthScore.propTypes = {
     data: PropTypes.shape({
         jenkinsPlugin: PropTypesJenkinsPlugin.isRequired,
