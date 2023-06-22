@@ -53,7 +53,7 @@ async function createPluginPages({graphql, createPage}) {
             }
         });
         createPage({
-            path: `/${edge.node.name.trim()}/health-score/`,
+            path: `/${edge.node.name.trim()}/healthscore/`,
             component: templatesPluginHealthScore,
             context: {
                 name: edge.node.name.trim()
