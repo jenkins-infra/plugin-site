@@ -501,12 +501,13 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
 const fetchPluginHealthScore = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin health score');
     sectionActivity.start();
-    const url = 'https://plugin-health.jenkins.io/api/scores';
-    const json = await requestGET({url, reporter});
-    for (const pluginName of Object.keys(json.plugins)) {
-        const data = json.plugins[pluginName];
+    const url = 'http://localhost:8080/api/scores';
+    const {plugins, statistics} = await requestGET({url, reporter});
+    for (const pluginName of Object.keys(plugins)) {
+        const {value, details} = plugins[pluginName];
         createNode({
-            ...data,
+            value,
+            details,
             id: pluginName,
             parent: null,
             children: [],
@@ -519,6 +520,21 @@ const fetchPluginHealthScore = async ({createNode, reporter}) => {
             }
         });
     }
+
+    createNode({
+        ...statistics,
+        id: 'pluginHealthStatistics',
+        name: 'pluginHealthStatistics',
+        parent: null,
+        children: [],
+        internal: {
+            type: 'JenkinsPluginHealthScoreStatistics',
+            contentDigest: crypto
+                .createHash('md5')
+                .update('pluginHealthScoreStatistics')
+                .digest('hex')
+        }
+    });
     sectionActivity.end();
 };
 
