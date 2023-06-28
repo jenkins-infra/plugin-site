@@ -21,11 +21,11 @@ TemplatePluginHealthScore.propTypes = {
         healthScore: PropTypes.shape({
             value: PropTypes.number.isRequired,
             details: PropTypes.arrayOf(PropTypes.shape({
-                components: PropTypes.shape({
+                components: PropTypes.arrayOf(PropTypes.shape({
                     max: PropTypes.number.isRequired,
                     name: PropTypes.string.isRequired,
                     value: PropTypes.number.isRequired,
-                }),
+                })).isRequired,
                 description: PropTypes.string.isRequired,
                 name: PropTypes.string.isRequired,
                 value: PropTypes.number.isRequired,
