@@ -19,6 +19,18 @@ TemplatePluginHealthScore.propTypes = {
     data: PropTypes.shape({
         jenkinsPlugin: PropTypesJenkinsPlugin.isRequired,
         healthScore: PropTypes.shape({
+            value: PropTypes.number.isRequired,
+            details: PropTypes.arrayOf(PropTypes.shape({
+                components: PropTypes.shape({
+                    max: PropTypes.number.isRequired,
+                    name: PropTypes.string.isRequired,
+                    value: PropTypes.number.isRequired,
+                }),
+                description: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+                value: PropTypes.number.isRequired,
+                weight: PropTypes.number.isRequired,
+            }))
         }).isRequired
     })
 };
@@ -30,10 +42,19 @@ export const pageQuery = graphql`
             ...JenkinsPluginFragment
         }
 
-        healthScore: allJenkinsPluginHealthScore(filter: {name: {eq: $name}}) {
-            nodes {
-                id
+        healthScore: jenkinsPluginHealthScore(id: {eq: $name}) {
+            details {
+                components {
+                    max
+                    name
+                    value
+                }
+                description
+                name
+                value
+                weight
             }
+            value
         }
     }
 `;
