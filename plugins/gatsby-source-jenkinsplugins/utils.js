@@ -501,13 +501,24 @@ const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
 const fetchPluginHealthScore = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin health score');
     sectionActivity.start();
-    const url = 'https://plugin-health.jenkins.io/api/scores';
-    const {plugins, statistics} = await requestGET({url, reporter});
+    const baseURL = 'https://plugin-health.jenkins.io/api';
+    const probesDescription = await requestGET({url: `${baseURL}/probes`, reporter});
+    const {plugins, statistics} = await requestGET({url: `${baseURL}/scores`, reporter});
     for (const pluginName of Object.keys(plugins)) {
-        const {value, details} = plugins[pluginName];
+        const {details} = plugins[pluginName];
+        const withDescription = details.map(detail => {
+            const {components} = detail;
+            return {
+                ...detail,
+                components: components.map(component => {
+                    return {...component, description: probesDescription[component.name]};
+                })
+            };
+        });
+
         createNode({
-            value,
-            details,
+            ...plugins[pluginName],
+            details: withDescription,
             id: pluginName,
             parent: null,
             children: [],

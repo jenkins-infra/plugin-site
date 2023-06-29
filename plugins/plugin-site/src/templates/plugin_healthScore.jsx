@@ -48,6 +48,7 @@ export const pageQuery = graphql`
                     max
                     name
                     value
+                    description
                 }
                 description
                 name
