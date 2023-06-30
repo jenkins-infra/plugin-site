@@ -1,0 +1,28 @@
+#pluginHealth--score {
+    width: 256px;
+    height: 256px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #c0c0c0;
+    font-weight: 700;
+}
+
+#pluginHealth--score #pluginHealth--scoreTitle {
+    font-size: 1.5rem;
+}
+
+#pluginHealth--score #pluginHealth--scoreValue {
+    font-size: 2rem;
+}
+
+#pluginHealth--score #pluginHealth--scoreProgress {
+    width: 90%;
+}
+
+#pluginHealth--score #pluginHealth--scoreProgress .progress {
+    border-radius: 0;
+}

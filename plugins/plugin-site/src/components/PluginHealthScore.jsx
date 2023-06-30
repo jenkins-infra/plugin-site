@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Progress} from 'reactstrap';
 
+import './PluginHealthScore.css';
+
 function ScoreComponent({component: {name, description, value, max}}) {
     return (
         <div>
@@ -57,8 +59,14 @@ ScoreDetails.propTypes = {
 
 function PluginHealthScore({healthScore: {value: score, details}}) {
     return (
-        <div id="pluginHealthScore--container" className="container">
-            <div>{score}</div>
+        <div className="container">
+            <div id="pluginHealth--score">
+                <span id="pluginHealth--scoreTitle">Plugin Health Score</span>
+                <span id="pluginHealth--scoreValue">{`${score}%`}</span>
+                <span id="pluginHealth--scoreProgress">
+                    <Progress value={score} />
+                </span>
+            </div>
             <div>
                 {details.sort((d1, d2) => d1.name - d2.name).map((data, idx) => {
                     return (
