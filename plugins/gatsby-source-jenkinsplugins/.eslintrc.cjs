@@ -56,6 +56,7 @@ module.exports = {
         'import/extensions': ['error', 'ignorePackages', {'js': 'never', 'jsx': 'never'}],
         'import/no-unresolved': [2, {
             ignore: [
+                'p-queue', // https://github.com/import-js/eslint-plugin-import/issues/1810
                 '@gatsbyjs/reach-router' // we need to load the one provided by gatsby so they match up and stuff
             ]
         }],
