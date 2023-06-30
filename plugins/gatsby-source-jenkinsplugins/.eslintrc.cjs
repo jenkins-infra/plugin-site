@@ -56,7 +56,6 @@ module.exports = {
         'import/extensions': ['error', 'ignorePackages', {'js': 'never', 'jsx': 'never'}],
         'import/no-unresolved': [2, {
             ignore: [
-                'p-queue',
                 '@gatsbyjs/reach-router' // we need to load the one provided by gatsby so they match up and stuff
             ]
         }],
