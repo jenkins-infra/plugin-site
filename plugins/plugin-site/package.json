@@ -10,7 +10,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "lint": "eslint --ext .js,.jsx .",
+    "lint": "eslint --ext .js,.jsx,.mjs .",
     "stylelint": "stylelint --fix 'src/**/*.js'",
     "test": "jest",
     "test:watch": "yarn test --watch"
@@ -153,9 +153,5 @@
   },
   "optionalDependencies": {
     "fsevents": "^2.3.2"
-  },
-  "resolutions": {
-    "lint-staged/supports-color": "^8",
-    "supports-color": "^8"
   }
 }

@@ -1,12 +1,20 @@
 /**
  * @jest-environment node
  */
-const fs = require('fs');
-const path = require('path');
-const utils = require('./utils');
-const nock = require('nock');
+import fs from 'fs';
+import path, {dirname} from 'path';
+import {
+    fetchPluginData,
+    fetchPluginHealthScore,
+    fixGitHubUrl,
+} from './utils.mjs';
+import nock from 'nock';
+import {jest, describe, beforeEach, it, expect, afterEach} from '@jest/globals';
 
+import {fileURLToPath} from 'url';
+import {createContentDigest} from 'gatsby-core-utils';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const readText = async (fileName) => {const buffer = await fs.promises.readFile(path.join(__dirname, '__mocks__', fileName)); return buffer.toString();};
 
 describe('utils', () => {
@@ -30,15 +38,15 @@ describe('utils', () => {
         nock.cleanAll();
     });
     it('fix GitHub URL: submodule gets expanded', () => {
-        expect(utils.fixGitHubUrl('https://github.com/jenkinsci/blueocean-plugin/blueocean-bitbucket-pipeline', 'master'))
+        expect(fixGitHubUrl('https://github.com/jenkinsci/blueocean-plugin/blueocean-bitbucket-pipeline', 'master'))
             .toBe('https://github.com/jenkinsci/blueocean-plugin/tree/master/blueocean-bitbucket-pipeline');
     });
     it('fix GitHub URL: expanded stays expanded', () => {
-        expect(utils.fixGitHubUrl('https://github.com/jenkinsci/blueocean-plugin/tree/master/blueocean-bitbucket-pipeline', 'master'))
+        expect(fixGitHubUrl('https://github.com/jenkinsci/blueocean-plugin/tree/master/blueocean-bitbucket-pipeline', 'master'))
             .toBe('https://github.com/jenkinsci/blueocean-plugin/tree/master/blueocean-bitbucket-pipeline');
     });
     it('fix GitHub URL: no submodule, keep short', () => {
-        expect(utils.fixGitHubUrl('https://github.com/jenkinsci/junit-plugin', ''))
+        expect(fixGitHubUrl('https://github.com/jenkinsci/junit-plugin', ''))
             .toBe('https://github.com/jenkinsci/junit-plugin');
     });
     it('get plugin data for a wiki based plugin', async () => {
@@ -68,7 +76,6 @@ describe('utils', () => {
             .reply(200, '{"wiki":{"content": "<p>This plugin lists up all the iOS devices connected to the master and all the Jenkins slaves, and provide operations to them.</p>"}}');
 
         const createNode = jest.fn().mockResolvedValue();
-        const createContentDigest = require('gatsby-core-utils').createContentDigest;
         const createNodeId = jest.fn(key => key);
         const firstReleases = {'ios-device-connector': new Date(0)};
         const labelToCategory = {'ios': 'languagesPlatforms', 'builder': 'buildManagement'};
@@ -91,7 +98,7 @@ describe('utils', () => {
                     {'timestamp': 1622520000000, 'total': 269}]
             }
         };
-        await utils.fetchPluginData({createNode, createNodeId, createContentDigest, reporter: _reporter, firstReleases, labelToCategory, stats});
+        await fetchPluginData({createNode, createNodeId, createContentDigest, reporter: _reporter, firstReleases, labelToCategory, stats});
         expect(createNode.mock.calls.filter(call => call[0].name === 'ios-device-connector').map(args => args[0])).toMatchSnapshot();
     });
     it('get plugin healthScore data', async () => {
@@ -100,7 +107,7 @@ describe('utils', () => {
             .reply(200, JSON.parse(await readText('plugin-health-score.json')));
         const createNode = jest.fn().mockResolvedValue();
 
-        await utils.fetchPluginHealthScore({createNode, reporter: _reporter});
+        await fetchPluginHealthScore({createNode, reporter: _reporter});
         expect(createNode.mock.calls.filter(call => call[0].id === 'aws-java-sdk-sns').map(args => args[0])).toMatchSnapshot();
     });
 });

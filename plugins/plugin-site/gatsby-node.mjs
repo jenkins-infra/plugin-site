@@ -1,6 +1,6 @@
 /* eslint-env node */
 /* eslint-disable no-console */
-const path = require('path');
+import path from 'path';
 
 async function createPluginPages({graphql, createPage}) {
     const templatesPluginReleases = path.resolve('src/templates/plugin_releases.jsx');
@@ -81,7 +81,7 @@ async function createSuspendedPluginPages({graphql, createPage}) {
         });
     });
 }
-exports.createPages = async ({graphql, actions: {createPage}}) => {
+export const createPages = async ({graphql, actions: {createPage}}) => {
     const indexPage = path.resolve('src/templates/index.jsx');
     const searchPage = path.resolve('src/templates/search.jsx');
 

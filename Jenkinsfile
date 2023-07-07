@@ -64,6 +64,7 @@ pipeline {
     stage('Lint and Test') {
       environment {
         NODE_ENV = "development"
+        NODE_OPTIONS="--experimental-vm-modules"
       }
       agent {
         docker {
