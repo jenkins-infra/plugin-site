@@ -12,7 +12,7 @@ import {createRequire} from 'module';
 const require = createRequire(import.meta.url);
 const CATEGORY_LIST = require('./categories.json');
 
-import unified from 'unified';
+import {unified} from 'unified';
 import remarkParse from 'remark-parse';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
