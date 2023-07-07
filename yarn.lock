@@ -2745,7 +2745,7 @@ __metadata:
     remark-gfm: ^1.0.0
     remark-parse: ^9.0.0
     remark-rehype: ^8.1.0
-    unified: ^9.2.2
+    unified: ^10.0.0
     xml2js: 0.6.0
   languageName: unknown
   linkType: soft
@@ -20162,7 +20162,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unified@npm:^9.0.0, unified@npm:^9.1.0, unified@npm:^9.2.2":
+"unified@npm:^9.0.0, unified@npm:^9.1.0":
   version: 9.2.2
   resolution: "unified@npm:9.2.2"
   dependencies:
