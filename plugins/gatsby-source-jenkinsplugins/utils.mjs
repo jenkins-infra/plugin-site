@@ -63,15 +63,7 @@ const MARKDOWN_BLOB_RE = /https?:\/\/github.com\/(jenkinsci|jenkins-infra)\/([^/
 const getPluginContent = async ({wiki, pluginName, reporter, createNode, createContentDigest}) => {
     const createWikiNode = async (mediaType, url, content) => {
         if (mediaType === 'text/markdown') {
-            const file = await unified()
-                .use(remarkParse)
-                .use(remarkFrontmatter)
-                .use(remarkGfm)
-                .use(remarkRehype)
-                .use(rehypeStringify)
-                .process(content);
-
-            content = String(file);
+            content = await markdownToHtml(content);
             mediaType = 'text/pluginhtml';
         }
         return createNode({
@@ -120,6 +112,17 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
         reporter.error(`error fetching ${pluginName}`, err);
         return createWikiNode('text/pluginhtml', wiki.url, 'MISSING');
     }
+};
+
+export const markdownToHtml = async (content) => {
+    const file = await unified()
+        .use(remarkParse)
+        .use(remarkFrontmatter)
+        .use(remarkGfm)
+        .use(remarkRehype)
+        .use(rehypeStringify)
+        .process(content);
+    return String(file);
 };
 
 const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, canonicalLabels, documentation, bomDependencies, pipelinePluginIds, pluginExtensionList, firstReleases, createContentDigest, createNodeId, createNodeField, createRemoteFileNode, reporter, plugin}) => {
