@@ -7,6 +7,7 @@ import {
     fetchPluginData,
     fetchPluginHealthScore,
     fixGitHubUrl,
+    markdownToHtml,
 } from './utils.mjs';
 import nock from 'nock';
 import {jest, describe, beforeEach, it, expect, afterEach} from '@jest/globals';
@@ -109,5 +110,9 @@ describe('utils', () => {
 
         await fetchPluginHealthScore({createNode, reporter: _reporter});
         expect(createNode.mock.calls.filter(call => call[0].id === 'aws-java-sdk-sns').map(args => args[0])).toMatchSnapshot();
+    });
+    it ('should convert markdown to html', async () => {
+        const translated = await markdownToHtml(await readText('plugin-doc.md'));
+        expect(translated).toMatchSnapshot();
     });
 });
