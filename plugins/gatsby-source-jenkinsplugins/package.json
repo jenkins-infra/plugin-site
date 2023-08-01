@@ -26,7 +26,7 @@
         "find-package-json": "^1.2.0",
         "gatsby-source-filesystem": "5.11.0",
         "p-queue": "^7.3.4",
-        "rehype-stringify": "^8.0.0",
+        "rehype-stringify": "^9.0.0",
         "remark": "^13.0.0",
         "remark-frontmatter": "^4.0.0",
         "remark-gfm": "^3.0.1",
