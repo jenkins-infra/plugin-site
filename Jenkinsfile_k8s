@@ -35,7 +35,7 @@ spec:
   automountServiceAccountToken: false
   containers:
     - name: "jnlp"
-      image: "jenkinsciinfra/builder:2.2.54@sha256:a688008597b5e33de5eab3e06bc5b61c22cc76a0ebe730461ef9df54f8754be2"
+      image: "jenkinsciinfra/builder:2.2.64@sha256:11b33dd48868b0b4f98e0101cd70a7c29e41ad803c448c016c03fe9606653fcd"
       resources:
         limits: {}
         requests:
