@@ -3636,7 +3636,7 @@ __metadata:
     hast-util-to-html: 9.0.0
     jest: 29.7.0
     rehype: 11.0.0
-    unist-util-visit: ^2.0.3
+    unist-util-visit: ^5.0.0
   languageName: unknown
   linkType: soft
 
