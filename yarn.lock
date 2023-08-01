@@ -3252,7 +3252,7 @@ __metadata:
     stylelint-config-styled-components: 0.1.1
     stylelint-order: 6.0.3
     stylelint-processor-styled-components: 1.10.0
-    stylelint-selector-bem-pattern: 2.1.1
+    stylelint-selector-bem-pattern: 3.0.0
     unified: 10.1.2
     xml2js: 0.6.2
   dependenciesMeta:
@@ -7777,13 +7777,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-functions-list@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "css-functions-list@npm:3.1.0"
-  checksum: 8a7c9d4ae57cb2f01500263e65a21372048d359ca7aa6430a32a736fe2a421decfebe45e579124b9a158ec68aba2eadcd733e568495a7698240d9607d31f681b
-  languageName: node
-  linkType: hard
-
 "css-functions-list@npm:^3.2.0":
   version: 3.2.0
   resolution: "css-functions-list@npm:3.2.0"
@@ -9217,7 +9210,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:27.2.3":
+"eslint-plugin-jest@npm:27.2.3, eslint-plugin-jest@npm:^27.2.2":
   version: 27.2.3
   resolution: "eslint-plugin-jest@npm:27.2.3"
   dependencies:
@@ -14994,7 +14987,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^3.0.3, minimatch@npm:^3.0.4, minimatch@npm:^3.0.5, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
+"minimatch@npm:^3.0.4, minimatch@npm:^3.0.5, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
   version: 3.1.2
   resolution: "minimatch@npm:3.1.2"
   dependencies:
@@ -16285,14 +16278,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-bem-linter@npm:^3.3.0":
-  version: 3.3.0
-  resolution: "postcss-bem-linter@npm:3.3.0"
+"postcss-bem-linter@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "postcss-bem-linter@npm:4.0.0"
   dependencies:
-    minimatch: ^3.0.3
-    postcss: ^7.0.14
+    minimatch: ^3.1.2
     postcss-resolve-nested-selector: ^0.1.1
-  checksum: f1d2e08b96ef1eab539beab3900177d88caf4e48495eaad87cac328c42dff6856e60e9312257198dbe8f9bf8502657f25cfe2f555cf700648d7648c735bb3c1b
+  peerDependencies:
+    postcss: ^8.4.21
+  checksum: 5b12e617a6858573866334232b12a660356a60d159c7ce1383a237bb53f0ff67978e86b2bd0bae21d98a505d8591cba50e9e8a3d8a35d954faabfcbdb55327a9
   languageName: node
   linkType: hard
 
@@ -17156,7 +17150,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^7.0.14, postcss@npm:^7.0.26":
+"postcss@npm:^7.0.26":
   version: 7.0.39
   resolution: "postcss@npm:7.0.39"
   dependencies:
@@ -17166,7 +17160,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.2.15, postcss@npm:^8.2.9, postcss@npm:^8.3.6, postcss@npm:^8.4.21, postcss@npm:^8.4.24":
+"postcss@npm:^8.2.15, postcss@npm:^8.2.9, postcss@npm:^8.4.21, postcss@npm:^8.4.24":
   version: 8.4.25
   resolution: "postcss@npm:8.4.25"
   dependencies:
@@ -19562,19 +19556,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-selector-bem-pattern@npm:2.1.1":
-  version: 2.1.1
-  resolution: "stylelint-selector-bem-pattern@npm:2.1.1"
+"stylelint-selector-bem-pattern@npm:3.0.0":
+  version: 3.0.0
+  resolution: "stylelint-selector-bem-pattern@npm:3.0.0"
   dependencies:
+    eslint-plugin-jest: ^27.2.2
     lodash: ">=4.17.21"
-    postcss: ^8.3.6
-    postcss-bem-linter: ^3.3.0
-    stylelint: ">=13.13.1"
-  checksum: 5549b5c7a34a8db8d622d53c83046fe94a180510f189630b5eda28d7d28316c84da070217ed6c3bd16be4849189cb6b236f08b4c62c9f381efe392dd2acc856d
+    postcss: ^8.4.24
+    postcss-bem-linter: ^4.0.0
+    stylelint: ">=15.9.0"
+  checksum: 58d6ce072d84023bfde833c1fa18dae9b8c7907e5897e3b44373ecbad96e9bfb91ca6bbc219c4e2b810eede211d74f8fcd391e80dbbe682c0347ecd69c5fb86d
   languageName: node
   linkType: hard
 
-"stylelint@npm:15.10.2":
+"stylelint@npm:15.10.2, stylelint@npm:>=15.9.0":
   version: 15.10.2
   resolution: "stylelint@npm:15.10.2"
   dependencies:
@@ -19621,56 +19616,6 @@ __metadata:
   bin:
     stylelint: bin/stylelint.mjs
   checksum: 1a7dc0385bddc604f6633340dd3eb58dfc8860e677576d7ad688a94064140d73fd70ea21038994a9f8884457098ee297ce625bbddd9477cde35faa4bf7aff848
-  languageName: node
-  linkType: hard
-
-"stylelint@npm:>=13.13.1":
-  version: 15.10.1
-  resolution: "stylelint@npm:15.10.1"
-  dependencies:
-    "@csstools/css-parser-algorithms": ^2.3.0
-    "@csstools/css-tokenizer": ^2.1.1
-    "@csstools/media-query-list-parser": ^2.1.2
-    "@csstools/selector-specificity": ^3.0.0
-    balanced-match: ^2.0.0
-    colord: ^2.9.3
-    cosmiconfig: ^8.2.0
-    css-functions-list: ^3.1.0
-    css-tree: ^2.3.1
-    debug: ^4.3.4
-    fast-glob: ^3.3.0
-    fastest-levenshtein: ^1.0.16
-    file-entry-cache: ^6.0.1
-    global-modules: ^2.0.0
-    globby: ^11.1.0
-    globjoin: ^0.1.4
-    html-tags: ^3.3.1
-    ignore: ^5.2.4
-    import-lazy: ^4.0.0
-    imurmurhash: ^0.1.4
-    is-plain-object: ^5.0.0
-    known-css-properties: ^0.27.0
-    mathml-tag-names: ^2.1.3
-    meow: ^10.1.5
-    micromatch: ^4.0.5
-    normalize-path: ^3.0.0
-    picocolors: ^1.0.0
-    postcss: ^8.4.24
-    postcss-resolve-nested-selector: ^0.1.1
-    postcss-safe-parser: ^6.0.0
-    postcss-selector-parser: ^6.0.13
-    postcss-value-parser: ^4.2.0
-    resolve-from: ^5.0.0
-    string-width: ^4.2.3
-    strip-ansi: ^6.0.1
-    style-search: ^0.1.0
-    supports-hyperlinks: ^3.0.0
-    svg-tags: ^1.0.0
-    table: ^6.8.1
-    write-file-atomic: ^5.0.1
-  bin:
-    stylelint: bin/stylelint.mjs
-  checksum: 8eeae81fe4ed2dfc580d7c401806dbb058c14631abfafd0821db32f1e649aee62e3d39dda3462c6122826df91bd9799409be926e91b55b007622f51e44eb94c1
   languageName: node
   linkType: hard
 
