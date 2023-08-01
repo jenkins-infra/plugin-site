@@ -3650,7 +3650,7 @@ __metadata:
     hast-util-to-html: 9.0.0
     jest: 29.7.0
     rehype: 11.0.0
-    unist-util-visit-parents: ^3.0.0
+    unist-util-visit-parents: ^6.0.0
   languageName: unknown
   linkType: soft
 
@@ -5547,7 +5547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/unist@npm:*":
+"@types/unist@npm:*, @types/unist@npm:^3.0.0":
   version: 3.0.0
   resolution: "@types/unist@npm:3.0.0"
   checksum: e9d21a8fb5e332be0acef29192d82632875b2ef3e700f1bc64fdfc1520189542de85c3d4f3bcfbc2f4afdb210f4c23f68061f3fbf10744e920d4f18430d19f49
