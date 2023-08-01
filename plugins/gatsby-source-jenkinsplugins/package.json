@@ -33,7 +33,7 @@
         "remark-parse": "^10.0.2",
         "remark-rehype": "^10.0.0",
         "unified": "^10.0.0",
-        "xml2js": "0.6.0"
+        "xml2js": "0.6.2"
     },
     "devDependencies": {
         "@babel/preset-env": "7.22.7",
