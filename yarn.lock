@@ -2979,7 +2979,7 @@ __metadata:
     gatsby-cli: 5.10.0
     gatsby-plugin-algolia: 1.0.3
     gatsby-plugin-canonical-urls: 5.10.0
-    gatsby-plugin-extract-schema: 0.2.1
+    gatsby-plugin-extract-schema: 0.2.2
     gatsby-plugin-image: 3.10.0
     gatsby-plugin-matomo: 0.15.2
     gatsby-plugin-nprogress: 5.10.0
@@ -10174,14 +10174,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-extract-schema@npm:0.2.1":
-  version: 0.2.1
-  resolution: "gatsby-plugin-extract-schema@npm:0.2.1"
+"gatsby-plugin-extract-schema@npm:0.2.2":
+  version: 0.2.2
+  resolution: "gatsby-plugin-extract-schema@npm:0.2.2"
   dependencies:
     write: ^2.0.0
   peerDependencies:
-    gatsby: ^2.0.0 || ^3.0.0 || ^4.0.0
-  checksum: 92430ea2a657165ee24746a310d79489728324c1c9ff96b87092521d42e913a5cc98dde43311ef856790c964625a504109af4bdcfc7acefdfdfa007943e507c7
+    gatsby: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
+  checksum: 24573e9fc9345c648beed733c37998df4623092834cb23f13cd24b5336945a8fabef13d080cd66a08ccd545beab65bf3607f4d27dcca479ec4e5f2e70367b45e
   languageName: node
   linkType: hard
 
