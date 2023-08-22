@@ -60,6 +60,7 @@ spec:
     ansiColor('xterm')
     disableConcurrentBuilds(abortPrevious: true)
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
+    retry(3)
   }
 
   stages {
