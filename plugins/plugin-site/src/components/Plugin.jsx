@@ -12,8 +12,8 @@ import PluginHealthScore from '../components/PluginHealthScore';
 function Developers({developers}) {
     return (
         <>
-            <PluginDevelopers developers={developers.slice(0, 2)} />
-            {developers.length > 2 && (
+            <PluginDevelopers developers={developers.length <= 3 ? developers : developers.slice(0, 2)} />
+            {developers.length > 3 && (
                 <div key="more_developers">
                     {`(${developers.length - 2} other contributors)`}
                 </div>
