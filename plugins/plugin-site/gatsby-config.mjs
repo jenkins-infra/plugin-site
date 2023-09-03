@@ -86,7 +86,8 @@ config.plugins = [
                 {
                     resolve: '@halkeye/gatsby-rehype-autolink-headers',
                     options: {
-                        isIconAfterHeader: true
+                        isIconAfterHeader: true,
+                        icon: '<ion-icon name="link-outline"></ion-icon>'
                     }
                 },
                 {

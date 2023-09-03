@@ -52,6 +52,9 @@ function PluginReleases({pluginId, versions}) {
                                     {release.bodyHTML && (<>
                                         <a href={release.htmlURL} title="See the release on GitHub" className="github-icon d-flex"><ion-icon name="logo-github" /></a>
                                     </>)}
+                                    <a className="anchor after" href={`#version_${version.version}`}>
+                                        <ion-icon name="link-outline"></ion-icon>
+                                    </a>
                                 </div>
                                 <div>
                                     <TimeAgo date={new Date(version.releaseTimestamp)} formatter={formatter}/>

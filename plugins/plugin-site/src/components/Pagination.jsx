@@ -7,10 +7,6 @@ function Pagination({limit, page, pages, total, setPage}) {
     const [pagesToDisplay, setPagesToDisplay] = React.useState(5);
     const [marginPagesDisplayed, setMarginPagesDisplayed] = React.useState(2);
 
-    if (total == 0) {
-        return null;
-    }
-
     const start = (limit * (page - 1));
     const end = Math.min(limit * (page), total);
 

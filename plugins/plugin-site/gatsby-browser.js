@@ -9,8 +9,7 @@ exports.onClientEntry = function () {
         window.location.href = `/${window.location.pathname.split('/')[1]}/dependencies/`;
     }
 
-    require.ensure(['@sentry/browser'], (require) => {
-        const Sentry = require('@sentry/browser');
+    import('@sentry/browser').then((Sentry) => {
         Sentry.init({
             dsn: 'https://495b0bd32a5e4a2287c3fe4b061ee24f@sentry.io/1882460',
             environment: process.env.NODE_ENV,
