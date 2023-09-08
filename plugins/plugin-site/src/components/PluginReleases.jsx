@@ -53,7 +53,7 @@ function PluginReleases({pluginId, versions}) {
                                         <a href={release.htmlURL} title="See the release on GitHub" className="github-icon d-flex"><ion-icon name="logo-github" /></a>
                                     </>)}
                                     <a className="anchor after" href={`#version_${version.version}`}>
-                                        <ion-icon name="link-outline"></ion-icon>
+                                        <ion-icon name="link-outline"/>
                                     </a>
                                 </div>
                                 <div>
