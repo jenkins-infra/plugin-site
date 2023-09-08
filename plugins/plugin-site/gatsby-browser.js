@@ -61,6 +61,6 @@ exports.onClientEntry = function () {
         });
         return window.Sentry = Sentry;
     /* eslint-disable no-console */
-    }).catch(e => console.log(e));
+    }).catch(e => console.error(e));
 };
 
