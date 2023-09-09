@@ -51,7 +51,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
                 <Developers developers={developers} />
             </div>
             <div className="Plugin--HealthScoreContainer">
-                <PluginHealthScore healthScore={healthScore} name={name}/>
+                {healthScore && (<PluginHealthScore healthScore={healthScore} name={name}/>)}
             </div>
         </div>
     );

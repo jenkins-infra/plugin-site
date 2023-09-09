@@ -56,6 +56,30 @@ body .showResults #plugin-search-form:before {display:none}
   display:table;                      /* Actually FF 20+ */
 }
 
+h1 .anchor ion-icon,
+h2 .anchor ion-icon,
+h3 .anchor ion-icon,
+h4 .anchor ion-icon,
+h5 .anchor ion-icon,
+h6 .anchor ion-icon {
+    visibility: hidden;
+}
+
+h1:hover .anchor ion-icon,
+h2:hover .anchor ion-icon,
+h3:hover .anchor ion-icon,
+h4:hover .anchor ion-icon,
+h5:hover .anchor ion-icon,
+h6:hover .anchor ion-icon,
+h1 .anchor:focus ion-icon,
+h2 .anchor:focus ion-icon,
+h3 .anchor:focus ion-icon,
+h4 .anchor:focus ion-icon,
+h5 .anchor:focus ion-icon,
+h6 .anchor:focus ion-icon {
+    visibility: visible;
+}
+
 .filters .show-all{
     border: none;
     background: #168BB9;

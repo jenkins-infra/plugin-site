@@ -91,7 +91,7 @@ function LineChart({installations}) {
     const height = 90;
     const length = installations.length;
     installations.slice(length > 12 ? length - 12 : 0, length).forEach((installation) => {
-        labels.push(MONTHS[new Date(installation.timestamp).getUTCMonth()]),
+        labels.push(MONTHS[new Date(installation.timestamp).getUTCMonth()]);
         data.push(installation.total);
     });
     const lineData = chartData(labels, data);
