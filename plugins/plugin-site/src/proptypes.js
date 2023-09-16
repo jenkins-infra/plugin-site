@@ -42,7 +42,8 @@ export const PropTypesJenkinsPlugin = PropTypes.shape({
         currentInstalls: PropTypes.number,
         installations: PropTypes.arrayOf(PropTypes.shape({
             timestamp: PropTypes.number,
-            total: PropTypes.number
+            total: PropTypes.number,
+            percentage: PropTypes.number
         }))
     }).isRequired,
     title: PropTypes.string.isRequired,

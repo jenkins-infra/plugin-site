@@ -6,6 +6,8 @@ export const formatter = buildFormatter(Object.assign(enStrings, {
     'weeks': '%d weeks',
 }));
 
+export const formatPercentage = (pct) => `${pct.toPrecision(pct < 1 ? 2 : 3) }%`;
+
 /* FIXME:
   This isn't the best way to do this, but plugins currently have a lot
   of repetitive goop in their titles.

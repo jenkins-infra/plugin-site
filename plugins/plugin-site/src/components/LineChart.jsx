@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {ResizeObserver as ResizeObserverPolyfill} from '@juggle/resize-observer';
 import {Line} from 'react-chartjs-2';
+import {formatPercentage} from '../commons/helper';
 import {Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Filler, Tooltip} from 'chart.js';
 
 ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Filler, Tooltip);
@@ -22,7 +23,7 @@ const MONTHS = {
 };
 
 const calculateMax = (data) => {
-    return 1.2 * Math.max(...data);
+    return Math.min(100, 1.2 * Math.max(...data));
 };
 
 const chartData = (labels, data) => {
@@ -41,13 +42,20 @@ const chartData = (labels, data) => {
     };
 };
 
-const options = (data) => {
+const formatCount = no => new Intl.NumberFormat('en-US').format(no);
+
+const options = (data, totals) => {
     return {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: context => `${formatPercentage(context.parsed.y)} (total: ${formatCount(totals[context.dataIndex])})`,
+                }
             }
         },
         elements: {
@@ -88,16 +96,18 @@ function LineChart({installations}) {
     }
     const labels = [];
     const data = [];
+    const totals = [];
     const height = 90;
     const length = installations.length;
     installations.slice(length > 12 ? length - 12 : 0, length).forEach((installation) => {
         labels.push(MONTHS[new Date(installation.timestamp).getUTCMonth()]);
-        data.push(installation.total);
+        data.push(installation.percentage);
+        totals.push(installation.total);
     });
     const lineData = chartData(labels, data);
     return (
         <div style={styles.graphContainer}>
-            <Line data={lineData} options={options(data)} height={height}/>
+            <Line data={lineData} options={options(data, totals)} height={height}/>
         </div>
     );
 }
@@ -109,7 +119,8 @@ LineChart.defaultProps = {
 LineChart.propTypes = {
     installations: PropTypes.arrayOf(PropTypes.shape({
         timestamp: PropTypes.number,
-        total: PropTypes.number
+        total: PropTypes.number,
+        percentage: PropTypes.number
     }))
 };
 

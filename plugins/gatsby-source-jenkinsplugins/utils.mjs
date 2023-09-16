@@ -447,15 +447,20 @@ export const fetchStats = async ({reporter, stats}) => {
         for (const pluginRow of pluginInstalls) {
             const [pluginName, installs] = csvParse(pluginRow);
             stats[pluginName] = stats[pluginName] || {installations: []};
-            stats[pluginName].installations[timeSpan - monthsAgo] = {timestamp: timestamp, total: installs};
+            stats[pluginName].installations[timeSpan - monthsAgo] = {
+                timestamp: timestamp,
+                total: installs,
+                percentage: installs * 100 / coreInstalls
+            };
         }
     }
     for (const pluginName of Object.keys(stats)) {
         for (let idx = 0; idx < timeSpan; idx++) {
             stats[pluginName].installations[idx] = stats[pluginName].installations[idx]
-                || {total: 0, timestamp: timestamps[idx]};
+                || {total: 0, timestamp: timestamps[idx], percentage: 0};
         }
         stats[pluginName].currentInstalls = stats[pluginName].installations[timeSpan - 1].total || 0;
+        stats[pluginName].currentInstallPercentage = stats[pluginName].installations[timeSpan - 1].percentage || 0;
     }
 };
 

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {navigate} from 'gatsby';
-import {cleanTitle} from '../commons/helper';
+import {cleanTitle, formatPercentage} from '../commons/helper';
 import Icon from '../components/Icon';
 import PluginLabels from '../components/PluginLabels';
 import PluginLastReleased from '../components/PluginLastReleased';
@@ -36,7 +36,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
             </div>
             <div className="Plugin--InstallsContainer">
                 {'Installs:  '}
-                {stats.currentInstalls}
+                {formatPercentage(stats.currentInstallPercentage)}
             </div>
             <div className="Plugin--VersionContainer">
                 <span className="jc">
@@ -74,7 +74,7 @@ Plugin.propTypes = {
         requiredCore: PropTypes.string,
         sha1: PropTypes.string,
         stats: PropTypes.shape({
-            currentInstalls: PropTypes.number
+            currentInstallPercentage: PropTypes.number
         }).isRequired,
         title: PropTypes.string.isRequired,
         version: PropTypes.string,
