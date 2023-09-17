@@ -36,7 +36,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
             </div>
             <div className="Plugin--InstallsContainer">
                 {'Installs:  '}
-                {formatPercentage(stats.currentInstallPercentage)}
+                {stats.currentInstallPercentage ? formatPercentage(stats.currentInstallPercentage) : '?'}
             </div>
             <div className="Plugin--VersionContainer">
                 <span className="jc">
