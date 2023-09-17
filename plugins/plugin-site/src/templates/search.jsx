@@ -61,7 +61,6 @@ const doSearch = (data, setResults, categoriesMap) => {
             plugins: hits
         });
     }).catch(err => {
-        window?.Sentry?.captureException(err);
         // FIXME alert/console.log/somehow tell user something went wrong
     });
 };
