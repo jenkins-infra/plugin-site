@@ -60,6 +60,8 @@ const doSearch = (data, setResults, categoriesMap) => {
             limit: hitsPerPage,
             plugins: hits
         });
+    }).catch(err => {
+        console.log("Search error " + err)
     })
 };
 
