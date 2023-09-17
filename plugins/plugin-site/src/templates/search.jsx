@@ -60,9 +60,7 @@ const doSearch = (data, setResults, categoriesMap) => {
             limit: hitsPerPage,
             plugins: hits
         });
-    }).catch(err => {
-        // FIXME alert/console.log/somehow tell user something went wrong
-    });
+    })
 };
 
 function SearchPage({location}) {
