@@ -61,8 +61,9 @@ const doSearch = (data, setResults, categoriesMap) => {
             plugins: hits
         });
     }).catch(err => {
-        console.log("Search error " + err)
-    })
+        /* eslint no-console: ["error", { allow: ["log"] }] */
+        console.log('Search error:', err);
+    });
 };
 
 function SearchPage({location}) {
