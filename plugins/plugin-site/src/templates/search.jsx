@@ -61,7 +61,7 @@ const doSearch = (data, setResults, categoriesMap) => {
             plugins: hits
         });
     }).catch(err => {
-        /* eslint no-console: ["error", { allow: ["log"] }] */
+        // eslint-disable-next-line no-console
         console.error('Search error:', err);
     });
 };
