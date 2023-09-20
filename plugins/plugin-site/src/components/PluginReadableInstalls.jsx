@@ -4,11 +4,11 @@ import {formatPercentage} from '../commons/helper';
 
 function PluginReadableInstalls({currentInstalls, percentage}) {
     if (!currentInstalls && currentInstalls !== 0) {
-        return <>No usage data available</>;
+        return <h5>No usage data available</h5>;
     }
-    return (<span title={`Total: ${new Intl.NumberFormat('en-US').format(currentInstalls)}`}>
-        {formatPercentage(percentage)}
-    </span>);
+    return (<h5 title={`Total: ${new Intl.NumberFormat('en-US').format(currentInstalls)}`}>
+        {`Installed on ${formatPercentage(percentage)} of\u{A0}instances`}
+    </h5>);
 }
 
 PluginReadableInstalls.propTypes = {

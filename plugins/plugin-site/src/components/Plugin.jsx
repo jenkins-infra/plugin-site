@@ -25,7 +25,7 @@ function Developers({developers}) {
 Developers.propTypes = PluginDevelopers.propTypes;
 
 function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp, healthScore}}) {
-
+    const installStr = stats.currentInstallPercentage ? formatPercentage(stats.currentInstallPercentage) : '?';
     return (
         <div onClick={() => navigate(`/${name}/`)} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
@@ -35,8 +35,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
                 <h4>{cleanTitle(title)}</h4>
             </div>
             <div className="Plugin--InstallsContainer">
-                {'Installs:  '}
-                {stats.currentInstallPercentage ? formatPercentage(stats.currentInstallPercentage) : '?'}
+                {`Used by ${installStr} of instances`}
             </div>
             <div className="Plugin--VersionContainer">
                 <span className="jc">
