@@ -9,7 +9,7 @@ function pluginQueries() {
             excerpt
             labels
             stats {
-              currentInstalls
+              currentInstallPercentage
               trend
             }
             healthScore {

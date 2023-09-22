@@ -23,7 +23,7 @@ describe('lineChart', () => {
             {'timestamp': 1630454400000, 'total': 4726},
             {'timestamp': 1633046400000, 'total': 4647},
             {'timestamp': 1635724800000, 'total': 4704}
-        ];
+        ].map(inst => ({...inst, 'percentage': inst.total / 10000}));
         const {getByRole} = render(<LineChart installations={installations} />);
 
         expect(getByRole('img')).toBeTruthy();

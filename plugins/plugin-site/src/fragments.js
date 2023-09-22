@@ -17,9 +17,11 @@ export const PluginFragment = graphql`
     }
     stats {
       currentInstalls
+      currentInstallPercentage
       installations {
           timestamp
           total
+          percentage
       }
       trend
     }
