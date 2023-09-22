@@ -143,7 +143,7 @@
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-order": "6.0.3",
     "stylelint-processor-styled-components": "1.10.0",
-    "stylelint-selector-bem-pattern": "3.0.0",
+    "stylelint-selector-bem-pattern": "3.0.1",
     "unified": "10.1.2",
     "xml2js": "0.6.2"
   },
