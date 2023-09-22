@@ -3241,7 +3241,7 @@ __metadata:
     stylelint-config-styled-components: 0.1.1
     stylelint-order: 6.0.3
     stylelint-processor-styled-components: 1.10.0
-    stylelint-selector-bem-pattern: 3.0.0
+    stylelint-selector-bem-pattern: 3.0.1
     unified: 10.1.2
     xml2js: 0.6.2
   dependenciesMeta:
@@ -16363,15 +16363,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-bem-linter@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "postcss-bem-linter@npm:4.0.0"
+"postcss-bem-linter@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "postcss-bem-linter@npm:4.0.1"
   dependencies:
     minimatch: ^3.1.2
     postcss-resolve-nested-selector: ^0.1.1
   peerDependencies:
     postcss: ^8.4.21
-  checksum: 5b12e617a6858573866334232b12a660356a60d159c7ce1383a237bb53f0ff67978e86b2bd0bae21d98a505d8591cba50e9e8a3d8a35d954faabfcbdb55327a9
+  checksum: 8deb9006e77d15d6bba34f65fb799d5991a738e3e1a56bf28c0dae2c42dbb9fbed51c1f89c4c42ae587a481c4de39b62c62607c6bac1249267b98123b357ef61
   languageName: node
   linkType: hard
 
@@ -19634,16 +19634,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-selector-bem-pattern@npm:3.0.0":
-  version: 3.0.0
-  resolution: "stylelint-selector-bem-pattern@npm:3.0.0"
+"stylelint-selector-bem-pattern@npm:3.0.1":
+  version: 3.0.1
+  resolution: "stylelint-selector-bem-pattern@npm:3.0.1"
   dependencies:
     eslint-plugin-jest: ^27.2.2
     lodash: ">=4.17.21"
     postcss: ^8.4.24
-    postcss-bem-linter: ^4.0.0
+    postcss-bem-linter: ^4.0.1
     stylelint: ">=15.9.0"
-  checksum: 58d6ce072d84023bfde833c1fa18dae9b8c7907e5897e3b44373ecbad96e9bfb91ca6bbc219c4e2b810eede211d74f8fcd391e80dbbe682c0347ecd69c5fb86d
+  checksum: 91afe98020723983835de92e7921c4e4e789ac22236d8582ba4f82c07f208a4e07a7eef2f12f2bfd772cff4366d843e9a6757421a96aa868d52dd8668d6b3379
   languageName: node
   linkType: hard
 
