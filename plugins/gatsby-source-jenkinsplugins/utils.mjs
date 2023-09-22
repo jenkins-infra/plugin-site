@@ -104,7 +104,9 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
         const data = await requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`});
 
         const $ = load(data.wiki.content);
-        $('a[id^="user-content"][href^="#"]').remove();
+        $('a.heading-link').each((i, element) => {
+            $(element).replaceWith($(element).text());
+        });
         data.wiki.content = $.html();
 
         return createWikiNode('text/pluginhtml', wiki.url, data.wiki.content);
