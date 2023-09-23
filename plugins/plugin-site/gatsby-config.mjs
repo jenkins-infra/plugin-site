@@ -101,7 +101,7 @@ config.plugins = [
                     resolve: '@jenkins-cd/gatsby-rehype-rewrite-img-src',
                 },
                 {
-                    resolve: '@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap'
+                    resolve: '@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap',
                 }
                 // 'gatsby-rehype-prismjs',
             ],

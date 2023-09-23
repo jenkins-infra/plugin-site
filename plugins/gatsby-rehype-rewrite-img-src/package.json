@@ -1,9 +1,9 @@
 {
     "name": "@jenkins-cd/gatsby-rehype-rewrite-img-src",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "index.mjs",
     "scripts": {
-        "lint": "eslint --ext .js,.jsx .",
+        "lint": "eslint --ext .js,.jsx,.mjs .",
         "build": "exit 0",
         "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
     },
@@ -11,8 +11,9 @@
     "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
     "license": "MIT",
     "description": "",
+    "type": "module",
     "jest": {
-        "globalSetup": "./jest-global-setup.js",
+        "globalSetup": "./jest-global-setup.mjs",
         "transform": {},
         "testMatch": [
             "**/*.test.mjs"

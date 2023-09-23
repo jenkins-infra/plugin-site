@@ -1,10 +1,10 @@
-const visit = require('unist-util-visit-parents');
+import {visitParents} from 'unist-util-visit-parents';
 
-module.exports = ({
+const plugin = ({
     htmlAst,
     compiler: {parseString},
 }) => {
-    visit(htmlAst, {tagName: 'table'}, (node, ancestors) => {
+    visitParents(htmlAst, {tagName: 'table'}, (node, ancestors) => {
         const wrapper = parseString('<div class="table-responsive"></div>').children[0];
         node.properties = {...node.properties || {}};
         const classes = new Set((node.properties.class || '').split(/\s/).filter(s => s.trim()));
@@ -23,3 +23,4 @@ module.exports = ({
 
     return htmlAst;
 };
+export default plugin;

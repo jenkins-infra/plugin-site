@@ -1,7 +1,7 @@
 import Rehype from 'rehype';
 import {toHtml} from 'hast-util-to-html';
 
-import pluginFunc from '../index';
+import pluginFunc from '../index.mjs';
 
 describe('handler', () => {
     const rehype = new Rehype().data('settings', {
