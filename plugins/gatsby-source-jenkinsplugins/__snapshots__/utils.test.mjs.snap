@@ -307,3 +307,58 @@ exports[`utils get plugin healthScore data 1`] = `
   },
 ]
 `;
+
+exports[`utils should convert markdown to html 1`] = `
+"<p>This plugin allows user to configure additional identities in jenkins
+user database for external services, typically SCM repositories.</p>
+<h2>Introduction</h2>
+<p>As SCM plugin parse changelog, they have to map SCM committers IDs with
+jenkins user database. This results in many cases in user duplication,
+until you exactly have the same ID in jenkins and SCM.</p>
+<p>Jenkins 1.480 introduces an extension point to resolve jenkins user
+"canonical" ID when searching for user in Database by id or full name.
+This plugin uses this extension point to let user configure external
+identities as user properties.</p>
+<h2>Usage</h2>
+<p>On my Jenkins instance, I'm authenticated as "nicolas". As I want to use
+the same identity for commits on repositories, I can setup an additional
+identity for my account on googlecode :
+<img src="docs/images/Capture_d%E2%80%99%C3%A9cran_2012-08-21_%C3%A0_15.03.47.png" alt=""></p>
+<p>With this additional identity set, Jenkins will be able to match the
+committer id in svn "<a href="mailto:nicolas.deloof@gmail.com">nicolas.deloof@gmail.com</a>" with the jenkins user
+"nicolas", and link the builds I contributed to in my user view :</p>
+<p><img src="docs/images/Capture_d%E2%80%99%C3%A9cran_2012-08-21_%C3%A0_15.08.01.png" alt=""></p>
+<h2>Realms</h2>
+<p>As for HTTP authentication, a realm can be set to restrict an identity
+to a set of network resources (i.e. domain names in most cases). The
+<em>realm</em> attribute can be used to restrict the sources user ID matching
+will apply. In most cases, this is a substring of the SCM repository
+URL. If not set, additional identity applies to all user lookups,
+whatever the id source is.</p>
+<p>This feature requires SCM plugins to be updated so that they compute
+host information form changelog and pass it to extension as
+<a href="http://javadoc.jenkins-ci.org/hudson/model/User.CanonicalIdResolver.html#REALM">REALM</a> context
+attribute. Those plugins have been updated to support this advanced
+feature :</p>
+<ul>
+<li>TO BE COMPLETED</li>
+</ul>
+<h2>Tips</h2>
+<p>git plugin uses user name, as set in git commit, as committer ID, so you
+don't need an additional identity, just ensure your git client is
+configured with correct user name set :</p>
+<pre><code class="language-syntaxhighlighter-pre">git config --global user.name "Your Full Name Comes Here"
+</code></pre>
+<h2>Changelog</h2>
+<h3>1.1 (Oct 20 2015)</h3>
+<ul>
+<li><a href="https://issues.jenkins-ci.org/browse/JENKINS-28181">JENKINS-28181</a>
+NPE thrown in certain cases.</li>
+<li>Internal class rename.</li>
+<li>Missing descriptor error.</li>
+</ul>
+<h3>1.0</h3>
+<ul>
+<li>initial release</li>
+</ul>"
+`;

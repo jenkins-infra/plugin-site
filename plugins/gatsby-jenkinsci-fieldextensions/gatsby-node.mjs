@@ -1,6 +1,6 @@
-const cheerio = require('cheerio');
+import {load} from 'cheerio';
 
-exports.createSchemaCustomization = ({actions}) => {
+export const createSchemaCustomization = ({actions}) => {
     const {createFieldExtension} = actions;
 
     createFieldExtension({
@@ -12,7 +12,7 @@ exports.createSchemaCustomization = ({actions}) => {
             return {
                 resolve(source) {
                     const field = options.field || 'html';
-                    return cheerio.load(source[field]).text();
+                    return load(source[field]).text();
                 },
             };
         },

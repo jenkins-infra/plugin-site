@@ -15,7 +15,8 @@ describe('component - TemplatePluginReleases', () => {
             developers: [],
             stats: {
                 installations: [],
-                currentInstalls: 15
+                currentInstalls: 15,
+                currentInstallPercentage: 0.15,
             },
             gav: 'something',
             dependencies: [],

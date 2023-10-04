@@ -4,7 +4,7 @@ import {navigate, useStaticQuery, graphql} from 'gatsby';
 import algoliasearch from 'algoliasearch/lite';
 
 import Layout from '../layout';
-import forceArray from '../utils/forceArray';
+import forceArray from '../utils/forceArray.mjs';
 import useFilterHooks from '../components/FiltersHooks';
 import SEO from '../components/SEO';
 import Footer from '../components/Footer';
@@ -61,8 +61,8 @@ const doSearch = (data, setResults, categoriesMap) => {
             plugins: hits
         });
     }).catch(err => {
-        window?.Sentry?.captureException(err);
-        // FIXME alert/console.log/somehow tell user something went wrong
+        // eslint-disable-next-line no-console
+        console.error('Search error:', err);
     });
 };
 

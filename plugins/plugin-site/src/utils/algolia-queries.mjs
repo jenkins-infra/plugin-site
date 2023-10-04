@@ -9,7 +9,7 @@ function pluginQueries() {
             excerpt
             labels
             stats {
-              currentInstalls
+              currentInstallPercentage
               trend
             }
             healthScore {
@@ -70,5 +70,4 @@ function pluginQueries() {
     };
 }
 
-const queries = [pluginQueries()];
-module.exports = queries;
+export default [pluginQueries()];

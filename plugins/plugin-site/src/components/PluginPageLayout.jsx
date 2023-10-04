@@ -79,10 +79,8 @@ function PluginPageLayout({plugin, children}) {
                         {plugin.name}
                     </div>
                     <div className="sidebarSection">
-                        {plugin.stats && <h5>
-                            {'Installs: '}
-                            <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls} />
-                        </h5>}
+                        <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls}
+                            percentage={plugin.stats.currentInstallPercentage} />
                         <div className="chart">
                             <LineChart
                                 installations={plugin.stats.installations}

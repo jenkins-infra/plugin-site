@@ -35,7 +35,7 @@ spec:
   automountServiceAccountToken: false
   containers:
     - name: "jnlp"
-      image: "jenkinsciinfra/builder:2.2.54@sha256:a688008597b5e33de5eab3e06bc5b61c22cc76a0ebe730461ef9df54f8754be2"
+      image: "jenkinsciinfra/builder:2.2.65@sha256:2dfc744aa105675cfb06ddd5d46f399badb17ee813ed5d7bb4723ed36d9f7c3e"
       resources:
         limits: {}
         requests:
@@ -60,6 +60,7 @@ spec:
     ansiColor('xterm')
     disableConcurrentBuilds(abortPrevious: true)
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
+    retry(5)
   }
 
   stages {
@@ -94,7 +95,6 @@ spec:
       environment {
         GATSBY_MATOMO_SITE_ID = "1"
         GATSBY_MATOMO_SITE_URL = "https://jenkins-matomo.do.g4v.dev"
-        GATSBY_SENTRY_DSN = "https://495b0bd32a5e4a2287c3fe4b061ee24f@sentry.io/1882460"
         GATSBY_ALGOLIA_APP_ID = credentials('algolia-plugins-app-id')
         GATSBY_ALGOLIA_SEARCH_KEY = credentials('algolia-plugins-search-key')
         GATSBY_ALGOLIA_WRITE_KEY = credentials('algolia-plugins-write-key')
@@ -114,6 +114,7 @@ spec:
     stage('Lint and Test') {
       environment {
         NODE_ENV = "development"
+        NODE_OPTIONS="--experimental-vm-modules"
       }
       steps {
         sh '''

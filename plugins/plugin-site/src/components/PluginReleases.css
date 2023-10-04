@@ -6,8 +6,20 @@
     margin-bottom: 10px;
 }
 
-#pluginReleases--container .card-body .card-text h2 {
+#pluginReleases--container .card-text h2 {
+    font-size: 1.4rem;
+}
+
+#pluginReleases--container .card-text h3 {
     font-size: 1.2rem;
+}
+
+#pluginReleases--container .card-text h4 {
+    font-size: 1.1rem;
+}
+
+#pluginReleases--container .card-text h5 {
+    font-size: 1.0rem;
 }
 
 #pluginReleases--container .github-icon {

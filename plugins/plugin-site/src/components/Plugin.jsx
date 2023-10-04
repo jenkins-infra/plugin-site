@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {navigate} from 'gatsby';
-import {cleanTitle} from '../commons/helper';
+import {cleanTitle, formatPercentage} from '../commons/helper';
 import Icon from '../components/Icon';
 import PluginLabels from '../components/PluginLabels';
 import PluginLastReleased from '../components/PluginLastReleased';
@@ -12,8 +12,8 @@ import PluginHealthScoreProgressBar from './PluginHealthScoreProgressBar';
 function Developers({developers}) {
     return (
         <>
-            <PluginDevelopers developers={developers.slice(0, 2)} />
-            {developers.length > 2 && (
+            <PluginDevelopers developers={developers.length <= 3 ? developers : developers.slice(0, 2)} />
+            {developers.length > 3 && (
                 <div key="more_developers">
                     {`(${developers.length - 2} other contributors)`}
                 </div>
@@ -25,7 +25,7 @@ function Developers({developers}) {
 Developers.propTypes = PluginDevelopers.propTypes;
 
 function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp, healthScore}}) {
-
+    const installStr = stats.currentInstallPercentage ? formatPercentage(stats.currentInstallPercentage) : '?';
     return (
         <div onClick={() => navigate(`/${name}/`)} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
@@ -35,8 +35,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
                 <h4>{cleanTitle(title)}</h4>
             </div>
             <div className="Plugin--InstallsContainer">
-                {'Installs:  '}
-                {stats.currentInstalls}
+                {`Used by ${installStr} of instances`}
             </div>
             <div className="Plugin--VersionContainer">
                 <span className="jc">
@@ -51,7 +50,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
                 <Developers developers={developers} />
             </div>
             <div className="Plugin--HealthScoreContainer">
-                <PluginHealthScoreProgressBar healthScore={healthScore} name={name}/>
+                {healthScore && (<PluginHealthScoreProgressBar healthScore={healthScore} name={name}/>)}
             </div>
         </div>
     );
@@ -74,7 +73,7 @@ Plugin.propTypes = {
         requiredCore: PropTypes.string,
         sha1: PropTypes.string,
         stats: PropTypes.shape({
-            currentInstalls: PropTypes.number
+            currentInstallPercentage: PropTypes.number
         }).isRequired,
         title: PropTypes.string.isRequired,
         version: PropTypes.string,

@@ -1,7 +1,12 @@
-/* eslint-disable sort-keys, no-console */
+import dotenv from 'dotenv';
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
+import algoliaQueries from './src/utils/algolia-queries.mjs';
+
 try {
-    require('dotenv').config();
+    dotenv.config();
 } catch (e) {
+/* eslint-disable no-console */
     console.warn('problem loading .env', e);//expected in production
 }
 
@@ -25,7 +30,7 @@ Object.keys(process.env).forEach(key => {
 
 // This is the content of your gatsby-config.js
 // and what you need to provide as schema:
-module.exports = {
+const config = {
     siteMetadata: {
         url: 'https://plugins.jenkins.io/',
         siteUrl: 'https://plugins.jenkins.io/',
@@ -39,13 +44,14 @@ module.exports = {
     }
 };
 
-module.exports.plugins = [
+config.plugins = [
     {
         resolve: '@jenkinsci/gatsby-plugin-jenkins-layout',
         options: {
             siteUrl: 'https://plugins.jenkins.io/',
             githubBranch: 'master',
             githubRepo: 'jenkins-infra/plugin-site',
+            reportAProblemTemplate: '4-bug.yml',
             extraCss: [
                 '@import \'./styles/ubuntu-fonts.css\';',
                 '@import \'./styles/lato-fonts.css\';',
@@ -81,7 +87,8 @@ module.exports.plugins = [
                 {
                     resolve: '@halkeye/gatsby-rehype-autolink-headers',
                     options: {
-                        isIconAfterHeader: true
+                        isIconAfterHeader: true,
+                        icon: '<ion-icon name="link-outline"></ion-icon>'
                     }
                 },
                 {
@@ -137,13 +144,13 @@ module.exports.plugins = [
         options: {
             appId: process.env.GATSBY_ALGOLIA_APP_ID,
             apiKey: process.env.GATSBY_ALGOLIA_WRITE_KEY,
-            queries: require('./src/utils/algolia-queries')
+            queries: algoliaQueries
         },
     } : null,
     {
         resolve: 'gatsby-plugin-canonical-urls',
         options: {
-            siteUrl: module.exports.siteMetadata.siteUrl,
+            siteUrl: config.siteMetadata.siteUrl,
         },
     },
     process.env.GATSBY_MATOMO_SITE_ID && process.env.GATSBY_MATOMO_SITE_URL ? {
@@ -151,14 +158,16 @@ module.exports.plugins = [
         options: {
             siteId: process.env.GATSBY_MATOMO_SITE_ID,
             matomoUrl: process.env.GATSBY_MATOMO_SITE_URL,
-            siteUrl: module.exports.siteMetadata.siteUrl.trim('/'),
+            siteUrl: config.siteMetadata.siteUrl.trim('/'),
             respectDnt: false, // firefox has do not track on by default, and all this data is anonymised, so for enable it for now
         }
     } : null,
     {
         resolve: 'gatsby-plugin-extract-schema',
         options: {
-            dest: `${__dirname}/schema.graphql`,
+            dest: `${dirname(fileURLToPath(import.meta.url))}/schema.graphql`,
         },
     },
 ].filter(Boolean);
+
+export default config;

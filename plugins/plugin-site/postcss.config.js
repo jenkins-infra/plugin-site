@@ -1,7 +1,6 @@
 module.exports = () => ({
     plugins: [
         require('postcss-import')({}), // Add support for sass-like '@import'
-        require('postcss-extend')(), // Add support for sass-like '@extend'
         require('postcss-url')(),
         require('postcss-css-variables')(),
         require('postcss-calc')(),

@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import {Progress, Tooltip} from 'reactstrap';
 
 function PluginHealthScoreProgressBar({healthScore, name}) {
-    if (!healthScore) {
-        return null;
-    }
-    
     const score = healthScore.value || 0;
     const color =
     score > 80 ? 'success' : score > 60 ? 'warning' : 'danger';
