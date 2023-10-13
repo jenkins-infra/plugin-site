@@ -25,10 +25,10 @@ pipeline {
       }
     }
 
-    stage('NPM Install') {
+    stage('Yarn Install') {
       agent {
         docker {
-          image 'node:18.15.0'
+          image 'node:20.8.0'
           reuseNode true
         }
       }
@@ -40,7 +40,7 @@ pipeline {
     stage('Build Production') {
       agent {
         docker {
-          image 'node:18.15.0'
+          image 'node:20.8.0'
           reuseNode true
         }
       }
@@ -52,7 +52,7 @@ pipeline {
     stage('Check build') {
       agent {
         docker {
-          image 'node:18.15.0'
+          image 'node:20.8.0'
           reuseNode true
         }
       }
@@ -68,7 +68,7 @@ pipeline {
       }
       agent {
         docker {
-          image 'node:18.15.0'
+          image 'node:20.8.0'
           reuseNode true
         }
       }

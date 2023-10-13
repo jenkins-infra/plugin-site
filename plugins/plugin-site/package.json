@@ -30,7 +30,7 @@
     "gatsby"
   ],
   "engines": {
-    "node": ">= 18.15.0"
+    "node": ">= 20.8.0"
   },
   "author": "Michael McCaskill <https://github.com/michaelmccaskill>",
   "contributors": [

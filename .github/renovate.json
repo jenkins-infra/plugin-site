@@ -39,7 +39,7 @@
                 "enabled": true
             },
             "separateMultipleMajor": true,
-            "allowedVersions": "^18 || ^20"
+            "allowedVersions": "^20"
         },
         {
             "extends": "monorepo:remark",
