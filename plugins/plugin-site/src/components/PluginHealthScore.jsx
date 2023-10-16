@@ -4,13 +4,12 @@ import {Progress} from 'reactstrap';
 
 import './PluginHealthScore.css';
 
-function ScoreComponent({component: {name, description, value, max}}) {
+function ScoreComponent({component: {name, value}}) {
     return (
         <div>
             <div>{name}</div>
-            <div>{description}</div>
             <div>
-                <Progress value={value} max={max}/>
+                <Progress value={value}/>
             </div>
         </div>
     );
@@ -20,16 +19,15 @@ ScoreComponent.propTypes = {
     component: PropTypes.shape({
         name: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired,
-        max: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
+        weight: PropTypes.number.isRequired,
+        reasons: PropTypes.arrayOf(PropTypes.string),
     }).isRequired
 };
 
-function ScoreDetails({data: {name, components, value, weight, description}}) {
+function ScoreDetail({data: {name, components, value, weight}}) {
     return (
         <div>
             <h3>{name}</h3>
-            <p>{description}</p>
             <p>
                 This plugin scored a value of
                 <strong>{` ${value} `}</strong>
@@ -47,13 +45,12 @@ function ScoreDetails({data: {name, components, value, weight, description}}) {
     );
 }
 
-ScoreDetails.propTypes = {
+ScoreDetail.propTypes = {
     data: PropTypes.shape({
         name: PropTypes.string.isRequired,
         components: PropTypes.arrayOf(ScoreComponent.propTypes.component).isRequired,
         value: PropTypes.number.isRequired,
         weight: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
     }),
 };
 
@@ -70,7 +67,7 @@ function PluginHealthScore({healthScore: {value: score, details}}) {
             <div>
                 {details.sort((d1, d2) => d1.name - d2.name).map((data, idx) => {
                     return (
-                        <ScoreDetails key={idx} data={data}/>
+                        <ScoreDetail key={idx} data={data}/>
                     );
                 })}
             </div>
@@ -81,9 +78,7 @@ function PluginHealthScore({healthScore: {value: score, details}}) {
 PluginHealthScore.propTypes = {
     healthScore: PropTypes.shape({
         value: PropTypes.number.isRequired,
-        details: PropTypes.arrayOf(
-            ScoreDetails.propTypes.data
-        ).isRequired
+        details: PropTypes.arrayOf(ScoreDetail.propTypes.data).isRequired
     }).isRequired,
 };
 export default PluginHealthScore;

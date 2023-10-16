@@ -515,23 +515,22 @@ export const fetchPluginHealthScore = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin health score');
     sectionActivity.start();
     const baseURL = 'https://plugin-health.jenkins.io/api';
-    const probesDescription = await requestGET({url: `${baseURL}/probes`, reporter});
     const {plugins, statistics} = await requestGET({url: `${baseURL}/scores`, reporter});
     for (const pluginName of Object.keys(plugins)) {
-        const {details} = plugins[pluginName];
-        const withDescription = details.map(detail => {
-            const {components} = detail;
-            return {
-                ...detail,
-                components: components.map(component => {
-                    return {...component, description: probesDescription[component.name]};
-                })
-            };
-        });
+        const {value, details} = plugins[pluginName];
+        const detailsArray = [];
+        for(const categoryName of Object.keys(details)) {
+            detailsArray.push(
+                {
+                    ...details[categoryName],
+                    name: categoryName
+                },
+            )
+        }
 
         createNode({
-            ...plugins[pluginName],
-            details: withDescription,
+            value,
+            details: detailsArray,
             id: pluginName,
             parent: null,
             children: [],

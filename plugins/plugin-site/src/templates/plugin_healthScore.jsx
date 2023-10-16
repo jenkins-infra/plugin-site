@@ -23,10 +23,9 @@ TemplatePluginHealthScore.propTypes = {
             details: PropTypes.arrayOf(PropTypes.shape({
                 components: PropTypes.arrayOf(PropTypes.shape({
                     max: PropTypes.number.isRequired,
-                    name: PropTypes.string.isRequired,
                     value: PropTypes.number.isRequired,
+                    reasons: PropTypes.arrayOf(PropTypes.string).isRequired,
                 })).isRequired,
-                description: PropTypes.string.isRequired,
                 name: PropTypes.string.isRequired,
                 value: PropTypes.number.isRequired,
                 weight: PropTypes.number.isRequired,
@@ -45,12 +44,10 @@ export const pageQuery = graphql`
         healthScore: jenkinsPluginHealthScore(id: {eq: $name}) {
             details {
                 components {
-                    max
-                    name
+                    weight
                     value
-                    description
+                    reasons
                 }
-                description
                 name
                 value
                 weight
