@@ -54,6 +54,12 @@ ScoreDetail.propTypes = {
     }),
 };
 
+function compareString(a, b) {
+    if (a < b) return -1;
+    if (a > b) return 1;
+    return 0;
+}
+
 function PluginHealthScore({healthScore: {value: score, details}}) {
     return (
         <div className="container">
@@ -65,7 +71,7 @@ function PluginHealthScore({healthScore: {value: score, details}}) {
                 </span>
             </div>
             <div>
-                {details.sort((d1, d2) => d1.name - d2.name).map((data, idx) => {
+                {details.sort((d1, d2) => compareString(d1.name, d2.name)).map((data, idx) => {
                     return (
                         <ScoreDetail key={idx} data={data}/>
                     );
