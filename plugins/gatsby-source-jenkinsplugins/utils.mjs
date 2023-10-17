@@ -519,13 +519,13 @@ export const fetchPluginHealthScore = async ({createNode, reporter}) => {
     for (const pluginName of Object.keys(plugins)) {
         const {value, details} = plugins[pluginName];
         const detailsArray = [];
-        for(const categoryName of Object.keys(details)) {
+        for (const categoryName of Object.keys(details)) {
             detailsArray.push(
                 {
                     ...details[categoryName],
                     name: categoryName
                 },
-            )
+            );
         }
 
         createNode({
