@@ -1,44 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Progress} from 'reactstrap';
 
 import './PluginHealthScore.css';
 
-function ScoreComponent({component: {name, value}}) {
+function ScoreValue({value}) {
     return (
         <div>
-            <div>{name}</div>
-            <div>
-                <Progress value={value}/>
+            {`${value}/100`}
+        </div>
+    );
+}
+
+ScoreValue.propTypes = {
+    value: PropTypes.number.isRequired,
+};
+
+function ScoreComponent({component: {value, reasons}}) {
+    return (
+        <div className="pluginHealth--score-component">
+            <div className="pluginHealth--score-component--reasons">
+                {reasons.map((reason, idx) => {
+                    return (
+                        <span key={idx}>{reason}</span>
+                    );
+                })}
             </div>
+            <ScoreValue value={value} />
         </div>
     );
 }
 
 ScoreComponent.propTypes = {
     component: PropTypes.shape({
-        name: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired,
         weight: PropTypes.number.isRequired,
         reasons: PropTypes.arrayOf(PropTypes.string),
     }).isRequired
 };
 
-function ScoreDetail({data: {name, components, value, weight}}) {
+function ScoreDetail({data: {name, components, value}}) {
     return (
-        <div>
-            <h3>{name}</h3>
-            <p>
-                This plugin scored a value of
-                <strong>{` ${value} `}</strong>
-                for this section.
-            </p>
-            <p>
-                This section has a weight of
-                <strong>{` ${weight} `}</strong>
-                on the overall score of the plugin.
-            </p>
-            {components.map((component, idx) => {
+        <div className="pluginHealth--score-section">
+            <div className="pluginHealth--score-section--header">
+                <div className="pluginHealth--score-section--header-title">{name}</div>
+                <ScoreValue value={value} />
+            </div>
+            {components.sort((d1, d2) => d2.weight - d2.weight).map((component, idx) => {
                 return (<ScoreComponent key={idx} component={component} />);
             })}
         </div>
@@ -64,11 +71,13 @@ function PluginHealthScore({healthScore: {value: score, details}}) {
     return (
         <div className="container">
             <div id="pluginHealth--score">
-                <span id="pluginHealth--scoreTitle">Plugin Health Score</span>
-                <span id="pluginHealth--scoreValue">{`${score}%`}</span>
-                <span id="pluginHealth--scoreProgress">
-                    <Progress value={score} />
-                </span>
+                <div>
+                    <div className="pluginHealth--score-title">
+                        <span id="pluginHealth--score-value">{score}</span>
+                        <span id="pluginHealth--score-unit">%</span>
+                    </div>
+                    <span id="pluginHealth--score-label">health score</span>
+                </div>
             </div>
             <div>
                 {details.sort((d1, d2) => compareString(d1.name, d2.name)).map((data, idx) => {
