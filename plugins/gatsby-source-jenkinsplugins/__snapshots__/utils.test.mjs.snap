@@ -229,74 +229,135 @@ exports[`utils get plugin healthScore data 1`] = `
 [
   {
     "children": [],
-    "details": {
-      "adoption": {
-        "components": {
-          "up-for-adoption": {
-            "max": 1,
-            "value": 1,
-          },
-        },
-        "value": 1,
-        "weight": 0.8,
+    "details": [
+      {
+        "name": "security",
+        "value": 100.0,
+        "weight": 1.0,
+        "components": [
+          {
+            "value": 100,
+            "weight": 1.0,
+            "reasons": [
+              "Plugin does not seem to have on-going security advisory."
+            ]
+          }
+        ]
       },
-      "deprecation": {
-        "components": {
-          "deprecation": {
-            "max": 1,
-            "value": 1,
-          },
-        },
-        "value": 1,
+      {
+        "name": "adoption",
+        "value": 100.0,
         "weight": 0.8,
-      },
-      "repository-configuration": {
-        "components": {
-          "dependabot": {
-            "max": 0.15,
-            "value": 0.15,
+        "components": [
+          {
+            "value": 100,
+            "weight": 1.0,
+            "reasons": [
+              "There is less than 6 months between the last release and the last commit."
+            ]
           },
-          "dependabot-pull-requests": {
-            "max": -0.15,
+          {
+            "value": 100,
+            "weight": 1.0,
+            "reasons": [
+              "There is less than 4 years between the last commit and the last release."
+            ]
+          },
+          {
             "value": 0,
+            "weight": 0.0,
+            "reasons": [
+              "No commit in the last 4 years."
+            ]
           },
-          "documentation-migration": {
-            "max": 0.15,
-            "value": 0.15,
+          {
+            "value": 100,
+            "weight": 1.0,
+            "reasons": [
+              "There is less than a year between the last commit and the last release."
+            ]
           },
-          "jenkinsfile": {
-            "max": 0.65,
-            "value": 0.65,
+          {
+            "value": 100,
+            "weight": 1.0,
+            "reasons": [
+              "The plugin is not marked as up for adoption"
+            ]
           },
-          "jep-229": {
-            "max": 0.05,
-            "value": 0.05,
-          },
-        },
-        "value": 0.85,
+          {
+            "value": 100,
+            "weight": 1.0,
+            "reasons": [
+              "There is less than 2 years between the last commit and the last release."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "update-center-plugin-publication",
+        "value": 100.0,
+        "weight": 1.0,
+        "components": [
+          {
+            "value": 100,
+            "weight": 1.0,
+            "reasons": [
+              "The plugin appears in the update-center."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "repository-configuration",
+        "value": 85.0,
         "weight": 0.5,
-      },
-      "security": {
-        "components": {
-          "security": {
-            "max": 1,
-            "value": 1,
+        "components": [
+          {
+            "value": 100,
+            "weight": 15.0,
+            "reasons": [
+              "Documentation is in plugin repository."
+            ]
           },
-        },
-        "value": 1,
-        "weight": 1,
-      },
-      "update-center-plugin-publication": {
-        "components": {
-          "update-center-plugin-publication-probe": {
-            "max": 1,
-            "value": 1,
+          {
+            "value": 100,
+            "weight": 5.0,
+            "reasons": [
+              "JEP-229 is configured on the plugin."
+            ]
           },
-        },
-        "value": 1,
-        "weight": 1,
+          {
+            "value": 100,
+            "weight": 65.0,
+            "reasons": [
+              "Jenkinsfile detected in plugin repository."
+            ]
+          },
+          {
+            "value": 0,
+            "weight": 15.0,
+            "reasons": [
+              "dependabot is configured.",
+              "3 open dependency pull requests"
+            ]
+          }
+        ]
       },
-    },
+      {
+        "name": "deprecation",
+        "value": 100.0,
+        "weight": 0.8,
+        "components": [
+          {
+            "value": 100,
+            "weight": 1.0,
+            "reasons": [
+              "Plugin is not marked as deprecated."
+            ]
+          }
+        ]
+      }
+    ],
     "id": "aws-java-sdk-sns",
     "internal": {
       "contentDigest": "f789c60332b91b320525aea3639a7c73",
