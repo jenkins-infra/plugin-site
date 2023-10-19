@@ -231,132 +231,132 @@ exports[`utils get plugin healthScore data 1`] = `
     "children": [],
     "details": [
       {
+        "components": [
+          {
+            "reasons": [
+              "Plugin does not seem to have on-going security advisory.",
+            ],
+            "value": 100,
+            "weight": 1,
+          },
+        ],
         "name": "security",
         "value": 100,
         "weight": 1,
-        "components": [
-          {
-            "value": 100,
-            "weight": 1,
-            "reasons": [
-              "Plugin does not seem to have on-going security advisory."
-            ]
-          }
-        ]
       },
       {
+        "components": [
+          {
+            "reasons": [
+              "There is less than 6 months between the last release and the last commit.",
+            ],
+            "value": 100,
+            "weight": 1,
+          },
+          {
+            "reasons": [
+              "There is less than 4 years between the last commit and the last release.",
+            ],
+            "value": 100,
+            "weight": 1,
+          },
+          {
+            "reasons": [
+              "No commit in the last 4 years.",
+            ],
+            "value": 0,
+            "weight": 0,
+          },
+          {
+            "reasons": [
+              "There is less than a year between the last commit and the last release.",
+            ],
+            "value": 100,
+            "weight": 1,
+          },
+          {
+            "reasons": [
+              "The plugin is not marked as up for adoption",
+            ],
+            "value": 100,
+            "weight": 1,
+          },
+          {
+            "reasons": [
+              "There is less than 2 years between the last commit and the last release.",
+            ],
+            "value": 100,
+            "weight": 1,
+          },
+        ],
         "name": "adoption",
         "value": 100,
         "weight": 0.8,
-        "components": [
-          {
-            "value": 100,
-            "weight": 1,
-            "reasons": [
-              "There is less than 6 months between the last release and the last commit."
-            ]
-          },
-          {
-            "value": 100,
-            "weight": 1,
-            "reasons": [
-              "There is less than 4 years between the last commit and the last release."
-            ]
-          },
-          {
-            "value": 0,
-            "weight": 0,
-            "reasons": [
-              "No commit in the last 4 years."
-            ]
-          },
-          {
-            "value": 100,
-            "weight": 1,
-            "reasons": [
-              "There is less than a year between the last commit and the last release."
-            ]
-          },
-          {
-            "value": 100,
-            "weight": 1,
-            "reasons": [
-              "The plugin is not marked as up for adoption"
-            ]
-          },
-          {
-            "value": 100,
-            "weight": 1,
-            "reasons": [
-              "There is less than 2 years between the last commit and the last release."
-            ]
-          }
-        ]
       },
       {
+        "components": [
+          {
+            "reasons": [
+              "The plugin appears in the update-center.",
+            ],
+            "value": 100,
+            "weight": 1,
+          },
+        ],
         "name": "update-center-plugin-publication",
         "value": 100,
         "weight": 1,
-        "components": [
-          {
-            "value": 100,
-            "weight": 1,
-            "reasons": [
-              "The plugin appears in the update-center."
-            ]
-          }
-        ]
       },
       {
+        "components": [
+          {
+            "reasons": [
+              "Documentation is in plugin repository.",
+            ],
+            "value": 100,
+            "weight": 15,
+          },
+          {
+            "reasons": [
+              "JEP-229 is configured on the plugin.",
+            ],
+            "value": 100,
+            "weight": 5,
+          },
+          {
+            "reasons": [
+              "Jenkinsfile detected in plugin repository.",
+            ],
+            "value": 100,
+            "weight": 65,
+          },
+          {
+            "reasons": [
+              "dependabot is configured.",
+              "3 open dependency pull requests",
+            ],
+            "value": 0,
+            "weight": 15,
+          },
+        ],
         "name": "repository-configuration",
         "value": 85,
         "weight": 0.5,
-        "components": [
-          {
-            "value": 100,
-            "weight": 15,
-            "reasons": [
-              "Documentation is in plugin repository."
-            ]
-          },
-          {
-            "value": 100,
-            "weight": 5,
-            "reasons": [
-              "JEP-229 is configured on the plugin."
-            ]
-          },
-          {
-            "value": 100,
-            "weight": 65,
-            "reasons": [
-              "Jenkinsfile detected in plugin repository."
-            ]
-          },
-          {
-            "value": 0,
-            "weight": 15,
-            "reasons": [
-              "dependabot is configured.",
-              "3 open dependency pull requests"
-            ]
-          }
-        ]
       },
       {
+        "components": [
+          {
+            "reasons": [
+              "Plugin is not marked as deprecated.",
+            ],
+            "value": 100,
+            "weight": 1,
+          },
+        ],
         "name": "deprecation",
         "value": 100,
         "weight": 0.8,
-        "components": [
-          {
-            "value": 100,
-            "weight": 1,
-            "reasons": [
-              "Plugin is not marked as deprecated."
-            ]
-          }
-        ]
-      }
+      },
     ],
     "id": "aws-java-sdk-sns",
     "internal": {
