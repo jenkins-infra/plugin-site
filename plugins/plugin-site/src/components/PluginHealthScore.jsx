@@ -45,9 +45,11 @@ function ScoreDetail({data: {name, components, value}}) {
                 <div className="pluginHealth--score-section--header-title">{name}</div>
                 <ScoreValue value={value} />
             </div>
-            {components.sort((d1, d2) => d2.weight - d2.weight).map((component, idx) => {
-                return (<ScoreComponent key={idx} component={component} />);
-            })}
+            <div>
+                {components.sort((d1, d2) => d2.weight - d2.weight).map((component, idx) => {
+                    return (<ScoreComponent key={idx} component={component} />);
+                })}
+            </div>
         </div>
     );
 }
