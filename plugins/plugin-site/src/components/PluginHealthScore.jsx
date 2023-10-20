@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ucFirst from '../utils/ucfirst';
 import './PluginHealthScore.css';
 
 function ScoreValue({value}) {
@@ -42,7 +43,9 @@ function ScoreDetail({data: {name, components, value}}) {
     return (
         <div className="pluginHealth--score-section">
             <div className="pluginHealth--score-section--header">
-                <div className="pluginHealth--score-section--header-title">{name}</div>
+                <div className="pluginHealth--score-section--header-title">
+                    {name.split('-').map(ucFirst).join(' ')}
+                </div>
                 <ScoreValue value={value} />
             </div>
             <div>
