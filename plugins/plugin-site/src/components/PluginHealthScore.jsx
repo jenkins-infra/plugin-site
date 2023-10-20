@@ -6,7 +6,7 @@ import './PluginHealthScore.css';
 function ScoreValue({value}) {
     return (
         <div>
-            {`${value}/100`}
+            {`${value}%`}
         </div>
     );
 }
