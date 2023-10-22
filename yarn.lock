@@ -10267,13 +10267,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventemitter3@npm:^4.0.7":
-  version: 4.0.7
-  resolution: "eventemitter3@npm:4.0.7"
-  checksum: 1875311c42fcfe9c707b2712c32664a245629b42bb0a5a84439762dd0fd637fc54d078155ea83c2af9e0323c9ac13687e03cfba79b03af9f40c89b4960099374
-  languageName: node
-  linkType: hard
-
 "eventemitter3@npm:^5.0.1":
   version: 5.0.1
   resolution: "eventemitter3@npm:5.0.1"
@@ -16718,12 +16711,12 @@ __metadata:
   linkType: hard
 
 "p-queue@npm:^7.3.4":
-  version: 7.3.4
-  resolution: "p-queue@npm:7.3.4"
+  version: 7.4.1
+  resolution: "p-queue@npm:7.4.1"
   dependencies:
-    eventemitter3: ^4.0.7
+    eventemitter3: ^5.0.1
     p-timeout: ^5.0.2
-  checksum: a21b8a4dd75f64a4988e4468cc344d1b45132506ddd2c771932d3de446d108ee68713b629e0d3f0809c227bc10eafc613edde6ae741d9f60db89b6031e40921c
+  checksum: 1c6888aa994d399262a9fbdd49c7066f8359732397f7a42ecf03f22875a1d65899797b46413f97e44acc18dddafbcc101eb135c284714c931dbbc83c3967f450
   languageName: node
   linkType: hard
 
