@@ -3333,7 +3333,7 @@ __metadata:
     react-dom: 18.2.0
     react-helmet: 6.1.0
     react-radio-group: 3.0.3
-    react-timeago: 7.1.0
+    react-timeago: 7.2.0
     reactstrap: 8.10.1
     remark: 14.0.2
     remark-frontmatter: 4.0.1
@@ -18079,7 +18079,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-timeago@npm:7.1.0, react-timeago@npm:^7.1.0":
+"react-timeago@npm:7.2.0":
+  version: 7.2.0
+  resolution: "react-timeago@npm:7.2.0"
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 1d6b4df11e7c2964f3a89ac8f9f2bc486afd3491c284f24d53c1497b0361e4b4e224facccd2dea6515ab264ddce99dd47a801f191a562110462f84aacbcb4c7e
+  languageName: node
+  linkType: hard
+
+"react-timeago@npm:^7.1.0":
   version: 7.1.0
   resolution: "react-timeago@npm:7.1.0"
   peerDependencies:
