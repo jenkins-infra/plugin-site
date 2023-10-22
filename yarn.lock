@@ -3293,7 +3293,7 @@ __metadata:
     gatsby-plugin-canonical-urls: 5.11.0
     gatsby-plugin-extract-schema: 0.2.2
     gatsby-plugin-image: 3.11.0
-    gatsby-plugin-matomo: 0.16.1
+    gatsby-plugin-matomo: 0.16.2
     gatsby-plugin-nprogress: 5.11.0
     gatsby-plugin-postcss: 6.11.0
     gatsby-plugin-react-helmet: 6.11.0
@@ -10677,14 +10677,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-matomo@npm:0.16.1":
-  version: 0.16.1
-  resolution: "gatsby-plugin-matomo@npm:0.16.1"
+"gatsby-plugin-matomo@npm:0.16.2":
+  version: 0.16.2
+  resolution: "gatsby-plugin-matomo@npm:0.16.2"
   peerDependencies:
     gatsby: ^4.0.0 || ^5.0.0
     react: ">=17.0.0"
     react-dom: ">=17.0.0"
-  checksum: 13c916c2b854c1a449d9e1c71f52620f6d9f12b3fbfb5734b6995f521e1e530546a8c6dfc1739a8bfdcaad4f14332a5d20527747760c9df83e3b4dc6930378dd
+  checksum: 8d9e99460fde6091b1f6b91f8b0df2b838754ea265b4a2d7d0f557a9cd2e387ba92eafaf4daeabb2bc390a79d4e1d3379bf93911daed1a71519574b534564280
   languageName: node
   linkType: hard
 
