@@ -3316,7 +3316,7 @@ __metadata:
     postcss-css-variables: 0.19.0
     postcss-import: 15.1.0
     postcss-merge-rules: 6.0.1
-    postcss-nesting: 12.0.0
+    postcss-nesting: 12.0.1
     postcss-preset-env: 9.1.0
     postcss-pxtorem: 6.0.0
     postcss-url: 10.1.3
@@ -16979,7 +16979,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:12.0.0, postcss-nesting@npm:^12.0.0":
+"postcss-nesting@npm:12.0.1":
+  version: 12.0.1
+  resolution: "postcss-nesting@npm:12.0.1"
+  dependencies:
+    "@csstools/selector-specificity": ^3.0.0
+    postcss-selector-parser: ^6.0.13
+  peerDependencies:
+    postcss: ^8.4
+  checksum: fa6157fbdc9109b3859cdb925ec8357ea7c9c984110015381a55e63770d1b5aaddaac5f5816a32b9efbb55fbdb87f8187ff7fc2db24331c82b2f74091aa9ba06
+  languageName: node
+  linkType: hard
+
+"postcss-nesting@npm:^12.0.0":
   version: 12.0.0
   resolution: "postcss-nesting@npm:12.0.0"
   dependencies:
