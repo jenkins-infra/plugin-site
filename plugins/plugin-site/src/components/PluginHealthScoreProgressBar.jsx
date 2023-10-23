@@ -16,7 +16,7 @@ function PluginHealthScoreProgressBar({healthScore, name}) {
                 <div>
                     Health Score
                     <a
-                        href={`https://plugin-health.jenkins.io/scores/${name}`}
+                        href={`/${name}/healthscore/`}
                         id={tooltipId}
                         style={{marginLeft: '5px'}}
                         onClick={(e) => {
@@ -37,7 +37,7 @@ function PluginHealthScoreProgressBar({healthScore, name}) {
                         View the details about plugin&apos;s
                         {' '}
                         <a
-                            href={`https://plugin-health.jenkins.io/scores/${name}`}
+                            href={`/${name}/healthscore/`}
                         >
                             health score
                         </a>
