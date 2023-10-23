@@ -45,7 +45,7 @@ function PluginHealthScoreProgressBar({healthScore, name}) {
                 </div>
                 <div>
                     {score}
-                    /100
+                    %
                 </div>
             </div>
             <Progress value={score} color={color} style={{height: '10px'}} striped/>
