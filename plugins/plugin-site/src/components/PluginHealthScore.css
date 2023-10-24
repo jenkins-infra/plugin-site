@@ -1,0 +1,63 @@
+#pluginHealth--score {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px 0 30px 0;
+    line-height: 1;
+}
+
+#pluginHealth--score #pluginHealth--score-value {
+    font-size: 64px;
+}
+
+#pluginHealth--score #pluginHealth--score-unit {
+    font-size: 24px;
+}
+
+#pluginHealth--score #pluginHealth--score-label {
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.pluginHealth--score-section {
+    border-top: 1px solid #c0c0c0;
+    padding: 13px 0;
+}
+
+.pluginHealth--score-section--header {
+    margin-top: .5rem;
+
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 1.5rem;
+
+    display: flex;
+    align-items: center;
+}
+
+.pluginHealth--score-section--header-title {
+    flex-grow: 1;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.pluginHealth--score-section--header-score {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.pluginHealth--score-component {
+    display: flex;
+    line-height: 1.66;
+    margin: 14px 6px 16px 6px;
+}
+.pluginHealth--score-component--reasons {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+}
+.pluginHealth--score-component--reasons span {
+    line-height: 1;
+}
