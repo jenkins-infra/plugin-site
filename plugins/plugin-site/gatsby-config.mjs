@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import {dirname} from 'path';
+import fs from 'fs';
 import {fileURLToPath} from 'url';
 import algoliaQueries from './src/utils/algolia-queries.mjs';
 
@@ -28,6 +29,9 @@ Object.keys(process.env).forEach(key => {
     element[splits.slice(-1)[0]] = process.env[key];
 });
 
+const darkCodeTheme = fs.readFileSync('../../node_modules/github-syntax-dark/lib/github-dark.css', 'utf8');
+const autoCodeTheme = `@media (prefers-color-scheme: dark){${darkCodeTheme}}`;
+fs.writeFileSync('../../node_modules/github-syntax-dark/lib/github-auto.css', autoCodeTheme);
 // This is the content of your gatsby-config.js
 // and what you need to provide as schema:
 const config = {
@@ -58,7 +62,8 @@ config.plugins = [
                 '@import \'./styles/roboto-fonts.css\';',
                 '@import \'./styles/base.css\';',
                 '@import \'./styles/font-icons.css\';',
-                '@import \'github-syntax-light/lib/github-light.css\';'
+                '@import \'github-syntax-light/lib/github-light.css\';',
+                '@import \'github-syntax-dark/lib/github-auto.css\';'
             ],
         },
     },
