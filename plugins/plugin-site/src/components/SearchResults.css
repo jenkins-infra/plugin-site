@@ -1,9 +1,10 @@
 :root {
     --plugin-icon-width: 2.25em;
     --plugin-padding: 0.25em;
+    --search-background: #eae9e8;
 }
 #searchpage #grid-box {
-    background: #eae9e8;
+    background: var(--search-background);
 }
 .SearchResults--GridBox {
     display: flex;
@@ -13,11 +14,11 @@
     margin: 0 2rem 0;
 }
 .SearchResults--ItemBox {
-    background: #fff;
+    background: var(--background);
     border: 0.1rem solid #ccc;
     border-radius: 3px;
     box-sizing: border-box;
-    color: #666;
+    color: var(--bs-secondary);
     display: block;
     flex: 0 0 auto;
     font-size: 0.85rem;
@@ -49,7 +50,7 @@
         color: #666;
     }
     & a, & a:visited {
-        color: #59a; 
+        color: var(--link-color);
     }
     &:hover {
         text-decoration: none;
@@ -81,7 +82,7 @@
 .Plugin--TitleContainer {
     grid-area: title;
     & h4 {
-        color: #000;
+        color: var(--color);
         font-size: 1rem;
         font-weight: normal;
         line-height: 1.1rem;
@@ -99,7 +100,7 @@
     padding: 0;
 }
 .Plugin--VersionContainer {
-    color: #59a;
+    color: var(--link-color);
     font-size: 0.75rem;
     grid-area: version;
     line-height: 1rem;
@@ -117,7 +118,7 @@
     min-height: 1rem;
     overflow: hidden;
     & div {
-        color: #59a;
+        color: var(--link-color);
         display: inline;
         font-size: 0.75rem;
         line-height: 1rem;
@@ -155,7 +156,6 @@
     position: absolute;
     white-space: nowrap;
     & div {
-        color: #59a;
         font-size: 0.75rem;
         line-height: 1rem;
         margin-right: 0.5rem;

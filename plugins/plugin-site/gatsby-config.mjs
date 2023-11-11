@@ -28,10 +28,10 @@ Object.keys(process.env).forEach(key => {
     }
     element[splits.slice(-1)[0]] = process.env[key];
 });
-
-const darkCodeTheme = fs.readFileSync('../../node_modules/github-syntax-dark/lib/github-dark.css', 'utf8');
+const resolvePath = fn => new URL(import.meta.resolve(fn));
+const darkCodeTheme = fs.readFileSync(resolvePath('github-syntax-dark/lib/github-dark.css'), 'utf8');
 const autoCodeTheme = `@media (prefers-color-scheme: dark){${darkCodeTheme}}`;
-fs.writeFileSync('../../node_modules/github-syntax-dark/lib/github-auto.css', autoCodeTheme);
+fs.writeFileSync(resolvePath('github-syntax-dark/lib/github-auto.css'), autoCodeTheme);
 // This is the content of your gatsby-config.js
 // and what you need to provide as schema:
 const config = {
