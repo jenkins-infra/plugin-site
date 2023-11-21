@@ -10,7 +10,7 @@ This is the frontend application driven by data from the Jenkins Update Center.
 
 The application is developed using [React](https://facebook.github.io/react/), [gatsby](https://www.gatsbyjs.org/), and [Webpack](https://webpack.github.io/).
 
-Production deployments are static html and css files, while development is run through the gatsby development server.
+Production deployments are static html and css files, while development is run through the Gatsby development server.
 
 We welcome any enhancements and bugfixes, please see our [guidelines](CONTRIBUTING.md) on how you can
 [contribute](CONTRIBUTING.md).
