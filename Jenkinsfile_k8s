@@ -83,7 +83,6 @@ spec:
         DISABLE_SEARCH_ENGINE = "true"
         GATSBY_ALGOLIA_APP_ID = credentials('algolia-plugins-app-id')
         GATSBY_ALGOLIA_SEARCH_KEY = credentials('algolia-plugins-search-key')
-        NETLIFY = "true"
       }
       steps {
         sh 'yarn build'
