@@ -104,7 +104,7 @@ function PluginPageLayout({plugin, children}) {
                         <h5>Maintainers</h5>
                         <PluginDevelopers developers={plugin.developers} />
                     </div>
-                    {shouldShowWikiUrl(plugin.wiki) &&
+                    {shouldShowWikiUrl(plugin.wiki?) &&
                         <div className="sidebarSection">
                             <h5>Help us improve this page!</h5>
                             {'This content is served from the  '}
@@ -118,7 +118,7 @@ function PluginPageLayout({plugin, children}) {
                             {'.'}
                         </div>
                     }
-                    {shouldShowGitHubUrl(plugin.wiki) &&
+                    {shouldShowGitHubUrl(plugin.wiki?) &&
                         <div className="sidebarSection">
                             <h5>Help us improve this page!</h5>
                             {'To propose a change submit a pull request to  '}
