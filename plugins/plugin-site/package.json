@@ -133,7 +133,7 @@
     "jest-junit": "16.0.0",
     "lint-staged": "13.3.0",
     "remark": "14.0.2",
-    "remark-frontmatter": "4.0.1",
+    "remark-frontmatter": "5.0.0",
     "remark-gfm": "3.0.1",
     "remark-parse": "10.0.1",
     "remark-rehype": "10.1.0",
