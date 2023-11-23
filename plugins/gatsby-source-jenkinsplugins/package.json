@@ -28,7 +28,7 @@
         "p-queue": "^7.3.4",
         "rehype-stringify": "^9.0.0",
         "remark": "^13.0.0",
-        "remark-frontmatter": "^4.0.0",
+        "remark-frontmatter": "^5.0.0",
         "remark-gfm": "^3.0.1",
         "remark-parse": "^10.0.2",
         "remark-rehype": "^10.0.0",
