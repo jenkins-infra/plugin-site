@@ -63,7 +63,12 @@ const MARKDOWN_BLOB_RE = /https?:\/\/github.com\/(jenkinsci|jenkins-infra)\/([^/
 const getPluginContent = async ({wiki, pluginName, reporter, createNode, createContentDigest}) => {
     const createWikiNode = async (mediaType, url, content) => {
         if (mediaType === 'text/markdown') {
-            content = await markdownToHtml(content);
+            try {
+                content = await markdownToHtml(content);
+            } catch (err) {
+                reporter.error(`error converting ${pluginName}`, err);
+                throw err;
+            }
             mediaType = 'text/pluginhtml';
         }
         return createNode({
