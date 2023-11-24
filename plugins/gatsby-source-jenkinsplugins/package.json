@@ -30,7 +30,7 @@
         "remark": "^13.0.0",
         "remark-frontmatter": "^5.0.0",
         "remark-gfm": "^4.0.0",
-        "remark-parse": "^10.0.2",
+        "remark-parse": "11.0.0",
         "remark-rehype": "^11.0.0",
         "unified": "^11.0.0",
         "xml2js": "0.6.2"

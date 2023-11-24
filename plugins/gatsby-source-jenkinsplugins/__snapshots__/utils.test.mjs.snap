@@ -423,3 +423,28 @@ NPE thrown in certain cases.</li>
 <li>initial release</li>
 </ul>"
 `;
+
+exports[`utils should convert markdown with tables to html 1`] = `
+"<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Savings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>January</td>
+<td>$250</td>
+</tr>
+<tr>
+<td>February</td>
+<td>$80</td>
+</tr>
+<tr>
+<td>March</td>
+<td>$420</td>
+</tr>
+</tbody>
+</table>"
+`;

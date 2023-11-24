@@ -115,4 +115,8 @@ describe('utils', () => {
         const translated = await markdownToHtml(await readText('plugin-doc.md'));
         expect(translated).toMatchSnapshot();
     });
+    it ('should convert markdown with tables to html', async () => {
+        const translated = await markdownToHtml(await readText('table.md'));
+        expect(translated).toMatchSnapshot();
+    });
 });
