@@ -5,7 +5,7 @@
     "scripts": {
         "lint": "eslint --ext .js,.jsx .",
         "build": "exit 0",
-        "test": "jest"
+        "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
     },
     "keywords": [],
     "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
@@ -13,7 +13,10 @@
     "description": "",
     "jest": {
         "globalSetup": "./jest-global-setup.js",
-        "transform": {}
+        "transform": {},
+        "testMatch": [
+            "**/*.test.mjs"
+        ]
     },
     "dependencies": {
         "unist-util-visit": "^2.0.3"
