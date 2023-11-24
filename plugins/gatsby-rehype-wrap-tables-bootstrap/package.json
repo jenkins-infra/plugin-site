@@ -5,7 +5,7 @@
     "scripts": {
         "lint": "eslint --ext .js,.jsx .",
         "build": "exit 0",
-        "test": "jest"
+        "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
     },
     "keywords": [],
     "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
@@ -13,7 +13,10 @@
     "description": "",
     "jest": {
         "globalSetup": "./jest-global-setup.js",
-        "transform": {}
+        "transform": {},
+        "testMatch": [
+            "**/*.test.mjs"
+        ]
     },
     "dependencies": {
         "unist-util-visit-parents": "^3.0.0"
@@ -22,7 +25,7 @@
         "@babel/preset-env": "7.23.2",
         "babel-jest": "29.7.0",
         "eslint": "8.51.0",
-        "hast-util-to-html": "2.1.0",
+        "hast-util-to-html": "9.0.0",
         "jest": "29.7.0",
         "rehype": "11.0.0"
     }
