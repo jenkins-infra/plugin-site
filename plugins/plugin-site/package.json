@@ -60,7 +60,7 @@
     "@babel/core": "7.23.2",
     "@halkeye/gatsby-rehype-autolink-headers": "1.0.1",
     "@halkeye/gatsby-rehype-rewrite-ids": "1.0.0",
-    "@halkeye/gatsby-transformer-rehype": "1.0.1",
+    "@halkeye/gatsby-transformer-rehype": "https://github.com/zbynek/gatsby-plugins#master",
     "@halkeye/react-paginate": "7.2.3",
     "@jenkins-cd/gatsby-rehype-rewrite-img-src": "*",
     "@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap": "*",
