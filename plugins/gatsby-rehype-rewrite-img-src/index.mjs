@@ -1,6 +1,6 @@
-const visit = require('unist-util-visit');
+import {visit} from 'unist-util-visit';
 
-module.exports = ({
+const plugin = ({
     htmlAst,
     htmlNode,
 }) => {
@@ -13,3 +13,4 @@ module.exports = ({
 
     return htmlAst;
 };
+export default plugin;

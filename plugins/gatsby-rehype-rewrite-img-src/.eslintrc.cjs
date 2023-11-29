@@ -20,7 +20,7 @@ module.exports = {
             ],
             'files': [
                 'jest-*.js',
-                '__tests__/**/*.js',
+                '__tests__/**/*.mjs',
                 '__tests__/**/*.jsx',
                 '__mocks__/**/*.js',
                 '__mocks__/**/*.jsx',
