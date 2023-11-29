@@ -2872,7 +2872,7 @@ __metadata:
     eslint: 8.51.0
     hast-util-to-html: 9.0.0
     jest: 29.7.0
-    rehype: 11.0.0
+    rehype: 13.0.1
     unist-util-visit: ^5.0.0
   languageName: unknown
   linkType: soft
@@ -2886,7 +2886,7 @@ __metadata:
     eslint: 8.51.0
     hast-util-to-html: 9.0.0
     jest: 29.7.0
-    rehype: 11.0.0
+    rehype: 13.0.1
     unist-util-visit-parents: ^6.0.0
   languageName: unknown
   linkType: soft
@@ -11228,6 +11228,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hast-util-from-html@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "hast-util-from-html@npm:2.0.1"
+  dependencies:
+    "@types/hast": ^3.0.0
+    devlop: ^1.1.0
+    hast-util-from-parse5: ^8.0.0
+    parse5: ^7.0.0
+    vfile: ^6.0.0
+    vfile-message: ^4.0.0
+  checksum: 8decdec1f2750d3d8d4933a4d06d78846a9fb3c97cded07395d160adae22bacfc69eaf113fd95a6ad696d1e5877580f2ac83a4161fa9f3becb0fafe2cec8b0ea
+  languageName: node
+  linkType: hard
+
 "hast-util-from-parse5@npm:^6.0.0":
   version: 6.0.1
   resolution: "hast-util-from-parse5@npm:6.0.1"
@@ -18015,6 +18029,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rehype-parse@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "rehype-parse@npm:9.0.0"
+  dependencies:
+    "@types/hast": ^3.0.0
+    hast-util-from-html: ^2.0.0
+    unified: ^11.0.0
+  checksum: cfff1ed913cfb390c6c9c2d3ee396172098f615f0439e162d4ab0645f201727f58859429bbd33e187da603c605a6f34a796910511c45357043ea8c9a00f83f93
+  languageName: node
+  linkType: hard
+
 "rehype-stringify@npm:^10.0.0":
   version: 10.0.0
   resolution: "rehype-stringify@npm:10.0.0"
@@ -18035,7 +18060,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rehype@npm:11.0.0, rehype@npm:^11.0.0":
+"rehype@npm:13.0.1":
+  version: 13.0.1
+  resolution: "rehype@npm:13.0.1"
+  dependencies:
+    "@types/hast": ^3.0.0
+    rehype-parse: ^9.0.0
+    rehype-stringify: ^10.0.0
+    unified: ^11.0.0
+  checksum: 8657f4a5b746192151144f22514112ea000894953e1e542382e51da1f249e52ce10dfe68f842ef61216240c610aac940e13377c7e39b6d73f3e5beba2328f94f
+  languageName: node
+  linkType: hard
+
+"rehype@npm:^11.0.0":
   version: 11.0.0
   resolution: "rehype@npm:11.0.0"
   dependencies:
