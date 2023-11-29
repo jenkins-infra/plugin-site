@@ -2693,9 +2693,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@halkeye/gatsby-rehype-autolink-headers@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@halkeye/gatsby-rehype-autolink-headers@npm:1.0.1"
+"@halkeye/gatsby-rehype-autolink-headers@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@halkeye/gatsby-rehype-autolink-headers@npm:1.1.0"
   dependencies:
     github-slugger: ^1.4.0
     hast-util-to-string: ^1.0.4
@@ -2703,27 +2703,27 @@ __metadata:
     style-to-object: ^0.3.0
     unist-util-visit: ^2.0.3
   peerDependencies:
-    gatsby: ^3.0.0 || ^4.0.0
-  checksum: 05cb9d759b53cd2b30d887778776d84a9cad6a8bf30031296d20638ec6c06f69e4beaca85d50f22876ce66815ca4bde2443335f4b9f28e323b60838d77de62b0
+    gatsby: ^4.0.0 || ^5.0.0
+  checksum: 76eecbc68787b49ffa819912fefd5f2afb39d6d5d5147aede5fc43ac47bd2aeefd2a67c032428c2bf2d71d6ebc971e21c6ae724b57bb06e090cb7583bc2f9962
   languageName: node
   linkType: hard
 
-"@halkeye/gatsby-rehype-rewrite-ids@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@halkeye/gatsby-rehype-rewrite-ids@npm:1.0.0"
+"@halkeye/gatsby-rehype-rewrite-ids@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@halkeye/gatsby-rehype-rewrite-ids@npm:1.1.0"
   dependencies:
     hast-util-to-string: ^1.0.4
     lodash: ^4.17.21
     unist-util-visit: ^2.0.3
   peerDependencies:
     gatsby: ^3.0.0 || ^4.0.0
-  checksum: 998aa2c037e7d823f8a48bef3cee886b6f2f3e79f26e855183dbdaaa18e178867341c58aff2c6346f5ed251afa16c387701ee3f1d377f49f639f453f7dd187b1
+  checksum: 129a50299e601da504328c1a88c31c8867c0230c899ac38b510d9d549ef34d50b65c0f644bc06f2e1e5e4471427dee97208fd50544afd5286d20c726003410b1
   languageName: node
   linkType: hard
 
-"@halkeye/gatsby-transformer-rehype@https://github.com/zbynek/gatsby-plugins#master":
-  version: 1.0.1
-  resolution: "@halkeye/gatsby-transformer-rehype@https://github.com/zbynek/gatsby-plugins.git#commit=e7d6ab1ad9667359e7f3d291e89ed025c1e8b35f"
+"@halkeye/gatsby-transformer-rehype@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@halkeye/gatsby-transformer-rehype@npm:1.1.0"
   dependencies:
     "@babel/runtime": 7.13.9
     hast-util-raw: ^6.0.2
@@ -2732,8 +2732,8 @@ __metadata:
     unist-util-remove-position: ^3.0.0
     unist-util-visit: ^2.0.3
   peerDependencies:
-    gatsby: ^3.0.0 || ^4.0.0
-  checksum: c45bd27befc8c263d99ebfa6b0e44bff47bc43515ac0f3feaf15a3608f2ba939ab472c13f02dd8173969db315a271ba7239148b7ea9337cd1755fcd18ecdfff7
+    gatsby: ^4.0.0 || ^5.0.0
+  checksum: 4c201b0f1269b04f4c0cc1f9664c766a8af232c639a99444b0765d1f8764f739c9a1432231ecdf7cd8a5b0cfdc93024e6a5c65fdc04f7bbb8372ef7fbf5c8235
   languageName: node
   linkType: hard
 
@@ -2924,9 +2924,9 @@ __metadata:
   dependencies:
     "@babel/core": 7.23.2
     "@babel/plugin-proposal-class-properties": 7.18.6
-    "@halkeye/gatsby-rehype-autolink-headers": 1.0.1
-    "@halkeye/gatsby-rehype-rewrite-ids": 1.0.0
-    "@halkeye/gatsby-transformer-rehype": "https://github.com/zbynek/gatsby-plugins#master"
+    "@halkeye/gatsby-rehype-autolink-headers": 1.1.0
+    "@halkeye/gatsby-rehype-rewrite-ids": 1.1.0
+    "@halkeye/gatsby-transformer-rehype": 1.1.0
     "@halkeye/react-paginate": 7.2.3
     "@jenkins-cd/gatsby-rehype-rewrite-img-src": "*"
     "@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap": "*"
