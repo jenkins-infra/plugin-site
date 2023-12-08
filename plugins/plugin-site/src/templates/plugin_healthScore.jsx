@@ -9,7 +9,7 @@ import PluginHealthScore from '../components/PluginHealthScore';
 const TemplatePluginHealthScore = ({data: {jenkinsPlugin: plugin, healthScore}}) => {
     return (
         <PluginPageLayout plugin={plugin}>
-            <PluginHealthScore healthScore={healthScore}/>
+            {healthScore && <PluginHealthScore healthScore={healthScore}/>}
         </PluginPageLayout>
     );
 };
