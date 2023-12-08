@@ -56,6 +56,7 @@ config.plugins = [
             githubBranch: 'master',
             githubRepo: 'jenkins-infra/plugin-site',
             reportAProblemTemplate: '4-bug.yml',
+            theme: 'auto',
             extraCss: [
                 '@import \'./styles/ubuntu-fonts.css\';',
                 '@import \'./styles/lato-fonts.css\';',
