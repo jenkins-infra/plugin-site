@@ -5,6 +5,9 @@ const PluginWikiContent = ({wiki}) => {
     if (wiki?.childHtmlRehype) {
         return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childHtmlRehype.html}} />;
     }
+    if (!wiki) {
+        return (<div className="content">No documentation available</div>);
+    }
     return (<div className="content">
         Documentation for this plugin is here:
         {' '}

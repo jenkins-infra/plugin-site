@@ -85,6 +85,7 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
         });
     };
     if (!wiki.url) {
+        reporter.error(`missing wiki for ${pluginName}`);
         return null;
     }
     if (!shouldFetchPluginContent(pluginName)) {
