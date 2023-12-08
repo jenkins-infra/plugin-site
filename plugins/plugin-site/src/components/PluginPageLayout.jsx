@@ -37,7 +37,7 @@ function PluginPageLayout({plugin, children}) {
         {id: 'dependencies', to: `/${plugin.name}/dependencies/`, label: 'Dependencies'},
         {id: 'health-score', to: `/${plugin.name}/healthscore/`, label: 'Health Score'},
     ];
-
+    const wiki = plugin.wiki || {};
     const [isShowInstructions, setShowInstructions] = React.useState(false);
     const toggleShowInstructions = (e) => {
         e && e.preventDefault();
@@ -104,11 +104,11 @@ function PluginPageLayout({plugin, children}) {
                         <h5>Maintainers</h5>
                         <PluginDevelopers developers={plugin.developers} />
                     </div>
-                    {shouldShowWikiUrl(plugin.wiki) &&
+                    {shouldShowWikiUrl(wiki) &&
                         <div className="sidebarSection">
                             <h5>Help us improve this page!</h5>
                             {'This content is served from the  '}
-                            <a href={plugin.wiki.url} target="_wiki">Jenkins Wiki Export</a>
+                            <a href={wiki.url} target="_wiki">Jenkins Wiki Export</a>
                             {' which is now '}
                             <a href="https://www.jenkins.io/blog/2021/09/04/wiki-attacked/" rel="noopener noreferrer" target="_blank">permanently offline</a>
                             {' and before that a '}
@@ -118,11 +118,11 @@ function PluginPageLayout({plugin, children}) {
                             {'.'}
                         </div>
                     }
-                    {shouldShowGitHubUrl(plugin.wiki) &&
+                    {shouldShowGitHubUrl(wiki) &&
                         <div className="sidebarSection">
                             <h5>Help us improve this page!</h5>
                             {'To propose a change submit a pull request to  '}
-                            <a href={plugin.wiki.url} rel="noopener noreferrer" target="_blank">the plugin page</a>
+                            <a href={wiki.url} rel="noopener noreferrer" target="_blank">the plugin page</a>
                             {' on GitHub.'}
                         </div>
                     }
