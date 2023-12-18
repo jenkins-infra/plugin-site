@@ -1,140 +1,126 @@
 pipeline {
-  agent {
-    kubernetes {
-      yaml '''
-apiVersion: "v1"
-kind: "Pod"
-metadata:
-  labels:
-    jenkins: "agent"
-    job: "plugin-site"
-spec:
-  tolerations:
-    - key: "os"
-      operator: "Equal"
-      value: "linux"
-      effect: "NoSchedule"
-    - key: "jenkins"
-      operator: "Equal"
-      value: "infra.ci.jenkins.io"
-      effect: "NoSchedule"
-    - key: "kubernetes.azure.com/scalesetpriority"
-      operator: "Equal"
-      value: "spot"
-      effect: "NoSchedule"
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: kubernetes.io/os
-                operator: In
-                values:
-                  - linux
-  restartPolicy: "Never"
-  automountServiceAccountToken: false
-  containers:
-    - name: "jnlp"
-      image: "jenkinsciinfra/builder:3.1.6@sha256:2e2e6a2717c3cc7132d3a1dde104d8506e471464134de0388dc4821f597be08f"
-      resources:
-        limits: {}
-        requests:
-          memory: "4Gi"
-          cpu: "2"
-      '''
-    }
-  }
-
-  environment {
-    TZ = "UTC"
-    GET_CONTENT = "true"
-    NODE_ENV = "production"
-    // TODO: Remove this "custom PATH" once https://github.com/jenkins-infra/docker-builder/blob/e5749f5cf0392549a89ba3a5b41a41fe55ec48dd/Dockerfile#L46 is updated to persist it
-    PATH = "/home/jenkins/.local/bin:${env.PATH}"
-  }
-
-  triggers {
-    cron("${env.BRANCH_NAME == 'master' ? 'H H/3 * * *' : ''}")
-  }
-
   options {
     timeout(time: 60, unit: 'MINUTES')
     ansiColor('xterm')
     disableConcurrentBuilds(abortPrevious: true)
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
-    retry(5)
+  }
+
+  agent {
+    label 'node'
+  }
+
+  triggers {
+    cron("${env.BRANCH_IS_PRIMARY ? 'H H/3 * * *' : ''}")
+  }
+
+  environment {
+    GET_CONTENT = 'true'
+    TZ = 'UTC'
+    // Amount of available vCPUs, to avoid OOM - https://www.gatsbyjs.com/docs/how-to/performance/resolving-out-of-memory-issues/#try-reducing-the-number-of-cores
+    // and 'The command failed for workspaces that are depended upon by other workspaces; can't satisfy the dependency graph' error
+    // https://github.com/jenkins-infra/jenkins-infra/tree/production/hieradata/clients/controller.ci.jenkins.io.yaml#L327
+    GATSBY_CPU_COUNT = '4'
   }
 
   stages {
-    stage('Install Dependencies') {
+    stage('Check for typos') {
       steps {
-        sh 'asdf install'
-        sh 'NODE_ENV=development yarn install'
+        sh 'typos --format json | typos-checkstyle - > checkstyle.xml || true'
+        recordIssues(tools: [checkStyle(id: 'typos', name: 'Typos', pattern: 'checkstyle.xml')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]])
+      }
+    }
+
+    stage('Install dependencies') {
+      environment {
+        NODE_ENV = 'development'
+      }
+      steps {
+        sh '''
+        asdf install
+        yarn install
+        '''
       }
     }
 
     stage('Build PR') {
-      when {
-        not {
-          branch "master"
-        }
-      }
+      when { changeRequest() }
       environment {
-        DISABLE_SEARCH_ENGINE = "true"
-        GATSBY_ALGOLIA_APP_ID = credentials('algolia-plugins-app-id')
-        GATSBY_ALGOLIA_SEARCH_KEY = credentials('algolia-plugins-search-key')
+        DISABLE_SEARCH_ENGINE = 'true'
+        NODE_ENV = 'development'
       }
       steps {
-        sh 'yarn build'
-      }
-    }
-
-    stage('Build Production') {
-      when {
-        branch "master"
-      }
-      environment {
-        GATSBY_MATOMO_SITE_ID = "1"
-        GATSBY_MATOMO_SITE_URL = "https://jenkins-matomo.do.g4v.dev"
-        GATSBY_ALGOLIA_APP_ID = credentials('algolia-plugins-app-id')
-        GATSBY_ALGOLIA_SEARCH_KEY = credentials('algolia-plugins-search-key')
-        GATSBY_ALGOLIA_WRITE_KEY = credentials('algolia-plugins-write-key')
-      }
-      steps {
-        sh 'yarn build'
+        sh('yarn build')
       }
     }
 
     stage('Check build') {
       when { expression { return !fileExists('./plugins/plugin-site/public/index.html') } }
       steps {
-        error("Something went wrong, index.html was not generated")
+        error('Something went wrong, index.html was not generated')
       }
     }
 
     stage('Lint and Test') {
       environment {
-        NODE_ENV = "development"
-        NODE_OPTIONS="--experimental-vm-modules"
+        NODE_ENV = 'development'
+        NODE_OPTIONS = '--experimental-vm-modules'
       }
       steps {
         sh '''
-          yarn lint
-          yarn test
+        yarn lint
+        yarn test
         '''
       }
     }
 
-    stage('Deploy to azure') {
+    stage('Deploy to preview site') {
       when {
-        branch "master"
+        allOf {
+          changeRequest()
+          // Only deploy from infra.ci.jenkins.io
+          expression { infra.isInfra() }
+        }
       }
       environment {
-        PLUGINSITE_STORAGEACCOUNTKEY = credentials('PLUGINSITE_STORAGEACCOUNTKEY')
+        NETLIFY_AUTH_TOKEN = credentials('netlify-auth-token')
       }
       steps {
-        sh('''
-            blobxfer upload \
+        sh('netlify-deploy --siteName "jenkins-plugin-site-pr" --title "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
+      }
+      post {
+        success {
+          recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'success', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+        }
+        failure {
+          recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'failure', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+        }
+      }
+    }
+
+    stage('Deploy to production') {
+      when {
+        allOf{
+          expression { env.BRANCH_IS_PRIMARY }
+          // Only deploy from infra.ci.jenkins.io
+          expression { infra.isInfra() }
+        }
+      }
+      environment {
+        NODE_ENV = 'production'
+        GATSBY_MATOMO_SITE_ID = '1'
+        GATSBY_MATOMO_SITE_URL = 'https://jenkins-matomo.do.g4v.dev'
+      }
+      steps {
+        withCredentials([
+          string(credentialsId: 'algolia-plugins-app-id', variable: 'GATSBY_ALGOLIA_APP_ID'),
+          string(credentialsId: 'algolia-plugins-search-key', variable: 'GATSBY_ALGOLIA_SEARCH_KEY'),
+          string(credentialsId: 'algolia-plugins-write-key', variable: 'GATSBY_ALGOLIA_WRITE_KEY'),
+          string(credentialsId: 'PLUGINSITE_STORAGEACCOUNTKEY', variable: 'PLUGINSITE_STORAGEACCOUNTKEY')
+        ]) {
+          sh '''
+          yarn build
+          blobxfer upload \
           --local-path ./plugins/plugin-site/public \
           --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
           --storage-account prodpluginsite \
@@ -145,27 +131,8 @@ spec:
           --file-md5 \
           --connect-timeout 30 \
           --delete
-        ''')
-      }
-    }
-
-    stage('Deploy to preview site') {
-      when {
-        changeRequest target: 'master'
-      }
-      environment {
-        NETLIFY_AUTH_TOKEN = credentials('netlify-auth-token')
-      }
-      post {
-        success {
-          recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'success', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
+          '''
         }
-        failure {
-          recordDeployment('jenkins-infra', 'plugin-site', pullRequest.head, 'failure', "https://deploy-preview-${CHANGE_ID}--jenkins-plugin-site-pr.netlify.app")
-        }
-      }
-      steps {
-        sh('/usr/local/bin/netlify-deploy --siteName "jenkins-plugin-site-pr" --title "Preview deploy for ${CHANGE_ID}" --alias "deploy-preview-${CHANGE_ID}" -d ./plugins/plugin-site/public')
       }
     }
   }
