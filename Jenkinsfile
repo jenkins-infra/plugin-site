@@ -43,8 +43,7 @@ pipeline {
       }
     }
 
-    stage('Build PR') {
-      when { changeRequest() }
+    stage('Build') {
       environment {
         DISABLE_SEARCH_ENGINE = 'true'
         NODE_ENV = 'development'
