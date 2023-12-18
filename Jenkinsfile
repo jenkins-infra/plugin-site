@@ -109,6 +109,8 @@ pipeline {
         NODE_ENV = 'production'
         GATSBY_MATOMO_SITE_ID = '1'
         GATSBY_MATOMO_SITE_URL = 'https://jenkins-matomo.do.g4v.dev'
+        // TODO: Remove this "custom PATH" once https://github.com/jenkins-infra/docker-builder/blob/e5749f5cf0392549a89ba3a5b41a41fe55ec48dd/Dockerfile#L46 is updated to persist it
+        PATH = "/home/jenkins/.local/bin:${env.PATH}"
       }
       steps {
         withCredentials([
