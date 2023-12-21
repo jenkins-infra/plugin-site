@@ -55,7 +55,7 @@ const doSearch = (data, setResults, categoriesMap) => {
     ).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
         return setResults({
             total: nbHits,
-            pages: nbPages + 1,
+            pages: nbPages,
             page: page + 1,
             limit: hitsPerPage,
             plugins: hits

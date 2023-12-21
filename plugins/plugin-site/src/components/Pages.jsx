@@ -18,7 +18,7 @@ export default class Pages extends React.PureComponent {
 
         return (
             <ReactPaginate
-                pageCount={pages - 1}
+                pageCount={pages}
                 pageRangeDisplayed={this.props.pagesToDisplay}
                 marginPagesDisplayed={marginPagesDisplayed}
                 onPageChange={handlePageClick}

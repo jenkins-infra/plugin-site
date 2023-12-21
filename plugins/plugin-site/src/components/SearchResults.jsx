@@ -24,8 +24,14 @@ function SearchResults({results, setPage, view}) {
             </div>
         );
     }
+
+    const start = (results.limit * (results.page - 1));
+    const end = Math.min(results.limit * (results.page), results.total);
     return (
         <div>
+            <div className="nav-link SearchResultsCount">
+                {`${start+1} to ${end} of ${results.total}`}
+            </div>
             <div id="cb-item-finder-grid-box" className={`SearchResults--GridBox SearchResults--${view}`}>
                 {results.plugins.map(plugin => (
                     <div className="SearchResults--ItemBox" key={plugin.name} role="button">
@@ -33,15 +39,11 @@ function SearchResults({results, setPage, view}) {
                     </div>
                 ))}
             </div>
-            {results.pages > 1 && (
-                <Pagination
-                    total={results.total}
-                    limit={results.limit}
-                    page={results.page}
-                    pages={results.pages}
-                    setPage={setPage}
-                />
-            )}
+            <Pagination
+                page={results.page}
+                pages={results.pages}
+                setPage={setPage}
+            />
         </div>
     );
 }
