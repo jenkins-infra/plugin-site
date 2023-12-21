@@ -26,13 +26,6 @@ function SearchResults({results, setPage, view}) {
     }
     return (
         <div>
-            <Pagination
-                total={results.total}
-                limit={results.limit}
-                page={results.page}
-                pages={results.pages}
-                setPage={setPage}
-            />
             <div id="cb-item-finder-grid-box" className={`SearchResults--GridBox SearchResults--${view}`}>
                 {results.plugins.map(plugin => (
                     <div className="SearchResults--ItemBox" key={plugin.name} role="button">
@@ -40,13 +33,15 @@ function SearchResults({results, setPage, view}) {
                     </div>
                 ))}
             </div>
-            <Pagination
+            {results.pages > 2 && (
+                <Pagination
                 total={results.total}
                 limit={results.limit}
                 page={results.page}
                 pages={results.pages}
                 setPage={setPage}
-            />
+                />
+            )}
         </div>
     );
 }
