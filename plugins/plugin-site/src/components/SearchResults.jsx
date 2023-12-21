@@ -33,7 +33,7 @@ function SearchResults({results, setPage, view}) {
                     </div>
                 ))}
             </div>
-            {results.pages > 2 && (
+            {results.pages > 1 && (
                 <Pagination
                     total={results.total}
                     limit={results.limit}
