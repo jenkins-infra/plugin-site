@@ -35,11 +35,11 @@ function SearchResults({results, setPage, view}) {
             </div>
             {results.pages > 2 && (
                 <Pagination
-                total={results.total}
-                limit={results.limit}
-                page={results.page}
-                pages={results.pages}
-                setPage={setPage}
+                    total={results.total}
+                    limit={results.limit}
+                    page={results.page}
+                    pages={results.pages}
+                    setPage={setPage}
                 />
             )}
         </div>
