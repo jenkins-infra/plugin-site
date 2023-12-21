@@ -5,9 +5,21 @@
   min-height: 2rem;
 }
 
+.copy-wrapper img {
+    opacity: 0.87;
+}
+
 .copy-success {
     position: absolute;
     right: 4rem;
     white-space: nowrap;
     line-height: 1rem;
 }
+
+
+@media (prefers-color-scheme: dark) {
+    .copy-wrapper img{
+        filter: invert(1);
+    }
+}
+
