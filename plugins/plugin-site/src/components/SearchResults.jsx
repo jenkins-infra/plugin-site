@@ -40,6 +40,13 @@ function SearchResults({results, setPage, view}) {
                     </div>
                 ))}
             </div>
+            <Pagination
+                total={results.total}
+                limit={results.limit}
+                page={results.page}
+                pages={results.pages}
+                setPage={setPage}
+            />
         </div>
     );
 }
