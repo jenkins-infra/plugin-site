@@ -4,7 +4,6 @@ pipeline {
     ansiColor('xterm')
     disableConcurrentBuilds(abortPrevious: true)
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
-    retry(5)
   }
 
   agent {
@@ -120,20 +119,22 @@ pipeline {
           string(credentialsId: 'algolia-plugins-write-key', variable: 'GATSBY_ALGOLIA_WRITE_KEY'),
           string(credentialsId: 'PLUGINSITE_STORAGEACCOUNTKEY', variable: 'PLUGINSITE_STORAGEACCOUNTKEY')
         ]) {
-          sh '''
-          yarn build
-          blobxfer upload \
-          --local-path ./plugins/plugin-site/public \
-          --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
-          --storage-account prodpluginsite \
-          --remote-path pluginsite \
-          --recursive \
-          --mode file \
-          --skip-on-md5-match \
-          --file-md5 \
-          --connect-timeout 30 \
-          --delete
-          '''
+          retry(5) {
+            sh '''
+            yarn build
+            blobxfer upload \
+            --local-path ./plugins/plugin-site/public \
+            --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
+            --storage-account prodpluginsite \
+            --remote-path pluginsite \
+            --recursive \
+            --mode file \
+            --skip-on-md5-match \
+            --file-md5 \
+            --connect-timeout 30 \
+            --delete
+            '''
+          }
         }
       }
     }
