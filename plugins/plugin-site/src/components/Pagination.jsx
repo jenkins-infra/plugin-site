@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import Pages from './Pages';
 
 
-function Pagination({limit, page, pages, total, setPage}) {
+function Pagination({page, pages, setPage}) {
     const [pagesToDisplay, setPagesToDisplay] = React.useState(5);
     const [marginPagesDisplayed, setMarginPagesDisplayed] = React.useState(2);
 
-    const start = (limit * (page - 1));
-    const end = Math.min(limit * (page), total);
 
     React.useEffect(() => {
         if (window.innerWidth < 576) {
@@ -32,9 +30,6 @@ function Pagination({limit, page, pages, total, setPage}) {
 
     return (
         <div className="Pagination--Container">
-            <div className="nav-link">
-                {`${start+1} to ${end} of ${total}`}
-            </div>
             {pages > 1 &&
                 <Pages
                     current={page}
@@ -49,10 +44,8 @@ function Pagination({limit, page, pages, total, setPage}) {
 }
 
 Pagination.propTypes = {
-    limit: PropTypes.number.isRequired,
     page: PropTypes.number.isRequired,
     pages: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired,
     setPage: PropTypes.func.isRequired
 };
 
