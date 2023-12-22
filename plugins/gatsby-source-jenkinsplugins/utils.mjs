@@ -4,7 +4,7 @@ import path from 'path';
 import crypto from 'crypto';
 import {load} from 'cheerio';
 import {execSync} from 'child_process';
-import axiosRetry from 'axios-retry';
+import axiosRetry, {exponentialDelay} from 'axios-retry';
 import {parse as parseDate} from 'date-fns';
 import PQueue from 'p-queue';
 import {parseStringPromise} from 'xml2js';
@@ -22,7 +22,7 @@ import findPackageJson from 'find-package-json';
 
 const API_URL = process.env.JENKINS_IO_API_URL || 'https://plugins.jenkins.io/api';
 
-axiosRetry(axios, {retries: 3});
+axiosRetry(axios, {retries: 5, retryDelay: exponentialDelay});
 
 const requestGET = async ({url, reporter}) => {
     const activity = reporter.activityTimer(`Fetching '${url}'`);

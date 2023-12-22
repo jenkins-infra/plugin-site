@@ -101,7 +101,7 @@ describe('utils', () => {
         };
         await fetchPluginData({createNode, createNodeId, createContentDigest, reporter: _reporter, firstReleases, labelToCategory, stats});
         expect(createNode.mock.calls.filter(call => call[0].name === 'ios-device-connector').map(args => args[0])).toMatchSnapshot();
-    });
+    }, 15000);
     it('get plugin healthScore data', async () => {
         nock('https://plugin-health.jenkins.io')
             .get('/api/scores')
