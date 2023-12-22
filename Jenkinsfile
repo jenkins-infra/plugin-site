@@ -4,6 +4,7 @@ pipeline {
     ansiColor('xterm')
     disableConcurrentBuilds(abortPrevious: true)
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '5')
+    retry(5)
   }
 
   agent {
