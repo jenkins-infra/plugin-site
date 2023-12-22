@@ -22,7 +22,7 @@ import findPackageJson from 'find-package-json';
 
 const API_URL = process.env.JENKINS_IO_API_URL || 'https://plugins.jenkins.io/api';
 
-axiosRetry(axios, {retries: 3, retryDelay: axiosRetry.exponentialDelay});
+axiosRetry(axios, {retries: 5, retryDelay: axiosRetry.exponentialDelay});
 
 const requestGET = async ({url, reporter}) => {
     const activity = reporter.activityTimer(`Fetching '${url}'`);
