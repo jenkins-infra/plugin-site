@@ -27,9 +27,6 @@ module.exports = {
     useStaticQuery: jest.fn().mockImplementation(() => {
         return {
             jenkinsPluginSiteInfo: {
-                api: {
-                    commit: 'FAKECommit'
-                },
                 website: {
                     commit: 'FAKECommit'
                 }

@@ -107,7 +107,7 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
                 return createWikiNode('text/markdown', url, body);
             }
         }
-        const data = await requestGET({reporter, url: `https://plugins.jenkins.io/api/plugin/${pluginName}`});
+        const data = await requestGET({reporter, url: `${API_URL}/plugin/${pluginName}`});
 
         const $ = load(data.wiki.content);
         $('a.anchor[href^="#"]').remove();
@@ -415,13 +415,8 @@ export const fetchLabelData = async ({createNode, reporter}) => {
 export const fetchSiteInfo = async ({createNode, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin api info');
     sectionActivity.start();
-    const url = `${API_URL}/info`;
-    const info = await requestGET({url, reporter});
 
     createNode({
-        api: {
-            ...info
-        },
         website: {
             commit: execSync('git rev-parse HEAD').toString().trim(),
             version: findPackageJson().next().value.version,
