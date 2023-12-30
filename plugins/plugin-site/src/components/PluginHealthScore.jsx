@@ -22,7 +22,9 @@ function ScoreComponent({component: {value, reasons}}) {
             <div className="pluginHealth--score-component--reasons">
                 {reasons.map((reason, idx) => {
                     return (
-                        <span key={idx}>{reason}</span>
+                        <li key={idx}>
+                            <span>{reason}</span>
+                        </li>
                     );
                 })}
             </div>
