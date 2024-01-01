@@ -2992,7 +2992,7 @@ __metadata:
     stylelint-config-recommended: 13.0.0
     stylelint-config-standard: 34.0.0
     stylelint-config-styled-components: 0.1.1
-    stylelint-order: 6.0.3
+    stylelint-order: 6.0.4
     stylelint-processor-styled-components: 1.10.0
     stylelint-selector-bem-pattern: 3.0.1
     unified: 11.0.4
@@ -17085,7 +17085,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.2.15, postcss@npm:^8.2.9, postcss@npm:^8.4.21, postcss@npm:^8.4.24, postcss@npm:^8.4.28, postcss@npm:^8.4.32":
+"postcss@npm:^8.2.15, postcss@npm:^8.2.9, postcss@npm:^8.4.24, postcss@npm:^8.4.28, postcss@npm:^8.4.32":
   version: 8.4.32
   resolution: "postcss@npm:8.4.32"
   dependencies:
@@ -19493,15 +19493,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-order@npm:6.0.3":
-  version: 6.0.3
-  resolution: "stylelint-order@npm:6.0.3"
+"stylelint-order@npm:6.0.4":
+  version: 6.0.4
+  resolution: "stylelint-order@npm:6.0.4"
   dependencies:
-    postcss: ^8.4.21
+    postcss: ^8.4.32
     postcss-sorting: ^8.0.2
   peerDependencies:
-    stylelint: ^14.0.0 || ^15.0.0
-  checksum: dc2883a8a7918a752928f6cc2c860508e3f21c7189c0675ddba15056c683c234f5548f0c4a410e9a9ac0d2be8b4a4657e5674f01b6ad39f2b89053bf907aa744
+    stylelint: ^14.0.0 || ^15.0.0 || ^16.0.1
+  checksum: 66ed8a80b34b98994e38d75671766f102d47c73362495b77861f0648efcc75cf3ad6f30f988c3cf16c9747ac139087ef1ff71b3bea40f9c5e081a25ebeb34feb
   languageName: node
   linkType: hard
 
