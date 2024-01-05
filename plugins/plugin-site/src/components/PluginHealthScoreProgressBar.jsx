@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Progress, Tooltip} from 'reactstrap';
+ import '../styles/progressbar.css';
 
 function PluginHealthScoreProgressBar({healthScore, name}) {
     const score = healthScore.value || 0;
     const color =
-    score > 80 ? 'success' : score > 60 ? 'warning' : 'danger';
+    score >= 80 ? "first" : score >=60 && score <80 ? 'second' : score >=40 && score <60 ? 'third'
+     : score >=20 && score <40 ? 'fourth': 'fifth' ;
 
     const tooltipId = `tooltip-${name}`;
     const [tooltipOpen, setTooltipOpen] = useState(false);
