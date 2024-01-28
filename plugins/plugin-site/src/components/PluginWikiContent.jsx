@@ -4,38 +4,66 @@ import PropTypes from 'prop-types';
 const PluginWikiContent = ({wiki}) => {
     const [isClicked, setIsClicked] = useState(false);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            // Reset the image if clicked outside the content area
+            if (isClicked && !event.target.closest('.content')) {
+                resetImage();
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [isClicked]);
+
+    const resetImage = () => {
+        const image = document.getElementById('imageResize');
+        if (image) {
+            image.removeAttribute('id');
+            setIsClicked(false);
+        }
+    };
+
     const handleClick = (event) => {
         // Toggle the isClicked state for the specific image
         setIsClicked(!isClicked);
-         // Find the parent <a> tag with target="_blank"
-         let parentNode = event.target.parentNode;
-         while (parentNode && parentNode.tagName !== "A") {
-             parentNode = parentNode.parentNode;
-         }
- 
-         // If a parent <a> tag is found, set the id attribute of the <img> tag inside it
-         if (parentNode && parentNode.tagName === "A" && parentNode.getAttribute("target") === "_blank") {
+
+        // Find the parent <a> tag with target="_blank"
+        let parentNode = event.target.parentNode;
+        while (parentNode && parentNode.tagName !== 'A') {
+            parentNode = parentNode.parentNode;
+        }
+
+        // If a parent <a> tag is found, set the id attribute of the <img> tag inside it
+        if (
+            parentNode &&
+            parentNode.tagName === 'A' &&
+            parentNode.getAttribute('target') === '_blank'
+        ) {
             // Prevent the default behavior of the anchor tag
             event.preventDefault();
-             const imgElement = parentNode.querySelector("img");
-             if (imgElement) {
-                 if (imgElement.id === "imageResize") {
-                     imgElement.removeAttribute("id");
-                 } else {
-                     imgElement.id = "imageResize";
-                 }
-             }
-         }
+            const imgElement = parentNode.querySelector('img');
+            if (imgElement) {
+                if (imgElement.id === 'imageResize') {
+                    imgElement.removeAttribute('id');
+                    setIsClicked(false);
+                } else {
+                    imgElement.id = 'imageResize';
+                    setIsClicked(true);
+                }
+            }
+        }
     };
-
 
     if (wiki?.childHtmlRehype) {
         const { html } = wiki.childHtmlRehype;
 
         return (
-            <div
-                className="content" onClick={handleClick} style={getStyle()}>
-                    <style>{`
+            <div className="content" onClick={handleClick} style={getStyle()}>
+                <style>{`
                     #imageResize {
                         width: auto;
                         height: auto;
@@ -62,7 +90,9 @@ const PluginWikiContent = ({wiki}) => {
                     }
                 `}</style>
                 <div dangerouslySetInnerHTML={{ __html: html }} />
-                <div className="lightbox-overlay"/>
+                {isClicked && document.getElementById('imageResize') && (
+                    <div className="lightbox-overlay" onClick={resetImage} />
+                )}
             </div>
         );
     }
