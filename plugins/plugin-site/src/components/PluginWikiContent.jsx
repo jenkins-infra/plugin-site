@@ -1,9 +1,70 @@
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const PluginWikiContent = ({wiki}) => {
+    const [isClicked, setIsClicked] = useState(false);
+
+    const handleClick = (event) => {
+        // Toggle the isClicked state for the specific image
+        setIsClicked(!isClicked);
+         // Find the parent <a> tag with target="_blank"
+         let parentNode = event.target.parentNode;
+         while (parentNode && parentNode.tagName !== "A") {
+             parentNode = parentNode.parentNode;
+         }
+ 
+         // If a parent <a> tag is found, set the id attribute of the <img> tag inside it
+         if (parentNode && parentNode.tagName === "A" && parentNode.getAttribute("target") === "_blank") {
+            // Prevent the default behavior of the anchor tag
+            event.preventDefault();
+             const imgElement = parentNode.querySelector("img");
+             if (imgElement) {
+                 if (imgElement.id === "imageResize") {
+                     imgElement.removeAttribute("id");
+                 } else {
+                     imgElement.id = "imageResize";
+                 }
+             }
+         }
+    };
+
+
     if (wiki?.childHtmlRehype) {
-        return <div className="content" dangerouslySetInnerHTML={{__html: wiki.childHtmlRehype.html}} />;
+        const { html } = wiki.childHtmlRehype;
+
+        return (
+            <div
+                className="content" onClick={handleClick} style={getStyle()}>
+                    <style>{`
+                    #imageResize {
+                        width: auto;
+                        height: auto;
+                        transition: width 0.3s ease, height 0.3s ease;
+                        max-width: 100vw;
+                        max-height: 100vh;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        margin: auto;
+                        z-index: 9999;
+                    }
+                    .lightbox-overlay {
+                        display: ${isClicked ? 'block' : 'none'};
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.5);
+                        z-index: 9998;
+                    }
+                `}</style>
+                <div dangerouslySetInnerHTML={{ __html: html }} />
+                <div className="lightbox-overlay"/>
+            </div>
+        );
     }
     if (!wiki) {
         return (<div className="content">No documentation available</div>);
@@ -23,5 +84,9 @@ PluginWikiContent.propTypes = {
         url: PropTypes.string.isRequired
     }).isRequired,
 };
+
+const getStyle = () => (
+    { display: 'block', position: 'relative' }
+);
 
 export default PluginWikiContent;
