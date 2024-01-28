@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {imageResize, lightboxOverlay} from './PluginWikiContent.module.css';
 
 const PluginWikiContent = ({wiki}) => {
     const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -20,11 +21,12 @@ const PluginWikiContent = ({wiki}) => {
     }, [isLightboxOpen]);
 
     const resetImage = () => {
-        const image = document.getElementById('imageResize');
-        if (image) {
-            image.removeAttribute('id');
-            setIsLightboxOpen(false);
+        const images = document.getElementsByClassName(imageResize);
+        for (let i = 0; i < images.length; i++) {
+            const image = images[i];
+            image.removeAttribute('class');
         }
+        setIsLightboxOpen(false);
     };
 
     const handleClick = (event) => {
@@ -47,11 +49,11 @@ const PluginWikiContent = ({wiki}) => {
             setIsLightboxOpen(!isLightboxOpen);
             const imgElement = parentNode.querySelector('img');
             if (imgElement) {
-                if (imgElement.id === 'imageResize') {
-                    imgElement.removeAttribute('id');
+                if (imgElement.classList.contains(imageResize)) {
+                    imgElement.classList.remove(imageResize);
                     setIsLightboxOpen(false);
                 } else {
-                    imgElement.id = 'imageResize';
+                    imgElement.classList.add(imageResize);
                     setIsLightboxOpen(true);
                 }
             }
@@ -62,38 +64,10 @@ const PluginWikiContent = ({wiki}) => {
         const {html} = wiki.childHtmlRehype;
 
         return (
-            <div className="content" onClick={handleClick} style={getStyle()}>
-                <style>
-                    {`
-                    #imageResize {
-                        width: auto;
-                        height: auto;
-                        transition: width 0.3s ease, height 0.3s ease;
-                        max-width: 100vw;
-                        max-height: 100vh;
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        margin: auto;
-                        z-index: 9999;
-                    }
-                    .lightbox-overlay {
-                        display: ${isLightboxOpen ? 'block' : 'none'};
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: rgba(0, 0, 0, 0.5);
-                        z-index: 9998;
-                    }
-                `}
-                </style>
+            <div className="content" onClick={handleClick}>
                 <div dangerouslySetInnerHTML={{__html: html}} />
                 {isLightboxOpen && (
-                    <div className="lightbox-overlay" onClick={resetImage} />
+                    <div className={lightboxOverlay} onClick={resetImage} />
                 )}
             </div>
         );
@@ -116,9 +90,5 @@ PluginWikiContent.propTypes = {
         url: PropTypes.string.isRequired
     }).isRequired,
 };
-
-const getStyle = () => (
-    {display: 'block', position: 'relative'}
-);
 
 export default PluginWikiContent;
