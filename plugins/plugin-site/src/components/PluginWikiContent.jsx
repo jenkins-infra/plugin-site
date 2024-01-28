@@ -7,7 +7,7 @@ const PluginWikiContent = ({wiki}) => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            // Reset the image if clicked outside the content area
+            // Reset the image to original state
             if (isLightboxOpen && !event.target.closest('.content')) {
                 resetImage();
             }
