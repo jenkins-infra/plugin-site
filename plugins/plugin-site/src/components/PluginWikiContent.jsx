@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 const PluginWikiContent = ({wiki}) => {
@@ -43,7 +43,7 @@ const PluginWikiContent = ({wiki}) => {
             parentNode.tagName === 'A' &&
             parentNode.getAttribute('target') === '_blank'
         ) {
-            // Prevent the default behavior of the anchor tag
+            // Prevent the default behavior of the anchor tag (prevents redirection to github page)
             event.preventDefault();
             const imgElement = parentNode.querySelector('img');
             if (imgElement) {
@@ -59,11 +59,12 @@ const PluginWikiContent = ({wiki}) => {
     };
 
     if (wiki?.childHtmlRehype) {
-        const { html } = wiki.childHtmlRehype;
+        const {html} = wiki.childHtmlRehype;
 
         return (
             <div className="content" onClick={handleClick} style={getStyle()}>
-                <style>{`
+                <style>
+                    {`
                     #imageResize {
                         width: auto;
                         height: auto;
@@ -88,8 +89,9 @@ const PluginWikiContent = ({wiki}) => {
                         background-color: rgba(0, 0, 0, 0.5);
                         z-index: 9998;
                     }
-                `}</style>
-                <div dangerouslySetInnerHTML={{ __html: html }} />
+                `}
+                </style>
+                <div dangerouslySetInnerHTML={{__html: html}} />
                 {isClicked && document.getElementById('imageResize') && (
                     <div className="lightbox-overlay" onClick={resetImage} />
                 )}
@@ -116,7 +118,7 @@ PluginWikiContent.propTypes = {
 };
 
 const getStyle = () => (
-    { display: 'block', position: 'relative' }
+    {display: 'block', position: 'relative'}
 );
 
 export default PluginWikiContent;
