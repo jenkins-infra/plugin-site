@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 const PluginWikiContent = ({wiki}) => {
-    const [isClicked, setIsClicked] = useState(false);
+    const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
             // Reset the image if clicked outside the content area
-            if (isClicked && !event.target.closest('.content')) {
+            if (isLightboxOpen && !event.target.closest('.content')) {
                 resetImage();
             }
         };
@@ -17,19 +17,17 @@ const PluginWikiContent = ({wiki}) => {
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
-    }, [isClicked]);
+    }, [isLightboxOpen]);
 
     const resetImage = () => {
         const image = document.getElementById('imageResize');
         if (image) {
             image.removeAttribute('id');
-            setIsClicked(false);
+            setIsLightboxOpen(false);
         }
     };
 
     const handleClick = (event) => {
-        // Toggle the isClicked state for the specific image
-        setIsClicked(!isClicked);
 
         // Find the parent <a> tag with target="_blank"
         let parentNode = event.target.parentNode;
@@ -45,14 +43,16 @@ const PluginWikiContent = ({wiki}) => {
         ) {
             // Prevent the default behavior of the anchor tag (prevents redirection to github page)
             event.preventDefault();
+            // Toggle the isLightboxOpen state for the specific image
+            setIsLightboxOpen(!isLightboxOpen);
             const imgElement = parentNode.querySelector('img');
             if (imgElement) {
                 if (imgElement.id === 'imageResize') {
                     imgElement.removeAttribute('id');
-                    setIsClicked(false);
+                    setIsLightboxOpen(false);
                 } else {
                     imgElement.id = 'imageResize';
-                    setIsClicked(true);
+                    setIsLightboxOpen(true);
                 }
             }
         }
@@ -80,7 +80,7 @@ const PluginWikiContent = ({wiki}) => {
                         z-index: 9999;
                     }
                     .lightbox-overlay {
-                        display: ${isClicked ? 'block' : 'none'};
+                        display: ${isLightboxOpen ? 'block' : 'none'};
                         position: fixed;
                         top: 0;
                         left: 0;
@@ -92,7 +92,7 @@ const PluginWikiContent = ({wiki}) => {
                 `}
                 </style>
                 <div dangerouslySetInnerHTML={{__html: html}} />
-                {isClicked && document.getElementById('imageResize') && (
+                {isLightboxOpen && (
                     <div className="lightbox-overlay" onClick={resetImage} />
                 )}
             </div>
