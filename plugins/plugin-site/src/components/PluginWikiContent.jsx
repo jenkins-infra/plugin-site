@@ -18,7 +18,7 @@ const PluginWikiContent = ({wiki}) => {
             parentNode.tagName === 'A' &&
             parentNode.getAttribute('target') === '_blank'
         ) {
-            // Prevent the default behavior of the anchor tag (prevents redirection to github page)
+            // Prevent the default behavior of the anchor tag from redirecting to the GitHub page
             event.preventDefault();
             const imgSrc = parentNode.querySelector('img').getAttribute('src');
             setLightboxImage(imgSrc);
