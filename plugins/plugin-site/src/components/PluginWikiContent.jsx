@@ -1,46 +1,18 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {imageResize, lightboxOverlay} from './PluginWikiContent.module.css';
+import {lightbox} from './PluginWikiContent.module.css';
 
 const PluginWikiContent = ({wiki}) => {
-
-    const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-    const documentRef = useRef(document);
-    const documentRefValue = documentRef.current;
-
-    useEffect(() => {
-        const handleCloseLightbox = (event) => {
-            // Reset the image to original state
-            if (isLightboxOpen && !event.target.closest('.content')) {
-                resetImage();
-            }
-        };
-
-        documentRefValue.addEventListener('click', handleCloseLightbox);
-
-        return () => {
-            documentRefValue.removeEventListener('click', handleCloseLightbox);
-        };
-    }, [documentRefValue, isLightboxOpen]);
-
-    const resetImage = () => {
-        const images = documentRef.current.getElementsByClassName(imageResize);
-        for (let i = 0; i < images.length; i++) {
-            const image = images[i];
-            image.removeAttribute('class');
-        }
-        setIsLightboxOpen(false);
-    };
+    const [lightboxImage, setLightboxImage] = useState(null);
 
     const handleClick = (event) => {
-
         // Find the parent <a> tag with target="_blank"
         let parentNode = event.target.parentNode;
+
         while (parentNode && parentNode.tagName !== 'A') {
             parentNode = parentNode.parentNode;
         }
 
-        // If a parent <a> tag is found, set the id attribute of the <img> tag inside it
         if (
             parentNode &&
             parentNode.tagName === 'A' &&
@@ -48,29 +20,24 @@ const PluginWikiContent = ({wiki}) => {
         ) {
             // Prevent the default behavior of the anchor tag (prevents redirection to github page)
             event.preventDefault();
-            // Toggle the isLightboxOpen state for the specific image
-            setIsLightboxOpen(!isLightboxOpen);
-            const imgElement = parentNode.querySelector('img');
-            if (imgElement) {
-                if (imgElement.classList.contains(imageResize)) {
-                    imgElement.classList.remove(imageResize);
-                    setIsLightboxOpen(false);
-                } else {
-                    imgElement.classList.add(imageResize);
-                    setIsLightboxOpen(true);
-                }
-            }
+            const imgSrc = parentNode.querySelector('img').getAttribute('src');
+            setLightboxImage(imgSrc);
         }
     };
 
-    if (wiki?.childHtmlRehype) {
-        const {html} = wiki.childHtmlRehype;
+    const closeLightbox = () => {
+        setLightboxImage(null);
+    };
 
+    if (wiki?.childHtmlRehype) {
+        const html = wiki.childHtmlRehype.html;
         return (
             <div className="content" onClick={handleClick}>
                 <div dangerouslySetInnerHTML={{__html: html}} />
-                {isLightboxOpen && (
-                    <div className={lightboxOverlay} onClick={resetImage} />
+                {lightboxImage && (
+                    <div className={lightbox} onClick={closeLightbox}>
+                        <img src={lightboxImage} alt="Lightbox" />
+                    </div>
                 )}
             </div>
         );
