@@ -1,27 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {imageResize, lightboxOverlay} from './PluginWikiContent.module.css';
 
 const PluginWikiContent = ({wiki}) => {
+
     const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+    const documentRef = useRef(document);
+    const documentRefValue = documentRef.current;
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        const handleCloseLightbox = (event) => {
             // Reset the image to original state
             if (isLightboxOpen && !event.target.closest('.content')) {
                 resetImage();
             }
         };
 
-        document.addEventListener('click', handleClickOutside);
+        documentRefValue.addEventListener('click', handleCloseLightbox);
 
         return () => {
-            document.removeEventListener('click', handleClickOutside);
+            documentRefValue.removeEventListener('click', handleCloseLightbox);
         };
-    }, [isLightboxOpen]);
+    }, [documentRefValue, isLightboxOpen]);
 
     const resetImage = () => {
-        const images = document.getElementsByClassName(imageResize);
+        const images = documentRef.current.getElementsByClassName(imageResize);
         for (let i = 0; i < images.length; i++) {
             const image = images[i];
             image.removeAttribute('class');
