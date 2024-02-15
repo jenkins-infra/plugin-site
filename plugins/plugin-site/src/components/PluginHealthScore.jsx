@@ -1,8 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import checkmark from '../images/checkmark-outline.svg';
+import close from '../images/close-outline.svg';
+
 import ucFirst from '../utils/ucfirst';
 import './PluginHealthScore.css';
+
+function ScoreIcon({score, className}) {
+    const isCorrect = score === 100;
+    return (
+        <div className={`${className} ${isCorrect ? 'correct' : 'incorrect'}`}>
+            {isCorrect ? <img src={checkmark} /> : <img src={close} />}
+        </div>
+    );
+}
+
+ScoreIcon.propTypes = {
+    className: PropTypes.string,
+    score: PropTypes.number.isRequired,
+};
 
 function ScoreValue({value}) {
     return (
@@ -19,6 +36,7 @@ ScoreValue.propTypes = {
 function ScoreComponent({component: {value, reasons}}) {
     return (
         <div className="pluginHealth--score-component">
+            <ScoreIcon className="pluginHealth--score-component--icon" score={value}/>
             <div className="pluginHealth--score-component--reasons">
                 {reasons.map((reason, idx) => {
                     return (
@@ -43,6 +61,9 @@ function ScoreDetail({data: {name, components, value}}) {
     return (
         <div className="pluginHealth--score-section">
             <div className="pluginHealth--score-section--header">
+                <div className="pluginHealth--score-section--header-icon">
+                    <ScoreIcon className="pluginHealth--score-section--header--icon" score={value}/>
+                </div>
                 <div className="pluginHealth--score-section--header-title">
                     {name.split('-').map(ucFirst).join(' ')}
                 </div>
