@@ -24,6 +24,19 @@
     border-top: 1px solid #c0c0c0;
     padding: 13px 0;
 }
+.pluginHealth--score-section:last-of-type {
+    border-bottom: 1px solid #c0c0c0;
+    margin-bottom: 2rem;
+}
+
+.pluginHealth--score-section--collapsable-icon {
+    width: 24px;
+    display: flex;
+    justify-content: flex-end;
+}
+.pluginHealth--score-section--collapsable-icon img {
+    width: 14px;
+}
 
 .pluginHealth--score-section--header {
     margin-top: .5rem;
@@ -34,6 +47,8 @@
 
     display: flex;
     align-items: center;
+
+    cursor: pointer;
 }
 
 .pluginHealth--score-section--header--icon {
@@ -62,12 +77,19 @@
     width: 40px;
 }
 
-.pluginHealth--score-component {
+.pluginHealth-score-components--list {
     padding-left: 40px;
+    padding-right: 24px;
+}
+.pluginHealth-score-components--list.collapse {
+    display: none;
+}
+
+.pluginHealth--score-component {
     display: flex;
     align-items: baseline;
     line-height: 1.75;
-    margin: 14px 6px 16px 0;
+    margin: 14px 0 16px 0;
 }
 
 .pluginHealth--score-component--icon {

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import checkmark from '../images/checkmark-outline.svg';
 import close from '../images/close-outline.svg';
+import chevronUp from '../images/chevron-up-outline.svg';
+import chevronDown from '../images/chevron-down-outline.svg';
 
 import ucFirst from '../utils/ucfirst';
 import './PluginHealthScore.css';
@@ -58,20 +60,24 @@ ScoreComponent.propTypes = {
 };
 
 function ScoreDetail({data: {name, components, value}}) {
+    const [collapsed, setCollapsed] = useState(value === 100);
     return (
         <div className="pluginHealth--score-section">
-            <div className="pluginHealth--score-section--header">
+            <div className="pluginHealth--score-section--header" onClick={() => setCollapsed(!collapsed)}>
                 <div className="pluginHealth--score-section--header-icon">
                     <ScoreIcon className="pluginHealth--score-section--header--icon" score={value}/>
                 </div>
                 <div className="pluginHealth--score-section--header-title">
                     {name.split('-').map(ucFirst).join(' ')}
                 </div>
-                <ScoreValue value={value} />
+                <ScoreValue value={value}/>
+                <div className="pluginHealth--score-section--collapsable-icon">
+                    {collapsed ? <img src={chevronDown}/> : <img src={chevronUp}/>}
+                </div>
             </div>
-            <div>
+            <div className={`pluginHealth-score-components--list ${collapsed ? 'collapse' : ''}`}>
                 {components.sort((d1, d2) => d2.weight - d2.weight).map((component, idx) => {
-                    return (<ScoreComponent key={idx} component={component} />);
+                    return (<ScoreComponent key={idx} component={component}/>);
                 })}
             </div>
         </div>
