@@ -71,7 +71,7 @@ function ScoreDetail({data: {name, components, value}}) {
                     {name.split('-').map(ucFirst).join(' ')}
                 </div>
                 <ScoreValue value={value}/>
-                <div className="pluginHealth--score-section--collapsable-icon">
+                <div className="pluginHealth--score-section--collapsible-icon">
                     {collapsed ? <img src={chevronDown}/> : <img src={chevronUp}/>}
                 </div>
             </div>

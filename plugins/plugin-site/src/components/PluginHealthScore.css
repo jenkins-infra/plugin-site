@@ -29,12 +29,12 @@
     margin-bottom: 2rem;
 }
 
-.pluginHealth--score-section--collapsable-icon {
+.pluginHealth--score-section--collapsible-icon {
     width: 24px;
     display: flex;
     justify-content: flex-end;
 }
-.pluginHealth--score-section--collapsable-icon img {
+.pluginHealth--score-section--collapsible-icon img {
     width: 14px;
 }
 
