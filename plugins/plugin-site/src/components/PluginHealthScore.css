@@ -40,6 +40,13 @@
     width: 24px;
 }
 
+.pluginHealth-score-icon--incorrect img {
+    filter: invert(23%) sepia(73%) saturate(3909%) hue-rotate(339deg) brightness(81%) contrast(131%);
+}
+.pluginHealth-score-icon--correct img {
+    filter: invert(42%) sepia(67%) saturate(507%) hue-rotate(87deg) brightness(106%) contrast(94%);
+}
+
 .pluginHealth--score-section--header-title {
     flex-grow: 1;
     font-size: 2rem;

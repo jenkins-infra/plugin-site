@@ -10,7 +10,7 @@ import './PluginHealthScore.css';
 function ScoreIcon({score, className}) {
     const isCorrect = score === 100;
     return (
-        <div className={`${className} ${isCorrect ? 'correct' : 'incorrect'}`}>
+        <div className={`${className} pluginHealth-score-icon--${isCorrect ? 'correct' : 'incorrect'}`}>
             {isCorrect ? <img src={checkmark} /> : <img src={close} />}
         </div>
     );
