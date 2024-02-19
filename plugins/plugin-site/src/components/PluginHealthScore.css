@@ -34,7 +34,7 @@
     display: flex;
     justify-content: flex-end;
 }
-.pluginHealth--score-section--collapsible-icon img {
+.pluginHealth--score-section--collapsible-icon ion-icon {
     width: 14px;
 }
 
@@ -55,11 +55,11 @@
     width: 24px;
 }
 
-.pluginHealth-score-icon--incorrect img {
-    filter: invert(23%) sepia(73%) saturate(3909%) hue-rotate(339deg) brightness(81%) contrast(131%);
+.pluginHealth-score-icon--incorrect {
+    color: rgb(230, 0, 31);
 }
-.pluginHealth-score-icon--correct img {
-    filter: invert(42%) sepia(67%) saturate(507%) hue-rotate(87deg) brightness(106%) contrast(94%);
+.pluginHealth-score-icon--correct {
+    color: rgb(30, 166, 75);
 }
 
 .pluginHealth--score-section--header-title {

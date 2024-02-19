@@ -1,11 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
-import checkmark from '../images/checkmark-outline.svg';
-import close from '../images/close-outline.svg';
-import chevronUp from '../images/chevron-up-outline.svg';
-import chevronDown from '../images/chevron-down-outline.svg';
-
 import ucFirst from '../utils/ucfirst';
 import './PluginHealthScore.css';
 
@@ -13,7 +8,10 @@ function ScoreIcon({score, className}) {
     const isCorrect = score === 100;
     return (
         <div className={`${className} pluginHealth-score-icon--${isCorrect ? 'correct' : 'incorrect'}`}>
-            {isCorrect ? <img src={checkmark} /> : <img src={close} />}
+            {isCorrect ?
+                <ion-icon name="checkmark-outline"/> :
+                <ion-icon name="close-outline"/>
+            }
         </div>
     );
 }
@@ -72,7 +70,10 @@ function ScoreDetail({data: {name, components, value}}) {
                 </div>
                 <ScoreValue value={value}/>
                 <div className="pluginHealth--score-section--collapsible-icon">
-                    {collapsed ? <img src={chevronDown}/> : <img src={chevronUp}/>}
+                    {collapsed ?
+                        <ion-icon name="chevron-down-outline"/> :
+                        <ion-icon name="chevron-up-outline"/>
+                    }
                 </div>
             </div>
             <div className={`pluginHealth-score-components--list ${collapsed ? 'collapse' : ''}`}>
