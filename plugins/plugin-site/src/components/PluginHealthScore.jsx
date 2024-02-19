@@ -1,8 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import ucFirst from '../utils/ucfirst';
 import './PluginHealthScore.css';
+
+function ScoreIcon({score, className}) {
+    const isCorrect = score === 100;
+    return (
+        <div className={`${className} pluginHealth-score-icon--${isCorrect ? 'correct' : 'incorrect'}`}>
+            {isCorrect ?
+                <ion-icon name="checkmark-outline"/> :
+                <ion-icon name="close-outline"/>
+            }
+        </div>
+    );
+}
+
+ScoreIcon.propTypes = {
+    className: PropTypes.string,
+    score: PropTypes.number.isRequired,
+};
 
 function ScoreValue({value}) {
     return (
@@ -19,6 +36,7 @@ ScoreValue.propTypes = {
 function ScoreComponent({component: {value, reasons}}) {
     return (
         <div className="pluginHealth--score-component">
+            <ScoreIcon className="pluginHealth--score-component--icon" score={value}/>
             <div className="pluginHealth--score-component--reasons">
                 {reasons.map((reason, idx) => {
                     return (
@@ -40,17 +58,27 @@ ScoreComponent.propTypes = {
 };
 
 function ScoreDetail({data: {name, components, value}}) {
+    const [collapsed, setCollapsed] = useState(value === 100);
     return (
         <div className="pluginHealth--score-section">
-            <div className="pluginHealth--score-section--header">
+            <div className="pluginHealth--score-section--header" onClick={() => setCollapsed(!collapsed)}>
+                <div className="pluginHealth--score-section--header-icon">
+                    <ScoreIcon className="pluginHealth--score-section--header--icon" score={value}/>
+                </div>
                 <div className="pluginHealth--score-section--header-title">
                     {name.split('-').map(ucFirst).join(' ')}
                 </div>
-                <ScoreValue value={value} />
+                <ScoreValue value={value}/>
+                <div className="pluginHealth--score-section--collapsible-icon">
+                    {collapsed ?
+                        <ion-icon name="chevron-down-outline"/> :
+                        <ion-icon name="chevron-up-outline"/>
+                    }
+                </div>
             </div>
-            <div>
+            <div className={`pluginHealth-score-components--list ${collapsed ? 'collapse' : ''}`}>
                 {components.sort((d1, d2) => d2.weight - d2.weight).map((component, idx) => {
-                    return (<ScoreComponent key={idx} component={component} />);
+                    return (<ScoreComponent key={idx} component={component}/>);
                 })}
             </div>
         </div>
