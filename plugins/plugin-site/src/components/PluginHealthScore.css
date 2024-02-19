@@ -53,6 +53,8 @@
 
 .pluginHealth--score-section--header--icon {
     width: 24px;
+    display: flex;
+    align-items: center;
 }
 
 .pluginHealth-score-icon--incorrect {
