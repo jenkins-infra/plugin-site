@@ -82,7 +82,7 @@
     padding-right: 24px;
 }
 .pluginHealth-score-components--list.collapse {
-    display: none;
+    visibility: collapse;
 }
 
 .pluginHealth--score-component {
