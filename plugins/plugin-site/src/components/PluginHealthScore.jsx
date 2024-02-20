@@ -23,7 +23,7 @@ function ScoreResolutions({resolutions}) {
                 {resolutions.map((resolution, idx) => {
                     return (
                         <li key={idx}>
-                            <a href={resolution}>{resolution}</a>
+                            <a href={resolution.link}>{resolution.text}</a>
                         </li>
                     );
                 })}
@@ -33,7 +33,10 @@ function ScoreResolutions({resolutions}) {
 }
 
 ScoreResolutions.propTypes = {
-    resolutions: PropTypes.arrayOf(PropTypes.string),
+    resolutions: PropTypes.arrayOf(PropTypes.shape({
+        text: PropTypes.string,
+        link: PropTypes.string,
+    })),
 };
 
 function ScoreComponent({component: {value, reasons, resolutions}}) {

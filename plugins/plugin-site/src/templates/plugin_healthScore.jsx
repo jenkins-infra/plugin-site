@@ -25,7 +25,10 @@ TemplatePluginHealthScore.propTypes = {
                     max: PropTypes.number.isRequired,
                     value: PropTypes.number.isRequired,
                     reasons: PropTypes.arrayOf(PropTypes.string).isRequired,
-                    resolutions: PropTypes.arrayOf(PropTypes.string),
+                    resolutions: PropTypes.arrayOf(PropTypes.shape({
+                        text: PropTypes.string,
+                        link: PropTypes.string,
+                    })),
                 })).isRequired,
                 name: PropTypes.string.isRequired,
                 value: PropTypes.number.isRequired,
@@ -48,7 +51,10 @@ export const pageQuery = graphql`
                     weight
                     value
                     reasons
-                    resolutions
+                    resolutions {
+                        text
+                        link
+                    }
                 }
                 name
                 value
