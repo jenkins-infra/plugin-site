@@ -33,7 +33,30 @@ ScoreValue.propTypes = {
     value: PropTypes.number.isRequired,
 };
 
-function ScoreComponent({component: {value, reasons}}) {
+function ScoreResolutions({resolutions}) {
+    return (
+        <div className="pluginHealth--score-component--resolutions">
+            <ul>
+                {resolutions.map((resolution, idx) => {
+                    return (
+                        <li key={idx}>
+                            <a href={resolution.link}>{resolution.text}</a>
+                        </li>
+                    );
+                })}
+            </ul>
+        </div>
+    );
+}
+
+ScoreResolutions.propTypes = {
+    resolutions: PropTypes.arrayOf(PropTypes.shape({
+        text: PropTypes.string,
+        link: PropTypes.string,
+    })),
+};
+
+function ScoreComponent({component: {value, reasons, resolutions}}) {
     return (
         <div className="pluginHealth--score-component">
             <ScoreIcon className="pluginHealth--score-component--icon" score={value}/>
@@ -43,6 +66,7 @@ function ScoreComponent({component: {value, reasons}}) {
                         <span key={idx}>{reason}</span>
                     );
                 })}
+                {resolutions.length > 0 && <ScoreResolutions resolutions={resolutions} />}
             </div>
             <ScoreValue value={value} />
         </div>
@@ -54,6 +78,7 @@ ScoreComponent.propTypes = {
         value: PropTypes.number.isRequired,
         weight: PropTypes.number.isRequired,
         reasons: PropTypes.arrayOf(PropTypes.string),
+        resolutions: ScoreResolutions.propTypes.resolutions,
     }).isRequired
 };
 
