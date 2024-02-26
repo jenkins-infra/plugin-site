@@ -97,6 +97,23 @@ pipeline {
       }
     }
 
+    stage('Build production') {
+      when {
+        allOf{
+          expression { env.BRANCH_IS_PRIMARY }
+          expression { infra.isInfra() }
+        }
+      }
+      environment {
+        NODE_ENV = 'production'
+        GATSBY_MATOMO_SITE_ID = '1'
+        GATSBY_MATOMO_SITE_URL = 'https://jenkins-matomo.do.g4v.dev'
+      }
+      steps {
+        sh 'yarn build'
+      }
+    }
+
     stage('Deploy to production') {
       when {
         allOf{
@@ -105,35 +122,63 @@ pipeline {
           expression { infra.isInfra() }
         }
       }
-      environment {
-        NODE_ENV = 'production'
-        GATSBY_MATOMO_SITE_ID = '1'
-        GATSBY_MATOMO_SITE_URL = 'https://jenkins-matomo.do.g4v.dev'
-        // TODO: Remove this "custom PATH" once https://github.com/jenkins-infra/docker-builder/blob/e5749f5cf0392549a89ba3a5b41a41fe55ec48dd/Dockerfile#L46 is updated to persist it
-        PATH = "/home/jenkins/.local/bin:${env.PATH}"
-      }
       steps {
-        withCredentials([
-          string(credentialsId: 'algolia-plugins-app-id', variable: 'GATSBY_ALGOLIA_APP_ID'),
-          string(credentialsId: 'algolia-plugins-search-key', variable: 'GATSBY_ALGOLIA_SEARCH_KEY'),
-          string(credentialsId: 'algolia-plugins-write-key', variable: 'GATSBY_ALGOLIA_WRITE_KEY'),
-          string(credentialsId: 'PLUGINSITE_STORAGEACCOUNTKEY', variable: 'PLUGINSITE_STORAGEACCOUNTKEY')
-        ]) {
-          sh '''
-          yarn build
-          blobxfer upload \
-          --local-path ./plugins/plugin-site/public \
-          --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
-          --storage-account prodpluginsite \
-          --remote-path pluginsite \
-          --recursive \
-          --mode file \
-          --skip-on-md5-match \
-          --file-md5 \
-          --connect-timeout 30 \
-          --delete
-          '''
-        }
+        parallel(
+          failFast: false,
+          'Publish with blobxfer on prodpluginsite storage account': {
+            // TODO: Remove this "custom PATH" once https://github.com/jenkins-infra/docker-builder/blob/e5749f5cf0392549a89ba3a5b41a41fe55ec48dd/Dockerfile#L46 is updated to persist it
+            withEnv (["PATH=/home/jenkins/.local/bin:${env.PATH}"]) {
+              withCredentials([
+                string(credentialsId: 'algolia-plugins-app-id', variable: 'GATSBY_ALGOLIA_APP_ID'),
+                string(credentialsId: 'algolia-plugins-search-key', variable: 'GATSBY_ALGOLIA_SEARCH_KEY'),
+                string(credentialsId: 'algolia-plugins-write-key', variable: 'GATSBY_ALGOLIA_WRITE_KEY'),
+                string(credentialsId: 'PLUGINSITE_STORAGEACCOUNTKEY', variable: 'PLUGINSITE_STORAGEACCOUNTKEY')
+              ]) {
+                sh '''
+                blobxfer upload \
+                --local-path ./plugins/plugin-site/public \
+                --storage-account-key $PLUGINSITE_STORAGEACCOUNTKEY \
+                --storage-account prodpluginsite \
+                --remote-path pluginsite \
+                --recursive \
+                --mode file \
+                --skip-on-md5-match \
+                --file-md5 \
+                --connect-timeout 30 \
+                --delete
+                '''
+              }
+            }
+          },
+          'Publish on Azure with azcopy on plugins-jenkins-io storage account': {
+            script {
+              infra.withFileShareServicePrincipal([
+                servicePrincipalCredentialsId: 'infraci-pluginsjenkinsio-fileshare-service-principal-writer',
+                fileShare: 'plugins-jenkins-io',
+                fileShareStorageAccount: 'pluginsjenkinsio'
+              ]) {
+                sh '''
+                # Don't output sensitive information
+                set +x
+
+                # Synchronize the File Share content
+                azcopy sync \
+                  --skip-version-check \
+                  --recursive=true\
+                  --delete-destination=true \
+                  --compare-hash=MD5 \
+                  --put-md5 \
+                  --local-hash-storage-mode=HiddenFiles \
+                  ./plugins/plugin-site/public/ "${FILESHARE_SIGNED_URL}"
+
+                # Retrieve azcopy logs to archive them
+                cat /home/jenkins/.azcopy/*.log > azcopy.log
+                '''
+                archiveArtifacts 'azcopy.log'
+              }
+            }
+          }
+        )
       }
     }
   }
