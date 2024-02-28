@@ -148,7 +148,7 @@ pipeline {
             '''
             archiveArtifacts 'azcopy.log'
           }
-        )
+        }
       }
     }
   }
