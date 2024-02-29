@@ -47,7 +47,7 @@
     position: relative;
     display: block;
     & * {
-        color: #666;
+        color: var(--color);
     }
     & a, & a:visited {
         color: var(--link-color);
