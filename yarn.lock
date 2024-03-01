@@ -3136,7 +3136,7 @@ __metadata:
     axios-retry: 3.8.0
     babel-jest: 29.7.0
     babel-preset-gatsby: 3.12.1
-    chart.js: 4.4.1
+    chart.js: 4.4.2
     cheerio: 1.0.0-rc.12
     classnames: 2.3.2
     copy-to-clipboard: 3.3.3
@@ -7018,12 +7018,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chart.js@npm:4.4.1":
-  version: 4.4.1
-  resolution: "chart.js@npm:4.4.1"
+"chart.js@npm:4.4.2":
+  version: 4.4.2
+  resolution: "chart.js@npm:4.4.2"
   dependencies:
     "@kurkle/color": ^0.3.0
-  checksum: 8c108f137824ea0e3d79914708b409298c12ed7d16da99a40ca3cab51466ef7b0068ad82ac0addeb288b938fe0621d3e5a6a913b60e72a729aa42aa96705fcad
+  checksum: 72506af9abd33dd99484322dd26e854693323959fe2d6e750bf670e3959737bc195807e91a4d939bc04124c05c7a2f3c435e52d1a668e0e945869f37fcba90a8
   languageName: node
   linkType: hard
 
