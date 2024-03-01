@@ -113,7 +113,7 @@
     "axios-retry": "3.9.1",
     "babel-jest": "29.7.0",
     "babel-preset-gatsby": "3.12.1",
-    "dotenv": "16.3.1",
+    "dotenv": "16.4.5",
     "eslint": "8.51.0",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.28.1",
