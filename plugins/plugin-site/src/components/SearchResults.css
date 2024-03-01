@@ -77,6 +77,9 @@
         text-align: center;
         text-shadow: rgba(0, 0, 0, 0.5) 1px 2px 1px;
         width: var(--plugin-icon-width);
+        & * {
+            color: inherit;
+        }
     }
 }
 .Plugin--TitleContainer {
