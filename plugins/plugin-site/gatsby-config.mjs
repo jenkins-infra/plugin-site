@@ -53,7 +53,7 @@ config.plugins = [
         resolve: '@jenkinsci/gatsby-plugin-jenkins-layout',
         options: {
             siteUrl: 'https://plugins.jenkins.io/',
-            githubBranch: 'master',
+            githubBranch: 'main',
             githubRepo: 'jenkins-infra/plugin-site',
             reportAProblemTemplate: '4-bug.yml',
             theme: 'auto',
