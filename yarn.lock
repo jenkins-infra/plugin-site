@@ -3426,7 +3426,7 @@ __metadata:
     postcss-merge-rules: 6.0.4
     postcss-nesting: 12.0.4
     postcss-preset-env: 9.4.0
-    postcss-pxtorem: 6.0.0
+    postcss-pxtorem: 6.1.0
     postcss-url: 10.1.3
     prismjs: 1.29.0
     react: 18.2.0
@@ -17535,12 +17535,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-pxtorem@npm:6.0.0":
-  version: 6.0.0
-  resolution: "postcss-pxtorem@npm:6.0.0"
+"postcss-pxtorem@npm:6.1.0":
+  version: 6.1.0
+  resolution: "postcss-pxtorem@npm:6.1.0"
   peerDependencies:
     postcss: ^8.0.0
-  checksum: b798ec6c82aaa57067b983bd61f640f7319bd1f02bd698be84558982da64d1d6574359b7f6ea197058f09e894768d282dc8d8cf1a1d833c6e1a86a577065a3ad
+  checksum: 3acc64d13d0f7b7c51881b30d4d14d528224c81f3b05927e19b2d7327601d12b62f55ae92bf62da381fdc7f138e50affd35e9a49b0956819eedcd809b4bfeb67
   languageName: node
   linkType: hard
 
