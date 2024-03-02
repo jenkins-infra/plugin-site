@@ -3197,7 +3197,7 @@ __metadata:
     remark-frontmatter: 5.0.0
     remark-gfm: 4.0.0
     remark-parse: 10.0.1
-    remark-rehype: 11.0.0
+    remark-rehype: 11.1.0
     stylelint: 15.11.0
     stylelint-config-recommended: 13.0.0
     stylelint-config-standard: 34.0.0
@@ -18439,16 +18439,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-rehype@npm:11.0.0, remark-rehype@npm:^11.0.0":
-  version: 11.0.0
-  resolution: "remark-rehype@npm:11.0.0"
+"remark-rehype@npm:11.1.0, remark-rehype@npm:^11.0.0":
+  version: 11.1.0
+  resolution: "remark-rehype@npm:11.1.0"
   dependencies:
     "@types/hast": ^3.0.0
     "@types/mdast": ^4.0.0
     mdast-util-to-hast: ^13.0.0
     unified: ^11.0.0
     vfile: ^6.0.0
-  checksum: 0ff0fd948759cbde9d507ca1581028d0b89da0b5f610b35a6cb0a511f8d11621449b6eca573b11ddaea77afd37edd4755f3f1eb086ad49a6f7b970b4a4634e13
+  checksum: f0c731f0ab92a122e7f9c9bcbd10d6a31fdb99f0ea3595d232ddd9f9d11a308c4ec0aff4d56e1d0d256042dfad7df23b9941e50b5038da29786959a5926814e1
   languageName: node
   linkType: hard
 
