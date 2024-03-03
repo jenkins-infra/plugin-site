@@ -110,7 +110,7 @@ const getPluginContent = async ({wiki, pluginName, reporter, createNode, createC
         const data = await requestGET({reporter, url: `${API_URL}/plugin/${pluginName}`});
 
         const $ = load(data.wiki.content);
-        $('a.anchor[href^="#"]').remove();
+        $('a[href^="#"].anchor-element').remove();
         data.wiki.content = $.html();
 
         return createWikiNode('text/pluginhtml', wiki.url, data.wiki.content);
