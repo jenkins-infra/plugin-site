@@ -3387,7 +3387,7 @@ __metadata:
     lint-staged: 15.2.2
     postcss-calc: 9.0.1
     postcss-css-variables: 0.19.0
-    postcss-import: 15.1.0
+    postcss-import: 16.0.1
     postcss-merge-rules: 6.0.4
     postcss-nesting: 12.0.4
     postcss-preset-env: 9.4.0
@@ -16994,16 +16994,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-import@npm:15.1.0":
-  version: 15.1.0
-  resolution: "postcss-import@npm:15.1.0"
+"postcss-import@npm:16.0.1":
+  version: 16.0.1
+  resolution: "postcss-import@npm:16.0.1"
   dependencies:
     postcss-value-parser: ^4.0.0
     read-cache: ^1.0.0
     resolve: ^1.1.7
   peerDependencies:
     postcss: ^8.0.0
-  checksum: 7bd04bd8f0235429009d0022cbf00faebc885de1d017f6d12ccb1b021265882efc9302006ba700af6cab24c46bfa2f3bc590be3f9aee89d064944f171b04e2a3
+  checksum: fe5a12afaf01961f5bb6f0333cb79fa2acd81095b8388dd4c30b2d15033ac5f7b09b7dbb6fd77b208216304e1e8c51c9f623b2a85dca33a13b22129847c0cc52
   languageName: node
   linkType: hard
 
