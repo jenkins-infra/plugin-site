@@ -4,9 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "lint": "yarn workspaces foreach -t -p -v -i run lint",
-        "test": "yarn workspaces foreach -t -p -v -i run test",
-        "build": "yarn workspaces foreach -t -p -v -i run build",
+        "lint": "yarn workspaces foreach --worktree -t -p -v -i run lint",
+        "test": "yarn workspaces foreach --worktree -t -p -v -i run test",
+        "build": "yarn workspaces foreach --worktree -t -p -v -i run build",
         "dev": "yarn workspace @jenkins-cd/jenkins-plugin-site dev",
         "postinstall": "husky install"
     },
@@ -30,5 +30,5 @@
             "eslint --fix"
         ]
     },
-    "packageManager": "yarn@3.8.0"
+    "packageManager": "yarn@4.1.0"
 }
