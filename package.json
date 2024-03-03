@@ -4,9 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "lint": "yarn workspaces foreach -t -p -v -i run lint",
-        "test": "yarn workspaces foreach -t -p -v -i run test",
-        "build": "yarn workspaces foreach -t -p -v -i run build",
+        "lint": "yarn workspaces foreach --worktree -t -p -v -i run lint",
+        "test": "yarn workspaces foreach --worktree -t -p -v -i run test",
+        "build": "yarn workspaces foreach --worktree -t -p -v -i run build",
         "dev": "yarn workspace @jenkins-cd/jenkins-plugin-site dev",
         "postinstall": "husky install"
     },
@@ -17,18 +17,18 @@
     "devDependencies": {
         "@babel/eslint-parser": "7.23.10",
         "@babel/eslint-plugin": "7.23.5",
-        "@babel/plugin-proposal-decorators": "7.23.9",
-        "eslint": "8.51.0",
+        "@babel/plugin-proposal-decorators": "7.24.0",
+        "eslint": "8.57.0",
         "eslint-config-google": "0.14.0",
         "eslint-plugin-filenames": "latest",
         "eslint-plugin-react": "latest",
         "husky": "8.0.1",
-        "lint-staged": "15.1.0"
+        "lint-staged": "15.2.2"
     },
     "lint-staged": {
         "*.{js,jsx}": [
             "eslint --fix"
         ]
     },
-    "packageManager": "yarn@3.6.4"
+    "packageManager": "yarn@4.1.0"
 }

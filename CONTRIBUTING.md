@@ -20,8 +20,8 @@ included in the project:
 2. If you cloned a while ago, get the latest changes from upstream:
 
    ```bash
-   git checkout master
-   git pull upstream master
+   git checkout main
+   git pull upstream main
    ```
 
 3. Create a new topic branch (off the main project development branch) to
@@ -43,7 +43,7 @@ included in the project:
 6. Locally merge (or rebase) the upstream development branch into your topic branch:
 
    ```bash
-   git pull [--rebase] upstream master
+   git pull [--rebase] upstream main
    ```
 
 7. Push your topic branch up to your fork:
@@ -53,7 +53,7 @@ included in the project:
    ```
 
 8. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
-   with a clear title and description against the `master` branch.
+   with a clear title and description against the `main` branch.
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project owners to
 license your work under the terms of the [MIT License](LICENSE).
