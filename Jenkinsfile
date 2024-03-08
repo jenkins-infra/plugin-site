@@ -7,7 +7,7 @@ pipeline {
   }
 
   agent {
-    label 'node'
+    label 'linux-arm64'
   }
 
   triggers {
