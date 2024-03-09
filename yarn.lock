@@ -3397,7 +3397,7 @@ __metadata:
     postcss-calc: "npm:9.0.1"
     postcss-css-variables: "npm:0.19.0"
     postcss-import: "npm:16.0.1"
-    postcss-merge-rules: "npm:6.0.4"
+    postcss-merge-rules: "npm:6.1.0"
     postcss-nesting: "npm:12.1.0"
     postcss-preset-env: "npm:9.4.0"
     postcss-pxtorem: "npm:6.1.0"
@@ -8276,12 +8276,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cssnano-utils@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "cssnano-utils@npm:4.0.1"
+"cssnano-utils@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "cssnano-utils@npm:4.0.2"
   peerDependencies:
     postcss: ^8.4.31
-  checksum: 10c0/20513a393402f283c85c450ece43d1a6a06a9906b524481043ac203a86888a4ca5cbef878c615a58fdd82a9e870ce62c6f3fea9f51814034a084d8980e17cf96
+  checksum: 10c0/260b8c8ffa48b908aa77ef129f9b8648ecd92aed405b20e7fe6b8370779dd603530344fc9d96683d53533246e48b36ac9d2aa5a476b4f81c547bbad86d187f35
   languageName: node
   linkType: hard
 
@@ -17470,17 +17470,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-merge-rules@npm:6.0.4":
-  version: 6.0.4
-  resolution: "postcss-merge-rules@npm:6.0.4"
+"postcss-merge-rules@npm:6.1.0":
+  version: 6.1.0
+  resolution: "postcss-merge-rules@npm:6.1.0"
   dependencies:
     browserslist: "npm:^4.23.0"
     caniuse-api: "npm:^3.0.0"
-    cssnano-utils: "npm:^4.0.1"
+    cssnano-utils: "npm:^4.0.2"
     postcss-selector-parser: "npm:^6.0.15"
   peerDependencies:
     postcss: ^8.4.31
-  checksum: 10c0/57a16817c099dfc644bf2619831208bafcfd91225cccc8f6d2913241fe4a7225b3dc565bc92402902b4271771ad5d56358afd8eb7f709827a6576177e0bf9433
+  checksum: 10c0/3ce76c87e29003fe46fbeba64348ed61d50d8966cfd56ec59b70b6fbf2e2ea8866b8399eec09e036fc636c84207ba12037a1dbc1374fd313a885511947699cad
   languageName: node
   linkType: hard
 
