@@ -7,7 +7,7 @@ pipeline {
   }
 
   agent {
-    label 'linux-arm64-docker'
+    label 'linux-arm64-docker || arm64linux azure-vms-jenkins-sponsorship'
   }
 
   triggers {
