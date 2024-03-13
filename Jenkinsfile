@@ -7,7 +7,7 @@ pipeline {
   }
 
   agent {
-    label 'node'
+    label 'linux-arm64-docker || arm64linux'
   }
 
   triggers {
@@ -38,6 +38,7 @@ pipeline {
       steps {
         sh '''
         asdf install
+        npm install --global yarn
         yarn install
         '''
       }
