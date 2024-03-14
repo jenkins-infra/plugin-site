@@ -109,7 +109,7 @@
     "@jenkinsci/gatsby-plugin-jenkins-layout": "1.6.0",
     "@testing-library/jest-dom": "6.4.2",
     "@testing-library/react": "14.2.1",
-    "@typescript-eslint/eslint-plugin": "7.1.1",
+    "@typescript-eslint/eslint-plugin": "7.2.0",
     "axios-retry": "4.0.0",
     "babel-jest": "29.7.0",
     "babel-preset-gatsby": "3.13.1",
