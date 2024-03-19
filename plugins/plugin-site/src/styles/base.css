@@ -1052,4 +1052,8 @@ a.card:hover {
     --bs-form-invalid-color: #ea868f;
     --bs-form-invalid-border-color: #ea868f;
   }
+
+  .btn-close {
+        filter: var(--bs-btn-close-white-filter);
+  }
 }

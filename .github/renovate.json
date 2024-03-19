@@ -46,8 +46,7 @@
         },
         {
             "matchPackageNames": [
-                "husky",
-                "reactstrap"
+                "husky"
             ],
             "enabled": false
         },
