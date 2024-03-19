@@ -81,12 +81,12 @@ function PluginPageLayout({plugin, children}) {
                     <div className="sidebarSection">
                         <PluginReadableInstalls currentInstalls={plugin.stats.currentInstalls}
                             percentage={plugin.stats.currentInstallPercentage} />
-                        <div className="chart">
-                            <LineChart
-                                installations={plugin.stats.installations}
-                            />
-                        </div>
-                        <div className="label-link"><a href={`https://stats.jenkins.io/pluginversions/${plugin.name}.html`}>View detailed version information</a></div>
+                        {(plugin.stats.installations || plugin.stats.installations === 0) && <>
+                            <div className="chart">
+                                <LineChart installations={plugin.stats.installations} />
+                            </div>
+                            <div className="label-link"><a href={`https://stats.jenkins.io/pluginversions/${plugin.name}.html`}>View detailed version information</a></div>
+                        </>}
                     </div>
                     <div className="sidebarSection">
                         <h5>Links</h5>
