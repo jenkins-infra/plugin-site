@@ -1,3 +1,5 @@
+@Library('pipeline-library@pull/846/head') _
+
 pipeline {
   options {
     timeout(time: 60, unit: 'MINUTES')
