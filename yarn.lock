@@ -3921,7 +3921,7 @@ __metadata:
   dependencies:
     "@babel/preset-env": "npm:7.24.1"
     axios: "npm:^1.0.0"
-    axios-retry: "npm:4.0.0"
+    axios-retry: "npm:4.1.0"
     babel-jest: "npm:29.7.0"
     cheerio: "npm:^1.0.0-rc.10"
     date-fns: "npm:^3.0.0"
@@ -3961,7 +3961,7 @@ __metadata:
     "@testing-library/react": "npm:14.2.1"
     "@typescript-eslint/eslint-plugin": "npm:7.3.1"
     algoliasearch: "npm:4.22.1"
-    axios-retry: "npm:4.0.0"
+    axios-retry: "npm:4.1.0"
     babel-jest: "npm:29.7.0"
     babel-preset-gatsby: "npm:3.13.1"
     chart.js: "npm:4.4.2"
@@ -7056,14 +7056,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios-retry@npm:4.0.0":
-  version: 4.0.0
-  resolution: "axios-retry@npm:4.0.0"
+"axios-retry@npm:4.1.0":
+  version: 4.1.0
+  resolution: "axios-retry@npm:4.1.0"
   dependencies:
     is-retry-allowed: "npm:^2.2.0"
   peerDependencies:
     axios: 0.x || 1.x
-  checksum: 10c0/090e023e3cd353094f30359136d777bb6bb2e9f130791d6127df289130385152024c693ad845a1b7de55770fe5ded05d52969c4b1809e3cc0120ca57f6cf0a88
+  checksum: 10c0/381ae8b03f2edf444e426a4be3c94e31b0b66c45bac30ce0dcf3aff48d9f2ed9607c826fa32d4a8cf0d40ae0cb9369449bb69837abe478d8821ce3375f34d73a
   languageName: node
   linkType: hard
 
