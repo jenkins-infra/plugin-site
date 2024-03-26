@@ -129,7 +129,7 @@ function compareString(a, b) {
 
 function PluginHealthScore({healthScore: {value: score, date, details}}) {
     return (
-        <div className="container">
+        <div className="container pluginHealth">
             <div id="pluginHealth--score">
                 <div>
                     <div className="pluginHealth--score-title">

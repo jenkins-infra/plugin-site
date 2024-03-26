@@ -1,3 +1,7 @@
+.pluginHealth > div:last-child {
+    margin-bottom: 2rem;
+}
+
 #pluginHealth--score {
     display: flex;
     align-items: center;
