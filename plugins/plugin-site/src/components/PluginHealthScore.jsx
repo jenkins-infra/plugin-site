@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import TimeAgo from 'react-timeago';
 
 import ucFirst from '../utils/ucfirst';
+import {formatter} from '../commons/helper';
 import './PluginHealthScore.css';
 
 function ScoreIcon({score, className}) {
@@ -125,9 +127,9 @@ function compareString(a, b) {
     return 0;
 }
 
-function PluginHealthScore({healthScore: {value: score, details}}) {
+function PluginHealthScore({healthScore: {value: score, date, details}}) {
     return (
-        <div className="container">
+        <div className="container pluginHealth">
             <div id="pluginHealth--score">
                 <div>
                     <div className="pluginHealth--score-title">
@@ -144,6 +146,11 @@ function PluginHealthScore({healthScore: {value: score, details}}) {
                     );
                 })}
             </div>
+
+            <div>
+                {'Computed: '}
+                <TimeAgo date={Date.parse(date)} formatter={formatter}/>
+            </div>
         </div>
     );
 }
@@ -151,6 +158,7 @@ function PluginHealthScore({healthScore: {value: score, details}}) {
 PluginHealthScore.propTypes = {
     healthScore: PropTypes.shape({
         value: PropTypes.number.isRequired,
+        date: PropTypes.string.isRequired,
         details: PropTypes.arrayOf(ScoreDetail.propTypes.data).isRequired
     }).isRequired,
 };

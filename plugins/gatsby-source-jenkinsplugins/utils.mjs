@@ -5,7 +5,7 @@ import crypto from 'crypto';
 import {load} from 'cheerio';
 import {execSync} from 'child_process';
 import axiosRetry, {exponentialDelay} from 'axios-retry';
-import {parse as parseDate} from 'date-fns';
+import {parse as parseDate, parseJSON} from 'date-fns';
 import PQueue from 'p-queue';
 import {parseStringPromise} from 'xml2js';
 import {createRequire} from 'module';
@@ -516,7 +516,7 @@ export const fetchPluginHealthScore = async ({createNode, reporter}) => {
     const baseURL = 'https://plugin-health.jenkins.io/api';
     const {plugins, statistics} = await requestGET({url: `${baseURL}/scores`, reporter});
     for (const pluginName of Object.keys(plugins)) {
-        const {value, details} = plugins[pluginName];
+        const {value, date, details} = plugins[pluginName];
         const detailsArray = [];
         for (const categoryName of Object.keys(details)) {
             detailsArray.push(
@@ -529,6 +529,7 @@ export const fetchPluginHealthScore = async ({createNode, reporter}) => {
 
         createNode({
             value,
+            date: parseJSON(date),
             details: detailsArray,
             id: pluginName,
             parent: null,
