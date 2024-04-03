@@ -7,7 +7,7 @@ function PluginInactiveWarnings({securityWarnings}) {
         return null;
     }
     const inactive = securityWarnings.filter(warning => !warning.active);
-    if (inactive.length == 0) {
+    if (inactive.length === 0) {
         return null;
     }
     return (

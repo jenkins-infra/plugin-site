@@ -3,7 +3,7 @@ import {navigate} from 'gatsby';
 
 import Layout from '../layout';
 
-import SEO from '../components/SEO';
+import SeoHeader from '../components/SeoHeader';
 import Footer from '../components/Footer';
 import SearchBox from '../components/SearchBox';
 import JenkinsVoltron from '../components/JenkinsVoltron';
@@ -22,7 +22,7 @@ function IndexPage() {
 
     return (
         <Layout sourcePath={indexPage}>
-            <SEO />
+            <SeoHeader />
             <div className="IndexPage--Container jumbotron" onSubmit={handleOnSubmit}>
                 <div className="logo"><JenkinsVoltron /></div>
                 <div className="content">

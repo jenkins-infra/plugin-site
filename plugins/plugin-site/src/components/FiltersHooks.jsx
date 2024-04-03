@@ -35,7 +35,7 @@ function useFilterHooks() {
     ['sort', 'categories', 'labels', 'view', 'page', 'query'].forEach(key => {
         ret[`set${ucFirst(key)}`] = (val) => {
             const newData = {...data, [key]: val};
-            if (key != 'page') {
+            if (key !== 'page') {
                 newData.page = 1;
             }
             navigate(`/ui/search?${new URLSearchParams({...newData})}`);

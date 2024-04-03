@@ -2,13 +2,13 @@ import {graphql} from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '../layout';
-import SEO from '../components/SEO';
+import SeoHeader from '../components/SeoHeader';
 
 function TombstonePage({data: {suspendedPlugin: plugin}}) {
     const pluginPage = 'plugins/plugin-site/src/templates/tombstone.jsx';
     return (
         <Layout id="pluginPage" sourcePath={pluginPage}>
-            <SEO title={plugin.id} description={`Deprecated plugin: ${plugin.id}`} pathname={`/${plugin.id}`}/>
+            <SeoHeader title={plugin.id} description={`Deprecated plugin: ${plugin.id}`} pathname={`/${plugin.id}`}/>
 
             <div className="container">
                 <div className="title-wrapper">
