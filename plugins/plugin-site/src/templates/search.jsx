@@ -6,7 +6,7 @@ import algoliasearch from 'algoliasearch/lite';
 import Layout from '../layout';
 import forceArray from '../utils/forceArray.mjs';
 import useFilterHooks from '../components/FiltersHooks';
-import SEO from '../components/SEO';
+import SeoHeader from '../components/SeoHeader';
 import Footer from '../components/Footer';
 import SuspendedPlugins from '../components/SuspendedPlugins';
 import Views from '../components/Views';
@@ -27,7 +27,7 @@ function groupBy(objectArray, property) {
 const doSearch = (data, setResults, categoriesMap) => {
     const {query} = data;
     const labels = forceArray(data.labels).concat(
-        ...forceArray(data.categories).filter(Boolean).map(categoryId => categoriesMap[categoryId].labels)
+        ...forceArray(data.categories).filter(Boolean).map(categoryId => categoriesMap[categoryId]?.labels)
     ).filter(Boolean);
     let page = data.page;
     setResults(null);
@@ -116,13 +116,15 @@ function SearchPage({location}) {
     React.useEffect(() => {
         const parsed = Object.fromEntries(new URLSearchParams(location.search));
         parsed.query = parsed.query || '';
+        parsed.categories = (parsed.categories || '').split(',');
+        parsed.labels = (parsed.labels || '').split(',');
         setData(parsed);
         doSearch(parsed, setResults, categoriesMap);
     }, [location]);
 
     return (
         <Layout id="searchpage" sourcePath={searchPage}>
-            <SEO pathname={'/ui/search'} title="Search Results" />
+            <SeoHeader pathname={'/ui/search'} title="Search Results" />
 
             <div className="row d-flex">
                 {showFilter && (<div className="col-md-3 order-last order-md-first">

@@ -7,13 +7,13 @@ function PluginActiveWarnings({securityWarnings}) {
         return null;
     }
     const active = securityWarnings.filter(warning => warning.active);
-    if (active.length == 0) {
+    if (active.length === 0) {
         return null;
     }
     return (
         <div className="alert alert-danger alert-with-icon">
             <ion-icon class="alert-icon" name="warning" />
-            {active.length == 1 ? singleWarning(active[0]) : multipleWarnings(active)}
+            {active.length === 1 ? singleWarning(active[0]) : multipleWarnings(active)}
         </div>
     );
 }

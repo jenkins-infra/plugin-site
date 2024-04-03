@@ -5,7 +5,7 @@ import {cleanTitle} from '../commons/helper';
 import {PropTypesJenkinsPlugin} from '../proptypes';
 
 import Layout from '../layout';
-import SEO from '../components/SEO';
+import SeoHeader from '../components/SeoHeader';
 import InstallInstructions from '../components/InstallInstructions';
 import LineChart from '../components/LineChart';
 import PluginLabels from '../components/PluginLabels';
@@ -45,7 +45,7 @@ function PluginPageLayout({plugin, children}) {
     };
     return (
         <Layout id="pluginPage">
-            <SEO title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.name}`}/>
+            <SeoHeader title={cleanTitle(plugin.title)} description={plugin.excerpt} pathname={`/${plugin.name}`}/>
             <div className="title-wrapper">
                 <h1 className="title">
                     {cleanTitle(plugin.title)}

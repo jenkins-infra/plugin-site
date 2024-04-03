@@ -5,7 +5,7 @@ import {useStaticQuery, graphql} from 'gatsby';
 
 const urlResolve = (base, url) => new URL(url, base).toString();
 
-const SEO = ({title, description, image, pathname, article}) => {
+const SeoHeader = ({title, description, image, pathname, article}) => {
     const data = useStaticQuery(query);
     if (!data) { return null; }
 
@@ -58,11 +58,11 @@ const SEO = ({title, description, image, pathname, article}) => {
     );
 };
 
-export default SEO;
+export default SeoHeader;
 
-SEO.displayName = 'SEO';
+SeoHeader.displayName = 'SeoHeader';
 
-SEO.propTypes = {
+SeoHeader.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     image: PropTypes.string,
@@ -70,7 +70,7 @@ SEO.propTypes = {
     article: PropTypes.bool,
 };
 
-SEO.defaultProps = {
+SeoHeader.defaultProps = {
     title: null,
     description: null,
     image: null,
@@ -79,7 +79,7 @@ SEO.defaultProps = {
 };
 
 const query = graphql`
-  query SEO {
+  query SeoHeader {
     site {
       siteMetadata {
         defaultTitle: title
