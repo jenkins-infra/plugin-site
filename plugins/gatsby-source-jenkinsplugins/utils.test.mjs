@@ -103,8 +103,8 @@ describe('utils', () => {
         expect(createNode.mock.calls.filter(call => call[0].name === 'ios-device-connector').map(args => args[0])).toMatchSnapshot();
     }, 15000);
     it('get plugin healthScore data', async () => {
-        nock('https://plugin-health.jenkins.io')
-            .get('/api/scores')
+        nock('https://reports.jenkins.io')
+            .get('/plugin-health-scoring/scores.json')
             .reply(200, JSON.parse(await readText('plugin-health-score.json')));
         const createNode = jest.fn().mockResolvedValue();
 
