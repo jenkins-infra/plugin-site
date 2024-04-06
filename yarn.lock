@@ -3903,7 +3903,7 @@ __metadata:
     "@babel/preset-env": "npm:7.24.3"
     babel-jest: "npm:29.7.0"
     eslint: "npm:8.57.0"
-    hast-util-to-html: "npm:9.0.0"
+    hast-util-to-html: "npm:9.0.1"
     jest: "npm:29.7.0"
     rehype: "npm:11.0.0"
     unist-util-visit: "npm:^5.0.0"
@@ -3917,7 +3917,7 @@ __metadata:
     "@babel/preset-env": "npm:7.24.3"
     babel-jest: "npm:29.7.0"
     eslint: "npm:8.57.0"
-    hast-util-to-html: "npm:9.0.0"
+    hast-util-to-html: "npm:9.0.1"
     jest: "npm:29.7.0"
     rehype: "npm:11.0.0"
     unist-util-visit-parents: "npm:^6.0.0"
@@ -12830,9 +12830,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hast-util-to-html@npm:9.0.0, hast-util-to-html@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "hast-util-to-html@npm:9.0.0"
+"hast-util-to-html@npm:9.0.1":
+  version: 9.0.1
+  resolution: "hast-util-to-html@npm:9.0.1"
   dependencies:
     "@types/hast": "npm:^3.0.0"
     "@types/unist": "npm:^3.0.0"
@@ -12846,7 +12846,7 @@ __metadata:
     space-separated-tokens: "npm:^2.0.0"
     stringify-entities: "npm:^4.0.0"
     zwitch: "npm:^2.0.4"
-  checksum: 10c0/9fa64c09cfc27653fea814fec38ae579741f498d5db1495f908be15ec898a6c25f43029b2db0fd42eece47a9bdf2a693adb0b4501cd8d24ad858a63dc29e2cdb
+  checksum: 10c0/001199084700fad40392e708c9f440346fe01d2297758d871c181f425760de6535227a782f85b83d54b0bbddbdd25021a5f5608cd04e4ae8a93af5391be0db7b
   languageName: node
   linkType: hard
 
@@ -12865,6 +12865,26 @@ __metadata:
     unist-util-is: "npm:^4.0.0"
     xtend: "npm:^4.0.0"
   checksum: 10c0/50dd884d2394b1e61043af4b445360f77f53662bbfd4bbc45ad2cce3f1ac8253129ab0e162de571d06771c9c7a4faec4bcbd2319d2bfd75f109512c629353128
+  languageName: node
+  linkType: hard
+
+"hast-util-to-html@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "hast-util-to-html@npm:9.0.0"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+    "@types/unist": "npm:^3.0.0"
+    ccount: "npm:^2.0.0"
+    comma-separated-tokens: "npm:^2.0.0"
+    hast-util-raw: "npm:^9.0.0"
+    hast-util-whitespace: "npm:^3.0.0"
+    html-void-elements: "npm:^3.0.0"
+    mdast-util-to-hast: "npm:^13.0.0"
+    property-information: "npm:^6.0.0"
+    space-separated-tokens: "npm:^2.0.0"
+    stringify-entities: "npm:^4.0.0"
+    zwitch: "npm:^2.0.4"
+  checksum: 10c0/9fa64c09cfc27653fea814fec38ae579741f498d5db1495f908be15ec898a6c25f43029b2db0fd42eece47a9bdf2a693adb0b4501cd8d24ad858a63dc29e2cdb
   languageName: node
   linkType: hard
 
