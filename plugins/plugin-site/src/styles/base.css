@@ -145,6 +145,92 @@ body #grid-box .NoLabels legend {font-size:1.1rem; }
 transform: scale(-1, 1);
 }
 
+/*-------GitHub-Flavored-Admonitions-------*/
+
+body {
+  --base-size-8: 0.5rem;
+  --base-size-16: 1rem;
+  --borderColor-default: #30363d;
+  --borderColor-accent-emphasis: #1f6feb;
+  --borderColor-success-emphasis: #238636;
+  --borderColor-done-emphasis: #8957e5;
+  --borderColor-attention-emphasis: #9e6a03;
+  --borderColor-danger-emphasis: #da3633;
+  --fgColor-accent: #4493f8;
+  --fgColor-success: #3fb950;
+  --fgColor-done: #a371f7;
+  --fgColor-attention: #d29922;
+  --fgColor-danger: #f85149;
+}
+
+.markdown-alert {
+  padding: var(--base-size-8) var(--base-size-16);
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid var(--borderColor-default);
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+}
+
+.octicon {
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+  margin-right: 8px;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--borderColor-accent-emphasis);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--fgColor-accent);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--borderColor-success-emphasis);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--fgColor-success);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--borderColor-done-emphasis);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--fgColor-done);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--borderColor-attention-emphasis);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--fgColor-attention);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--borderColor-danger-emphasis);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--fgColor-danger);
+}
+
+/*-------end-GitHub-Flavored-Admonitions-------*/
+
 /*-------spinner-----------*/
 
 #plugin-spinner {
