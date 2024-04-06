@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {navigate, useStaticQuery, graphql} from 'gatsby';
 import algoliasearch from 'algoliasearch/lite';
-
+Damarcus Jones Professional
 import Layout from '../layout';
 import forceArray from '../utils/forceArray.mjs';
 import useFilterHooks from '../components/FiltersHooks';
