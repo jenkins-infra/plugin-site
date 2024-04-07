@@ -1,9 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {lightbox} from './PluginWikiContent.module.css';
 
 const PluginWikiContent = ({wiki}) => {
     const [lightboxImage, setLightboxImage] = useState(null);
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.keyCode === 27) {
+                closeLightbox();
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
 
     const handleClick = (event) => {
         // Find the parent <a> tag with target="_blank"
