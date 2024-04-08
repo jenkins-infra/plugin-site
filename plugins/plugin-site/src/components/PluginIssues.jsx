@@ -29,31 +29,33 @@ function PluginIssues({pluginId}) {
 
     return (
         <div>
-            <div className="table-responsive">
-                <table className="table">
-                    <caption>List of issues</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Key</th>
-                            <th scope="col">Summary</th>
-                            <th scope="col">Created</th>
-                            <th scope="col">Updated</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {issues && issues.map(issue => {
-                            return (
+            {issues && issues.length === 0 ? (
+                <div>Currently, there are no open issues.</div>
+            ) : (
+                <div className="table-responsive">
+                    <table className="table">
+                        <caption>List of issues</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Key</th>
+                                <th scope="col">Summary</th>
+                                <th scope="col">Created</th>
+                                <th scope="col">Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {issues && issues.map(issue => (
                                 <tr key={issue.key}>
                                     <th scope="row"><a href={issue.url}>{issue.key}</a></th>
                                     <td>{issue.summary}</td>
-                                    <td><TimeAgo date={new Date(issue.created)} formatter={formatter}/></td>
-                                    <td><TimeAgo date={new Date(issue.updated)} formatter={formatter}/></td>
+                                    <td><TimeAgo date={new Date(issue.created)} formatter={formatter} /></td>
+                                    <td><TimeAgo date={new Date(issue.updated)} formatter={formatter} /></td>
                                 </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     );
 }
