@@ -44,7 +44,7 @@ function PluginIssues({pluginId}) {
                             </tr>
                         </thead>
                         <tbody>
-                            {issues.map(issue => (
+                            {issues && issues.map(issue => (
                                 <tr key={issue.key}>
                                     <th scope="row"><a href={issue.url}>{issue.key}</a></th>
                                     <td>{issue.summary}</td>
