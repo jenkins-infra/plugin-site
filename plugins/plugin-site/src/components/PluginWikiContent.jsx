@@ -7,7 +7,7 @@ const PluginWikiContent = ({wiki}) => {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            if (event.code === "Escape") {
+            if (event.code === 'Escape') {
                 closeLightbox();
             }
         };
