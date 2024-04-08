@@ -29,7 +29,7 @@ function PluginIssues({pluginId}) {
 
     return (
         <div>
-            {issues.length === 0 ? (
+            {issues && issues.length === 0 ? (
                 <div>Currently, there are no open issues.</div>
             ) : (
                 <div className="table-responsive">
