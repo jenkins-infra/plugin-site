@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from '@testing-library/react';
 import Page404 from '../../src/pages/404';
 
+import {describe, expect, it} from '@jest/globals';
 describe('page404', () => {
     it('renders correctly', () => {
         const location = {

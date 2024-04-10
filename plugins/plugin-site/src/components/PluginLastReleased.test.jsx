@@ -4,6 +4,7 @@ import {render} from '@testing-library/react';
 
 import PluginLastReleased from './PluginLastReleased';
 
+import {beforeEach, describe, expect, it, jest} from '@jest/globals';
 describe('pluginLastReleased', () => {
     beforeEach(() => {
         jest.useFakeTimers();

@@ -5,6 +5,7 @@ import {render} from '@testing-library/react';
 
 import TemplatePluginIssues from './plugin_issues';
 
+import {describe, expect, it} from '@jest/globals';
 describe('component - TemplatePluginIssues', () => {
     it('renders', async () => {
         const plugin = {
