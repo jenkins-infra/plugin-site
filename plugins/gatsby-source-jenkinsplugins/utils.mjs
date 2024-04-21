@@ -515,7 +515,7 @@ export const fetchPluginHealthScore = async ({createNode, reporter}) => {
     sectionActivity.start();
     const baseURL = 'https://reports.jenkins.io/plugin-health-scoring';
     const {plugins, statistics} = await requestGET({url: `${baseURL}/scores.json`, reporter});
-    for (const pluginName of Object.keys(plugins)) {
+    for (const pluginName of Object.keys(plugins || {})) {
         const {value, date, details} = plugins[pluginName];
         const detailsArray = [];
         for (const categoryName of Object.keys(details)) {
