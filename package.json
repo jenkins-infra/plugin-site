@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "lint": "yarn workspaces foreach --worktree -t -p -v -i run lint",
+        "lint": "eslint -c eslint.config.mjs --ignore-pattern \"**/.cache/\" --ignore-pattern \"**/public/\" --ignore-pattern \".yarn\" --ignore-pattern \"**/layout.jsx\" .",
         "test": "yarn workspaces foreach --worktree -t -p -v -i run test",
         "build": "yarn workspaces foreach --worktree -t -p -v -i run build",
         "dev": "yarn workspace @jenkins-cd/jenkins-plugin-site dev",
@@ -21,7 +21,9 @@
         "eslint": "9.0.0",
         "eslint-config-google": "0.14.0",
         "eslint-plugin-filenames": "latest",
-        "eslint-plugin-react": "latest",
+        "eslint-plugin-import": "2.31.0",
+        "eslint-plugin-react": "^7.35.0",
+        "globals": "^15.9.0",
         "husky": "8.0.1",
         "lint-staged": "15.2.10"
     },

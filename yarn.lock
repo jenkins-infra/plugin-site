@@ -9242,7 +9242,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:7.37.1, eslint-plugin-react@npm:^7.32.2, eslint-plugin-react@npm:latest":
+"eslint-plugin-react@npm:7.37.1, eslint-plugin-react@npm:^7.32.2, eslint-plugin-react@npm:^7.35.0":
   version: 7.37.1
   resolution: "eslint-plugin-react@npm:7.37.1"
   dependencies:
@@ -11194,7 +11194,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^15.8.0":
+"globals@npm:^15.8.0, globals@npm:^15.9.0":
   version: 15.10.0
   resolution: "globals@npm:15.10.0"
   checksum: 10c0/fef8f320e88f01f1492fef1b04b056908e1f6726eeaffe3bca03247237300c2d86e71585ee641b62ba71460a6eaff0d6ca7fca284e61bd1b3f833c7ad68b160a
@@ -18601,7 +18601,9 @@ __metadata:
     eslint: "npm:9.0.0"
     eslint-config-google: "npm:0.14.0"
     eslint-plugin-filenames: "npm:latest"
-    eslint-plugin-react: "npm:latest"
+    eslint-plugin-import: "npm:2.31.0"
+    eslint-plugin-react: "npm:^7.35.0"
+    globals: "npm:^15.9.0"
     husky: "npm:8.0.1"
     lint-staged: "npm:15.2.10"
   languageName: unknown

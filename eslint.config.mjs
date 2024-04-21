@@ -1,64 +1,55 @@
-module.exports = {
-    'env': {
-        'browser': true,
-        'es6': true,
-        'node': true
+import jest from 'eslint-plugin-jest';
+import react from 'eslint-plugin-react';
+import pluginPromise from 'eslint-plugin-promise';
+import globals from 'globals';
+import js from '@eslint/js';
+import pluginImport from 'eslint-plugin-import';
+const reactRecommended = react.configs.recommended;
+export default
+{
+    ...js.configs.recommended,
+    ...pluginPromise.configs['flat/recommended'],
+    ...jest.configs['flat/recommended'],
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    plugins: {
+        react,
+        jest,
+        'import': pluginImport,
     },
-    'extends': [
-        'eslint:recommended',
-        'plugin:import/recommended',
-        'plugin:react/recommended',
-        'plugin:promise/recommended'
-    ],
-    'overrides': [
-        {
-            'env': {
-                'jest/globals': true
-            },
-            'extends': [
-                'plugin:jest/all'
-            ],
-            'files': [
-                'jest-*.js',
-                '__tests__/**/*.mjs',
-                '__tests__/**/*.jsx',
-                '__mocks__/**/*.js',
-                '__mocks__/**/*.jsx',
-                '**/*.test.js',
-                '**/*.test.jsx',
-            ],
-            'plugins': [
-                'jest'
-            ],
-            'rules': {
-                'jest/no-hooks': 'off',
-                'jest/prefer-expect-assertions': 'off'
+    languageOptions: {
+        ...reactRecommended.languageOptions,
+        parserOptions: {
+            ecmaFeatures: {
+                jsx: true
             }
         },
-        {
-            'files': [
-                '*config.js',
-            ],
-            'rules': {
-                'sort-keys': 'error'
+        globals: {
+            ...globals.serviceworker,
+            ...globals.browser,
+            ...globals.node,
+            ...jest.configs['flat/recommended'].languageOptions.globals,
+            'Intl': 'readonly'
+        },
+    },
+
+    settings: {
+        'import/resolver': {
+            'node': {
+                'extensions': [
+                    '.js',
+                    '.jsx',
+                    '.mjs'
+                ]
             }
+        },
+        'react': {
+            'version': '18.0'
         }
-    ],
-    'parser': '@babel/eslint-parser',
-    'plugins': [
-        'promise',
-        'react',
-        'import'
-    ],
-    'rules': {
-        'comma-spacing': 2,
-        'eol-last': 2,
-        'import/extensions': ['error', 'ignorePackages', {'js': 'never', 'jsx': 'never'}],
-        'import/no-unresolved': [2, {
-            ignore: [
-                '@gatsbyjs/reach-router' // we need to load the one provided by gatsby so they match up and stuff
-            ]
-        }],
+    },
+    rules: {
+        ...reactRecommended.rules,
+        ...js.configs.recommended.rules,
+        ...pluginImport.configs.recommended.rules,
         'indent': ['error', 4],
         'jsx-quotes': 2,
         'key-spacing': [2],
@@ -100,10 +91,7 @@ module.exports = {
         'semi': [2],
         'space-before-function-paren': [2, {'anonymous': 'always', 'named': 'never'}],
         'strict': [2, 'global'],
-    },
-    'settings': {
-        'import/extensions': ['.js', '.jsx'],
-        'import/resolver': {'node': {'extensions': ['.js', '.jsx']}},
-        'react': {'version': 'detect'},
-    },
-};
+        'jest/prefer-importing-jest-globals': 2
+    }
+}
+;
