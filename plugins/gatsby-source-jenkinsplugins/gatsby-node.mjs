@@ -76,6 +76,7 @@ export const createSchemaCustomization = ({actions}) => {
             details: [JenkinsPluginHealthScoreDetails]
             value: Int
         }
+
         type JenkinsPluginHealthScoreStatistics implements Node {
             average: Int
             minimum: Int
