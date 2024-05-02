@@ -49,5 +49,41 @@ export const createSchemaCustomization = ({actions}) => {
             plugin: JenkinsPlugin @link(from: "name", by: "name")
             machineVersion: String @machineVersion(field: "version")
         }
+
+        type JenkinsPluginHealthScoreDetailsComponentsResolutions {
+            text: String
+            link: String
+        }
+
+        type JenkinsPluginHealthScoreDetailsComponents {
+            value: Int
+            weight: Int
+            reasons: [String]
+            resolutions: [JenkinsPluginHealthScoreDetailsComponentsResolutions]
+        }
+
+        type JenkinsPluginHealthScoreDetails {
+            value: Int
+            weight: Float
+            components: [JenkinsPluginHealthScoreDetailsComponents]
+            name: String
+        }
+
+        type JenkinsPluginHealthScore implements Node {
+            url: String
+            name: String
+            date: Date @dateformat
+            details: [JenkinsPluginHealthScoreDetails]
+            value: Int
+        }
+        type JenkinsPluginHealthScoreStatistics implements Node {
+            average: Int
+            minimum: Int
+            maximum: Int
+            firstQuartile: Int
+            median: Int
+            thirdQuartile: Int
+            name: String
+        }
     `);
 };
