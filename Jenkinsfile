@@ -107,9 +107,9 @@ pipeline {
       }
       environment {
         NODE_ENV = 'production'
-        GATSBY_ALGOLIA_APP_ID = secret('algolia-plugins-app-id')
-        GATSBY_ALGOLIA_SEARCH_KEY = secret('algolia-plugins-search-key')
-        GATSBY_ALGOLIA_WRITE_KEY = secret('algolia-plugins-write-key')
+        GATSBY_ALGOLIA_APP_ID = secrets('algolia-plugins-app-id')
+        GATSBY_ALGOLIA_SEARCH_KEY = secrets('algolia-plugins-search-key')
+        GATSBY_ALGOLIA_WRITE_KEY = secrets('algolia-plugins-write-key')
         GATSBY_MATOMO_SITE_ID = '1'
         GATSBY_MATOMO_SITE_URL = 'https://jenkins-matomo.do.g4v.dev'
       }
