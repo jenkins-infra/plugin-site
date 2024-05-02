@@ -107,14 +107,17 @@ pipeline {
       }
       environment {
         NODE_ENV = 'production'
-        GATSBY_ALGOLIA_APP_ID = secrets('algolia-plugins-app-id')
-        GATSBY_ALGOLIA_SEARCH_KEY = secrets('algolia-plugins-search-key')
-        GATSBY_ALGOLIA_WRITE_KEY = secrets('algolia-plugins-write-key')
         GATSBY_MATOMO_SITE_ID = '1'
         GATSBY_MATOMO_SITE_URL = 'https://jenkins-matomo.do.g4v.dev'
       }
       steps {
-        sh 'yarn build'
+        withCredentials([
+          string(credentialsId: 'algolia-plugins-app-id', variable: 'GATSBY_ALGOLIA_APP_ID'),
+          string(credentialsId: 'algolia-plugins-search-key', variable: 'GATSBY_ALGOLIA_SEARCH_KEY'),
+          string(credentialsId: 'algolia-plugins-write-key', variable: 'GATSBY_ALGOLIA_WRITE_KEY'),
+        ]) {
+          sh 'yarn build'
+        }
       }
     }
 
