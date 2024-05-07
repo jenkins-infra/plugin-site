@@ -382,7 +382,7 @@ until you exactly have the same ID in jenkins and SCM.</p>
 This plugin uses this extension point to let user configure external
 identities as user properties.</p>
 <h2>Usage</h2>
-<p>On my Jenkins instance, I'm authenticated as "nicolas". As I want to use
+<p>On my Jenkins controller, I'm authenticated as "nicolas". As I want to use
 the same identity for commits on repositories, I can setup an additional
 identity for my account on googlecode :
 <img src="docs/images/Capture_d%E2%80%99%C3%A9cran_2012-08-21_%C3%A0_15.03.47.png" alt=""></p>

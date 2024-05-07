@@ -14,7 +14,7 @@ identities as user properties.
 
 ## Usage
 
-On my Jenkins instance, I'm authenticated as "nicolas". As I want to use
+On my Jenkins controller, I'm authenticated as "nicolas". As I want to use
 the same identity for commits on repositories, I can setup an additional
 identity for my account on googlecode :
 ![](docs/images/Capture_d’écran_2012-08-21_à_15.03.47.png)
