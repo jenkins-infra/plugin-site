@@ -29,7 +29,7 @@ function InstallInstructions({isShowInstructions, toggleShowInstructions, plugin
                         <a href="#releases" onClick={e=>{toggleShowInstructions(e);navigate(`/${pluginId}/releases/`);}}>
                             {'releases'}
                         </a>
-                        {' and upload it to your Jenkins instance.'}
+                        {' and upload it to your Jenkins controller.'}
                     </li>
                 </ol>
             </ModalBody>

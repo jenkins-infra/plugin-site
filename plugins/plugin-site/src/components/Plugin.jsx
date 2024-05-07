@@ -35,7 +35,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
                 <h4>{cleanTitle(title)}</h4>
             </div>
             <div className="Plugin--InstallsContainer">
-                {`Used by ${installStr} of instances`}
+                {`Used by ${installStr} of controllers`}
             </div>
             <div className="Plugin--VersionContainer">
                 <span className="jc">

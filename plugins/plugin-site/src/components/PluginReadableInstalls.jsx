@@ -7,7 +7,7 @@ function PluginReadableInstalls({currentInstalls, percentage}) {
         return <h5>No usage data available</h5>;
     }
     return (<h5 title={`Total: ${new Intl.NumberFormat('en-US').format(currentInstalls)}`}>
-        {`Installed on ${formatPercentage(percentage)} of\u{A0}instances`}
+        {`Installed on ${formatPercentage(percentage)} of\u{A0}controllers`}
     </h5>);
 }
 
