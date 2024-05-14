@@ -3535,6 +3535,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@csstools/selector-specificity@npm:^3.1.0":
+  version: 3.1.1
+  resolution: "@csstools/selector-specificity@npm:3.1.1"
+  peerDependencies:
+    postcss-selector-parser: ^6.0.13
+  checksum: 10c0/1d4a3f8015904d6aeb3203afe0e1f6db09b191d9c1557520e3e960c9204ad852df9db4cbde848643f78a26f6ea09101b4e528dbb9193052db28258dbcc8a6e1d
+  languageName: node
+  linkType: hard
+
 "@csstools/utilities@npm:^1.0.0":
   version: 1.0.0
   resolution: "@csstools/utilities@npm:1.0.0"
@@ -4173,7 +4182,7 @@ __metadata:
     postcss-css-variables: "npm:0.19.0"
     postcss-import: "npm:16.1.0"
     postcss-merge-rules: "npm:7.0.0"
-    postcss-nesting: "npm:12.1.2"
+    postcss-nesting: "npm:12.1.3"
     postcss-preset-env: "npm:9.5.11"
     postcss-pxtorem: "npm:6.1.0"
     postcss-url: "npm:10.1.3"
@@ -18403,7 +18412,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:12.1.2, postcss-nesting@npm:^12.1.2":
+"postcss-nesting@npm:12.1.3":
+  version: 12.1.3
+  resolution: "postcss-nesting@npm:12.1.3"
+  dependencies:
+    "@csstools/selector-resolve-nested": "npm:^1.1.0"
+    "@csstools/selector-specificity": "npm:^3.1.0"
+    postcss-selector-parser: "npm:^6.0.13"
+  peerDependencies:
+    postcss: ^8.4
+  checksum: 10c0/6b2d3a4823e85592965c6c11f749c5357703256e7334388147d6a3bb72a3abbe47789afaa8535bdd7a9bd6d0099eb12ffec6c154050d8e8b8286b1adbed5b397
+  languageName: node
+  linkType: hard
+
+"postcss-nesting@npm:^12.1.2":
   version: 12.1.2
   resolution: "postcss-nesting@npm:12.1.2"
   dependencies:
