@@ -23,7 +23,7 @@
         "eslint-plugin-filenames": "latest",
         "eslint-plugin-react": "latest",
         "husky": "8.0.1",
-        "lint-staged": "15.2.2"
+        "lint-staged": "15.2.4"
     },
     "lint-staged": {
         "*.{js,jsx}": [
