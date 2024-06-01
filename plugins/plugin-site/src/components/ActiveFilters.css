@@ -2,18 +2,21 @@
     text-align: center;
     white-space: nowrap;
     width: 100%;
+
     & div {
         display: inline-block;
         margin-right: 0.5rem;
         padding-right: 0.5rem;
         white-space: nowrap;
     }
+
     & .nav-link {
         cursor: pointer;
         display: inline-block;
         margin: 0;
         margin-right: 0.5rem;
     }
+
     & .nav-link::before {
         border: 1px solid #ccc;
         border-radius: 2;

@@ -1,53 +1,54 @@
 .IndexPage--Container {
-    align-items: start;
+    place-items: start center;
     background: #168bb9;
     border-radius: 0;
     color: white;
     display: grid;
     grid-template-areas: "logo content";
     justify-content: center;
-    justify-items: center;
     margin: 0;
     min-height: 350px;
     text-align: center;
     transition: all 0.5s ease-in;
+
     & .logo {
         display: inline-block;
         grid-area: logo;
         height: 294px;
         width: 271px;
     }
+
     & .content {
         grid-area: content;
         max-width: 1024px;
     }
 
-    @media (max-width: 992px) {
+    @media (width <= 992px) {
         grid-template-areas: "logo" "content";
     }
+
     & p {
         box-sizing: content-box;
         font-size: 1.1rem;
-        margin: 1rem 1rem;
+        margin: 1rem;
         text-align: center;
     }
+
     & h1 {
-        font-family: Georgia, Times, Times New Roman, serif;
-        font-size: 24px;
+        font-family: Georgia, Times, "Times New Roman", serif;
         font-size: 64px;
         font-style: normal;
         font-variant: normal;
         font-weight: 700;
         line-height: 70px;
     }
+
     & fieldset {
         display: block;
-        margin-bottom: 1em;
-        margin-left: 10%;
-        margin-right: 10%;
-        margin-top: 1em;
+        margin: 1em 10%;
         text-align: center;
     }
+
     & .input-group > .form-control {
         max-width: 75%;
     }

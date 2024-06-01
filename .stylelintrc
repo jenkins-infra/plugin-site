@@ -1,25 +1,12 @@
 {
   "rules": {
-    "block-opening-brace-space-before": "always",
-    "indentation": 4,
-    "rule-empty-line-before": "never",
-    "order/properties-alphabetical-order": true,
-    "plugin/selector-bem-pattern": {
-      "componentName": "[A-Z]+",
-      "componentSelectors": {
-        "initial": "^\\.{componentName}(?:-[a-z]+)?$",
-        "combined": "^\\.combined-{componentName}-[a-z]+$"
-      },
-      "utilitySelectors": "^\\.util-[a-z]+$"
-    }
+    "no-descending-specificity": null,
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
+    "custom-property-pattern": null
   },
   "extends": [
     "stylelint-config-recommended",
-    "stylelint-config-standard",
-    "stylelint-config-styled-components"
-  ],
-  "plugins": [
-    "stylelint-order",
-    "stylelint-selector-bem-pattern"
+    "stylelint-config-standard"
   ]
 }

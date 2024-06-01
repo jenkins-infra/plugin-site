@@ -11,7 +11,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "eslint --ext .js,.jsx,.mjs .",
-    "stylelint": "stylelint --fix 'src/**/*.js'",
+    "stylelint": "stylelint --fix 'src/**/*.css'",
     "test": "jest",
     "test:watch": "yarn test --watch"
   },
