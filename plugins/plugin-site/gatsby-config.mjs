@@ -58,9 +58,6 @@ config.plugins = [
             reportAProblemTemplate: '4-bug.yml',
             theme: 'auto',
             extraCss: [
-                '@import \'./styles/ubuntu-fonts.css\';',
-                '@import \'./styles/lato-fonts.css\';',
-                '@import \'./styles/roboto-fonts.css\';',
                 '@import \'./styles/base.css\';',
                 '@import \'./styles/font-icons.css\';',
                 '@import \'github-syntax-light/lib/github-light.css\';',

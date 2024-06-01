@@ -3,16 +3,18 @@
     --plugin-padding: 0.25em;
     --search-background: #eae9e8;
 }
+
 #searchpage #grid-box {
     background: var(--search-background);
 }
+
 .SearchResults--GridBox {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: center;
-    margin: 0 2rem 0;
+    margin: 0 2rem;
 }
+
 .SearchResults--ItemBox {
     background: var(--background);
     border: 0.1rem solid #ccc;
@@ -31,31 +33,38 @@
     text-align: left;
     text-decoration: none !important;
     width: 13rem;
-    @media (max-width: 768px) {
+
+    @media (width <= 768px) {
         width: calc(100% - 0.4rem);
     }
+
     &:hover {
         border: 0.1rem solid #999;
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 2px 3px rgb(0 0 0 / 25%);
         opacity: 1;
         text-decoration: none;
         cursor: pointer;
     }
 }
+
 .Plugin--PluginContainer {
     height: 100%;
     position: relative;
     display: block;
+
     & * {
         color: var(--color);
     }
+
     & a, & a:visited {
         color: var(--link-color);
     }
+
     &:hover {
         text-decoration: none;
     }
 }
+
 .Plugin--IconContainer {
     bottom: 3rem;
     display: block;
@@ -64,6 +73,7 @@
     position: absolute;
     right: 0.25rem;
     z-index: 9;
+
     & i {
         border-radius: 3px;
         color: #fff;
@@ -75,15 +85,18 @@
         margin: -1px 0 0 -1px;
         margin-bottom: 0;
         text-align: center;
-        text-shadow: rgba(0, 0, 0, 0.5) 1px 2px 1px;
+        text-shadow: rgb(0 0 0 / 50%) 1px 2px 1px;
         width: var(--plugin-icon-width);
+
         & * {
             color: inherit;
         }
     }
 }
+
 .Plugin--TitleContainer {
     grid-area: title;
+
     & h4 {
         color: var(--color);
         font-size: 1rem;
@@ -95,6 +108,7 @@
         position: relative;
     }
 }
+
 .Plugin--InstallsContainer {
     color: #999;
     font-size: 0.75rem;
@@ -102,6 +116,7 @@
     margin: 0;
     padding: 0;
 }
+
 .Plugin--VersionContainer {
     color: var(--link-color);
     font-size: 0.75rem;
@@ -109,10 +124,12 @@
     line-height: 1rem;
     margin-right: 0.5rem;
     white-space: nowrap;
+
     & span {
         margin-right: 0.25rem;
     }
 }
+
 .Plugin--LabelsContainer {
     grid-area: labels;
     line-height: 0.75rem;
@@ -120,6 +137,7 @@
     max-height: 2rem;
     min-height: 1rem;
     overflow: hidden;
+
     & div {
         color: var(--link-color);
         display: inline;
@@ -127,16 +145,20 @@
         line-height: 1rem;
         margin-right: 0.25rem;
     }
+
     & div::after {
         content: ", ";
     }
+
     & div:last-child::after {
         content: "";
     }
+
     & .label-link {
         white-space: nowrap;
     }
 }
+
 .Plugin--ExcerptContainer {
     grid-area: excerpt;
     height: 4.4rem;
@@ -151,6 +173,7 @@
     white-space: normal;
     word-wrap: break-word;
 }
+
 .Plugin--AuthorsContainer {
     bottom: 3rem;
     grid-area: authors;
@@ -158,6 +181,7 @@
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
+
     & div {
         font-size: 0.75rem;
         line-height: 1rem;
@@ -166,9 +190,10 @@
 }
 
 .Plugin--HealthScoreContainer{
-    bottom: 0rem;
+    bottom: 0;
     position: absolute;
     width: 100%;
+
     & div{
         display: flex;
         justify-content: space-between;
@@ -178,45 +203,52 @@
     }
     
 }
+
 .SearchResults--List {
     & .SearchResults--ItemBox {
         height: initial;
         min-height: initial;
         width: calc(100% - 1rem);
     }
+
     & .Plugin--IconContainer {
         bottom: initial;
         left: var(--plugin-padding);
         right: initial;
         top: var(--plugin-padding);
     }
+
     & .Plugin--PluginContainer {
         padding-left:
             calc(
                 var(--plugin-padding) + calc(var(--plugin-icon-width) * 2) + var(--plugin-padding)
             );
         position: relative;
+
         & .Plugin--AuthorsContainer {
             position: initial;
         }
     }
+
     & .Plugin--ExcerptContainer {
         height: initial;
         margin-bottom: 1rem;
     }
+
     & .Plugin--HealthScoreContainer {
         position: initial;
         margin-top: 10px;
     }
 }
+
 .Pagination--Container {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     margin-top: 1rem;
 }
+
 .SearchResultsCount {
     text-align: center;
 }
