@@ -57,7 +57,7 @@
   },
   "homepage": "https://plugins.jenkins.io/",
   "dependencies": {
-    "@babel/core": "7.24.6",
+    "@babel/core": "7.24.7",
     "@halkeye/gatsby-rehype-autolink-headers": "1.1.0",
     "@halkeye/gatsby-rehype-rewrite-ids": "1.1.0",
     "@halkeye/gatsby-transformer-rehype": "1.1.0",

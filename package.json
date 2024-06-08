@@ -15,9 +15,9 @@
     ],
     "version": "0.0.1",
     "devDependencies": {
-        "@babel/eslint-parser": "7.24.6",
-        "@babel/eslint-plugin": "7.24.6",
-        "@babel/plugin-proposal-decorators": "7.24.6",
+        "@babel/eslint-parser": "7.24.7",
+        "@babel/eslint-plugin": "7.24.7",
+        "@babel/plugin-proposal-decorators": "7.24.7",
         "eslint": "8.57.0",
         "eslint-config-google": "0.14.0",
         "eslint-plugin-filenames": "latest",
