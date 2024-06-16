@@ -5,7 +5,8 @@ import {useStaticQuery, graphql} from 'gatsby';
 
 const urlResolve = (base, url) => new URL(url, base).toString();
 
-const SeoHeader = ({title, description, image, pathname, article}) => {
+const SeoHeader = ({title = null, description = null, image = null,
+    pathname = null, article = false}) => {
     const data = useStaticQuery(query);
     if (!data) { return null; }
 
@@ -68,14 +69,6 @@ SeoHeader.propTypes = {
     image: PropTypes.string,
     pathname: PropTypes.string,
     article: PropTypes.bool,
-};
-
-SeoHeader.defaultProps = {
-    title: null,
-    description: null,
-    image: null,
-    pathname: null,
-    article: false,
 };
 
 const query = graphql`
