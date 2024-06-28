@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "gatsby develop -p 3000 -H 0.0.0.0",
     "start": "gatsby develop -p 3000 -H 0.0.0.0",
-    "build": "gatsby build",
+    "build": "HEADER_FILE=https://deploy-preview-7266--jenkins-io-site-pr.netlify.app/template/ gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "eslint --ext .js,.jsx,.mjs .",
