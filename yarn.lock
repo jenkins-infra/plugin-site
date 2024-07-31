@@ -470,9 +470,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:7.25.0":
-  version: 7.25.0
-  resolution: "@babel/eslint-parser@npm:7.25.0"
+"@babel/eslint-parser@npm:7.25.1":
+  version: 7.25.1
+  resolution: "@babel/eslint-parser@npm:7.25.1"
   dependencies:
     "@nicolo-ribaudo/eslint-scope-5-internals": "npm:5.1.1-v1"
     eslint-visitor-keys: "npm:^2.1.0"
@@ -480,7 +480,7 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.11.0
     eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/a8c6b78c26e0596ef53ceddb3d00cfe45b93c879adada3ee5203e3960110a528015e8b36769b299ce8fd640060b54e622faabc00424850978b4693e190482428
+  checksum: 10c0/9f98351b32edfced9e6308a80ad69af1210d9c9780f19339cb286d0c9be0a9afac80d1df3b3793112e720675ce5b927920b19454d0f48ddf8370d08ab62d0dc2
   languageName: node
   linkType: hard
 
@@ -498,15 +498,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-plugin@npm:7.24.7":
-  version: 7.24.7
-  resolution: "@babel/eslint-plugin@npm:7.24.7"
+"@babel/eslint-plugin@npm:7.25.1":
+  version: 7.25.1
+  resolution: "@babel/eslint-plugin@npm:7.25.1"
   dependencies:
     eslint-rule-composer: "npm:^0.3.0"
   peerDependencies:
     "@babel/eslint-parser": ^7.11.0
     eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/5b4bc7843a49c6dea4fc9ecd115ef4a7cc69059ab036db1e6afe992afa28241b65af7fc8d32c3c1bae3e95a5834e3900ce0f8cbf72234fb5a82a3eb436c00b4d
+  checksum: 10c0/c8ecd4d90db60e2eb001bef2ff67bfbdf0dee2b3cac57b41597957e3a1efadffc4415269ab8e21d1d0c8102a2e4ab1793723a8c4a909a0d06a6da0ad64bfb6ab
   languageName: node
   linkType: hard
 
@@ -19328,8 +19328,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root@workspace:."
   dependencies:
-    "@babel/eslint-parser": "npm:7.25.0"
-    "@babel/eslint-plugin": "npm:7.24.7"
+    "@babel/eslint-parser": "npm:7.25.1"
+    "@babel/eslint-plugin": "npm:7.25.1"
     "@babel/plugin-proposal-decorators": "npm:7.24.7"
     eslint: "npm:8.57.0"
     eslint-config-google: "npm:0.14.0"
