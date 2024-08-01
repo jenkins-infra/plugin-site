@@ -126,7 +126,7 @@
     "gatsby": "5.13.7",
     "gatsby-cli": "5.13.3",
     "gatsby-plugin-algolia": "1.0.3",
-    "gatsby-plugin-matomo": "0.16.2",
+    "gatsby-plugin-matomo": "0.16.3",
     "gatsby-plugin-nprogress": "5.13.1",
     "gatsby-source-filesystem": "5.13.1",
     "identity-obj-proxy": "3.0.0",
