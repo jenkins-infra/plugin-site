@@ -3686,7 +3686,7 @@ __metadata:
     eslint: "npm:8.57.0"
     hast-util-to-html: "npm:9.0.1"
     jest: "npm:29.7.0"
-    rehype: "npm:11.0.0"
+    rehype: "npm:13.0.1"
     unist-util-visit: "npm:^5.0.0"
   languageName: unknown
   linkType: soft
@@ -3700,7 +3700,7 @@ __metadata:
     eslint: "npm:8.57.0"
     hast-util-to-html: "npm:9.0.1"
     jest: "npm:29.7.0"
-    rehype: "npm:11.0.0"
+    rehype: "npm:13.0.1"
     unist-util-visit-parents: "npm:^6.0.0"
   languageName: unknown
   linkType: soft
@@ -12186,6 +12186,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hast-util-from-html@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "hast-util-from-html@npm:2.0.1"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+    devlop: "npm:^1.1.0"
+    hast-util-from-parse5: "npm:^8.0.0"
+    parse5: "npm:^7.0.0"
+    vfile: "npm:^6.0.0"
+    vfile-message: "npm:^4.0.0"
+  checksum: 10c0/856ceec209940ac4f9db52bf6338b97fb11f27e6d5b930f89676bc16ee282c06f9ff2a17254280803aefdf740507cf3004f181d0286b04dda11907852decbe77
+  languageName: node
+  linkType: hard
+
 "hast-util-from-parse5@npm:^6.0.0":
   version: 6.0.1
   resolution: "hast-util-from-parse5@npm:6.0.1"
@@ -18957,6 +18971,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rehype-parse@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "rehype-parse@npm:9.0.0"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+    hast-util-from-html: "npm:^2.0.0"
+    unified: "npm:^11.0.0"
+  checksum: 10c0/c38d07b8bfb5eb3ad6ce8ebdc65ecb31b4c68e440fb020178a34937fa28753d63c70f51146890bf32f840ef6102efdf31e03eb937fc100bc9efa4f4f808a50d2
+  languageName: node
+  linkType: hard
+
 "rehype-stringify@npm:^10.0.0":
   version: 10.0.0
   resolution: "rehype-stringify@npm:10.0.0"
@@ -18977,7 +19002,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rehype@npm:11.0.0, rehype@npm:^11.0.0":
+"rehype@npm:13.0.1":
+  version: 13.0.1
+  resolution: "rehype@npm:13.0.1"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+    rehype-parse: "npm:^9.0.0"
+    rehype-stringify: "npm:^10.0.0"
+    unified: "npm:^11.0.0"
+  checksum: 10c0/9f35e07483376c5ccc49a6889ec74cbee22ca23fe2ed7b60588ab106d31d0b779d3fce10c38f889c9e34d5e9d9f5c2275b6c014f75467ec4af6c1423579556a6
+  languageName: node
+  linkType: hard
+
+"rehype@npm:^11.0.0":
   version: 11.0.0
   resolution: "rehype@npm:11.0.0"
   dependencies:
