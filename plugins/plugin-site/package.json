@@ -68,7 +68,7 @@
     "@juggle/resize-observer": "3.4.0",
     "algoliasearch": "4.24.0",
     "chart.js": "4.4.3",
-    "cheerio": "1.0.0-rc.12",
+    "cheerio": "1.0.0",
     "classnames": "2.5.1",
     "copy-to-clipboard": "3.3.3",
     "find-package-json": "1.2.0",
