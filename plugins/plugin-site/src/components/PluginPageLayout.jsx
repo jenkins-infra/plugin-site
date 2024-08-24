@@ -50,7 +50,7 @@ function PluginPageLayout({plugin, children}) {
                 <h1 className="title">
                     {cleanTitle(plugin.title)}
                 </h1>
-                <button className="btn btn-secondary" onClick={toggleShowInstructions}>
+                <button className="app-button" onClick={toggleShowInstructions}>
                     How to install
                 </button>
                 <InstallInstructions isShowInstructions={isShowInstructions}
