@@ -61,8 +61,7 @@ config.plugins = [
                 '@import \'./styles/base.css\';',
                 '@import \'./styles/font-icons.css\';',
                 '@import \'github-syntax-light/lib/github-light.css\';',
-                '@import \'github-syntax-dark/lib/github-auto.css\';',
-                '@import \'https://www.jenkins.io/stylesheets/styles.css\';'
+                '@import \'github-syntax-dark/lib/github-auto.css\';'
             ],
         },
     },
