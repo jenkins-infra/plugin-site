@@ -1412,9 +1412,6 @@ a.card:hover {
 
 @media (prefers-color-scheme: dark) {
   body {
-    --color: #dee2e6;
-    --background: #212529;
-    --link-color: #6ea8fe;
     --no-labels-background: #212529;
     --code-background: #111;
     --search-background: #313539;
