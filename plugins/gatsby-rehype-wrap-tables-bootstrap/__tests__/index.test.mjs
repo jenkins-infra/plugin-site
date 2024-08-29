@@ -4,6 +4,7 @@ import {toHtml} from 'hast-util-to-html';
 import pluginFunc from '../index.mjs';
 
 import {describe, expect, it} from '@jest/globals';
+
 describe('handler', () => {
     const rehype = new Rehype().data('settings', {
         fragment: true,
