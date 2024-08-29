@@ -1,11 +1,14 @@
 import {cleanTitle, formatPercentage} from '../../../src/commons/helper';
 
 import {describe, expect, it} from '@jest/globals';
+
 describe('helpers', () => {
+
     describe('cleanTitle', () => {
         it('works', () => {
             expect(cleanTitle('Jenkins foo')).toBe('foo');
         });
+
         it('undefined doesnt error', () => {
             expect(cleanTitle(undefined)).toBeUndefined();
         });
