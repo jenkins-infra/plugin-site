@@ -5,11 +5,14 @@ import {render} from '@testing-library/react';
 import LineChart from './LineChart';
 
 import {describe, expect, it} from '@jest/globals';
+
 describe('lineChart', () => {
     it('no data should return empty component', () => {
         const {container} = render(<LineChart />);
+
         expect(container.innerHTML).toBe('');
     });
+
     it('renders correctly', () => {
         const installations = [
             {'timestamp': 1606780800000, 'total': 5126},
