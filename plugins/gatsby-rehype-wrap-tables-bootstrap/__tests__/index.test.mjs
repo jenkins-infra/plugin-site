@@ -25,6 +25,7 @@ describe('handler', () => {
     it('basic test', async () => {
         const htmlAst = await rehype.parse('<div><table><tr><td>col 1</td></tr></table></div>');
         const updatedHtmlAst = runPluginFunc(htmlAst);
+
         expect(toHtml(updatedHtmlAst)).toBe('<div><div class="table-responsive"><table class="table table-bordered"><tbody><tr><td>col 1</td></tr></tbody></table></div></div>');
     });
 });
