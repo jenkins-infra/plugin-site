@@ -21,6 +21,7 @@ describe('handler', () => {
             }
         };
         const updatedHtmlAst = pluginFunc({htmlAst, htmlNode});
+
         expect(toHtml(updatedHtmlAst)).toBe('<img src="http://example.com/subdir/foo/bar.jpg">');
     });
 
@@ -32,6 +33,7 @@ describe('handler', () => {
             }
         };
         const updatedHtmlAst = pluginFunc({htmlAst, htmlNode});
+
         expect(toHtml(updatedHtmlAst)).toBe('<img src="https://google.com/subdir/foo/bar.jpg">');
     });
 });
