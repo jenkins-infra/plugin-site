@@ -4,6 +4,7 @@ import {toHtml} from 'hast-util-to-html';
 import pluginFunc from '../index.mjs';
 
 import {describe, expect, it} from '@jest/globals';
+
 describe('handler', () => {
     const rehype = new Rehype().data('settings', {
         fragment: true,
@@ -22,6 +23,7 @@ describe('handler', () => {
         const updatedHtmlAst = pluginFunc({htmlAst, htmlNode});
         expect(toHtml(updatedHtmlAst)).toBe('<img src="http://example.com/subdir/foo/bar.jpg">');
     });
+
     it('should not touch absolute urls urls', async () => {
         const htmlAst = await rehype.parse('<img src="https://google.com/subdir/foo/bar.jpg" />');
         const htmlNode = {
