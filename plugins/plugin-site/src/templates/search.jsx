@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {navigate, useStaticQuery, graphql} from 'gatsby';
-import algoliasearch from 'algoliasearch/lite';
+import {liteClient} from 'algoliasearch/lite';
 
 import Layout from '../layout';
 import forceArray from '../utils/forceArray.mjs';
@@ -31,11 +31,10 @@ const doSearch = (data, setResults, categoriesMap) => {
     ).filter(Boolean);
     let page = data.page;
     setResults(null);
-    const searchClient = algoliasearch(
+    const searchClient = liteClient(
         process.env.GATSBY_ALGOLIA_APP_ID || 'HF9WKP9QU1',
         process.env.GATSBY_ALGOLIA_SEARCH_KEY || '4ef9c8513249915cc20e3b32c450abcb'
     );
-    const index = searchClient.initIndex('Plugins');
     const filters = [];
     if (labels && labels.length) {
         filters.push(`(${labels.map(l => `labels:${l}`).join(' OR ')})`);
@@ -44,15 +43,17 @@ const doSearch = (data, setResults, categoriesMap) => {
     if (page === undefined || page === null) {
         page = 1;
     }
-
-    index.search(
-        query,
-        {
+    window.s=searchClient;
+    searchClient.search({
+        requests: [{
+            indexName: 'Plugins',
+            query,
             hitsPerPage: 50,
             page: page-1,
             filters: filters.join(' AND ')
-        }
-    ).then(({nbHits, page, nbPages, hits, hitsPerPage}) => {
+        }]}
+    ).then(({results}) => {
+        const {nbHits, page, nbPages, hits, hitsPerPage} = results[0];
         return setResults({
             total: nbHits,
             pages: nbPages,
