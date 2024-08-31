@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {navigate, useStaticQuery, graphql} from 'gatsby';
-import algoliasearch from 'algoliasearch/lite';
+import {liteClient} from 'algoliasearch/lite';
 
 import Layout from '../layout';
 import forceArray from '../utils/forceArray.mjs';
@@ -31,7 +31,7 @@ const doSearch = (data, setResults, categoriesMap) => {
     ).filter(Boolean);
     let page = data.page;
     setResults(null);
-    const searchClient = algoliasearch(
+    const searchClient = liteClient(
         process.env.GATSBY_ALGOLIA_APP_ID || 'HF9WKP9QU1',
         process.env.GATSBY_ALGOLIA_SEARCH_KEY || '4ef9c8513249915cc20e3b32c450abcb'
     );
