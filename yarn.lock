@@ -44,14 +44,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@algolia/client-abtesting@npm:5.2.1":
-  version: 5.2.1
-  resolution: "@algolia/client-abtesting@npm:5.2.1"
+"@algolia/client-abtesting@npm:5.2.2":
+  version: 5.2.2
+  resolution: "@algolia/client-abtesting@npm:5.2.2"
   dependencies:
-    "@algolia/client-common": "npm:5.2.1"
-    "@algolia/requester-browser-xhr": "npm:5.2.1"
-    "@algolia/requester-node-http": "npm:5.2.1"
-  checksum: 10c0/d0a461a6b31edacc021c97c44d6c1eb76ce1e2813d56ad1037731b26a152b545f624a29889137f65881255acfa87b48d6025296cfc35c817409c3fb0d66e14ff
+    "@algolia/client-common": "npm:5.2.2"
+    "@algolia/requester-browser-xhr": "npm:5.2.2"
+    "@algolia/requester-node-http": "npm:5.2.2"
+  checksum: 10c0/d8026d2bfede389a300081ee415956d3b2fc01532a04385ae391a51c3341422c47bf8b45dd0f595027936dec9a777873f15b71df8301959bc0d300992b030d73
   languageName: node
   linkType: hard
 
@@ -78,14 +78,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@algolia/client-analytics@npm:5.2.1":
-  version: 5.2.1
-  resolution: "@algolia/client-analytics@npm:5.2.1"
+"@algolia/client-analytics@npm:5.2.2":
+  version: 5.2.2
+  resolution: "@algolia/client-analytics@npm:5.2.2"
   dependencies:
-    "@algolia/client-common": "npm:5.2.1"
-    "@algolia/requester-browser-xhr": "npm:5.2.1"
-    "@algolia/requester-node-http": "npm:5.2.1"
-  checksum: 10c0/193851c9de993d7c759e1ba1bf0dbf4be8760113001c6ce506dfcd06e4f21da2d637e8f00f13801a096f7f5bc01c54f13d4920048245f75d7dda6ccc969fb219
+    "@algolia/client-common": "npm:5.2.2"
+    "@algolia/requester-browser-xhr": "npm:5.2.2"
+    "@algolia/requester-node-http": "npm:5.2.2"
+  checksum: 10c0/d82d732d9ad12526b113e49a254f939cc64422570efbaf8f5ccd84c8e608cc75ab199918b966be69b4a9ec8dac01948aaef8d154f51974897603ee64a62a5245
   languageName: node
   linkType: hard
 
@@ -99,10 +99,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@algolia/client-common@npm:5.2.1":
-  version: 5.2.1
-  resolution: "@algolia/client-common@npm:5.2.1"
-  checksum: 10c0/21cfb378bed03f3bbd393586fba6073e67cd2b6f7a57e6347be4f2ddd631f23e734c503358456923792d8842b1b0f857426bdeeaaab633caf2a0ed3de1d37901
+"@algolia/client-common@npm:5.2.2":
+  version: 5.2.2
+  resolution: "@algolia/client-common@npm:5.2.2"
+  checksum: 10c0/10d1f12e560acd33e86146fa6d1aa0a729fcd2878e827ad9e77b4cd805a4479b2fd451cb1504d0a85f0767bbd5ad8c487dd1fb36d75e7660d2fe022490c99114
   languageName: node
   linkType: hard
 
@@ -117,14 +117,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@algolia/client-personalization@npm:5.2.1":
-  version: 5.2.1
-  resolution: "@algolia/client-personalization@npm:5.2.1"
+"@algolia/client-personalization@npm:5.2.2":
+  version: 5.2.2
+  resolution: "@algolia/client-personalization@npm:5.2.2"
   dependencies:
-    "@algolia/client-common": "npm:5.2.1"
-    "@algolia/requester-browser-xhr": "npm:5.2.1"
-    "@algolia/requester-node-http": "npm:5.2.1"
-  checksum: 10c0/7715f6724ef7a3e38f19e542917b0af8838b933ad5a183d87cd7dbf2a7a7dba78f3267677c7bbf4b876cc4b7229153cb4ef448eadc3b522c6454e07bfbe4e37e
+    "@algolia/client-common": "npm:5.2.2"
+    "@algolia/requester-browser-xhr": "npm:5.2.2"
+    "@algolia/requester-node-http": "npm:5.2.2"
+  checksum: 10c0/2bf7dca694ed08ff2cd600647bfa34e1dc87ba9477cba78ae5232a6449b9b5348873db5140686973cbd6636e2a37a69df91ef937a829eb51e692bfa7ac27724b
   languageName: node
   linkType: hard
 
@@ -139,14 +139,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@algolia/client-search@npm:5.2.1":
-  version: 5.2.1
-  resolution: "@algolia/client-search@npm:5.2.1"
+"@algolia/client-search@npm:5.2.2":
+  version: 5.2.2
+  resolution: "@algolia/client-search@npm:5.2.2"
   dependencies:
-    "@algolia/client-common": "npm:5.2.1"
-    "@algolia/requester-browser-xhr": "npm:5.2.1"
-    "@algolia/requester-node-http": "npm:5.2.1"
-  checksum: 10c0/dd99c115f1c4e3e5ca3821956154217d35d241994b6b2a98d91bb50a6bea7d9aa8fb8563f4c9042355b760dc0f0a9f0277faf838fdf9257226c65a25b407bee0
+    "@algolia/client-common": "npm:5.2.2"
+    "@algolia/requester-browser-xhr": "npm:5.2.2"
+    "@algolia/requester-node-http": "npm:5.2.2"
+  checksum: 10c0/562c324de3406233f6c6d75ae99cc2b2b79947e10636108586dd0d34211fea13e5d96cb470a6ea4a1628ba786a839b3d34b2eaf863575ba74ef2490e4cb71313
   languageName: node
   linkType: hard
 
@@ -185,14 +185,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@algolia/recommend@npm:5.2.1":
-  version: 5.2.1
-  resolution: "@algolia/recommend@npm:5.2.1"
+"@algolia/recommend@npm:5.2.2":
+  version: 5.2.2
+  resolution: "@algolia/recommend@npm:5.2.2"
   dependencies:
-    "@algolia/client-common": "npm:5.2.1"
-    "@algolia/requester-browser-xhr": "npm:5.2.1"
-    "@algolia/requester-node-http": "npm:5.2.1"
-  checksum: 10c0/277e4ad63b2f07a6d1c5e87a6a8ba6ccec799c8a7553b520d969ef0f6b7b2c06b6a6c0bc5dd749c7194507062eef066782d60182101ceaa7ba5eba5648f4e898
+    "@algolia/client-common": "npm:5.2.2"
+    "@algolia/requester-browser-xhr": "npm:5.2.2"
+    "@algolia/requester-node-http": "npm:5.2.2"
+  checksum: 10c0/53031b1d47327c594b7549357fdf32e49fd17d776590a6584a9cc1b7cb687904827ad5f91ab71d1fc0d051c571e04a0400e9af5e0c6d914f32a094365e560388
   languageName: node
   linkType: hard
 
@@ -205,12 +205,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@algolia/requester-browser-xhr@npm:5.2.1":
-  version: 5.2.1
-  resolution: "@algolia/requester-browser-xhr@npm:5.2.1"
+"@algolia/requester-browser-xhr@npm:5.2.2":
+  version: 5.2.2
+  resolution: "@algolia/requester-browser-xhr@npm:5.2.2"
   dependencies:
-    "@algolia/client-common": "npm:5.2.1"
-  checksum: 10c0/c4eb90e6626aa851502c604f53cd53340bf59ecf337a60e253b4411e3dad6050a57f57f4b629807f898f153fb09a196ff5fac1668b457a82d1dbe858d9f072ce
+    "@algolia/client-common": "npm:5.2.2"
+  checksum: 10c0/56b32a2819583c224edf251fd0bd1861a94db06db8174027e5237ac38f303ab03546ee6af44a6230a816f88189d25623a3b91889b4df467b34a66dc11da5f192
   languageName: node
   linkType: hard
 
@@ -230,12 +230,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@algolia/requester-node-http@npm:5.2.1":
-  version: 5.2.1
-  resolution: "@algolia/requester-node-http@npm:5.2.1"
+"@algolia/requester-node-http@npm:5.2.2":
+  version: 5.2.2
+  resolution: "@algolia/requester-node-http@npm:5.2.2"
   dependencies:
-    "@algolia/client-common": "npm:5.2.1"
-  checksum: 10c0/b90dc0dbdda5f3567f512ec5965c5fce5182682d7a15877b8ef918eecaaf22eef53cb4a093bbe0a4bba8f3520ba44429cc2f94f64e1e41229beea9f62060ec24
+    "@algolia/client-common": "npm:5.2.2"
+  checksum: 10c0/01bb46bb2e1f1622f67596ea801f4f996d59ae553397ac98d2506cb1c1b7918e94fddbeff61bc9b35e8c09972a2df5d2769562dca6312c30e8455b8a36be60e2
   languageName: node
   linkType: hard
 
@@ -3782,7 +3782,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:6.5.0"
     "@testing-library/react": "npm:16.0.0"
     "@typescript-eslint/eslint-plugin": "npm:8.3.0"
-    algoliasearch: "npm:5.2.1"
+    algoliasearch: "npm:5.2.2"
     axios-retry: "npm:4.5.0"
     babel-jest: "npm:29.7.0"
     babel-preset-gatsby: "npm:3.13.2"
@@ -6316,19 +6316,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"algoliasearch@npm:5.2.1":
-  version: 5.2.1
-  resolution: "algoliasearch@npm:5.2.1"
+"algoliasearch@npm:5.2.2":
+  version: 5.2.2
+  resolution: "algoliasearch@npm:5.2.2"
   dependencies:
-    "@algolia/client-abtesting": "npm:5.2.1"
-    "@algolia/client-analytics": "npm:5.2.1"
-    "@algolia/client-common": "npm:5.2.1"
-    "@algolia/client-personalization": "npm:5.2.1"
-    "@algolia/client-search": "npm:5.2.1"
-    "@algolia/recommend": "npm:5.2.1"
-    "@algolia/requester-browser-xhr": "npm:5.2.1"
-    "@algolia/requester-node-http": "npm:5.2.1"
-  checksum: 10c0/de9a37dbf395370c72c6c2e555a5a7f705ee602d2fa213441672ef401d2eb3b1b6bb4b76d45b0ace7aca47be85200920695184ba4469c36130507e801b731c22
+    "@algolia/client-abtesting": "npm:5.2.2"
+    "@algolia/client-analytics": "npm:5.2.2"
+    "@algolia/client-common": "npm:5.2.2"
+    "@algolia/client-personalization": "npm:5.2.2"
+    "@algolia/client-search": "npm:5.2.2"
+    "@algolia/recommend": "npm:5.2.2"
+    "@algolia/requester-browser-xhr": "npm:5.2.2"
+    "@algolia/requester-node-http": "npm:5.2.2"
+  checksum: 10c0/de9673d305618fe2fc564241ada8449ab564e8a4a9f90fa0ea765ca14f2da05aa34ac8b49117b494d4cb2315e22e6b8c930bcb58f907aed32b652ae05017e7c8
   languageName: node
   linkType: hard
 
