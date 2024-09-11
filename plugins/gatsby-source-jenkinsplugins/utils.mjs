@@ -30,7 +30,7 @@ const requestGET = async ({url, reporter}) => {
 
     try {
         const results = await axios.get(url);
-        if (results.status !== 200) {
+        if (results.status >= 400) {
             throw results.data;
         }
         return results.data;
