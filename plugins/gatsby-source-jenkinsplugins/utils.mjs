@@ -29,7 +29,7 @@ const requestGET = async ({url, reporter}) => {
     activity.start();
 
     try {
-        const results = await axios.get(url, { maxRedirects: 10 });
+        const results = await axios.get(url);
         if (results.status !== 200) {
             throw results.data;
         }
