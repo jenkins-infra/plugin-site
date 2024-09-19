@@ -22,7 +22,7 @@
         "axios": "^1.7.3",
         "axios-retry": "4.5.0",
         "cheerio": "^1.0.0-rc.10",
-        "date-fns": "^3.0.0",
+        "date-fns": "^4.0.0",
         "find-package-json": "^1.2.0",
         "gatsby-source-filesystem": "5.13.1",
         "p-queue": "^8.0.0",
