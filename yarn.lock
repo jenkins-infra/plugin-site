@@ -3856,7 +3856,7 @@ __metadata:
     react-helmet: "npm:6.1.0"
     react-radio-group: "npm:3.0.3"
     react-timeago: "npm:7.2.0"
-    reactstrap: "npm:9.2.2"
+    reactstrap: "npm:9.2.3"
     remark: "npm:14.0.2"
     remark-frontmatter: "npm:5.0.0"
     remark-gfm: "npm:4.0.0"
@@ -18972,9 +18972,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reactstrap@npm:9.2.2":
-  version: 9.2.2
-  resolution: "reactstrap@npm:9.2.2"
+"reactstrap@npm:9.2.3":
+  version: 9.2.3
+  resolution: "reactstrap@npm:9.2.3"
   dependencies:
     "@babel/runtime": "npm:^7.12.5"
     "@popperjs/core": "npm:^2.6.0"
@@ -18985,7 +18985,7 @@ __metadata:
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 10c0/004ca38326f031bc3c48d2bbaacf7be2ae220ba76a2dc9d71da529ce06ad361918e190445326383c5b3f994e71b0145436eff74db74a7b6e7a6e81b9ae4df0e4
+  checksum: 10c0/b10a3be33612b9d1a779f9953327599edecea1ba97dfe15b52ce0b43c7fc684750ae0b18b5198525e22069df45d4ec1a37c48238969a006c34c037f79cbfc5a9
   languageName: node
   linkType: hard
 
