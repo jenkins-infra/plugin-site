@@ -19237,13 +19237,13 @@ __metadata:
   linkType: hard
 
 "rehype-stringify@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "rehype-stringify@npm:10.0.0"
+  version: 10.0.1
+  resolution: "rehype-stringify@npm:10.0.1"
   dependencies:
     "@types/hast": "npm:^3.0.0"
     hast-util-to-html: "npm:^9.0.0"
     unified: "npm:^11.0.0"
-  checksum: 10c0/6a5f763cfc51cefbcfe504c9661da39b2f28e49c6caea085ff7ad97457b9574289076471f6eeca7af6479f1f90fd1bf1e8d176640b66da262372b76a1f1b3147
+  checksum: 10c0/c643ae3a4862465033e0f1e9f664433767279b4ee9296570746970a79940417ec1fb1997a513659aab97063cf971c5d97e0af8129f590719f01628c8aa480765
   languageName: node
   linkType: hard
 
