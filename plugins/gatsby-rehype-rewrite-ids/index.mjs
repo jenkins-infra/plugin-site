@@ -1,14 +1,13 @@
-const visit = require(`unist-util-visit`);
-const merge = require(`lodash/merge`);
+import visit from 'unist-util-visit';
 
 const pluginDefaults = {
   prefix: false,
 };
 
-module.exports = ({htmlAst}, pluginOptions) => {
+export default ({htmlAst}, pluginOptions) => {
   const {
     prefix,
-  } = merge({}, pluginDefaults, pluginOptions);
+  } = Object.assign({}, pluginDefaults, pluginOptions);
 
   const visitNode = (node) => {
     node.properties = {...node.properties || {}};

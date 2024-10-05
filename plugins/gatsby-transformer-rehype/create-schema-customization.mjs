@@ -20,7 +20,7 @@ const useTypeExists = (store, name) => (type) => {
   return exists !== undefined;
 };
 
-module.exports = (nodeApiArgs, pluginOptions = {}) => {
+export default (nodeApiArgs, pluginOptions = {}) => {
   const {plugins = []} = pluginOptions;
   const typeExistsDeprecated = useTypeExists(nodeApiArgs.store, `jamify-source-ghost`);
   const typeExists = useTypeExists(nodeApiArgs.store, `gatsby-source-try-ghost`);
@@ -33,7 +33,7 @@ module.exports = (nodeApiArgs, pluginOptions = {}) => {
   // to customize the GraphQL schema. This makes it possible for subplugins to
   // modify types owned by `gatsby-transformer-html`.
   plugins.forEach((plugin) => {
-    const resolvedPlugin = plugin.module || plugin.module || require(plugin.resolve);
+    const resolvedPlugin = plugin.module;
     if (typeof resolvedPlugin.createSchemaCustomization === `function`) {
       resolvedPlugin.createSchemaCustomization(nodeApiArgs, plugin.pluginOptions);
     }

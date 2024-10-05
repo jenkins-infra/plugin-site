@@ -1,4 +1,4 @@
-const _ = require(`lodash`);
+import _ from 'lodash';
 
 const pluginDefaults = {
   filter: () => false,
@@ -7,7 +7,7 @@ const pluginDefaults = {
   type: `HtmlRehype`,
 };
 
-module.exports = async function onCreateNode({
+export default async function onCreateNode({
   node,
   actions,
   loadNodeContent,

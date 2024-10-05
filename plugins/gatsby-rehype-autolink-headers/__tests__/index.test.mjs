@@ -1,7 +1,9 @@
-const Rehype = require(`rehype`);
-const toHtml = require(`hast-util-to-html`);
+import Rehype from 'rehype';
+import {toHtml} from 'hast-util-to-html';
 
-const pluginFunc = require(`../index`);
+import pluginFunc from '../index.mjs';
+
+import {describe, expect, it} from '@jest/globals';
 
 describe(`handler`, () => {
   const rehype = new Rehype().data(`settings`, {

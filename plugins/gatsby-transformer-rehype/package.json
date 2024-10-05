@@ -5,7 +5,8 @@
     "license": "MIT",
     "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
     "homepage": "https://github.com/halkeye/gatsby-plugins",
-    "main": "gatsby-node.js",
+    "main": "gatsby-node.mjs",
+    "type": "module",
     "repository": {
         "type": "git",
         "url": "https://github.com/halkeye/gatsby-plugins.git",
@@ -27,7 +28,6 @@
     "scripts": {
         "lint": "eslint --ignore-path .gitignore .",
         "test": "exit 0",
-        "build": "babel src --out-dir . --ignore **/__tests__",
         "prepare": "cross-env NODE_ENV=production npm run build",
         "watch": "babel -w src --out-dir . --ignore **/__tests__"
     },

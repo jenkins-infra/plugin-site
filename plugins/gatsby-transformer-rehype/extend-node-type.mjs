@@ -1,8 +1,8 @@
-const _ = require(`lodash`);
-const Rehype = require(`rehype`);
-const stripPosition = require(`unist-util-remove-position`);
-const hastReparseRaw = require(`hast-util-raw`);
-const visit = require(`unist-util-visit`);
+import _ from 'lodash';
+import Rehype from 'rehype';
+import stripPosition from 'unist-util-remove-position';
+import hastReparseRaw from 'hast-util-raw';
+import visit from 'unist-util-visit';
 
 // ES6 instead of Bluebird's promise.each
 Promise.each = async function(arr, fn) {
@@ -37,7 +37,7 @@ const ASTPromiseMap = new Map();
 const pluginDefaults = {type: `HtmlRehype`};
 const rehypeDefaults = {fragment: true, space: `html`, emitParseErrors: false, verbose: false};
 
-module.exports = ({
+export default ({
   type,
   basePath,
   getNode,
@@ -66,7 +66,7 @@ module.exports = ({
     let rehype = new Rehype().data(`settings`, rehypeOptions);
 
     for (const plugin of pluginOptions.plugins) {
-      const requiredPlugin = plugin.module || require(plugin.resolve);
+      const requiredPlugin = plugin.module;
       if (_.isFunction(requiredPlugin.setParserPlugins)) {
         for (const parserPlugin of requiredPlugin.setParserPlugins(plugin.pluginOptions)) {
           if (_.isArray(parserPlugin)) {
@@ -82,7 +82,7 @@ module.exports = ({
     async function processHtmlAst(htmlNode) {
       // Use Bluebird's Promise function "each" to run rehype plugins serially.
       await Promise.each(pluginOptions.plugins, (plugin) => {
-        const requiredPlugin = plugin.module || require(plugin.resolve);
+        const requiredPlugin = plugin.module;
         if (_.isFunction(requiredPlugin.mutateSource)) {
           return requiredPlugin.mutateSource({htmlNode, getNode, getNodesByType,
             reporter, cache: getCache(plugin.name), getCache,
@@ -99,7 +99,7 @@ module.exports = ({
       const htmlAst = rehype.parse(htmlNode.internal.content);
 
       await Promise.each(pluginOptions.plugins, (plugin) => {
-        const requiredPlugin = plugin.module || require(plugin.resolve);
+        const requiredPlugin = plugin.module;
         // Allow both exports = function(), and exports.default = function()
         const defaultFunction = _.isFunction(requiredPlugin) ?
                     requiredPlugin :
