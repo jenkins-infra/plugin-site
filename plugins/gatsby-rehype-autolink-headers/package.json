@@ -1,0 +1,45 @@
+{
+    "name": "@jenkins-cd/gatsby-rehype-autolink-headers",
+    "description": "",
+    "version": "1.0.1",
+    "license": "MIT",
+    "homepage": "https://github.com/halkeye/gatsby-plugins",
+    "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/halkeye/gatsby-plugins.git",
+        "directory": "packages/gatsby-rehype-autolink-headers"
+    },
+    "bugs": {
+        "url": "https://github.com/halkeye/gatsby-plugins/issues"
+    },
+    "engines": {
+        "node": ">= 16"
+    },
+    "keywords": [],
+    "scripts": {
+        "build": "exit 0",
+        "test": "jest",
+        "lint": "eslint"
+    },
+    "dependencies": {
+        "github-slugger": "^1.4.0",
+        "hast-util-to-string": "^1.0.4",
+        "lodash": "^4.17.21",
+        "style-to-object": "^0.3.0",
+        "unist-util-visit": "^2.0.3"
+    },
+    "devDependencies": {
+        "eslint": "7.32.0",
+        "eslint-config-standard": "16.0.3",
+        "eslint-plugin-import": "2.24.2",
+        "eslint-plugin-node": "11.1.0",
+        "eslint-plugin-promise": "5.1.0",
+        "jest": "^27.4.3",
+        "yarn": "^1.22.17"
+    },
+    "peerDependencies": {
+        "gatsby": "^4.0.0 || ^5.0.0"
+    }
+}
