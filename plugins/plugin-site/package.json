@@ -117,7 +117,7 @@
     "dotenv": "16.4.5",
     "eslint": "8.57.1",
     "eslint-config-standard": "17.1.0",
-    "eslint-plugin-import": "2.30.0",
+    "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jest": "28.8.3",
     "eslint-plugin-n": "17.10.3",
     "eslint-plugin-promise": "7.1.0",
