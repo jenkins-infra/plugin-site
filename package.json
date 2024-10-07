@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "lint": "eslint -c eslint.config.mjs --ignore-pattern \"**/.cache/\" --ignore-pattern \"**/public/\" --ignore-pattern \".yarn\" --ignore-pattern \"**/layout.jsx\" .",
+        "lint": "eslint -c eslint.config.mjs .",
         "test": "yarn workspaces foreach --worktree -t -p -v -i run test",
         "build": "yarn workspaces foreach --worktree -t -p -v -i run build",
         "dev": "yarn workspace @jenkins-cd/jenkins-plugin-site dev",
