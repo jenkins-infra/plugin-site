@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import axios from 'axios';
 import path from 'path';
 import crypto from 'crypto';
@@ -6,6 +5,8 @@ import {load} from 'cheerio';
 import {execSync} from 'child_process';
 import axiosRetry, {exponentialDelay} from 'axios-retry';
 import {parse as parseDate, parseJSON} from 'date-fns';
+// https://github.com/import-js/eslint-plugin-import/issues/1810
+// eslint-disable-next-line import/no-unresolved
 import PQueue from 'p-queue';
 import {parseStringPromise} from 'xml2js';
 import {createRequire} from 'module';
