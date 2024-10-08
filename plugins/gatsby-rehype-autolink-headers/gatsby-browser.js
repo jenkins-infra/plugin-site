@@ -1,41 +1,41 @@
-"use strict";
 
-var offsetY = 0;
 
-var getTargetOffset = function getTargetOffset(hash) {
-  var id = window.decodeURI(hash.replace("#", ""));
+let offsetY = 0;
 
-  if (id !== "") {
-    var element = document.getElementById(id);
+const getTargetOffset = function getTargetOffset(hash) {
+    const id = window.decodeURI(hash.replace('#', ''));
 
-    if (element) {
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-      var clientTop = document.documentElement.clientTop || document.body.clientTop || 0;
-      var computedStyles = window.getComputedStyle(element);
-      var scrollMarginTop = computedStyles.getPropertyValue("scroll-margin-top") || computedStyles.getPropertyValue("scroll-snap-margin-top") || "0px";
-      return element.getBoundingClientRect().top + scrollTop - parseInt(scrollMarginTop, 10) - clientTop - offsetY;
+    if (id !== '') {
+        const element = document.getElementById(id);
+
+        if (element) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            const clientTop = document.documentElement.clientTop || document.body.clientTop || 0;
+            const computedStyles = window.getComputedStyle(element);
+            const scrollMarginTop = computedStyles.getPropertyValue('scroll-margin-top') || computedStyles.getPropertyValue('scroll-snap-margin-top') || '0px';
+            return element.getBoundingClientRect().top + scrollTop - parseInt(scrollMarginTop, 10) - clientTop - offsetY;
+        }
     }
-  }
 
-  return null;
+    return null;
 };
 
 exports.onInitialClientRender = function (_, pluginOptions) {
-  if (pluginOptions.offsetY) {
-    offsetY = pluginOptions.offsetY;
-  }
-
-  requestAnimationFrame(function () {
-    var offset = getTargetOffset(window.location.hash);
-
-    if (offset !== null) {
-      window.scrollTo(0, offset);
+    if (pluginOptions.offsetY) {
+        offsetY = pluginOptions.offsetY;
     }
-  });
+
+    requestAnimationFrame(() => {
+        const offset = getTargetOffset(window.location.hash);
+
+        if (offset !== null) {
+            window.scrollTo(0, offset);
+        }
+    });
 };
 
 exports.shouldUpdateScroll = function (_ref) {
-  var location = _ref.routerProps.location;
-  var offset = getTargetOffset(location.hash);
-  return offset !== null ? [0, offset] : true;
+    const location = _ref.routerProps.location;
+    const offset = getTargetOffset(location.hash);
+    return offset !== null ? [0, offset] : true;
 };
