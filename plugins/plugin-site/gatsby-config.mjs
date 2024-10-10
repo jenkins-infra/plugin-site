@@ -76,7 +76,7 @@ config.plugins = [
         },
     },
     {
-        resolve: '@halkeye/gatsby-transformer-rehype',
+        resolve: '@jenkins-cd/gatsby-transformer-rehype',
         options: {
             filter: node => node.internal.type === 'JenkinsPluginWiki',
             source: node => node.internal.content,
@@ -88,14 +88,14 @@ config.plugins = [
             // Plugins configs (optional but most likely you need one)
             plugins: [
                 {
-                    resolve: '@halkeye/gatsby-rehype-autolink-headers',
+                    resolve: '@jenkins-cd/gatsby-rehype-autolink-headers',
                     options: {
                         isIconAfterHeader: true,
                         icon: '<ion-icon name="link-outline"></ion-icon>'
                     }
                 },
                 {
-                    resolve: '@halkeye/gatsby-rehype-rewrite-ids',
+                    resolve: '@jenkins-cd/gatsby-rehype-rewrite-ids',
                     options: {
                         prefix: 'plugin-content-'
                     }
