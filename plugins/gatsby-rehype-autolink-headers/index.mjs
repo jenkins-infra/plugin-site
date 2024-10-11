@@ -2,7 +2,7 @@ import toString from 'hast-util-to-string';
 import visit from 'unist-util-visit';
 import slugger from 'github-slugger';
 import _ from 'lodash';
-import Rehype from 'rehype';
+import {rehype} from 'rehype';
 import styleToObject from 'style-to-object';
 
 const slugs = slugger();
@@ -19,7 +19,7 @@ const pluginDefaults = {
     elements: null,
 };
 
-const rehype = new Rehype().data('settings', {
+const rehypeParser = new rehype().data('settings', {
     fragment: true,
     space: 'html',
     emitParseErrors: false,
@@ -76,7 +76,7 @@ export default ({htmlAst}, pluginOptions) => {
             const styles = styleToObject(node.properties.style || '') || {};
             styles.position = 'relative';
             node.properties.style = Object.entries(styles).map(i => `${i[0]}: ${i[1]}`).join('; ');
-            node.children[method](rehype.parse(`<a href="#${id}" aria-label="${label} permalink" class="${className} ${isIconAfterHeader ? 'after' : 'before'}">${icon}</a>`));
+            node.children[method](rehypeParser.parse(`<a href="#${id}" aria-label="${label} permalink" class="${className} ${isIconAfterHeader ? 'after' : 'before'}">${icon}</a>`));
         }
     };
     visit(htmlAst, node => node?.tagName?.match(/^h\d+$/), visitNode);

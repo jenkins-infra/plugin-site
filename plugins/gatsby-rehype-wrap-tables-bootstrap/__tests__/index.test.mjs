@@ -1,4 +1,4 @@
-import Rehype from 'rehype';
+import {rehype} from 'rehype';
 import {toHtml} from 'hast-util-to-html';
 
 import pluginFunc from '../index.mjs';
@@ -6,7 +6,7 @@ import pluginFunc from '../index.mjs';
 import {describe, expect, it} from '@jest/globals';
 
 describe('handler', () => {
-    const rehype = new Rehype().data('settings', {
+    const rehypeParser = new rehype().data('settings', {
         fragment: true,
         space: 'html',
         emitParseErrors: false,
@@ -17,13 +17,13 @@ describe('handler', () => {
         return pluginFunc({
             htmlAst,
             compiler: {
-                parseString: rehype.parse.bind(rehype)
+                parseString: rehypeParser.parse.bind(rehypeParser)
             }
         });
     };
 
     it('basic test', async () => {
-        const htmlAst = await rehype.parse('<div><table><tr><td>col 1</td></tr></table></div>');
+        const htmlAst = await rehypeParser.parse('<div><table><tr><td>col 1</td></tr></table></div>');
         const updatedHtmlAst = runPluginFunc(htmlAst);
 
         expect(toHtml(updatedHtmlAst)).toBe('<div><div class="table-responsive"><table class="table table-bordered"><tbody><tr><td>col 1</td></tr></tbody></table></div></div>');

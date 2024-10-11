@@ -1,4 +1,4 @@
-import Rehype from 'rehype';
+import {rehype} from 'rehype';
 import {toHtml} from 'hast-util-to-html';
 
 import pluginFunc from '../index.mjs';
@@ -6,7 +6,7 @@ import pluginFunc from '../index.mjs';
 import {describe, expect, it} from '@jest/globals';
 
 describe('handler', () => {
-    const rehype = new Rehype().data('settings', {
+    const rehypeParser = new rehype().data('settings', {
         fragment: true,
         space: 'html',
         emitParseErrors: false,
@@ -14,7 +14,7 @@ describe('handler', () => {
     }); // Load language extension if defined
 
     it('should rewrite relative urls', async () => {
-        const htmlAst = await rehype.parse('<img src="foo/bar.jpg" />');
+        const htmlAst = await rehypeParser.parse('<img src="foo/bar.jpg" />');
         const htmlNode = {
             context: {
                 url: 'http://example.com/subdir/readme.md'
@@ -26,7 +26,7 @@ describe('handler', () => {
     });
 
     it('should not touch absolute urls urls', async () => {
-        const htmlAst = await rehype.parse('<img src="https://google.com/subdir/foo/bar.jpg" />');
+        const htmlAst = await rehypeParser.parse('<img src="https://google.com/subdir/foo/bar.jpg" />');
         const htmlNode = {
             context: {
                 url: 'http://example.com/subdir/readme.md'
