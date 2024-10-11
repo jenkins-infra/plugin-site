@@ -3164,7 +3164,7 @@ __metadata:
     eslint-config-standard: "npm:16.0.3"
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-n: "npm:14.0.0"
-    eslint-plugin-promise: "npm:5.1.0"
+    eslint-plugin-promise: "npm:5.2.0"
     github-slugger: "npm:^1.4.0"
     hast-util-to-string: "npm:^1.0.4"
     jest: "npm:29.7.0"
@@ -3185,7 +3185,7 @@ __metadata:
     eslint-config-standard: "npm:16.0.3"
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-n: "npm:14.0.0"
-    eslint-plugin-promise: "npm:5.1.0"
+    eslint-plugin-promise: "npm:5.2.0"
     hast-util-to-string: "npm:^1.0.4"
     jest: "npm:29.7.0"
     lodash: "npm:^4.17.21"
@@ -9563,12 +9563,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-promise@npm:5.1.0":
-  version: 5.1.0
-  resolution: "eslint-plugin-promise@npm:5.1.0"
+"eslint-plugin-promise@npm:5.2.0":
+  version: 5.2.0
+  resolution: "eslint-plugin-promise@npm:5.2.0"
   peerDependencies:
     eslint: ^7.0.0
-  checksum: 10c0/99d2cbbe2c680486df2d43b79307d0ee0dca79d74c3af06b1d6417fe3f3e4edf58239a83008cdd8ddbf384b01995f22f1edf52f4f21fe5f84b01dde44263a9a2
+  checksum: 10c0/73a6da06e2efe32d04f3a872268b728c47b0b4946af852c6be142180d8d8284555991a6f946ec47792fad88c35393b331f8e54ff9e0e76d2b73a6d74cacd8aaa
   languageName: node
   linkType: hard
 
