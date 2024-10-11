@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import Rehype from 'rehype';
+import {rehype as Rehype} from 'rehype';
 import stripPosition from 'unist-util-remove-position';
 import hastReparseRaw from 'hast-util-raw';
 import visit from 'unist-util-visit';
