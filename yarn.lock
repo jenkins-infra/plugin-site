@@ -3169,7 +3169,7 @@ __metadata:
     hast-util-to-string: "npm:^1.0.4"
     jest: "npm:29.7.0"
     lodash: "npm:^4.17.21"
-    style-to-object: "npm:^0.3.0"
+    style-to-object: "npm:^0.4.0"
     unist-util-visit: "npm:^2.0.3"
     yarn: "npm:^1.22.17"
   peerDependencies:
@@ -20085,7 +20085,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-to-object@npm:^0.4.1":
+"style-to-object@npm:^0.4.0, style-to-object@npm:^0.4.1":
   version: 0.4.4
   resolution: "style-to-object@npm:0.4.4"
   dependencies:
