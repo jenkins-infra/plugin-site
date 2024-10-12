@@ -3166,7 +3166,7 @@ __metadata:
     eslint-plugin-n: "npm:14.0.0"
     eslint-plugin-promise: "npm:7.1.0"
     github-slugger: "npm:^1.4.0"
-    hast-util-to-string: "npm:^1.0.4"
+    hast-util-to-string: "npm:^3.0.0"
     jest: "npm:29.7.0"
     lodash: "npm:^4.17.21"
     style-to-object: "npm:^0.4.0"
@@ -3186,7 +3186,7 @@ __metadata:
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-n: "npm:14.0.0"
     eslint-plugin-promise: "npm:7.1.0"
-    hast-util-to-string: "npm:^1.0.4"
+    hast-util-to-string: "npm:^3.0.0"
     jest: "npm:29.7.0"
     lodash: "npm:^4.17.21"
     unist-util-visit: "npm:^2.0.3"
@@ -11910,10 +11910,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hast-util-to-string@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "hast-util-to-string@npm:1.0.4"
-  checksum: 10c0/02f4631ae5e597ade64653a35205ebd2c378fe373f7c9d9d00cf37f753e0d89d74949d8e1df6e5f7bfae6b2c350d8069faede9a014018a03ce4a168e3864cb15
+"hast-util-to-string@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "hast-util-to-string@npm:3.0.1"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+  checksum: 10c0/b5fa1912a6ba6131affae52a0f4394406c4c0d23c2b0307f1d69988f1030c7bb830289303e67c5ad8f674f5f23a454c1dcd492c39e45a22c1f46d3c9bce5bd0c
   languageName: node
   linkType: hard
 
