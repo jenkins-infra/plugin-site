@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import axios from 'axios';
 import path from 'path';
 import crypto from 'crypto';
@@ -6,6 +5,8 @@ import {load} from 'cheerio';
 import {execSync} from 'child_process';
 import axiosRetry, {exponentialDelay} from 'axios-retry';
 import {parse as parseDate, parseJSON} from 'date-fns';
+// https://github.com/import-js/eslint-plugin-import/issues/1810
+// eslint-disable-next-line import/no-unresolved
 import PQueue from 'p-queue';
 import {parseStringPromise} from 'xml2js';
 import {createRequire} from 'module';
@@ -434,13 +435,13 @@ export const fetchSiteInfo = async ({createNode, reporter}) => {
 
 export const fetchStats = async ({reporter, stats}) => {
     const timeSpan = 12;
-    const totalUrl = 'https://old.stats.jenkins.io/jenkins-stats/svg/total-jenkins.csv';
+    const totalUrl = 'https://stats.jenkins.io/jenkins-stats/svg/total-jenkins.csv';
     const totalInstalls = (await requestGET({url: totalUrl, reporter})).trim().split('\n');
     stats.core = {installations: []};
     const timestamps = [];
     for (let monthsAgo = 1; monthsAgo <= timeSpan; monthsAgo++) {
         const [month, coreInstalls] = csvParse(totalInstalls[totalInstalls.length - monthsAgo]);
-        const pluginInstallsUrl = `https://old.stats.jenkins.io/jenkins-stats/svg/${month}-plugins.csv`;
+        const pluginInstallsUrl = `https://stats.jenkins.io/jenkins-stats/svg/${month}-plugins.csv`;
         const timestamp = Date.parse(`${month}`.replace(/(..)$/, '-$1'));
         timestamps.push(timestamp);
         const pluginInstalls = (await requestGET({url: pluginInstallsUrl, reporter})).split('\n');

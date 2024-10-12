@@ -1,0 +1,51 @@
+{
+    "name": "@jenkins-cd/gatsby-rehype-autolink-headers",
+    "description": "",
+    "version": "1.0.1",
+    "license": "MIT",
+    "homepage": "https://github.com/halkeye/gatsby-plugins",
+    "author": "Gavin Mogan <npm@gavinmogan.com> (https://www.gavinmogan.com/)",
+    "main": "index.mjs",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/halkeye/gatsby-plugins.git",
+        "directory": "packages/gatsby-rehype-autolink-headers"
+    },
+    "bugs": {
+        "url": "https://github.com/halkeye/gatsby-plugins/issues"
+    },
+    "engines": {
+        "node": ">= 16"
+    },
+    "keywords": [],
+    "scripts": {
+        "build": "exit 0",
+        "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
+        "lint": "eslint"
+    },
+    "jest": {
+        "transform": {},
+        "testMatch": [
+            "**/*.test.mjs"
+        ]
+    },
+    "dependencies": {
+        "github-slugger": "^2.0.0",
+        "hast-util-to-string": "^3.0.0",
+        "lodash": "^4.17.21",
+        "style-to-object": "^1.0.0",
+        "unist-util-visit": "^5.0.0"
+    },
+    "devDependencies": {
+        "eslint": "9.12.0",
+        "eslint-config-standard": "17.1.0",
+        "eslint-plugin-import": "2.31.0",
+        "eslint-plugin-n": "17.11.1",
+        "eslint-plugin-promise": "7.1.0",
+        "jest": "29.7.0",
+        "yarn": "^1.22.17"
+    },
+    "peerDependencies": {
+        "gatsby": "^4.0.0 || ^5.0.0"
+    }
+}
