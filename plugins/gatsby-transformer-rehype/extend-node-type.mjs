@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import {rehype as Rehype} from 'rehype';
-import stripPosition from 'unist-util-remove-position';
+import {removePosition} from 'unist-util-remove-position';
 import {raw} from 'hast-util-raw';
 import {visit} from 'unist-util-visit';
 
@@ -277,7 +277,7 @@ export default ({
                 type: 'JSON',
                 resolve(htmlNode) {
                     return getHtmlAst(htmlNode).then((ast) => {
-                        const strippedAst = stripPosition(_.clone(ast), true);
+                        const strippedAst = removePosition(_.clone(ast), true);
                         return raw(strippedAst);
                     });
                 },
