@@ -3161,7 +3161,7 @@ __metadata:
   resolution: "@jenkins-cd/gatsby-rehype-autolink-headers@workspace:plugins/gatsby-rehype-autolink-headers"
   dependencies:
     eslint: "npm:9.12.0"
-    eslint-config-standard: "npm:16.0.3"
+    eslint-config-standard: "npm:17.1.0"
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-n: "npm:14.0.0"
     eslint-plugin-promise: "npm:5.2.0"
@@ -3182,7 +3182,7 @@ __metadata:
   resolution: "@jenkins-cd/gatsby-rehype-rewrite-ids@workspace:plugins/gatsby-rehype-rewrite-ids"
   dependencies:
     eslint: "npm:9.12.0"
-    eslint-config-standard: "npm:16.0.3"
+    eslint-config-standard: "npm:17.1.0"
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-n: "npm:14.0.0"
     eslint-plugin-promise: "npm:5.2.0"
@@ -9354,18 +9354,6 @@ __metadata:
     eslint-plugin-testing-library:
       optional: true
   checksum: 10c0/3141500eb3b7a1edfbade684cd07cb0199d60c7f432021842932e0c935285ae94b198f6cdc344c4f7ac7b7a1690bb4312c0b2ee4ca28a523d570df768ee177bf
-  languageName: node
-  linkType: hard
-
-"eslint-config-standard@npm:16.0.3":
-  version: 16.0.3
-  resolution: "eslint-config-standard@npm:16.0.3"
-  peerDependencies:
-    eslint: ^7.12.1
-    eslint-plugin-import: ^2.22.1
-    eslint-plugin-node: ^11.1.0
-    eslint-plugin-promise: ^4.2.1 || ^5.0.0
-  checksum: 10c0/6c7276b15329c3ed3c516b442b99cab9b30cb750a58b3bc6994574103f843bf7ea4f7e86bb815c206a610b12fb765d9cd283e45580f9e8549c6d9510fc8177c5
   languageName: node
   linkType: hard
 
