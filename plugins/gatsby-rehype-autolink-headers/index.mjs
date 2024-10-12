@@ -1,4 +1,4 @@
-import toString from 'hast-util-to-string';
+import {toString} from 'hast-util-to-string';
 import visit from 'unist-util-visit';
 import slugger from 'github-slugger';
 import _ from 'lodash';
