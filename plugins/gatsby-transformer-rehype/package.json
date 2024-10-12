@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@babel/runtime": "7.25.7",
-        "hast-util-raw": "^6.0.2",
+        "hast-util-raw": "^9.0.0",
         "lodash": "^4.17.21",
         "rehype": "^13.0.0",
         "unist-util-remove-position": "^3.0.0",
