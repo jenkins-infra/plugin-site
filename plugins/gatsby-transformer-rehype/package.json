@@ -36,7 +36,7 @@
         "hast-util-raw": "^9.0.0",
         "lodash": "^4.17.21",
         "rehype": "^13.0.0",
-        "unist-util-remove-position": "^3.0.0",
+        "unist-util-remove-position": "^5.0.0",
         "unist-util-visit": "^5.0.0"
     },
     "devDependencies": {
