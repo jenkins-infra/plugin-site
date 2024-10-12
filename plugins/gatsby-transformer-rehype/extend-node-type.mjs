@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {rehype as Rehype} from 'rehype';
 import stripPosition from 'unist-util-remove-position';
-import hastReparseRaw from 'hast-util-raw';
+import {raw} from 'hast-util-raw';
 import visit from 'unist-util-visit';
 
 // ES6 instead of Bluebird's promise.each
@@ -278,7 +278,7 @@ export default ({
                 resolve(htmlNode) {
                     return getHtmlAst(htmlNode).then((ast) => {
                         const strippedAst = stripPosition(_.clone(ast), true);
-                        return hastReparseRaw(strippedAst);
+                        return raw(strippedAst);
                     });
                 },
             },
