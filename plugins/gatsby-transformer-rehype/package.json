@@ -35,7 +35,7 @@
         "@babel/runtime": "7.25.7",
         "hast-util-raw": "^6.0.2",
         "lodash": "^4.17.21",
-        "rehype": "^11.0.0",
+        "rehype": "^13.0.0",
         "unist-util-remove-position": "^3.0.0",
         "unist-util-visit": "^2.0.3"
     },
