@@ -33,7 +33,7 @@
         "github-slugger": "^1.4.0",
         "hast-util-to-string": "^1.0.4",
         "lodash": "^4.17.21",
-        "style-to-object": "^0.4.0",
+        "style-to-object": "^1.0.0",
         "unist-util-visit": "^2.0.3"
     },
     "devDependencies": {
