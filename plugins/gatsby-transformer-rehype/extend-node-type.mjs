@@ -2,7 +2,7 @@ import _ from 'lodash';
 import {rehype as Rehype} from 'rehype';
 import stripPosition from 'unist-util-remove-position';
 import {raw} from 'hast-util-raw';
-import visit from 'unist-util-visit';
+import {visit} from 'unist-util-visit';
 
 // ES6 instead of Bluebird's promise.each
 Promise.each = async function (arr, fn) {
