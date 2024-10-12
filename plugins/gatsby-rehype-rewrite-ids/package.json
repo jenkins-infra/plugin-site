@@ -32,7 +32,7 @@
   "dependencies": {
     "hast-util-to-string": "^1.0.4",
     "lodash": "^4.17.21",
-    "unist-util-visit": "^2.0.3"
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "eslint": "9.12.0",
