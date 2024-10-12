@@ -30,7 +30,7 @@
         ]
     },
     "dependencies": {
-        "github-slugger": "^1.4.0",
+        "github-slugger": "^2.0.0",
         "hast-util-to-string": "^3.0.0",
         "lodash": "^4.17.21",
         "style-to-object": "^1.0.0",
