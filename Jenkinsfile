@@ -146,12 +146,17 @@ pipeline {
               --put-md5 \
               --local-hash-storage-mode=HiddenFiles \
               ./plugins/plugin-site/public/ "${FILESHARE_SIGNED_URL}"
-
-            # Retrieve azcopy logs to archive them
-            cat /home/jenkins/.azcopy/*.log > azcopy.log
             '''
-            archiveArtifacts 'azcopy.log'
           }
+        }
+      }
+      post {
+        failure {
+          // Retrieve azcopy logs and archive them when deployment fails
+          sh '''
+          cat /home/jenkins/.azcopy/*.log > azcopy.log
+          '''
+          archiveArtifacts 'azcopy.log'
         }
       }
     }
