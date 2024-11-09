@@ -42,7 +42,7 @@
     "devDependencies": {
         "@babel/cli": "7.25.9",
         "@babel/core": "7.26.0",
-        "babel-preset-gatsby-package": "3.13.1",
+        "babel-preset-gatsby-package": "3.14.0",
         "cross-env": "7.0.3"
     },
     "peerDependencies": {
