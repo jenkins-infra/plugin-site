@@ -4107,7 +4107,7 @@ __metadata:
     eslint-config-standard: "npm:17.1.0"
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-n: "npm:17.14.0"
-    eslint-plugin-promise: "npm:7.2.0"
+    eslint-plugin-promise: "npm:7.2.1"
     github-slugger: "npm:^2.0.0"
     hast-util-to-string: "npm:^3.0.0"
     jest: "npm:29.7.0"
@@ -4128,7 +4128,7 @@ __metadata:
     eslint-config-standard: "npm:17.1.0"
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-n: "npm:17.14.0"
-    eslint-plugin-promise: "npm:7.2.0"
+    eslint-plugin-promise: "npm:7.2.1"
     hast-util-to-string: "npm:^3.0.0"
     jest: "npm:29.7.0"
     lodash: "npm:^4.17.21"
@@ -4246,7 +4246,7 @@ __metadata:
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-jest: "npm:28.9.0"
     eslint-plugin-n: "npm:17.14.0"
-    eslint-plugin-promise: "npm:7.2.0"
+    eslint-plugin-promise: "npm:7.2.1"
     eslint-plugin-react: "npm:7.37.2"
     eslint-plugin-standard: "npm:5.0.0"
     find-package-json: "npm:1.2.0"
@@ -10410,14 +10410,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-promise@npm:7.2.0":
-  version: 7.2.0
-  resolution: "eslint-plugin-promise@npm:7.2.0"
+"eslint-plugin-promise@npm:7.2.1":
+  version: 7.2.1
+  resolution: "eslint-plugin-promise@npm:7.2.1"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.4.0"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/c02bfe1938965a6fbadf473b2c87a3b5f450fb088315eb34ea79963819a3dcf3e0f08f31b3a8bc8e54e909d6cece0ff37753bae625aeceb593164456729e1374
+  checksum: 10c0/d494982faeeafbd2aa5fae9cbceca546169a8399000f72d5d940fa5c4ba554612903bcafbb8033647179e5d21ccf1d621b433d089695f7f47ce3d9fcf4cd0abf
   languageName: node
   linkType: hard
 
