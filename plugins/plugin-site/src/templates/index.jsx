@@ -9,6 +9,7 @@ import SearchBox from '../components/SearchBox';
 import JenkinsVoltron from '../components/JenkinsVoltron';
 
 import './index.css';
+import ThankAContributorNote from '../components/ThankAContributorNote';
 
 
 function IndexPage() {
@@ -36,6 +37,7 @@ function IndexPage() {
                 </div>
             </div>
             <Footer />
+            <ThankAContributorNote />
         </Layout>
     );
 }
