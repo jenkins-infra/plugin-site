@@ -96,9 +96,9 @@ function ThankAContributorNote() {
                             .length === 0 && (<a target="_blank" rel="noreferrer" href={thankYou[5]?.replace(/['"]+/g, '')}>{thankYou[3]?.replace(/['"]+/g, '').trim() ? thankYou[3]?.replace(/['"]+/g, '') : thankYou[2]?.replace(/['"]+/g, '')}</a>
                         )}
                         <br/>for making {thankYou[7]?.replace(
-                        /['"]+/g,
-                        ''
-                    )} pull{' '}
+                            /['"]+/g,
+                            ''
+                        )} pull{' '}
                         {parseInt(thankYou[7]?.replace(/['"]+/g, '')) >= 2
                             ? 'requests'
                             : 'request'}
