@@ -58,8 +58,6 @@
   "homepage": "https://plugins.jenkins.io/",
   "dependencies": {
     "@babel/core": "7.26.0",
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
     "@halkeye/react-paginate": "7.2.3",
     "@jenkins-cd/gatsby-rehype-autolink-headers": "*",
     "@jenkins-cd/gatsby-rehype-rewrite-ids": "*",
@@ -68,7 +66,6 @@
     "@jenkins-cd/gatsby-source-jenkinsplugins": "*",
     "@jenkins-cd/gatsby-transformer-rehype": "*",
     "@juggle/resize-observer": "3.4.0",
-    "@mui/material": "^6.3.1",
     "algoliasearch": "5.18.0",
     "chart.js": "4.4.7",
     "cheerio": "1.0.0",

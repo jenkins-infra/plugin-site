@@ -3,12 +3,10 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import {Box, Stack, useTheme} from '@mui/material';
 import Papa from 'papaparse';
 import {useMediaQuery} from '../hooks/useMediaQuery';
 
 function ThankAContributorNote() {
-    const theme = useTheme();
     const isMobile = useMediaQuery('man-width: 768px)');
     const isDesktop = useMediaQuery('(min-width: 1024px)');
 
@@ -40,18 +38,18 @@ function ThankAContributorNote() {
 
 
     return (
-        <Box
-            sx={{
-                padding: theme.spacing(5, 2),
+        <div
+            style={{
+                padding: '40px 16px',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
         >
-            <Box
-                sx={{
-                    padding: isMobile ? theme.spacing(2) : theme.spacing(3),
-                    borderRadius: 5,
+            <div
+                style={{
+                    padding: isMobile ? '16px' : '24px',
+                    borderRadius: '40px',
                     maxWidth: 'fit-content',
                     height: 'fit-content',
                     backgroundColor: 'rgb(218, 209, 198, 0.3)',
@@ -60,14 +58,17 @@ function ThankAContributorNote() {
                     alignItems: 'center',
                 }}
             >
-                <Stack
-                    direction="row"
-                    gap={isMobile ? 1 : 3}
-                    justifyItems="center"
-                    alignItems="center"
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        gap: isMobile ? '8px' : '24px',
+                    }}
                 >
-                    <Box
-                        sx={{
+                    <div
+                        style={{
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
@@ -85,9 +86,9 @@ function ThankAContributorNote() {
                                 marginBottom: 'auto',
                             }}
                         />
-                    </Box>
-                    <Box
-                        sx={{
+                    </div>
+                    <div
+                        style={{
                             fontSize: isMobile ? 'small' : 'medium',
                         }}
                     >
@@ -140,10 +141,10 @@ function ThankAContributorNote() {
                             'MMMM YYYY'
                         )}
                         !
-                    </Box>
-                </Stack>
-            </Box>
-        </Box>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 
