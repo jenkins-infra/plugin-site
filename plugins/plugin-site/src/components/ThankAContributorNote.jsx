@@ -5,6 +5,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import Papa from 'papaparse';
 import {useMediaQuery} from '../hooks/useMediaQuery';
+import './ThankAContributorNote.css';
 
 function ThankAContributorNote() {
     const isMobile = useMediaQuery('man-width: 768px)');
@@ -67,40 +68,16 @@ function ThankAContributorNote() {
 
     return (
         <div
-            style={{
-                padding: '40px 16px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
+            className="thank-you-note-container"
         >
             <div
-                style={{
-                    padding: isMobile ? '16px' : '24px',
-                    borderRadius: '40px',
-                    maxWidth: 'fit-content',
-                    height: 'fit-content',
-                    backgroundColor: 'rgb(218, 209, 198, 0.3)',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
+                className="thank-you-note-contents"
             >
                 <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        gap: isMobile ? '8px' : '24px',
-                    }}
+                    className="thank-you-note-card"
                 >
                     <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
+                        className="thank-you-note-img-container"
                     >
                         <img
                             src={thankYou['GH_HANDLE_AVATAR']?.replace(/['"]+/g, '')}
@@ -109,16 +86,11 @@ function ThankAContributorNote() {
                             height={
                                 isDesktop ? 100 : isMobile ? '100%' : 90
                             }
-                            style={{
-                                marginTop: 'auto',
-                                marginBottom: 'auto',
-                            }}
+                            className="thank-you-note-img"
                         />
                     </div>
                     <div
-                        style={{
-                            fontSize: isMobile ? 'small' : 'medium',
-                        }}
+                        className="thank-you-note-text"
                     >
                         Thank you{' '}
                         {Object.values(thankYou)?.filter((item) => item?.trim() === '')
@@ -148,7 +120,7 @@ function ThankAContributorNote() {
                                             thankYou['REPOSITORIES']?.split(' ')
                                                 .length -
                                             2 &&
-                                            'and '
+                                            ' and '
                                         }
                                         <a
                                             target="_blank"
