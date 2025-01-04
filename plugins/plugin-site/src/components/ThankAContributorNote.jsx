@@ -10,26 +10,54 @@ function ThankAContributorNote() {
     const isMobile = useMediaQuery('man-width: 768px)');
     const isDesktop = useMediaQuery('(min-width: 1024px)');
 
-    const [thankYou, setThankYou] = useState([]);
+    const [thankYou, setThankYou] = useState({});
+
+    const dataUrl = 'https://raw.githubusercontent.com/jenkins-infra/jenkins-contribution-stats/main/data/honored_contributor.csv';
 
     useEffect(() => {
         axios
             .get(
-                'https://raw.githubusercontent.com/jenkins-infra/jenkins-contribution-stats/main/data/honored_contributor.csv',
+                dataUrl,
                 {responseType: 'text'}
             )
             .then((response) => {
-                setThankYou(Papa.parse(response.data)?.data[1]);
+                if (Papa.parse(response.data)?.data[1]) {
+                    const data = Papa.parse(response.data)?.data[1];
+                    setThankYou(Papa.parse(response.data)?.data[1] ? {
+                        'RUN_DATE': data[0],
+                        'MONTH': data[1],
+                        'GH_HANDLE': data[2],
+                        'FULL_NAME': data[3],
+                        'COMPANY': data[4],
+                        'GH_HANDLE_URL': data[5],
+                        'GH_HANDLE_AVATAR': data[6],
+                        'NBR_PRS': data[7],
+                        'REPOSITORIES': data[8],
+                    }: {});
+                }
             });
 
         const interval = setInterval(() => {
             axios
                 .get(
-                    'https://raw.githubusercontent.com/jenkins-infra/jenkins-contribution-stats/main/data/honored_contributor.csv',
+                    dataUrl,
                     {responseType: 'text'}
                 )
                 .then((response) => {
-                    setThankYou(Papa.parse(response.data)?.data[1]);
+                    if (Papa.parse(response.data)?.data[1]) {
+                        const data = Papa.parse(response.data)?.data[1];
+                        setThankYou(Papa.parse(response.data)?.data[1] ? {
+                            'RUN_DATE': data[0],
+                            'MONTH': data[1],
+                            'GH_HANDLE': data[2],
+                            'FULL_NAME': data[3],
+                            'COMPANY': data[4],
+                            'GH_HANDLE_URL': data[5],
+                            'GH_HANDLE_AVATAR': data[6],
+                            'NBR_PRS': data[7],
+                            'REPOSITORIES': data[8],
+                        }: {});
+                    }
                 });
         }, 3600000);
 
@@ -75,7 +103,7 @@ function ThankAContributorNote() {
                         }}
                     >
                         <img
-                            src={thankYou[6]?.replace(/['"]+/g, '')}
+                            src={thankYou['GH_HANDLE_AVATAR']?.replace(/['"]+/g, '')}
                             alt="Random contributor image"
                             width={isDesktop ? 100 : isMobile ? 36 : 90}
                             height={
@@ -93,31 +121,31 @@ function ThankAContributorNote() {
                         }}
                     >
                         Thank you{' '}
-                        {thankYou?.filter((item) => item?.trim() === '')
-                            .length === 0 && (<a target="_blank" rel="noreferrer" href={thankYou[5]?.replace(/['"]+/g, '')}>{thankYou[3]?.replace(/['"]+/g, '').trim() ? thankYou[3]?.replace(/['"]+/g, '') : thankYou[2]?.replace(/['"]+/g, '')}</a>
+                        {Object.values(thankYou)?.filter((item) => item?.trim() === '')
+                            .length === 0 && (<a target="_blank" rel="noreferrer" href={thankYou['GH_HANDLE_URL']?.replace(/['"]+/g, '')}>{thankYou['FULL_NAME']?.replace(/['"]+/g, '').trim() ? thankYou['FULL_NAME']?.replace(/['"]+/g, '') : thankYou['GH_HANDLE']?.replace(/['"]+/g, '')}</a>
                         )}
-                        <br/>for making {thankYou[7]?.replace(
+                        <br/>for making {thankYou['NBR_PRS']?.replace(
                             /['"]+/g,
                             ''
                         )} pull{' '}
-                        {parseInt(thankYou[7]?.replace(/['"]+/g, '')) >= 2
+                        {parseInt(thankYou['NBR_PRS']?.replace(/['"]+/g, '')) >= 2
                             ? 'requests'
                             : 'request'}
                         <br/>to{' '}
-                        {thankYou[8]?.split(' ')?.length >= 4
-                            ? `${parseInt(thankYou[8]?.split(' ')?.length)} Jenkins `
+                        {thankYou['REPOSITORIES']?.split(' ')?.length >= 4
+                            ? `${parseInt(thankYou['REPOSITORIES']?.split(' ')?.length)} Jenkins `
                             : 'the '}
-                        {thankYou[8]?.split(' ').length < 4 &&
-                            thankYou[8]
+                        {thankYou['REPOSITORIES']?.split(' ').length < 4 &&
+                            thankYou['REPOSITORIES']
                                 ?.replace(/['"]+/g, '')
                                 .split(/\s+/)
                                 .filter(Boolean)
                                 .map((repo, idx) => (
                                     <>
-                                        {thankYou[8]?.split(' ').length >
+                                        {thankYou['REPOSITORIES']?.split(' ').length >
                                             2 &&
                                             idx ===
-                                            thankYou[8]?.split(' ')
+                                            thankYou['REPOSITORIES']?.split(' ')
                                                 .length -
                                             2 &&
                                             'and '
@@ -129,15 +157,15 @@ function ThankAContributorNote() {
                                         >
                                             {repo?.split('/')[1]}
                                         </a>
-                                        {thankYou[8]?.split(' ').length >=
-                                        2 && idx < thankYou[8]?.split(' ').length - 2 ? (<>,</>) : (<>{' '}</>)}
+                                        {thankYou['REPOSITORIES']?.split(' ').length >=
+                                        2 && idx < thankYou['REPOSITORIES']?.split(' ').length - 2 ? (<>,</>) : (<>{' '}</>)}
                                     </>
                                 ))}{' '}
-                        {thankYou[8]?.split(' ').length > 2
+                        {thankYou['REPOSITORIES']?.split(' ').length > 2
                             ? 'repos'
                             : 'repo'}{' '}
                         in{' '}
-                        {dayjs(thankYou[1]?.replace(/['"]+/g, '')).format(
+                        {dayjs(thankYou['MONTH']?.replace(/['"]+/g, '')).format(
                             'MMMM YYYY'
                         )}
                         !
