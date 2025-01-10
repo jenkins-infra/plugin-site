@@ -4205,6 +4205,7 @@ __metadata:
     cheerio: "npm:1.0.0"
     classnames: "npm:2.5.1"
     copy-to-clipboard: "npm:3.3.3"
+    dayjs: "npm:^1.11.13"
     dotenv: "npm:16.4.7"
     eslint: "npm:9.17.0"
     eslint-config-standard: "npm:17.1.0"
@@ -4242,6 +4243,7 @@ __metadata:
     jest-environment-jsdom: "npm:29.7.0"
     jest-junit: "npm:16.0.0"
     lint-staged: "npm:15.3.0"
+    papaparse: "npm:^5.4.1"
     postcss-calc: "npm:10.1.0"
     postcss-css-variables: "npm:0.19.0"
     postcss-import: "npm:16.1.0"
@@ -9296,6 +9298,13 @@ __metadata:
   version: 4.1.0
   resolution: "date-fns@npm:4.1.0"
   checksum: 10c0/b79ff32830e6b7faa009590af6ae0fb8c3fd9ffad46d930548fbb5acf473773b4712ae887e156ba91a7b3dc30591ce0f517d69fd83bd9c38650fdc03b4e0bac8
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.13":
+  version: 1.11.13
+  resolution: "dayjs@npm:1.11.13"
+  checksum: 10c0/a3caf6ac8363c7dade9d1ee797848ddcf25c1ace68d9fe8678ecf8ba0675825430de5d793672ec87b24a69bf04a1544b176547b2539982275d5542a7955f35b7
   languageName: node
   linkType: hard
 
@@ -17621,6 +17630,13 @@ __metadata:
     registry-url: "npm:^6.0.0"
     semver: "npm:^7.3.7"
   checksum: 10c0/83b057878bca229033aefad4ef51569b484e63a65831ddf164dc31f0486817e17ffcb58c819c7af3ef3396042297096b3ffc04e107fd66f8f48756f6d2071c8f
+  languageName: node
+  linkType: hard
+
+"papaparse@npm:^5.4.1":
+  version: 5.4.1
+  resolution: "papaparse@npm:5.4.1"
+  checksum: 10c0/201f37c4813453fed5bfb4c01816696b099d2db9ff1e8fb610acc4771fdde91d2a22b6094721edb0fedb21ca3c46f04263f68be4beb3e35b8c72278f0cedc7b7
   languageName: node
   linkType: hard
 
