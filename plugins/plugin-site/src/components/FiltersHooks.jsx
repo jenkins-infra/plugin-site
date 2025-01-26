@@ -3,7 +3,6 @@ import {navigate} from 'gatsby';
 import ucFirst from '../utils/ucfirst';
 
 const DEFAULT_DATA = {
-    sort: 'relevance',
     categories: [],
     labels: [],
     view: 'Tiles',
@@ -32,7 +31,7 @@ function useFilterHooks() {
         setData(newData);
     };
 
-    ['sort', 'categories', 'labels', 'view', 'page', 'query'].forEach(key => {
+    ['categories', 'labels', 'view', 'page', 'query'].forEach(key => {
         ret[`set${ucFirst(key)}`] = (val) => {
             const newData = {...data, [key]: val};
             if (key !== 'page') {

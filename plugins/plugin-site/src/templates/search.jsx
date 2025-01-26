@@ -95,7 +95,6 @@ function SearchPage({location}) {
     const categoriesMap = groupBy(graphqlData.categories.edges.map(edge => edge.node), 'id');
     const suspendedPlugins = graphqlData.suspendedPlugins.edges.map(edge => edge.node.id);
     const {
-        sort, setSort,
         clearCriteria,
         categories, toggleCategory,
         labels, toggleLabel,
@@ -106,7 +105,7 @@ function SearchPage({location}) {
     } = useFilterHooks();
 
     const handleOnSubmit = (e) => {
-        const newData = {sort, categories, labels, view, page, query};
+        const newData = {categories, labels, view, page, query};
         e.preventDefault();
         navigate(`/ui/search?${new URLSearchParams(newData)}`);
     };
@@ -132,10 +131,8 @@ function SearchPage({location}) {
                     <Filters
                         showFilter={showFilter}
                         showResults
-                        sort={sort}
                         categories={categories}
                         labels={labels}
-                        setSort={setSort}
                         clearCriteria={clearCriteria}
                         toggleCategory={toggleCategory}
                         toggleLabel={toggleLabel}
