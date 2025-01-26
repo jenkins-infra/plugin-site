@@ -2,13 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import Categories from './Categories';
-import Sort from './Sort';
 import './Filters.css';
 
 function Filters({
     showFilter,
     showResults,
-    sort, setSort,
     clearCriteria,
     categories, toggleCategory,
     labels, toggleLabel
@@ -20,9 +18,6 @@ function Filters({
         <fieldset>
             <div className={classNames('Filters--Container', 'filters', 'container')}>
                 <div className="row headerContainer">
-                    <div className={showResults ? 'col-md-12' : 'col-md-3'}>
-                        <Sort setSort={setSort} sort={sort} />
-                    </div>
                     <div className={showResults ? 'col-md-12' : 'col-md-9'}>
                         <Categories
                             anyCriteria={false}
@@ -42,8 +37,6 @@ function Filters({
 Filters.propTypes = {
     showFilter: PropTypes.bool.isRequired,
     showResults: PropTypes.bool.isRequired,
-    sort: PropTypes.string.isRequired,
-    setSort: PropTypes.func.isRequired,
     clearCriteria: PropTypes.func.isRequired,
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
     toggleCategory: PropTypes.func.isRequired,
