@@ -476,6 +476,7 @@ export const fetchPluginVersions = async ({createNode, reporter, firstReleases})
     const url = 'https://updates.jenkins.io/plugin-versions.json';
     const json = await requestGET({url, reporter});
     for (const pluginVersions of Object.values(json.plugins)) {
+        let counter = 0;
         for (const data of Object.values(pluginVersions)) {
             /*
             releaseTimestamp    "2012-10-10T17:27:42.00Z"
@@ -494,6 +495,7 @@ export const fetchPluginVersions = async ({createNode, reporter, firstReleases})
             delete (data.buildDate);
             createNode({
                 ...data,
+                machineVersion: counter++,
                 releaseTimestamp: date,
                 id: `${data.name}_${data.version}`,
                 parent: null,
