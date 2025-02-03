@@ -89,7 +89,7 @@
     "isomorphic-fetch": "3.0.0",
     "jest-environment-jsdom": "29.7.0",
     "papaparse": "^5.4.1",
-    "postcss-calc": "10.1.0",
+    "postcss-calc": "10.1.1",
     "postcss-css-variables": "0.19.0",
     "postcss-import": "16.1.0",
     "postcss-merge-rules": "7.0.4",

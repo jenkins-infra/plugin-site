@@ -4312,7 +4312,7 @@ __metadata:
     jest-junit: "npm:16.0.0"
     lint-staged: "npm:15.4.3"
     papaparse: "npm:^5.4.1"
-    postcss-calc: "npm:10.1.0"
+    postcss-calc: "npm:10.1.1"
     postcss-css-variables: "npm:0.19.0"
     postcss-import: "npm:16.1.0"
     postcss-merge-rules: "npm:7.0.4"
@@ -18156,15 +18156,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-calc@npm:10.1.0":
-  version: 10.1.0
-  resolution: "postcss-calc@npm:10.1.0"
+"postcss-calc@npm:10.1.1":
+  version: 10.1.1
+  resolution: "postcss-calc@npm:10.1.1"
   dependencies:
     postcss-selector-parser: "npm:^7.0.0"
     postcss-value-parser: "npm:^4.2.0"
   peerDependencies:
     postcss: ^8.4.38
-  checksum: 10c0/63f8f77f2b5f2987f0ae6b731a1034fabbb777fbec3f778662351b6c9ae006d431daca1e3e2c315acfa3aa94b3e4c1b71c4e76c6b9a8d5321398814e84446415
+  checksum: 10c0/616d3b7b15a524fa86ff1b2be7d9f2369c7794fd44c946f117380e519b064e9ac8d1414ea29de0238b130f2b2a5eb2fb59758cc5478af40b04a012992fb1075b
   languageName: node
   linkType: hard
 
