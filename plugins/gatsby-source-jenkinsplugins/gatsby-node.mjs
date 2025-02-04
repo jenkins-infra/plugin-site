@@ -47,7 +47,7 @@ export const createSchemaCustomization = ({actions}) => {
         type JenkinsPluginVersion implements Node {
             releaseTimestamp: Date @dateformat
             plugin: JenkinsPlugin @link(from: "name", by: "name")
-            machineVersion: String @machineVersion(field: "version")
+            machineVersion: Int
         }
 
         type JenkinsPluginHealthScoreDetailsComponentsResolutions {
