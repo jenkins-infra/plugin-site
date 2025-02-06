@@ -137,7 +137,7 @@ function ThankAContributorNote() {
                             ? 'repos'
                             : 'repo'}{' '}
                         in{' '}
-                        {dayjs(thankYou['MONTH']?.replace(/['"]+/g, '')).format(
+                        {dayjs(thankYou['MONTH']?.replace(/['"]+/g, '').trim()).format(
                             'MMMM YYYY'
                         )}
                         !
