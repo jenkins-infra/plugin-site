@@ -57,7 +57,7 @@
   },
   "homepage": "https://plugins.jenkins.io/",
   "dependencies": {
-    "@babel/core": "7.26.7",
+    "@babel/core": "7.26.8",
     "@halkeye/react-paginate": "7.2.3",
     "@jenkins-cd/gatsby-rehype-autolink-headers": "*",
     "@jenkins-cd/gatsby-rehype-rewrite-ids": "*",
