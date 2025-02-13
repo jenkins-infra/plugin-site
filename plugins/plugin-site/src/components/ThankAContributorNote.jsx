@@ -5,6 +5,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import Papa from 'papaparse';
 import {useMediaQuery} from '../hooks/useMediaQuery';
+import placeholderImage from '../images/person-circle-outline.svg';
 import './ThankAContributorNote.css';
 
 function ThankAContributorNote() {
@@ -12,6 +13,7 @@ function ThankAContributorNote() {
     const isDesktop = useMediaQuery('(min-width: 1024px)');
 
     const [thankYou, setThankYou] = useState({});
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     const dataUrl = 'https://raw.githubusercontent.com/jenkins-infra/jenkins-contribution-stats/main/data/honored_contributor.csv';
 
@@ -80,13 +82,14 @@ function ThankAContributorNote() {
                         className="thank-you-note-img-container"
                     >
                         <img
-                            src={thankYou['GH_HANDLE_AVATAR']?.replace(/['"]+/g, '')}
-                            alt="Random contributor image"
+                            src={imageLoaded ? thankYou['GH_HANDLE_AVATAR']?.replace(/['"]+/g, '') : placeholderImage}
+                            alt="Contributor"
                             width={isDesktop ? 100 : isMobile ? 36 : 90}
                             height={
                                 isDesktop ? 100 : isMobile ? '100%' : 90
                             }
                             className="thank-you-note-img"
+                            onLoad={() => setImageLoaded(true)}
                         />
                     </div>
                     <div
