@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import Papa from 'papaparse';
 import {useMediaQuery} from '../hooks/useMediaQuery';
 import './ThankAContributorNote.css';
-import placeholderImage from "../images/person-circle-outline.svg";
+import placeholderImage from '../images/person-circle-outline.svg';
 
 function ThankAContributorNote() {
     const isMobile = useMediaQuery('man-width: 768px)');
