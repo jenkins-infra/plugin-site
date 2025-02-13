@@ -138,7 +138,7 @@
     "lint-staged": "15.4.3",
     "remark": "14.0.2",
     "remark-frontmatter": "5.0.0",
-    "remark-gfm": "4.0.0",
+    "remark-gfm": "4.0.1",
     "remark-parse": "10.0.1",
     "remark-rehype": "11.1.1",
     "stylelint": "16.14.1",
