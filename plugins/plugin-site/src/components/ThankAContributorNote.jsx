@@ -6,12 +6,14 @@ import dayjs from 'dayjs';
 import Papa from 'papaparse';
 import {useMediaQuery} from '../hooks/useMediaQuery';
 import './ThankAContributorNote.css';
+import placeholderImage from "../images/person-circle-outline.svg";
 
 function ThankAContributorNote() {
     const isMobile = useMediaQuery('man-width: 768px)');
     const isDesktop = useMediaQuery('(min-width: 1024px)');
 
     const [thankYou, setThankYou] = useState({});
+    const [imageError, setImageError] = useState(false);
 
     const dataUrl = 'https://raw.githubusercontent.com/jenkins-infra/jenkins-contribution-stats/main/data/honored_contributor.csv';
 
@@ -80,13 +82,14 @@ function ThankAContributorNote() {
                         className="thank-you-note-img-container"
                     >
                         <img
-                            src={thankYou['GH_HANDLE_AVATAR']?.replace(/['"]+/g, '')}
+                            src={imageError || !thankYou['GH_HANDLE_AVATAR'] ? placeholderImage : thankYou['GH_HANDLE_AVATAR'].replace(/['"]+/g, '')}
                             alt="Random contributor image"
                             width={isDesktop ? 100 : isMobile ? 36 : 90}
                             height={
                                 isDesktop ? 100 : isMobile ? '100%' : 90
                             }
                             className="thank-you-note-img"
+                            onError={()=>setImageError(true)}
                         />
                     </div>
                     <div
@@ -94,7 +97,7 @@ function ThankAContributorNote() {
                     >
                         Thank you{' '}
                         {Object.values(thankYou)?.filter((item) => item?.trim() === '')
-                            .length === 0 && (<a target="_blank" rel="noreferrer" href={thankYou['GH_HANDLE_URL']?.replace(/['"]+/g, '')}>{thankYou['FULL_NAME']?.replace(/['"]+/g, '').trim() ? thankYou['FULL_NAME']?.replace(/['"]+/g, '') : thankYou['GH_HANDLE']?.replace(/['"]+/g, '')}</a>
+                            .length === 0 && (<a target="_blank" rel="noreferrer" href={thankYou['GH_HANDLE_URL']?.replace(/['"]+/g, '')}>{thankYou['FULL_NAME']?.replace(/['"]+/g, '').trim() ? thankYou['FULL_NAME']?.replace(/['"]+/g, '') : thankYou['GH_HANDLE']?.replace(/['"]+/g, '').trim() ? thankYou['GH_HANDLE']?.replace(/['"]+/g, '') : 'Contributor'}</a>
                         )}
                         <br/>for making {thankYou['NBR_PRS']?.replace(
                             /['"]+/g,
