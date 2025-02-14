@@ -8,7 +8,7 @@ import {useMediaQuery} from '../hooks/useMediaQuery';
 import './ThankAContributorNote.css';
 
 function ThankAContributorNote() {
-    const isMobile = useMediaQuery('man-width: 768px)');
+    const isMobile = useMediaQuery('(max-width: 768px)');
     const isDesktop = useMediaQuery('(min-width: 1024px)');
 
     const [thankYou, setThankYou] = useState({});
