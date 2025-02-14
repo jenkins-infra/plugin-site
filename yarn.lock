@@ -4189,7 +4189,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jenkins-cd/gatsby-rehype-autolink-headers@workspace:plugins/gatsby-rehype-autolink-headers"
   dependencies:
-    eslint: "npm:9.20.0"
+    eslint: "npm:9.20.1"
     eslint-config-standard: "npm:17.1.0"
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-n: "npm:17.15.1"
@@ -4210,7 +4210,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jenkins-cd/gatsby-rehype-rewrite-ids@workspace:plugins/gatsby-rehype-rewrite-ids"
   dependencies:
-    eslint: "npm:9.20.0"
+    eslint: "npm:9.20.1"
     eslint-config-standard: "npm:17.1.0"
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-n: "npm:17.15.1"
@@ -4231,7 +4231,7 @@ __metadata:
   dependencies:
     "@babel/preset-env": "npm:7.26.8"
     babel-jest: "npm:29.7.0"
-    eslint: "npm:9.20.0"
+    eslint: "npm:9.20.1"
     hast-util-to-html: "npm:9.0.4"
     jest: "npm:29.7.0"
     rehype: "npm:13.0.2"
@@ -4245,7 +4245,7 @@ __metadata:
   dependencies:
     "@babel/preset-env": "npm:7.26.8"
     babel-jest: "npm:29.7.0"
-    eslint: "npm:9.20.0"
+    eslint: "npm:9.20.1"
     hast-util-to-html: "npm:9.0.4"
     jest: "npm:29.7.0"
     rehype: "npm:13.0.2"
@@ -4263,7 +4263,7 @@ __metadata:
     babel-jest: "npm:29.7.0"
     cheerio: "npm:^1.0.0-rc.10"
     date-fns: "npm:^4.0.0"
-    eslint: "npm:9.20.0"
+    eslint: "npm:9.20.1"
     find-package-json: "npm:^1.2.0"
     gatsby-source-filesystem: "npm:5.14.0"
     jest: "npm:29.7.0"
@@ -4328,7 +4328,7 @@ __metadata:
     copy-to-clipboard: "npm:3.3.3"
     dayjs: "npm:^1.11.13"
     dotenv: "npm:16.4.7"
-    eslint: "npm:9.20.0"
+    eslint: "npm:9.20.1"
     eslint-config-standard: "npm:17.1.0"
     eslint-plugin-import: "npm:2.31.0"
     eslint-plugin-jest: "npm:28.11.0"
@@ -10966,9 +10966,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:9.20.0":
-  version: 9.20.0
-  resolution: "eslint@npm:9.20.0"
+"eslint@npm:9.20.1":
+  version: 9.20.1
+  resolution: "eslint@npm:9.20.1"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.2.0"
     "@eslint-community/regexpp": "npm:^4.12.1"
@@ -11011,7 +11011,7 @@ __metadata:
       optional: true
   bin:
     eslint: bin/eslint.js
-  checksum: 10c0/5eb2d9b5ed85a0b022871d19719417d110afb07a4abfedd856ad03d9a821def5f6bc31d7c407ca27f56e5e66e39375300fd2b877017245eb99c44060d6c983bd
+  checksum: 10c0/056789dd5a00897730376f8c0a191e22840e97b7276916068ec096341cb2ec3a918c8bd474bf94ccd7b457ad9fbc16e5c521a993c7cc6ebcf241933e2fd378b0
   languageName: node
   linkType: hard
 
@@ -20395,7 +20395,7 @@ __metadata:
     "@babel/eslint-parser": "npm:7.26.8"
     "@babel/eslint-plugin": "npm:7.25.9"
     "@babel/plugin-proposal-decorators": "npm:7.25.9"
-    eslint: "npm:9.20.0"
+    eslint: "npm:9.20.1"
     eslint-config-google: "npm:0.14.0"
     eslint-plugin-filenames: "npm:latest"
     eslint-plugin-import: "npm:2.31.0"
