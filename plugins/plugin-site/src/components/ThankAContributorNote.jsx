@@ -4,7 +4,6 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import Papa from 'papaparse';
-import {useMediaQuery} from '../hooks/useMediaQuery';
 import placeholderImage from '../images/person-circle-outline.svg';
 
 function ThankAContributorNote() {
