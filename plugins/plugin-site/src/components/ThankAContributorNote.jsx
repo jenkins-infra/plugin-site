@@ -5,7 +5,6 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import Papa from 'papaparse';
 import {useMediaQuery} from '../hooks/useMediaQuery';
-import './ThankAContributorNote.css';
 import placeholderImage from '../images/person-circle-outline.svg';
 
 function ThankAContributorNote() {
