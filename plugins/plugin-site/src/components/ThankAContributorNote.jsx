@@ -8,9 +8,6 @@ import {useMediaQuery} from '../hooks/useMediaQuery';
 import placeholderImage from '../images/person-circle-outline.svg';
 
 function ThankAContributorNote() {
-    const isMobile = useMediaQuery('(max-width: 768px)');
-    const isDesktop = useMediaQuery('(min-width: 1024px)');
-
     const [thankYou, setThankYou] = useState({});
     const [imageError, setImageError] = useState(false);
 
@@ -83,11 +80,6 @@ function ThankAContributorNote() {
                         <img
                             src={imageError || !thankYou['GH_HANDLE_AVATAR'] ? placeholderImage : thankYou['GH_HANDLE_AVATAR'].replace(/['"]+/g, '')}
                             alt="Random contributor image"
-                            width={isDesktop ? 100 : isMobile ? 36 : 90}
-                            height={
-                                isDesktop ? 100 : isMobile ? '100%' : 90
-                            }
-                            className="thank-you-note-img"
                             onError={()=>setImageError(true)}
                         />
                     </div>
