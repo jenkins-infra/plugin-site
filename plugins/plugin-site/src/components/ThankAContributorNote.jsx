@@ -70,16 +70,16 @@ function ThankAContributorNote() {
 
     return (
         <div
-            className="thank-you-note-container"
+            className="thank-you-block"
         >
             <div
-                className="thank-you-note-contents"
+                className="thank-you-box"
             >
                 <div
-                    className="thank-you-note-card"
+                    className="contributor-data"
                 >
                     <div
-                        className="thank-you-note-img-container"
+                        className="image-div"
                     >
                         <img
                             src={imageError || !thankYou['GH_HANDLE_AVATAR'] ? placeholderImage : thankYou['GH_HANDLE_AVATAR'].replace(/['"]+/g, '')}
@@ -93,57 +93,59 @@ function ThankAContributorNote() {
                         />
                     </div>
                     <div
-                        className="thank-you-note-text"
+                        className="desc-div"
                     >
-                        Thank you{' '}
-                        {Object.values(thankYou)?.filter((item) => item?.trim() === '')
-                            .length === 0 && (<a target="_blank" rel="noreferrer" href={thankYou['GH_HANDLE_URL']?.replace(/['"]+/g, '')}>{thankYou['FULL_NAME']?.replace(/['"]+/g, '').trim() ? thankYou['FULL_NAME']?.replace(/['"]+/g, '') : thankYou['GH_HANDLE']?.replace(/['"]+/g, '').trim() ? thankYou['GH_HANDLE']?.replace(/['"]+/g, '') : 'Contributor'}</a>
-                        )}
-                        <br/>for making {thankYou['NBR_PRS']?.replace(
-                            /['"]+/g,
-                            ''
-                        )} pull{' '}
-                        {parseInt(thankYou['NBR_PRS']?.replace(/['"]+/g, '')) >= 2
-                            ? 'requests'
-                            : 'request'}
-                        <br/>to{' '}
-                        {thankYou['REPOSITORIES']?.split(' ')?.length >= 4
-                            ? `${parseInt(thankYou['REPOSITORIES']?.split(' ')?.length)} Jenkins `
-                            : 'the '}
-                        {thankYou['REPOSITORIES']?.split(' ').length < 4 &&
-                            thankYou['REPOSITORIES']
-                                ?.replace(/['"]+/g, '')
-                                .split(/\s+/)
-                                .filter(Boolean)
-                                .map((repo, idx) => (
-                                    <>
-                                        {thankYou['REPOSITORIES']?.split(' ').length >
-                                            2 &&
-                                            idx ===
-                                            thankYou['REPOSITORIES']?.split(' ')
-                                                .length -
-                                            2 &&
-                                            ' and '
-                                        }
-                                        <a
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            href={`https://github.com/${repo}`}
-                                        >
-                                            {repo?.split('/')[1]}
-                                        </a>
-                                        {thankYou['REPOSITORIES']?.split(' ').length >=
-                                        2 && idx < thankYou['REPOSITORIES']?.split(' ').length - 2 ? (<>,</>) : (<>{' '}</>)}
-                                    </>
-                                ))}{' '}
-                        {thankYou['REPOSITORIES']?.split(' ').length > 2
-                            ? 'repos'
-                            : 'repo'}{' '}
-                        in{' '}
-                        {dayjs(thankYou['MONTH']?.replace(/['"]+/g, '').trim()).format(
-                            'MMMM YYYY'
-                        )}
-                        !
+                        <p>
+                            Thank you{' '}
+                            {Object.values(thankYou)?.filter((item) => item?.trim() === '')
+                                .length === 0 && (<a target="_blank" rel="noreferrer" href={thankYou['GH_HANDLE_URL']?.replace(/['"]+/g, '')}>{thankYou['FULL_NAME']?.replace(/['"]+/g, '').trim() ? thankYou['FULL_NAME']?.replace(/['"]+/g, '') : thankYou['GH_HANDLE']?.replace(/['"]+/g, '').trim() ? thankYou['GH_HANDLE']?.replace(/['"]+/g, '') : 'Contributor'}</a>
+                            )}
+                            <br/>for making {thankYou['NBR_PRS']?.replace(
+                                /['"]+/g,
+                                ''
+                            )} pull{' '}
+                            {parseInt(thankYou['NBR_PRS']?.replace(/['"]+/g, '')) >= 2
+                                ? 'requests'
+                                : 'request'}
+                            <br/>to{' '}
+                            {thankYou['REPOSITORIES']?.split(' ')?.length >= 4
+                                ? `${parseInt(thankYou['REPOSITORIES']?.split(' ')?.length)} Jenkins `
+                                : 'the '}
+                            {thankYou['REPOSITORIES']?.split(' ').length < 4 &&
+                                thankYou['REPOSITORIES']
+                                    ?.replace(/['"]+/g, '')
+                                    .split(/\s+/)
+                                    .filter(Boolean)
+                                    .map((repo, idx) => (
+                                        <>
+                                            {thankYou['REPOSITORIES']?.split(' ').length >
+                                                2 &&
+                                                idx ===
+                                                thankYou['REPOSITORIES']?.split(' ')
+                                                    .length -
+                                                2 &&
+                                                ' and '
+                                            }
+                                            <a
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                href={`https://github.com/${repo}`}
+                                            >
+                                                {repo?.split('/')[1]}
+                                            </a>
+                                            {thankYou['REPOSITORIES']?.split(' ').length >=
+                                            2 && idx < thankYou['REPOSITORIES']?.split(' ').length - 2 ? (<>,</>) : (<>{' '}</>)}
+                                        </>
+                                    ))}{' '}
+                            {thankYou['REPOSITORIES']?.split(' ').length > 2
+                                ? 'repos'
+                                : 'repo'}{' '}
+                            in{' '}
+                            {dayjs(thankYou['MONTH']?.replace(/['"]+/g, '').trim()).format(
+                                'MMMM YYYY'
+                            )}
+                            !
+                        </p>
                     </div>
                 </div>
             </div>
