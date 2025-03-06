@@ -8,7 +8,7 @@ function TombstonePage({data: {suspendedPlugin: plugin}}) {
     const pluginPage = 'plugins/plugin-site/src/templates/tombstone.jsx';
     return (
         <Layout id="pluginPage" sourcePath={pluginPage}>
-            <SeoHeader title={plugin.id} description={`Deprecated plugin: ${plugin.id}`} pathname={`/${plugin.id}`}/>
+            <SeoHeader title={plugin.id} description={`Deprecated plugin: ${plugin.id}`} pathname={`/${plugin.id}`} suspended />
 
             <div className="container">
                 <div className="title-wrapper">
