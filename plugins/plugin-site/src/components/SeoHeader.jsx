@@ -5,7 +5,7 @@ import {useStaticQuery, graphql} from 'gatsby';
 
 const urlResolve = (base, url) => new URL(url, base).toString();
 
-const SeoHeader = ({title = null, description = null, image = null,
+const SeoHeader = ({title = null, description = null, image = null, suspended = false,
     pathname = null, article = false}) => {
     const data = useStaticQuery(query);
     if (!data) { return null; }
@@ -38,6 +38,7 @@ const SeoHeader = ({title = null, description = null, image = null,
                 {(article ? true : null) && (
                     <meta property="og:type" content="article" />
                 )}
+                {suspended && <meta name="robots" content="noindex" />}
                 {seo.title && <meta property="og:site_name" content={seo.title} />}
                 {seo.title && <meta property="og:title" content={seo.title} />}
                 {seo.title && <meta property="apple-mobile-web-app-title" content={seo.title} />}
@@ -69,6 +70,7 @@ SeoHeader.propTypes = {
     image: PropTypes.string,
     pathname: PropTypes.string,
     article: PropTypes.bool,
+    suspended: PropTypes.bool,
 };
 
 const query = graphql`
