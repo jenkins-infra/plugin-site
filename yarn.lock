@@ -368,9 +368,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/cli@npm:7.26.4":
-  version: 7.26.4
-  resolution: "@babel/cli@npm:7.26.4"
+"@babel/cli@npm:7.27.0":
+  version: 7.27.0
+  resolution: "@babel/cli@npm:7.27.0"
   dependencies:
     "@jridgewell/trace-mapping": "npm:^0.3.25"
     "@nicolo-ribaudo/chokidar-2": "npm:2.1.8-no-fsevents.3"
@@ -391,7 +391,7 @@ __metadata:
   bin:
     babel: ./bin/babel.js
     babel-external-helpers: ./bin/babel-external-helpers.js
-  checksum: 10c0/f2d4fc3c4a34dd3001e3bd7084b78b38211003c36afaf2dc8fedf4565c0442bd59b1c64a9f91a0b7b2450e089123f197e09577ae50dc994307c3348b310ce34c
+  checksum: 10c0/b68309b4b2488a3b5ef1d119cbd36bee0e8f140979e889e58b3f9cd345b9352fdfbb0f6db709bd885219f387183a01be33e6fcdeacf2cf23efbea362cae68707
   languageName: node
   linkType: hard
 
@@ -510,9 +510,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:7.26.10":
-  version: 7.26.10
-  resolution: "@babel/eslint-parser@npm:7.26.10"
+"@babel/eslint-parser@npm:7.27.0":
+  version: 7.27.0
+  resolution: "@babel/eslint-parser@npm:7.27.0"
   dependencies:
     "@nicolo-ribaudo/eslint-scope-5-internals": "npm:5.1.1-v1"
     eslint-visitor-keys: "npm:^2.1.0"
@@ -520,7 +520,7 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.11.0
     eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/02ff3dec84e4414cf7de5e5221c452b8a8587ac80c2e8793e182abcab379d1d32b1da494ec42623739f76361c76314464b94a58d0ea5c8764169b5f985b2239d
+  checksum: 10c0/bbecdc3f21413c4f0b21bc0ee93520ed47a61520a40d745f874097d01e6e22bf20a5f992d321656f4ef3ddbc04535a7da7ca6de2e87cecb82bbee0888f996480
   languageName: node
   linkType: hard
 
@@ -538,15 +538,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-plugin@npm:7.26.10":
-  version: 7.26.10
-  resolution: "@babel/eslint-plugin@npm:7.26.10"
+"@babel/eslint-plugin@npm:7.27.0":
+  version: 7.27.0
+  resolution: "@babel/eslint-plugin@npm:7.27.0"
   dependencies:
     eslint-rule-composer: "npm:^0.3.0"
   peerDependencies:
     "@babel/eslint-parser": ^7.11.0
     eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/ebc0c4b01df752d5c61a5c8898ff5d03034f2f0d1c4f6b93ae24b2de521ded5e0584506a9dd50ba466bbaa6441f141a745be4eccba1f76d15f515f9595edc7b1
+  checksum: 10c0/1444f0a6721ebe5c490d7b45e2ef389c19e95c72e872aa149c7c42c787cb4a72f5c1852efa4ac35a23de735d83fd949411417bbb0299aa43b6252897a99c52f2
   languageName: node
   linkType: hard
 
@@ -4352,7 +4352,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jenkins-cd/gatsby-transformer-rehype@workspace:plugins/gatsby-transformer-rehype"
   dependencies:
-    "@babel/cli": "npm:7.26.4"
+    "@babel/cli": "npm:7.27.0"
     "@babel/core": "npm:7.26.10"
     "@babel/runtime": "npm:7.26.9"
     babel-preset-gatsby-package: "npm:3.14.0"
@@ -20478,8 +20478,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root@workspace:."
   dependencies:
-    "@babel/eslint-parser": "npm:7.26.10"
-    "@babel/eslint-plugin": "npm:7.26.10"
+    "@babel/eslint-parser": "npm:7.27.0"
+    "@babel/eslint-plugin": "npm:7.27.0"
     "@babel/plugin-proposal-decorators": "npm:7.25.9"
     eslint: "npm:9.23.0"
     eslint-config-google: "npm:0.14.0"
