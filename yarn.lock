@@ -4456,7 +4456,7 @@ __metadata:
     remark-frontmatter: "npm:5.0.0"
     remark-gfm: "npm:4.0.1"
     remark-parse: "npm:10.0.1"
-    remark-rehype: "npm:11.1.1"
+    remark-rehype: "npm:11.1.2"
     stylelint: "npm:16.17.0"
     stylelint-config-recommended: "npm:15.0.0"
     stylelint-config-standard: "npm:37.0.0"
@@ -20299,16 +20299,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-rehype@npm:11.1.1, remark-rehype@npm:^11.0.0":
-  version: 11.1.1
-  resolution: "remark-rehype@npm:11.1.1"
+"remark-rehype@npm:11.1.2, remark-rehype@npm:^11.0.0":
+  version: 11.1.2
+  resolution: "remark-rehype@npm:11.1.2"
   dependencies:
     "@types/hast": "npm:^3.0.0"
     "@types/mdast": "npm:^4.0.0"
     mdast-util-to-hast: "npm:^13.0.0"
     unified: "npm:^11.0.0"
     vfile: "npm:^6.0.0"
-  checksum: 10c0/68f986e8ee758d415e93babda2a0d89477c15b7c200edc23b8b1d914dd6e963c5fc151a11cbbbcfa7dd237367ff3ef86e302be90f31f37a17b0748668bd8c65b
+  checksum: 10c0/f9eccacfb596d9605581dc05bfad28635d6ded5dd0a18e88af5fd4df0d3fcf9612e1501d4513bc2164d833cfe9636dab20400080b09e53f155c6e1442a1231fb
   languageName: node
   linkType: hard
 
