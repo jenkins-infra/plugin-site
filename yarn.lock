@@ -4338,7 +4338,7 @@ __metadata:
     find-package-json: "npm:^1.2.0"
     gatsby-source-filesystem: "npm:5.14.0"
     jest: "npm:29.7.0"
-    nock: "npm:14.0.2"
+    nock: "npm:14.0.3"
     p-queue: "npm:^8.0.0"
     rehype-stringify: "npm:^10.0.0"
     remark: "npm:^13.0.0"
@@ -4947,9 +4947,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mswjs/interceptors@npm:^0.38.0":
-  version: 0.38.0
-  resolution: "@mswjs/interceptors@npm:0.38.0"
+"@mswjs/interceptors@npm:^0.38.1":
+  version: 0.38.1
+  resolution: "@mswjs/interceptors@npm:0.38.1"
   dependencies:
     "@open-draft/deferred-promise": "npm:^2.2.0"
     "@open-draft/logger": "npm:^0.3.0"
@@ -4958,7 +4958,7 @@ __metadata:
     jsdom: "npm:^26.0.0"
     outvariant: "npm:^1.4.3"
     strict-event-emitter: "npm:^0.5.1"
-  checksum: 10c0/3a2f5c60f70dae3f529dd40e5802e82f83c6396325c04ee238cb19fa25fc4db075115dd9874ba81721dafcf59923842f29429691ea8e0ddd44df77855e687c38
+  checksum: 10c0/03258a8b15bca334dcdf70dde8941a390c50afa30dae2675767eddb5cea98414643f6cb5099945b9c272526e06411e0975642ce4deb6d97a178ca6f3ad12882b
   languageName: node
   linkType: hard
 
@@ -17569,14 +17569,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nock@npm:14.0.2":
-  version: 14.0.2
-  resolution: "nock@npm:14.0.2"
+"nock@npm:14.0.3":
+  version: 14.0.3
+  resolution: "nock@npm:14.0.3"
   dependencies:
-    "@mswjs/interceptors": "npm:^0.38.0"
+    "@mswjs/interceptors": "npm:^0.38.1"
     json-stringify-safe: "npm:^5.0.1"
     propagate: "npm:^2.0.0"
-  checksum: 10c0/b593749257ff290db1ffedb0b2187a4b2508776c4f819a35055d34e68074b85d8df8b2821c2babfb0dbb0917679891d1017bde28624823d2a07135a3d4bbf9ff
+  checksum: 10c0/ce8196bc66827da8c368f00c88cbf0f1e5cccde4cc6c5a6629540b3a45cd629cd510d916d799b386cff27fe90cf80269e4c83a86ecae72bda40f55f9595c2ae2
   languageName: node
   linkType: hard
 
