@@ -513,11 +513,6 @@ body #grid-box .NoLabels legend {
   margin-right:.5rem;
 }
 
-#pluginPage #grid-box .sidebar .label-link a{
-  display:block;
-  line-height: 1.5rem;
-  padding: 4px 0;
-}
 #pluginPage #grid-box .sidebar .chart {
   margin:1rem 0 0;
 }
