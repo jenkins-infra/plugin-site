@@ -1,5 +1,5 @@
-import enStrings from 'react-timeago/es6/language-strings/en';
-import buildFormatter from 'react-timeago/es6/formatters/buildFormatter';
+import enStrings from 'react-timeago/lib/language-strings/en';
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 export const formatter = buildFormatter(Object.assign(enStrings, {
     'week': 'a week',

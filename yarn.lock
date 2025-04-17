@@ -4450,7 +4450,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     react-helmet: "npm:6.1.0"
     react-radio-group: "npm:3.0.3"
-    react-timeago: "npm:7.2.0"
+    react-timeago: "npm:8.2.0"
     reactstrap: "npm:9.2.3"
     remark: "npm:14.0.2"
     remark-frontmatter: "npm:5.0.0"
@@ -19958,7 +19958,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-timeago@npm:7.2.0, react-timeago@npm:^7.1.0":
+"react-timeago@npm:8.2.0":
+  version: 8.2.0
+  resolution: "react-timeago@npm:8.2.0"
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/6616994851f673661b9db9be5eb91086734fda32055765a30a822e7ed4c7a4871660eb772fecaa2b64be8d68fe5043d37624cfd6cdd19b40aba72180ee786e18
+  languageName: node
+  linkType: hard
+
+"react-timeago@npm:^7.1.0":
   version: 7.2.0
   resolution: "react-timeago@npm:7.2.0"
   peerDependencies:
