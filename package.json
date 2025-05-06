@@ -18,7 +18,7 @@
         "@babel/eslint-parser": "7.27.1",
         "@babel/eslint-plugin": "7.27.1",
         "@babel/plugin-proposal-decorators": "7.27.1",
-        "eslint": "9.25.1",
+        "eslint": "9.26.0",
         "eslint-config-google": "0.14.0",
         "eslint-plugin-filenames": "latest",
         "eslint-plugin-import": "2.31.0",
