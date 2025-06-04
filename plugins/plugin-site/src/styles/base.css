@@ -265,6 +265,7 @@ body #grid-box .NoLabels legend {
 
 /* -------GitHub-Flavored-Admonitions------- */
 
+.admonition,
 .markdown-alert {
   padding: var(--base-size-8) var(--base-size-16);
   margin-bottom: 16px;
@@ -272,6 +273,7 @@ body #grid-box .NoLabels legend {
   border-left: .25em solid var(--borderColor-default);
 }
 
+.admonition-title,
 .markdown-alert .markdown-alert-title {
   display: flex;
   font-weight: 600;
