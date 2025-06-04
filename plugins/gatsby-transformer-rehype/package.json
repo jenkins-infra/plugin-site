@@ -32,7 +32,7 @@
         "watch": "babel -w src --out-dir . --ignore **/__tests__"
     },
     "dependencies": {
-        "@babel/runtime": "7.27.3",
+        "@babel/runtime": "7.27.4",
         "hast-util-raw": "^9.0.0",
         "lodash": "^4.17.21",
         "rehype": "^13.0.0",
@@ -41,7 +41,7 @@
     },
     "devDependencies": {
         "@babel/cli": "7.27.2",
-        "@babel/core": "7.27.3",
+        "@babel/core": "7.27.4",
         "babel-preset-gatsby-package": "3.14.0",
         "cross-env": "7.0.3"
     },
