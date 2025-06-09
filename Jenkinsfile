@@ -26,7 +26,8 @@ pipeline {
   stages {
     stage('Check for typos') {
       steps {
-        sh 'typos --format sarif > typos.sarif || true'
+        sh 'curl -qsL https://github.com/crate-ci/typos/releases/download/v1.33.1/typos-v1.33.1-x86_64-unknown-linux-musl.tar.gz | tar xvzf - ./typos'
+        sh './typos --format sarif > typos.sarif || true'
         recordIssues(tools: [sarif(id: 'typos', name: 'Typos', pattern: 'typos.sarif')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]])
       }
     }
