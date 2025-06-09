@@ -26,8 +26,8 @@ pipeline {
   stages {
     stage('Check for typos') {
       steps {
-        sh 'typos --format json | typos-checkstyle - > checkstyle.xml || true'
-        recordIssues(tools: [checkStyle(id: 'typos', name: 'Typos', pattern: 'checkstyle.xml')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]])
+        sh 'typos --format sarif > typos.sarif || true'
+        recordIssues(tools: [sarif(id: 'typos', name: 'Typos', pattern: 'typos.sarif')], qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]])
       }
     }
 
