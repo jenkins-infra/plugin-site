@@ -21917,11 +21917,11 @@ __metadata:
   linkType: hard
 
 "style-to-object@npm:^1.0.0":
-  version: 1.0.8
-  resolution: "style-to-object@npm:1.0.8"
+  version: 1.0.9
+  resolution: "style-to-object@npm:1.0.9"
   dependencies:
     inline-style-parser: "npm:0.2.4"
-  checksum: 10c0/daa6646b1ff18258c0ca33ed281fbe73485c8391192db1b56ce89d40c93ea64507a41e8701d0dadfe771bc2f540c46c9b295135f71584c8e5cb23d6a19be9430
+  checksum: 10c0/acc89a291ac348a57fa1d00b8eb39973ea15a6c7d7fe4b11339ea0be3b84acea3670c98aa22e166be20ca3d67e12f68f83cf114dde9d43ebb692593e859a804f
   languageName: node
   linkType: hard
 
