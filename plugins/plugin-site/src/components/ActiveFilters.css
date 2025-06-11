@@ -20,7 +20,7 @@
 
     & .nav-link::before {
         border: 1px solid #ccc;
-        border-radius: 2;
+        border-radius: 2px;
         content: 'x ';
         display: inline-block;
         font-size: 0.75rem;

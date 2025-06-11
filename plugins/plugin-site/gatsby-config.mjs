@@ -59,7 +59,6 @@ config.plugins = [
             theme: 'auto',
             extraCss: [
                 '@import \'./styles/base.css\';',
-                '@import \'./styles/font-icons.css\';',
                 '@import \'github-syntax-light/lib/github-light.css\';',
                 '@import \'github-syntax-dark/lib/github-auto.css\';'
             ],

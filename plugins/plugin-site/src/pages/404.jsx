@@ -17,15 +17,16 @@ const NotFound = ({location}) => {
         <Helmet><title>{title}</title></Helmet>
         <div className="not-found-box">
             <div className="not-found">
-                <i className="icon-plug" />
-                <i className="icon-ban" />
-                <h3>{title}</h3>
-                <p>
-                    We are sorry but the page you are looking for does not exist.
-                    <br />
-                    <Link to={`/ui/search?query=${searchQuery}`} >Search again</Link>
-                    ?
-                </p>
+                <ion-icon name="cloud-offline-outline" />
+                <div>
+                    <h3>{title}</h3>
+                    <p>
+                        We are sorry but the page you are looking for does not exist.
+                        <br />
+                        <Link to={`/ui/search?query=${searchQuery}`} >Search again</Link>
+                        ?
+                    </p>
+                </div>
             </div>
         </div>
     </Layout>);

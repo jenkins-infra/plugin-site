@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import {
     InputGroup,
     Input,
@@ -37,7 +36,7 @@ function SearchBox({handleOnSubmit, showFilter, setShowFilter, query, setQuery})
                         placeholder="Find plugins..."
                     />
                     <Button color="primary" onClick={handleOnSubmit}>
-                        <i className={classNames('icon-search')} />
+                        <ion-icon name="search" />
                     </Button>
                 </InputGroup>
             </div>
