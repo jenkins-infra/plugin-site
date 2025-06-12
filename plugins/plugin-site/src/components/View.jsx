@@ -12,9 +12,8 @@ export default class View extends React.PureComponent {
 
     buildIcon = (view) => {
         switch (view) {
-        case 'Tiles': return 'icon-grid-alt';
-        case 'List': return 'icon-list2';
-        case 'Table': return 'icon-menu3';
+        case 'Tiles': return 'grid';
+        case 'List': return 'list';
         default: return '';
         }
     };
@@ -29,7 +28,7 @@ export default class View extends React.PureComponent {
         const icon = this.buildIcon(view);
         return (
             <button className={classNames('btn btn-secondary', {active: isActive})} onClick={this.handleOnClick}>
-                <i className={icon} />
+                <ion-icon name={icon} />
             </button>
         );
     }
