@@ -24,10 +24,10 @@
     },
     "devDependencies": {
         "@babel/preset-env": "7.27.2",
-        "babel-jest": "30.0.0",
+        "babel-jest": "30.0.1",
         "eslint": "9.29.0",
         "hast-util-to-html": "9.0.5",
-        "jest": "30.0.0",
+        "jest": "30.0.1",
         "rehype": "13.0.2"
     }
 }

@@ -37,9 +37,9 @@
     },
     "devDependencies": {
         "@babel/preset-env": "7.27.2",
-        "babel-jest": "30.0.0",
+        "babel-jest": "30.0.1",
         "eslint": "9.29.0",
-        "jest": "30.0.0",
+        "jest": "30.0.1",
         "nock": "14.0.5"
     }
 }
