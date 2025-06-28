@@ -132,7 +132,7 @@
     "gatsby-plugin-nprogress": "5.14.0",
     "gatsby-source-filesystem": "5.14.0",
     "identity-obj-proxy": "3.0.0",
-    "jest": "30.0.2",
+    "jest": "30.0.3",
     "jest-canvas-mock": "2.5.2",
     "jest-junit": "16.0.0",
     "lint-staged": "16.1.2",
