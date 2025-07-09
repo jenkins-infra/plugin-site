@@ -8,6 +8,7 @@ import {
     fetchPluginHealthScore,
     fixGitHubUrl,
     markdownToHtml,
+    sortVersions,
 } from './utils.mjs';
 import nock from 'nock';
 import {jest, describe, beforeEach, it, expect, afterEach} from '@jest/globals';
@@ -118,5 +119,8 @@ describe('utils', () => {
     it ('should convert markdown with tables to html', async () => {
         const translated = await markdownToHtml(await readText('table.md'));
         expect(translated).toMatchSnapshot();
+    });
+    it ('version sorting should support ints', () => {
+        expect(sortVersions(['4', '3.b', '3.a', '4.1a', '5.b', '5.a']).join()).toBe(['3.b', '3.a', '4', '4.1a', '5.b', '5.a'].join());
     });
 });
