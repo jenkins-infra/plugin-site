@@ -384,7 +384,7 @@ const getCoreResourceAsTuples = async (resourcePath, delimiter, reporter) => {
     const url = `https://raw.githubusercontent.com/jenkinsci/jenkins/master/core/src/main/resources/${resourcePath}`;
     const content = await requestGET({url, reporter});
     const parseLine = line => line.split(delimiter).map(word => word.trim());
-    return content.split('\n').filter(row => row.length && !row.startsWith('#')).map(parseLine);
+    return content.split('\n').filter(row => row.trim().length && !row.startsWith('#')).map(parseLine);
 };
 
 export const fetchLabelData = async ({createNode, reporter}) => {
@@ -470,13 +470,22 @@ const csvParse = (row) => {
     return row.split(',').map(s => s ? JSON.parse(s) : s).map(s => isNaN(parseInt(s)) ? s : parseInt(s));
 };
 
+export const sortVersions = (allVersions) => {
+    const isInt = num => num == parseInt(num);
+    return Object.entries(allVersions)
+        .sort(([idx1, ver1], [idx2, ver2]) =>
+            isInt(ver1) || isInt(ver2) ? parseFloat(ver1) - parseFloat(ver2) : idx1 - idx2)
+        .map(e => e[1]);
+};
+
 export const fetchPluginVersions = async ({createNode, reporter, firstReleases}) => {
     const sectionActivity = reporter.activityTimer('fetch plugin versions');
     sectionActivity.start();
     const url = 'https://updates.jenkins.io/plugin-versions.json';
     const json = await requestGET({url, reporter});
     for (const pluginVersions of Object.values(json.plugins)) {
-        let counter = 0;
+        const sortedVersions = sortVersions(Object.keys(pluginVersions));
+
         for (const data of Object.values(pluginVersions)) {
             /*
             releaseTimestamp    "2012-10-10T17:27:42.00Z"
@@ -495,7 +504,7 @@ export const fetchPluginVersions = async ({createNode, reporter, firstReleases})
             delete (data.buildDate);
             createNode({
                 ...data,
-                machineVersion: counter++,
+                machineVersion: sortedVersions.indexOf(data.version),
                 releaseTimestamp: date,
                 id: `${data.name}_${data.version}`,
                 parent: null,
