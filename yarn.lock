@@ -4641,7 +4641,7 @@ __metadata:
     classnames: "npm:2.5.1"
     copy-to-clipboard: "npm:3.3.3"
     dayjs: "npm:^1.11.13"
-    dotenv: "npm:17.1.0"
+    dotenv: "npm:17.2.0"
     eslint: "npm:9.30.1"
     eslint-config-standard: "npm:17.1.0"
     eslint-plugin-import: "npm:2.32.0"
@@ -10717,10 +10717,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:17.1.0":
-  version: 17.1.0
-  resolution: "dotenv@npm:17.1.0"
-  checksum: 10c0/abce8964f25b67582b740372a22d621209caa712e9859194c5faadb1046be69df70e5796c74fc7dc98a386d5e9d2863fed8e7fc19301cd14e02f3272c6bc6298
+"dotenv@npm:17.2.0":
+  version: 17.2.0
+  resolution: "dotenv@npm:17.2.0"
+  checksum: 10c0/d4cb5c2a09c288c921ef47a78f51c765a763266e23e84465cde6a87b28b9f7fc5a9d1fe349ed3c880b4c7297f82dd736dba5b08fe95ce53833ce4a7258d0fc43
   languageName: node
   linkType: hard
 
