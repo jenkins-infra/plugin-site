@@ -4581,7 +4581,7 @@ __metadata:
   resolution: "@jenkins-cd/gatsby-source-jenkinsplugins@workspace:plugins/gatsby-source-jenkinsplugins"
   dependencies:
     "@babel/preset-env": "npm:7.28.0"
-    axios: "npm:^1.7.3"
+    axios: "npm:^1.11.0"
     axios-retry: "npm:4.5.0"
     babel-jest: "npm:30.0.4"
     cheerio: "npm:^1.0.0-rc.10"
@@ -8105,7 +8105,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.4, axios@npm:^1.7.3":
+"axios@npm:^1.11.0":
+  version: 1.11.0
+  resolution: "axios@npm:1.11.0"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.4"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/5de273d33d43058610e4d252f0963cc4f10714da0bfe872e8ef2cbc23c2c999acc300fd357b6bce0fc84a2ca9bd45740fa6bb28199ce2c1266c8b1a393f2b36e
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.6.4":
   version: 1.10.0
   resolution: "axios@npm:1.10.0"
   dependencies:
@@ -12612,6 +12623,19 @@ __metadata:
     combined-stream: "npm:^1.0.8"
     mime-types: "npm:^2.1.12"
   checksum: 10c0/bb102d570be8592c23f4ea72d7df9daa50c7792eb0cf1c5d7e506c1706e7426a4e4ae48a35b109e91c85f1c0ec63774a21ae252b66f4eb981cb8efef7d0463c8
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "form-data@npm:4.0.4"
+  dependencies:
+    asynckit: "npm:^0.4.0"
+    combined-stream: "npm:^1.0.8"
+    es-set-tostringtag: "npm:^2.1.0"
+    hasown: "npm:^2.0.2"
+    mime-types: "npm:^2.1.12"
+  checksum: 10c0/373525a9a034b9d57073e55eab79e501a714ffac02e7a9b01be1c820780652b16e4101819785e1e18f8d98f0aee866cc654d660a435c378e16a72f2e7cac9695
   languageName: node
   linkType: hard
 
