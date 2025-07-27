@@ -4667,7 +4667,6 @@ __metadata:
     gatsby-plugin-canonical-urls: "npm:5.14.0"
     gatsby-plugin-extract-schema: "npm:0.2.2"
     gatsby-plugin-image: "npm:3.14.0"
-    gatsby-plugin-matomo: "npm:0.17.0"
     gatsby-plugin-nprogress: "npm:5.14.0"
     gatsby-plugin-postcss: "npm:6.14.0"
     gatsby-plugin-react-helmet: "npm:6.14.0"
@@ -12996,17 +12995,6 @@ __metadata:
     gatsby-source-filesystem:
       optional: true
   checksum: 10c0/2e50a95a196694a47a50ce5883c4569da0a96ce5024c2a7d5f037deb487a01658ce9abdca3a4490edc7407418760d1871de814b4c530f8decb2b1d1e04ff5ed0
-  languageName: node
-  linkType: hard
-
-"gatsby-plugin-matomo@npm:0.17.0":
-  version: 0.17.0
-  resolution: "gatsby-plugin-matomo@npm:0.17.0"
-  peerDependencies:
-    gatsby: ^4.0.0 || ^5.0.0
-    react: ">=17.0.0"
-    react-dom: ">=17.0.0"
-  checksum: 10c0/735fe5c476a1f5b1d53a9c10f0df0e1852e3faa36a130cb1a28362b2fe6e6ec6aeb224bba8fe52001a1c2a0c23270f79aaa97bcbc9440a0cd645d8250ceb0ebc
   languageName: node
   linkType: hard
 
