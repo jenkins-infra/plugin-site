@@ -111,8 +111,6 @@ pipeline {
         GATSBY_ALGOLIA_APP_ID = credentials('algolia-plugins-app-id')
         GATSBY_ALGOLIA_SEARCH_KEY = credentials('algolia-plugins-search-key')
         GATSBY_ALGOLIA_WRITE_KEY = credentials('algolia-plugins-write-key')
-        GATSBY_MATOMO_SITE_ID = '1'
-        GATSBY_MATOMO_SITE_URL = 'https://jenkins-matomo.do.g4v.dev'
       }
       steps {
         sh 'yarn build'

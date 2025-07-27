@@ -155,15 +155,6 @@ config.plugins = [
             siteUrl: config.siteMetadata.siteUrl,
         },
     },
-    process.env.GATSBY_MATOMO_SITE_ID && process.env.GATSBY_MATOMO_SITE_URL ? {
-        resolve: 'gatsby-plugin-matomo',
-        options: {
-            siteId: process.env.GATSBY_MATOMO_SITE_ID,
-            matomoUrl: process.env.GATSBY_MATOMO_SITE_URL,
-            siteUrl: config.siteMetadata.siteUrl.trim('/'),
-            respectDnt: false, // firefox has do not track on by default, and all this data is anonymised, so for enable it for now
-        }
-    } : null,
     {
         resolve: 'gatsby-plugin-extract-schema',
         options: {
