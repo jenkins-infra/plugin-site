@@ -10,7 +10,7 @@ function ThankAContributorNote() {
     const [thankYou, setThankYou] = useState({});
     const [imageError, setImageError] = useState(false);
 
-    const dataUrl = 'https://raw.githubusercontent.com/jenkins-infra/jenkins-contribution-stats/main/data/honored_contributor.csv';
+    const dataUrl = 'https://cdn.jsdelivr.net/gh/jenkins-infra/jenkins-contribution-stats@main/data/honored_contributor.csv';
 
     useEffect(() => {
         axios
