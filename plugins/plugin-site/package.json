@@ -103,7 +103,7 @@
     "react-dom": "18.3.1",
     "react-helmet": "6.1.0",
     "react-radio-group": "3.0.3",
-    "react-timeago": "8.2.0",
+    "react-timeago": "8.3.0",
     "reactstrap": "9.2.3"
   },
   "devDependencies": {
