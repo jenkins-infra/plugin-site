@@ -20585,16 +20585,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-timeago@npm:8.3.0":
-  version: 8.3.0
-  resolution: "react-timeago@npm:8.3.0"
-  peerDependencies:
-    react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/50bf49cb21b748a1e69947b1183a0406e839b0768b2d84de056c286f35360894bb68d6532b56e564adad9f52526e8833195b689a46e3966a31cc505b013b92c4
-  languageName: node
-  linkType: hard
-
-"react-timeago@npm:^8.2.0":
+"react-timeago@npm:8.3.0, react-timeago@npm:^8.2.0":
   version: 8.3.0
   resolution: "react-timeago@npm:8.3.0"
   peerDependencies:
