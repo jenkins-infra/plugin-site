@@ -4632,7 +4632,7 @@ __metadata:
     "@jenkins-cd/gatsby-rehype-wrap-tables-bootstrap": "npm:*"
     "@jenkins-cd/gatsby-source-jenkinsplugins": "npm:*"
     "@jenkins-cd/gatsby-transformer-rehype": "npm:*"
-    "@jenkinsci/gatsby-plugin-jenkins-layout": "npm:1.6.0"
+    "@jenkinsci/gatsby-plugin-jenkins-layout": "npm:1.7.0"
     "@juggle/resize-observer": "npm:3.4.0"
     "@testing-library/dom": "npm:10.4.1"
     "@testing-library/jest-dom": "npm:6.6.4"
@@ -4719,20 +4719,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jenkinsci/gatsby-plugin-jenkins-layout@npm:1.6.0":
-  version: 1.6.0
-  resolution: "@jenkinsci/gatsby-plugin-jenkins-layout@npm:1.6.0"
+"@jenkinsci/gatsby-plugin-jenkins-layout@npm:1.7.0":
+  version: 1.7.0
+  resolution: "@jenkinsci/gatsby-plugin-jenkins-layout@npm:1.7.0"
   dependencies:
-    axios: "npm:^0.27.2"
+    axios: "npm:^1.6.7"
     cheerio: "npm:^1.0.0-rc.12"
     dedent-js: "npm:^1.0.1"
     prop-types: "npm:^15.8.1"
-    react-timeago: "npm:^7.1.0"
-    style-to-object: "npm:^0.4.1"
+    react-timeago: "npm:^8.2.0"
+    style-to-object: "npm:^1.0.6"
   peerDependencies:
     react: "*"
     react-dom: "*"
-  checksum: 10c0/5ba275a2dfe40cba052845115736d2c753d258a3a9fe94b22df62d4eb138c06d920fb28e6fd2688c8730ef9a56d8c95f08c5f50545bbd7e09775b65da948f241
+  checksum: 10c0/ae8872ecfdb9e2e3ce62ca6533675e1abfd15295d7e26fa7dbec25f334d5065f4885dcacecc51e41f7ce3c3fc0d01444877777550f552f6fdb340952078b8812
   languageName: node
   linkType: hard
 
@@ -8090,17 +8090,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.27.2":
-  version: 0.27.2
-  resolution: "axios@npm:0.27.2"
-  dependencies:
-    follow-redirects: "npm:^1.14.9"
-    form-data: "npm:^4.0.0"
-  checksum: 10c0/76d673d2a90629944b44d6f345f01e58e9174690f635115d5ffd4aca495d99bcd8f95c590d5ccb473513f5ebc1d1a6e8934580d0c57cdd0498c3a101313ef771
-  languageName: node
-  linkType: hard
-
-"axios@npm:^1.6.4, axios@npm:^1.7.3":
+"axios@npm:^1.6.4, axios@npm:^1.6.7, axios@npm:^1.7.3":
   version: 1.11.0
   resolution: "axios@npm:1.11.0"
   dependencies:
@@ -12505,7 +12495,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.14.9, follow-redirects@npm:^1.15.6":
+"follow-redirects@npm:^1.15.6":
   version: 1.15.9
   resolution: "follow-redirects@npm:1.15.9"
   peerDependenciesMeta:
@@ -12581,7 +12571,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^4.0.0, form-data@npm:^4.0.4":
+"form-data@npm:^4.0.4":
   version: 4.0.4
   resolution: "form-data@npm:4.0.4"
   dependencies:
@@ -20604,12 +20594,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-timeago@npm:^7.1.0":
-  version: 7.2.0
-  resolution: "react-timeago@npm:7.2.0"
+"react-timeago@npm:^8.2.0":
+  version: 8.3.0
+  resolution: "react-timeago@npm:8.3.0"
   peerDependencies:
-    react: ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/89051a12296934e3400319ca7887a0f3ae5a779fd9456769b526ac4771c47a431fb4c68f56ac9726e23d65aad55538f7e2f1c6adfa83224bc8f6278775c26fa3
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/50bf49cb21b748a1e69947b1183a0406e839b0768b2d84de056c286f35360894bb68d6532b56e564adad9f52526e8833195b689a46e3966a31cc505b013b92c4
   languageName: node
   linkType: hard
 
@@ -22599,7 +22589,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-to-object@npm:^1.0.0":
+"style-to-object@npm:^1.0.0, style-to-object@npm:^1.0.6":
   version: 1.0.9
   resolution: "style-to-object@npm:1.0.9"
   dependencies:
