@@ -109,7 +109,7 @@
   "devDependencies": {
     "@jenkinsci/gatsby-plugin-jenkins-layout": "1.7.0",
     "@testing-library/dom": "10.4.1",
-    "@testing-library/jest-dom": "6.6.4",
+    "@testing-library/jest-dom": "6.7.0",
     "@testing-library/react": "16.3.0",
     "@typescript-eslint/eslint-plugin": "8.39.1",
     "axios-retry": "4.5.0",
