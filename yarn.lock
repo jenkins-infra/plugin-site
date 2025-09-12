@@ -4728,7 +4728,7 @@ __metadata:
   resolution: "@jenkins-cd/gatsby-source-jenkinsplugins@workspace:plugins/gatsby-source-jenkinsplugins"
   dependencies:
     "@babel/preset-env": "npm:7.28.3"
-    axios: "npm:^1.7.3"
+    axios: "npm:^1.12.0"
     axios-retry: "npm:4.5.0"
     babel-jest: "npm:30.0.5"
     cheerio: "npm:^1.0.0-rc.10"
@@ -8135,7 +8135,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.4, axios@npm:^1.6.7, axios@npm:^1.7.3":
+"axios@npm:^1.12.0":
+  version: 1.12.0
+  resolution: "axios@npm:1.12.0"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.4"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/44a1e4cfb69a2d59aa12bbc441a336e5c18e87c02b904c509fd33607d94e8cb8cc221c17e9d53f67841a4efe13abf1aa1497c85df390cdb8681ee723998d11b0
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.6.4, axios@npm:^1.6.7":
   version: 1.11.0
   resolution: "axios@npm:1.11.0"
   dependencies:
