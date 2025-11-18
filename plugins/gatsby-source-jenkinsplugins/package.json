@@ -25,7 +25,7 @@
         "date-fns": "^4.0.0",
         "find-package-json": "^1.2.0",
         "gatsby-source-filesystem": "5.15.0",
-        "p-queue": "^8.0.0",
+        "p-queue": "^9.0.0",
         "rehype-stringify": "^10.0.0",
         "remark": "^13.0.0",
         "remark-frontmatter": "^5.0.0",
