@@ -132,7 +132,7 @@
     "jest": "30.0.5",
     "jest-canvas-mock": "2.5.2",
     "jest-junit": "16.0.0",
-    "lint-staged": "16.2.6",
+    "lint-staged": "16.2.7",
     "remark": "14.0.2",
     "remark-frontmatter": "5.0.0",
     "remark-gfm": "4.0.1",

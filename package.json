@@ -25,7 +25,7 @@
         "eslint-plugin-react": "^7.35.0",
         "globals": "^16.0.0",
         "husky": "8.0.1",
-        "lint-staged": "16.2.6"
+        "lint-staged": "16.2.7"
     },
     "lint-staged": {
         "*.{js,jsx}": [
