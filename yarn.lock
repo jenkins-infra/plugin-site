@@ -5001,7 +5001,7 @@ __metadata:
     eslint: "npm:9.39.2"
     eslint-config-standard: "npm:17.1.0"
     eslint-plugin-import: "npm:2.32.0"
-    eslint-plugin-jest: "npm:29.5.0"
+    eslint-plugin-jest: "npm:29.7.0"
     eslint-plugin-n: "npm:17.23.1"
     eslint-plugin-promise: "npm:7.2.1"
     eslint-plugin-react: "npm:7.37.5"
@@ -11816,9 +11816,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:29.5.0":
-  version: 29.5.0
-  resolution: "eslint-plugin-jest@npm:29.5.0"
+"eslint-plugin-jest@npm:29.7.0":
+  version: 29.7.0
+  resolution: "eslint-plugin-jest@npm:29.7.0"
   dependencies:
     "@typescript-eslint/utils": "npm:^8.0.0"
   peerDependencies:
@@ -11830,7 +11830,7 @@ __metadata:
       optional: true
     jest:
       optional: true
-  checksum: 10c0/e135181330a593018611c754c5a6449ac683080803e6c9931f2a8e432d133c33e5ac5f1df52ff52c4a6ca14267ceffc57739d602e11909e3691acfbd2a923f66
+  checksum: 10c0/7f00b74a1e9add3f56e747007f6fc31c80efbc26061525f4fcad57f88d9b73043267d4c511bddc7ddeee7c0ac28d74ec1729c0f431b9fd6b38e968993fd5b6ca
   languageName: node
   linkType: hard
 
