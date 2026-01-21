@@ -32,7 +32,7 @@
     "dependencies": {
         "github-slugger": "^2.0.0",
         "hast-util-to-string": "^3.0.0",
-        "lodash": "^4.17.21",
+        "lodash": "^4.17.23",
         "style-to-object": "^1.0.0",
         "unist-util-visit": "^5.0.0"
     },
