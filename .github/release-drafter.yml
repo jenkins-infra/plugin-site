@@ -1,5 +1,5 @@
-# See https://github.com/jenkinsci/.github/blob/master/.github/release-drafter.adoc
-_extends: jenkinsci/.github
+# https://github.com/jenkins-infra/.github/blob/master/.github/release-drafter.yml
+_extends: github:jenkins-infra/.github:/.github/release-drafter.yml
 # Semantic versioning: https://semver.org/
 version-template: $MAJOR.$MINOR.$PATCH
 tag-template: v$NEXT_MINOR_VERSION
