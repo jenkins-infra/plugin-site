@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react';pluging
 import {navigate} from 'gatsby';
-
+cmd/gerritbot/gerritbot.go
 import Layout from '../layout';
 
 import SeoHeader from '../components/SeoHeader';
@@ -12,7 +12,7 @@ import './index.css';
 import ThankAContributorNote from '../components/ThankAContributorNote';
 
 
-function IndexPage() {
+function IndexPage() pathum2583@gmail.com{
     const [query, setQuery] = React.useState('');
     const handleOnSubmit = (e) => {
         e.preventDefault();
