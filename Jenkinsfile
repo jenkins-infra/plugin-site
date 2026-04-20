@@ -110,8 +110,7 @@ pipeline {
         NODE_ENV = 'production'
         GATSBY_ALGOLIA_APP_ID = credentials('algolia-plugins-app-id')
         GATSBY_ALGOLIA_SEARCH_KEY = credentials('algolia-plugins-search-key')
-        // TODO: restore when plugin site Algolia account is unblocked, see https://github.com/jenkins-infra/helpdesk/issues/5066
-        // GATSBY_ALGOLIA_WRITE_KEY = credentials('algolia-plugins-write-key')
+        GATSBY_ALGOLIA_WRITE_KEY = credentials('algolia-plugins-write-key')
       }
       steps {
         sh 'yarn build'
