@@ -33,7 +33,9 @@ const doSearch = (data, setResults, categoriesMap) => {
     setResults(null);
     const searchClient = liteClient(
         process.env.GATSBY_ALGOLIA_APP_ID || 'HF9WKP9QU1',
-        process.env.GATSBY_ALGOLIA_SEARCH_KEY || '4ef9c8513249915cc20e3b32c450abcb'
+        // Default to the development API key (strictly rate limited) if no value is provided through the environment
+        // Developers are expected to bring their own if they are rate limited.
+        process.env.GATSBY_ALGOLIA_SEARCH_KEY || '25cb466e6a33e64cbe46531320d7e093'
     );
     const filters = [];
     if (labels && labels.length) {
