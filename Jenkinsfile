@@ -32,13 +32,19 @@ pipeline {
       }
     }
 
+    stage('Check Tooling') {
+      steps {
+        sh 'node --version'
+        sh 'npm --version'
+      }
+    }
+
     stage('Install dependencies') {
       environment {
         NODE_ENV = 'development'
       }
       steps {
         sh '''
-        asdf install
         npm install --global yarn
         yarn install
         '''
