@@ -127,7 +127,7 @@ config.plugins = [
         options: {
             policy: process.env.DISABLE_SEARCH_ENGINE ?
                 [{userAgent: '*', disallow: ['/']}] :
-                [{userAgent: '*', allow: '/'}]
+                [{userAgent: '*', allow: '/', disallow: ['/ui/search', '/page-data/ui/search']}]
         }
     },
     {
