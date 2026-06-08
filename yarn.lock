@@ -19524,6 +19524,7 @@ __metadata:
     eslint-plugin-filenames: "npm:latest"
     eslint-plugin-import: "npm:2.32.0"
     eslint-plugin-react: "npm:^7.35.0"
+    gatsby-plugin-robots-txt: "npm:1.8.0"
     globals: "npm:^17.0.0"
     husky: "npm:8.0.1"
     lint-staged: "npm:16.2.7"

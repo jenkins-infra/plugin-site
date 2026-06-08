@@ -141,6 +141,14 @@ config.plugins = [
             showSpinner: false,
         },
     },
+    {
+        resolve: 'gatsby-plugin-robots-txt',
+        options: {
+            host: 'https://plugins.jenkins.io/',
+            sitemap: 'https://plugins.jenkins.io/sitemap-index.xml',
+            policy: [{userAgent: '*', disallow: '/'}]
+        }
+    },
     process.env.GATSBY_ALGOLIA_WRITE_KEY ? {
         resolve: 'gatsby-plugin-algolia',
         options: {
