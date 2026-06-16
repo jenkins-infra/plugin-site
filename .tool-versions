@@ -1,2 +1,2 @@
-# Managed by https://github.com/jenkins-infra/jenkins-infra/pull/4895
+# Automatically managed and tracked by Updatecli via the manifest https://github.com/jenkins-infra/jenkins-infra/updatecli/updatecli.d/nodejs-consumers.yaml.tpl
 nodejs 24.16.0
