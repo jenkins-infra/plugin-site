@@ -1,4 +1,4 @@
-final String agentLabel = infra.isInfra() ? 'jnlp-linux-arm64' : 'maven-25'
+final String agentLabel = infra.isInfra() ? 'linux-arm64-docker' : 'maven-25' // infra.ci.jenkins only has 2 Gb container agents which is not enough for Gastby so we stick to VMs :'(
 
 pipeline {
   options {
@@ -47,7 +47,6 @@ pipeline {
       }
       steps {
         sh '''
-        command -v yarn || npm install --global yarn
         yarn install
         '''
       }
