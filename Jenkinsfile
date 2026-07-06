@@ -1,3 +1,5 @@
+final String agentLabel = infra.isInfra() ? 'linux-arm64-docker' : 'maven-25' // infra.ci.jenkins only has 2 Gb container agents which is not enough for Gastby so we stick to VMs :'(
+
 pipeline {
   options {
     timeout(time: 60, unit: 'MINUTES')
@@ -7,7 +9,7 @@ pipeline {
   }
 
   agent {
-    label 'linux-arm64-docker || arm64linux'
+    label agentLabel
   }
 
   triggers {
@@ -20,7 +22,7 @@ pipeline {
     // Amount of available vCPUs, to avoid OOM - https://www.gatsbyjs.com/docs/how-to/performance/resolving-out-of-memory-issues/#try-reducing-the-number-of-cores
     // and 'The command failed for workspaces that are depended upon by other workspaces; can't satisfy the dependency graph' error
     // https://github.com/jenkins-infra/jenkins-infra/tree/production/hieradata/clients/controller.ci.jenkins.io.yaml#L327
-    GATSBY_CPU_COUNT = '4'
+    GATSBY_CPU_COUNT = '2'
   }
 
   stages {
@@ -45,7 +47,6 @@ pipeline {
       }
       steps {
         sh '''
-        npm install --global yarn
         yarn install
         '''
       }
