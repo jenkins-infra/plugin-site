@@ -47,7 +47,7 @@ pipeline {
       }
       steps {
         sh '''
-        npm install --global yarn
+        command -v yarn || npm install --global yarn
         yarn install
         '''
       }
