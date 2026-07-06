@@ -1,4 +1,4 @@
-final String agentLabel = infra.isInfra() ? 'jnlp-linux-arm64' : 'maven-25 && spot'
+final String agentLabel = infra.isInfra() ? 'jnlp-linux-arm64' : 'maven-25'
 
 pipeline {
   options {
