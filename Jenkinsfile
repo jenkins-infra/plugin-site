@@ -1,3 +1,5 @@
+final String agentLabel = infra.isInfra() ? 'jnlp-linux-arm64' : 'maven-25 && spot'
+
 pipeline {
   options {
     timeout(time: 60, unit: 'MINUTES')
@@ -7,7 +9,7 @@ pipeline {
   }
 
   agent {
-    label 'linux-arm64-docker || arm64linux'
+    label agentLabel
   }
 
   triggers {
