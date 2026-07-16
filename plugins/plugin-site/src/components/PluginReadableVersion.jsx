@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 function PluginReadableVersion({version, active}) {
     if (version.firstVersion && version.lastVersion) {
-        return <>{`Affects version ${version.firstVersion} to ${version.lastVersion}`}</>;
+        if (version.firstVersion === version.lastVersion) {
+            return <>{`Affects only version ${version.firstVersion}`}</>;
+        } else {
+            return <>{`Affects version ${version.firstVersion} to ${version.lastVersion}`}</>;
+        }
     } else if (version.firstVersion && active) {
         return <>{`Affects version ${version.lastVersion} and later`}</>;
     } else if (version.lastVersion) {
