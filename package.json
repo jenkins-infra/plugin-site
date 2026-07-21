@@ -36,5 +36,8 @@
     "resolutions": {
         "lmdb@npm:2.5.2": "npm:3.5.1",
         "lmdb@npm:2.5.3": "npm:3.5.1"
+    },
+    "dependencies": {
+        "glob": "10.5.0"
     }
 }
