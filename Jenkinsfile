@@ -83,6 +83,9 @@ pipeline {
     }
 
     stage('Deploy to preview site') {
+      options {
+        retry(2)
+      }
       when {
         allOf {
           changeRequest()
