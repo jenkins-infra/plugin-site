@@ -25,14 +25,14 @@
         "date-fns": "^4.4.0",
         "find-package-json": "^1.2.0",
         "gatsby-source-filesystem": "5.16.0",
-        "p-queue": "^9.0.0",
-        "rehype-stringify": "^10.0.0",
+        "p-queue": "^9.3.3",
+        "rehype-stringify": "^10.0.1",
         "remark": "^13.0.0",
         "remark-frontmatter": "^5.0.0",
-        "remark-gfm": "^4.0.0",
+        "remark-gfm": "^4.0.1",
         "remark-parse": "11.0.0",
-        "remark-rehype": "^11.0.0",
-        "unified": "^11.0.0",
+        "remark-rehype": "^11.1.2",
+        "unified": "^11.0.5",
         "xml2js": "0.6.2"
     },
     "devDependencies": {
@@ -40,6 +40,6 @@
         "babel-jest": "30.4.1",
         "eslint": "9.39.5",
         "jest": "30.4.2",
-        "nock": "14.0.10"
+        "nock": "14.0.16"
     }
 }
