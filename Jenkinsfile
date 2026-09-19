@@ -1,3 +1,5 @@
+@Library('pipeline-library@pull/1059/head') _
+
 def commonCustomEnvs = ['GET_CONTENT=true']
 
 buildWebsite([
