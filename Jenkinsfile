@@ -1,4 +1,4 @@
-def commonCustomEnvs = ['GET_CONTENT=true']
+def commonCustomEnvs = ['GET_CONTENT=true', 'NODE_ENV=production']
 
 buildWebsite([
   deployFolder: 'plugins/plugin-site/public',
