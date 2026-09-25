@@ -34,7 +34,7 @@
     },
     "packageManager": "yarn@4.12.0",
     "resolutions": {
-        "lmdb@npm:2.5.2": "npm:3.5.1",
-        "lmdb@npm:2.5.3": "npm:3.5.1"
+        "lmdb@npm:2.5.2": "npm:lmdb@3.5.6",
+        "lmdb@npm:2.5.3": "npm:lmdb@3.5.6"
     }
 }
