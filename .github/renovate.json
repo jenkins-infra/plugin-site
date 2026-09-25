@@ -1,24 +1,19 @@
 {
     "extends": [
-        "config:base"
+        "config:recommended"
     ],
     "labels": [
         "dependencies"
     ],
     "npm": {
-        "stabilityDays": 3
+        "minimumReleaseAge": "3 days"
     },
     "rebaseWhen": "conflicted",
-    "regexManagers": [
+    "customManagers": [
         {
-            "fileMatch": [
-                "^Jenkinsfile$",
-                "^Jenkinsfile_k8s$"
-            ],
-            "matchStrings": [
-                "image '(?<depName>[a-z/-]+):(?<currentValue>[a-z0-9.-]+)@(?<currentDigest>sha256:[a-f0-9]+)'",
-                "image: \"(?<depName>[a-z/-]+):(?<currentValue>[a-z0-9.-]+)@(?<currentDigest>sha256:[a-f0-9]+)\""
-            ],
+            "customType": "regex",
+            "managerFilePatterns": ["/^Jenkinsfile$/", "/^Jenkinsfile_k8s$/"],
+            "matchStrings": ["image '(?<depName>[a-z/-]+):(?<currentValue>[a-z0-9.-]+)@(?<currentDigest>sha256:[a-f0-9]+)'", "image: \"(?<depName>[a-z/-]+):(?<currentValue>[a-z0-9.-]+)@(?<currentDigest>sha256:[a-f0-9]+)\""],
             "datasourceTemplate": "docker",
             "versioningTemplate": "docker"
         }
@@ -35,7 +30,9 @@
             "allowedVersions": "^20"
         },
         {
-            "extends": "monorepo:remark",
+            "extends": [
+                "monorepo:remark"
+            ],
             "enabled": false
         },
         {
