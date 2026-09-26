@@ -32,7 +32,7 @@
             "eslint --fix"
         ]
     },
-    "packageManager": "yarn@4.12.0",
+    "packageManager": "yarn@4.18.0",
     "resolutions": {
         "lmdb@npm:2.5.2": "npm:lmdb@3.5.6",
         "lmdb@npm:2.5.3": "npm:lmdb@3.5.6"
