@@ -138,7 +138,7 @@
     "remark-gfm": "4.0.1",
     "remark-parse": "11.0.0",
     "remark-rehype": "11.1.2",
-    "stylelint": "17.14.1",
+    "stylelint": "17.15.0",
     "stylelint-config-recommended": "18.0.0",
     "stylelint-config-standard": "40.0.0",
     "stylelint-config-styled-components": "0.1.1",
