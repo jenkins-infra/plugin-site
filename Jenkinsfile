@@ -1,7 +1,4 @@
 def commonCustomEnvs = ['GET_CONTENT=true']
-// TODO: to be removed by making `yarn test` passes even with `NODE_ENV=production`
-// Ref: https://github.com/jenkins-infra/helpdesk/issues/5281#issuecomment-5833374957
-def prodTestWorkaround = ['NODE_ENV=development']
 
 buildWebsite([
   deployFolder: 'plugins/plugin-site/public',
@@ -12,5 +9,5 @@ buildWebsite([
   ],
   cronPattern: 'H H/3 * * *',
   customEnvsDevelopment: commonCustomEnvs + ['DISABLE_SEARCH_ENGINE=true', 'NODE_OPTIONS=--experimental-vm-modules'],
-  customEnvsProduction: commonCustomEnvs + prodTestWorkaround,
+  customEnvsProduction: commonCustomEnvs,
 ])
