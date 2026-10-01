@@ -70,7 +70,7 @@
     "chart.js": "4.5.1",
     "cheerio": "1.2.0",
     "classnames": "2.5.1",
-    "copy-to-clipboard": "3.3.3",
+    "copy-to-clipboard": "4.0.2",
     "dayjs": "^1.11.21",
     "find-package-json": "1.2.0",
     "gatsby-plugin-canonical-urls": "5.16.0",
