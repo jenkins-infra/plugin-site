@@ -5234,7 +5234,7 @@ __metadata:
     postcss-calc: "npm:11.2.1"
     postcss-css-variables: "npm:0.19.0"
     postcss-import: "npm:17.0.0"
-    postcss-merge-rules: "npm:9.0.5"
+    postcss-merge-rules: "npm:9.0.6"
     postcss-nesting: "npm:14.0.2"
     postcss-preset-env: "npm:11.5.4"
     postcss-pxtorem: "npm:6.1.0"
@@ -9351,7 +9351,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.29.1":
+"browserslist@npm:^4.29.2":
   version: 4.29.3
   resolution: "browserslist@npm:4.29.3"
   dependencies:
@@ -10672,14 +10672,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cssnano-utils@npm:^8.0.0":
-  version: 8.0.1
-  resolution: "cssnano-utils@npm:8.0.1"
+"cssnano-utils@npm:^8.0.1":
+  version: 8.0.2
+  resolution: "cssnano-utils@npm:8.0.2"
   dependencies:
     "@csstools/css-tokenizer": "npm:^4.0.2"
   peerDependencies:
     postcss: ^8.5.28
-  checksum: 10c0/efdff759d582e516554f0c07af4fc8b140136dd3968811eeccb77d4d251b4f81dc77ccb9072d6667718149f92907be6ac32adce61e6be8b405a91aba4778360d
+  checksum: 10c0/f52fb80b8b37506243f30cb63f7e7a928e19a4cabc12f2a1d195b2388c624172482e13632f8fd1d9586646f0c5d4f0855077e55018521241853ab4d891a24755
   languageName: node
   linkType: hard
 
@@ -19724,17 +19724,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-merge-rules@npm:9.0.5":
-  version: 9.0.5
-  resolution: "postcss-merge-rules@npm:9.0.5"
+"postcss-merge-rules@npm:9.0.6":
+  version: 9.0.6
+  resolution: "postcss-merge-rules@npm:9.0.6"
   dependencies:
     "@csstools/css-tokenizer": "npm:^4.0.2"
-    browserslist: "npm:^4.29.1"
+    browserslist: "npm:^4.29.2"
     caniuse-api: "npm:^4.0.0"
-    cssnano-utils: "npm:^8.0.0"
+    cssnano-utils: "npm:^8.0.1"
   peerDependencies:
     postcss: ^8.5.28
-  checksum: 10c0/9059038aa94d470b41c57d6eed2b3c0e65d3f0ba2b4ad466b6b072a4f19a44b7be28d5e4885417bb97bbd2196771de0a1b8692762376c869ff674dc210ed2fd0
+  checksum: 10c0/233f4448862efc10a37945f8f07b30cf4c71036bc7da23ebd4630d24a3dde62bf360bd6d6a64174235f0f9bdda677ae23c586a123d0ccdad6a4d1bec98cef4f0
   languageName: node
   linkType: hard
 
