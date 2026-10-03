@@ -4,7 +4,7 @@
     "description": "plugins.jenkins.io website",
     "main": "index.js",
     "scripts": {
-        "lint": "eslint -c eslint.config.mjs .",
+        "lint": "eslint -c eslint.config.mjs . | tee -a eslint-results.json",
         "test": "yarn workspaces foreach --worktree -t -p -v -i run test",
         "build": "yarn workspaces foreach --worktree -t -p -v -i run build",
         "dev": "yarn workspace @jenkins-cd/jenkins-plugin-site dev",
