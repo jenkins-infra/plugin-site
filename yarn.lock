@@ -3810,7 +3810,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/css-tokenizer@npm:^4.0.1, @csstools/css-tokenizer@npm:^4.0.2":
+"@csstools/css-tokenizer@npm:^4.0.2":
   version: 4.0.2
   resolution: "@csstools/css-tokenizer@npm:4.0.2"
   checksum: 10c0/748b42450064cca6a54d2bb8a719cb765c6433b8988ed8855f39c9814b8ef30c4daab235ffee9dacb0388916d6e250ec6bee454e8353d06161228e129e4272ae
@@ -5255,7 +5255,7 @@ __metadata:
     jest-junit: "npm:17.0.0"
     lint-staged: "npm:17.6.0"
     papaparse: "npm:^5.5.4"
-    postcss-calc: "npm:11.2.1"
+    postcss-calc: "npm:11.2.2"
     postcss-css-variables: "npm:0.19.0"
     postcss-import: "npm:17.0.0"
     postcss-merge-rules: "npm:9.0.6"
@@ -19384,14 +19384,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-calc@npm:11.2.1":
-  version: 11.2.1
-  resolution: "postcss-calc@npm:11.2.1"
+"postcss-calc@npm:11.2.2":
+  version: 11.2.2
+  resolution: "postcss-calc@npm:11.2.2"
   dependencies:
-    "@csstools/css-tokenizer": "npm:^4.0.1"
+    "@csstools/css-tokenizer": "npm:^4.0.2"
   peerDependencies:
     postcss: ^8.5.28
-  checksum: 10c0/92a01124f823aacd7044abf1fe5f3526f191d6b0343bd2e5a85d471d33de6499eee37b4a58f0bc811695a8956a94118033832969dec43f6c6a13e7ed32b290c5
+  checksum: 10c0/cf5225936f56c9943db5c436e980acb375538631b24cb5f92878daa07d3af6bbb74aac7d2047f3dbc8d3129b4497bbdef4b9dbab5108c1541a5d754778028484
   languageName: node
   linkType: hard
 
