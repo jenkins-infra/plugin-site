@@ -38,7 +38,8 @@ function SortableTable({columns, rows, rowKey}) {
                     <tr>
                         {columns.map(col => (
                             <th key={col.key} scope="col" style={{cursor: 'pointer'}} onClick={() => handleSort(col.key)}>
-                                {col.label}{indicator(col.key)}
+                                {col.label}
+                                {indicator(col.key)}
                             </th>
                         ))}
                     </tr>
@@ -70,7 +71,10 @@ SortableTable.propTypes = {
 const DEP_COL_PLUGIN = {
     key: 'title',
     label: 'Plugin',
-    render: (dep) => <>{dep.deprecated && '⚠️ '}<Link to={`/${dep.name}/dependencies/`}>{dep.title}</Link></>,
+    render: (dep) => (<>
+        {dep.deprecated && '⚠️ '}
+        <Link to={`/${dep.name}/dependencies/`}>{dep.title}</Link>
+    </>),
 };
 
 const DEP_COLUMNS_COMPACT = [DEP_COL_PLUGIN];
@@ -92,7 +96,10 @@ const DEP_COLUMNS_FULL = [
 const REV_DEP_COL_PLUGIN = {
     key: 'dependentTitle',
     label: 'Plugin',
-    render: (dep) => <>{dep.dependentDeprecated && '⚠️ '}<Link to={`/${dep.dependentName}/dependencies/`}>{dep.dependentTitle}</Link></>,
+    render: (dep) => (<>
+        {dep.dependentDeprecated && '⚠️ '}
+        <Link to={`/${dep.dependentName}/dependencies/`}>{dep.dependentTitle}</Link>
+    </>),
 };
 
 const REV_DEP_COLUMNS_COMPACT = [REV_DEP_COL_PLUGIN];
