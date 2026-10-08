@@ -94,7 +94,7 @@
     "postcss-import": "17.0.0",
     "postcss-merge-rules": "9.1.1",
     "postcss-nesting": "14.0.3",
-    "postcss-preset-env": "11.5.5",
+    "postcss-preset-env": "11.6.1",
     "postcss-pxtorem": "6.1.0",
     "postcss-url": "10.1.4",
     "prismjs": "1.30.0",
