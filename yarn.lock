@@ -5258,7 +5258,7 @@ __metadata:
     postcss-calc: "npm:11.2.2"
     postcss-css-variables: "npm:0.19.0"
     postcss-import: "npm:17.0.0"
-    postcss-merge-rules: "npm:9.0.8"
+    postcss-merge-rules: "npm:9.1.1"
     postcss-nesting: "npm:14.0.2"
     postcss-preset-env: "npm:11.5.5"
     postcss-pxtorem: "npm:6.1.0"
@@ -10681,7 +10681,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cssnano-utils@npm:^8.0.2, cssnano-utils@npm:^8.1.0":
+"cssnano-utils@npm:^8.0.2, cssnano-utils@npm:^8.2.0":
   version: 8.2.0
   resolution: "cssnano-utils@npm:8.2.0"
   dependencies:
@@ -19740,18 +19740,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-merge-rules@npm:9.0.8":
-  version: 9.0.8
-  resolution: "postcss-merge-rules@npm:9.0.8"
+"postcss-merge-rules@npm:9.1.1":
+  version: 9.1.1
+  resolution: "postcss-merge-rules@npm:9.1.1"
   dependencies:
     "@csstools/css-tokenizer": "npm:^4.0.2"
     browserslist: "npm:^4.29.3"
     caniuse-api: "npm:^4.0.0"
-    cssnano-utils: "npm:^8.1.0"
+    cssnano-utils: "npm:^8.2.0"
     postcss-minify-selectors: "npm:^9.0.6"
   peerDependencies:
     postcss: ^8.5.28
-  checksum: 10c0/f7e520cdb3e189ed1dbf670eb0d57e2d9a9f255e272504dc9207536de26e0e8b7be3cef419c67621f024350ab412cb9c9e1173568963d16b3fcebdfc2499e65e
+  checksum: 10c0/b22416e5756198028df2a9c63ff9037f1828c8a744a5604716e1c53970045fca5bde31d60199ed03cdc60a39f13a63b8faa1a27ea40394df9b336ecaaa9fc479
   languageName: node
   linkType: hard
 
