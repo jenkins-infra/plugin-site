@@ -111,7 +111,7 @@
     "@testing-library/dom": "10.4.2",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
-    "@typescript-eslint/eslint-plugin": "8.71.0",
+    "@typescript-eslint/eslint-plugin": "8.71.1",
     "axios-retry": "4.5.0",
     "babel-jest": "30.5.2",
     "babel-preset-gatsby": "3.16.0",
