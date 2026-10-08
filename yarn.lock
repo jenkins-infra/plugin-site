@@ -5284,7 +5284,7 @@ __metadata:
     postcss-calc: "npm:11.2.2"
     postcss-css-variables: "npm:0.19.0"
     postcss-import: "npm:17.0.0"
-    postcss-merge-rules: "npm:9.1.1"
+    postcss-merge-rules: "npm:9.1.2"
     postcss-nesting: "npm:14.0.3"
     postcss-preset-env: "npm:11.5.5"
     postcss-pxtorem: "npm:6.1.0"
@@ -19758,9 +19758,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-merge-rules@npm:9.1.1":
-  version: 9.1.1
-  resolution: "postcss-merge-rules@npm:9.1.1"
+"postcss-merge-rules@npm:9.1.2":
+  version: 9.1.2
+  resolution: "postcss-merge-rules@npm:9.1.2"
   dependencies:
     "@csstools/css-tokenizer": "npm:^4.0.2"
     browserslist: "npm:^4.29.3"
@@ -19769,7 +19769,7 @@ __metadata:
     postcss-minify-selectors: "npm:^9.0.6"
   peerDependencies:
     postcss: ^8.5.28
-  checksum: 10c0/b22416e5756198028df2a9c63ff9037f1828c8a744a5604716e1c53970045fca5bde31d60199ed03cdc60a39f13a63b8faa1a27ea40394df9b336ecaaa9fc479
+  checksum: 10c0/e4419a966c66dee190389545c4b376e157a532df2438589d97b6c620c0a0b4bd1f8121b8ab87a5f728bf1f618b620de3cb36acd40907d24af01dd577d7fab119
   languageName: node
   linkType: hard
 
