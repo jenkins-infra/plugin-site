@@ -1,10 +1,12 @@
 import jest from 'eslint-plugin-jest';
-import react from 'eslint-plugin-react';
+import reactPlugin from 'eslint-plugin-react';
 import pluginPromise from 'eslint-plugin-promise';
 import globals from 'globals';
 import js from '@eslint/js';
 import pluginImport from 'eslint-plugin-import';
-const reactRecommended = react.configs.recommended;
+import {fixupPluginRules} from '@eslint/compat';
+const react = fixupPluginRules(reactPlugin);
+const reactRecommended = reactPlugin.configs.recommended;
 export default
 [
     {

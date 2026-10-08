@@ -107,6 +107,8 @@
     "reactstrap": "9.2.3"
   },
   "devDependencies": {
+    "@eslint/compat": "2.1.1",
+    "@eslint/js": "10.0.1",
     "@jenkinsci/gatsby-plugin-jenkins-layout": "1.7.0",
     "@testing-library/dom": "10.4.2",
     "@testing-library/jest-dom": "7.0.1",
