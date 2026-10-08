@@ -70,7 +70,7 @@ SortableTable.propTypes = {
 const DEP_COL_PLUGIN = {
     key: 'title',
     label: 'Plugin',
-    render: (dep) => <Link to={`/${dep.name}/dependencies/`}>{dep.title}</Link>,
+    render: (dep) => <>{dep.deprecated && '⚠️ '}<Link to={`/${dep.name}/dependencies/`}>{dep.title}</Link></>,
 };
 
 const DEP_COLUMNS_COMPACT = [DEP_COL_PLUGIN];
@@ -92,7 +92,7 @@ const DEP_COLUMNS_FULL = [
 const REV_DEP_COL_PLUGIN = {
     key: 'dependentTitle',
     label: 'Plugin',
-    render: (dep) => <Link to={`/${dep.dependentName}/dependencies/`}>{dep.dependentTitle}</Link>,
+    render: (dep) => <>{dep.dependentDeprecated && '⚠️ '}<Link to={`/${dep.dependentName}/dependencies/`}>{dep.dependentTitle}</Link></>,
 };
 
 const REV_DEP_COLUMNS_COMPACT = [REV_DEP_COL_PLUGIN];
@@ -141,54 +141,10 @@ function renderByType(rows, columns, rowKey, onImpliedClick) {
     );
 }
 
-function RevDepTypeSection({title, rows, extra}) {
-    const [detailed, setDetailed] = React.useState(false);
-    return (
-        <div>
-            <div className="title-wrapper ps-0 pe-0 mb-2">
-                <h3>{title}{extra}</h3>
-                <button className="app-button" onClick={() => setDetailed(d => !d)}>
-                    {detailed ? 'Simple' : 'Details'}
-                </button>
-            </div>
-            <SortableTable
-                columns={detailed ? REV_DEP_COLUMNS_FULL : REV_DEP_COLUMNS_COMPACT}
-                rows={rows}
-                rowKey={(dep) => dep.dependentName}
-            />
-        </div>
-    );
-}
-
-RevDepTypeSection.propTypes = {
-    title: PropTypes.string.isRequired,
-    rows: PropTypes.array.isRequired,
-    extra: PropTypes.node,
-};
-
-function renderRevDepByType(rows, onImpliedClick) {
-    const optional = rows.filter(dep => dep.optional);
-    const implied = rows.filter(dep => dep.implied && !dep.optional);
-    const required = rows.filter(dep => !dep.implied && !dep.optional);
-    const hasGroups = optional.length + implied.length > 0;
-    return (
-        <div>
-            {required.length > 0 && <RevDepTypeSection title={hasGroups ? 'Required' : ''} rows={required} />}
-            {optional.length > 0 && <RevDepTypeSection title="Optional" rows={optional} />}
-            {implied.length > 0 && (
-                <RevDepTypeSection
-                    title="Implied"
-                    rows={implied}
-                    extra={<>{' '}<a href="#" onClick={onImpliedClick}><span className="req">(what&apos;s this?)</span></a></>}
-                />
-            )}
-        </div>
-    );
-}
-
 function PluginDependencies({dependencies, reverseDependencies, gav, hasBomEntry}) {
     const [isShowImplied, setShowImplied] = React.useState(false);
     const [depDetailed, setDepDetailed] = React.useState(false);
+    const [revDepDetailed, setRevDepDetailed] = React.useState(false);
     const toggleShowImplied = (e) => {
         e && e.preventDefault();
         setShowImplied(!isShowImplied);
@@ -231,11 +187,18 @@ function PluginDependencies({dependencies, reverseDependencies, gav, hasBomEntry
                     ? renderByType(dependencies, depDetailed ? DEP_COLUMNS_FULL : DEP_COLUMNS_COMPACT, (dep) => dep.name, toggleShowImplied)
                     : (<div className="empty">No dependencies found</div>)
             }
-            <h2>Dependent plugins</h2>
+            <div className="title-wrapper ps-0 pe-0">
+                <h2>Dependent plugins</h2>
+                {reverseDependencies.length > 0 && (
+                    <button className="app-button ms-4" onClick={() => setRevDepDetailed(d => !d)}>
+                        {revDepDetailed ? 'Simple' : 'Details'}
+                    </button>
+                )}
+            </div>
             <MavenDependency gav={gav} hasBomEntry={hasBomEntry}/>
             {
                 reverseDependencies.length
-                    ? renderRevDepByType(reverseDependencies, toggleShowImplied)
+                    ? renderByType(reverseDependencies, revDepDetailed ? REV_DEP_COLUMNS_FULL : REV_DEP_COLUMNS_COMPACT, (dep) => dep.dependentName, toggleShowImplied)
                     : (<div className="empty">No dependent plugins found</div>)
             }
         </div>
@@ -249,6 +212,7 @@ PluginDependencies.propTypes = {
             title: PropTypes.string.isRequired,
             version: PropTypes.string.isRequired,
             latestVersion: PropTypes.string,
+            deprecated: PropTypes.bool,
             optional: PropTypes.bool,
             implied: PropTypes.bool
         })
@@ -259,6 +223,7 @@ PluginDependencies.propTypes = {
             dependentTitle: PropTypes.string.isRequired,
             dependentVersion: PropTypes.string,
             dependentReleaseTimestamp: PropTypes.string,
+            dependentDeprecated: PropTypes.bool,
             version: PropTypes.string,
             optional: PropTypes.bool,
             implied: PropTypes.bool,

@@ -28,6 +28,7 @@ TemplatePluginDependencies.propTypes = {
                         dependentTitle: PropTypes.string.isRequired,
                         dependentVersion: PropTypes.string,
                         dependentReleaseTimestamp: PropTypes.string,
+                        dependentDeprecated: PropTypes.bool,
                         version: PropTypes.string,
                         optional: PropTypes.bool,
                         implied: PropTypes.bool,
@@ -58,6 +59,7 @@ export const pageQuery = graphql`
           dependentName
           dependentVersion
           dependentReleaseTimestamp
+          dependentDeprecated
           version
           implied
           optional

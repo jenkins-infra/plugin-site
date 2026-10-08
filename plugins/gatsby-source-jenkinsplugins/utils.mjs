@@ -186,6 +186,7 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, c
                 dependentName: plugin.name,
                 dependentVersion: plugin.version ?? null,
                 dependentReleaseTimestamp: plugin.releaseTimestamp ?? null,
+                dependentDeprecated: plugin.labels?.includes('deprecated') ?? false,
                 id: createNodeId(`${pluginName}:${dependency.name.trim()} <<< JenkinsPluginDependency`),
                 internal: {
                     type: 'JenkinsPluginDependency',
@@ -269,9 +270,12 @@ const getImpliedDependenciesAndTitles = (plugin, detachedPlugins, updateData) =>
         if (!updateData.plugins[dependency.name]) {
             dependency.title = dependency.name; // optional dependency suspended
             dependency.latestVersion = null;
+            dependency.deprecated = false;
         } else {
-            dependency.title = updateData.plugins[dependency.name].title;
-            dependency.latestVersion = updateData.plugins[dependency.name].version ?? null;
+            const depPlugin = updateData.plugins[dependency.name];
+            dependency.title = depPlugin.title;
+            dependency.latestVersion = depPlugin.version ?? null;
+            dependency.deprecated = depPlugin.labels?.includes('deprecated') ?? false;
         }
     }
     return plugin.dependencies;
