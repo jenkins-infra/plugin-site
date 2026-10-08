@@ -184,6 +184,8 @@ const processPlugin = ({createNode, names, stats, updateData, detachedPlugins, c
                 ...dependency,
                 dependentTitle: plugin.title,
                 dependentName: plugin.name,
+                dependentVersion: plugin.version ?? null,
+                dependentReleaseTimestamp: plugin.releaseTimestamp ?? null,
                 id: createNodeId(`${pluginName}:${dependency.name.trim()} <<< JenkinsPluginDependency`),
                 internal: {
                     type: 'JenkinsPluginDependency',
@@ -266,8 +268,10 @@ const getImpliedDependenciesAndTitles = (plugin, detachedPlugins, updateData) =>
     for (const dependency of plugin.dependencies) {
         if (!updateData.plugins[dependency.name]) {
             dependency.title = dependency.name; // optional dependency suspended
+            dependency.latestVersion = null;
         } else {
             dependency.title = updateData.plugins[dependency.name].title;
+            dependency.latestVersion = updateData.plugins[dependency.name].version ?? null;
         }
     }
     return plugin.dependencies;

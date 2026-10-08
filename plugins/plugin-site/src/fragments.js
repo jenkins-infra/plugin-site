@@ -60,6 +60,7 @@ export const PluginFragment = graphql`
     buildDate
     dependencies {
       implied
+      latestVersion
       name
       optional
       title
