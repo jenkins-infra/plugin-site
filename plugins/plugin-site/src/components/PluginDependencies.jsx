@@ -37,9 +37,14 @@ function SortableTable({columns, rows, rowKey}) {
                 <thead>
                     <tr>
                         {columns.map(col => (
-                            <th key={col.key} scope="col" style={{cursor: 'pointer'}} onClick={() => handleSort(col.key)}>
+                            <th
+                                key={col.key}
+                                scope="col"
+                                style={col.sortable !== false ? {cursor: 'pointer'} : undefined}
+                                onClick={col.sortable !== false ? () => handleSort(col.key) : undefined}
+                            >
                                 {col.label}
-                                {indicator(col.key)}
+                                {col.sortable !== false && indicator(col.key)}
                             </th>
                         ))}
                     </tr>
@@ -62,53 +67,49 @@ SortableTable.propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
+        sortable: PropTypes.bool,
         render: PropTypes.func.isRequired,
     })).isRequired,
     rows: PropTypes.arrayOf(PropTypes.object).isRequired,
     rowKey: PropTypes.func.isRequired,
 };
 
-const DEP_COL_PLUGIN = {
-    key: 'title',
-    label: 'Plugin',
-    render: (dep) => (<>
-        {dep.deprecated && '⚠️ '}
-        <Link to={`/${dep.name}/dependencies/`}>{dep.title}</Link>
-    </>),
-};
-
-const DEP_COLUMNS_COMPACT = [DEP_COL_PLUGIN];
-
-const DEP_COLUMNS_FULL = [
-    DEP_COL_PLUGIN,
+const DEP_COLUMNS = [
+    {
+        key: 'title',
+        label: 'Plugin',
+        render: (dep) => (<>
+            {dep.deprecated && '⚠️ '}
+            <Link to={`/${dep.name}/dependencies/`}>{dep.title}</Link>
+        </>),
+    },
     {
         key: 'version',
         label: 'Required Version',
+        sortable: false,
         render: (dep) => dep.version ? `≥ ${dep.version}` : '—',
     },
     {
         key: 'latestVersion',
         label: 'Last Version',
+        sortable: false,
         render: (dep) => (dep.latestVersion && dep.latestVersion !== dep.version) ? dep.latestVersion : '—',
     },
 ];
 
-const REV_DEP_COL_PLUGIN = {
-    key: 'dependentTitle',
-    label: 'Plugin',
-    render: (dep) => (<>
-        {dep.dependentDeprecated && '⚠️ '}
-        <Link to={`/${dep.dependentName}/dependencies/`}>{dep.dependentTitle}</Link>
-    </>),
-};
-
-const REV_DEP_COLUMNS_COMPACT = [REV_DEP_COL_PLUGIN];
-
-const REV_DEP_COLUMNS_FULL = [
-    REV_DEP_COL_PLUGIN,
+const REV_DEP_COLUMNS = [
+    {
+        key: 'dependentTitle',
+        label: 'Plugin',
+        render: (dep) => (<>
+            {dep.dependentDeprecated && '⚠️ '}
+            <Link to={`/${dep.dependentName}/dependencies/`}>{dep.dependentTitle}</Link>
+        </>),
+    },
     {
         key: 'dependentVersion',
         label: 'Version',
+        sortable: false,
         render: (dep) => dep.dependentVersion ?? '—',
     },
     {
@@ -150,8 +151,6 @@ function renderByType(rows, columns, rowKey, onImpliedClick) {
 
 function PluginDependencies({dependencies, reverseDependencies, gav, hasBomEntry}) {
     const [isShowImplied, setShowImplied] = React.useState(false);
-    const [depDetailed, setDepDetailed] = React.useState(false);
-    const [revDepDetailed, setRevDepDetailed] = React.useState(false);
     const toggleShowImplied = (e) => {
         e && e.preventDefault();
         setShowImplied(!isShowImplied);
@@ -159,14 +158,7 @@ function PluginDependencies({dependencies, reverseDependencies, gav, hasBomEntry
 
     return (
         <div className="content pb-3" id="pluginDependencies">
-            <div className="title-wrapper ps-0 pe-0">
-                <h2>Dependencies</h2>
-                {dependencies.length > 0 && (
-                    <button className="app-button ms-4" onClick={() => setDepDetailed(d => !d)}>
-                        {depDetailed ? 'Simple' : 'Details'}
-                    </button>
-                )}
-            </div>
+            <h2>Dependencies</h2>
             <Modal placement="bottom" isOpen={isShowImplied} target="pluginDependencies" toggle={toggleShowImplied}>
                 <ModalHeader toggle={toggleShowImplied}>About Implied Plugin Dependencies</ModalHeader >
                 <ModalBody>
@@ -191,21 +183,14 @@ function PluginDependencies({dependencies, reverseDependencies, gav, hasBomEntry
             </Modal>
             {
                 dependencies.length
-                    ? renderByType(dependencies, depDetailed ? DEP_COLUMNS_FULL : DEP_COLUMNS_COMPACT, (dep) => dep.name, toggleShowImplied)
+                    ? renderByType(dependencies, DEP_COLUMNS, (dep) => dep.name, toggleShowImplied)
                     : (<div className="empty">No dependencies found</div>)
             }
-            <div className="title-wrapper ps-0 pe-0">
-                <h2>Dependent plugins</h2>
-                {reverseDependencies.length > 0 && (
-                    <button className="app-button ms-4" onClick={() => setRevDepDetailed(d => !d)}>
-                        {revDepDetailed ? 'Simple' : 'Details'}
-                    </button>
-                )}
-            </div>
+            <h2>Dependent plugins</h2>
             <MavenDependency gav={gav} hasBomEntry={hasBomEntry}/>
             {
                 reverseDependencies.length
-                    ? renderByType(reverseDependencies, revDepDetailed ? REV_DEP_COLUMNS_FULL : REV_DEP_COLUMNS_COMPACT, (dep) => dep.dependentName, toggleShowImplied)
+                    ? renderByType(reverseDependencies, REV_DEP_COLUMNS, (dep) => dep.dependentName, toggleShowImplied)
                     : (<div className="empty">No dependent plugins found</div>)
             }
         </div>
