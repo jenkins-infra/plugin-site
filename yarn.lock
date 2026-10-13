@@ -5297,7 +5297,7 @@ __metadata:
     postcss-calc: "npm:11.2.3"
     postcss-css-variables: "npm:0.19.0"
     postcss-import: "npm:17.0.0"
-    postcss-merge-rules: "npm:9.1.3"
+    postcss-merge-rules: "npm:9.1.4"
     postcss-nesting: "npm:14.0.3"
     postcss-preset-env: "npm:11.6.1"
     postcss-pxtorem: "npm:6.1.0"
@@ -10625,17 +10625,6 @@ __metadata:
   peerDependencies:
     postcss: ^8.2.15
   checksum: 10c0/057508645a3e7584decede1045daa5b362dbfa2f5df96c3527c7d52e41e787a3442a56a8ea0c0af6a757f518e79a459ee580a35c323ad0d0eec912afd67d7630
-  languageName: node
-  linkType: hard
-
-"cssnano-utils@npm:^8.2.1":
-  version: 8.2.1
-  resolution: "cssnano-utils@npm:8.2.1"
-  dependencies:
-    "@csstools/css-tokenizer": "npm:^4.0.2"
-  peerDependencies:
-    postcss: ^8.5.29
-  checksum: 10c0/bc05974165e7bbfd100b6b4d2ebd62f4698540c14a838d0bb86878460c30d9da0189a9611ad3a45a39ced897bcc0e8c77d6d5edd6b7d26ee010490ded3f1d3dd
   languageName: node
   linkType: hard
 
@@ -19691,18 +19680,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-merge-rules@npm:9.1.3":
-  version: 9.1.3
-  resolution: "postcss-merge-rules@npm:9.1.3"
+"postcss-merge-rules@npm:9.1.4":
+  version: 9.1.4
+  resolution: "postcss-merge-rules@npm:9.1.4"
   dependencies:
     "@csstools/css-tokenizer": "npm:^4.0.2"
     browserslist: "npm:^4.29.3"
     caniuse-api: "npm:^4.0.0"
-    cssnano-utils: "npm:^8.2.1"
-    postcss-minify-selectors: "npm:^9.0.7"
+    cssnano-utils: "npm:^9.0.0"
+    postcss-minify-selectors: "npm:^9.0.8"
   peerDependencies:
     postcss: ^8.5.29
-  checksum: 10c0/51c06a40529ea63b56500704e0c2dbbb543b9d72102aa3e950581b4ee79b1816988d8303f8bf469c5cc567538dc324cf26dc4234c00492494b5b5c7f4abe0958
+  checksum: 10c0/e4987c216c884d7e279558d155c0b360f6ca42de152365064a34a899e119333a93dcd901d46339d77a1ff5e962a704108d9c81b9cd8f11c65b868a20935a6054
   languageName: node
   linkType: hard
 
@@ -19768,7 +19757,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-minify-selectors@npm:^9.0.7":
+"postcss-minify-selectors@npm:^9.0.8":
   version: 9.0.8
   resolution: "postcss-minify-selectors@npm:9.0.8"
   dependencies:
