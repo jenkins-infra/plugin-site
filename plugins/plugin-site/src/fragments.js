@@ -61,7 +61,6 @@ export const PluginFragment = graphql`
     dependencies {
       deprecated
       implied
-      latestVersion
       name
       optional
       title

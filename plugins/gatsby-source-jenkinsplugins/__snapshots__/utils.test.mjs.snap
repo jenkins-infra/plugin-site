@@ -22,7 +22,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "external-monitor-job",
         "optional": false,
         "title": "External Monitor Job Type",
@@ -31,7 +30,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "ldap",
         "optional": false,
         "title": "LDAP",
@@ -40,7 +38,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "pam-auth",
         "optional": false,
         "title": "PAM Authentication",
@@ -49,7 +46,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "mailer",
         "optional": false,
         "title": "Mailer",
@@ -58,7 +54,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "matrix-auth",
         "optional": false,
         "title": "Matrix Authorization Strategy",
@@ -67,7 +62,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "windows-slaves",
         "optional": false,
         "title": "WMI Windows Agents",
@@ -76,7 +70,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "antisamy-markup-formatter",
         "optional": false,
         "title": "OWASP Markup Formatter",
@@ -85,7 +78,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "matrix-project",
         "optional": false,
         "title": "Matrix Project",
@@ -94,7 +86,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "junit",
         "optional": false,
         "title": "JUnit",
@@ -103,7 +94,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "bouncycastle-api",
         "optional": false,
         "title": "bouncycastle API",
@@ -112,7 +102,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "command-launcher",
         "optional": false,
         "title": "Command Agent Launcher",
@@ -121,7 +110,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "jdk-tool",
         "optional": false,
         "title": "Oracle Java SE Development Kit Installer",
@@ -130,7 +118,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "jaxb",
         "optional": false,
         "title": "JAXB",
@@ -139,7 +126,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "trilead-api",
         "optional": false,
         "title": "Trilead API",
@@ -148,7 +134,6 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
       {
         "deprecated": false,
         "implied": true,
-        "latestVersion": null,
         "name": "sshd",
         "optional": false,
         "title": "SSHD",
@@ -164,7 +149,7 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
     "hasPipelineSteps": false,
     "id": "ios-device-connector <<< JenkinsPlugin",
     "internal": {
-      "contentDigest": "e7dbbd1da2b05b164c33c060056314e2",
+      "contentDigest": "1974284f647ed60fd9a459f1b85c8b25",
       "type": "JenkinsPlugin",
     },
     "issueTrackers": [

@@ -22,9 +22,10 @@ function SortableTable({columns, rows, rowKey}) {
         }
     };
 
+    const colDef = columns.find(c => c.key === sortCol);
     const sorted = [...rows].sort((a, b) => {
-        const av = (a[sortCol] ?? '').toLowerCase();
-        const bv = (b[sortCol] ?? '').toLowerCase();
+        const av = colDef?.sortValue ? colDef.sortValue(a) : (a[sortCol] ?? '').toString().toLowerCase();
+        const bv = colDef?.sortValue ? colDef.sortValue(b) : (b[sortCol] ?? '').toString().toLowerCase();
         const cmp = av < bv ? -1 : av > bv ? 1 : 0;
         return sortDir === SORT_ASC ? cmp : -cmp;
     });
@@ -68,6 +69,7 @@ SortableTable.propTypes = {
         key: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         sortable: PropTypes.bool,
+        sortValue: PropTypes.func,
         render: PropTypes.func.isRequired,
     })).isRequired,
     rows: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -89,12 +91,6 @@ const DEP_COLUMNS = [
         sortable: false,
         render: (dep) => dep.version ? `≥ ${dep.version}` : '—',
     },
-    {
-        key: 'latestVersion',
-        label: 'Last Version',
-        sortable: false,
-        render: (dep) => (dep.latestVersion && dep.latestVersion !== dep.version) ? dep.latestVersion : '—',
-    },
 ];
 
 const REV_DEP_COLUMNS = [
@@ -107,22 +103,20 @@ const REV_DEP_COLUMNS = [
         </>),
     },
     {
-        key: 'dependentVersion',
-        label: 'Version',
-        sortable: false,
-        render: (dep) => dep.dependentVersion ?? '—',
-    },
-    {
         key: 'dependentReleaseTimestamp',
         label: 'Released',
+        sortValue: (dep) => dep.dependentReleaseTimestamp ?? '',
         render: (dep) => dep.dependentReleaseTimestamp
             ? <TimeAgo date={new Date(dep.dependentReleaseTimestamp)} formatter={formatter} />
             : '—',
     },
     {
-        key: 'version',
-        label: 'Required Version',
-        render: (dep) => dep.version ?? '—',
+        key: 'dependentInstallPercentage',
+        label: 'Installs',
+        sortValue: (dep) => dep.dependentInstallPercentage ?? -1,
+        render: (dep) => dep.dependentInstallPercentage != null
+            ? `${(dep.dependentInstallPercentage).toFixed(2)}%`
+            : '—',
     },
 ];
 
@@ -203,7 +197,6 @@ PluginDependencies.propTypes = {
             name: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             version: PropTypes.string.isRequired,
-            latestVersion: PropTypes.string,
             deprecated: PropTypes.bool,
             optional: PropTypes.bool,
             implied: PropTypes.bool
@@ -213,10 +206,9 @@ PluginDependencies.propTypes = {
         PropTypes.shape({
             dependentName: PropTypes.string.isRequired,
             dependentTitle: PropTypes.string.isRequired,
-            dependentVersion: PropTypes.string,
             dependentReleaseTimestamp: PropTypes.string,
             dependentDeprecated: PropTypes.bool,
-            version: PropTypes.string,
+            dependentInstallPercentage: PropTypes.number,
             optional: PropTypes.bool,
             implied: PropTypes.bool,
         })

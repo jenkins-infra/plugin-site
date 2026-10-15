@@ -33,8 +33,8 @@ describe('component - TemplatePluginDependencies', () => {
                 node: {
                     dependentName: 'other-plugin',
                     dependentTitle: 'Other Plugin',
-                    dependentVersion: '1.2.3',
                     dependentReleaseTimestamp: '2020-01-01T00:00:00.00Z',
+                    dependentInstallPercentage: 1.23,
                     optional: false,
                     implied: false,
                 }
