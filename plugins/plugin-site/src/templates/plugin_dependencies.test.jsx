@@ -29,7 +29,16 @@ describe('component - TemplatePluginDependencies', () => {
         };
         const {container} = render(<TemplatePluginDependencies data={{
             jenkinsPlugin: plugin,
-            reverseDependencies: {edges: []}
+            reverseDependencies: {edges: [{
+                node: {
+                    dependentName: 'other-plugin',
+                    dependentTitle: 'Other Plugin',
+                    dependentReleaseTimestamp: '2020-01-01T00:00:00.00Z',
+                    dependentInstallPercentage: 1.23,
+                    optional: false,
+                    implied: false,
+                }
+            }]}
         }} />);
 
         expect(container).toBeTruthy();
