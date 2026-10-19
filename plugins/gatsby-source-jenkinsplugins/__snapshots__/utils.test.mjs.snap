@@ -149,7 +149,7 @@ exports[`utils get plugin data for a wiki based plugin 1`] = `
     "hasPipelineSteps": false,
     "id": "ios-device-connector <<< JenkinsPlugin",
     "internal": {
-      "contentDigest": "1974284f647ed60fd9a459f1b85c8b25",
+      "contentDigest": "9c48264ce35b54306b2717cfedbc1769",
       "type": "JenkinsPlugin",
     },
     "issueTrackers": [
