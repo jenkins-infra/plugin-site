@@ -4,7 +4,7 @@ import {Link} from 'gatsby';
 import TimeAgo from 'react-timeago';
 import MavenDependency from './MavenDependency';
 import {Modal, ModalHeader, ModalBody} from 'reactstrap';
-import {formatter} from '../commons/helper';
+import {formatter, formatPercentage} from '../commons/helper';
 
 const SORT_ASC = 'asc';
 const SORT_DESC = 'desc';
@@ -115,7 +115,7 @@ const REV_DEP_COLUMNS = [
         label: 'Installs',
         sortValue: (dep) => dep.dependentInstallPercentage ?? -1,
         render: (dep) => dep.dependentInstallPercentage != null
-            ? `${(dep.dependentInstallPercentage).toFixed(2)}%`
+            ? formatPercentage(dep.dependentInstallPercentage)
             : '—',
     },
 ];
