@@ -26,6 +26,9 @@ TemplatePluginDependencies.propTypes = {
                     node: PropTypes.shape({
                         dependentName: PropTypes.string.isRequired,
                         dependentTitle: PropTypes.string.isRequired,
+                        dependentReleaseTimestamp: PropTypes.string,
+                        dependentDeprecated: PropTypes.bool,
+                        dependentInstallPercentage: PropTypes.number,
                         optional: PropTypes.bool,
                         implied: PropTypes.bool,
                     })
@@ -53,6 +56,9 @@ export const pageQuery = graphql`
         node {
           dependentTitle
           dependentName
+          dependentReleaseTimestamp
+          dependentDeprecated
+          dependentInstallPercentage
           implied
           optional
         }
