@@ -18,7 +18,7 @@
         "@babel/eslint-parser": "7.29.9",
         "@babel/eslint-plugin": "7.29.7",
         "@babel/plugin-proposal-decorators": "7.29.7",
-        "eslint": "10.12.0",
+        "eslint": "10.13.0",
         "eslint-config-google": "0.14.0",
         "eslint-plugin-filenames": "^1.3.2",
         "eslint-plugin-import": "2.32.0",
@@ -36,6 +36,6 @@
     "resolutions": {
         "lmdb@npm:2.5.2": "npm:lmdb@3.5.7",
         "lmdb@npm:2.5.3": "npm:lmdb@3.5.7",
-        "eslint-plugin-jest/@typescript-eslint/utils": "8.71.1"
+        "eslint-plugin-jest/@typescript-eslint/utils": "8.71.2"
     }
 }
