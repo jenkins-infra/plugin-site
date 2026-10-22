@@ -5197,7 +5197,7 @@ __metadata:
     find-package-json: "npm:^1.2.0"
     gatsby-source-filesystem: "npm:5.16.0"
     jest: "npm:30.5.2"
-    nock: "npm:15.0.3"
+    nock: "npm:15.0.4"
     p-queue: "npm:^10.0.0"
     rehype-stringify: "npm:^10.0.1"
     remark: "npm:^15.0.1"
@@ -18361,12 +18361,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nock@npm:15.0.3":
-  version: 15.0.3
-  resolution: "nock@npm:15.0.3"
+"nock@npm:15.0.4":
+  version: 15.0.4
+  resolution: "nock@npm:15.0.4"
   dependencies:
     "@mswjs/interceptors": "npm:^0.44.0"
-  checksum: 10c0/c0106d195fcfbcc1d9baad6bf64ca92975f011d2c587a161469e53e97b46fc5249dfadb5a0b1d2669bb969fb12a812a87bd542fed97cd4876bcdd15d8798a18c
+  checksum: 10c0/b12bacce817f1e212bf1261b152f08b53bb0633710e97e21d94ad0f7e11faa403861937c36953789c827f23c184632614813eded244a2fded9b6b8b42a31bf42
   languageName: node
   linkType: hard
 
