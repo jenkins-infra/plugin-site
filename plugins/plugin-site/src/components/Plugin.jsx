@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {navigate} from 'gatsby';
 import {cleanTitle, formatPercentage} from '../commons/helper';
 import Icon from '../components/Icon';
 import PluginLabels from '../components/PluginLabels';
@@ -27,7 +26,7 @@ Developers.propTypes = PluginDevelopers.propTypes;
 function Plugin({plugin: {name, title, stats, labels, excerpt, developers, buildDate, releaseTimestamp, healthScore}}) {
     const installStr = stats.currentInstallPercentage ? formatPercentage(stats.currentInstallPercentage) : '?';
     return (
-        <div onClick={() => navigate(`/${name}/`)} className="Plugin--PluginContainer">
+        <a href={`/${name}/`} className="Plugin--PluginContainer">
             <div className="Plugin--IconContainer">
                 <Icon title={title} />
             </div>
@@ -52,7 +51,7 @@ function Plugin({plugin: {name, title, stats, labels, excerpt, developers, build
             <div className="Plugin--HealthScoreContainer">
                 {healthScore && (<PluginHealthScoreProgressBar healthScore={healthScore} name={name}/>)}
             </div>
-        </div>
+        </a>
     );
 }
 
