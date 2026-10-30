@@ -1,3 +1,5 @@
+@Library('pipeline-library@pull/1059/head') _
+
 def commonCustomEnvs = ['GET_CONTENT=true']
 // TODO: to be removed by making `yarn test` passes even with `NODE_ENV=production`
 // Ref: https://github.com/jenkins-infra/helpdesk/issues/5281#issuecomment-5833374957
