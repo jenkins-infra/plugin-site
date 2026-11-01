@@ -3681,7 +3681,7 @@ __metadata:
     "@babel/preset-env": "npm:7.29.7"
     babel-jest: "npm:30.5.2"
     eslint: "npm:10.13.0"
-    hast-util-to-html: "npm:9.0.5"
+    hast-util-to-html: "npm:9.0.6"
     jest: "npm:30.5.2"
     rehype: "npm:13.0.2"
     unist-util-visit: "npm:^5.1.0"
@@ -3695,7 +3695,7 @@ __metadata:
     "@babel/preset-env": "npm:7.29.7"
     babel-jest: "npm:30.5.2"
     eslint: "npm:10.13.0"
-    hast-util-to-html: "npm:9.0.5"
+    hast-util-to-html: "npm:9.0.6"
     jest: "npm:30.5.2"
     rehype: "npm:13.0.2"
     unist-util-visit-parents: "npm:^6.0.2"
@@ -12035,7 +12035,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hast-util-to-html@npm:9.0.5, hast-util-to-html@npm:^9.0.0":
+"hast-util-to-html@npm:9.0.6":
+  version: 9.0.6
+  resolution: "hast-util-to-html@npm:9.0.6"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+    "@types/unist": "npm:^3.0.0"
+    ccount: "npm:^2.0.0"
+    comma-separated-tokens: "npm:^2.0.0"
+    hast-util-whitespace: "npm:^3.0.0"
+    html-void-elements: "npm:^3.0.0"
+    mdast-util-to-hast: "npm:^13.0.0"
+    property-information: "npm:^7.0.0"
+    space-separated-tokens: "npm:^2.0.0"
+    stringify-entities: "npm:^4.0.0"
+    zwitch: "npm:^2.0.4"
+  checksum: 10c0/db4b75240a594457f7bffeb630f8413fce5aa4ba2b8dd8a1e8926cb5a9f731b5c64e99ca43d47c335a2fb0ad10532790499ae980b24a4b5f4bc34208fcd39a4d
+  languageName: node
+  linkType: hard
+
+"hast-util-to-html@npm:^9.0.0":
   version: 9.0.5
   resolution: "hast-util-to-html@npm:9.0.5"
   dependencies:
