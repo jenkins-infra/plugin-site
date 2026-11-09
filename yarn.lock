@@ -3852,7 +3852,7 @@ __metadata:
     find-package-json: "npm:^1.2.0"
     gatsby-source-filesystem: "npm:5.16.0"
     jest: "npm:30.5.2"
-    nock: "npm:15.0.5"
+    nock: "npm:15.0.6"
     p-queue: "npm:^10.0.0"
     rehype-stringify: "npm:^10.0.1"
     remark: "npm:^15.0.1"
@@ -4508,17 +4508,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mswjs/interceptors@npm:^0.44.0":
-  version: 0.44.0
-  resolution: "@mswjs/interceptors@npm:0.44.0"
+"@mswjs/interceptors@npm:^0.45.11":
+  version: 0.45.11
+  resolution: "@mswjs/interceptors@npm:0.45.11"
   dependencies:
     "@open-draft/until": "npm:^3.0.1"
     "@types/debug": "npm:^4.1.13"
     debug: "npm:^4.4.3"
     is-node-process: "npm:^1.2.0"
     outvariant: "npm:^1.4.3"
-    rettime: "npm:^0.11.11"
-  checksum: 10c0/4bb2eb1cee5d549809f3456b811dbefa2727d28b82083e48801a9329f8070ef433667cc1996f995dfbbe450f160a147c3ceb6455826b2ed62104bb3f0e87c2f5
+    rettime: "npm:^0.11.12"
+  checksum: 10c0/2b975e8518a9bf4040458322d4d7f590344f6619ba660e54710ab8d89b490e2b16bc552c138685f16aab11c24faed2a55d6565f849d194694e76d6028133ad42
   languageName: node
   linkType: hard
 
@@ -15504,12 +15504,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nock@npm:15.0.5":
-  version: 15.0.5
-  resolution: "nock@npm:15.0.5"
+"nock@npm:15.0.6":
+  version: 15.0.6
+  resolution: "nock@npm:15.0.6"
   dependencies:
-    "@mswjs/interceptors": "npm:^0.44.0"
-  checksum: 10c0/1265620beacebf5436d8f83b1d6001353953a29f1889e42bc3339dfb5ff405743f74afe0a480d9040365744d05952b6b5e580108fccebc5a2bb0d70bb5de8c92
+    "@mswjs/interceptors": "npm:^0.45.11"
+  checksum: 10c0/1fb6c86836baae41f154ce98e71325b18be680aba6828c94de1e807e403fdd0a7a4e97ccaf5d80561604559ce2f9a59b4ec8859004a04698b43a28f06172de91
   languageName: node
   linkType: hard
 
@@ -18319,7 +18319,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rettime@npm:^0.11.11":
+"rettime@npm:^0.11.12":
   version: 0.11.12
   resolution: "rettime@npm:0.11.12"
   checksum: 10c0/d785a4b82535ccff6a47e9418456140d3b9317914e4a5134c41ba2e07f0573397b76e299ab9f4bbb73227a19f370056c2d5df6c4703193a9c5741f24705bd952
