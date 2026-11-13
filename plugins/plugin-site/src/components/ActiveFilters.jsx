@@ -20,7 +20,7 @@ function ActiveFilters({activeCategories, activeLabels, activeQuery, clearQuery,
         labels: allJenkinsPluginLabel {
             edges {
                 node {
-                    id
+                    labelId
                     title
                 }
             }
@@ -29,7 +29,7 @@ function ActiveFilters({activeCategories, activeLabels, activeQuery, clearQuery,
     `);
 
     const labels = data.labels.edges.reduce((prev, {node: label}) => {
-        prev[label.id] = label;
+        prev[label.labelId] = label;
         return prev;
     }, {});
     const categories = data.categories.edges.reduce((prev, {node: category}) => {

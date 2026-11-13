@@ -8,14 +8,14 @@ function PluginLabels({labels}) {
             labels: allJenkinsPluginLabel {
                 edges {
                     node {
-                        id
+                        labelId
                         title
                     }
                 }
             }
         }
     `)?.labels.edges.reduce((prev, {node: label}) => {
-        prev[label.id] = label.title;
+        prev[label.labelId] = label.title;
         return prev;
     }, {});
 
