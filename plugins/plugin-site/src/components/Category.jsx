@@ -10,7 +10,7 @@ function Category({activeCategories, category, toggleCategory, toggleLabel, acti
             labels: allJenkinsPluginLabel {
                 edges {
                     node {
-                        id
+                        labelId
                         title
                     }
                 }
@@ -19,7 +19,7 @@ function Category({activeCategories, category, toggleCategory, toggleLabel, acti
     `);
     const handleOnChange = () => toggleCategory(category);
 
-    const matchedLabels = category?.labels?.map((id) => data.labels.edges.find(({node: label}) => label.id === id)) || [];
+    const matchedLabels = category?.labels?.map((id) => data.labels.edges.find(({node: label}) => label.labelId === id)) || [];
     const checked = activeCategories?.find((active) => active === category.id) !== undefined;
     return (
         <li className={classNames(category.id, {mask: checked})}>
@@ -32,7 +32,7 @@ function Category({activeCategories, category, toggleCategory, toggleLabel, acti
                 {matchedLabels.filter(Boolean).map(({node: label}) => {
                     return(
                         <Label
-                            key={label.id}
+                            key={label.labelId}
                             toggleLabel={toggleLabel}
                             activeLabels={activeLabels}
                             category={category}

@@ -64,10 +64,10 @@ function useFilterHooks() {
 
     ret.toggleLabel = (label) => {
         const vals = new Set(data.labels);
-        if (vals.has(label.id)) {
-            vals.delete(label.id);
+        if (vals.has(label.labelId)) {
+            vals.delete(label.labelId);
         } else {
-            vals.add(label.id);
+            vals.add(label.labelId);
         }
         ret.setLabels(Array.from(vals).filter(Boolean));
     };

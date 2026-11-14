@@ -5,7 +5,7 @@ export default class ActiveLabel extends React.PureComponent {
 
     static propTypes = {
         label: PropTypes.shape({
-            id: PropTypes.string.isRequired,
+            labelId: PropTypes.string.isRequired,
             title: PropTypes.string
         }),
         toggleLabel: PropTypes.func.isRequired
@@ -21,7 +21,7 @@ export default class ActiveLabel extends React.PureComponent {
         if (label === undefined) {
             return null;
         }
-        const text = label.title !== null ? label.title : label.id;
+        const text = label.title !== null ? label.title : label.labelId;
         return (
             <a className="nav-link" onClick={this.handleOnClick}>{text}</a>
         );
