@@ -4,11 +4,11 @@ import React from 'react';
 function Label({toggleLabel, category, activeLabels, label}) {
 
     const handleOnChange = () => toggleLabel(label, category);
-    const checked = activeLabels.find((active) => active === label.id) !== undefined;
+    const checked = activeLabels.find((active) => active === label.labelId) !== undefined;
     return (
-        <li key={label.id}>
+        <li key={label.labelId}>
             <label>
-                <input type="checkbox" name="labels" value={label.id} checked={checked} onChange={handleOnChange} />
+                <input type="checkbox" name="labels" value={label.labelId} checked={checked} onChange={handleOnChange} />
                 <span>{label.title}</span>
             </label>
         </li>
@@ -19,7 +19,7 @@ Label.propTypes = {
     category: PropTypes.shape({
     }).isRequired,
     label: PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        labelId: PropTypes.string.isRequired,
         title: PropTypes.string
     }).isRequired,
     toggleLabel: PropTypes.func.isRequired

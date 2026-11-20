@@ -393,17 +393,21 @@ const getCoreResourceAsTuples = async (resourcePath, delimiter, reporter) => {
     return content.split('\n').filter(row => row.trim().length && !row.startsWith('#')).map(parseLine);
 };
 
-export const fetchLabelData = async ({createNode, reporter}) => {
+export const fetchLabelData = async ({createNode, createNodeId, reporter}) => {
     const sectionActivity = reporter.activityTimer('fetch labels info');
     sectionActivity.start();
     const messages = await getCoreResourceAsTuples('hudson/model/Messages.properties', '=', reporter);
-    const keyPrefix = 'UpdateCenter.PluginCategory';
+    const keyPrefix = 'UpdateCenter.PluginCategory.';
     for (const [key, value] of messages) {
-        const labelId = key.substring(keyPrefix.length + 1);
-        if (key.startsWith(keyPrefix)) {
+        if (key.startsWith(keyPrefix) && value !== undefined) {
+            const labelId = key.substring(keyPrefix.length);
+            if (!labelId) {
+                continue;
+            }
             createNode({
                 title: value,
-                id: labelId,
+                labelId,
+                id: createNodeId(`JenkinsPluginLabel:${labelId}`),
                 parent: null,
                 children: [],
                 internal: {
