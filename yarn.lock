@@ -12556,8 +12556,8 @@ __metadata:
   linkType: hard
 
 "hast-util-raw@npm:^9.1.0":
-  version: 9.2.0
-  resolution: "hast-util-raw@npm:9.2.0"
+  version: 9.2.1
+  resolution: "hast-util-raw@npm:9.2.1"
   dependencies:
     "@types/hast": "npm:^3.0.0"
     "@types/unist": "npm:^3.0.0"
@@ -12566,13 +12566,13 @@ __metadata:
     hast-util-to-parse5: "npm:^8.0.0"
     html-void-elements: "npm:^3.0.0"
     mdast-util-to-hast: "npm:^13.0.0"
-    parse5: "npm:^8.0.0"
+    parse5: "npm:^8.1.0"
     unist-util-position: "npm:^5.0.0"
     unist-util-visit: "npm:^5.0.0"
     vfile: "npm:^6.0.0"
     web-namespaces: "npm:^2.0.0"
     zwitch: "npm:^2.0.0"
-  checksum: 10c0/7f4b4864a7e99585a6366b95d52dbab6c84953daab694d50a1e6d98af2aced443bdf4c288d77b721d6105bdfe37146eff77d5758da544b4676dd508422595829
+  checksum: 10c0/124754097b44effd2af7aaa31b862af629d18791aab7453797447c6326264a0ce2d6affbb271fa5dd3eefb9046cb1b9cdef5394b663124371cf1afd1197e80e5
   languageName: node
   linkType: hard
 
@@ -16599,7 +16599,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse5@npm:^8.0.0":
+"parse5@npm:^8.1.0":
   version: 8.1.1
   resolution: "parse5@npm:8.1.1"
   dependencies:
