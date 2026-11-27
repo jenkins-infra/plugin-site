@@ -36,7 +36,7 @@
     "resolutions": {
         "lmdb@npm:2.5.2": "npm:lmdb@3.5.11",
         "lmdb@npm:2.5.3": "npm:lmdb@3.5.11",
-        "eslint-plugin-jest/@typescript-eslint/utils": "8.73.0",
+        "eslint-plugin-jest/@typescript-eslint/utils": "8.74.0",
         "sharp": "0.35.5"
     }
 }
