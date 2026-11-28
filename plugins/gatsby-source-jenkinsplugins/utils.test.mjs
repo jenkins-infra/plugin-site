@@ -7,6 +7,8 @@ import {
     fetchPluginData,
     fetchPluginHealthScore,
     fixGitHubUrl,
+    fetchLabelData,
+    processCategoryData,
     markdownToHtml,
     sortVersions,
 } from './utils.mjs';
@@ -38,6 +40,46 @@ describe('utils', () => {
     });
     afterEach(() => {
         nock.cleanAll();
+    });
+    it('creates uniquely identified label nodes with source label IDs', async () => {
+        nock('https://raw.githubusercontent.com')
+            .get('/jenkinsci/jenkins/master/core/src/main/resources/hudson/model/Messages.properties')
+            .reply(200, [
+                '# Jenkins plugin categories',
+                'UpdateCenter.PluginCategory.scm=Source Code Management',
+                'UpdateCenter.PluginCategory.scm-related=Source Code Management related',
+                'UpdateCenter.PluginCategory.ui=User Interface',
+                'UpdateCenter.PluginCategory=Malformed key',
+                'UpdateCenter.PluginCategory.invalid',
+                ''
+            ].join('\n'));
+
+        const createNode = jest.fn();
+        const createNodeId = jest.fn(id => `generated:${id}`);
+        await fetchLabelData({createNode, createNodeId, reporter: _reporter});
+
+        const labels = createNode.mock.calls.map(([node]) => node);
+        expect(labels.map(({labelId, title}) => [labelId, title])).toEqual([
+            ['scm', 'Source Code Management'],
+            ['scm-related', 'Source Code Management related'],
+            ['ui', 'User Interface']
+        ]);
+        expect(labels.map(({id}) => id)).toEqual([
+            'generated:JenkinsPluginLabel:scm',
+            'generated:JenkinsPluginLabel:scm-related',
+            'generated:JenkinsPluginLabel:ui'
+        ]);
+        expect(new Set(labels.map(({id}) => id)).size).toBe(labels.length);
+        expect(labels.every(({internal}) => internal.type === 'JenkinsPluginLabel')).toBe(true);
+    });
+    it('preserves category label slugs', async () => {
+        const createNode = jest.fn();
+        await processCategoryData({createNode, reporter: _reporter});
+
+        const scmCategory = createNode.mock.calls
+            .map(([node]) => node)
+            .find(({id}) => id === 'scm');
+        expect(scmCategory.labels).toEqual(['scm', 'scm-related']);
     });
     it('fix GitHub URL: submodule gets expanded', () => {
         expect(fixGitHubUrl('https://github.com/jenkinsci/blueocean-plugin/blueocean-bitbucket-pipeline', 'master'))
